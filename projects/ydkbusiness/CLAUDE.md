@@ -82,6 +82,15 @@ Nyhedsmotoren og Supertrends-infrastrukturen er i drift i dag på Y.dk.
 Y.dk Business konfigurerer og udvider den eksisterende motor — bygger ikke fra bunden.
 Redaktionskonceptet er den primære tekniske input til konfigurationen.
 
+## Supertrends — ejerskab og implikationer
+
+Supertrends (Lars Tvede) er del af ejerkredsen bag Y.dk Business. Platformen stilles
+til rådighed til nogenlunde kostpris — ikke en ekstern leverandør der skal prisevalueres.
+
+Supertrends behandles som given teknologisk infrastruktur. Spørgsmålet er ikke
+"kan vi have råd til den" men "hvad kan den præcist, og hvad mangler den" — så vi
+ved hvad der skal suppleres med ekstern tech (TTS, community-platform, nyheds-API'er).
+
 ## Leverancer
 
 1. Konceptdokument — produktvision og strategisk fundament (næsten færdigt)
