@@ -132,8 +132,14 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 | udbud.dk | Alle offentlige udbud: kommunale, regionale, statslige, EU-udbud | Erhvervsstyrelsens API (REST) | Gratis |
 | Folketing ODA | Lovforslag, høringer, udvalgsmøder, afstemninger | `oda.ft.dk/api` (REST/JSON) | Gratis |
 | Danmarks Statistik | Erhvervsstatistik, beskæftigelse, priser, konjunktur | `api.statbank.dk/v1/` (REST/JSON) | Gratis |
+| CVR | Virksomhedsstamdata, ejerskab, koncernstruktur, bestyrelser | ElasticSearch API via Erhvervsstyrelsen | Gratis |
+| XBRL-regnskab | Årsrapporter og regnskabsdata for alle registrerede selskaber | `/xbrl/indberet` — Erhvervsstyrelsen | Gratis |
+| BBR + Ejerfortegnelse | Ejendoms- og ejerdata | `datafordeler.dk` — Geodatastyrelsen | Gratis |
+| Tinglysning | Pant, skøder, servitutter | Tinglysningsrettens HTTP API | Gratis |
 | Dansk presse (RSS) | Nyheder fra åbne danske medier og branchemedier | Direkte RSS-feeds pr. medie | Gratis |
 | Supertrends API | Globale trends og brancheanalyse | Intern (ejerkreds) | Intern |
+
+**Note:** DAWA-adresse-API'et udfases 1. juli 2026 — erstattes af `datafordeler.dk`. Tech Lead må ikke bygge mod DAWA.
 
 **Ikke inkluderet i fase 1:** Overvågning af private selskabshandlinger, sociale medier og indhold bag betalingsmure.
 
