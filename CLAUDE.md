@@ -234,6 +234,13 @@ Specificerer præcist hvad der mangler af ekstern viden efter
 hver session — med kilder, formål og hvilken Claude Code-session
 der venter på resultatet. Bygges som afsluttende opgave i Etape 1.
 
+**prompt-creator** — `.claude/skills/custom/prompt-creator/`
+Forvandler løse idéer og rå instruktioner til skarpe, velstrukturerede
+prompts klar til brug med Claude, GPT, Gemini eller lokale modeller.
+Dækker alle prompttyper: system prompts, few-shot, kædede prompts og
+meta-prompts. Inkluderer reference-filer for prompt-anatomi og
+skill-description-guide.
+
 ---
 
 ## Platformstruktur
