@@ -33,6 +33,7 @@ Projektmapper:
 | Lokalt: projects/  | Drive-mappe | Link |
 |--------------------|-------------|------|
 | ydkbusiness/       | YDK/        | https://drive.google.com/open?id=1ATVkes-f-nCr6eLfc9QkGIL7ZF6_gtq- |
+| drumlab/           | DrumLab/    | *(oprettes i Drive)* |
 
 ---
 
@@ -85,18 +86,28 @@ claudeproject/
 │       └── [samme skills som ovenfor]
 │
 └── projects/
-    └── ydkbusiness/                   ← Y.dk Business-sektion
+    ├── ydkbusiness/                   ← Y.dk Business-sektion
+    │   ├── CLAUDE.md                  ← projektkontekst
+    │   ├── docs/
+    │   │   ├── feature-overblik.md
+    │   │   ├── features-spec.md
+    │   │   ├── koncept-ydkbusiness.md
+    │   │   ├── positioning-statement.md
+    │   │   ├── projekt-y-kontekst.md
+    │   │   └── roadmap.md
+    │   ├── output/
+    │   │   ├── PRE-READ_ledelsesmoede-juni-2026.md
+    │   │   └── opgaver-commercial-tech-lead.md
+    │   └── research/
+    │       ├── markedsanalyse-indsigter.md
+    │       ├── markedsvalidering-indsigter.md
+    │       ├── platformsundersoegelse-indsigter.md
+    │       └── prompt-platformsundersoegelse.md
+    └── drumlab/                       ← DrumLab læringsplatform
         ├── CLAUDE.md                  ← projektkontekst
         ├── docs/
-        │   ├── feature-overblik.md
-        │   ├── koncept-ydkbusiness.md
-        │   ├── positioning-statement.md
-        │   ├── projekt-y-kontekst.md
-        │   └── roadmap.md
-        ├── output/                    ← færdige leverancer klar til præsentation
+        ├── output/
         └── research/
-            ├── markedsanalyse-indsigter.md
-            └── markedsvalidering-indsigter.md
 ```
 
 **Forskel på .claude/skills/ og .agents/skills/:** `.claude/skills/` aktiveres af Claude Code CLI. `.agents/skills/` aktiveres af Agent SDK. Indholdet er identisk — begge skal opdateres ved tilføjelse af nye skills.
