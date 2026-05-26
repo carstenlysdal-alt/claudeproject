@@ -296,7 +296,7 @@ git pull origin main
 ## Synkronisering
 
 - GitHub: primær synkronisering — https://github.com/carstenlysdal-alt/claudeproject
-- Google Drive backup: https://drive.google.com/open?id=1pJfjcULRraozgXVnMxWK0ds92xIcQ5NE
+- Google Drive backup: https://drive.google.com/open?id=1ATVkes-f-nCr6eLfc9QkGIL7ZF6_gtq-
 - Primær lokal sti (USB): `/Volumes/USB/APPS/claudeproject/`
 - Lokal sti på øvrige maskiner: `~/Documents/pm-platform/`
 - Automatisk eksport kl. 09 og 18 via cron job

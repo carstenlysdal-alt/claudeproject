@@ -14,7 +14,7 @@ Hent API-nøgle på: slidespeak.co/slidespeak-api
 
 ## Google Drive-backup
 
-Backup-mappe: https://drive.google.com/open?id=1pJfjcULRraozgXVnMxWK0ds92xIcQ5NE
+Backup-mappe: https://drive.google.com/open?id=1ATVkes-f-nCr6eLfc9QkGIL7ZF6_gtq-
 
 Cron job til automatisk eksport kl. 09 og 18 — afventer at der er diskplads:
 ```
