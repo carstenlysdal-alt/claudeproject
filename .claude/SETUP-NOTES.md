@@ -6,7 +6,7 @@ Fortæl hvilken maskine du er på ved sessionstart — så bruger Claude automat
 
 | Maskine | Arbejdssti | Git-kommando ved start |
 |---|---|---|
-| iMac (USB) | `/Volumes/USB/APPS/claudeproject/` | `cd /Volumes/USB/APPS/claudeproject && git pull origin main` |
+| iMac (SSD) | `/Volumes/SSD Data/Gits/claudeproject/` | `cd "/Volumes/SSD Data/Gits/claudeproject" && git pull origin main` |
 | MacBook Pro / MacBook Air | `~/Documents/pm-platform/` | `cd ~/Documents/pm-platform && git pull origin main` |
 
 GitHub er den primære synkronisering mellem maskiner — altid `git pull` ved sessionstart og `git push` ved sessionslut.
@@ -36,18 +36,16 @@ Projektmapper:
 
 ---
 
-## Cron job — aktivt
+## Google Drive-synkronisering
 
-Kørende. Synkroniserer automatisk kl. 09 og 18.
+**iMac:** Ingen cron. Claude synkroniserer manuelt til Drive i løbet af sessionen, efterhånden som der produceres output.
 
-Verificér med: `crontab -l`
-
-Nuværende indhold:
+Rsync-kommandoer til manuel kørsel:
 ```
-0 9,18 * * * rsync -a "/Volumes/USB/APPS/claudeproject/projects/ydkbusiness/docs/" \
-  "~/Library/CloudStorage/GoogleDrive-carstenlysdal@gmail.com/Mit drev/Projekter/YDK/docs/" 2>/dev/null
-0 9,18 * * * rsync -a "/Volumes/USB/APPS/claudeproject/projects/ydkbusiness/output/" \
-  "~/Library/CloudStorage/GoogleDrive-carstenlysdal@gmail.com/Mit drev/Projekter/YDK/output/" 2>/dev/null
+rsync -a "/Volumes/SSD Data/Gits/claudeproject/projects/ydkbusiness/docs/" \
+  "$HOME/Library/CloudStorage/GoogleDrive-carstenlysdal@gmail.com/Mit drev/Projekter/YDK/docs/"
+rsync -a "/Volumes/SSD Data/Gits/claudeproject/projects/ydkbusiness/output/" \
+  "$HOME/Library/CloudStorage/GoogleDrive-carstenlysdal@gmail.com/Mit drev/Projekter/YDK/output/"
 ```
 
 ---

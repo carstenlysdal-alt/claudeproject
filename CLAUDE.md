@@ -315,7 +315,7 @@ git pull origin main
 - Google Drive: automatisk eksport kl. 09 og 18 via cron job
 - Drive-rodmappe (Projekter): https://drive.google.com/open?id=1v2Jy6hN6eCjRaS4rzBxUa4YysEL6EVqZ
 - Drive lokal sti: `~/Library/CloudStorage/GoogleDrive-carstenlysdal@gmail.com/Mit drev/Projekter/`
-- Primær lokal sti (USB): `/Volumes/USB/APPS/claudeproject/`
+- Primær lokal sti (iMac/SSD): `/Volumes/SSD Data/Gits/claudeproject/`
 - Lokal sti på øvrige maskiner: `~/Documents/pm-platform/`
 
 ### Projektmapping — lokal → Drive
@@ -328,9 +328,9 @@ Hvert nyt projekt får sin egen linje. Se `.claude/SETUP-NOTES.md` for cron-ops�
 
 ## Git-rytme
 
-Start session (USB/iMac):
+Start session (iMac/SSD):
 ```
-cd /Volumes/USB/APPS/claudeproject
+cd "/Volumes/SSD Data/Gits/claudeproject"
 git pull origin main
 code .
 ```
