@@ -46,7 +46,8 @@ og en teknologisk platform der skalerer.
 ## Kommercielle rammer (kontekst)
 
 Abonnementspris år 1: 5.000 kr./år
-Abonnentmål år 1: 15.000 (75M DKK ARR)
+Abonnentmål år 1: 1.500
+ARR ved målopfyldelse: 7,5M DKK
 Indhold: erhvervsnyheder + markedsovervågning + trends + B2B-briefs
 
 ## Nuværende fase

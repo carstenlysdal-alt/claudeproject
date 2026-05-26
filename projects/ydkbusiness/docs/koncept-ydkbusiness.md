@@ -4,11 +4,47 @@
 
 Y.dk Business er en AI-drevet erhvervsplatform der leverer erhvervsnyheder,
 markedsovervågning, branchetrends og B2B-briefs i ét samlet abonnement.
-Produktet erstatter det kludetæppe af separate tjenester — nyhedsmedie,
-medieovervågning, trend-analyse — som SMV-ejere og erhvervsledere i dag
-bruger på tværs af Børsen, LassoX og lignende tjenester.
+Produktet erstatter det kludetæppe af separate tjenester som SMV-ejere
+og erhvervsledere i dag betaler for på tværs af flere udbydere.
 
 Prispunkt år 1: 5.000 kr./år. Ét login. Én platform.
+
+---
+
+## Hvad Y.dk Business er — og hvad det ikke er
+
+Dette er den centrale skelnen i al kommunikation om produktet.
+
+**LassoX og lignende salgsværktøjer** identificerer hvornår en virksomhed
+er klar til at købe noget. De leverer salgstriggers og leadkort baseret
+på virksomhedsdata — og koster 12.000-36.000 kr./år for det.
+Det er et godt salgsværktøj. Det er ikke intelligence. Det fortæller dig
+ikke hvad der sker i dit marked, hvad dine konkurrenter gør, eller hvilke
+tendenser der vil påvirke din branche om seks måneder.
+
+**Retriever og Meltwater** overvåger hvad der skrives om din virksomhed
+og dine søgeord i medier og på sociale platforme. De koster 24.000+ kr./år
+og er prissat til kommunikationsafdelinger i større organisationer.
+De leverer hverken nyheder, redaktionel analyse eller strategisk intelligence.
+
+**Børsen og Finans.dk** leverer erhvervsnyheder — men skriver primært til
+kapitalmarkedet og C25-selskaber. En SMV-ejer betaler for et produkt der
+ikke er skrevet til ham.
+
+**Y.dk Business er noget andet:**
+
+| Hvad du har brug for | I dag | Med Y.dk Business |
+|---|---|---|
+| Erhvervsnyheder relevante for din virksomhed | Børsen/Finans.dk — skrevet til C25 | ✓ SMV-fokuseret, personaliseret |
+| Overvågning af konkurrenter og marked | Retriever/Meltwater — 24.000+ kr./år | ✓ Inkluderet i abonnementet |
+| Branchetrends og strategisk analyse | Intet tilgængeligt for SMV | ✓ Ugentlig trendrapport |
+| Situationsbriefs til møder og beslutninger | Intet — du researcher selv | ✓ On-demand på 60 sekunder |
+| Samlet overblik på ét sted | 3-5 separate tjenester og login | ✓ Ét login, én platform |
+| **Samlet pris** | **20.000-50.000 kr./år** | **5.000 kr./år** |
+
+Y.dk Business er ikke et salgsværktøj. Det er ikke et PR-overvågningsværktøj.
+Det er erhvervsintelligens — det du har brug for for at træffe bedre beslutninger,
+forstå dit marked og holde dig foran konkurrenterne.
 
 ---
 
@@ -115,16 +151,17 @@ Den er årsagen til at produktet er mere end en datafeed.
 
 ## Kommerciel ramme
 
-Abonnementspris år 1: **5.000 kr./år** for fuld pakke
+Prisleje år 1: **1.500-5.000 kr./år** — tier-model
 
-Prisankeret er strategisk: Y.dk Business koster det samme som
-et Børsen-abonnement alene — men leverer nyhedsdækning plus
-det servicelag der ellers koster 15.000-200.000 kr./år.
+Logikken er lav adgangsbarriere med opgraderingssti:
+- Basisadgang: ~1.500 kr./år — nyheder og morgenbrief
+- Fuld pakke: ~3.000-5.000 kr./år — alle fem lag inkl. fællesskab
 
-Kommerciel model under udvikling — kandidater:
-- Ren abonnement (B2C og B2B)
-- Virksomhedsabonnement med team-adgang
-- Sponsoreret indhold og branded intelligence-briefs
+Prisankeret holder: selv fuld pakke til 5.000 kr./år er billigere end
+Finans.dk alene, og langt under Retriever + Børsen kombineret (20.000+ kr./år).
+
+Eksakt tier-struktur afklares med ledelsen. Kommunikeres altid som
+virksomhedsudgift der trækkes fra — ikke personligt medieabonnement.
 
 ---
 
@@ -132,17 +169,17 @@ Kommerciel model under udvikling — kandidater:
 
 | Metrik | Mål |
 |---|---|
-| Betalende abonnenter år 1 | 15.000 |
-| ARR ved målopfyldelse | 75M DKK |
+| Betalende abonnenter år 1 | 1.500 |
+| ARR ved målopfyldelse | 7,5M DKK |
 | Abonnementspris | 5.000 kr./år |
 | Churn år 1 | Under 20% |
 | NPS | Over 40 |
 | Gennemsnitlig daglig brug | Minimum 3 sessioner/uge per abonnent |
 | Andel der erstatter mindst ét eksisterende abonnement | Over 60% |
 
-**Acquisition-implikation:** 15.000 betalende abonnenter år 1 kræver ved 2-5% konverteringsrate
-eksponering af 300.000-750.000 kvalificerede brugere i løbet af året.
-Acquisition-strategien er kritisk vej — fastsættes i kommerciel leverance.
+**Acquisition-implikation:** 1.500 betalende abonnenter år 1 kræver ved 2-5% konverteringsrate
+eksponering af 30.000-75.000 kvalificerede brugere i løbet af året.
+Det er et realistisk og forsvarligt mål — Axios Pro nåede 3.000 i år 1 med etableret US-medie bag.
 
 ---
 

@@ -46,6 +46,12 @@ Systematisk overvågning af det der er relevant for brugerens virksomhed.
 - Ugentlig overvågningsrapport (digest-format)
 - Kilde-bredde: medier, offentlige dokumenter, EU-regulering, brancheorganisationer
 
+**Obligatorisk kilde-kategori (baseret på markedsvalidering):**
+Regulering og erhvervspolitik med direkte SMV-konsekvens — nye krav, lovændringer,
+kommunale udbud, EU-direktiver. Statsrelateret papirarbejde koster SMV'erne
+16,5 mia. kr./år. Overvågning af regulatory change er ikke nice-to-have — det er
+det behov der er nærmest pengeværdien for målgruppen.
+
 **Brugerflow:**
 ```
 Onboarding → Opsæt watchlist → Løbende alerts → Ugentlig digest → Juster profil
@@ -169,6 +175,21 @@ Platformen leverer værdi i indbakken fra dag 1 — brugeren konfigurerer ikke a
 - Team- og virksomhedsabonnement med delt adgang
 - API-integration til CRM og egne systemer
 - Avanceret benchmarking mod konkurrenter
+
+---
+
+## Feature-validering mod dokumenterede behov (markedsvalidering maj 2026)
+
+| Dokumenteret behov | Feature der dækker det | Status |
+|---|---|---|
+| Tidsmangel — 3,5 t/uge på administration | Morgenbrief + B2B-briefs | ✓ Dækket |
+| Informationsoverflod — 35% overvældet | Personaliseret feed + filtrering | ✓ Dækket |
+| Fragmenterede værktøjer | Ét samlet login | ✓ Dækket |
+| Sparring med ligesindede | Community (lag 5) | ✓ Dækket |
+| Branchespecifik relevans | Personalisering på branche | ✓ Dækket |
+| Strategisk intelligence — ingen BI-adgang til SMV-priser | Trends + B2B-briefs | ✓ Dækket |
+| Konkurrentovervågning | Overvågning (lag 2) | ✓ Dækket |
+| Regulering og policy med direkte SMV-konsekvens | Overvågning — regulatory kategori | ✓ Tilføjet |
 
 ---
 
