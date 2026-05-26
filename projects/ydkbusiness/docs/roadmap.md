@@ -2,9 +2,11 @@
 
 ## Strategisk kontekst
 
-PM-engagement løber 1. juni – 30. september 2026 (4 måneder, 1 sommerferie).
-3 effektive arbejdsmåneder: juni, august, september. Juli er reduceret kapacitet.
-Nyhedsmotoren er i drift. PM-leverancerne aktiverer og konfigurerer platformen.
+PM-engagement løber 1. juni – 30. september 2026.
+3 effektive arbejdsmåneder: juni, august, september. Juli er sommerferie — PM er ikke tilgængelig.
+Soft launch: 1. oktober 2026. Nyhedsmotoren er i drift. PM-leverancerne aktiverer og konfigurerer platformen.
+
+**Kritisk konsekvens af juli-ferie:** Juni-leverancerne skal pakkes så Tech Lead kan eksekvere selvstændigt hele juli uden PM-sparring. Ufuldstændige leverancer ved udgangen af juni = stilstand i juli = forsinkelse af 1. oktober.
 
 ---
 
@@ -44,12 +46,15 @@ Hvad PM leverer hvornår, og hvem der låses op af det.
 
 ---
 
-### Juli — Sommerferie (reduceret kapacitet)
+### Juli — Sommerferie (PM utilgængelig)
+
+Tech Lead eksekverer selvstændigt baseret på juni-leverancerne. PM er ikke tilgængelig.
+Hvis redaktionelt koncept og features spec v1.0 ikke er fuldt pakket ved udgangen af juni, stopper fremdriften her.
 
 | Aktivitet | Ejer | Note |
 |---|---|---|
-| Tech-konfiguration af motor baseret på redaktionelt koncept | Tech Lead | Kører parallelt med PM-ferie |
-| Design brief klar til august | PM | Forberedes inden ferie |
+| Tech-konfiguration af motor baseret på redaktionelt koncept | Tech Lead | Eksekveres selvstændigt — kræver at juni-leverancerne er komplette |
+| Design brief klar til august | PM | Produceres inden ferie og overleveres til designer |
 
 ---
 
@@ -71,14 +76,16 @@ Hvad PM leverer hvornår, og hvem der låses op af det.
 
 ### September — Launch-forberedelse
 
+Launch er 1. oktober. September har nul buffer — alle leverancer skal holde.
+
 | Uge | Leverance | Ejer | Note |
 |---|---|---|---|
-| 1-2 | Launch-plan og GTM-brief | PM + Commercial Lead | Acquisition-strategi |
-| 2-3 | Beta-test med udvalgte brugere (10-20 SMV-ejere) | PM + Tech Lead | Validering inden fuld launch |
-| 3-4 | Justeringer baseret på beta-feedback | PM + Tech Lead | — |
-| 4 | PM-engagement afsluttet — overlevering | PM | Drift og videreudvikling |
+| 1 | Launch-plan og GTM-brief færdig | PM + Commercial Lead | Acquisition-strategi klar til eksekvering |
+| 1-2 | Beta-test: 10-20 udvalgte SMV-ejere inviteret og onboardet | PM + Tech Lead | Kvalitativ validering inden launch |
+| 3 | Justeringer baseret på beta-feedback implementeret | PM + Tech Lead | Kun kritiske fixes — ikke ny funktionalitet |
+| 4 | Platform klar til 1. oktober. Overlevering til drift | PM | PM-engagement afsluttet |
 
-**September-milestone:** Beta live og feedback indsamlet senest 30. september.
+**September-milestone:** Platform stabil og klar senest 28. september. Launch 1. oktober.
 
 ---
 
@@ -86,7 +93,7 @@ Hvad PM leverer hvornår, og hvem der låses op af det.
 
 Hvornår platformen er klar, og hvad der er med hvornår.
 
-### Oktober 2026 — Soft launch (invited beta)
+### 1. oktober 2026 — Soft launch (invited beta)
 
 **Hvad er med:**
 - Personaliseret nyhedsfeed + morgenbrief (tekst + lyd)
@@ -143,8 +150,8 @@ Hvornår platformen er klar, og hvad der er med hvornår.
 | Risiko | Sandsynlighed | Konsekvens | Handling |
 |---|---|---|---|
 | AI-paradoks-beslutning forsinkes | Medium | Blokerer kommunikation og UI-sprogbrug | Tag det som punkt 1 på ledelsesmøde |
-| Sommerferie reducerer tech-kapacitet mere end forventet | Høj | Motor ikke konfigureret til august | Sæt klare leverancer til tech inden juli |
-| Beta-feedback kræver større justeringer | Medium | Forsinker fuld lancering | Byg 2-ugers buffer i oktober |
+| Juli: Tech Lead mangler input og stopper | Høj | Motor ikke konfigureret til august | Juni-leverancerne skal være selveksekverende — ingen åbne spørgsmål |
+| Beta-feedback kræver større justeringer | Medium | Forsinker 1. oktober | September har nul buffer — kun kritiske fixes går ind |
 | 1.500 abonnenter kræver acquisition-investering der ikke er budgetteret | Ukendt | Mål nås ikke år 1 | Afklar budget med Commercial Lead i august |
 
 ---
@@ -157,7 +164,7 @@ Hvornår platformen er klar, og hvad der er med hvornår.
 | Features spec | Committed — leveres juni |
 | UI-wireframes | Committed — leveres august |
 | Tech platform-spec | Committed — leveres august |
-| Soft launch | Committed — oktober 2026 |
+| Soft launch | Committed — 1. oktober 2026 |
 | Fuld lancering | Directional — november/december 2026 |
 | 1.500 abonnenter | Directional — Q1 2027 |
 | Video-format | Speculative — afhænger af motor |
