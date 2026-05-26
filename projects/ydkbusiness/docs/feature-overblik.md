@@ -131,13 +131,44 @@ Ugentlig digest · Personalisering der forbedres · Brief-historik
 
 ---
 
+## Lag 5 — Abonnentfællesskab (tilføjet efter markedsvalidering)
+
+**Hvorfor:** Trends.co dokumenterede at lukket community er primær fastholdelsesmekanisme.
+SMV-ejere betaler allerede 12.000 kr./år for ejerledernetværk. Fællesskab øger retention markant.
+
+**Hvad det er:** Lukket, modereret forum for abonnenter — sparring, videndeling og netværk
+på tværs af brancher. Adgang kun for betalende abonnenter.
+
+**Minimumsfunktioner fase 1:**
+- Lukket forum/gruppe (modereret)
+- Branchespecifikke rum
+- Mulighed for direkte spørgsmål til redaktionen
+
+---
+
+## Designkrav fra markedsvalidering
+
+**AI må aldrig fremgå i brugerflade eller kommunikation.**
+53% af danskerne er utrygge ved AI-journalistik. AI er back-end motor — ikke front-end identitet.
+Produktet kommunikerer redaktionel kvalitet og menneskelig stemme.
+
+**Produktet kommunikeres altid som virksomhedsudgift.**
+Betalingsvillighed for personlige nyheder (35-54 år): 11-12%.
+5.000 kr./år er en firmabetalt driftsomkostning — ikke et personligt medie-abonnement.
+Gælder onboarding, checkout, faktura-format og al kommunikation.
+
+**Ingen friktion i onboarding.**
+30% af SMV'er opgiver digitale værktøjer pga. kompleksitet.
+Platformen leverer værdi i indbakken fra dag 1 — brugeren konfigurerer ikke algoritmer.
+
+---
+
 ## Hvad der ikke er med (fase 1)
 
 - Video-format
 - Team- og virksomhedsabonnement med delt adgang
 - API-integration til CRM og egne systemer
 - Avanceret benchmarking mod konkurrenter
-- Brugergenereret indhold eller kommentarspor
 
 ---
 
