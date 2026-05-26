@@ -33,7 +33,7 @@ Projektmapper:
 | Lokalt: projects/  | Drive-mappe | Link |
 |--------------------|-------------|------|
 | ydkbusiness/       | YDK/        | https://drive.google.com/open?id=1ATVkes-f-nCr6eLfc9QkGIL7ZF6_gtq- |
-| drumlab/           | DrumLab/    | *(oprettes i Drive)* |
+| pocket-drummer/           | Pocket Drummer/    | https://drive.google.com/drive/folders/1qIxAHMHfSOVWj9MaYsyx1AqXC5uZU9v0 |
 
 ---
 
@@ -103,7 +103,7 @@ claudeproject/
     │       ├── markedsvalidering-indsigter.md
     │       ├── platformsundersoegelse-indsigter.md
     │       └── prompt-platformsundersoegelse.md
-    └── drumlab/                       ← DrumLab læringsplatform
+    └── pocket-drummer/                       ← Pocket Drummer læringsplatform
         ├── CLAUDE.md                  ← projektkontekst
         ├── docs/
         ├── output/

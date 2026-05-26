@@ -323,7 +323,7 @@ git pull origin main
 | Lokalt: projects/  | Drive-mappe |
 |--------------------|-------------|
 | ydkbusiness/       | YDK/        |
-| drumlab/           | DrumLab/    |
+| pocket-drummer/           | Pocket Drummer/    |
 
 Hvert nyt projekt får sin egen linje. Se `.claude/SETUP-NOTES.md` for cron-opsætning og tjekliste.
 
