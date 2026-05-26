@@ -1,5 +1,18 @@
 # Setup-noter
 
+## Maskiner og arbejdsstier
+
+Fortæl hvilken maskine du er på ved sessionstart — så bruger Claude automatisk den rigtige sti.
+
+| Maskine | Arbejdssti | Git-kommando ved start |
+|---|---|---|
+| iMac (USB) | `/Volumes/USB/APPS/claudeproject/` | `cd /Volumes/USB/APPS/claudeproject && git pull origin main` |
+| MacBook Pro / MacBook Air | `~/Documents/pm-platform/` | `cd ~/Documents/pm-platform && git pull origin main` |
+
+GitHub er den primære synkronisering mellem maskiner — altid `git pull` ved sessionstart og `git push` ved sessionslut.
+
+---
+
 ## SlideSpeak API-nøgle — AFVENTER
 
 ~/.zshrc er oprettet med placeholder. Hent din nøgle på slidespeak.co/slidespeak-api og kør:
