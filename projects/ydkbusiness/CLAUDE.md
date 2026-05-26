@@ -7,8 +7,11 @@ for Y.dk rettet mod erhvervslæsere og SMV-ejere på Sjælland.
 
 ## Målgruppe
 
-Primær: SMV-ejere og erhvervslæsere på Sjælland
-Sekundær: Annoncører og samarbejdspartnere i erhvervssegmentet
+Primær: SMV-ejere og erhvervsledere i hele Danmark
+Sekundær (fase 2): Internationale erhvervslæsere
+Kommercielle partnere: Annoncører og samarbejdspartnere i erhvervssegmentet
+
+Geografisk scope: Danmark (lancering) → internationalt (senere fase)
 
 ## Stakeholders
 
