@@ -12,16 +12,35 @@ Nyhedsmotoren er i drift. PM-leverancerne aktiverer og konfigurerer platformen.
 
 Hvad PM leverer hvornår, og hvem der låses op af det.
 
+### Uge 5 maj / inden PM-engagement starter (nu)
+
+| Aktivitet | Ejer | Status |
+|---|---|---|
+| Features spec v0.1 | PM | ✓ Done — 26. maj |
+| Datastackarkitektur: 11 direkte offentlige endpoints | PM | ✓ Done — 26. maj |
+| Book Supertrends-møde med Lars Tvede | PM + CEO | Skal bookes nu |
+| Book ledelsesmøde uge 1 juni | PM + CEO | Skal bookes nu |
+| Identificér designer-ressource til august | CEO + PM | Skal afklares inden juli |
+
+---
+
 ### Juni — Definition og alignment
 
 | Uge | Leverance | Ejer | Låser op for |
 |---|---|---|---|
-| 1-2 | Ledelsesmøde: AI-paradoks, brand, B2C/B2B, tier-struktur | PM + CEO | Alt efterfølgende |
-| 2-3 | Redaktionelt koncept (kilder, vinkler, outputformat) | PM + Chefredaktør | Tech-konfiguration af motor |
-| 3-4 | Features spec (detaljeret kravspecifikation pr. lag) | PM + Tech Lead | Design og build |
+| 1 | Ledelsesmøde: AI-paradoks, tier-struktur, produktgodkendelse | PM + CEO | Alt efterfølgende |
+| 1-2 | Supertrends-møde: tre tekniske afklaringer med Lars Tvede | PM + Tech Lead | Features spec v1.0 + tech-konfiguration |
+| 2-3 | Redaktionelt koncept (kilder, vinkler, outputformat, produktionsarkitektur) | PM + Chefredaktør | Tech-konfiguration af motor |
+| 3-4 | Commercial Lead briefet: acquisition-budget og kanalvalg | PM + Commercial Lead | GTM-plan |
+| 4 | Features spec v1.0 — final (lukker åbne punkter fra Supertrends-møde) | PM + Tech Lead | Design og build |
 | 4 | Konceptdokument — final version til stakeholders | PM | Stakeholder-alignment |
 
-**Juni-milestone:** Redaktionelt koncept afleveret til tech-teamet senest 30. juni.
+**Juni-milestone:** Redaktionelt koncept + features spec v1.0 afleveret til tech-teamet senest 30. juni.
+
+**Tre beslutninger der SKAL ud af ledelsesmødet:**
+1. AI-paradoks — præcist sprogbrug i UI og marketing (blokerer al kommunikation og design)
+2. Tier-struktur — Basis vs. Pro, hvad der er i hvilken pakke, prisniveau
+3. Produktgodkendelse — CEO bekræfter scope og retning
 
 ---
 
@@ -36,12 +55,15 @@ Hvad PM leverer hvornår, og hvem der låses op af det.
 
 ### August — Design og tech-spec
 
+**Forudsætning:** Designer-ressource identificeret inden august. Ikke opfyldt = august-leverancer i fare.
+
 | Uge | Leverance | Ejer | Låser op for |
 |---|---|---|---|
 | 1-2 | UI-wireframes: onboarding, dashboard, morgenbrief | PM + Designer | Frontend-build |
 | 2-3 | UI-wireframes: overvågning, trends, B2B-briefs, community | PM + Designer | Frontend-build |
 | 3-4 | Teknologisk platform-spec (arkitektur, Supertrends-integration, skalering) | PM + Tech Lead | Backend-build |
-| 4 | Stakeholder-præsentation: concept + design + tech | PM | Go/no-go beslutning |
+| 3-4 | Commercial Lead: acquisition-budget bekræftet, kanalvalg besluttet | PM + Commercial Lead | GTM-eksekvering |
+| 4 | Stakeholder-præsentation: concept + design + tech + GTM | PM | Go/no-go beslutning |
 
 **August-milestone:** Go/no-go fra ledelsen senest 31. august.
 
@@ -107,9 +129,11 @@ Hvornår platformen er klar, og hvad der er med hvornår.
 
 | Afhængighed | Risiko | Mitigation |
 |---|---|---|
-| Ledelsesmøde låser alt (uge 1-2 juni) | Forsinkelse her forsinker hele kæden | Prioritér mødet første uge |
-| Supertrends-kapabiliteter til business-segmentet uafklaret | Tech-spec kan ikke skrives uden dette | Afklar med Lars Tvede parallelt med ledelsesmøde |
+| Ledelsesmøde uge 1 juni — tre beslutninger skal ud | Forsinkelse her forsinker hele kæden | Book mødet nu. Send beslutningsdokument som pre-read. |
+| Supertrends-møde med Lars Tvede — tre tech-spørgsmål | Features spec v1.0 kan ikke lukkes uden svar | Book som separat møde, ikke "parallel aktivitet" |
+| Designer ikke identificeret | August-leverancer i fare | CEO afklarer ressource inden udgangen af juni |
 | Redaktionelt koncept → tech-konfiguration | Tech kan ikke konfigurere motor uden det | Lever senest 30. juni |
+| Commercial Lead involveres for sent | GTM-brief i september = for lidt tid til acquisition | Bring Commercial Lead ind i august-præsentation |
 | Go/no-go august | Forsent beslutning = forsent launch | Stakeholder-præsentation klar 25. august |
 
 ---
