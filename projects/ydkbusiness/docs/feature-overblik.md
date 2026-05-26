@@ -1,18 +1,63 @@
 # Y.dk Business — Feature-overblik
 
-## Platformens fire lag
+## Hvad platformen kan
+
+Y.dk Business er et dagligt arbejdsredskab for SMV-ejere og erhvervsledere.
+Platformen producerer originalt erhvervsindhold med redaktionel vinkel — ikke et
+aggregat af andres historier. Datagrundlaget er primærkilder: offentlige registre,
+lovgivning, udbud og selskabsdata. Vinklen er det der mangler i den dominerende dækning.
+
+En bruger kan:
+
+**Starte dagen orienteret**
+Modtage et personaliseret morgenbrief kl. 06:00 med dagens vigtigste erhvervsnyheder
+for sin branche og sit marked — som tekst i indbakken og som lyd i appen.
+
+**Følge sit marked løbende**
+Overvåge konkurrenter, reguleringsændringer, EU-direktiver, offentlige udbud,
+selskabshandlinger og politiske initiativer med direkte SMV-konsekvens.
+Alerts ved vigtige ændringer. Ugentlig digest mandage.
+
+**Forstå sin branche strategisk**
+Modtage ugentlig trendrapport med de tendenser der vil påvirke branchen på
+kort og langt sigt — med kilde, status og tidshorisont.
+
+**Forberede sig på 60 sekunder**
+Generere et handlingsorienteret situationsbrief om en virksomhed, et marked,
+en konkurrent eller et reguleringsemne — inden et møde, en forhandling eller en beslutning.
+
+**Spare med ligesindede**
+Deltage i et lukket forum for betalende abonnenter med branchespecifikke rum
+og direkte adgang til redaktionen.
+
+---
+
+## Arkitektur
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Y.dk BUSINESS                        │
-├───────────────┬───────────────┬──────────┬──────────────┤
-│  NYHEDER      │  OVERVÅGNING  │  TRENDS  │  B2B-BRIEFS  │
-└───────────────┴───────────────┴──────────┴──────────────┘
-                        ↑
-         PERSONALISERING (branche · virksomhed · marked)
-                        ↑
-              SUPERTRENDS-MOTOREN (5.000 kilder, 24/7)
+┌──────────────────────────────────────────────────────────────┐
+│                      Y.dk BUSINESS                           │
+├──────────────┬───────────────┬───────────┬───────────────────┤
+│  NYHEDER     │  OVERVÅGNING  │  TRENDS   │  B2B-BRIEFS       │
+└──────────────┴───────────────┴───────────┴───────────────────┘
+                              ↑
+              PERSONALISERING (branche · virksomhed · marked)
+                              ↑
+         ┌────────────────────┴─────────────────────┐
+         │  SUPERTRENDS API        OFFENTLIGE APIs   │
+         │  (trends, global        Retsinformation   │
+         │   kontekst)             EUR-Lex           │
+         │                         udbud.dk          │
+         │  LLM-LAG                Folketing ODA     │
+         │  (produktion af         CVR + XBRL        │
+         │   dansk originalt       Tinglysning       │
+         │   indhold)              BBR               │
+         │                         Danmarks Statistik│
+         │                         RSS (signalinput) │
+         └──────────────────────────────────────────┘
 ```
+
+Supertrends-arkitekturafklaring (rekonfigurér vs. LLM-lag) sker primo juni.
 
 ---
 
