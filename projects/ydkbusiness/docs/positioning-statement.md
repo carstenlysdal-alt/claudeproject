@@ -18,7 +18,7 @@ Handlingsorienteret erhvervsinformation plus de perspektiver og nuancer der går
 AI-drevet erhvervsnyhedstjeneste med integreret business intelligence-servicelag. Nyheder som fundament. Markedsovervågning, trends og B2B-briefs som det lag der adskiller Y.dk Business fra alle andre erhvervsmedier.
 
 **Q4 — Nøglefordel**
-Erhvervsnyheder og business intelligence i ét produkt til 5.000 kr./år — mod 2.500 kr./år for nyheder alene (Børsen) plus 15.000-200.000 kr./år for dedikerede BI-løsninger (LassoX, Meltwater). Én platform erstatter hele stakken.
+Erhvervsnyheder og business intelligence i ét produkt til 5.000 kr./år — mod 4.500 kr./år for nyheder alene (Finans.dk) plus 24.000+ kr./år for dedikeret medieovervågning (Retriever, Meltwater). Én platform erstatter hele stakken.
 
 **Q5 — Bevis**
 Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikke et løfte — det er fungerende teknologi bag produktet fra dag ét.
@@ -27,12 +27,16 @@ Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikk
 
 ## Primære konkurrenter i køberens hoved
 
-| Alternativ | Svaghed Y.dk udnytter |
-|---|---|
-| Børsen / Finans.dk | Nyheder uden BI-servicelag |
-| LassoX / Meltwater | BI uden redaktionel kvalitet — og 10-40x dyrere |
-| LinkedIn-feed | Ufiltreret, algoritmisk, tidskrævende |
-| Ingen struktureret løsning | Størst segment — ubesat kategori |
+| Alternativ | Pris kr./år | Svaghed Y.dk udnytter |
+|---|---|---|
+| Finans.dk | 4.500 | Nyheder uden overvågnings- og BI-lag |
+| Børsen | ca. 7.200 | Finansmarkedsfokus, ikke SMV-relevant |
+| Retriever (medieovervågning) | 24.000+ | Overvågning uden redaktionel nyhedsdækning |
+| Meltwater | 24.000+ | Dyr, enterprise-orienteret, ingen nyheder |
+| LinkedIn-feed | 0 | Ufiltreret, algoritmisk, tidskrævende |
+| Ingen struktureret løsning | 0 | Størst segment — ubesat kategori |
+
+**Note:** LassoX er et B2B salgs- og leadgenereringsværktøj — ikke en medieovervågningskonkurrent.
 
 ---
 
