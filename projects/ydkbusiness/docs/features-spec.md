@@ -122,8 +122,20 @@ Onboarding må ikke kræve betaling inden brugeren har oplevet mindst ét morgen
 - Digest kan deaktiveres af brugeren
 
 **F2.5 — Kilde-bredde**
-- Dækker: danske medier, offentlige dokumenter (Retsinformation, Folketing), EU-regulering (EUR-Lex), brancheorganisationer
-- Specifikke kilder: [afklares — se åbne spørgsmål Q2]
+
+Overvågning bygger udelukkende på direkte offentlige endpoints — ingen mellemleverandører.
+
+| Datakilde | Indhold | Endpoint (direkte) | Omkostning |
+|---|---|---|---|
+| Retsinformation | Danske love, bekendtgørelser, cirkulærer, vejledninger | `retsinformation.dk/api` (REST/JSON + ELI Atom-feeds) | Gratis |
+| EUR-Lex | EU-direktiver, forordninger, CELEX-dokumenter | `eur-lex.europa.eu` (SOAP XML + Cellar REST) | Gratis |
+| udbud.dk | Alle offentlige udbud: kommunale, regionale, statslige, EU-udbud | Erhvervsstyrelsens API (REST) | Gratis |
+| Folketing ODA | Lovforslag, høringer, udvalgsmøder, afstemninger | `oda.ft.dk/api` (REST/JSON) | Gratis |
+| Danmarks Statistik | Erhvervsstatistik, beskæftigelse, priser, konjunktur | `api.statbank.dk/v1/` (REST/JSON) | Gratis |
+| Dansk presse (RSS) | Nyheder fra åbne danske medier og branchemedier | Direkte RSS-feeds pr. medie | Gratis |
+| Supertrends API | Globale trends og brancheanalyse | Intern (ejerkreds) | Intern |
+
+**Ikke inkluderet i fase 1:** Overvågning af private selskabshandlinger, sociale medier og indhold bag betalingsmure.
 
 ### Acceptkriterier
 
@@ -133,10 +145,15 @@ Onboarding må ikke kræve betaling inden brugeren har oplevet mindst ét morgen
 
 ### Tekniske krav
 
-- Supertrends API leverer overvågning på branche og marked
+- Regulatory: direkte integration mod `retsinformation.dk/api` (Civilstyrelsen) — ikke via mellemmand
+- EU-regulering: direkte mod EUR-Lex Cellar REST API
+- Udbud: direkte mod Erhvervsstyrelsens udbud.dk API
+- Folketing: direkte mod `oda.ft.dk/api`
+- Statistik: direkte mod `api.statbank.dk/v1/`
+- Nyheder: RSS-feeds crawles direkte fra kildemedier
+- Supertrends API supplerer med trend-signaler (intern infrastruktur)
 - Watchlist-konfiguration gemmes i brugerprofil og synkroniseres på tværs af enheder
-- Regulatory-feeds: syv.ai Retsinformation API (gratis, JSON, 20 kald/time) + EUR-Lex (gratis, SOAP/REST)
-- udbud.dk API (gratis, Erhvervsstyrelsen) integreres som obligatorisk udbudskategori
+- Via Ritzau og øvrige mellemleverandører er fravalgt — alle datakilder skal have kendte, direkte endpoints
 
 ### Tier-adgang
 
@@ -388,18 +405,23 @@ Opdateret efter platformsundersøgelse maj 2026. Spørgsmål der er besvaret af 
 | Q7 | Watchlist-elementer: teknisk grænse pr. bruger uden performance-forringelse i Supertrends-API? | Lag 2 | **Åbent — afklares med Supertrends** |
 | Q8 | Mobilapp: Bettermode (ingen native app) er fravalgt. Circle og Discourse har native app på standardplan. PWA er ikke sufficient — push-notifikationer kræver native app. Bekræft valg. | Tværgående | **Afklaret: native app er krav** |
 
-### Kritisk arkitekturafklaring (ny — baseret på research)
+### Kritisk arkitekturafklaring — Supertrends (afklares primo juni)
 
 Supertrends-motoren producerer i dag **udelukkende engelsksprogede** outputs og er konfigureret til langsigtet global trend intelligence — ikke dagsaktuelle danske SMV-nyheder.
 
-**Y.dk Business kræver derfor ét af følgende to valg — beslutning skal træffes på ledelsesmøde:**
+Afklaring sker på ledelsesmøde primo juni med Lars Tvede. Tre spørgsmål skal besvares:
+1. Kan API'et levere råt dansksproget indhold direkte?
+2. Understøtter motoren on-demand queries med svar under 60 sekunder?
+3. Tilbyder de TTS til on-demand audio?
+
+**Y.dk Business kræver ét af følgende to valg — besluttes primo juni:**
 
 | Valg | Beskrivelse | Konsekvens |
 |---|---|---|
 | **A — Rekonfigurér Supertrends** | Lars Tvede konfigurerer motoren til dansk SMV-output og on-demand queries | Laveste tech-kompleksitet. Afhænger af Supertrends' villighed og kapacitet. |
 | **B — LLM-lag oven på Supertrends API** | Y.dk bygger et selvstændigt LLM-lag der trækker rådata fra Supertrends API og producerer dansk SMV-indhold | Fuld kontrol. Kræver LLM-budget og Tech Lead-kapacitet. |
 
-Valg A er foretrukket hvis Lars Tvede kan bekræfte det inden 30. juni. Valg B er fallback og fase 1-plan hvis A ikke er realistisk.
+Valg A er foretrukket. Valg B er fallback. Beslutning skal foreligge inden udgangen af juni-uge 2 for ikke at forsinke features spec v1.0 den 15. juli.
 
 ---
 
