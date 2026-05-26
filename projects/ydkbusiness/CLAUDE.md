@@ -31,16 +31,23 @@ Geografisk scope: Danmark (lancering) → internationalt (senere fase)
 - Commercial Lead — kommerciel model og partnerskaber
 - Chefredaktør — redaktionelt koncept og kvalitet
 
+## PM-rolle og scope
+
+Primært fokus: Platformen — produktvision, features, brugeroplevelse, tech-arkitektur og roadmap.
+Kommerciel model og forretningstal bruges som kontekst for platformsbeslutninger, ikke som primært leveranceområde.
+Tal og budgetter kan diskuteres, men output er altid platform-orienteret.
+
 ## Strategisk mål
 
 Etablere Y.dk Business som den primære AI-drevne erhvervsintelligens-platform
 for SMV-segmentet i Danmark — med redaktionel dybde, kommerciel bæredygtighed
 og en teknologisk platform der skalerer.
 
-## Kommerciel model
+## Kommercielle rammer (kontekst)
 
-Abonnement: 5.000 kr./år for fuld pakke (år 1-prispunkt)
-Indeholder: erhvervsnyheder + markedsovervågning + trends + B2B-briefs
+Abonnementspris år 1: 5.000 kr./år
+Abonnentmål år 1: 15.000 (75M DKK ARR)
+Indhold: erhvervsnyheder + markedsovervågning + trends + B2B-briefs
 
 ## Nuværende fase
 
