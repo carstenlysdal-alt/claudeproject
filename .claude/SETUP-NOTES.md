@@ -38,19 +38,12 @@ Projektmapper:
 
 ## Google Drive-synkronisering
 
-**iMac:** Automatisk cron kl. 09:00 og 18:00 hver dag.
+**iMac:** Manuel kørsel efter behov.
 Script: `~/Library/Scripts/ydkbusiness-drive-sync.sh`
 Log: `~/Library/Logs/ydkbusiness-sync.log`
 
 Scriptet springer over hvis Drive ikke er mountet. Synkroniserer `docs/`, `output/` og `research/`.
 
-Crontab-entries:
-```
-0 9 * * * /Users/lysdal/Library/Scripts/ydkbusiness-drive-sync.sh
-0 18 * * * /Users/lysdal/Library/Scripts/ydkbusiness-drive-sync.sh
-```
-
-Manuel kørsel ved behov:
 ```
 ~/Library/Scripts/ydkbusiness-drive-sync.sh
 ```
