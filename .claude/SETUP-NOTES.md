@@ -38,14 +38,21 @@ Projektmapper:
 
 ## Google Drive-synkronisering
 
-**iMac:** Ingen cron. Claude synkroniserer manuelt til Drive i løbet af sessionen, efterhånden som der produceres output.
+**iMac:** Automatisk cron kl. 09:00 og 18:00 hver dag.
+Script: `~/Library/Scripts/ydkbusiness-drive-sync.sh`
+Log: `~/Library/Logs/ydkbusiness-sync.log`
 
-Rsync-kommandoer til manuel kørsel:
+Scriptet springer over hvis Drive ikke er mountet. Synkroniserer `docs/`, `output/` og `research/`.
+
+Crontab-entries:
 ```
-rsync -a "/Volumes/SSD Data/Gits/claudeproject/projects/ydkbusiness/docs/" \
-  "$HOME/Library/CloudStorage/GoogleDrive-carstenlysdal@gmail.com/Mit drev/Projekter/YDK/docs/"
-rsync -a "/Volumes/SSD Data/Gits/claudeproject/projects/ydkbusiness/output/" \
-  "$HOME/Library/CloudStorage/GoogleDrive-carstenlysdal@gmail.com/Mit drev/Projekter/YDK/output/"
+0 9 * * * /Users/lysdal/Library/Scripts/ydkbusiness-drive-sync.sh
+0 18 * * * /Users/lysdal/Library/Scripts/ydkbusiness-drive-sync.sh
+```
+
+Manuel kørsel ved behov:
+```
+~/Library/Scripts/ydkbusiness-drive-sync.sh
 ```
 
 ---
