@@ -1,3 +1,10 @@
+---
+**SKAL LÆSES INDEN MØDET**
+Dette dokument er pre-read til ledelsesmødet og kræver aktiv forberedelse.
+Mødets formål er at træffe tre konkrete beslutninger — ikke at diskutere dem.
+Kom forberedt med en holdning til hvert punkt.
+---
+
 # Y.dk Business — Beslutningsdokument
 ### Ledelsesmøde, juni 2026
 
