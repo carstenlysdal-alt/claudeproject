@@ -54,12 +54,39 @@ Indhold: erhvervsnyheder + markedsovervågning + trends + B2B-briefs
 Discovery og konceptualisering — Etape 1
 Positioning-workshop: afsluttet
 
-## Leverancer (fire)
+## PM-scope (tre spor)
 
-1. Konceptdokument — produktvision og redaktionel identitet
-2. Redaktionelt koncept — indholdsformat, AI-flow, verificeringsmodel
-3. Kommerciel model — pricing, acquisition, revenue model
-4. Teknologisk platform — arkitektur, Supertrends-integration, skalering
+**Spor 1 — Redaktion**
+AI-orkestrering, kildevalg, redaktionelle vinkler, outputformat og verificeringsmodel.
+Dette er det kritiske dokument tech-teamet venter på for at konfigurere motoren.
+
+**Spor 2 — Produkt og features**
+Hvad platformen kan: funktionsset, brugerflows, produktlag (nyheder, overvågning, trends, B2B-briefs).
+Adgangsstruktur og pakkeopdeling. Informeres af redaktionskonceptet.
+
+**Spor 3 — Design og UI**
+Hvordan platformen ser ud og fungerer for brugeren.
+Wireframes, brugeroplevelse, navigationsmønstre, komponenter.
+Informeres af funktionssettet.
+
+## Tidsramme
+
+3 effektive måneder (4 måneder minus 1 sommerferie).
+Spor 1 og 2 køres parallelt i måned 1.
+Spor 3 følger i måned 2-3.
+
+## Teknisk udgangspunkt
+
+Nyhedsmotoren og Supertrends-infrastrukturen er i drift i dag på Y.dk.
+Y.dk Business konfigurerer og udvider den eksisterende motor — bygger ikke fra bunden.
+Redaktionskonceptet er den primære tekniske input til konfigurationen.
+
+## Leverancer
+
+1. Konceptdokument — produktvision og strategisk fundament (næsten færdigt)
+2. Redaktionelt koncept — AI-orkestrering, kilder, vinkler, format (prioritet 1)
+3. Features og produktlag — funktionsset, brugerflows, pakkestruktur
+4. Design og UI — wireframes og brugeroplevelse
 
 ## Mappestruktur
 
