@@ -242,6 +242,7 @@ der venter på resultatet. Bygges som afsluttende opgave i Etape 1.
 pm-platform/
 ├── CLAUDE.md                    ← denne fil
 ├── .claude/
+│   ├── SETUP-NOTES.md           ← cron, Drive-mapping, tjekliste for nye projekter
 │   └── skills/
 │       ├── deanpeters/
 │       ├── mattpocock/
@@ -256,12 +257,16 @@ pm-platform/
 │           ├── design-prompt/
 │           └── research-brief/
 └── projects/
-    ├── ydkbusiness/
+    ├── ydkbusiness/             ← Y.dk Business-sektion
     │   ├── CLAUDE.md
     │   ├── docs/
     │   ├── output/
     │   └── research/
-    └── [nyt-projekt]/
+    └── [nyt-projekt]/           ← kopiér strukturen fra ydkbusiness/
+        ├── CLAUDE.md
+        ├── docs/
+        ├── output/
+        └── research/
 ```
 
 ---
@@ -296,10 +301,18 @@ git pull origin main
 ## Synkronisering
 
 - GitHub: primær synkronisering — https://github.com/carstenlysdal-alt/claudeproject
-- Google Drive backup: https://drive.google.com/open?id=1ATVkes-f-nCr6eLfc9QkGIL7ZF6_gtq-
+- Google Drive: automatisk eksport kl. 09 og 18 via cron job
+- Drive-rodmappe: https://drive.google.com/open?id=1v2Jy6hN6eCjRaS4rzBxUa4YysEL6EVqZ
 - Primær lokal sti (USB): `/Volumes/USB/APPS/claudeproject/`
 - Lokal sti på øvrige maskiner: `~/Documents/pm-platform/`
-- Automatisk eksport kl. 09 og 18 via cron job
+
+### Projektmapping — lokal → Drive
+
+| Lokalt: projects/  | Drive-mappe |
+|--------------------|-------------|
+| ydkbusiness/       | YDK/        |
+
+Hvert nyt projekt får sin egen linje. Se `.claude/SETUP-NOTES.md` for cron-opsætning og tjekliste.
 
 ## Git-rytme
 
