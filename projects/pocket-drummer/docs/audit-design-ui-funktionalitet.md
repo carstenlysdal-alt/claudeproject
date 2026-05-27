@@ -2,7 +2,7 @@
 
 **Dato:** 2026-05-27
 **Metode:** Impeccable audit (teknisk kvalitetstjek) + PM-review (strategisk alignment)
-**Kildekode:** https://github.com/carstenlysdal-alt/Drumlab
+**Kildekode:** https://github.com/carstenlysdal-alt/Pocket-Drummer
 
 ---
 
