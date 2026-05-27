@@ -245,6 +245,14 @@ Dækker alle prompttyper: system prompts, few-shot, kædede prompts og
 meta-prompts. Inkluderer reference-filer for prompt-anatomi og
 skill-description-guide.
 
+**copywriting** — `.claude/skills/custom/copywriting/`
+Professionel tekstforfatter med litterær, journalistisk stemme.
+Leverer færdige tekster på fejlfrit dansk — klar til brug uden
+yderligere redigering. Stilen er skarp, billedrig og polemisk i
+traditionen fra Carsten Jensen, Ulrik Høy og Christopher Hitchens.
+Dækker alle teksttyper: artikler, ledere, SoMe-opslag, e-mails,
+pitches, pressemeddelelser og kreative tekster.
+
 ---
 
 ## Platformstruktur
@@ -266,7 +274,9 @@ pm-platform/
 │       └── custom/
 │           ├── document-quality/
 │           ├── design-prompt/
-│           └── research-brief/
+│           ├── research-brief/
+│           ├── prompt-creator/
+│           └── copywriting/
 └── projects/
     ├── ydkbusiness/             ← Y.dk Business-sektion
     │   ├── CLAUDE.md
