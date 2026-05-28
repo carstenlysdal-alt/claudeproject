@@ -690,6 +690,7 @@ interface CategoryDetailViewProps {
 function CategoryDetailView({ t, category, onBack }: CategoryDetailViewProps) {
   const [activeChip, setActiveChip] = useState('Alle');
   const [openExerciseId, setOpenExerciseId] = useState<string | null>(null);
+  const [activeExTab, setActiveExTab] = useState<'beskrivelse' | 'noder'>('beskrivelse');
   const [bpm, setBpm] = useState(90);
   const [metroPlaying, setMetroPlaying] = useState(false);
   const [subdivision, setSubdivision] = useState<'quarter' | 'eighth'>('quarter');
@@ -929,8 +930,10 @@ function CategoryDetailView({ t, category, onBack }: CategoryDetailViewProps) {
             <button key={chip} onClick={() => setActiveChip(chip)} style={{
               padding: '8px 16px', borderRadius: 999, border: `1px solid ${active ? t.accent : t.border}`,
               background: active ? t.accentSoft : t.surface, color: active ? t.accent : t.textMuted,
-              fontFamily: t.font, fontSize: 12, fontWeight: 600, cursor: 'pointer',
-              whiteSpace: 'nowrap', transition: 'all 0.15s ease'
+              fontFamily: 'var(--font-title)', fontSize: 11, fontWeight: 700, cursor: 'pointer',
+              whiteSpace: 'nowrap', transition: 'all 0.15s ease',
+              letterSpacing: '0.12em',
+              boxShadow: active ? '0 0 14px rgba(242, 85, 69, 0.38)' : 'none',
             }}>{chip}</button>
           );
         })}
@@ -1125,7 +1128,7 @@ function CategoryDetailView({ t, category, onBack }: CategoryDetailViewProps) {
             }}>
               {/* Accordion header */}
               <button
-                onClick={() => setOpenExerciseId(isOpen ? null : exKey)}
+                onClick={() => { if (!isOpen) setActiveExTab('beskrivelse'); setOpenExerciseId(isOpen ? null : exKey); }}
                 style={{
                   width: '100%', background: isOpen ? t.surface2 : (isDone ? t.surface : t.surface),
                   border: 'none', cursor: 'pointer', padding: '14px 18px',
@@ -1152,9 +1155,14 @@ function CategoryDetailView({ t, category, onBack }: CategoryDetailViewProps) {
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
                   {isDone && <span style={{ fontFamily: t.mono, fontSize: 9, color: t.textMuted, letterSpacing: 0.5 }}>FÆRDIG</span>}
-                  <Badge t={t} tone={ex.level === 'Begynder' ? 'good' : ex.level === 'Mellemniveau' ? 'default' : 'accent'}>{ex.level}</Badge>
+                  {/* Content type badges */}
+                  <span className="content-badge">NODER</span>
+                  {/* Level badge: Niv. 0 / 1 / 2 */}
+                  <span className={`level-niv ${ex.level === 'Begynder' ? 'level-niv-0' : ex.level === 'Mellemniveau' ? 'level-niv-1' : 'level-niv-2'}`}>
+                    NIV. {ex.level === 'Begynder' ? 0 : ex.level === 'Mellemniveau' ? 1 : 2}
+                  </span>
                   <div style={{ transform: isOpen ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }}>
                     <IcChev size={13} color={t.textDim} />
                   </div>
@@ -1163,41 +1171,89 @@ function CategoryDetailView({ t, category, onBack }: CategoryDetailViewProps) {
 
               {/* Accordion body */}
               {isOpen && (
-                <div style={{ padding: '0 18px 20px 66px', background: t.surface2, borderTop: `1px solid ${t.border}` }}>
-                  <div style={{ paddingTop: 14, display: 'flex', flexDirection: 'column', gap: 14 }}>
-                    {/* Serif italic description */}
-                    <div style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 15, color: t.textMuted, lineHeight: 1.65 }}>
-                      {ex.sub}. Byg det op gradvist og mærk forskellen i koordinationen.
-                    </div>
+                <div className="anim-fade-up d-0" style={{ background: t.surface2, borderTop: `1px solid ${t.border}` }}>
+                  {/* Tab navigation */}
+                  <div className="tab-nav">
+                    <button className={`tab-nav-btn${activeExTab === 'beskrivelse' ? ' tab-active' : ''}`}
+                      onClick={() => setActiveExTab('beskrivelse')}>
+                      Beskrivelse
+                    </button>
+                    <button className={`tab-nav-btn${activeExTab === 'noder' ? ' tab-active' : ''}`}
+                      onClick={() => setActiveExTab('noder')}>
+                      Noder
+                    </button>
+                  </div>
 
-                    {/* Metadata pills */}
-                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                      {ex.tags.map(tag => (
-                        <span key={tag} style={{ fontSize: 10, fontWeight: 600, padding: '4px 10px', borderRadius: 999, background: t.surface, color: t.textMuted, border: `1px solid ${t.border}`, fontFamily: t.mono }}>{tag}</span>
-                      ))}
-                      <span style={{ fontSize: 10, fontWeight: 600, padding: '4px 10px', borderRadius: 999, background: t.surface, color: t.textMuted, border: `1px solid ${t.border}`, fontFamily: t.mono }}>{ex.bpm} BPM</span>
-                    </div>
+                  {/* Tab content */}
+                  <div style={{ padding: '16px 18px 20px 66px' }}>
+                    {activeExTab === 'beskrivelse' && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                        {/* Cinematic video player */}
+                        <div style={{
+                          aspectRatio: '16/9', borderRadius: 12, maxWidth: 460,
+                          background: t.bg, border: `1px solid ${t.border}`,
+                          position: 'relative', overflow: 'hidden',
+                        }}>
+                          {/* Background illustration */}
+                          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.1 }}>
+                            <IllSnare size={160} color={t.accent} sw={0.8} />
+                          </div>
+                          {/* Gradient overlay */}
+                          <div className="video-gradient-overlay" style={{ position: 'absolute', inset: 0 }} />
+                          {/* Video controls overlay */}
+                          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '12px 14px' }}>
+                            {/* Progress track */}
+                            <div style={{ width: '100%', height: 4, background: 'rgba(255,255,255,0.18)', borderRadius: 999, position: 'relative', marginBottom: 10 }}>
+                              <div className="progress-bar-hit" style={{
+                                position: 'absolute', left: 0, top: 0, height: '100%', width: 0,
+                                background: t.accent, borderRadius: 999,
+                              }} />
+                            </div>
+                            {/* Controls row */}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                              <button className="active-glow" style={{
+                                width: 36, height: 36, borderRadius: '50%',
+                                background: t.accent, border: 'none', cursor: 'pointer',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                              }}>
+                                <IcPlay size={13} fill color="#fff" />
+                              </button>
+                              <span style={{ fontFamily: t.mono, fontSize: 10, color: 'rgba(255,255,255,0.65)' }}>
+                                0:00 / {ex.dur}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
 
-                    {/* Video placeholder */}
-                    <div style={{
-                      aspectRatio: '16/9', borderRadius: 10, maxWidth: 420,
-                      background: t.bg, border: `1px solid ${t.border}`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      position: 'relative', overflow: 'hidden',
-                    }}>
-                      <div style={{ position: 'absolute', inset: 0, opacity: 0.12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <IllSnare size={140} color={t.accent} sw={1.2} />
+                        {/* Serif description */}
+                        <div style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 15, color: t.textMuted, lineHeight: 1.65 }}>
+                          {ex.sub}. Byg det op gradvist og mærk forskellen i koordinationen.
+                        </div>
+
+                        {/* Metadata pills */}
+                        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                          {ex.tags.map(tag => (
+                            <span key={tag} style={{ fontSize: 10, fontWeight: 600, padding: '4px 10px', borderRadius: 999, background: t.surface, color: t.textMuted, border: `1px solid ${t.border}`, fontFamily: t.mono }}>{tag}</span>
+                          ))}
+                          <span style={{ fontSize: 10, fontWeight: 600, padding: '4px 10px', borderRadius: 999, background: t.surface, color: t.textMuted, border: `1px solid ${t.border}`, fontFamily: t.mono }}>{ex.bpm} BPM</span>
+                        </div>
+
+                        {/* Actions */}
+                        <div style={{ display: 'flex', gap: 8 }}>
+                          <Btn t={t} size="sm" icon={<IcPlay size={11} />}>Start øvelse</Btn>
+                        </div>
                       </div>
-                      <div style={{ width: 40, height: 40, borderRadius: '50%', background: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, boxShadow: `0 0 24px rgba(242,85,69,0.35)` }}>
-                        <IcPlay size={14} fill color="#fff" />
-                      </div>
-                    </div>
+                    )}
 
-                    {/* Actions */}
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      <Btn t={t} variant="secondary" size="sm" icon={<IcCheck size={11} />}>Se noder</Btn>
-                      <Btn t={t} size="sm" icon={<IcPlay size={11} />}>Start øvelse</Btn>
-                    </div>
+                    {activeExTab === 'noder' && (
+                      <div style={{
+                        borderRadius: 10, overflow: 'hidden',
+                        background: '#FAF8F5', border: `1px solid ${t.border}`,
+                        padding: '20px 12px',
+                      }}>
+                        <DrumNotation color="#16161a" width={400} accent={t.accent} active={-1} />
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

@@ -115,6 +115,80 @@
   box-shadow: 0 0 24px rgba(242, 85, 69, 0.35);
 }
 
+/* ─── Glass Morphism — exercise cards & overlays ─── */
+.glass-card {
+  background: rgba(20, 20, 22, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(242, 85, 69, 0.28);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.48);
+  transform: translateY(-4px) perspective(800px) rotateX(1.5deg);
+}
+.glass-panel {
+  background: rgba(20, 20, 22, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Active coral glow */
+.active-glow { box-shadow: 0 0 20px rgba(242, 85, 69, 0.32); }
+
+/* Pulse coral — video progress bar playhead */
+@keyframes pulseCoralPt {
+  0%   { box-shadow: 0 0 0 0 rgba(246, 95, 62, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(246, 95, 62, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(246, 95, 62, 0); }
+}
+.progress-bar-hit { animation: pulseCoralPt 2s infinite; }
+
+/* Video gradient overlay */
+.video-gradient-overlay {
+  background: linear-gradient(0deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0) 55%);
+}
+
+/* Tab navigation */
+.tab-nav { display: flex; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.tab-nav-btn {
+  flex: 1; padding: 11px 8px;
+  font-family: var(--font-title);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  border: none; border-bottom: 2px solid transparent; margin-bottom: -1px;
+  background: transparent; cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease;
+  color: var(--text-secondary);
+}
+.tab-nav-btn.tab-active {
+  border-bottom-color: var(--accent-purple);
+  color: var(--accent-purple);
+}
+.tab-nav-btn:not(.tab-active):hover { color: var(--text-primary); }
+
+/* Content-type badges */
+.content-badge {
+  display: inline-block; padding: 2px 7px; border-radius: 3px;
+  font-family: var(--font-mono); font-size: 8.5px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.48);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+
+/* Level badge variants */
+.level-niv { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 999px; font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.02em; }
+.level-niv-0 { background: rgba(93,211,158,0.13); color: #5dd39e; }
+.level-niv-1 { background: rgba(255,255,255,0.07); color: #a09890; }
+.level-niv-2 { background: rgba(242,85,69,0.13); color: #f5b8a8; }
+
+/* Filter chip glow on active state */
+.filter-chip-active {
+  box-shadow: 0 0 14px rgba(242, 85, 69, 0.38);
+}
+
 
 :root {
   --bg-deep: #0a0a0a;
