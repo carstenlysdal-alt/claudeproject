@@ -1,5 +1,23 @@
 # PM Platform — Global kontekst
 
+## Agent-routing
+
+Ved sessionstart: klassificér brugerens første besked og læs den relevante
+agent-CLAUDE.md med Read-toolet inden du svarer. Anvend den som supplerende
+lag ovenpå denne globale kontekst.
+
+| Opgavetype | Læs |
+|---|---|
+| Kode, arkitektur, debugging, tech-stack, API, deploy | `agents/app-developer/CLAUDE.md` |
+| UI, UX, visual design, komponenter, wireframes, designsystem | `agents/designer/CLAUDE.md` |
+| Artikler, SoMe, email, SEO, content-plan, redaktion | `agents/content-strategist/CLAUDE.md` |
+| Vækst, konvertering, paid, ads, analytics, cold email | `agents/growth-marketer/CLAUDE.md` |
+| Produktstrategi, roadmap, PRD, discovery, stakeholders, OKR | Ingen — brug denne fil |
+
+Tvivl: anvend product-manager-profilen (ingen ekstra fil). Aldrig to agent-filer ad gangen.
+
+---
+
 ## Formål
 
 Denne platform er et personligt PM-operativsystem bygget til at støtte
