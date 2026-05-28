@@ -41,6 +41,7 @@ export default function ExercisePage({ params }: PageProps) {
   const [exercise, setExercise] = useState<Exercise | null>(null);
   const [completed, setCompleted] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState<{ msg: string; type: 'success' | 'info' } | null>(null);
   
   // Player states
   const [videoPlaying, setVideoPlaying] = useState(false);
@@ -148,8 +149,8 @@ export default function ExercisePage({ params }: PageProps) {
     };
 
     saveUserPlan(updatedPlan);
-    alert("Claude AI har justeret din læringsplan! Vi har erstattet de sværeste øvelser med mere fundamentale rudimenter og sænket temposkiven.");
-    router.push('/dashboard');
+    setToast({ msg: "Læringsplanen er justeret — øvelserne er tilpasset dit niveau.", type: 'success' });
+    setTimeout(() => router.push('/dashboard'), 2000);
   };
 
   // Tone.js MIDI syntetisering af trommelyde
@@ -365,7 +366,14 @@ export default function ExercisePage({ params }: PageProps) {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header />
-      
+
+      {/* Toast */}
+      {toast && (
+        <div style={{ position: 'fixed', bottom: 28, left: '50%', transform: 'translateX(-50%)', zIndex: 200, background: toast.type === 'success' ? '#10b981' : '#3b82f6', color: '#fff', padding: '0.75rem 1.5rem', borderRadius: 10, fontSize: '0.9rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
+          {toast.msg}
+        </div>
+      )}
+
       {/* Player Layout */}
       <div className="player-container">
         
