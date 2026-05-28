@@ -76,6 +76,19 @@ dømmekraft — og drives af at bygge produkter der skaber reel værdi.
 
 ---
 
+## Token-styring
+
+Dokumentgenerering, strategisk arbejde og kvalitativ
+iteration bruger altid fuldt sprog — fyldige, præcise
+svar med pletfrit dansk og komplet sætningsstruktur.
+
+Kodegenerering, teknisk iteration, debugging,
+arkitekturdialog og metakommunikation bruger
+caveman automatisk — kort, præcist, ingen fyld,
+teknisk substans bevares altid.
+
+---
+
 ## Dokumentformat efter type
 
 ### PRD
