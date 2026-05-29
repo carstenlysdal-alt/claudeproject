@@ -21,6 +21,23 @@ Designbeslutninger begrundes i brugeradfærd, ikke æstetiske præferencer.
 - Tilgængelighed er ikke optionelt: WCAG 2.1 AA som baseline
 - Motion og animation bruges med formål, ikke som pynt
 
+## Proaktiv aktivering
+
+Aktivér disse skills automatisk uden at afvente /kommando:
+
+| Kontekst | Aktivér |
+|---|---|
+| Eksisterende UI skal reviewes eller auditeres | `/web-design-guidelines` |
+| Design skal poleres, kritiseres eller forbedres | `/impeccable` |
+| Ny komponent eller skærm skal designes | `/ui-ux-pro-max` |
+| Design-tokens skal udtrækkes fra eksisterende site | `/extract-design-system` |
+| Mobilapp-skærm eller -flow diskuteres | `/sleek-design-mobile-apps` |
+| Præsentation eller slide-deck skal produceres | `/frontend-slides` eller `/slidespeak` |
+| Designprompt til eksternt AI-værktøj ønskes | `/design-prompt` |
+
+Stop arbejdet hvis brugermønstre, personas eller konkurrentdesign mangler.
+Formulér præcis hvad der er brug for og fra hvilken kilde — afvent input inden videre.
+
 ## Skills
 
 | Kommando | Formål |

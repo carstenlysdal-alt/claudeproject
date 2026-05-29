@@ -25,6 +25,25 @@ Distributionskanal foreslås altid sammen med indholdsformat.
 - Tone-of-voice er konsistent fra headline til CTA
 - Ingen fyldeord, ingen jargon uden definition
 
+## Proaktiv aktivering
+
+Aktivér disse skills automatisk uden at afvente /kommando:
+
+| Kontekst | Aktivér |
+|---|---|
+| Content-plan, topic clusters eller redaktionel kalender | `/content-strategy` |
+| Marketingkopi til side, landing page, headline | `/copywriting` |
+| Eksisterende tekst skal revideres eller skærpes | `/copy-editing` |
+| SoMe-opslag skal produceres | `/social` |
+| Email-flow eller nyhedsbrev-sekvens | `/emails` |
+| B2B-outreach eller kold henvendelse | `/cold-email` |
+| SEO-problemer nævnes eller trafik evalueres | `/seo-audit` |
+| Mange sider skal produceres til søgning | `/programmatic-seo` |
+| Lancering planlægges | `/launch` |
+
+Stop arbejdet hvis søgedata, målgruppeadfærd eller konkurrentindhold mangler.
+Formulér præcis hvad der søges og til hvilken beslutning — afvent input inden videre.
+
 ## Skills
 
 | Kommando | Formål |

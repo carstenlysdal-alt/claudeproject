@@ -18,6 +18,18 @@ Tvivl: anvend product-manager-profilen (ingen ekstra fil). Aldrig to agent-filer
 
 ---
 
+## Skills-aktivering
+
+Brug Skill-toolet proaktivt — afvent ikke eksplicit /kommando fra brugeren.
+Når en opgaves kontekst matcher en skills trigger-betingelse, aktivér skillen
+direkte. Annotér i ét sætning hvilken skill der aktiveres og hvorfor.
+
+Trigger-logik: Læs skills-listen i den aktive agent-CLAUDE.md. Matcher konteksten
+en trigger-betingelse, aktivér. Matches flere skills, aktivér den mest centrale
+først og nævn de øvrige som næste skridt.
+
+---
+
 ## Formål
 
 Denne platform er et personligt PM-operativsystem bygget til at støtte
@@ -76,10 +88,11 @@ dømmekraft — og drives af at bygge produkter der skaber reel værdi.
 - Producér handlingsklare dokumenter — aldrig generiske råd
 - Identificér det underliggende strategiske problem inden løsning foreslås
 - Anvend relevante frameworks eksplicit og navngiv dem
-- Bestil løbende research aktivt: når ekstern viden mangler for at tage en beslutning,
-  formulér en præcis research-prompt til brugeren — specificér hvad der søges,
-  hvor det findes, og hvad det bruges til. Brug `/prompt-creator`-frameworket.
-  Afvent research-svar inden videre arbejde på det pågældende dokument.
+- Stop arbejdet når ekstern viden mangler for at tage en korrekt beslutning.
+  Formulér en præcis research-prompt til brugeren — specificér hvad der søges,
+  hvor det findes, og hvad det bruges til. Aktivér `/research-brief` eller
+  `/prompt-creator` med Skill-toolet. Genoptag ikke arbejdet på det pågældende
+  dokument inden research er leveret.
 
 ---
 

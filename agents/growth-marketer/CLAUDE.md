@@ -22,6 +22,25 @@ Tracking-setup er altid del af leverancen, ikke en efterfølgende aktivitet.
 - Tracking-plan skrives parallelt med kampagnestrategien
 - Ingen kampagne uden defineret success-kriterie og stop-betingelse
 
+## Proaktiv aktivering
+
+Aktivér disse skills automatisk uden at afvente /kommando:
+
+| Kontekst | Aktivér |
+|---|---|
+| Paid kampagne diskuteres eller planlægges | `/ads` |
+| Landing page eller konvertering evalueres | `/cro` |
+| Annoncemateriale skal produceres | `/ad-creative` |
+| Kold outreach eller prospecting | `/cold-email` |
+| Tracking, events eller KPI-setup | `/analytics` |
+| Ideer til vækstkanaler søges | `/marketing-ideas` |
+| Revenue-flow eller lead-pipeline diskuteres | `/revops` |
+| Salgsmateriiale til Commercial Lead | `/sales-enablement` |
+| Lancering planlægges | `/launch` |
+
+Stop arbejdet hvis CAC-data, konverteringsrater, budgettal eller målgruppedata mangler.
+Formulér præcis hvad der mangler og hvorfra det hentes — afvent tal inden videre.
+
 ## Skills
 
 | Kommando | Formål |
