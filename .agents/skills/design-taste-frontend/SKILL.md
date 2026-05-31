@@ -349,6 +349,32 @@ The page has ONE theme. Sections do not invert.
 
 ---
 
+## 4.12 Premium Haptic Architecture (High-End Agency Patterns)
+
+For briefs where `DESIGN_VARIANCE >= 8` or the vibe reads as "agency / Awwwards / premium consumer", use these additional architectural patterns:
+
+### Vibe & Texture Archetypes (Variance Engine — pick 1 per project, never repeat across projects)
+1. **Ethereal Glass (SaaS / AI / Tech):** Deepest OLED black (`#050505`), radial mesh gradients (subtle glowing orbs) in background. Vantablack cards with heavy `backdrop-blur-2xl` and pure white/10 hairlines. Wide geometric Grotesk typography.
+2. **Editorial Luxury (Lifestyle / Real Estate / Agency):** Warm creams (`#FDFBF7`), muted sage, or deep espresso. High-contrast Variable Serif for massive headings. Subtle CSS noise/film-grain overlay (`opacity-[0.03]`) for a physical paper feel.
+3. **Soft Structuralism (Consumer / Health / Portfolio):** Silver-grey or pure white. Massive bold Grotesk. Airy, floating components with highly diffused ambient shadows.
+
+### Double-Bezel / Doppelrand (Nested Card Architecture)
+Never place a premium card, image, or container flatly on the background. They must look like physical, machined hardware using nested enclosures:
+- **Outer Shell:** Wrapper `div` with subtle background (`bg-black/5` or `bg-white/5`), hairline outer border (`ring-1 ring-black/5`), specific padding (`p-1.5` or `p-2`), large outer radius (`rounded-[2rem]`).
+- **Inner Core:** Actual content container inside the shell. Its own distinct background, inner highlight (`shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]`), and mathematically calculated smaller radius (e.g., `rounded-[calc(2rem-0.375rem)]`) for concentric curves.
+
+### CTA Island Button Architecture (Button-in-Button)
+- Primary interactive buttons: fully rounded pills (`rounded-full`) with generous padding (`px-6 py-3`).
+- If a button has a trailing icon (arrow `↗`), it MUST be nested inside its own distinct circular wrapper (`w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center`) placed flush with the main button's right inner padding. Never naked next to the text.
+- On hover, the inner icon circle translates diagonally (`group-hover:translate-x-1 group-hover:-translate-y-[1px]`) and scales up slightly (`scale-105`) for internal kinetic tension.
+
+### Fluid Island Navigation
+- **Closed:** Navbar is a floating glass pill detached from top (`mt-6`, `mx-auto`, `w-max`, `rounded-full`).
+- **Hamburger Morph:** Lines fluidly rotate and translate to a perfect 'X' (`rotate-45` / `-rotate-45`), never just disappear.
+- **Expansion:** Opens as screen-filling overlay (`backdrop-blur-3xl bg-black/80`). Nav links inside do a staggered mask-reveal (`translate-y-12 opacity-0` → `translate-y-0 opacity-100`) with `delay-100 / 150 / 200`.
+
+---
+
 ## 5. CONTEXT-AWARE PROACTIVITY
 
 These are tools, not defaults. Use them when the design read calls for them. **None of these fire automatically.**

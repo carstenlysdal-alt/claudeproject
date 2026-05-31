@@ -21,12 +21,40 @@ Tvivl: anvend product-manager-profilen (ingen ekstra fil). Aldrig to agent-filer
 ## Skills-aktivering
 
 Brug Skill-toolet proaktivt — afvent ikke eksplicit /kommando fra brugeren.
-Når en opgaves kontekst matcher en skills trigger-betingelse, aktivér skillen
-direkte. Annotér i ét sætning hvilken skill der aktiveres og hvorfor.
+Når en opgaves kontekst matcher en trigger nedenfor, aktivér skillen direkte
+og annotér i ét sætning hvilken skill der aktiveres og hvorfor.
 
-Trigger-logik: Læs skills-listen i den aktive agent-CLAUDE.md. Matcher konteksten
-en trigger-betingelse, aktivér. Matches flere skills, aktivér den mest centrale
-først og nævn de øvrige som næste skridt.
+Matches flere skills, aktivér den mest centrale først og nævn de øvrige.
+
+### Trigger-tabel (aktivér automatisk)
+
+| Kontekst / signal | Aktivér |
+|---|---|
+| "Skriv en artikel / klumme / leder / SoMe-opslag / pressemeddelelse / pitch" (dansk) | `redaktionel-tekst` |
+| Stress-test, djævlens advokat, gennemgå beslutning kritisk | `grill-with-docs` |
+| Tegn wireframe, byg UI-komponent, redesign skærmbillede | `impeccable` |
+| Byg landing page, portfolio, marketing site (production-grade) | `design-taste-frontend` |
+| Definer features, skriv PRD, nedbryd epic, user stories | deanpeters: `prd-development` / `user-story` |
+| Roadmap, prioritering, RICE-scoring | deanpeters: `roadmap-planning` / `prioritization-advisor` |
+| Discovery, JTBD, opportunity solution tree | deanpeters: `jobs-to-be-done` / `opportunity-solution-tree` |
+| Positionering, differentiering, konkurrentanalyse | deanpeters: `positioning-workshop` |
+| TAM/SAM/SOM, markedsstørrelse | deanpeters: `tam-sam-som-calculator` |
+| GTM-plan, launch-faser (alpha/beta/GA) | `launch` |
+| Sales deck, objection handling, one-pager til Commercial Lead | `sales-enablement` |
+| Redaktionel content-strategi, topic clusters, pillar content | `content-strategy` |
+| SEO-audit, teknisk SEO, ranking-problemer | `seo-audit` |
+| Email-sekvens, drip-kampagne, onboarding-flow | `emails` |
+| Cold outreach, B2B-prospekt-mail | `cold-email` |
+| Analytics-opsætning, tracking-plan, GA4, GTM | `analytics` |
+| Konverteringsoptimering, CRO, landing page-audit | `cro` |
+| Præsentation til ledelse (PowerPoint/PPTX) | `slidespeak` |
+| Præsentation (HTML, deployes til URL) | `frontend-slides` |
+| Dokumentkvalitet — løft PM-leverance til C-suite-niveau | `document-quality` |
+| Eksekvér en skriftlig plan trin for trin med checkpoints | `executing-plans` |
+| Design-prompt til Gamma, Midjourney, Canva AI etc. | `design-prompt` |
+| Lav en skarp, velstruktureret prompt til Claude/GPT/Gemini | `prompt-creator` |
+| Specificér hvad der mangler af ekstern viden efter session | `research-brief` |
+| Korteste præcise svar, token-effektivitet, kodegennemgang | `caveman` |
 
 ---
 
@@ -183,16 +211,11 @@ https://github.com/deanpeters/Product-Manager-Skills
 
 ### LAG 2 — Strategisk validering og eksekvering
 
-**grill-me**
-Systematisk stress-test af strategier og beslutninger inden
-præsentation for CEO og stakeholders. Gennemgår hvert gren af
-beslutningstræet til fuld klarhed er opnået.
-https://github.com/mattpocock/skills
-
 **grill-with-docs**
-Validering af plan eller roadmap mod eksisterende dokumenter og
-beslutninger. Opdaterer dokumentation inline efterhånden som
-beslutninger krystalliserer.
+Systematisk stress-test af strategier og beslutninger mod eksisterende
+dokumenter og beslutninger. Gennemgår hvert gren af beslutningstræet
+til fuld klarhed er opnået. Opdaterer dokumentation inline efterhånden
+som beslutninger krystalliserer. (Erstatter og inkluderer grill-me.)
 https://github.com/mattpocock/skills
 
 **zoom-out**
@@ -254,13 +277,16 @@ https://github.com/zarazhangrui/frontend-slides
 **impeccable**
 23 design-kommandoer der dækker alle designdiscipliner: polish,
 audit, critique, typeset, clarify, distill m.fl. Anti-pattern-detektion
-på tværs af typografi, farve, layout og motion.
+på tværs af typografi, farve, layout og motion. Inkluderer compliance-check
+mod Vercel Web Interface Guidelines via WebFetch (URL dokumenteret i SKILL.md).
 https://github.com/pbakaus/impeccable
 
-**web-design-guidelines**
-Auditerer UI mod 100+ regler der dækker tilgængelighed, performance
-og UX. 133.000 ugentlige installationer.
-https://github.com/vercel-labs/agent-skills
+**design-taste-frontend**
+Anti-slop production frontend til landing pages, portfolios og redesigns.
+Brief-inference system, tre-dial-konfiguration (Variance/Motion/Density),
+50+ Pre-Flight-tjekpunkter, GSAP-skabeloner og premium haptic-arkitektur
+(Double-Bezel, Variance Engine, CTA Island Button).
+(Inkluderer og erstatter frontend-design og high-end-visual-design.)
 
 ---
 
@@ -289,13 +315,14 @@ Dækker alle prompttyper: system prompts, few-shot, kædede prompts og
 meta-prompts. Inkluderer reference-filer for prompt-anatomi og
 skill-description-guide.
 
-**copywriting** — `.claude/skills/custom/copywriting/`
+**redaktionel-tekst** — `.claude/skills/custom/copywriting/`
 Professionel tekstforfatter med litterær, journalistisk stemme.
 Leverer færdige tekster på fejlfrit dansk — klar til brug uden
 yderligere redigering. Stilen er skarp, billedrig og polemisk i
 traditionen fra Carsten Jensen, Ulrik Høy og Christopher Hitchens.
 Dækker alle teksttyper: artikler, ledere, SoMe-opslag, e-mails,
 pitches, pressemeddelelser og kreative tekster.
+NB: Distinkt fra `copywriting` (.agents) som er konverteringsoptimering på engelsk.
 
 ---
 
@@ -314,13 +341,12 @@ pm-platform/
 │       ├── SlideSpeak/
 │       ├── zarazhangrui/
 │       ├── pbakaus/
-│       ├── vercel-labs/
 │       └── custom/
 │           ├── document-quality/
 │           ├── design-prompt/
 │           ├── research-brief/
 │           ├── prompt-creator/
-│           └── copywriting/
+│           └── copywriting/          ← skill: redaktionel-tekst
 └── projects/
     ├── ydkbusiness/             ← Y.dk Business-sektion
     │   ├── CLAUDE.md

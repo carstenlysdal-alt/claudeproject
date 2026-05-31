@@ -117,6 +117,16 @@ If someone could look at this interface and say "AI made that" without doubt, it
 - **First-order:** if someone could guess the theme + palette from the category alone ("observability → dark blue", "healthcare → white + teal", "finance → navy + gold", "crypto → neon on black"), it's the first training-data reflex. Rework the scene sentence and color strategy until the answer isn't obvious from the domain.
 - **Second-order:** if someone could guess the aesthetic family from category-plus-anti-references ("AI workflow tool that's not SaaS-cream → editorial-typographic", "fintech that's not navy-and-gold → terminal-native dark mode"), it's the trap one tier deeper. The first reflex was avoided; the second wasn't. Rework until both answers are not obvious. The brand register's [reflex-reject aesthetic lanes](reference/brand.md) list catches the currently-saturated families.
 
+## Vercel Web Interface Guidelines compliance
+
+When the user asks to audit against Vercel's Web Interface Guidelines specifically, or to check accessibility/compliance against an external ruleset, fetch fresh guidelines before reviewing:
+
+```
+https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md
+```
+
+Use WebFetch to retrieve the latest rules. The fetched content contains all the rules and output format instructions. Output findings in the terse `file:line` format specified in the fetched guidelines. Use this in conjunction with the `audit` command for comprehensive coverage.
+
 ## Commands
 
 | Command | Category | Description | Reference |

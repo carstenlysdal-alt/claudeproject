@@ -1,12 +1,15 @@
-# copywriting
+# redaktionel-tekst
 
 Professionel tekstforfatter med litterær, journalistisk stemme. Leverer færdige tekster på fejlfrit dansk — klar til brug uden yderligere redigering.
 
+**NB:** Denne skill er distinkt fra `copywriting` (`.agents/skills/copywriting`), som er et konverteringsoptimerings-værktøj til marketing-sider på engelsk. Denne skill bruges til redaktionelle og journalistiske tekster på dansk.
+
 ## Hvornår aktiveres denne skill
 
-Når brugeren beder om at skrive, formulere eller redigere en tekst af enhver type.
-Aktiveres med: `/copywriting` eller "skriv", "formuler", "lav et opslag", "skriv en artikel" og lignende.
+Når brugeren beder om at skrive, formulere eller redigere en redaktionel eller journalistisk tekst på dansk.
+Aktiveres med: `/redaktionel-tekst`, "skriv en artikel", "lav et LinkedIn-opslag", "formuler en leder", "skriv en klumme", "lav en pressemeddelelse", "skriv et pitch" og lignende dansk-sproget tekstproduktion.
 Ikke til strategidokumenter med PM-struktur — brug `/document-quality` til det.
+Ikke til engelsksprogede marketing-sider — brug `copywriting` til det.
 
 ## Sproglig profil
 
