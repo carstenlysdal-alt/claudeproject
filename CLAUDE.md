@@ -56,6 +56,7 @@ Matches flere skills, aktivér den mest centrale først og nævn de øvrige.
 | OKR: definer, forfin, check-in, score og align på tværs af niveauer | `pm-okrs` |
 | Definer North Star Metric og understøttende input-metrics | `north-star-metric` |
 | Analyser A/B-testresultater: statistisk signifikans, ship/extend/stop | `ab-test-analysis` |
+| Generer eksperiment-hypoteser og pretotypes — validér antagelser billigt | `brainstorm-experiments-existing` |
 | Design et eksperiment: hypotese, sample size, success-kriterier | `measure-experiment-design` |
 | Stakeholder-map: Power × Interest, kommunikationsstrategi per kvadrant | `stakeholder-map` |
 | Pre-mortem: Tigers, Paper Tigers og Elephants inden launch | `pre-mortem` |
