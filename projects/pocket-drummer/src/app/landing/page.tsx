@@ -7,6 +7,15 @@ function markLandingSeen() {
   try { localStorage.setItem('pocketdrummer_landing_seen', '1'); } catch {}
 }
 
+function useAppUrl() {
+  const [url, setUrl] = useState('/prototype');
+  useEffect(() => {
+    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 1024;
+    setUrl(mobile ? '/prototype' : '/');
+  }, []);
+  return url;
+}
+
 // ─── DESIGN TOKENS ────────────────────────────────────────────
 const T = {
   bg:       '#0C0A07',
@@ -229,6 +238,7 @@ function Stat({ value, label }: { value: string; label: string }) {
 // ─── MAIN PAGE ─────────────────────────────────────────────────
 export default function LandingPage() {
   const m = useIsMobile();
+  const appUrl = useAppUrl();
   const px = m ? '20px' : '48px';
   const sectionPy = m ? '64px' : '96px';
 
@@ -286,7 +296,7 @@ export default function LandingPage() {
 
           {/* CTAs */}
           <div style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 12 : 14, alignItems: m ? 'stretch' : 'center', flexWrap: 'wrap' }}>
-            <Link href="/prototype" onClick={markLandingSeen} style={{
+            <Link href={appUrl} onClick={markLandingSeen} style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
               background: T.accent, color: '#fff',
               fontFamily: T.head, fontSize: 15, fontWeight: 700,
@@ -527,7 +537,7 @@ export default function LandingPage() {
               ))}
             </div>
 
-            <Link href="/prototype" onClick={markLandingSeen} style={{
+            <Link href={appUrl} onClick={markLandingSeen} style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
               background: T.accent, color: '#fff',
               fontFamily: T.head, fontSize: 15, fontWeight: 700,
@@ -555,7 +565,7 @@ export default function LandingPage() {
           <p style={{ fontFamily: T.body, fontSize: 16, color: T.text2, lineHeight: 1.65, maxWidth: 480, margin: '0 auto 40px' }}>
             Kom i gang i dag. Ingen forudgående erfaring krævet.
           </p>
-          <Link href="/prototype" onClick={markLandingSeen} style={{
+          <Link href={appUrl} onClick={markLandingSeen} style={{
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10,
             background: T.accent, color: '#fff',
             fontFamily: T.head, fontSize: 16, fontWeight: 700,
@@ -581,7 +591,7 @@ export default function LandingPage() {
           </div>
           <div style={{ display: 'flex', gap: 24 }}>
             <Link href="/login" style={{ fontFamily: T.body, fontSize: 13, color: T.text3, textDecoration: 'none' }}>Log ind</Link>
-            <Link href="/prototype" style={{ fontFamily: T.body, fontSize: 13, color: T.text3, textDecoration: 'none' }}>Åbn app</Link>
+            <Link href={appUrl} onClick={markLandingSeen} style={{ fontFamily: T.body, fontSize: 13, color: T.text3, textDecoration: 'none' }}>Åbn app</Link>
           </div>
         </div>
       </section>
