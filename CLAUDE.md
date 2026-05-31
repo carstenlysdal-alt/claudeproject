@@ -53,6 +53,15 @@ Matches flere skills, aktivér den mest centrale først og nævn de øvrige.
 | Eksekvér en skriftlig plan trin for trin med checkpoints | `executing-plans` |
 | Evaluer afsluttet initiativ: forventet vs. faktisk, iterér/pivotér/stop | `outcome-analyse` |
 | Syntesér bruger-feedback til smertepunkter, JTBD og produktanbefalinger | `feedback-analyse` |
+| OKR: definer, forfin, check-in, score og align på tværs af niveauer | `pm-okrs` |
+| Definer North Star Metric og understøttende input-metrics | `north-star-metric` |
+| Analyser A/B-testresultater: statistisk signifikans, ship/extend/stop | `ab-test-analysis` |
+| Design et eksperiment: hypotese, sample size, success-kriterier | `measure-experiment-design` |
+| Stakeholder-map: Power × Interest, kommunikationsstrategi per kvadrant | `stakeholder-map` |
+| Pre-mortem: Tigers, Paper Tigers og Elephants inden launch | `pre-mortem` |
+| Identificér og design vækst-loops (viral, usage, referral m.fl.) | `growth-loops` |
+| Analyser survey-resultater og syntesér til PM-beslutning | `measure-survey-analysis` |
+| Design produkt-metrics dashboard med KPI'er og alert-tærskler | `metrics-dashboard` |
 | Design-prompt til Gamma, Midjourney, Canva AI etc. | `design-prompt` |
 | Lav en skarp, velstruktureret prompt til Claude/GPT/Gemini | `prompt-creator` |
 | Specificér hvad der mangler af ekstern viden efter session | `research-brief` |
@@ -311,6 +320,59 @@ prompts klar til brug med Claude, GPT, Gemini eller lokale modeller.
 Dækker alle prompttyper: system prompts, few-shot, kædede prompts og
 meta-prompts. Inkluderer reference-filer for prompt-anatomi og
 skill-description-guide.
+
+### LAG 2 — Metrics, eksperimenter og vækst (nye)
+
+**pm-okrs** — marfoerst/claude_okr_pm_kill
+Fuld OKR-livscyklus: definer objectives, skriv measurable KRs, mid-cycle check-in,
+end-of-quarter scoring og alignment på tværs af company/team/individ.
+Understøtter Doerr/Google-scoring (0–1.0) og Cagan outcome-baseret format.
+https://github.com/marfoerst/claude_okr_pm_kill
+
+**north-star-metric** — phuryn/pm-skills
+Definér North Star Metric og 3-5 input-metrics. Klassificerer business-game
+(Attention / Transaction / Productivity) og validerer mod 7 kriterier.
+https://github.com/phuryn/pm-skills
+
+**ab-test-analysis** — phuryn/pm-skills
+Analysér A/B-testresultater: statistisk signifikans, sample size-validering,
+konfidensintervaller og ship/extend/stop-anbefaling.
+https://github.com/phuryn/pm-skills
+
+**measure-experiment-design** — product-on-purpose/pm-skills
+Design et rigorøst eksperiment: hypotese, sample size, success-kriterier.
+Komplementerer ab-test-analysis (design → analyse).
+https://github.com/product-on-purpose/pm-skills
+
+**stakeholder-map** — phuryn/pm-skills
+Power × Interest-grid med kommunikationsstrategi og handlingsplan per kvadrant.
+Direkte relevant ved CEO-, Tech Lead- og Commercial Lead-alignment.
+https://github.com/phuryn/pm-skills
+
+**pre-mortem** — phuryn/pm-skills
+Struktureret risikoanalyse inden launch: Tigers (reelle problemer),
+Paper Tigers (overdrevne bekymringer), Elephants (usagte risici).
+Kategoriserer som launch-blocking, fast-follow eller track.
+https://github.com/phuryn/pm-skills
+
+**growth-loops** — phuryn/pm-skills
+Identificér og design vækst-loops (viral, usage, collaboration, UGC, referral).
+Relevant for product-led growth og GTM-strategi.
+https://github.com/phuryn/pm-skills
+
+**measure-survey-analysis** — product-on-purpose/pm-skills
+Syntese af survey-resultater til segmenteret PM-beslutningsgrundlag.
+Komplementerer feedback-analyse (surveys vs. interviews).
+https://github.com/product-on-purpose/pm-skills
+
+**metrics-dashboard** — phuryn/pm-skills
+Design produkt-metrics dashboard med KPI'er, datakilder,
+visualiseringstyper og alert-tærskler.
+https://github.com/phuryn/pm-skills
+
+---
+
+### LAG 3 — Custom skills
 
 **outcome-analyse** — `.claude/skills/custom/outcome-analyse/`
 Struktureret PM-refleksion over et afsluttet initiativ. Fem trin:
