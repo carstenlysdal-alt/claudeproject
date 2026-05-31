@@ -362,6 +362,8 @@ pm-platform/
 │           ├── feedback-analyse/
 │           └── copywriting/          ← skill: redaktionel-tekst
 └── projects/
+    ├── pocket-drummer/
+    │   └── .claude/skills/      ← developer-skills (tdd, webapp-testing, vercel m.fl.)
     ├── ydkbusiness/             ← Y.dk Business-sektion
     │   ├── CLAUDE.md
     │   ├── docs/
