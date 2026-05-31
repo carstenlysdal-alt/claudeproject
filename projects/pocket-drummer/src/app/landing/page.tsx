@@ -3,6 +3,10 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
+function markLandingSeen() {
+  try { localStorage.setItem('pocketdrummer_landing_seen', '1'); } catch {}
+}
+
 // ─── DESIGN TOKENS ────────────────────────────────────────────
 const T = {
   bg:       '#0C0A07',
@@ -282,7 +286,7 @@ export default function LandingPage() {
 
           {/* CTAs */}
           <div style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 12 : 14, alignItems: m ? 'stretch' : 'center', flexWrap: 'wrap' }}>
-            <Link href="/prototype" style={{
+            <Link href="/prototype" onClick={markLandingSeen} style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
               background: T.accent, color: '#fff',
               fontFamily: T.head, fontSize: 15, fontWeight: 700,
@@ -523,7 +527,7 @@ export default function LandingPage() {
               ))}
             </div>
 
-            <Link href="/prototype" style={{
+            <Link href="/prototype" onClick={markLandingSeen} style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
               background: T.accent, color: '#fff',
               fontFamily: T.head, fontSize: 15, fontWeight: 700,
@@ -551,7 +555,7 @@ export default function LandingPage() {
           <p style={{ fontFamily: T.body, fontSize: 16, color: T.text2, lineHeight: 1.65, maxWidth: 480, margin: '0 auto 40px' }}>
             Kom i gang i dag. Ingen forudgående erfaring krævet.
           </p>
-          <Link href="/prototype" style={{
+          <Link href="/prototype" onClick={markLandingSeen} style={{
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10,
             background: T.accent, color: '#fff',
             fontFamily: T.head, fontSize: 16, fontWeight: 700,

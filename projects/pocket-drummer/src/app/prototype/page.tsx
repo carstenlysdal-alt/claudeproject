@@ -2982,7 +2982,7 @@ export default function MobilePrototype() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Initialize guest XP and onboarded status client-side
+  // Initialize guest XP, onboarded status, and landing-page gate
   useEffect(() => {
     try {
       if (typeof window !== 'undefined') {
@@ -2993,6 +2993,12 @@ export default function MobilePrototype() {
         setTimeout(() => {
           setOnboarded(valOnboard === '1');
         }, 0);
+
+        // First-visit redirect: send mobile users to landing page
+        const landingSeen = localStorage.getItem('pocketdrummer_landing_seen');
+        if (!landingSeen && window.innerWidth < 1024) {
+          window.location.replace('/landing');
+        }
       }
     } catch {
       // Ignore errors silently on SSR
