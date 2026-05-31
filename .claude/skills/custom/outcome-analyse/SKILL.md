@@ -78,3 +78,19 @@ Undgå singleårsags-forklaringer. Skeln skarpt mellem "vi ved" og "vi antager".
 
 Producér altid et komplet dokument klar til præsentation for CEO og Tech Lead.
 Ingen indledende forklaringer. Ingen afsluttende meta-kommentarer.
+
+## Eksempel — godt vs. dårligt
+
+**Dårligt (for vagt):**
+> "Vi nåede ikke målet fordi markedet ikke var klar og teamet var travlt."
+
+**Rigtigt (konkret og testbart):**
+> "Vi nåede 320 aktiverede brugere mod forventede 800 (40%). Gabet opstod i uge 2-3. Tre hypoteser: (1) onboarding-flow tabte 60% i trin 3 — understøttes af funnel-data, modvirkes af at NPS var 7,2; (2) prispunkt for højt til segmentet — understøttes af 4 churn-interviews, modvirkes af at conversion fra trial var normal; (3) forkert kanal — LinkedIn gav 12 kr./klik mod forventet 4 kr. Anbefaling: Pivotér — test nyt onboarding-flow og Facebook-kanal i 6 uger. Ejer: [navn]. Frist: [dato]."
+
+## Navngivne faldgruber
+
+**Faldgrube 1 — Enkelårsagsforklaring**
+Den hyppigste fejl: én årsag til gabet, præsenteret som sikker. En outcome-analyse med kun én hypotese er ikke en analyse — det er en undskyldning. Kræv altid minimum tre hypoteser med modstridende evidens.
+
+**Faldgrube 2 — Rekonstruerede forventninger præsenteres som dokumenterede**
+Når forventningerne ikke var skrevet ned, er det fristende at huske dem i et gunstigt lys. Vær eksplicit: "Forventning rekonstrueret fra Slack-tråd d. [dato] — ikke formelt dokumenteret." Det er ikke svaghed — det er analytisk ærlighed.

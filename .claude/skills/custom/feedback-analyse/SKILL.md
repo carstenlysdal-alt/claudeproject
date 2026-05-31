@@ -89,3 +89,19 @@ Maksimalt 5 anbefalinger — rangerede. For hver anbefaling:
 Producér altid et komplet dokument klar til præsentation.
 Ingen indledende forklaringer. Ingen afsluttende meta-kommentarer.
 Direkte citater fra brugerne er obligatoriske i Kundesprog-sektionen.
+
+## Eksempel — godt vs. dårligt
+
+**Dårligt (fortolker i stedet for at observere):**
+> "Brugerne ønsker en bedre oplevelse og vil have funktionen til at virke hurtigere."
+
+**Rigtigt (JTBD + kundesprog + citat):**
+> "Smertepunkt #1: Kan ikke finde tilbage til øvelser de har lavet (11/14, høj intensitet — 3 nævnte det som årsag til at de stoppede med at bruge appen). JTBD: 'Når jeg vil øve videre på noget jeg lærte for to uger siden, vil jeg finde det hurtigt, så jeg ikke spilder tid på at søge.' Kundesprog: De siger aldrig 'historik' — de siger 'mine ting' eller 'det jeg har lavet'. Direkte citat: 'Jeg gider ikke rode rundt i det hele — jeg vil bare finde det igen.' Anbefaling: Tilføj 'Nyligt besøgt'-sektion på dashboard. Impact: høj. Ejer: [navn]. Frist: [dato]."
+
+## Navngivne faldgruber
+
+**Faldgrube 1 — Løsningsskred i JTBD-fasen**
+Det er fristende at skrive: "Brugeren vil have en søgefunktion." Det er en løsning, ikke et job. Skriv jobbet: "Brugeren vil hurtigt genfinde noget de tidligere har engageret sig med." Løsningen er åben — det er jobbet der er stabilt.
+
+**Faldgrube 2 — Sample-bias usynliggjort**
+Feedback fra de mest aktive brugere repræsenterer ikke dem der churner. Feedback fra support-tickets repræsenterer ikke dem der forlader stiltiende. Angiv altid hvem der IKKE er i dit sample, og hvad det betyder for konklusionerne.

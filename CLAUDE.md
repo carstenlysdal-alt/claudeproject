@@ -283,12 +283,7 @@ på tværs af typografi, farve, layout og motion. Inkluderer compliance-check
 mod Vercel Web Interface Guidelines via WebFetch (URL dokumenteret i SKILL.md).
 https://github.com/pbakaus/impeccable
 
-**design-taste-frontend**
-Anti-slop production frontend til landing pages, portfolios og redesigns.
-Brief-inference system, tre-dial-konfiguration (Variance/Motion/Density),
-50+ Pre-Flight-tjekpunkter, GSAP-skabeloner og premium haptic-arkitektur
-(Double-Bezel, Variance Engine, CTA Island Button).
-(Inkluderer og erstatter frontend-design og high-end-visual-design.)
+**design-taste-frontend** *(flyttet til Pocket Drummer — se projects/pocket-drummer/.claude/skills/)*
 
 ---
 
