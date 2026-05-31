@@ -51,6 +51,8 @@ Matches flere skills, aktivér den mest centrale først og nævn de øvrige.
 | Præsentation (HTML, deployes til URL) | `frontend-slides` |
 | Dokumentkvalitet — løft PM-leverance til C-suite-niveau | `document-quality` |
 | Eksekvér en skriftlig plan trin for trin med checkpoints | `executing-plans` |
+| Evaluer afsluttet initiativ: forventet vs. faktisk, iterér/pivotér/stop | `outcome-analyse` |
+| Syntesér bruger-feedback til smertepunkter, JTBD og produktanbefalinger | `feedback-analyse` |
 | Design-prompt til Gamma, Midjourney, Canva AI etc. | `design-prompt` |
 | Lav en skarp, velstruktureret prompt til Claude/GPT/Gemini | `prompt-creator` |
 | Specificér hvad der mangler af ekstern viden efter session | `research-brief` |
@@ -315,6 +317,16 @@ Dækker alle prompttyper: system prompts, few-shot, kædede prompts og
 meta-prompts. Inkluderer reference-filer for prompt-anatomi og
 skill-description-guide.
 
+**outcome-analyse** — `.claude/skills/custom/outcome-analyse/`
+Struktureret PM-refleksion over et afsluttet initiativ. Fem trin:
+forventet outcome → faktisk outcome → gap-analyse → årsagshypoteser →
+anbefaling (iterér / pivotér / stop). Output klar til CEO-præsentation.
+
+**feedback-analyse** — `.claude/skills/custom/feedback-analyse/`
+Syntese af råt bruger-feedback (interviews, surveys, support-tickets) til
+PM-beslutningsgrundlag. Fem trin: top smertepunkter (frekvens × intensitet)
+→ JTBD-mapping → kundesprog → årsagshypoteser → prioriterede produktanbefalinger.
+
 **redaktionel-tekst** — `.claude/skills/custom/copywriting/`
 Professionel tekstforfatter med litterær, journalistisk stemme.
 Leverer færdige tekster på fejlfrit dansk — klar til brug uden
@@ -346,6 +358,8 @@ pm-platform/
 │           ├── design-prompt/
 │           ├── research-brief/
 │           ├── prompt-creator/
+│           ├── outcome-analyse/
+│           ├── feedback-analyse/
 │           └── copywriting/          ← skill: redaktionel-tekst
 └── projects/
     ├── ydkbusiness/             ← Y.dk Business-sektion
