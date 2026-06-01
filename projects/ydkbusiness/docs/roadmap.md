@@ -10,6 +10,22 @@ Soft launch: 1. oktober 2026. Nyhedsmotoren er i drift. PM-leverancerne aktivere
 
 ---
 
+## Y.dk platform-kontekst
+
+Y Business er ét produkt på en bredere platform. Nedenstående milepæle tilhører Y.dk som helhed — ikke Y Business specifikt — men de definerer den ramme Y Business lanceres inden for.
+
+| Milepæl | Dato | Ejer |
+|---|---|---|
+| Y.dk internal soft launch | 10. juni 2026 | Tech Lead + Redaktion |
+| Y.dk public launch (fri adgang + annoncer) | 10. august 2026 | CEO + Commercial Lead |
+| **Y Business launch** | **1. oktober 2026** | **PM + Tech Lead** |
+| Paywall live – Private & Business | 1. november 2026 | Tech Lead + Commercial Lead |
+| Y Rails – full product launch | 1. december 2026 | Tech Lead |
+
+Y Business aktiveres altså på en platform der allerede har kørt i åbent beta i 2,5 måned og bygget trafik inden paywall.
+
+---
+
 ## Del 1 — PM-leverance-roadmap
 
 Hvad PM leverer hvornår, og hvem der låses op af det.
@@ -91,7 +107,7 @@ Launch er 1. oktober. September har nul buffer — alle leverancer skal holde.
 
 ## Del 2 — Produkt-launch-roadmap
 
-Hvornår platformen er klar, og hvad der er med hvornår.
+Hvad der er med hvornår — og hvad der afventer næste fase.
 
 ### 1. oktober 2026 — Soft launch (invited beta)
 
@@ -109,26 +125,38 @@ Hvornår platformen er klar, og hvad der er med hvornår.
 - Avanceret personalisering (løbende læring)
 - API-integration
 
-**Mål:** 100-200 beta-abonnenter. Indsaml NPS og kvalitativ feedback.
+**Mål:** Indsaml NPS og kvalitativ feedback fra invited beta.
 
 ---
 
-### November–December 2026 — Fuld lancering
+### November 2026 — Paywall live og fuld lancering
 
-**Tilføjet:**
+Paywall aktiveres 1. november for både Private og Business. Y Business-subscribers overgår fra invited beta til betalende abonnenter.
+
+**Y.dk platform-trafik ved paywall-lancering (acquisition-grundlag):**
+
+| Metrik | Mål (september) | Note |
+|---|---|---|
+| VPD (Visits per Day) | 25.000 | Y.dk platform — ikke Business-specifikt |
+| RPM (Revenue per Mille) | 50 DKK | Annonce-revenue på fri adgang |
+| PVV (Pageviews per visit) | 3 | Engagement-indikator |
+| Net Growth MoM (efter churn) | 2,5% | Platformvækst inden paywall |
+
+25.000 daglige besøg i september er det pool begge segmenter rekrutteres fra. Private-abonnementet (50 DKK/md) er lavtærskels-indgangen der bygger vaner og kan konvertere til Business (500 DKK/md) over tid. De to segmenter konkurrerer ikke — de forstærker hinanden i funnelen. Målet er 1.500 Business og 1.500 Private subscribers ved paywall 1. november.
+
+**Nyt ved fuld lancering:**
 - Fuld acquisition-kampagne (LinkedIn, PR, partnerkanaler)
 - Forbedret onboarding baseret på beta-feedback
 - Virksomhedsabonnement med team-adgang (hvis besluttet)
 - Video-format (hvis motor understøtter det)
 
-**Mål:** 500 betalende abonnenter ved årets udgang.
+**Mål:** Afventer validering mod godkendt grundlag.
 
 ---
 
 ### Q1 2027 — Skalering
 
-**Mål:** 1.500 betalende abonnenter (7,5M DKK ARR)
-**Fokus:** Retention, referral-program, B2B-salg mod mellemstore virksomheder
+**Fokus:** Retention, referral-program, B2B-salg mod mellemstore virksomheder. Kvantitative mål afventer validering.
 
 ---
 
@@ -166,6 +194,6 @@ Hvornår platformen er klar, og hvad der er med hvornår.
 | Tech platform-spec | Committed — leveres august |
 | Soft launch | Committed — 1. oktober 2026 |
 | Fuld lancering | Directional — november/december 2026 |
-| 1.500 abonnenter | Directional — Q1 2027 |
+| 1.500 Business + 1.500 Private subscribers | Committed — 1. november 2026 (paywall) |
 | Video-format | Speculative — afhænger af motor |
 | Internationalisering | Speculative — fase 2 |

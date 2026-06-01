@@ -167,35 +167,29 @@ Den er årsagen til at produktet er mere end en datafeed.
 
 ## Kommerciel ramme
 
-Prisleje år 1: **1.500-5.000 kr./år** — tier-model
+Business-abonnement: **500 DKK/md** eller **5.000 DKK/år** (årsplan). 50% af Business-subscribers forventes at vælge årsplan.
 
-Logikken er lav adgangsbarriere med opgraderingssti:
-- Basisadgang: ~1.500 kr./år — nyheder og morgenbrief
-- Fuld pakke: ~3.000-5.000 kr./år — alle fem lag inkl. fællesskab
+Virksomheder der binder sig for et år får 5.000 DKK i markedsføring på platformen inkluderet — svarende til abonnementsprisen. Årsplanen er dermed reelt omkostningsneutral for virksomheder der ønsker eksponering mod Y.dk's erhvervslæsere.
 
-Prisankeret holder: selv fuld pakke til 5.000 kr./år er billigere end
-Finans.dk alene, og langt under Retriever + Børsen kombineret (20.000+ kr./år).
+Prisankeret holder: 5.000 DKK/år er billigere end Finans.dk alene og langt under Retriever + Børsen kombineret (20.000+ kr./år).
 
-Eksakt tier-struktur afklares med ledelsen. Kommunikeres altid som
-virksomhedsudgift der trækkes fra — ikke personligt medieabonnement.
+Eksakt tier-struktur (Basis vs. Pro) afklares med ledelsen. Kommunikeres altid som virksomhedsudgift der trækkes fra — ikke personligt medieabonnement.
 
 ---
 
 ## Succeskriterier (fase 1)
 
-| Metrik | Mål |
-|---|---|
-| Betalende abonnenter år 1 | 1.500 |
-| ARR ved målopfyldelse | 7,5M DKK |
-| Abonnementspris | 5.000 kr./år |
-| Churn år 1 | Under 20% |
-| NPS | Over 40 |
-| Gennemsnitlig daglig brug | Minimum 3 sessioner/uge per abonnent |
-| Andel der erstatter mindst ét eksisterende abonnement | Over 60% |
+| Metrik | Business | Private |
+|---|---|---|
+| Launch-dato | 1. oktober 2026 | 1. november 2026 (paywall) |
+| Subscribers ved paywall | 1.500 | 1.500 |
+| Månedspris | 500 DKK/md | 50 DKK/md |
+| Årsplan | 5.000 DKK/år | — |
+| Andel på årsplan | 50% | — |
 
-**Acquisition-implikation:** 1.500 betalende abonnenter år 1 kræver ved 2-5% konverteringsrate
-eksponering af 30.000-75.000 kvalificerede brugere i løbet af året.
-Det er et realistisk og forsvarligt mål — Axios Pro nåede 3.000 i år 1 med etableret US-medie bag.
+Business genererer 10x mere revenue per abonnent end Private (500 DKK vs. 50 DKK/md). Private er primært en platform-driver: det bygger daglig trafik og vaner der konverterer til Business — og det sænker tærsklen for erhvervsbrugere der vil afprøve platformen privat inden en Business-beslutning.
+
+**Acquisition-grundlag:** Y.dk-platformen når 25.000 daglige besøg i september — det er det pool begge segmenter rekrutteres fra, suppleret af målrettet acquisition via LinkedIn, PR og partnerkanaler.
 
 ---
 

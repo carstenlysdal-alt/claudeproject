@@ -35,8 +35,8 @@ Eksakt prisstruktur afklares med ledelsen i juni. Kravspecifikationen opererer m
 
 | Tier | Arbejdsnavn | Indhold | Prisindikation |
 |---|---|---|---|
-| Basis | Y.dk Business Basis | Nyhedsfeed + morgenbrief | ~1.500 kr./år |
-| Fuld | Y.dk Business Pro | Alle fem lag inkl. community | ~3.000–5.000 kr./år |
+| Basis | Y.dk Business Basis | Nyhedsfeed + morgenbrief | 50 DKK/md |
+| Fuld | Y.dk Business Pro | Alle fem lag inkl. community | 500 DKK/md / 5.000 DKK/år |
 
 **Regel:** Intet indhold vises bag betalingsmur uden at brugeren har set eksempel på produktet.
 Onboarding må ikke kræve betaling inden brugeren har oplevet mindst ét morgenbrief.
