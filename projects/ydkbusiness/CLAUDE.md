@@ -106,5 +106,6 @@ ved hvad der skal suppleres med ekstern tech (TTS, community-platform, nyheds-AP
 
 ## Nøgledokumenter
 
-- `docs/projekt-y-kontekst.md` — mission, team, SWOT, konkurrenter
+- `Journalistisk-retning.md` — **autoritativt redaktionelt fundament** for hele Y, inkl. Business. Tre indholdspillarer: Understand / Challenge / Inspire. Definerer værdier, value proposition ("DU BESTEMMER SELV") og AI som kommende USP.
 - `docs/positioning-statement.md` — positioneringsstatement (låst fundament)
+- `docs/projekt-y-kontekst.md` — mission, team, SWOT, konkurrenter

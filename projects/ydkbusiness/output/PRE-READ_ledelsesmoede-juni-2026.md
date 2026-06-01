@@ -37,7 +37,9 @@ Samtidig: Y er first-mover i AI-journalistik i Danmark. Hvis konkurrenter eller 
 | **B — Eje det selektivt** | "Redaktionelt verificeret indhold fra 5.000 kilder" i produkt-UI. AI nævnes i pressemateriale og investor-kommunikation, ikke over for abonnenter. | Kræver præcis kommunikationsdisciplin |
 | **C — Fuld transparens** | "AI producerer, mennesker verificerer" som eksplicit USP. Differentierer på ærlighed. | Modvirker betalingsvillighed i SMV-segment i dag |
 
-**Anbefaling:** Mulighed A i fase 1. Kommunikationsplatform: "Redaktionelt verificeret erhvervsintelligens fra 5.000 kilder." AI er back-end motor — aldrig front-end identitet. Genovervejes til fuld lancering baseret på beta-feedback.
+**Anbefaling:** Mulighed A i fase 1. Kommunikationsplatform: "Redaktionelt verificeret erhvervsintelligens fra 5.000 kilder." AI er back-end motor — aldrig front-end identitet.
+
+**Vigtigt strategisk lag:** Y's journalistiske fundament markerer "AI drevet" som en kommende USP — ikke et permanent hemmeligholdelsesvalg. Mulighed A er første fase af en bevidst kommunikationssekvens: vi beskytter troværdighed tidligt, og vi planlægger aktivt at eje AI-fortællingen når markedet er modent. Soft launch er ikke startpunktet for den diskussion — det er den fase vi køber os tid i. Besluttes A, bør ledelsen simultant fastlægge hvornår og under hvilke betingelser vi eskalerer til Mulighed B eller C.
 
 **Konsekvens ved manglende beslutning:** Design og UI-copy kan ikke produceres. Tech Lead ved ikke hvad der må vises i brugerfladen. Kommunikationsplatform til Commercial Lead er blokeret.
 

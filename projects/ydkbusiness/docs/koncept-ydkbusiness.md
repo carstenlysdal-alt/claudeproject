@@ -117,14 +117,30 @@ vide inden et møde, en forhandling eller en strategisk beslutning.
 ## Redaktionel identitet
 
 Y.dk Business er ikke et neutralt informationsprodukt. Den redaktionelle
-DNA er en konkret del af værdileverancen:
+DNA er en konkret del af værdileverancen og er forankret i Y's tre
+indholdspillarer — se `Journalistisk-retning.md`.
 
-- **Modpolen** — der er altid en nuance, en kilde, et perspektiv der
-  mangler i den dominerende fortolkningsramme. Y finder den systematisk.
-- **Faktabaseret og løsningsorienteret** — ikke holdningsjournalistik,
-  men den analyse der hjælper erhvervslæseren til at handle bedre informeret.
-- **AI producerer, mennesker verificerer** — skalaen kommer fra teknologien,
-  troværdigheden fra det redaktionelle lag.
+**Understand** — det aktuelle og vigtige med erhvervsperspektiv. Hvad
+sker der i dansk og international økonomi, regulering og politik der
+har direkte konsekvens for virksomheder med 5-250 ansatte. Fakta,
+kontekst og ansvar. Ikke kommentar.
+
+**Challenge** — den anden side, den tilbageholdte kilde, myten der
+bør knuses. Y er ikke et korrektiv til andre medier — Y er sig selv.
+Men Challenge-registret bringer systematisk de vinkler, stemmer og
+fakta der mangler i den dominerende fortolkningsramme.
+
+**Inspire** — løsninger, muligheder og casen der virker. SMV-ejeren
+vil ikke kun forstå markedet. Han vil vide hvad han skal gøre ved det.
+Inspire-registret svarer på det spørgsmål med faktabaseret optimisme:
+fremtiden er lys, velstand er fundamentet for velfærd.
+
+De tre registre er ikke separate sektioner eller rubrikker — de er
+redaktionelle tilstande morgenbrief, feed og B2B-briefs skifter imellem
+afhængigt af nyhedens karakter.
+
+**AI producerer, mennesker verificerer** — skalaen kommer fra
+teknologien, troværdigheden fra det redaktionelle lag.
 
 Den redaktionelle identitet er ikke til hinder for det kommercielle produkt.
 Den er årsagen til at produktet er mere end en datafeed.
