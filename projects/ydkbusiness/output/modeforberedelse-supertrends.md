@@ -34,6 +34,24 @@ Valg A er foretrukket. Valg B er fallback. Beslutning skal foreligge inden udgan
 
 ---
 
+## Hvad vi bygger — præmis for mødet
+
+Y.dk Business er en AI-drevet erhvervsplatform der erstatter kludetæppet af Børsen + Retriever + LassoX i ét virksomhedsabonnement til 5.000 kr./år. Supertrends er rygraden i intelligence-laget. Platformen leverer fem sammenhængende produktlag:
+
+| Lag | Hvad brugeren får | Supertrends' forventede rolle |
+|---|---|---|
+| **Erhvervsnyheder** | Personaliseret nyhedsfeed + morgenbrief kl. 06:00 dagligt (tekst + lyd) | Primær datakilde — konfigureret til dagsaktuelle SMV-nyheder |
+| **Markedsovervågning** | Watchlist på konkurrenter, søgeord, reguleringsemner — alerts ved hits | Crawling og signaldetektering — suppleret med direkte regulatory-API'er |
+| **Branchetrends** | Ugentlig trendrapport med Emerging/Peak/Fading-klassificering | Kerne-kapabilitet — 5.000 kilders trend-aggregering |
+| **B2B-briefs** | On-demand situationsbriefs genereret på under 60 sekunder | Rådata-leverandør — on-demand output kræver enten rekonfiguration eller LLM-lag |
+| **C-level indhold** | Dybdegående analyser, research og credibel ekspertopinion | Sekundær rolle — suppleres med redaktionel produktion |
+
+Redaktionel DNA: tre indholdstilstande — **Understand** (hvad sker der og hvorfor), **Challenge** (modpolen og den manglende kilde), **Inspire** (løsningen der virker). Supertrends skal enten understøtte denne klassificering eller levere rådata til at vi kan anvende den.
+
+Formlen er: *AI producerer, mennesker verificerer.* Supertrends er AI-laget. Det redaktionelle verificeringslag er Y.dk's.
+
+---
+
 ## Mødestruktur og spørgsmål
 
 ### 1. Sprog og output (kritisk)
@@ -122,13 +140,75 @@ Valg A er foretrukket. Valg B er fallback. Beslutning skal foreligge inden udgan
 
 ---
 
+### 10. Personalisering per bruger
+
+Produktet kræver Netflix-model: indhold tilpasset den individuelle bruger baseret på branche, virksomhedsstørrelse, geografi og konkurrenter.
+
+- Understøtter API'et per-bruger-personalisering — dvs. forskelligt output til to brugere med forskellige profiler?
+- Eller er personalisering et lag vi skal bygge oven på en generisk data-stream?
+- Kan vi sende en brugerprofil (branche, søgeord, konkurrenter) som parameter og få filtreret output tilbage?
+- Hvordan håndteres cold start — ny bruger der endnu ikke har adfærdsdata? Leveres generisk brancheindhold som default?
+- Er der en implicit læringsmekanisme der forbedrer relevans over tid, eller er det udelukkende eksplicit konfiguration?
+- Kan vi garantere minimum 5 personaliserede feed-elementer per dag for enhver aktiv brancheprofil?
+
+---
+
+### 11. Redaktionel konfiguration og indholdskvalitet
+
+Y.dk's redaktionelle DNA kræver tre indholdstilstande: Understand (fakta og kontekst), Challenge (modpolen og den manglende kilde), Inspire (løsningen der virker). Supertrends skal understøtte eller muliggøre dette.
+
+- Kan indhold tagges eller klassificeres efter redaktionel tilstand — eller er det altid neutralt aggregeret?
+- Kan motoren konfigureres til aktivt at søge minoritetssynspunkter og kontraræ signaler — ikke blot mainstream-dækning?
+- Kan vi konfigurere kildehierarkier: bestemte medier og organisationer vægtes højere end andre?
+- Kan vi blackliste kilder vi ikke ønsker indholdet fra?
+- Kan vi whiteliste specifikke kilder der altid inkluderes?
+- Hvad er Supertrends' interne kvalitetssikring af kildeindhold — og er det dokumenteret?
+- Hvordan håndteres deduplicering: når 20 medier skriver om samme nyhed, hvad vises i feedet?
+- Understøtter motoren clustering af beslægtede nyheder til ét feed-element med kildehenvisninger?
+
+---
+
+### 12. Morgenbrief og scheduleret levering
+
+Produktet kræver dagligt morgenbrief genereret og leveret senest kl. 06:30 — personaliseret per bruger.
+
+- Kan Supertrends generere schedulerede, personaliserede digests på et givent tidspunkt?
+- Eller skal morgenbrief assembleres eksternt via API-kald og formateres i vores eget lag?
+- Hvad er den seneste tidsfrist for at kildeindhold er tilgængeligt i API'et inden kl. 06:00?
+- Er der SLA på content-freshness: garanteres indhold fra de seneste 24 timer i hver morgenbrief?
+- Kan vi tilgå historiske data — dvs. hvad ville en bruger have modtaget i sin morgenbrief for 30 dage siden? Relevant for onboarding-demos.
+
+---
+
+### 13. White-labeling og brandidentitet
+
+Y.dk Business præsenteres uden Supertrends-branding i brugerfladen. AI kommunikeres som back-end motor, ikke front-end identitet.
+
+- Kan Supertrends-indhold leveres fuldt white-labeled — ingen reference til Supertrends i output eller metadata?
+- Indgår der krav om attribution i aftalevilkårene for API-adgang?
+- Kan vi bruge Supertrends-genereret indhold som grundlag for Y.dk-signerede artikler og analyser?
+
+---
+
+### 14. Skalering og international fase 2
+
+Fase 2 kræver internationale erhvervslæsere. Infrastrukturen skal skalere uden genopbygning.
+
+- Understøtter platformen multi-sprog output i dag — dvs. samme query returnerer svar på fx dansk og engelsk?
+- Kan vi konfigurere geografisk scope per bruger: dansk SMV-ejer får dansk fokus, international bruger får globalt fokus?
+- Hvad er kapacitetsloftet for antal samtidige brugere og API-kald?
+- Har Supertrends eksisterende deployments med 10.000+ brugere der kan tjene som reference for skaleringsadfærd?
+
+---
+
 ## Ønsket output fra mødet
 
-Tre beslutninger skal kunne træffes efter mødet:
+Fire beslutninger skal kunne træffes efter mødet:
 
-1. **Valg A eller B** — rekonfigurér Supertrends eller byg LLM-lag. Beslutning kræver svar på spørgsmål 1, 2 og 3.
-2. **Tech Lead-briefing** — præcis liste over hvad Supertrends leverer, hvad det ikke leverer, og hvad der suppleres udefra. Kræver svar på spørgsmål 4, 5 og 6.
-3. **Integrationstidslinje** — hvornår er API-adgang klar til Tech Lead at bygge imod. Kræver svar på spørgsmål 8.
+1. **Valg A eller B** — rekonfigurér Supertrends eller byg LLM-lag. Kræver svar på kategori 1, 2 og 3.
+2. **Personaliseringsarkitektur** — leverer Supertrends per-bruger-output eller bygger vi personaliseringslaget eksternt. Kræver svar på kategori 10.
+3. **Tech Lead-briefing** — præcis kortlægning af hvad Supertrends leverer, hvad det ikke leverer, og hvad der suppleres udefra (TTS, regulatory-API'er, LLM, nyheds-API'er). Kræver svar på kategori 4, 5, 6, 11 og 12.
+4. **Integrationstidslinje** — hvornår er API-adgang klar til Tech Lead at bygge imod. Kræver svar på kategori 8.
 
 ---
 
