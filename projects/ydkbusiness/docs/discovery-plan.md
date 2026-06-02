@@ -150,7 +150,9 @@ Vi søger 12-15 interviews fordelt på de tre segmenter. Minimum 5 interviews in
 
 Disse organisationer repræsenterer tilsammen over 40.000 virksomheder i Danmark og kan facilitere adgang til interviewpersoner uden kold outreach.
 
-**Vigtig præcisering (deep research juni 2026):** DI, Dansk Erhverv og SMVdanmark er **ikke** konkurrenter — de er compliance- og lobbyinformationstjenester, ikke erhvervsmedier. De leverer reguleringsovervågning og politisk interessevaretagelse til betalende medlemmer. De leverer ikke uafhængig journalistik, markedsovervågning eller strategisk intelligence. Y.dk Business er komplementær. Tilgangen er partnersamtale, ikke konkurrentanalyse.
+**Strategisk ramme:** Alle seks erhvervsorganisationer er strategiske kommercielle partnere i hele udrulningen af Y.dk Business — ikke blot interview-gatekeepers. De er ikke konkurrenter. De leverer compliance og interessevaretagelse. Y.dk Business leverer markedsintelligens og konkurrentovervågning. Tilgangen i alle samtaler er partnerdialoq, ikke konkurrentanalyse.
+
+Discovery-fasen bruges til at etablere relationen. Kommercielle partneraftaler om distribution og anbefaling til medlemmer indgås inden lancering november 2026.
 
 Pitchet: *"Jeres medlemmer bruger jer til compliance og interessevaretagelse. Y.dk Business giver dem den markedsintelligens og konkurrentovervågning de ikke kan få hos jer."*
 

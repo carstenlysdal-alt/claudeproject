@@ -174,22 +174,24 @@ Den er årsagen til at produktet er mere end en datafeed.
 
 ---
 
-## Partnere og akvisitionskanaler
+## Strategiske partnere — udrulning og distribution
 
-Seks erhvervsorganisationer er dokumenteret komplementære til Y.dk Business — ikke konkurrenter. De leverer compliance, reguleringsovervågning og politisk interessevaretagelse til betalende medlemmer. De leverer ikke uafhængig journalistik, markedsovervågning eller strategisk intelligence.
+Seks erhvervsorganisationer er centrale kommercielle partnere i hele udrulningen af Y.dk Business — fra behovsafdækning og beta-rekruttering til lancering og løbende distribution. De er ikke konkurrenter. De leverer compliance, reguleringsovervågning og politisk interessevaretagelse. Y.dk Business leverer det de ikke kan: uafhængig journalistik, markedsovervågning og strategisk intelligence.
+
+Partnerskabet er gensidigt: organisationerne styrker deres tilbud til medlemmerne — Y.dk Business får direkte adgang til 70.000+ virksomheder uden kold outreach.
 
 Pitchet til alle seks: *"Jeres medlemmer bruger jer til compliance og interessevaretagelse. Y.dk Business giver dem den markedsintelligens og konkurrentovervågning de ikke kan få hos jer."*
 
-| Organisation | Segment | Medlemsbase |
-|---|---|---|
-| Dansk Industri (DI) | Produktion og servicevirksomheder | 10.000+ |
-| Dansk Erhverv | Handel, service og vidensvirksomheder | 18.000+ |
-| SMVdanmark | Ejer-ledere og SMV'er | 15.000+ |
-| IT-Branchen | Tech, tele og elektronik | — |
-| Landbrug & Fødevarer (L&F) | Landbrug og fødevareindustri | — |
-| TEKNIQ Arbejdsgiverne | Installation og byggeri | — |
+| Organisation | Segment | Medlemsbase | Rolle i udrulning |
+|---|---|---|---|
+| Dansk Industri (DI) | Produktion og servicevirksomheder | 10.000+ | Beta-rekruttering, anbefaling til medlemmer, evt. mediesamarbejde |
+| Dansk Erhverv | Handel, service og vidensvirksomheder | 18.000+ | Beta-rekruttering, partneraftale, distributionskanal |
+| SMVdanmark | Ejer-ledere og SMV'er | 15.000+ | Primær distributionspartner — tættest match på kernemålgruppen |
+| IT-Branchen | Tech, tele og elektronik | — | Distribution til tech-segment, samarbejde om AI & tech-sektionen |
+| Landbrug & Fødevarer (L&F) | Landbrug og fødevareindustri | — | Sektorspecifik distribution, regulatory-validering, lokale datterforeninger som indgang |
+| TEKNIQ Arbejdsgiverne | Installation og byggeri | — | Distribution til bygge- og installationssektor, regulatory-fokus |
 
-Virksomheder der betaler DI-kontingent (5.000–50.000+ kr./år) er dokumenteret betalingsvillige for erhvervsrelaterede informationsværktøjer. Organisationerne er potentielle akvisitionskanaler mod 70.000+ virksomheder uden kold outreach.
+Virksomheder der betaler DI-kontingent (5.000–50.000+ kr./år) er dokumenteret betalingsvillige for erhvervsrelaterede informationsværktøjer. Partnerskabssamtaler startes som research-dialog i discovery-fasen og konverteres til kommercielle aftaler inden fuld lancering november 2026.
 
 ---
 
