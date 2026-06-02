@@ -20,7 +20,8 @@ Tre strukturelle forhold åbner markedet i dag:
 
 ## Problemet er dokumenteret
 
-- Erhvervsledere og virksomhedsejere bruger 3,5 timer/uge på statsrelateret papirarbejde — 16,5 mia. DKK/år i direkte tab for segmentet
+Erhvervsledere bruger 2–5 timer/uge på informationssøgning. Typisk: 45 minutters ustruktureret nyhedsbrowsing om dagen der stadig ender med at overse det vigtige signal. Y.dk Business reducerer det til under 10 minutter koncentreret læsning.
+
 - 35% finder nyhedsudbuddet overvældende; 23% undgår aktivt nyheder
 - Fuld erhvervsdækning koster 20.000–50.000 kr./år på tværs af 3–5 separate tjenester og login
 - Ingen eksisterende løsning er bygget til det brede erhvervsliv — virksomheder, brancheorganisationer og erhvervsledere uden for C25
@@ -42,7 +43,7 @@ Tre strukturelle forhold åbner markedet i dag:
 | Lag | Hvad brugeren får |
 |---|---|
 | **Erhvervsnyheder** | Personaliseret feed + morgenbrief kl. 06:00, tekst og lyd. Pro: C-level intelligence og AI & tech — strategiske analyser, datadrevet research og ekspertopinion til topledelsen |
-| **Markedsovervågning** | Konkurrenter, regulering, EU-direktiver og offentlige udbud — alerts og ugentlig digest. Erstatning for Retriever og Meltwater til en fjerdedel af prisen |
+| **Markedsovervågning** | Konkurrenter, CVR-registret (ejerskiftekifter, ledelsesændringer, konkursbegæringer), regulering, EU-direktiver og offentlige udbud — alerts og ugentlig digest |
 | **Branchetrends** | Ugentlig trendrapport med trend-radar: Emerging / Peak / Fading |
 | **B2B-briefs** | On-demand situationsbriefs på under 60 sekunder — til møder, forhandlinger og beslutninger |
 | **Abonnentfællesskab** | Lukket, modereret forum med brancherum og direkte adgang til redaktionen |
@@ -59,12 +60,14 @@ Y.dk Business er ikke et neutralt informationsprodukt. Den redaktionelle DNA bri
 
 ## Forretningsmodel
 
-- **Pris:** 5.000 kr./år (årsplan) / 500 kr./md
+- **Pris:** 5.000 kr./år (årsplan) / 500 kr./md — konservativt prissat under nordisk SaaS-gennemsnit
 - **Skattefrit personalegode** inden for bagatelgrænsen (7.600 kr./år) — beslutningen placeres i HR og økonomi, ikke hos den individuelle leder
 - **Fradragsberettiget** for virksomheden — fjerner den personlige betalingsbarriere
 - **Årsplan inkluderer** 5.000 kr. i platformsannoncering — reelt omkostningsneutralt for annoncerende virksomheder
 - **Private-abonnenter** (50 kr./md) er akvisitionskanal til Business og bygger daglig platformstrafik. Business genererer 10× mere revenue pr. abonnent
 - **Platform i drift:** Y.dk når 25.000 daglige besøg i september 2026 — det er rekrutteringspoolen begge segmenter hentes fra
+
+**Beviset er der:** Frihedsbrevet nåede 5.000 abonnenter til break-even og genererede 14,6M DKK i bruttoindtægt i 2023. Danskere betaler for kvalitetsindhold når det er relevant for dem.
 
 ---
 
