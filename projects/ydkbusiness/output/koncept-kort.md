@@ -2,9 +2,9 @@
 
 ## Konklusion
 
-Y.dk Business er Danmarks første erhvervsintelligensplatform bygget til SMV-segmentet — nyheder, markedsovervågning, trends, B2B-briefs og abonnentfællesskab i ét abonnement til 5.000 kr./år.
+Y.dk Business er Danmarks første erhvervsintelligensplatform bygget til erhvervslivet uden for C25 — nyheder, markedsovervågning, trends, B2B-briefs og abonnentfællesskab i ét abonnement til 5.000 kr./år.
 
-SMV-ejere betaler i dag 20.000–50.000 kr./år for et kludetæppe af tjenester der ikke er skrevet til dem. Vi erstatter det hele til under en femtedel af prisen. Markedet er ubesat. Lancering: 1. oktober 2026.
+Virksomheder, brancheorganisationer og erhvervsledere betaler i dag 20.000–50.000 kr./år for et kludetæppe af tjenester der ikke er skrevet til dem. Vi erstatter det hele til under en femtedel af prisen. Markedet er ubesat. Lancering: 1. oktober 2026.
 
 ---
 
@@ -12,7 +12,7 @@ SMV-ejere betaler i dag 20.000–50.000 kr./år for et kludetæppe af tjenester 
 
 Tre strukturelle forhold åbner markedet i dag:
 
-1. **Segmentet er underserveret.** Eksisterende erhvervsmedier skriver til kapitalmarkedet og C25. SMV-ejere betaler for et produkt der ikke er skrevet til dem — og ved det.
+1. **Segmentet er overset.** Eksisterende erhvervsmedier skriver til kapitalmarkedet og C25. Virksomheder, brancheorganisationer og erhvervsledere uden for børsens søgelys betaler for produkter der ikke er skrevet til dem — og ved det.
 2. **AI ændrer cost-strukturen fundamentalt.** Supertrends-platformen crawler allerede 5.000 kilder 24/7. Det der tidligere krævede en stor redaktion og et enterprise-budget er nu muligt til SMV-priser — fra dag ét.
 3. **Mainstream-medier er ensrettede.** Der er et udækket behov for erhvervsindhold der systematisk bringer modpolen, nuancen og den kilde der mangler. Det er en konkurrencemæssig fordel for den læser der vil vide mere end sine konkurrenter.
 
@@ -23,14 +23,15 @@ Tre strukturelle forhold åbner markedet i dag:
 - SMV-ledere bruger 3,5 timer/uge på statsrelateret papirarbejde — 16,5 mia. DKK/år i direkte tab for segmentet
 - 35% finder nyhedsudbuddet overvældende; 23% undgår aktivt nyheder
 - Fuld erhvervsdækning koster 20.000–50.000 kr./år på tværs af 3–5 separate tjenester og login
-- Ingen eksisterende løsning er bygget til virksomheder med 5–250 ansatte
+- Ingen eksisterende løsning er bygget til det brede erhvervsliv — virksomheder, brancheorganisationer og erhvervsledere uden for C25
 
 ---
 
 ## Målgruppe
 
 - SMV-ejere med 5–50 ansatte
-- C-level (CEO, COO, CFO) i mellemstore virksomheder med 50–250 ansatte
+- C-level (CEO, COO, CFO) i mellemstore og store virksomheder
+- Brancheorganisationer og erhvervsforeninger
 - Iværksættere under 5 år
 - Geografisk scope: hele Danmark — fase 2: internationalt
 
@@ -74,6 +75,6 @@ AI producerer. Mennesker verificerer. Skalaen fra teknologien — kvaliteten fra
 
 ## Muligheden
 
-SMV-segmentet udgør 99% af alle kommercielle selskaber i Danmark, 38% af alle fuldtidsansatte og 50% af erhvervslivets samlede årsresultat. Det er det største, mest homogene og mindst betjente segment i dansk medie- og intelligenslandskab.
+Virksomheder uden for C25 udgør 99% af alle kommercielle selskaber i Danmark, 38% af alle fuldtidsansatte og 50% af erhvervslivets samlede årsresultat. Læg dertil brancheorganisationer, erhvervsforeninger og de store virksomheder der ikke er børsnoterede. Det er det største og mindst betjente segment i dansk medie- og intelligenslandskab.
 
 Y.dk Business er bygget til at eje det.
