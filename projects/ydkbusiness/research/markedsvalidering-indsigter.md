@@ -43,8 +43,9 @@ erhvervsplatform der kombinerer nyheder, overvågning, trends og B2B-briefs.
 - 53% af danskerne er utrygge ved AI-journalistik
 - Kun 9% mener AI gør nyheder mere pålidelige
 - 75% af danske SMV'er bruger slet ikke AI i dag
-- **Krav:** AI er usynlig back-end. Aldrig kommunikeret i brugerflade, onboarding eller markedsføring.
-  Front-end er redaktionel kvalitet og menneskelig stemme.
+- **Krav:** AI kommunikeres aktivt som en styrke — men altid koblet til det redaktionelle verificeringslag.
+  Formlen er: "AI producerer, mennesker verificerer." AI er ikke skjult — det er forklaret.
+  Tonen er kompetent og faktabaseret, ikke defensiv. Barrieren håndteres med transparens, ikke tavshed.
 
 ### 2. Positionering som driftsomkostning
 - Betalingsvillighed for personlige nyheder (35-54 år): 11-12%

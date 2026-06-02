@@ -2,7 +2,7 @@
 
 ## Statement
 
-For SMV-ejere og erhvervsledere i Danmark der har brug for erhvervsnyheder og business intelligence uden at sy et kludetæppe af separate tjenester sammen, er Y.dk Business en AI-drevet erhvervsplatform der leverer nyheder, markedsovervågning, trends og B2B-briefs i ét abonnement til 5.000 kr./år. I modsætning til en kombination af Børsen og LassoX, giver Y.dk Business AI-produceret, redaktionelt verificeret intelligence fra 5.000 kilder — samlet på én platform.
+For SMV-ejere og erhvervsledere i Danmark der bruger tid og penge på at sy et kludetæppe af separate tjenester sammen, er Y.dk Business en AI-drevet erhvervsplatform der leverer nyheder, markedsovervågning, trends, B2B-briefs og lukket abonnentfællesskab i ét abonnement til 5.000 kr./år. I modsætning til Finans.dk og Retriever/Meltwater kombineret giver Y.dk Business AI-produceret, redaktionelt verificeret intelligence fra 5.000 kilder — samlet på én platform til under en femtedel af prisen.
 
 ---
 
@@ -15,13 +15,13 @@ SMV-ejere (5-50 ansatte), ledere i mellemstore virksomheder (50-250 ansatte), iv
 Handlingsorienteret erhvervsinformation plus de perspektiver og nuancer der går tabt i mainstream-medierne. Modpolen og kilden der mangler.
 
 **Q3 — Produktkategori**
-AI-drevet erhvervsnyhedstjeneste med integreret business intelligence-servicelag. Nyheder som fundament. Markedsovervågning, trends og B2B-briefs som det lag der adskiller Y.dk Business fra alle andre erhvervsmedier.
+AI-drevet erhvervsnyhedstjeneste med integreret business intelligence-lag og lukket abonnentfællesskab. Nyheder som fundament. Markedsovervågning, trends, B2B-briefs og community som det lag der adskiller Y.dk Business fra alle andre erhvervsmedier.
 
 **Q4 — Nøglefordel**
-Erhvervsnyheder og business intelligence i ét produkt til 5.000 kr./år — mod 4.500 kr./år for nyheder alene (Finans.dk) plus 24.000+ kr./år for dedikeret medieovervågning (Retriever, Meltwater). Én platform erstatter hele stakken.
+Erhvervsnyheder og business intelligence i ét produkt til 5.000 kr./år — mod Finans.dk (4.500 kr./år) plus Retriever/Meltwater (24.000+ kr./år) = 28.500+ kr./år. Én platform erstatter hele stakken til 18% af prisen. Abonnementet er inden for bagatelgrænsen (7.600 kr./år) og dermed et skattefrit personalegode for modtageren — fradragsberettiget for virksomheden. Årsabonnenter får 5.000 kr. i platformsannoncering inkluderet: abonnementet er reelt omkostningsneutralt for virksomheder der ønsker eksponering mod Y.dk's erhvervslæsere.
 
 **Q5 — Bevis**
-Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikke et løfte — det er fungerende teknologi bag produktet fra dag ét.
+Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikke et løfte — det er fungerende teknologi bag produktet fra dag ét. SMV-segmentets compliance-byrde er dokumenteret: statsrelateret papirarbejde koster segmentet 16,5 mia. DKK/år. Regulatory overvågning er ikke en feature — det er målbar ROI fra abonnement 1.
 
 ---
 
@@ -32,11 +32,9 @@ Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikk
 | Finans.dk | 4.500 | Nyheder uden overvågnings- og BI-lag |
 | Børsen | ca. 7.200 | Finansmarkedsfokus, ikke SMV-relevant |
 | Retriever (medieovervågning) | 24.000+ | Overvågning uden redaktionel nyhedsdækning |
-| Meltwater | 24.000+ | Dyr, enterprise-orienteret, ingen nyheder |
+| Meltwater | 24.000+ | Enterprise-prissat, ingen nyheder, intet community |
 | LinkedIn-feed | 0 | Ufiltreret, algoritmisk, tidskrævende |
 | Ingen struktureret løsning | 0 | Størst segment — ubesat kategori |
-
-**Note:** LassoX er et B2B salgs- og leadgenereringsværktøj — ikke en medieovervågningskonkurrent.
 
 ---
 
