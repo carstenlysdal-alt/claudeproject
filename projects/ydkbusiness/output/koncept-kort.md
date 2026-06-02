@@ -32,7 +32,7 @@ Fem lag i ét abonnement:
 
 | Lag | Hvad brugeren får |
 |---|---|
-| **Erhvervsnyheder** | Personaliseret feed + morgenbrief kl. 06:00 — tekst og lyd |
+| **Erhvervsnyheder** | Personaliseret feed + morgenbrief kl. 06:00 — tekst og lyd. Pro: dedikerede sektioner for AI & tech og C-level intelligence (strategiske analyser, datadrevet research, ekspertopinion til topledelsen) |
 | **Markedsovervågning** | Konkurrenter, regulering, EU-direktiver og udbud — alerts og ugentlig digest |
 | **Branchetrends** | Ugentlig trendrapport med trend-radar: Emerging / Peak / Fading |
 | **B2B-briefs** | On-demand situationsbriefs på under 60 sekunder til møder og beslutninger |
