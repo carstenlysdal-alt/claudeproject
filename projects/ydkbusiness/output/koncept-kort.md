@@ -86,6 +86,17 @@ Y.dk Business er ikke et neutralt informationsprodukt. Den redaktionelle DNA bri
 
 ## Muligheden
 
-Virksomheder uden for C25 udgør 99% af alle kommercielle selskaber i Danmark, 38% af alle fuldtidsansatte og 50% af erhvervslivets samlede årsresultat. Læg dertil brancheorganisationer, erhvervsforeninger og de store virksomheder der ikke er børsnoterede. Det er det største og mindst betjente segment i dansk medie- og intelligenslandskab.
+Virksomheder uden for C25 udgør 99% af alle kommercielle selskaber i Danmark, 38% af alle fuldtidsansatte og 50% af erhvervslivets samlede årsresultat. Det er det største og mindst betjente segment i dansk medie- og intelligenslandskab.
 
-Y.dk Business er bygget til at eje det.
+Seks erhvervsorganisationer repræsenterer tilsammen over 70.000 medlemsvirksomheder og er dokumenteret komplementære — ikke konkurrenter. De leverer compliance og interessevaretagelse. Y.dk Business leverer markedsintelligens og konkurrentovervågning. Pitchet til dem er simpelt: *"Jeres medlemmer kan ikke få det her hos jer."*
+
+| Organisation | Segment |
+|---|---|
+| Dansk Industri (DI) | Produktion og service |
+| Dansk Erhverv | Handel, service og vidensvirksomheder |
+| SMVdanmark | Ejer-ledere og SMV'er |
+| IT-Branchen | Tech, tele og elektronik |
+| Landbrug & Fødevarer | Landbrug og fødevarer |
+| TEKNIQ Arbejdsgiverne | Installation og byggeri |
+
+Y.dk Business er bygget til at eje det segment ingen andre har prioriteret.

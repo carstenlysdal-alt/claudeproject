@@ -64,11 +64,24 @@ De leverer **ikke:**
 - On-demand situationsbriefs
 - Trends og strategisk intelligence på tværs af markeder
 
-Y.dk Business er komplementær. Pitchet til disse organisationer er: *"Jeres medlemmer bruger allerede jer til compliance og interessevaretagelse. Y.dk Business giver dem den markedsintelligens og konkurrentovervågning de ikke kan få hos jer."*
+Y.dk Business er komplementær. Pitchet til alle organisationer er: *"Jeres medlemmer bruger allerede jer til compliance og interessevaretagelse. Y.dk Business giver dem den markedsintelligens og konkurrentovervågning de ikke kan få hos jer."*
 
-Partnerskabsvinkel: Disse organisationer kan anbefale Y.dk Business til 18.000-40.000 medlemsvirksomheder som et uafhængigt analyseværktøj — mod en mulig partneraftale. Det er en acquisition-kanal, ikke et tillidsproblem.
+### Fuldt partnerlandskab (dokumenteret i B2B-rapporten)
 
-**Adgang:** DI-medlemskab koster allerede 5.000-50.000+ DKK/år afhængigt af virksomhedsstørrelse. Virksomheder der betaler DI-kontingent er dokumenteret betalingsvillige for erhvervsrelaterede informationsværktøjer.
+Rapporten dækker seks erhvervsorganisationer der alle er potentielle akvisitionskanaler:
+
+| Organisation | Segment | Særligt relevant |
+|---|---|---|
+| **Dansk Industri (DI)** | Produktion og service | 11 nyhedsbreve på tværs af vertikaler — hyper-segmenteret compliance-arkitektur |
+| **Dansk Erhverv** | Handel, service, videnvirksomheder | ~20 nyhedsbreve + SMV-portal med compliance-guides |
+| **SMVdanmark** | Ejer-ledere og SMV'er | Kvantitative temaanalyser (1.000-1.500 besvarelser) — politisk tyngde |
+| **IT-Branchen** | Tech, tele og elektronik | Ugentligt nyhedsbrev + vertikale publikationer om cybersikkerhed, AI og grøn omstilling. Guider aktivt til statslige støtteordninger |
+| **Landbrug & Fødevarer (L&F)** | Landbrug og fødevarer | Massive statistiske brancherapporter (Markedsnyt for grisekød m.fl.). Lokale datterforeninger som decentrale knudepunkter. Ekstremt høj compliance-byrde (kvælstof, dyrevelfærd, EU-krav) |
+| **TEKNIQ Arbejdsgiverne** | Installation og byggeri | Fokus på elektrificering og digitalisering. Partnerskaber om EU-klimapolitik (Fitfor55) — reguleringsafhængigt segment |
+
+**Samlet rækkevidde:** 70.000+ medlemsvirksomheder på tværs af sektorer uden kold outreach.
+
+**Adgang:** DI-medlemskab koster allerede 5.000–50.000+ kr./år. Virksomheder der betaler dette er dokumenteret betalingsvillige for erhvervsrelaterede informationsværktøjer.
 
 ---
 

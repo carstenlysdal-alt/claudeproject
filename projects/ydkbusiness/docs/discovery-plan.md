@@ -138,10 +138,11 @@ Vi søger 12-15 interviews fordelt på de tre segmenter. Minimum 5 interviews in
 
 | Profil | Kriterier | Rekrutteringskanal |
 |---|---|---|
-| SMV-ejer, 5-25 ansatte | Ejer-leder, aktiv i drift, ikke dedikeret marketingteam | Via Dansk Erhverv, SMV Danmark, ejerledernetværk |
-| SMV-leder, 25-50 ansatte | Professionel leder, betaler sandsynligvis for mindst ét erhvervsmedie | Via DI, Dansk Erhverv |
-| C-level, 50-250 ansatte | CEO, COO eller CFO, ansvarlig for strategiske beslutninger | Via Ledernes Hovedorganisation, DI |
+| SMV-ejer, 5-25 ansatte | Ejer-leder, aktiv i drift, ikke dedikeret marketingteam | Via Dansk Erhverv, SMV Danmark, ejerledernetværk, EjerLederForeningen |
+| SMV-leder, 25-50 ansatte | Professionel leder, betaler sandsynligvis for mindst ét erhvervsmedie | Via DI, Dansk Erhverv, IT-Branchen, TEKNIQ, L&F (sektorfokuserede profiler) |
+| C-level, 50-250 ansatte | CEO, COO eller CFO, ansvarlig for strategiske beslutninger | Via DI, Dansk Erhverv, Erhvervshuse, EjerLederForeningen |
 | Iværksætter, under 5 år | Aktiv founder, B2B eller B2B2C | Via Founders House, Iværksætterhuset, Startup Denmark |
+| Landbrugs- og fødevareerhverv | Virksomhedsejer eller C-level med høj regulatory-eksponering | Via L&F og lokale landboforeninger — særligt relevant for regulatory-validering |
 
 ---
 
@@ -158,7 +159,10 @@ Pitchet: *"Jeres medlemmer bruger jer til compliance og interessevaretagelse. Y.
 | **Dansk Erhverv** | 18.000+ virksomheder, primært handel, service og vidensvirksomheder | Research-samarbejde + mulig partneraftale om anbefaling til medlemmer | CEO + evt. analysechef |
 | **Dansk Industri (DI)** | 10.000+ produktions- og servicevirksomheder | Samme tilgang — DI-kontingent betales allerede, betalingsvillighed dokumenteret | Direktør for SMV-politik eller kommunikation |
 | **SMV Danmark** | 15.000+ SMV'er, stærkt fokus på ejer-leder segmentet | Mest direkte match til primærsegmentet. SMVdanmark-medlemmer betaler allerede 12.000 kr./år for ejerledernetværk | Direktør eller sekretariat |
-| **Ledernes Hovedorganisation** | C-level og ledere på tværs af sektorer | Adgang til C-level profiler i mellemstore virksomheder | Analyse- eller kommunikationsafdeling |
+| **IT-Branchen** | Tech-, tele- og elektronikvirksomheder, alle størrelser | Stærkt overlap med Y.dk Business' AI & tech-sektion. Guider allerede medlemmer til statslige støtteordninger — åben for komplementære partnere | Direktør eller kommunikationschef |
+| **Landbrug & Fødevarer (L&F)** | Landbrugs- og fødevaresektor — milliardindustri med ekstremt høj compliance-byrde (kvælstof, dyrevelfærd, EU-krav) | Segmentet er vant til at betale for præcisionsinformation. Lokale datterforeninger (Holstebro Struer Landboforening, Familielandbruget VEST-Jylland m.fl.) som indgang | Kommunikationschef eller sekretariat |
+| **TEKNIQ Arbejdsgiverne** | Installations- og byggebranchen — elektrificering og digitalisering | Stærkt reguleringsafhængigt segment. Indgår allerede i partnerskaber om EU-klimapolitik og Fitfor55 — åben for intelligence-værktøjer | Direktør eller kommunikationsafdeling |
+| **Ledernes Hovedorganisation** | C-level og ledere på tværs af sektorer | Rekrutteringskanal til interviewpersoner — ikke partnerorganisation på linje med brancheorganisationerne | Analyse- eller kommunikationsafdeling |
 | **Iværksætterhuset / Founders House** | Aktive founders, primært København og Aarhus | Startup-segmentet — tidlig fase, prissensitiv | Community manager |
 | **Erhvervshus Sjælland / Øvrige erhvervshuse** | Regionale erhvervsnetværk, alle størrelser | Geografisk spredning uden for København | Erhvervskonsulenter |
 | **EjerLederForeningen** | Ejer-ledere af mellemstore familievirksomheder | Profil: betalingsvillig, strategisk orienteret, netværksdrevet | Sekretariat |
@@ -224,7 +228,7 @@ Vi er klar til at lukke discovery og gå til løsningsvalidering når:
 
 | Aktivitet | Ejer | Deadline | Note |
 |---|---|---|---|
-| Book møder med Dansk Erhverv, DI og SMV Danmark | PM + CEO | Senest 9. juni | Stil research-briefen som indgang — ikke salg |
+| Book møder med Dansk Erhverv, DI, SMV Danmark, IT-Branchen, L&F og TEKNIQ | PM + CEO | Senest 9. juni | Stil research-briefen som indgang — ikke salg. Tilgang: partnersamtale, ikke konkurrentanalyse |
 | Identificér 3-5 direkte interviews i netværk | PM | Senest 9. juni | Brug CEO og Commercial Leads netværk |
 | Gennemfør første 5 interviews | PM | Senest 20. juni | Prioritér SMV-ejer-segmentet først |
 | Midtvejssyntese: mønstergenkendelse efter 5 interviews | PM | 23. juni | Afgør om discovery-retning skal justeres |

@@ -174,6 +174,25 @@ Den er årsagen til at produktet er mere end en datafeed.
 
 ---
 
+## Partnere og akvisitionskanaler
+
+Seks erhvervsorganisationer er dokumenteret komplementære til Y.dk Business — ikke konkurrenter. De leverer compliance, reguleringsovervågning og politisk interessevaretagelse til betalende medlemmer. De leverer ikke uafhængig journalistik, markedsovervågning eller strategisk intelligence.
+
+Pitchet til alle seks: *"Jeres medlemmer bruger jer til compliance og interessevaretagelse. Y.dk Business giver dem den markedsintelligens og konkurrentovervågning de ikke kan få hos jer."*
+
+| Organisation | Segment | Medlemsbase |
+|---|---|---|
+| Dansk Industri (DI) | Produktion og servicevirksomheder | 10.000+ |
+| Dansk Erhverv | Handel, service og vidensvirksomheder | 18.000+ |
+| SMVdanmark | Ejer-ledere og SMV'er | 15.000+ |
+| IT-Branchen | Tech, tele og elektronik | — |
+| Landbrug & Fødevarer (L&F) | Landbrug og fødevareindustri | — |
+| TEKNIQ Arbejdsgiverne | Installation og byggeri | — |
+
+Virksomheder der betaler DI-kontingent (5.000–50.000+ kr./år) er dokumenteret betalingsvillige for erhvervsrelaterede informationsværktøjer. Organisationerne er potentielle akvisitionskanaler mod 70.000+ virksomheder uden kold outreach.
+
+---
+
 ## Kommerciel ramme
 
 Business-abonnement: **500 DKK/md** eller **5.000 DKK/år** (årsplan). 50% af Business-subscribers forventes at vælge årsplan.
