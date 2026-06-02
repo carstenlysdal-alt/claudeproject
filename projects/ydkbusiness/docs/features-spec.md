@@ -22,7 +22,6 @@
 ### Ikke inkluderet i fase 1
 
 - Video-format
-- Team- og virksomhedsabonnement med delt adgang
 - API-integration til CRM og egne systemer
 - Avanceret personalisering med løbende machine learning
 - Internationalt indhold og interface

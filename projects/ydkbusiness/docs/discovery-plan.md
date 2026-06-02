@@ -1,9 +1,15 @@
 # Y.dk Business — Discovery-plan: Behovsafdækning og interviewmålgrupper
 
-**Version:** 0.1
+**Version:** 0.2
 **Ejer:** PM
 **Status:** Arbejdsdokument — aktiv discovery-fase
 **Framework:** Jobs-to-be-Done (Christensen / Osterwalder) + Mom Test-interviewmetode
+
+---
+
+## Positioneringens status
+
+Positioneringen i `positioning-statement.md` er en **dokumenteret arbejdshypotese** — ikke en strategisk beslutning der er fredet for revision. Discovery kan og skal afkræfte den hvis data peger i en anden retning. Hvad vi er villige til at revidere: pris, features-prioritering, segmentering og kommunikationsplatform. Hvad der er strukturelt givet: Supertrends-infrastrukturen, Y.dk som platform og den redaktionelle DNA.
 
 ---
 
@@ -11,16 +17,19 @@
 
 Grundlaget er stærkt — positionering, features, datastackarkitektur og PRE-READ til ledelsesmødet er på plads. Det der mangler er valideret forståelse af kundejobs, pains og gains i de tre primære segmenter. Vi har brugt sekundær research (Trends.co, markedsvalidering maj 2026) som fundament, men har endnu ikke talt direkte med den primære målgruppe i dansk kontekst.
 
+Sekundær research bekræfter allerede at behovet eksisterer: 2-5 timer/uge på informationssøgning, fragmenterede værktøjer og informationsoverflod er dokumenteret. Discovery skal ikke bekræfte at behovet eksisterer — det ved vi. Discovery skal kortlægge hvad der udløser køb og hvem der beslutter det i dansk B2B-kontekst.
+
 ### Åbne analysehuller
 
 | Spørgsmål | Konsekvens hvis ubesvaret | Prioritet |
 |---|---|---|
-| Hvad er det mest akutte pain i dag — regulatory, informationsoverflod eller konkurrentblindheden? | Features-prioritering og kommunikationsplatform ramler forbi det primære problem | Kritisk |
-| Hvad "ansætter" SMV-ejeren i dag i stedet? | Vi ved ikke hvem vi konkurrerer med i praksis | Kritisk |
+| Hvad er skiftemoment — hvad udløser betalingsvillighed fra gratis/fragmenteret til betalt? | Vi ved ikke hvad der konverterer interesse til abonnement | Kritisk |
+| Hvem er beslutningstageren i en virksomhedsabonnementsbeslutning — og hvad kræves for at det sker? | Salgsprocessen og onboarding rammer forkert profil | Kritisk |
+| Hvad betaler virksomheden i dag for lignende tjenester — og hvad har de prøvet og droppet? | Vi kan ikke validere WTP eller featureparitet uden adfærdsdata | Kritisk |
+| Hvad "ansætter" virksomheden i dag i stedet? | Vi ved ikke hvem vi konkurrerer med i praksis | Kritisk |
 | Hvad er switching-barrieren fra nuværende løsning? | Onboarding og prisbegrundelse mangler modargumenter | Høj |
-| Er 5.000 kr./år kommunikeret rigtigt som virksomhedsudgift — hvem godkender den reelt? | Salgsargument og tier-struktur kan ramme forkert beslutningstager | Høj |
 | Hvad er det sociale og emotionelle job — ikke kun det funktionelle? | Kommunikation, tone og produktpersonlighed mangler det lag der driver adoption | Høj |
-| Hvad bruger C-level i mellemstore virksomheder af interne/eksterne analysemidler i dag? | Vi ved ikke om Pro-laget rammer et reelt hul eller duplikerer eksisterende løsninger | Medium |
+| Hvad er Y.dk's kendskab og association i målgruppen? | Politisk profil kan skabe forbehold der skal adresseres fra dag ét | Høj |
 | Hvad er onboarding-tolerancen — hvor lang tid giver en SMV-ejer produktet inden han opgiver? | Onboarding-design mangler konkret tærskelværdi | Medium |
 
 ---
@@ -28,6 +37,8 @@ Grundlaget er stærkt — positionering, features, datastackarkitektur og PRE-RE
 ## JTBD-analyse — hvad vi vil validere
 
 JTBD-rammen her er hypoteser baseret på sekundær research og markedsvalidering. Målet med discovery er at bekræfte, afkræfte og nuancere dem med direkte input fra målgruppen.
+
+**Primært job (arbejdshypotese):** Virksomheden vil overvåge sit marked i et mættet mediehav — og betale ét sted for den samlede intelligence der i dag kræver et kludetæppe af fragmenterede, gratis eller dyre løsninger. Produktet er et konsolideringsprodukt, ikke et supplement. Det erstatter LinkedIn + ingenting (for dem der ikke betaler i dag) og Børsen + Retriever + Infomedia (for dem der allerede betaler). Jobbet er det samme — vejen ind er forskellig.
 
 ### Segment 1 — SMV-ejer (5-50 ansatte)
 
@@ -132,9 +143,21 @@ Den reelle konkurrent er ikke Retriever eller Meltwater. Det er LinkedIn + ingen
 
 ## Interviewmålgrupper
 
+### Tre profiler der skal dækkes
+
+I et virksomhedsabonnement er den der læser og den der godkender budgettet ikke nødvendigvis den samme person. Vi rekrutterer eksplicit på tre profiler:
+
+| Profil | Definition | Minimumsantal |
+|---|---|---|
+| **Beslutningstager** | Godkender budgettet og underskriver abonnementet — CEO, CFO, HR-chef | 3 |
+| **Bruger** | Læser og oplever produktværdien dagligt — C-level, leder, specialist | 4 |
+| **Ambassadør** | Anbefaler produktet internt og driver adoption nedad i hierarkiet — typisk den der finder produktet og sælger det til sin leder | 3 |
+
+I SMV med under 25 ansatte er alle tre typisk den samme person. Fra 50 ansatte og op er de ofte tre forskellige. Rekrutteringsguiden skal afspejle dette.
+
 ### Direkte målgruppe — SMV-ejere og C-level ledere
 
-Vi søger 12-15 interviews fordelt på de tre segmenter. Minimum 5 interviews inden mønstergenkendelse er meningsfuld.
+Vi søger 10 interviews fordelt på de tre profiler og segmenter. Minimum 5 interviews inden mønstergenkendelse er meningsfuld.
 
 | Profil | Kriterier | Rekrutteringskanal |
 |---|---|---|
@@ -193,9 +216,17 @@ Vi spørger til adfærd — ikke til ønsker. Vi præsenterer ikke produktet. Vi
 3. "Hvornår har du sidst forberedt dig til et vigtigt møde — med bank, leverandør, bestyrelse? Hvordan gjorde du det?"
    - *Følg op:* Hvad manglede du? Hvad tog for lang tid at finde?
 
-4. "Hvad er den type information du ikke kan undvære i dit arbejde — og som er svær at få fat i systematisk?"
+4. "Hvad betaler din virksomhed i dag for tjenester der ligner det her — abonnementer, overvågningsværktøjer, nyhedsbreve, analyser?"
+   - *Følg op:* Hvad bruger du faktisk ugentligt — og hvad har du aldrig rigtig åbnet?
 
-5. "Hvis du skulle skrue en time om ugen tilbage fra informationssøgning — hvad ville du fjerne, og hvad ville du beholde?"
+5. "Hvad har du prøvet og meldt dig fra igen — og hvad fik dig til at stoppe?"
+   - *Følg op:* Hvad skulle have været anderledes for at du havde beholdt det?
+
+6. "Kender du Y.dk — hvad forbinder du med det?"
+   - *Note:* Ikke ledende. Lyt efter association, politisk profil, kendskab.
+
+7. "Hvis din virksomhed skulle tegne et erhvervsabonnement til 5.000 kr./år — hvem ville reelt tage den beslutning, og hvad skulle der til for at det skete?"
+   - *Kun stilles til respondenter der ikke selv er den åbenlyse enebeslutter*
 
 **Afslutning (10 min)**
 - Opsummer hvad du har hørt — bekræft eller korriger
@@ -218,9 +249,12 @@ Vi spørger til adfærd — ikke til ønsker. Vi præsenterer ikke produktet. Vi
 
 Vi er klar til at lukke discovery og gå til løsningsvalidering når:
 
-- Vi har gennemført minimum 10 interviews fordelt på de tre segmenter
-- Minimum tre smertepunkter er bekræftet uafhængigt af mindst 5 interviewpersoner
+- Vi har gennemført minimum 10 interviews fordelt på de tre profiler: beslutningstager (3), bruger (4), ambassadør (3)
+- Vi kan beskrive skiftemoment: hvad der konkret udløser betalingsvillighed fra gratis/fragmenteret til betalt
+- Vi kender beslutningsprocessen: hvem godkender, hvad kræves, og hvor lang er cyklussen
+- Vi har adfærdsdata på hvad de betaler for i dag og hvad de har droppet
 - Vi kan identificere det primære funktionelle og emotionelle job per segment
+- Vi har kortlagt Y.dk's kendskab og association i målgruppen
 - Vi har konkrete citater der kan bruges i kommunikationsplatform og PRD
 - Vi er blevet overrasket af mindst ét fund vi ikke havde forudset
 
@@ -230,9 +264,9 @@ Vi er klar til at lukke discovery og gå til løsningsvalidering når:
 
 | Aktivitet | Ejer | Deadline | Note |
 |---|---|---|---|
-| Book møder med Dansk Erhverv, DI, SMV Danmark, IT-Branchen, L&F og TEKNIQ | PM + CEO | Senest 9. juni | Stil research-briefen som indgang — ikke salg. Tilgang: partnersamtale, ikke konkurrentanalyse |
-| Identificér 3-5 direkte interviews i netværk | PM | Senest 9. juni | Brug CEO og Commercial Leads netværk |
-| Gennemfør første 5 interviews | PM | Senest 20. juni | Prioritér SMV-ejer-segmentet først |
+| CEO og Commercial Lead aktiverer personligt netværk — 5 direkte interviews | CEO + Commercial Lead | Senest 9. juni | Skal ske nu. Organisationskanalen leverer ikke inden 20. juni |
+| Book møder med Dansk Erhverv, DI, SMV Danmark, IT-Branchen, L&F og TEKNIQ | PM + CEO | Senest 9. juni | Tilgang: partnersamtale, ikke salg. Leverer interviews i juli-runden |
+| Gennemfør første 5 interviews (netværk) | PM | Senest 20. juni | Prioritér beslutningstager-profilen. Mindst 2 af 5 skal være beslutningstagere |
 | Midtvejssyntese: mønstergenkendelse efter 5 interviews | PM | 23. juni | Afgør om discovery-retning skal justeres |
-| Gennemfør resterende 5-10 interviews | PM | Senest 30. juni | |
+| Gennemfør resterende 5 interviews (netværk + organisation) | PM | Senest 30. juni | Dæk alle tre profiler: beslutningstager, bruger, ambassadør |
 | Syntesér til feedback-analyse og JTBD-kort | PM | 1. juli | Input til redaktionelt koncept og features spec v1.0 |
