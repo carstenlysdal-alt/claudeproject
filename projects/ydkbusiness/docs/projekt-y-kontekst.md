@@ -20,7 +20,6 @@ Kerneredaktion: Det der mangler i dagens journalistik — modpolen, nuancen, den
 - **Lars Seier Christensen** — hovedinvestor, finansierer langsigtede underskud
 - **Lars Tvede** — Supertrends-teknologi, AI der crawler 5.000 kilder
 - **Anders Samuelsen** — politisk og medieindsigt
-- **Morten Messerschmidt** — DF-formand (medfører troværdighedsudfordring)
 
 ## Teknologi
 
@@ -62,7 +61,7 @@ Fase 2: Internationale læsere
 ### Trusler
 - Etablerede medier (JPPOL, Berlingske) kan kopiere teknologien
 - AI er ikke-defensibel fordel — commodity på sigt
-- Politisk baggage (DF-association) begrænser mainstream-reach
+- Borgerlig profil begrænser reach til dele af det bredere marked
 - EU's AI-direktiv og ophavsretsproblemer
 
 ### Muligheder

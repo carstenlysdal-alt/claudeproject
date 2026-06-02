@@ -3,9 +3,10 @@
 ## Hvad platformen kan
 
 Y.dk Business er et dagligt arbejdsredskab for SMV-ejere og erhvervsledere.
-Platformen producerer originalt erhvervsindhold med redaktionel vinkel — ikke et
-aggregat af andres historier. Datagrundlaget er primærkilder: offentlige registre,
-lovgivning, udbud og selskabsdata. Vinklen er det der mangler i den dominerende dækning.
+Platformen kombinerer originalt redaktionelt indhold med AI-bearbejdede nyheder fra
+nationale og internationale medier, nyhedsbureauer, organisationer og virksomheder.
+Alt personaliseret på branche, marked og interesseprofil. Vinklen er det der mangler
+i den dominerende dækning — og det der har direkte konsekvens for virksomheder med 5-250 ansatte.
 
 En bruger kan:
 
@@ -63,8 +64,12 @@ Supertrends-arkitekturafklaring (rekonfigurér vs. LLM-lag) sker primo juni.
 
 ## Lag 1 — Erhvervsnyheder
 
-**Hvad det er:** AI-producerede erhvervsnyheder verificeret af redaktører.
+**Hvad det er:** Erhvervsnyheder på tværs af kildetyper — verificeret og vinklet af redaktionen.
 Ikke kapitalmarked og C25 — men det der påvirker virksomheder med 5-250 ansatte.
+
+To indholdsspor:
+- **Originalt indhold:** Egne historier og analyser produceret af redaktionen
+- **Aggregeret indhold:** Nyheder fra nationale medier, internationale bureauer (Reuters, AP, Bloomberg m.fl.), organisationer og virksomheder — AI-sorteret og bearbejdet med redaktionel vinkel
 
 **Funktioner:**
 - Personaliseret nyhedsfeed baseret på branche, marked og interesseprofil
@@ -73,9 +78,17 @@ Ikke kapitalmarked og C25 — men det der påvirker virksomheder med 5-250 ansat
 - Redaktionel vinkel: modpol og nuance som standard
 - Formater: tekst, lyd — video fase 2
 
+**Premium-indhold bag Pro-adgangsvæg**
+To dedikerede sektioner med adgang kun for Pro-abonnenter:
+
+- **AI & tech for erhverv** — dybdegående dækning af AI og teknologi med direkte erhvervsrelevans
+- **C-level intelligence** — strategiske analyser, datadrevet research, credibel ekspertopinion og trendrapporter til topledelsen. Indhold der kræver fordybelse, ikke scanning. Rettet mod CEO, COO, CFO og seniorledere i SMV og mellemstore virksomheder.
+
 **Brugerflow:**
 ```
 Log ind → Morgenbrief (push/mail) → Feed browsing → Artikel → Relaterede briefs
+                                                         ↓
+                                              [Pro] AI & tech-sektion
 ```
 
 ---

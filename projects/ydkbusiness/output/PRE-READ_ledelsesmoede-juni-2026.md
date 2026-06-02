@@ -52,6 +52,8 @@ Produktet har to naturlige adgangsniveauer. Prisargumentet er dokumenteret: selv
 
 Betalingsvillighed for B2B SaaS-driftsværktøjer er høj — forudsat at produktet kommunikeres som virksomhedsudgift, ikke personligt medieabonnement.
 
+**Ny indsigt fra deep research (juni 2026):** Y.dk Business kvalificerer som skattefrit personalegode efter Skattestyrelsens regler for "fri avis." Bagatelgrænsen er 7.600 DKK/år — abonnementet på 5.000 DKK/år er inden for grænsen. Skattefrit for modtageren, fradragsberettiget for virksomheden. Dette skal ekspliciteres i al B2B-salgskommunikation og bør nævnes i checkout-flowet.
+
 **To modeller**
 
 | Model | Tier 1 (Basis) | Tier 2 (Pro) | Anbefaling |

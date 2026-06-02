@@ -50,7 +50,9 @@ Onboarding må ikke kræve betaling inden brugeren har oplevet mindst ét morgen
 **F1.1 — Personaliseret nyhedsfeed**
 - Feed viser nyheder filtreret på brugerens branche, marked og interesseprofil
 - Minimum 5 nye feed-elementer pr. dag for enhver gyldig brancheprofil
-- Artiklerne er AI-producerede og redaktionelt verificerede
+- To indholdsspor kombineres i feedet:
+  - **Originalt indhold:** Egne historier og analyser produceret af redaktionen
+  - **Aggregeret indhold:** Nyheder fra nationale og internationale medier, bureauer (Reuters, AP, Bloomberg m.fl.), organisationer og virksomheder — AI-sorteret og bearbejdet med redaktionel vinkel
 - Redaktionel vinkel: modpol og nuance som standard — ikke neutralt referat
 - Sortering: relevans (personalisering) som standard; dato som alternativ
 
@@ -94,6 +96,8 @@ Onboarding må ikke kræve betaling inden brugeren har oplevet mindst ét morgen
 | Morgenbrief (lyd) | — | ✓ |
 | Nyhedsfeed (begrænset) | ✓ (5/dag) | ✓ (ubegrænset) |
 | Fuld artikelvisning | — | ✓ |
+| AI & tech-sektion | — | ✓ |
+| C-level intelligence (analyser, research, opinion, trends) | — | ✓ |
 
 ---
 

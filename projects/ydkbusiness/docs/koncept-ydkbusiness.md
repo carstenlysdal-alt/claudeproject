@@ -92,10 +92,18 @@ virksomhed, branche og marked.
 Y.dk Business leverer fire sammenhængende produktlag:
 
 **Erhvervsnyheder**
-AI-producerede, redaktionelt verificerede nyheder med direkte relevans
-for SMV-segmentet. Ikke kapitalmarked og C25 — men politiske beslutninger,
-regulering, brancheforhold og erhvervsliv der påvirker virksomheder
-med 5-250 ansatte. Leveres som tekst, lyd og video.
+Bred nyhedsdækning der kombinerer originalt redaktionelt indhold med
+AI-bearbejdede nyheder fra nationale og internationale medier, nyhedsbureauer,
+organisationer og virksomheder. Ikke kapitalmarked og C25 — men politiske
+beslutninger, regulering, brancheforhold og erhvervsliv der påvirker
+virksomheder med 5-250 ansatte. Leveres som tekst og lyd.
+
+**C-level indhold — analyser, research og opinion**
+Særligt fokus på indhold til topledelsen: dybdegående strategiske analyser,
+datadrevet research, credibel ekspertopinion og trendrapporter med
+direktekonsekvens for ledelsesniveau-beslutninger. Adskilt fra det løbende
+nyhedsfeed — dette er indhold der kræver tid og fordybelse, ikke 30 sekunders
+scanning. Primært bag Pro-adgangsvæg sammen med AI & tech-sektionen.
 
 **Markedsovervågning**
 Systematisk overvågning af relevante kilder, konkurrenter, branche og
@@ -150,6 +158,7 @@ Den er årsagen til at produktet er mere end en datafeed.
 ## Målgruppe
 
 **Primær (lancering)**
+- C-level: CEO, COO, CFO og andre topledere i SMV og mellemstore virksomheder
 - SMV-ejere med 5-50 ansatte
 - Ledere i mellemstore virksomheder med 50-250 ansatte
 - Iværksættere under 5 år
@@ -172,6 +181,9 @@ Business-abonnement: **500 DKK/md** eller **5.000 DKK/år** (årsplan). 50% af B
 Virksomheder der binder sig for et år får 5.000 DKK i markedsføring på platformen inkluderet — svarende til abonnementsprisen. Årsplanen er dermed reelt omkostningsneutral for virksomheder der ønsker eksponering mod Y.dk's erhvervslæsere.
 
 Prisankeret holder: 5.000 DKK/år er billigere end Finans.dk alene og langt under Retriever + Børsen kombineret (20.000+ kr./år).
+
+**Fri avis — skattemæssig driver:**
+Skattestyrelsens regler tillader at arbejdsgivere betaler Y.dk Business som skattefrit personalegode for medarbejderen, forudsat abonnementet er "i overvejende grad til brug for arbejdet." Bagatelgrænsen for personalegoder er 7.600 DKK/år i 2026 — Y.dk Business på 5.000 DKK/år er inden for denne grænse. Abonnementet er dermed skattefrit for modtageren og fradragsberettiget for virksomheden. Dette fjerner den personlige betalingsvilligheds-barriere og placerer beslutningen i HR/økonomiafdelingen — ikke hos den individuelle leder. Al kommunikation til virksomheder bør adressere dette eksplicit.
 
 Eksakt tier-struktur (Basis vs. Pro) afklares med ledelsen. Kommunikeres altid som virksomhedsudgift der trækkes fra — ikke personligt medieabonnement.
 
@@ -222,10 +234,10 @@ Kun 10% af danskerne er i dag trygge ved AI-journalistik (RUC 2024).
 Det redaktionelle verificeringslag er ikke kun kvalitetssikring —
 det er den primære mekanisme der adresserer denne barriere.
 
-**Politisk baggage**
-Associationen til Morten Messerschmidt og DF begrænser potentielt
-reach til dele af erhvervssegmentet. Kommunikationsstrategi bør
-adressere dette eksplicit frem for at ignorere det.
+**Troværdighed og politisk profil**
+Y har en borgerlig grundholdning der appellerer til et klart segment, men
+kan begrænse reach til dele af det bredere erhvervssegment. Produktet
+kommunikerer sig selv på redaktionel uafhængighed og faktabaseret indhold.
 
 ---
 
