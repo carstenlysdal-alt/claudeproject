@@ -54,6 +54,7 @@ Veldrevne SMV'er løser i dag fragmenteringen ved at udpege én person som "vide
 - **Markedsovervågning** — konkurrenter, søgeord, reguleringsemner, EU-forordninger og eksperter
 - **Branchetrends** — ugentlig AI-aggregeret trendrapport fra 5.000 kilder
 - **B2B-briefs** — automatiseret ud fra brugerens egne præferencer i alle lag
+- **Leadgenerering** — markedssignaler omsættes til salgsmuligheder: reguleringsændringer, ekspansioner og lederskifter identificerer hvilke virksomheder der er klar til at handle
 - **Lukket abonnentfællesskab** — sparring og netværk for erhvervsledere
 
 **Pris: 5.000 kr./år per virksomhedsabonnement** — eller 500 kr./md.
