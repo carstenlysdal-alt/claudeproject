@@ -107,9 +107,12 @@ Hvert input scores på 10 funktioner fra 0–100. En historie kan score højt p�
 | Inspiration | Hvad kan læseren lære eller kopiere? |
 | Guide | Kan dette omsættes til konkrete råd eller handlingsanvisninger? |
 | Curiosity | Hvad gør historien fascinerende eller overraskende? |
+| **Solution** | **Tilbyder dette en konkret løsning, et håb eller et positivt fremtidsperspektiv?** |
 
 **Primær funktion:** Den funktion med højest score.  
 **Sekundære funktioner:** Op til 3 funktioner med score > 50, vises dæmpet.
+
+**Solution-funktionen** sikrer at Y's tredje indholdspille — *Fremtiden er lys / Inspire* — er eksplicit repræsenteret i scoringsmodellen og ikke systematisk nedprioriteres ift. Challenge- og Threat-historier.
 
 ---
 
@@ -118,19 +121,19 @@ Hvert input scores på 10 funktioner fra 0–100. En historie kan score højt p�
 | Dimension | Vægt | Rationale |
 |---|---|---|
 | Audience Relevance | 20 % | Ikke relevant for Y's læser = ingen Y-historie |
-| Counter-Narrative Value | 20 % | Y's primære særkende: modpol og blind vinkel |
+| Impact | 20 % | Løftet fra 15 % — vigtige Understand-historier må ikke systematisk underscores |
+| Counter-Narrative Value | 15 % | Sænket fra 20 % — Y er counter-narrative, men ikke udelukkende |
 | Perspective Value | 15 % | Y's analysedybde og forklaringsjournalistik |
-| Impact | 15 % | Betydning for mange mennesker, virksomheder eller økonomi |
 | Decision Value | 15 % | Hjælper læseren beslutte — centralt for Y Business |
 | Trust / Source Strength | 10 % | Lav trust = verificering, ikke fravælgelse |
 | Production Potential | 5 % | Let at omsætte = lavere friktion i produktion |
 
 **Formel:**
 ```
-Y Score = AR×0.20 + CNV×0.20 + PV×0.15 + I×0.15 + DV×0.15 + T×0.10 + PP×0.05
+Y Score = AR×0.20 + I×0.20 + CNV×0.15 + PV×0.15 + DV×0.15 + T×0.10 + PP×0.05
 ```
 
-**Vægtningen er et redaktionelt valg** — skal valideres med chefredaktøren inden implementering.
+**Vægtningen afspejler Y's tre pillars:** Understand (Impact), Challenge (Counter-Narrative Value) og Inspire (implicit via Solution-funktion). Skal valideres med chefredaktøren inden implementering.
 
 ---
 
@@ -184,6 +187,7 @@ Ratingmotoren returnerer følgende struktur til CMS:
   "secondary_functions": ["challenge", "perspective"],
   "topics": ["Business", "Regulation", "SME"],
   "source_type": "interest_organization_press_release",
+  "editorial_pillar": "challenge",
   "functions": {
     "challenge": 69,
     "blind_spot": 82,
@@ -194,7 +198,8 @@ Ratingmotoren returnerer følgende struktur til CMS:
     "opportunity": 28,
     "inspiration": 12,
     "guide": 61,
-    "curiosity": 35
+    "curiosity": 35,
+    "solution": 22
   },
   "ratings": {
     "audience_relevance": 92,
