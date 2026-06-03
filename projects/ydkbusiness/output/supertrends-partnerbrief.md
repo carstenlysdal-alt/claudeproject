@@ -50,9 +50,7 @@ Problemet er ikke mangel på information. Det er mangel på syntese, personalise
 - **B2B-briefs** — automatiseret ud fra brugerens egne præferencer i alle lag
 - **Lukket abonnentfællesskab** — sparring og netværk for erhvervsledere
 
-**Pris: 5.000 kr./år per virksomhedsabonnement.**
-
-Det er inden for Skattestyrelsens bagatelgrænse for skattefrie personalegoder (7.600 kr./år) — skattefrit for modtageren, fradragsberettiget for virksomheden.
+**Pris: 5.000 kr./år per virksomhedsabonnement** — eller 500 kr./md.
 
 ---
 
