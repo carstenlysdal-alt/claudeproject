@@ -1,5 +1,5 @@
 # Story Intelligence Rating Engine
-### Et pitch til kollegamødet — 4. juni 2026
+### Pitch — 4. juni 2026
 
 ---
 
