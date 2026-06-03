@@ -52,3 +52,5 @@ Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikk
 ## Strategisk konklusion
 
 Y.dk Business konkurrerer ikke primært med andre erhvervsmedier. Produktet ejer en kategori der i dag er ubesat for SMV-segmentet: AI-drevet erhvervsintelligens der er tilgængelig, redaktionelt verificeret og prissat til virksomheder uden dedikeret analyse-afdeling.
+
+**Leadgenerering som unik differentiator:** Ingen konkurrent kobler markedssignaler direkte til salgsmuligheder. LassoX leverer statiske CVR-data. Y.dk Business leverer dynamiske signaler — den reguleringsændring, det lederskifte, den ekspansionsmeddelelse der identificerer *hvornår* en virksomhed er klar til at handle. Signal-baseret leadgenerering kombineret med CVR-søgning gør Y.dk Business til det eneste produkt der forbinder markedsintelligens med kommerciel handling.

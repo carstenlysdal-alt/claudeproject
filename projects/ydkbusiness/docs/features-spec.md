@@ -15,6 +15,7 @@
 - Markedsovervågning med regulatory-kategori
 - Branchetrends (ugentlig rapport)
 - B2B-briefs (on-demand)
+- Leadgenerering — signal-baseret (primær) og CVR-baseret (sekundær)
 - Onboarding-profil og grundlæggende personalisering
 - Lukket community (modereret forum)
 - Web (desktop + mobil) — tekst og lyd
@@ -320,6 +321,80 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 | Læseadgang til forum | — | ✓ |
 | Skriveadgang til forum | — | ✓ |
 | Redaktionel kanal | — | ✓ |
+
+---
+
+## Lag 6 — Leadgenerering
+
+### Rationale
+
+Overvågningslaget registrerer markedssignaler. Leadgenereringslaget omsætter dem til salgsmuligheder. Når en reguleringsændring rammer en branche, en virksomhed annoncerer ekspansion, eller en leder skifter job — er det et signal med kommerciel værdi for abonnenten. Y.dk Business er det eneste produkt der kobler markedsintelligens direkte til leadgenerering.
+
+Primær differentiator mod LassoX: LassoX leverer statiske virksomhedsdata fra CVR. Y.dk Business leverer dynamiske signaler der identificerer *hvornår* en virksomhed er klar til at købe, ekspandere eller handle.
+
+---
+
+### F6.1 — Signal-baseret leadgenerering (primær)
+
+**Beskrivelse:** Platformen detekterer markedssignaler i overvågningslaget og identificerer automatisk virksomheder der er påvirkede — og dermed potentielle leads.
+
+**Signaltyper:**
+- Reguleringsændring der rammer specifik branche → virksomheder i den branche der mangler compliance-løsning
+- Virksomhed annoncerer ekspansion eller ny afdeling → potentiel køber af services
+- Lederskifte (ny CEO, CFO, indkøbschef) → ny beslutningstager med nye prioriteter
+- EU-forordning vedtaget med implementeringsfrist → virksomheder i scope der skal handle inden deadline
+- Branchen reagerer på megatrend (AI, bæredygtighed, digitalisering) → åbningsvinkel for relevante udbydere
+
+**Funktionelle krav:**
+- Brugeren definerer hvilke signaltyper der er relevante for hans forretning
+- Platformen genererer automatisk en "lead-alert" når et signal matcher brugerens profil
+- Lead-alert indeholder: signal-beskrivelse, berørte virksomheder (navn, CVR, størrelse, branche), anbefalet timing og åbningsvinkel
+- Brugeren kan gemme, mærke og eksportere leads
+
+**F6.1a — Ekspert- og personovervågning som leadsignal**
+- Nøglepersoner (eksperter, C-level, analytikere) overvåges for udtalelser og aktivitet
+- Relevante udtalelser om tech, AI og marked flagges som signal
+- Feature-request til Supertrends — afventer teknisk vurdering
+
+---
+
+### F6.2 — CVR-baseret virksomhedssøgning (sekundær)
+
+**Beskrivelse:** Brugeren kan søge og filtrere i danske virksomheder baseret på strukturerede data fra CVR og regnskabsregistret.
+
+**Funktionelle krav:**
+- Søgning på: branche (DB07-kode), geografi (kommune/region), virksomhedsstørrelse (ansatte), omsætning, stiftelsesår, ejerstruktur
+- Visning af: virksomhedsnavn, CVR-nummer, adresse, kontaktoplysninger, seneste regnskabstal
+- Eksport af resultatliste (CSV)
+- Maks. 500 resultater pr. søgning i Pro
+
+**Tekniske krav:**
+- Datakilde: CVR ElasticSearch API (Erhvervsstyrelsen) — gratis
+- Regnskabsdata: XBRL-regnskab via Erhvervsstyrelsen — gratis
+- Opdateringsfrekvens: daglig synkronisering
+
+---
+
+### Acceptkriterier
+
+- Signal-alert leveret inden for 30 minutter efter kilden er crawlet
+- CVR-søgning returnerer resultater under 3 sekunder
+- Lead-alert indeholder minimum: virksomhedsnavn, CVR, branche og signal-beskrivelse
+
+### Tekniske krav
+
+- Signal-matching bygger oven på Supertrends' overvågningsmotor + egne regulatory-API'er
+- CVR-integration: direkte mod Erhvervsstyrelsens ElasticSearch API
+- Lead-data gemmes i brugerprofil og kan eksporteres
+
+### Tier-adgang
+
+| Feature | Basis | Pro |
+|---|---|---|
+| Signal-alerts (maks. pr. mdr.) | 5 | Ubegrænset |
+| CVR-søgning | — | ✓ |
+| Lead-eksport (CSV) | — | ✓ |
+| Gem og mærk leads | — | ✓ |
 
 ---
 
