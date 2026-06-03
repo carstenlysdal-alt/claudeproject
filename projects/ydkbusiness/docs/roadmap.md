@@ -36,7 +36,7 @@ Hvad PM leverer hvornår, og hvem der låses op af det.
 |---|---|---|
 | Features spec v0.1 | PM | ✓ Done — 26. maj |
 | Datastackarkitektur: 11 direkte offentlige endpoints | PM | ✓ Done — 26. maj |
-| Book Supertrends-møde med Lars Tvede | PM + CEO | Skal bookes nu |
+| Book Supertrends-møde med Lars Tvede | PM + CEO | ✓ Done — 3. juni |
 | Book ledelsesmøde uge 1 juni | PM + CEO | Skal bookes nu |
 | Identificér designer-ressource til august | CEO + PM | Skal afklares inden juli |
 
@@ -47,7 +47,7 @@ Hvad PM leverer hvornår, og hvem der låses op af det.
 | Uge | Leverance | Ejer | Låser op for |
 |---|---|---|---|
 | 1 | Ledelsesmøde: AI-paradoks, tier-struktur, produktgodkendelse | PM + CEO | Alt efterfølgende |
-| 1-2 | Supertrends-møde: tre tekniske afklaringer med Lars Tvede | PM + Tech Lead | Features spec v1.0 + tech-konfiguration |
+| 1-2 | Supertrends-møde: tre tekniske afklaringer med Lars Tvede | PM + Tech Lead | ✓ Done 3. juni — se output/supertrends-moedereferat.md |
 | 2-3 | Redaktionelt koncept (kilder, vinkler, outputformat, produktionsarkitektur) | PM + Chefredaktør | Tech-konfiguration af motor |
 | 3-4 | Commercial Lead briefet: acquisition-budget og kanalvalg | PM + Commercial Lead | GTM-plan |
 | 4 | Features spec v1.0 — final (lukker åbne punkter fra Supertrends-møde) | PM + Tech Lead | Design og build |
@@ -115,7 +115,8 @@ Hvad der er med hvornår — og hvad der afventer næste fase.
 - Personaliseret nyhedsfeed + morgenbrief (tekst + lyd)
 - Markedsovervågning med regulatory-kategori
 - Branchetrends (ugentlig rapport)
-- B2B-briefs (on-demand)
+- B2B-briefs (præferencebaseret automatisering)
+- Leadgenerering — signal-baseret + CVR-søgning
 - Grundlæggende personalisering (onboarding-profil)
 - Lukket community (modereret forum)
 

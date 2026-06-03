@@ -31,6 +31,7 @@ Sekundær research bekræfter allerede at behovet eksisterer: 2-5 timer/uge på 
 | Hvad er det sociale og emotionelle job — ikke kun det funktionelle? | Kommunikation, tone og produktpersonlighed mangler det lag der driver adoption | Høj |
 | Hvad er Y.dk's kendskab og association i målgruppen? | Politisk profil kan skabe forbehold der skal adresseres fra dag ét | Høj |
 | Hvad er onboarding-tolerancen — hvor lang tid giver en SMV-ejer produktet inden han opgiver? | Onboarding-design mangler konkret tærskelværdi | Medium |
+| Bruger respondenten aktivt leadgenerering i dag — og via hvilke kanaler? | Validerer om leadgenerering er et reelt job-to-be-done eller nice-to-have | Medium |
 
 ---
 

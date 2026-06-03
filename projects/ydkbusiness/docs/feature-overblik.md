@@ -27,6 +27,11 @@ kort og langt sigt — med kilde, status og tidshorisont.
 Generere et handlingsorienteret situationsbrief om en virksomhed, et marked,
 en konkurrent eller et reguleringsemne — inden et møde, en forhandling eller en beslutning.
 
+**Identificere leads fra markedssignaler**
+Se automatisk hvilke virksomheder der er påvirkede af en reguleringsændring,
+en ekspansion eller et lederskifte — og hvornår timing er rigtig til at kontakte dem.
+Understøttes af CVR-søgning på branche, størrelse og geografi.
+
 **Spare med ligesindede**
 Deltage i et lukket forum for betalende abonnenter med branchespecifikke rum
 og direkte adgang til redaktionen.
@@ -36,29 +41,29 @@ og direkte adgang til redaktionen.
 ## Arkitektur
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│                      Y.dk BUSINESS                           │
-├──────────────┬───────────────┬───────────┬───────────────────┤
-│  NYHEDER     │  OVERVÅGNING  │  TRENDS   │  B2B-BRIEFS       │
-└──────────────┴───────────────┴───────────┴───────────────────┘
-                              ↑
-              PERSONALISERING (branche · virksomhed · marked)
-                              ↑
-         ┌────────────────────┴─────────────────────┐
-         │  SUPERTRENDS API        OFFENTLIGE APIs   │
-         │  (trends, global        Retsinformation   │
-         │   kontekst)             EUR-Lex           │
-         │                         udbud.dk          │
-         │  LLM-LAG                Folketing ODA     │
-         │  (produktion af         CVR + XBRL        │
-         │   dansk originalt       Tinglysning       │
-         │   indhold)              BBR               │
-         │                         Danmarks Statistik│
-         │                         RSS (signalinput) │
-         └──────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────────────┐
+│                          Y.dk BUSINESS                                │
+├──────────────┬───────────────┬───────────┬───────────┬───────────────┤
+│  NYHEDER     │  OVERVÅGNING  │  TRENDS   │  BRIEFS   │  LEADS        │
+└──────────────┴───────────────┴───────────┴───────────┴───────────────┘
+                                     ↑
+                 PERSONALISERING (branche · virksomhed · marked)
+                                     ↑
+          ┌──────────────────────────┴───────────────────────┐
+          │  SUPERTRENDS               OFFENTLIGE APIs        │
+          │  CMS + datastruktur        Retsinformation        │
+          │  Overvågningsmotor         EUR-Lex                │
+          │  AI-analyse                udbud.dk               │
+          │  Automatiserede briefs     Folketing ODA          │
+          │  "Powered by Supertrends"  CVR + XBRL             │
+          │                            Danmarks Statistik     │
+          │  Y.dk bygger:              Via Ritzau API         │
+          │  Frontend + interface      RSS (signalinput)      │
+          │  Redaktionelt lag                                 │
+          └──────────────────────────────────────────────────┘
 ```
 
-Supertrends-arkitekturafklaring (rekonfigurér vs. LLM-lag) sker primo juni.
+**Arkitekturstatus (besluttet juni 2026):** Supertrends leverer CMS, datastruktur og overvågningsmotor. Y.dk bygger frontend og interface oven på. Se `output/supertrends-moedereferat.md`.
 
 ---
 
@@ -195,7 +200,31 @@ Ugentlig digest · Personalisering der forbedres · Brief-historik
 
 ---
 
-## Lag 5 — Abonnentfællesskab (tilføjet efter markedsvalidering)
+## Lag 5 — Abonnentfællesskab
+
+---
+
+## Lag 6 — Leadgenerering
+
+**Hvad det er:** Overvågningssignaler omsættes automatisk til salgsmuligheder.
+Ingen konkurrent kobler markedsintelligens direkte til leadgenerering.
+
+**Signal-baseret (primær):**
+- Reguleringsændring → virksomheder i scope identificeres som leads
+- Ekspansionsmeddelelse → potentiel køber af services
+- Lederskifte → ny beslutningstager med nye prioriteter
+- EU-direktiv med implementeringsfrist → timing til kontakt
+
+**CVR-baseret (sekundær):**
+- Søg og filtrer danske virksomheder på branche, størrelse, geografi, økonomi
+- Datakilde: Erhvervsstyrelsens CVR API (gratis)
+
+**Brugerflow:**
+```
+Signal detekteres → Lead-alert med berørte virksomheder → Gem / eksporter → Kontakt
+```
+
+---
 
 **Hvorfor:** Trends.co dokumenterede at lukket community er primær fastholdelsesmekanisme.
 SMV-ejere betaler allerede 12.000 kr./år for ejerledernetværk. Fællesskab øger retention markant.
@@ -230,9 +259,9 @@ Platformen leverer værdi i indbakken fra dag 1 — brugeren konfigurerer ikke a
 ## Hvad der ikke er med (fase 1)
 
 - Video-format
-- Team- og virksomhedsabonnement med delt adgang
 - API-integration til CRM og egne systemer
 - Avanceret benchmarking mod konkurrenter
+- Internationalt indhold og interface
 
 ---
 
@@ -240,22 +269,25 @@ Platformen leverer værdi i indbakken fra dag 1 — brugeren konfigurerer ikke a
 
 | Dokumenteret behov | Feature der dækker det | Status |
 |---|---|---|
-| Tidsmangel — 3,5 t/uge på administration | Morgenbrief + B2B-briefs | ✓ Dækket |
+| Tidsmangel — 2-5 t/uge på informationssøgning | Morgenbrief + B2B-briefs | ✓ Dækket |
 | Informationsoverflod — 35% overvældet | Personaliseret feed + filtrering | ✓ Dækket |
-| Fragmenterede værktøjer | Ét samlet login | ✓ Dækket |
+| Fragmenterede værktøjer (kludetæppe) | Ét samlet login — alle lag | ✓ Dækket |
+| "Videnskoordinator" som intern workaround | Morgenbrief + automatiserede briefs | ✓ Dækket |
 | Sparring med ligesindede | Community (lag 5) | ✓ Dækket |
 | Branchespecifik relevans | Personalisering på branche | ✓ Dækket |
 | Strategisk intelligence — ingen BI-adgang til SMV-priser | Trends + B2B-briefs | ✓ Dækket |
 | Konkurrentovervågning | Overvågning (lag 2) | ✓ Dækket |
-| Regulering og policy med direkte SMV-konsekvens | Overvågning — regulatory kategori | ✓ Tilføjet |
+| Regulering og policy med direkte SMV-konsekvens | Overvågning — regulatory kategori | ✓ Dækket |
+| Leadidentificering fra markedssignaler | Leadgenerering (lag 6) | ✓ Tilføjet |
+| CVR-baseret virksomhedssøgning | Leadgenerering (lag 6) | ✓ Tilføjet |
 
 ---
 
-## Åbne spørgsmål til afklaring
+## Åbne spørgsmål
 
-| Spørgsmål | Påvirker |
-|---|---|
-| Hvilke specifikke kilder dækker Supertrends-motoren i dag? | Overvågning og trends |
-| Understøtter motoren on-demand brief-generering? | B2B-briefs |
-| Er lyd-format tilgængeligt i dag eller kræver det ny produktion? | Nyheder |
-| Hvad er onboarding-flowets tekniske grænser (profil-opsætning)? | Personalisering |
+| Spørgsmål | Påvirker | Status |
+|---|---|---|
+| On-demand briefs (ad hoc, 60 sek.) — kræver LLM-lag? | B2B-briefs | Åbent — afklares med Tech Lead |
+| Person- og ekspertovervågning — kan Supertrends understøtte det? | Overvågning + Leads | Åbent — feature-request sendt til Supertrends |
+| Rammeaftale Supertrends: fee, procent eller hybrid | Økonomi | Åbent — afventer kildeaftale |
+| Designer-ressource til august | Design + UI | Åbent — CEO afklarer

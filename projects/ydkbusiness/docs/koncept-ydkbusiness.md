@@ -85,6 +85,11 @@ Resultatet er fragmenteret information, høje samlede omkostninger og
 ingen platform der binder det hele sammen i relation til den enkeltes
 virksomhed, branche og marked.
 
+Veldrevne SMV'er løser fragmenteringen ved at udpege en "videnskoordinator" — en
+medarbejder der læser alle nyhedsbreve og destillerer til 3-4 bulletpoints på
+mandagsmødet. Det er et symptom på problemet, ikke en løsning.
+Y.dk Business automatiserer det job.
+
 ---
 
 ## Produktbeskrivelse
@@ -119,6 +124,13 @@ dedikeret analytiker.
 Kortfattede, handlingsorienterede briefs målrettet specifikke brancher,
 markeder eller beslutningssituationer. Format: det du har brug for at
 vide inden et møde, en forhandling eller en strategisk beslutning.
+
+**Leadgenerering**
+Markedssignaler omsættes automatisk til salgsmuligheder. Når en reguleringsændring
+rammer en branche, en virksomhed annoncerer ekspansion eller en leder skifter job,
+identificerer platformen hvilke virksomheder der er påvirkede — og hvornår timing
+er rigtig til at kontakte dem. Understøttes af CVR-søgning på branche, størrelse og geografi.
+Signal-baseret leadgenerering er det ingen konkurrent tilbyder i dag.
 
 ---
 
