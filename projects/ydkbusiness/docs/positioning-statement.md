@@ -40,8 +40,12 @@ Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikk
 | Google Alerts + RSS | 0 | Massiv støj, ingen syntese, ingen dækning bag betalingsmure |
 | Ingen struktureret løsning | 0 | Størst segment — ubesat kategori |
 
-**En komplet stack (mellemstor virksomhed): 122.000–300.000+ kr./år** — spredt på siloer der aldrig taler sammen.
-**Y.dk Business: 5.000 kr./år** — nyheder, overvågning, trends og briefs i ét abonnement.
+**Validerede stack-omkostninger per segment (juni 2026):**
+- SMV 5-50 ansatte: 23.000–44.000 kr./år + 20.000–40.000 i skjult tidstab
+- SMV 50-150 ansatte: 120.000–180.000 kr./år (ekskl. integration)
+- 150+ ansatte: 250.000–400.000+ kr./år
+
+**Y.dk Business: 5.000 kr./år** — nyheder, overvågning, trends og briefs i ét abonnement. Ingen silo. Ingen videnskoordinator. Ingen Frankenstein-stack.
 
 ---
 

@@ -75,30 +75,47 @@ Kilde: Deep research maj 2026 + verificeret analyse juni 2026 (fuld rapport: `re
 
 ---
 
-## Hvad en komplet stack koster
+## Hvad en komplet stack koster (valideret juni 2026)
 
-En mellemstor virksomhed (50-250 ansatte) der løser alle overvågningsbehov i dag:
-
-| Behov | Løsning | Kr./år |
-|---|---|---|
-| Erhvervsnyheder | Børsen | 7.200 |
-| Medieovervågning | Infomedia | 10.000–50.000 |
-| Regulatorisk | Karnov Online | 10.000–40.000 |
-| Branchetrends | Statista eller IBISWorld | 25.000–50.000 |
-| Salgsintelligens | LassoX + LinkedIn Sales Nav. | 50.000–55.000 |
-| Brancheorg. kontingent | DI eller Dansk Erhverv | 20.000–100.000 |
-| **Samlet** | | **~122.000–300.000+** |
-
-En SMV (5-50 ansatte) med begrænset budget:
+### Segment 1 — SMV 5-50 ansatte (bootstrap-fase)
+**Typisk stack: 30.000–50.000 kr./år**
 
 | Behov | Løsning | Kr./år |
 |---|---|---|
 | Erhvervsnyheder | Finans.dk | 4.500 |
 | Overvågning | Google Alerts + LinkedIn | 0 |
-| Brancheorg. | DI/SMV Danmark kontingent | 10.000–30.000 |
-| **Samlet** | | **~15.000–35.000** |
+| Salgsintelligens | LinkedIn Sales Navigator (1 bruger) | 9.000 |
+| Brancheorg. kontingent | DI/SMV Danmark | 10.000–30.000 |
+| **Samlet** | | **~23.000–44.000** |
 
-**Y.dk Business til 5.000 kr./år erstatter hele intelligence-laget** — nyheder, overvågning, trends og briefs — for begge segmenter.
+Hertil kommer **20.000–40.000 kr./år i skjult omkostning** — tabt arbejdsfortjeneste fra højtbetalte medarbejdere der vedligeholder Frankenstein-stakken manuelt.
+
+### Segment 2 — SMV 50-150 ansatte (vækstfase)
+**Typisk stack: 120.000–180.000 kr./år**
+
+| Behov | Løsning | Kr./år |
+|---|---|---|
+| CRM | HubSpot Pro | 60.000–80.000 |
+| Salgsintelligens | LassoX (5 brugere) | 40.000–50.000 |
+| Medieovervågning | Infomedia | 30.000 |
+| Erhvervsnyheder | Børsen + 1 Watch-titel | 12.000–15.000 |
+| LinkedIn | Sales Navigator (2 brugere) | 18.000 |
+| Integration og opsætning | Ekstern konsulent | 20.000–30.000 |
+| **Samlet** | | **~180.000–223.000** |
+
+### Segment 3 — 150+ ansatte (premium)
+**Typisk stack: 250.000–400.000 kr./år + 40.000–60.000 i integration**
+
+| Behov | Løsning | Kr./år |
+|---|---|---|
+| CRM | Salesforce | 80.000–100.000 |
+| Salgsintelligens | LassoX + Vainu/ZoomInfo | 100.000+ |
+| Medieovervågning | Meltwater | 60.000–140.000 |
+| Regulatorisk | Karnov Online | 20.000–40.000 |
+| Markedsintelligens | Statista + FT + CB Insights | 40.000–50.000 |
+| **Samlet** | | **~300.000–430.000+** |
+
+**Y.dk Business til 5.000 kr./år erstatter intelligence-laget** — nyheder, overvågning, trends og briefs — for alle tre segmenter.
 
 ---
 
@@ -115,11 +132,17 @@ Y.dk Business leverer begge dele + trends + briefs for **5.000 kr./år**.
 
 ## Analysens kernefund — strategisk validering
 
-Ekstern analyse (juni 2026) bekræfter direkte:
+Valideret ekstern analyse (juni 2026) bekræfter direkte:
 
-> *"Erhvervslivets altoverskyggende udfordring er ikke dataindsamling — det er datasyntese."*
+> *"Det er ikke længere manglen på tilgængelig information, der er problemet. Det er evnen til at omsætte massive mængder data til konkret, rettidig handling."*
 
-Virksomheder ender med siloopdelte systemer: marketing har Infomedia, salg har LassoX og LinkedIn Sales Navigator, HR/jura har Karnov, direktionen har Børsen. Ingen taler sammen. Y.dk Business ejer det ubesatte rum: ét integreret intelligence-produkt til SMV-priser.
+**Siloproblemet dokumenteret:** Virksomheder ender med afdelingsopdelte systemer der aldrig taler sammen. Marketing har Infomedia, salg har LassoX og LinkedIn Sales Navigator, HR/jura har Karnov, direktionen har Børsen. Når kommunikation opdager en konkurrents presseddelelse, finder salg det ikke — fordi de bruger LassoX, som ikke indekserer pressemeddelelser. Direktionen lærer det fra Financial Times en uge senere.
+
+**Videnskoordinatoren som nuværende workaround:** Veldrevne SMV'er udpeger én person til at læse alle nyhedsbreve og destillere til 3-4 bulletpoints på mandagsmødet. Det er et symptom på problemet — ikke en løsning. Y.dk Business automatiserer præcis det job.
+
+**65% af danske SMV'er under 100 ansatte** bruger i dag Frankenstein-stakken af gratis og fragmenterede løsninger. Den skjulte pris er 20.000–40.000 kr./år i tabt arbejdsfortjeneste.
+
+Y.dk Business ejer det ubesatte rum: ét integreret intelligence-produkt til SMV-priser — ingen silo, ingen videnskoordinator, ingen Frankenstein-stack.
 
 ---
 

@@ -9,7 +9,7 @@
 
 Y.dk Business er en AI-drevet erhvervsplatform der samler nyheder, markedsovervågning, branchetrends og B2B-briefs i ét virksomhedsabonnement til 5.000 kr./år.
 
-Platformen henvender sig til SMV-ejere, erhvervsledere og C-level i danske virksomheder fra 5 til 250 ansatte. Produktet lanceres oktober 2026.
+Platformen henvender sig til SMV-ejere, erhvervsledere og C-level i danske virksomheder fra 5 til 250 ansatte.
 
 Infrastrukturen er Supertrends. Grænsefladen, redaktionen og brugeroplevelsen er Y.dk.
 
@@ -17,24 +17,30 @@ Infrastrukturen er Supertrends. Grænsefladen, redaktionen og brugeroplevelsen e
 
 ## Problemet vi løser
 
-Erhvervslivet betaler i dag for et kludetæppe af separate tjenester der tilsammen skaber høje omkostninger, informationsoverflod og friktion. Ingen enkelt tjeneste giver det samlede billede. Resultatet er fragmenteret intelligence, spildt tid og tabte beslutninger.
+Erhvervslivet betaler i dag for et kludetæppe af separate tjenester der tilsammen skaber høje omkostninger, informationsoverflod og friktion. Ingen enkelt tjeneste giver det samlede billede.
 
 **Hvad virksomheder bruger i dag — og hvad det koster:**
 
 | Tjeneste | Funktion | Pris kr./år |
 |---|---|---|
 | Børsen | Erhvervsnyheder (finansfokus) | ~7.200 |
-| Finans.dk | Erhvervsnyheder (mainstream) | 4.500 |
-| Retriever | Medieovervågning | 24.000+ |
-| Meltwater | Medieovervågning (enterprise) | ~48.000–50.000 |
-| Infomedia | Mediearkiv og brandtracking | Custom — min. 20 brugere |
-| LassoX | Salgsintelligens og leadgenerering | 12.000–36.000 |
-| LinkedIn Premium | Netværk og nyhedsfeed | ~4.000–6.000 |
-| DI / Dansk Erhverv / SMV Danmark | Compliance-breve og branchenyheder (kontingent) | 5.000–50.000+ |
+| Finans.dk | Erhvervsnyheder | 4.500–5.500 |
+| Infomedia | Mediearkiv og brandtracking | 10.000–50.000 |
+| Retriever | Medieovervågning | 15.000–50.000 |
+| Meltwater | Medieovervågning (enterprise) | 60.000–140.000 |
+| Karnov Online | Regulatorisk og juridisk | 10.000–40.000 |
+| LassoX | Salgsintelligens | 40.000–82.000 |
+| LinkedIn Sales Navigator | Leadgenerering | 8.500–12.000 pr. bruger |
+| DI / Dansk Erhverv kontingent | Compliance og branchenyheder | 10.000–100.000 |
 
-**Samlet stack for en mellemstor virksomhed: 30.000–80.000 kr./år** — og ingen af tjenesterne taler sammen.
+**Validerede stack-omkostninger per segment:**
+- SMV 5-50 ansatte: 23.000–44.000 kr./år + 20.000–40.000 i skjult tidstab
+- SMV 50-150 ansatte: 120.000–180.000 kr./år
+- 150+ ansatte: 250.000–400.000+ kr./år
 
-Problemet er ikke mangel på information. Det er mangel på syntese, personalisering og ét samlet sted.
+Problemet er ikke mangel på information. Det er mangel på syntese og ét samlet sted.
+
+Veldrevne SMV'er løser i dag fragmenteringen ved at udpege én person som "videnskoordinator" — en medarbejder der læser alle nyhedsbreve og destillerer til 3-4 bulletpoints på ugentlige møder. Det er et symptom på problemet, ikke en løsning. Y.dk Business automatiserer det job.
 
 ---
 
@@ -45,7 +51,7 @@ Problemet er ikke mangel på information. Det er mangel på syntese, personalise
 Ét abonnement leverer:
 
 - **Erhvervsnyheder** — dagligt morgenbrief kl. 06:00, personaliseret til branche og marked
-- **Markedsovervågning** — konkurrenter, søgeord, reguleringsemner og EU-forordninger
+- **Markedsovervågning** — konkurrenter, søgeord, reguleringsemner, EU-forordninger og eksperter
 - **Branchetrends** — ugentlig AI-aggregeret trendrapport fra 5.000 kilder
 - **B2B-briefs** — automatiseret ud fra brugerens egne præferencer i alle lag
 - **Lukket abonnentfællesskab** — sparring og netværk for erhvervsledere
@@ -78,7 +84,7 @@ Y.dk Business ønsker at udvide overvågningslaget med mulighed for at følge en
 
 Prioriterede områder: teknologi og AI set fra et erhvervsperspektiv.
 
-Funktionen giver abonnenten mulighed for at følge de stemmer der former markedet — ikke blot hvad der sker i nyhederne, men hvad de mennesker der driver udviklingen siger og skriver. Det løfter overvågningslaget fra reaktivt til proaktivt og giver erhvervslederen et informationsforspring.
+Funktionen giver abonnenten mulighed for at følge de stemmer der former markedet — ikke blot hvad der sker i nyhederne, men hvad de mennesker der driver udviklingen siger og skriver. Det løfter overvågningslaget fra reaktivt til proaktivt.
 
 Vi beder Supertrends om at vurdere om person- og ekspertovervågning kan integreres i Smart Scans-infrastrukturen — og hvad det kræver teknisk at realisere det.
 
