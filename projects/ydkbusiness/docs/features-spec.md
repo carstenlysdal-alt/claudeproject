@@ -414,23 +414,30 @@ Opdateret efter platformsundersøgelse maj 2026. Spørgsmål der er besvaret af 
 | Q7 | Watchlist-elementer: teknisk grænse pr. bruger uden performance-forringelse i Supertrends-API? | Lag 2 | **Åbent — afklares med Supertrends** |
 | Q8 | Mobilapp: Bettermode (ingen native app) er fravalgt. Circle og Discourse har native app på standardplan. PWA er ikke sufficient — push-notifikationer kræver native app. Bekræft valg. | Tværgående | **Afklaret: native app er krav** |
 
-### Kritisk arkitekturafklaring — Supertrends (afklares primo juni)
+### Arkitekturafklaring — Supertrends (besluttet juni 2026)
 
-Supertrends-motoren producerer i dag **udelukkende engelsksprogede** outputs og er konfigureret til langsigtet global trend intelligence — ikke dagsaktuelle danske SMV-nyheder.
+**Valg A er bekræftet.** Møde med Supertrends 3. juni 2026 afklarede at Supertrends leverer CMS, datastruktur og overvågningsmotor. Y.dk Business bygger oven på denne infrastruktur.
 
-Afklaring sker på ledelsesmøde primo juni med Lars Tvede. Tre spørgsmål skal besvares:
-1. Kan API'et levere råt dansksproget indhold direkte?
-2. Understøtter motoren on-demand queries med svar under 60 sekunder?
-3. Tilbyder de TTS til on-demand audio?
+**Hvad Supertrends leverer:**
+- CMS som Y.dk arbejder i og med
+- Datastruktur (på plads — kildekobling til nyheder bygges af Y.dk)
+- Brancheovervågning: nyheder, forordninger, jura, regulærer fra danske og internationale kilder
+- Smart Scans: monitorering af hovedemner med brugerstyrede notifikationer
+- Præferencebaserede automatiserede briefs
+- AI-genereret kontekstanalyse ("Det her er vigtigt, fordi...")
+- Regulatorisk overvågning: dekreter, lovforslag, EU-forordninger
 
-**Y.dk Business kræver ét af følgende to valg — besluttes primo juni:**
+**Branding:** Features leveret af Supertrends brandes "Powered by Supertrends" i UI.
 
-| Valg | Beskrivelse | Konsekvens |
-|---|---|---|
-| **A — Rekonfigurér Supertrends** | Lars Tvede konfigurerer motoren til dansk SMV-output og on-demand queries | Laveste tech-kompleksitet. Afhænger af Supertrends' villighed og kapacitet. |
-| **B — LLM-lag oven på Supertrends API** | Y.dk bygger et selvstændigt LLM-lag der trækker rådata fra Supertrends API og producerer dansk SMV-indhold | Fuld kontrol. Kræver LLM-budget og Tech Lead-kapacitet. |
+**Y.dk's tekniske ansvar:**
+- Kildekobling — integrere nyhedskilder i Supertrends' datastruktur
+- Frontend og interface — udvikles af Y.dk
+- Landing page / platform for premium-kunder
 
-Valg A er foretrukket. Valg B er fallback. Beslutning skal foreligge inden udgangen af juni-uge 2 for ikke at forsinke features spec v1.0 den 15. juli.
+**Stadig åbent:**
+- On-demand briefs (ad hoc, brugerinitieret, 60 sek.) dækkes ikke af præferencebaseret automatisering — kræver sandsynligvis separat LLM-lag. Afklares med Tech Lead inden kravspec v1.0.
+- Rammeaftale med Supertrends: prissætning (fee/procent/hybrid) afklares efter kildeaftale er defineret.
+- API-dokumentation, rate limits og SLA: indhentes i teknisk opfølgning.
 
 ---
 
