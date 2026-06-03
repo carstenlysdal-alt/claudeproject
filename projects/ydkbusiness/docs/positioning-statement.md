@@ -29,15 +29,19 @@ Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikk
 
 | Alternativ | Pris kr./år | Svaghed Y.dk udnytter |
 |---|---|---|
-| Finans.dk | 4.500 | Nyheder uden overvågnings- og BI-lag |
-| Børsen | ca. 7.200 | Finansmarkedsfokus, ikke SMV-relevant |
-| Retriever (medieovervågning) | 24.000+ | Overvågning uden redaktionel nyhedsdækning |
-| Meltwater | ~48.000–50.000 | Enterprise-prissat, ingen nyheder, intet community |
-| Infomedia | Custom — ikke verificeret* | Min. 20 brugerlicenser — udelukker SMV-segmentet. Arkiv og brandtracking, ingen nyheder eller intelligence |
+| Finans.dk | 4.500–5.500 | Nyheder uden overvågnings- og BI-lag |
+| Børsen | ~7.200 | Finansmarkedsfokus, ikke SMV-relevant |
+| Retriever | 15.000–50.000+ | Overvågning uden redaktionel nyhedsdækning |
+| Meltwater | 50.000–140.000+ | Enterprise-prissat, ingen nyheder, intet community |
+| Infomedia | 10.000–50.000+ | Min. 20 brugerlicenser — arkiv og brandtracking, ingen nyheder eller intelligence |
+| Karnov Online | 10.000–40.000+ | Kun regulatorisk — intet nyhedslag, bygget til jurister |
+| Watch Medier (ITWatch m.fl.) | 2.500–6.500 pr. medie | Kræver separate abonnementer per branche — fragmenteret |
 | LinkedIn-feed | 0 | Ufiltreret, algoritmisk, tidskrævende |
+| Google Alerts + RSS | 0 | Massiv støj, ingen syntese, ingen dækning bag betalingsmure |
 | Ingen struktureret løsning | 0 | Størst segment — ubesat kategori |
 
-*Infomedia-pris skal verificeres via tilbud inden positioneringsargumentet låses endeligt.
+**En komplet stack (mellemstor virksomhed): 122.000–300.000+ kr./år** — spredt på siloer der aldrig taler sammen.
+**Y.dk Business: 5.000 kr./år** — nyheder, overvågning, trends og briefs i ét abonnement.
 
 ---
 
