@@ -86,16 +86,6 @@ Vi beder Supertrends om at vurdere om person- og ekspertovervågning kan integre
 
 ---
 
-## Skala og tidsramme
-
-- **Lancering:** Oktober 2026
-- **Abonnentmål år 1:** 1.500 virksomhedsabonnementer
-- **ARR ved målopfyldelse:** 7,5M DKK
-
-"Powered by Supertrends" vises for 1.500+ betalende erhvervskunder i det danske SMV-segment — et marked Supertrends ikke har direkte eksponering mod i dag.
-
----
-
 ## Næste skridt
 
 Rammeaftalen prissættes efter vi har lagt os fast på kildestruktur og Supertrends' konkrete bidrag — herunder vurdering af person- og ekspertovervågning. Spørgsmålet er om det er en fast fee, en procentdel af abonnementomsætning eller en hybrid. Det afklarer vi i næste møde.
