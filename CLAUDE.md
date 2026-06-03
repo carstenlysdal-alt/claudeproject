@@ -427,6 +427,11 @@ pm-platform/
     │   ├── docs/
     │   ├── output/
     │   └── research/
+    ├── rating/                  ← Rating-projekt
+    │   ├── CLAUDE.md
+    │   ├── docs/
+    │   ├── output/
+    │   └── research/
     └── [nyt-projekt]/           ← kopiér strukturen fra ydkbusiness/
         ├── CLAUDE.md
         ├── docs/
@@ -477,7 +482,8 @@ git pull origin main
 | Lokalt: projects/  | Drive-mappe |
 |--------------------|-------------|
 | ydkbusiness/       | YDK/        |
-| pocket-drummer/           | Pocket Drummer/    |
+| pocket-drummer/    | Pocket Drummer/ |
+| rating/            | Rating/     |
 
 Hvert nyt projekt får sin egen linje. Se `.claude/SETUP-NOTES.md` for cron-opsætning og tjekliste.
 
