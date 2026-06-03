@@ -106,6 +106,7 @@ Onboarding må ikke kræve betaling inden brugeren har oplevet mindst ét morgen
 
 **F2.1 — Watchlist-opsætning**
 - Brugeren kan oprette overvågning på: konkurrenter (virksomhedsnavn), nøgleord, brancher, navngivne politikere, reguleringsemner
+- **Enkeltpersoner:** eksperter, analytikere og indflydelsesrige skikkelser inden for specifikke fagområder — særligt tech og AI fra erhvervsperspektiv. Feature-request til Supertrends — afventer teknisk vurdering.
 - Minimum 5 watchlist-elementer pr. bruger i Basis; ubegrænset i Pro
 - Hvert element kan tildeles prioritet (høj / normal / lav) der påvirker notifikationsfrekvens
 

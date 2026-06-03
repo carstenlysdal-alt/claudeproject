@@ -74,6 +74,28 @@ Y.dk bygger frontend, interface og redaktionelt verificeringslag oven på denne 
 
 ---
 
+## Feature-request: Person- og ekspertovervågning
+
+Y.dk Business ønsker at udvide overvågningslaget med mulighed for at følge enkeltpersoner — eksperter, analytikere og indflydelsesrige skikkelser med faglig tyngde inden for specifikke områder.
+
+Prioriterede områder: teknologi og AI set fra et erhvervsperspektiv.
+
+Funktionen giver abonnenten mulighed for at følge de stemmer der former markedet — ikke blot hvad der sker i nyhederne, men hvad de mennesker der driver udviklingen siger og skriver. Det løfter overvågningslaget fra reaktivt til proaktivt og giver erhvervslederen et informationsforspring.
+
+Vi beder Supertrends om at vurdere om person- og ekspertovervågning kan integreres i Smart Scans-infrastrukturen — og hvad det kræver teknisk at realisere det.
+
+---
+
+## Skala og tidsramme
+
+- **Lancering:** Oktober 2026
+- **Abonnentmål år 1:** 1.500 virksomhedsabonnementer
+- **ARR ved målopfyldelse:** 7,5M DKK
+
+"Powered by Supertrends" vises for 1.500+ betalende erhvervskunder i det danske SMV-segment — et marked Supertrends ikke har direkte eksponering mod i dag.
+
+---
+
 ## Næste skridt
 
-Rammeaftalen prissættes efter vi har lagt os fast på kildestruktur og Supertrends' konkrete bidrag. Spørgsmålet er om det er en fast fee, en procentdel af abonnementomsætning eller en hybrid. Det afklarer vi i næste møde.
+Rammeaftalen prissættes efter vi har lagt os fast på kildestruktur og Supertrends' konkrete bidrag — herunder vurdering af person- og ekspertovervågning. Spørgsmålet er om det er en fast fee, en procentdel af abonnementomsætning eller en hybrid. Det afklarer vi i næste møde.
