@@ -32,9 +32,12 @@ Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikk
 | Finans.dk | 4.500 | Nyheder uden overvågnings- og BI-lag |
 | Børsen | ca. 7.200 | Finansmarkedsfokus, ikke SMV-relevant |
 | Retriever (medieovervågning) | 24.000+ | Overvågning uden redaktionel nyhedsdækning |
-| Meltwater | 24.000+ | Enterprise-prissat, ingen nyheder, intet community |
+| Meltwater | ~48.000–50.000 | Enterprise-prissat, ingen nyheder, intet community |
+| Infomedia | Custom — ikke verificeret* | Min. 20 brugerlicenser — udelukker SMV-segmentet. Arkiv og brandtracking, ingen nyheder eller intelligence |
 | LinkedIn-feed | 0 | Ufiltreret, algoritmisk, tidskrævende |
 | Ingen struktureret løsning | 0 | Størst segment — ubesat kategori |
+
+*Infomedia-pris skal verificeres via tilbud inden positioneringsargumentet låses endeligt.
 
 ---
 

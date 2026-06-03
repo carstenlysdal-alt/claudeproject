@@ -13,8 +13,8 @@ Kilde: Deep research maj 2026 (fuld rapport i Google Drive: YDK/indsigter)
 | Retriever | Mediearkiv | 24.000+ | Medieovervågning |
 | Finans.dk | Erhverv (årligt) | 4.500 (normalpris 5.180) | Erhvervsnyheder, 1 bruger |
 | Børsen | Digitalt | ca. 7.196 (beregnet) | Erhvervsnyheder, finansmarkeder |
-| Meltwater | Essentials | ikke verificeret (typisk 24.000+) | Medieovervågning |
-| Infomedia | Erhverv | ikke verificeret | Medieovervågning, presseafdelinger |
+| Meltwater | Essentials | ~48.000–50.000 (platformsundersøgelse maj 2026) | Medieovervågning — enterprise, presseafdelinger |
+| Infomedia | Erhverv | Custom — ikke verificeret. Min. 20 brugerlicenser | Mediearkiv, brandtracking og omtaleovervågning på tværs af danske medier. Standardværktøj i kommunikationsafdelinger. Ingen nyheder eller intelligence. Skal indhentes via tilbud. |
 
 **Korrektioner til positionering:**
 LassoX er ikke en medieovervågningskonkurrent. Rette sammenligning: Retriever og Meltwater (24.000+ kr./år).
