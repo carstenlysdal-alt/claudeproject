@@ -1,8 +1,8 @@
 # Story Intelligence Rating Engine — Konceptdokument
 
 **Projekt:** Y.dk / Rating  
-**Dato:** 3. juni 2026  
-**Status:** Konceptfase — klar til teknisk og redaktionel alignment
+**Dato:** 3. juni 2026 (MVP deployed 4. juni 2026)  
+**Status:** MVP i drift — testmiljø: sndeepdive.web.app/y-test-lab
 
 ---
 
@@ -27,12 +27,14 @@ Indhold strømmer ind via et feed fra op mod 14 kildetyper: nyhedsmedier, presse
 SIRE modtager et eksternt input og returnerer:
 
 1. **Emneklassifikation** — hvilke topics dækker inputtet (25 primære topics)
-2. **Funktionsscoring** — hvilke af 10 journalistiske funktioner aktiverer inputtet (0–100 pr. funktion)
+2. **Funktionsscoring** — hvilke af 11 journalistiske funktioner aktiverer inputtet (0–100 pr. funktion)
 3. **Ratingdimensioner** — 7 vægtede dimensioner beregner Y Score (0–100)
 4. **Prioritetsniveau** — Critical / High / Watch / Low / Ignore
-5. **Kildekritik** — source risk (low/medium/high) + editorial warning
-6. **Redaktørhjælp** — mulige vinkler, anbefalede formater, manglende kilder
-7. **Køplacering** — placering i én eller flere parallelle redaktionelle køer
+5. **Editorial pillar** — understand / challenge / inspire
+6. **Kildekritik** — source risk (low/medium/high) + editorial warning
+7. **Redaktørhjælp** — mulige vinkler, anbefalede formater, manglende kilder
+8. **How to elevate ("Y's Vinkel")** — konkret råd om hvad der mangler for at løfte inputtet
+9. **Summary** — neutral sammenfatning, genereret asynkront
 
 Systemet vurderer ikke om kilden har skrevet en god artikel.  
 Det vurderer: **Kan dette input blive til en stærk Y-historie?**
@@ -51,7 +53,7 @@ Hvad handler inputtet om?
         ↓
 LAG 2 — Journalistic Function Scoring
 Hvilken journalistisk funktion aktiverer inputtet?
-(10 funktioner, 0–100 pr. funktion)
+(11 funktioner, 0–100 pr. funktion)
         ↓
 LAG 3 — Y Rating
 Hvad er inputtets samlede værdi for Y?
@@ -63,22 +65,23 @@ Prioritet + køplacering + redaktørhjælp
 
 ---
 
-## De 10 journalistiske funktioner
+## De 11 journalistiske funktioner
 
-| Funktion | Kernespørgsmål |
-|---|---|
-| **Challenge** | Udfordrer dette et dogme, en konsensus eller en etableret fortælling? |
-| **Blind Spot** | Hvad mangler i den eksisterende dækning? |
-| **Perspective** | Løfter dette en hændelse ind i større sammenhæng? |
-| **Mythbuster** | Viser data eller forskning, at en udbredt antagelse er forkert? |
-| **Signal** | Er dette et tidligt tegn på en større udvikling? |
-| **Threat** | Hvad kan skade læseren, virksomheden, markedet eller samfundet? |
-| **Opportunity** | Hvilken mulighed kan læseren udnytte? |
-| **Inspiration** | Hvad kan læseren lære, kopiere eller bruge? |
-| **Guide** | Kan dette omsættes til konkrete råd eller handlingsanvisninger? |
-| **Curiosity** | Hvad gør historien fascinerende eller overraskende? |
+| Funktion | Kernespørgsmål | Pille |
+|---|---|---|
+| **Challenge** | Udfordrer dette et dogme, en konsensus eller en etableret fortælling? | Challenge |
+| **Blind Spot** | Hvad mangler i den eksisterende dækning? | Challenge |
+| **Mythbuster** | Viser data eller forskning, at en udbredt antagelse er forkert? | Challenge |
+| **Perspective** | Løfter dette en hændelse ind i større sammenhæng? | Understand |
+| **Signal** | Er dette et tidligt tegn på en større udvikling? | Understand |
+| **Threat** | Hvad kan skade læseren, virksomheden, markedet eller samfundet? | Understand |
+| **Curiosity** | Hvad gør historien fascinerende eller overraskende? | Understand |
+| **Opportunity** | Hvilken mulighed kan læseren udnytte? | Inspire |
+| **Inspiration** | Hvad kan læseren lære, kopiere eller bruge? | Inspire |
+| **Guide** | Kan dette omsættes til konkrete råd eller handlingsanvisninger? | Inspire |
+| **Solution** | Tilbyder dette en konkret løsning, et håb eller et positivt fremtidsperspektiv? | Inspire |
 
-En historie kan score højt på flere funktioner samtidigt.
+En historie kan score højt på flere funktioner samtidigt. Solution er tilføjet som 11. funktion for at sikre at Y's tredje indholdspille — *Fremtiden er lys* — er eksplicit repræsenteret i scoremodellen.
 
 ---
 
@@ -87,15 +90,15 @@ En historie kan score højt på flere funktioner samtidigt.
 | Dimension | Vægt | Begrundelse |
 |---|---|---|
 | Audience Relevance | 20 % | Ikke relevant for Y's læser = ingen Y-historie |
-| Counter-Narrative Value | 20 % | Y's primære særkende: modpol og blind vinkel |
+| Impact | 20 % | Løftet fra 15 % — vigtige Understand-historier må ikke systematisk underscores |
+| Counter-Narrative Value | 15 % | Sænket fra 20 % — Y er counter-narrative, men ikke udelukkende |
 | Perspective Value | 15 % | Y's analysedybde og forklaringsjournalistik |
-| Impact | 15 % | Betydning for mange mennesker, virksomheder eller økonomi |
 | Decision Value | 15 % | Centralt for Y Business: hjælper læseren beslutte |
 | Trust / Source Strength | 10 % | Lav trust → verificering, ikke fravælgelse |
 | Production Potential | 5 % | Let at omsætte = lavere friktion i produktion |
 
 **Formel:**  
-`Y Score = AR×0.20 + CNV×0.20 + PV×0.15 + I×0.15 + DV×0.15 + T×0.10 + PP×0.05`
+`Y Score = AR×0.20 + I×0.20 + CNV×0.15 + PV×0.15 + DV×0.15 + T×0.10 + PP×0.05`
 
 ---
 
@@ -167,11 +170,11 @@ Rating integreres direkte i det eksisterende CMS-kort. Den farvede scoreblok ers
 
 | Score | Niveau | Farve | Hex |
 |---|---|---|---|
-| 85–100 | Critical | Rød | `#DC2626` |
-| 70–84 | High | Orange | `#EA580C` |
-| 55–69 | Watch | Gul | `#CA8A04` |
-| 40–54 | Low | Grå | `#64748B` |
-| 0–39 | Ignore | Lysgrå | `#9CA3AF` |
+| 85–100 | Critical | Crimson | `#C43A49` |
+| 70–84 | High | Rust | `#B5552C` |
+| 55–69 | Watch | Guld/oliven | `#9C7A24` |
+| 40–54 | Low | Grå | `#5E6675` |
+| 0–39 | Ignore | Lysgrå | `#9C998F` |
 
 ### Tilstandsmodel (låst)
 
@@ -194,9 +197,24 @@ Rating integreres direkte i det eksisterende CMS-kort. Den farvede scoreblok ers
 
 ## Teknisk implementering — tre faser
 
-**Fase 1 — MVP (LLM + regelmotor)**  
-LLM-klassifikation · faste scoring prompts · keyword/signalord · metadataudtræk · regelbaserede justeringer.  
-Eksempel: Hvis `source_type = press_release` og `trust < 60` → `editorial_warning = "Kræver uafhængig verificering"`.
+**Fase 1 — MVP (deployed 4. juni 2026)**
+
+```
+Browser (React + TypeScript, Vite)
+    ↓ fetch
+Cloud Run API (Node/Express/TypeScript) — europe-west1
+    ├── /api/y-test-lab/rate        ← SIRE-analyse (Gemini 2.0 Flash)
+    ├── /api/y-test-lab/summary     ← Asynkron resumégenerering
+    ├── /api/y-test-lab/search      ← Inline kildesøgning
+    ├── /api/y-test-lab/feeds       ← 25 RSS-feeds
+    ├── /api/y-test-lab/rss-items   ← RSS-hentning med datofilter
+    ├── /api/y-test-lab/prompt      ← Hent/gem systemprompat
+    └── /api/y-test-lab/prompt/reset
+
+Firebase Hosting → sndeepdive.web.app
+```
+
+LLM-klassifikation · faste scoring prompts · regelbaserede justeringer · 25 testede RSS-feeds.
 
 **Fase 2 — Feedback-loop**  
 Publiceringer kobles til faktisk performance: klikrate, læsetid, scroll depth, konvertering, retention, delinger.  
@@ -207,18 +225,25 @@ Når der er tilstrækkeligt historisk data: forudsig sandsynlig klikrate, læset
 
 ---
 
-## MVP-scope
+## MVP-scope (implementeret)
 
 MVP indeholder:
-- Topic classification
-- Function scoring (10 funktioner)
+- Topic classification (25 topics)
+- Function scoring (11 funktioner)
 - Y Score (7 dimensioner, vægtet)
+- Editorial pillar (understand / challenge / inspire)
 - Source risk + editorial warning
-- Mulige vinkler
-- Anbefalet format
-- Køplacering
+- Why it matters · How to elevate ("Y's Vinkel")
+- Summary (asynkron)
+- Mulige vinkler · Anbefalet format · Manglende kilder
+- Manuel score-override
+- Prompt-editor i UI
+- Bulk-analyse (op til 100 artikler)
+- Inline kildesøgning
+- 25 konfigurerede RSS-feeds
+- Split-panel layout + mobiltilpasning
 
-MVP indeholder **ikke** endnu: feedback-loop, prediktiv model, brugeradfærdsdata.
+MVP indeholder **ikke** endnu: feedback-loop, prediktiv model, brugeradfærdsdata, CMS-integration.
 
 ---
 
@@ -257,10 +282,13 @@ Y skal udfordre mainstream-fortællinger — og bevare troværdighed ved også a
 
 ## Næste skridt
 
-| Handling | Ejer | Deadline |
+| Handling | Status | Ejer |
 |---|---|---|
-| Validér vægtningsformel med chefredaktør | PM + Chefredaktør | — |
-| Definer grænseværdi for editorial warning/blokering | PM + Tech Lead | — |
-| Beslut UI-princip: køer vs. samlet liste | PM + Designer | — |
-| Byg MVP-prompt og test på 20 reelle inputs | Tech Lead | — |
-| Definer feedback-loop-ansvar (Fase 2) | CEO + PM | — |
+| Validér vægtningsformel med chefredaktør | ✅ Besluttet: Impact 20 %, CNV 15 % | PM + Chefredaktør |
+| Solution som 11. funktion | ✅ Besluttet: Ja | PM + Chefredaktør |
+| editorial_pillar i output | ✅ Besluttet: Ja | PM + Chefredaktør |
+| MVP deployed og i drift | ✅ sndeepdive.web.app/y-test-lab | Tech |
+| Redaktionel spot-test: 20–30 artikler | Åbent | Chefredaktør + PM |
+| Prompt-kalibrering via prompt-editor | Åbent | PM + Chefredaktør |
+| Feedback-loop-ansvar (Fase 2) | Åbent | CEO + PM |
+| CMS-integration | Åbent — CMS eksisterer ikke endnu | Tech Lead |

@@ -2,8 +2,8 @@
 
 **Til:** Michael Dyrby  
 **Fra:** PM  
-**Dato:** 3. juni 2026  
-**Kræver:** Svar inden sprint-start
+**Dato:** 3. juni 2026 (beslutninger implementeret 4. juni 2026)  
+**Status:** Alle tre beslutninger er taget og implementeret i testmiljøet
 
 ---
 
@@ -11,7 +11,7 @@
 
 Vi har bygget en ratingmotor — Story Intelligence Rating Engine — der analyserer eksternt indhold inden publicering og giver hvert input en score fra 0–100. Scoren bestemmer placeringen i redaktionernes feed.
 
-Motoren er teknisk specificeret og klar til implementering. Men tre beslutninger i modellen er redaktionelle, ikke tekniske. Du skal tage dem — ingen andre kan.
+Testmiljøet er i drift på **sndeepdive.web.app/y-test-lab** med alle tre beslutninger implementeret.
 
 ---
 
@@ -79,12 +79,12 @@ Det giver redaktøren øjeblikkelig kontekst og gør det lettere at vælge forma
 
 ---
 
-## Opsummering — hvad vi beder om
+## Beslutninger — taget og implementeret
 
-| Beslutning | Dit valg |
-|---|---|
-| Tilføj Solution som 11. funktion? | Ja / Nej |
-| Counter-Narrative Value 15 % og Impact 20 %? | Ja / Nej |
-| Tilføj editorial_pillar i output? | Ja / Nej |
+| Beslutning | Beslutning | Implementeret |
+|---|---|---|
+| Tilføj Solution som 11. funktion? | **Ja** | ✅ |
+| Counter-Narrative Value 15 % og Impact 20 %? | **Ja** | ✅ |
+| Tilføj editorial_pillar i output? | **Ja** | ✅ |
 
-Vi kan implementere uanset hvilke valg du træffer. Men vi kan ikke begynde sprint-start uden svar på alle tre.
+Alle tre er aktive i testmiljøet. Næste skridt er redaktionel spot-test: kør 20–30 artikler og valider at scorerækkefølgen matcher din intuition.

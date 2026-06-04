@@ -1,10 +1,10 @@
 # PRD — Story Intelligence Rating Engine, MVP
 
 **Projekt:** Y.dk / Rating  
-**Version:** 1.0  
-**Dato:** 3. juni 2026  
+**Version:** 1.1  
+**Dato:** 3. juni 2026 (MVP deployed 4. juni 2026)  
 **Ejer:** PM  
-**Status:** Klar til tech-review
+**Status:** MVP i drift — testmiljø: sndeepdive.web.app/y-test-lab
 
 ---
 
@@ -47,7 +47,7 @@ INPUT (nyhedsmedie, pressemeddelelse, rapport, myndighed m.fl.)
         ↓
 LAG 1 — Topic Classification
         ↓
-LAG 2 — Journalistic Function Scoring (10 funktioner, 0–100)
+LAG 2 — Journalistic Function Scoring (11 funktioner, 0–100)
         ↓
 LAG 3 — Y Rating (7 dimensioner, vægtet → Y Score 0–100)
         ↓
@@ -65,29 +65,37 @@ Outputtet vises i det eksisterende CMS-kort. Kortet ændrer ikke struktur — ku
 | Funktion | Beskrivelse |
 |---|---|
 | Topic classification | 25 primære topics, kan have flere pr. input |
-| Function scoring | 10 journalistiske funktioner, 0–100 pr. funktion |
+| Function scoring | 11 journalistiske funktioner, 0–100 pr. funktion |
 | Y Score | Vægtet sum af 7 ratingdimensioner, 0–100 |
 | Source risk | low / medium / high |
 | Editorial warning | Fritekst-advarsel ved medium/high source risk |
 | Primær funktion | Den funktion med højest score |
 | Sekundære funktioner | Op til 3 yderligere funktioner med score > 50 |
+| Editorial pillar | understand / challenge / inspire — udledes af primær funktion |
 | Why it matters | Én sætning: hvorfor dette input er relevant for Y |
+| How to elevate ("Y's Vinkel") | Konkret redaktionelt råd om hvad der mangler for at løfte inputtet til en stærk Y-historie |
+| Summary | Neutral sammenfatning af inputtets faktuelle indhold — genereres asynkront |
 | Mulige vinkler | 2–3 konkrete vinkler til Y-historier |
 | Anbefalet format | Ét format (analysis, guide, mythbuster osv.) |
 | Farvet scoreblok i CMS | Tal i farvet blok, integreret i kortvisning |
 | Standardsortering | Y Score faldende |
 | Skjul ubehandlet indhold | Kort vises ikke før ratingmotoren har kørt |
+| Manuel score-override | Redaktøren kan korrigere score — loggable feedback-signal |
+| Prompt-editor i UI | Redigér og gem aktiv systempromptat runtime uden kodedeploy |
+| Bulk-analyse | Vælg 1–100 artikler fra et RSS-feed, kør alle sekventielt |
+| Inline kildesøgning | Klik på manglende kilde → realtidssøgning vises inline |
+| RSS-feeds | 25 konfigurerede og testede feeds (danske + internationale + niche) |
 
 ### Ikke inkluderet i MVP
 
 | Funktion | Begrundelse |
 |---|---|
-| Feedback-loop (klikrate, læsetid) | Mediet er ikke online endnu |
+| Feedback-loop (klikrate, læsetid) | Mediet er ikke online endnu — Fase 2 |
 | Prediktiv model | Kræver historisk data — Fase 3 |
 | Brugeradfærdsdata | Ikke tilgængeligt i MVP-fasen |
-| Manuel override af Y Score | Kan tilføjes i Fase 2 |
 | Notifikationer ved Critical-score | Fase 2 |
 | Automatisk publicering | Udenfor scope — redaktøren beslutter altid |
+| CMS-integration | CMS eksisterer ikke endnu — testmiljøet er bridgen |
 
 ---
 
@@ -141,11 +149,11 @@ Y Score = AR×0.20 + I×0.20 + CNV×0.15 + PV×0.15 + DV×0.15 + T×0.10 + PP×0
 
 | Score | Niveau | Farve | Hex | Redaktøraktion |
 |---|---|---|---|---|
-| 85–100 | Critical | Rød | `#DC2626` | Behandles hurtigt |
-| 70–84 | High | Orange | `#EA580C` | Indgår i prioritering |
-| 55–69 | Watch | Gul | `#CA8A04` | Overvåg eller kombiner |
-| 40–54 | Low | Grå | `#64748B` | Bruges som baggrund |
-| 0–39 | Ignore | Lysgrå | `#9CA3AF` | Vises nedtonet |
+| 85–100 | Critical | Crimson | `#C43A49` | Behandles hurtigt |
+| 70–84 | High | Rust | `#B5552C` | Indgår i prioritering |
+| 55–69 | Watch | Guld/oliven | `#9C7A24` | Overvåg eller kombiner |
+| 40–54 | Low | Grå | `#5E6675` | Bruges som baggrund |
+| 0–39 | Ignore | Lysgrå | `#9C998F` | Vises nedtonet |
 | Ikke kørt | — | Skjules | — | Vises ikke i feedet |
 
 ---
@@ -188,6 +196,7 @@ Ratingmotoren returnerer følgende struktur til CMS:
   "topics": ["Business", "Regulation", "SME"],
   "source_type": "interest_organization_press_release",
   "editorial_pillar": "challenge",
+  "summary": "En erhvervsorganisation advarer om, at nye EU-krav til emballageregulering vil pålægge danske SMV'er betydelige compliance-omkostninger fra 2026.",
   "functions": {
     "challenge": 69,
     "blind_spot": 82,
@@ -219,6 +228,7 @@ Ratingmotoren returnerer følgende struktur til CMS:
     "Fem ting SMV'er bør forberede sig på nu"
   ],
   "why_it_matters": "Historien afdækker en overset økonomisk konsekvens i en ellers ensidig dækning.",
+  "how_to_elevate": "Find uafhængige erhvervsøkonomer og konkrete SMV-cases til at dokumentere påstanden. Stil EU-Kommissionen til ansvar: Hvad er det forventede compliance-tab sat op mod den klimaeffekt regulering skal levere?",
   "missing_sources": [
     "uafhængig ekspert",
     "myndighed",
@@ -247,31 +257,52 @@ Analyze the input and return structured JSON.
 
 Score all functions from 0-100:
 challenge, blind_spot, perspective, mythbuster, signal,
-threat, opportunity, inspiration, guide, curiosity
+threat, opportunity, inspiration, guide, curiosity, solution
 
 Score all rating dimensions from 0-100:
 audience_relevance, impact, counter_narrative_value,
 perspective_value, decision_value, trust, production_potential
 
 Calculate y_score:
-audience_relevance×0.20 + counter_narrative_value×0.20 +
-perspective_value×0.15 + impact×0.15 + decision_value×0.15 +
-trust×0.10 + production_potential×0.05
+audience_relevance×0.20 + impact×0.20 +
+counter_narrative_value×0.15 + perspective_value×0.15 +
+decision_value×0.15 + trust×0.10 + production_potential×0.05
 
 Return full JSON including:
 topics, source_type, functions, ratings, y_score, priority,
-primary_function, secondary_functions, source_risk,
-editorial_warning, recommended_format, possible_angles,
-why_it_matters, missing_sources
+primary_function, secondary_functions, editorial_pillar,
+source_risk, editorial_warning, recommended_format,
+possible_angles, why_it_matters, how_to_elevate,
+missing_sources, summary
 ```
 
 ---
 
 ## 12. Teknisk implementering — Fase 1 (MVP)
 
-**Stack:** LLM-klassifikation + faste scoring prompts + regelbaserede justeringer.
+**Implementeret stack (deployed 4. juni 2026):**
 
-**Regeleksempler:**
+```
+Browser (React + TypeScript, Vite)
+    ↓ fetch
+Cloud Run API (Node/Express/TypeScript) — europe-west1
+    ├── /api/y-test-lab/rate          ← SIRE-analyse (Gemini 2.0 Flash)
+    ├── /api/y-test-lab/summary       ← Asynkron resumégenerering
+    ├── /api/y-test-lab/search        ← Inline kildesøgning (Google Search)
+    ├── /api/y-test-lab/feeds         ← Feed-liste (25 kilder)
+    ├── /api/y-test-lab/rss-items     ← RSS-hentning med datofilter
+    ├── /api/y-test-lab/prompt        ← Hent/gem SIRE-systemprompat
+    └── /api/y-test-lab/prompt/reset  ← Nulstil til standardprompt
+
+Firebase Hosting → sndeepdive.web.app
+```
+
+**AI-model:** Gemini 2.0 Flash (Google AI SDK) — valgt for lav latens, stærk dansk sprogforståelse og Google-infrastruktursynergi. Prompten returnerer struktureret JSON direkte.
+
+**Intern taksonomi:** Engelsk (stabilitet, internationale kilder, skalerbarhed).  
+**Output i CMS:** Dansk.
+
+**Regeleksempler (implementeret):**
 ```
 if source_type == "press_release" and trust < 60:
     editorial_warning = "Partsinteresse — kræver uafhængig verificering"
@@ -283,10 +314,9 @@ if functions.threat > 85 and ratings.decision_value > 80:
     recommended_format = "alert + guide"
 ```
 
-**Intern taksonomi:** Engelsk (stabilitet, internationale kilder, skalerbarhed).  
-**Output i CMS:** Dansk.
+**Responstid:** ~3–6 sekunder pr. artikel ved Gemini 2.0 Flash.
 
-**Hvad CMS skal håndtere:**
+**Hvad CMS-integration skal håndtere (når CMS er klar):**
 - Modtage JSON fra ratingmotor
 - Vise farvet scoreblok i AI Evaluation-feltet
 - Sortere feed på `y_score` som standard
@@ -318,40 +348,43 @@ if functions.threat > 85 and ratings.decision_value > 80:
 
 ---
 
-## 15. Åbne spørgsmål — kræver beslutning inden sprint
+## 15. Åbne spørgsmål
 
-| Spørgsmål | Ejer | Deadline |
+| Spørgsmål | Status | Ejer |
 |---|---|---|
-| Valider vægtningsformel med chefredaktør | PM + Chefredaktør | Inden sprint-start |
-| Kan CMS modtage og vise struktureret JSON fra ekstern motor? | Tech Lead | Inden sprint-start |
-| Hvad er acceptable responstider for ratingmotoren (sekunder pr. input)? | Tech Lead | Sprint 1 |
-| Skal thumbs up/down i CMS logges og kobles til Y Score? | PM + Tech Lead | Sprint 1 |
+| Valider vægtningsformel med chefredaktør | ✅ Besluttet: Impact 20 %, CNV 15 % | PM + Chefredaktør |
+| Solution som 11. funktion? | ✅ Besluttet: Ja | PM + Chefredaktør |
+| editorial_pillar i output? | ✅ Besluttet: Ja | PM + Chefredaktør |
+| Er ~3–6 sek. pr. artikel acceptable responstider? | Åbent | Tech Lead |
+| Skal thumbs up/down logges og kobles til Y Score (Fase 2)? | Åbent | PM + Tech Lead |
+| Feedback-loop-ansvar i Fase 2 — redaktion eller tech? | Åbent | CEO + PM |
 
 ---
 
-## 16. Go/no-go-kriterier
+## 16. Go/no-go-kriterier for CMS-integration
+
+MVP-testmiljøet er deployed og i drift. Go/no-go-kriterierne nedenfor gælder **CMS-integrationen** — næste fase.
 
 **Go** når:
-- Chefredaktør har valideret vægtningsformel
-- Tech Lead har bekræftet JSON-integration med CMS
-- 50 testinputs er scoret og spot-tjekket manuelt
-- Farvet scoreblok vises korrekt i CMS-kortvisning
-- Feed sorterer på Y Score som standard
+- Redaktionel spot-test: 20–30 artikler scoret, rækkefølge matcher intuition
+- Prompt-kalibrering: systemprompten justeret baseret på fejlanalyser
+- Tech Lead bekræfter JSON-integration med det kommende CMS
+- Chefredaktør validerer outputfelter (primær funktion, how_to_elevate, editorial_pillar)
 
 **No-go** hvis:
-- LLM-scoring er inkonsistent (> ±10 point ved genkørsel)
-- CMS ikke kan modtage struktureret output fra ratingmotoren
-- Chefredaktør afviser vægtningsformlen uden alternativ
+- LLM-scoring er inkonsistent (> ±10 point ved genkørsel af samme artikel)
+- Responstid overstiger acceptabelt niveau for produktionsbrug
 
 ---
 
 ## 17. Ejere og næste skridt
 
-| Handling | Ejer | Deadline |
+| Handling | Ejer | Fase |
 |---|---|---|
-| Valider vægtningsformel med chefredaktør | PM | — |
-| Afklar JSON-integration med Tech Lead | PM + Tech Lead | — |
-| Byg og test grundprompt på 50 reelle inputs | Tech Lead | Sprint 1 |
-| Implementer farvet scoreblok i CMS-kortvisning | Tech Lead | Sprint 1 |
-| Ændr standardsortering til Y Score | Tech Lead | Sprint 1 |
-| Kvalitativ redaktørtest efter 2 ugers brug | PM | Post-launch |
+| Redaktionel spot-test: 20–30 artikler | Chefredaktør + PM | Nu |
+| Prompt-kalibrering via prompt-editor | PM + Chefredaktør | Nu |
+| Kildetypekalibrering: presse vs. forskning | PM | Nu |
+| Beslut feedback-loop-ansvar (Fase 2) | CEO + PM | Inden Fase 2 |
+| CMS-integration: JSON-modtagelse og kortvisning | Tech Lead | Fase 2 |
+| Thumbs up/down-tracking koblet til Y Score | Tech Lead | Fase 2 |
+| Kvalitativ redaktørtest | PM | Post-CMS-launch |
