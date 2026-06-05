@@ -2,8 +2,9 @@
 
 **Til:** Michael Dyrby  
 **Fra:** PM  
-**Dato:** 3. juni 2026 (beslutninger implementeret 4. juni 2026)  
-**Status:** Alle tre beslutninger er taget og implementeret i testmiljøet
+**Dato:** 3. juni 2026  
+**Opdateret:** 5. juni 2026  
+**Status:** Alle tre beslutninger implementeret i MVP
 
 ---
 
@@ -11,7 +12,7 @@
 
 Vi har bygget en ratingmotor — Story Intelligence Rating Engine — der analyserer eksternt indhold inden publicering og giver hvert input en score fra 0–100. Scoren bestemmer placeringen i redaktionernes feed.
 
-Testmiljøet er i drift på **sndeepdive.web.app/y-test-lab** med alle tre beslutninger implementeret.
+Motoren er teknisk specificeret og klar til implementering. Men tre beslutninger i modellen er redaktionelle, ikke tekniske. Du skal tage dem — ingen andre kan.
 
 ---
 
@@ -79,12 +80,12 @@ Det giver redaktøren øjeblikkelig kontekst og gør det lettere at vælge forma
 
 ---
 
-## Beslutninger — taget og implementeret
+## Opsummering — beslutninger og implementeringsstatus
 
-| Beslutning | Beslutning | Implementeret |
+| Beslutning | Truffet | Implementeret |
 |---|---|---|
-| Tilføj Solution som 11. funktion? | **Ja** | ✅ |
-| Counter-Narrative Value 15 % og Impact 20 %? | **Ja** | ✅ |
-| Tilføj editorial_pillar i output? | **Ja** | ✅ |
+| Tilføj Solution som 11. funktion | **Ja** | ✓ Live i SIRE Test Lab |
+| Counter-Narrative Value 15 % og Impact 20 % | **Ja** | ✓ Ny formel aktiv |
+| Tilføj editorial_pillar i output | **Ja** | ✓ Udledt automatisk af primær funktion |
 
-Alle tre er aktive i testmiljøet. Næste skridt er redaktionel spot-test: kør 20–30 artikler og valider at scorerækkefølgen matcher din intuition.
+MVP er live på [sndeepdive.web.app/y-test-lab](https://sndeepdive.web.app/y-test-lab). Alle tre beslutninger er implementeret og testet.
