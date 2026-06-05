@@ -68,7 +68,8 @@ claudeproject/
 │       ├── frontend-slides/
 │       ├── grill-me/
 │       ├── grill-with-docs/
-│       ├── impeccable/
+│       ├── impeccable/                ← design: audit, polish, wireframes (alle projekter)
+│       ├── ui-ux-pro-max/             ← design: UI/UX implementation (frontend-projekter)
 │       ├── launch/
 │       ├── revops/
 │       ├── sales-enablement/
@@ -114,6 +115,21 @@ claudeproject/
 
 ---
 
+## Design skills — standard på tværs af projekter
+
+Begge skills er installeret globalt under `.claude/skills/` og aktiveres automatisk i alle projekter uden yderligere opsætning.
+
+| Skill | Mappe | Brug |
+|---|---|---|
+| `impeccable` | `.claude/skills/impeccable/` | **Standard på alle projekter.** Audit, polish, wireframes, typografi, farve, layout og motion. Agnostisk ift. tech-stack. |
+| `ui-ux-pro-max` | `.claude/skills/ui-ux-pro-max/` | **Kun projekter med aktiv frontend-udvikling.** 50+ stilarter, 161 farvepalletter, 57 font-pairings, 99 UX-guidelines på tværs af React, Next.js, Tailwind, shadcn/ui m.fl. |
+
+**Aktivering:** Begge skills aktiveres automatisk via trigger-tabellen i CLAUDE.md — ingen manuel `/kommando` nødvendig.
+
+Projekter med isolerede skill-mapper (som pocket-drummer) kan linke eller kopiere skills manuelt. Se trin 10 i tjeklisten nedenfor.
+
+---
+
 ## Tilføj nyt projekt — tjekliste
 
 1. Lokalt: `mkdir -p projects/[navn]/{docs,output,research}`
@@ -125,3 +141,4 @@ claudeproject/
 7. Opdatér projekttabellen i CLAUDE.md
 8. Opdatér mappestrukturen i denne fil
 9. Git: commit og push
+10. **Design:** Verificér at `impeccable` er tilgængelig (global install). Tilføj `ui-ux-pro-max` til projektets lokale `.claude/skills/` kun hvis projektet har aktiv frontend-udvikling.

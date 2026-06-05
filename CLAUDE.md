@@ -32,7 +32,8 @@ Matches flere skills, aktivér den mest centrale først og nævn de øvrige.
 |---|---|
 | "Skriv en artikel / klumme / leder / SoMe-opslag / pressemeddelelse / pitch" (dansk) | `redaktionel-tekst` |
 | Stress-test, djævlens advokat, gennemgå beslutning kritisk | `grill-with-docs` |
-| Tegn wireframe, byg UI-komponent, redesign skærmbillede | `impeccable` |
+| Tegn wireframe, redesign skærmbillede, design audit, polish, typografi | `impeccable` |
+| Byg UI-komponent, implementér design i kode, vælg farver/fonts/layout | `ui-ux-pro-max` |
 | Byg landing page, portfolio, marketing site (production-grade) | `design-taste-frontend` |
 | Definer features, skriv PRD, nedbryd epic, user stories | deanpeters: `prd-development` / `user-story` |
 | Roadmap, prioritering, RICE-scoring | deanpeters: `roadmap-planning` / `prioritization-advisor` |
@@ -286,12 +287,19 @@ https://github.com/zarazhangrui/frontend-slides
 
 ### LAG 2 — Design, UI og UX
 
-**impeccable**
+**impeccable** *(standard — alle projekter)*
 23 design-kommandoer der dækker alle designdiscipliner: polish,
 audit, critique, typeset, clarify, distill m.fl. Anti-pattern-detektion
 på tværs af typografi, farve, layout og motion. Inkluderer compliance-check
 mod Vercel Web Interface Guidelines via WebFetch (URL dokumenteret i SKILL.md).
 https://github.com/pbakaus/impeccable
+
+**ui-ux-pro-max** *(frontend-projekter)*
+UI/UX design intelligence til implementering: 50+ stilarter, 161 farvepalletter,
+57 font-pairings, 99 UX-guidelines og 25 chart-typer på tværs af React, Next.js,
+Vue, Svelte, Tailwind, shadcn/ui, SwiftUI, React Native, Flutter og HTML/CSS.
+Aktiveres automatisk når design skal omsættes til kode.
+Installeret globalt — ingen lokal opsætning nødvendig.
 
 **design-taste-frontend** *(flyttet til Pocket Drummer — se projects/pocket-drummer/.claude/skills/)*
 
