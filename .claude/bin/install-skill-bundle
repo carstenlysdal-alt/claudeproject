@@ -1,0 +1,159 @@
+#!/bin/bash
+# install-skill-bundle <kategori> [--global]
+#
+# Installér en samlet kategori af Claude Code skills i det aktuelle projekt.
+# Kør fra projektets rod — skills havner i .agents/skills/.
+# Tilføj --global for at installere i ~/.claude/skills/ i stedet.
+#
+# Kategorier:
+#   frontend        UI-komponenter, design engineering, polish
+#   web-quality     Lighthouse-suite: accessibility, performance, SEO, best practices
+#   architecture    Kodekvalitet, TDD, arkitektur, output-enforcement
+#   pm              Product Manager-frameworks (deanpeters 46 skills)
+#   pm-metrics      OKR, North Star, A/B-test, experiments, vækst-loops, dashboards
+#   gtm             Launch, sales enablement, revops, content, email, ads
+#   presentation    PowerPoint (SlideSpeak) + HTML-slides
+#   meta            find-skills, caveman, executing-plans, grill-with-docs
+#   all-dev         frontend + web-quality + architecture (til rene dev-projekter)
+#   all-pm          pm + pm-metrics + gtm + presentation (til PM-projekter)
+#   all             Alle kategorier
+
+GLOBAL_FLAG=""
+CATEGORY="$1"
+
+if [[ "$2" == "--global" || "$1" == "--global" ]]; then
+  GLOBAL_FLAG="--global"
+  [[ "$1" == "--global" ]] && CATEGORY="$2"
+fi
+
+install() {
+  echo "  → $*"
+  npx skills add $GLOBAL_FLAG "$@"
+}
+
+frontend() {
+  echo ""
+  echo "▸ Kategori: frontend"
+  install anthropics/skills --skill frontend-design
+  install vercel-labs/agent-skills --skill web-design-guidelines
+  install jakubkrehel/make-interfaces-feel-better --skill make-interfaces-feel-better
+  install emilkowalski/skill --skill emil-design-eng
+  install wondelai/skills/refactoring-ui
+  install pbakaus/impeccable
+  install NTCoding/claude-skillz/data-visualization
+}
+
+web_quality() {
+  echo ""
+  echo "▸ Kategori: web-quality"
+  install addyosmani/web-quality-skills
+}
+
+architecture() {
+  echo ""
+  echo "▸ Kategori: architecture"
+  install mattpocock/skills --skill improve-codebase-architecture
+  install mattpocock/skills --skill tdd
+  install mattpocock/skills --skill diagnose
+  install https://github.com/Leonxlnx/taste-skill --skill full-output-enforcement
+  install mattpocock/skills --skill to-issues
+  install mattpocock/skills --skill to-prd
+}
+
+pm() {
+  echo ""
+  echo "▸ Kategori: pm"
+  install deanpeters/Product-Manager-Skills
+}
+
+pm_metrics() {
+  echo ""
+  echo "▸ Kategori: pm-metrics"
+  install marfoerst/claude_okr_pm_kill
+  install phuryn/pm-skills
+  install product-on-purpose/pm-skills
+}
+
+gtm() {
+  echo ""
+  echo "▸ Kategori: gtm"
+  install coreyhaines31/marketingskills
+}
+
+presentation() {
+  echo ""
+  echo "▸ Kategori: presentation"
+  install SlideSpeak/skills
+  install zarazhangrui/frontend-slides
+}
+
+meta() {
+  echo ""
+  echo "▸ Kategori: meta"
+  install vercel-labs/skills --skill find-skills
+  install https://github.com/juliusbrussee/caveman --skill caveman
+  install mattpocock/skills --skill grill-with-docs
+  install mattpocock/skills --skill zoom-out
+  install obra/superpowers --skill executing-plans
+}
+
+case "$CATEGORY" in
+  frontend)    frontend ;;
+  web-quality) web_quality ;;
+  architecture) architecture ;;
+  pm)          pm ;;
+  pm-metrics)  pm_metrics ;;
+  gtm)         gtm ;;
+  presentation) presentation ;;
+  meta)        meta ;;
+  all-dev)
+    frontend
+    web_quality
+    architecture
+    ;;
+  all-pm)
+    pm
+    pm_metrics
+    gtm
+    presentation
+    ;;
+  all)
+    frontend
+    web_quality
+    architecture
+    pm
+    pm_metrics
+    gtm
+    presentation
+    meta
+    ;;
+  ""|--help|-h)
+    echo ""
+    echo "Brug: install-skill-bundle <kategori> [--global]"
+    echo ""
+    echo "Kategorier:"
+    echo "  frontend      UI-komponenter, design engineering, polish (7 skills)"
+    echo "  web-quality   Lighthouse-suite: a11y, performance, SEO, best practices (6 skills)"
+    echo "  architecture  Kodekvalitet, TDD, diagnose, arkitektur, output-enforcement (6 skills)"
+    echo "  pm            Product Manager-frameworks — deanpeters 46 skills"
+    echo "  pm-metrics    OKR, North Star, A/B-test, vækst-loops, dashboards"
+    echo "  gtm           Launch, sales enablement, revops, content, email, ads"
+    echo "  presentation  SlideSpeak (PPTX) + HTML-slides"
+    echo "  meta          find-skills, caveman, grill-with-docs, zoom-out, executing-plans (5 skills)"
+    echo ""
+    echo "  all-dev       frontend + web-quality + architecture"
+    echo "  all-pm        pm + pm-metrics + gtm + presentation"
+    echo "  all           Alle kategorier"
+    echo ""
+    echo "Tilføj --global for at installere i ~/.claude/skills/ i stedet for projektniveau."
+    echo ""
+    ;;
+  *)
+    echo "Ukendt kategori: '$CATEGORY'"
+    echo "Kør 'install-skill-bundle --help' for at se tilgængelige kategorier."
+    exit 1
+    ;;
+esac
+
+echo ""
+echo "✓ Færdig. Skills er klar til brug."
