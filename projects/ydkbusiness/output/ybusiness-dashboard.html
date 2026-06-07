@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y Business — Forretningsmodel 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* === VIEWPORT BASE === */
+html, body {
+  width: 100%; height: 100%; margin: 0; overflow: hidden;
+  background: #FAFAF8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #FAFAF8; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+img, video, canvas, svg { max-width: 100%; max-height: 100%; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
+
+/* === SCREENS === */
+.screen {
+  position: absolute; inset: 0;
+  width: 1920px; height: 1080px;
+  overflow: hidden; display: block;
+  visibility: hidden; opacity: 0;
+  pointer-events: none;
+  background: #FAFAF8;
+  transition: opacity 0.3s ease;
+}
+.screen.active { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
+
+/* === Y RATING DESIGN TOKENS === */
+:root {
+  /* Y Rating palette — sampled fra DESIGN.md */
+  --paper:     #FAFAF8;
+  --card:      #FFFFFF;
+  --ink:       #100C0C;
+  --ink70:     #44413C;
+  --muted:     #7C7972;
+  --faint:     #9C998F;
+  --line:      #E4E2DD;
+  --line2:     #ECEAE4;
+  --tint:      #F4F2EC;
+  --track:     #E7E5DF;
+
+  /* Primær accent — aubergine fra Y Rating */
+  --accent:    #361352;
+  --accent-10: rgba(54,19,82,0.08);
+  --accent-20: rgba(54,19,82,0.15);
+  --accent-30: rgba(54,19,82,0.25);
+
+  /* Semantik */
+  --green:     #16A34A;
+  --green-s:   rgba(22,163,74,0.08);
+  --amber:     #B45309;
+  --amber-s:   rgba(180,83,9,0.08);
+  --red:       #C43A49;
+  --red-s:     rgba(196,58,73,0.07);
+
+  /* Typografi */
+  --sans:      'Schibsted Grotesk', system-ui, sans-serif;
+  --serif:     'Playfair Display', Georgia, serif;
+  --mono:      'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+h1, h2, h3, .hub-h1, .tile-h, .sec-title, .ibox-t, .risk-t, .cat-txt { text-wrap: balance; }
+p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
+.stat-v, .rev-row, .tl-d, .tbl td.hi, .layer-n, .drv-n { font-variant-numeric: tabular-nums; }
+
+/* === HEADER — Y Rating editorial style === */
+.dash-header {
+  position: absolute; top: 0; left: 0; right: 0; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 52px;
+  background: rgba(250, 250, 248, 0.97);
+  border-bottom: 2px solid var(--line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.dash-brand { display: flex; align-items: center; gap: 16px; }
+
+.dash-brand-mark {
+  font-family: var(--serif); font-size: 20px; font-weight: 700;
+  color: var(--accent); font-style: italic; letter-spacing: -0.01em;
+}
+
+.dash-divider {
+  width: 1px; height: 18px; background: var(--line);
+}
+
+.dash-brand-sub {
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.01em;
+}
+
+.dash-meta { display: flex; align-items: center; gap: 20px; }
+.dash-tag {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.dash-tag.hi {
+  color: var(--accent);
+  background: var(--accent-10);
+  border: 1px solid var(--accent-30);
+  padding: 3px 10px; border-radius: 4px;
+  font-weight: 700;
+}
+
+/* Aubergine accent bar — left edge */
+.accent-bar { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); }
+
+/* Dot grid — very subtle */
+.bg-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(54,19,82,0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* === HUB === */
+.hub-body {
+  position: absolute; top: 64px; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column;
+}
+.hub-intro {
+  padding: 40px 56px 34px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.hub-eyebrow {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.hub-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+.hub-h1 {
+  font-family: var(--serif); font-size: 44px; font-weight: 700;
+  color: var(--ink); line-height: 1.08; letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.hub-h1 em { font-style: italic; color: var(--accent); font-weight: 600; }
+.hub-sub {
+  font-family: var(--sans); font-size: 14px; font-weight: 400;
+  color: var(--muted); line-height: 1.5;
+}
+
+/* 4 tiles */
+.hub-tiles {
+  flex: 1;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--line);
+}
+.hub-tile {
+  background: var(--card); padding: 40px 44px;
+  cursor: pointer; display: flex; flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.18s ease, transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+  position: relative; overflow: hidden;
+}
+.hub-tile::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.22s ease;
+}
+.hub-tile:hover { background: var(--tint); }
+.hub-tile:hover::after { transform: scaleX(1); }
+.hub-tile:active { transform: scale(0.96); background: #EDE8F4; }
+
+.tile-num {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--accent); opacity: 0.45; letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+.tile-h {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--ink); line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.01em;
+}
+.tile-pts { flex: 1; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.tile-pt {
+  font-family: var(--sans); font-size: 13px; font-weight: 400;
+  color: var(--muted); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45;
+}
+.tile-pt::before { content: '–'; color: var(--accent); flex-shrink: 0; opacity: 0.6; }
+.tile-cta {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px; opacity: 0.7;
+}
+.tile-cta::after { content: '→'; font-size: 12px; opacity: 1; }
+
+/* Stats bar */
+.hub-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: var(--tint);
+  border-top: 2px solid var(--line);
+  height: 80px; flex-shrink: 0;
+}
+.stat-cell {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 44px; border-right: 1px solid var(--line); gap: 2px;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-v {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--accent); line-height: 1; letter-spacing: -0.01em;
+}
+.stat-l {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.09em; text-transform: uppercase;
+}
+
+/* === SECTION CHROME === */
+.sec-hdr {
+  position: absolute; top: 64px; left: 0; right: 0; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 52px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+.back-btn {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer; display: flex; align-items: center; gap: 8px;
+  background: none; border: none;
+  min-height: 40px; padding: 8px 16px 8px 0;
+  transition: opacity 0.18s ease, transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+  opacity: 0.7;
+}
+.back-btn::before { content: '←'; font-size: 13px; }
+.back-btn:hover { opacity: 1; }
+.back-btn:active { transform: scale(0.96); }
+.sec-title {
+  font-family: var(--serif); font-size: 18px; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.01em; font-style: italic;
+}
+.sec-num {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.08em;
+}
+
+.sec-body {
+  position: absolute; top: 132px; left: 0; right: 0; bottom: 0;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--line);
+}
+.col { background: var(--card); padding: 40px 48px; overflow: hidden; }
+
+/* === COMPONENTS === */
+.col-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--line2);
+}
+.col-label-sm {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px;
+}
+
+/* Info boxes */
+.ibox {
+  background: var(--tint); border-left: 2px solid var(--accent);
+  padding: 20px 24px; margin-bottom: 16px;
+}
+.ibox.green { border-color: var(--green); background: var(--green-s); }
+.ibox.amber { border-color: var(--amber); background: var(--amber-s); }
+.ibox.accent { border-color: var(--accent); background: var(--accent-10); }
+.ibox-t {
+  font-family: var(--sans); font-size: 14px; font-weight: 700;
+  color: var(--accent); margin-bottom: 8px;
+}
+.ibox.green .ibox-t { color: var(--green); }
+.ibox.amber .ibox-t { color: var(--amber); }
+.ibox-b { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink70); line-height: 1.65; }
+.ibox-b strong { color: var(--ink); font-weight: 600; }
+
+/* Checklist */
+.chk { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 7px; }
+.chk li {
+  font-family: var(--sans); font-size: 13px; font-weight: 400;
+  color: var(--ink70); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45;
+}
+.chk li::before { content: '✓'; color: var(--green); flex-shrink: 0; font-weight: 700; }
+.chk li strong { color: var(--ink); font-weight: 600; }
+
+/* Tables */
+.tbl { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
+.tbl th {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 9px 12px; text-align: left;
+  background: var(--tint);
+  border-bottom: 2px solid var(--line);
+}
+.tbl td {
+  padding: 12px 12px; font-family: var(--sans); font-size: 13px; font-weight: 400;
+  color: var(--ink70); border-bottom: 1px solid var(--line2);
+  vertical-align: top; line-height: 1.4;
+}
+.tbl td.hi {
+  color: var(--accent); font-family: var(--serif); font-size: 15px;
+  font-weight: 700; white-space: nowrap; font-style: italic;
+}
+.tbl td.str { color: var(--ink); font-weight: 600; font-size: 13px; }
+.tbl tr.hl td { background: var(--accent-10); color: var(--ink); font-weight: 600; border-color: var(--line); }
+.tbl tr.hl td.hi { color: var(--accent); }
+.tbl td .badge {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-top: 2px;
+}
+
+/* Revenue box */
+.rev-box {
+  background: var(--accent-10); border: 1px solid var(--accent-30);
+  padding: 20px 24px; margin-top: 16px;
+}
+.rev-box-t {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 12px;
+}
+.rev-row {
+  font-family: var(--sans); font-size: 13px; font-weight: 400;
+  color: var(--ink70); line-height: 1.9; display: flex; justify-content: space-between;
+}
+.rev-row.tot {
+  color: var(--accent); font-weight: 700; font-size: 17px;
+  margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--accent-30);
+  font-family: var(--serif); font-style: italic;
+}
+
+/* Category statement */
+.cat-box {
+  background: var(--accent-10); border: 1px solid var(--accent-30);
+  padding: 24px 28px; margin-bottom: 24px;
+}
+.cat-lbl {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px;
+}
+.cat-txt {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.01em; line-height: 1.25; font-style: italic;
+}
+
+/* Driver list */
+.drv-list { display: flex; flex-direction: column; }
+.drv {
+  padding: 16px 0; border-bottom: 1px solid var(--line2);
+  display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: flex-start;
+}
+.drv:first-child { border-top: 1px solid var(--line2); }
+.drv-n {
+  font-family: var(--serif); font-size: 22px; font-weight: 600;
+  color: var(--accent); opacity: 0.2; line-height: 1; font-style: italic;
+}
+.drv-t { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
+.drv-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
+
+/* AI options */
+.ai-opt {
+  padding: 14px 18px; border: 1px solid var(--line);
+  margin-bottom: 7px; display: flex; gap: 14px; align-items: flex-start;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.ai-opt:hover { background: var(--tint); }
+.ai-opt.rec { border-color: var(--accent-30); background: var(--accent-10); }
+.ai-letter {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--accent); font-style: italic; flex-shrink: 0; line-height: 1; opacity: 0.2;
+}
+.ai-opt.rec .ai-letter { opacity: 1; }
+.ai-t {
+  font-family: var(--sans); font-size: 13px; font-weight: 700;
+  color: var(--muted); margin-bottom: 3px;
+}
+.ai-opt.rec .ai-t { color: var(--ink); }
+.ai-d { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--muted); line-height: 1.55; }
+.ai-d strong { color: var(--accent); font-weight: 600; }
+.rec-badge {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--card); border: 1px solid var(--accent-30);
+  padding: 2px 7px; display: inline-block; margin-bottom: 4px;
+}
+
+/* Timeline */
+.tl { display: flex; flex-direction: column; }
+.tl-row {
+  display: grid; grid-template-columns: 108px 1fr; gap: 14px;
+  padding: 11px 0; border-bottom: 1px solid var(--line2); align-items: flex-start;
+}
+.tl-row:first-child { border-top: 1px solid var(--line2); }
+.tl-d {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.06em; padding-top: 1px;
+}
+.tl-t { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink70); line-height: 1.5; }
+.tl-t strong { color: var(--ink); font-weight: 700; }
+
+/* Product layers */
+.layers { display: flex; flex-direction: column; }
+.layer {
+  padding: 14px 0; border-bottom: 1px solid var(--line2);
+  display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: flex-start;
+}
+.layer:first-child { border-top: 1px solid var(--line2); }
+.layer-n {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); opacity: 0.45; padding-top: 2px;
+}
+.layer-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.layer-d { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--muted); line-height: 1.55; }
+
+/* Scope grid */
+.scope-g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+.scope-box { padding: 16px 18px; }
+.scope-box.in { background: var(--green-s); border: 1px solid rgba(22,163,74,0.18); }
+.scope-box.out { background: var(--red-s); border: 1px solid rgba(196,58,73,0.13); }
+.scope-hl {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 9px;
+}
+.scope-box.in .scope-hl { color: var(--green); }
+.scope-box.out .scope-hl { color: var(--red); }
+.scope-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.scope-list li {
+  font-family: var(--sans); font-size: 12px; font-weight: 400;
+  color: var(--ink70); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
+}
+.scope-box.in  .scope-list li::before { content: '✓'; color: var(--green); font-weight: 700; }
+.scope-box.out .scope-list li::before { content: '–'; color: var(--red); opacity: 0.6; }
+
+/* Warning box */
+.risk {
+  background: var(--amber-s); border-left: 2px solid var(--amber);
+  padding: 18px 22px; margin-bottom: 16px;
+}
+.risk-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 7px; }
+.risk p { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
+.risk p strong { color: var(--ink); font-weight: 600; }
+
+/* Page number */
+.pnum {
+  position: absolute; bottom: 16px; right: 22px;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--line); letter-spacing: 0.1em; z-index: 10;
+}
+
+/* === ANIMATIONS === */
+.screen.active .ani { animation: riseIn 0.5s cubic-bezier(0.22,0.61,0.36,1) both; }
+.screen.active .ani:nth-child(1) { animation-delay: 0.06s; }
+.screen.active .ani:nth-child(2) { animation-delay: 0.14s; }
+
+.screen.active .hub-intro  { animation: riseIn 0.45s cubic-bezier(0.22,0.61,0.36,1) 0.02s both; }
+.screen.active .hub-tile   { animation: riseIn 0.55s cubic-bezier(0.22,0.61,0.36,1) both; }
+.screen.active .hub-tile:nth-child(1) { animation-delay: 0.08s; }
+.screen.active .hub-tile:nth-child(2) { animation-delay: 0.16s; }
+.screen.active .hub-tile:nth-child(3) { animation-delay: 0.24s; }
+.screen.active .hub-tile:nth-child(4) { animation-delay: 0.32s; }
+.screen.active .hub-stats  { animation: riseIn 0.45s cubic-bezier(0.22,0.61,0.36,1) 0.38s both; }
+
+@keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+<div class="deck-stage" id="stage">
+
+<!-- ======================================================
+     HUB
+     ====================================================== -->
+<div class="screen active" id="hub">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+
+  <header class="dash-header">
+    <div class="dash-brand">
+      <div class="dash-brand-mark">Y Business</div>
+      <div class="dash-divider"></div>
+      <div class="dash-brand-sub">Forretningsmodel 2026</div>
+    </div>
+    <div class="dash-meta">
+      <span class="dash-tag">CEO · Tech Lead · Commercial Lead</span>
+      <span class="dash-tag hi">Intern · Juni 2026</span>
+    </div>
+  </header>
+
+  <div class="hub-body">
+    <div class="hub-intro">
+      <div class="hub-eyebrow">Ledelsespræsentation</div>
+      <div class="hub-h1">Business model, positionering & go-to-market<br>mod <em>soft launch oktober 2026</em></div>
+      <div class="hub-sub">Klik et fokusområde · Escape vender tilbage til oversigten · Genveje: tast 1–4</div>
+    </div>
+
+    <div class="hub-tiles">
+      <div class="hub-tile" data-target="s-biz">
+        <div>
+          <div class="tile-num">01 / 04</div>
+          <div class="tile-h">Business model<br>& revenue</div>
+          <div class="tile-pts">
+            <div class="tile-pt">Ét produkt — to betalingsmodeller</div>
+            <div class="tile-pt">Månedlig: 500 DKK/md · Årsplan: 5.000 DKK/år</div>
+            <div class="tile-pt">Årsplan inkl. 5.000 DKK i markedsføring på Y.dk</div>
+            <div class="tile-pt">7,5M DKK ARR ved 1.500 virksomhedsabonnenter</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+
+      <div class="hub-tile" data-target="s-pos">
+        <div>
+          <div class="tile-num">02 / 04</div>
+          <div class="tile-h">Markeds&shy;positionering</div>
+          <div class="tile-pts">
+            <div class="tile-pt">SMV-segmentet er underservet af eksisterende medier</div>
+            <div class="tile-pt">4 konkurrenter analyseret: Børsen, Meltwater, LassoX</div>
+            <div class="tile-pt">Prisanker: 10× billigere end samlet alternativ</div>
+            <div class="tile-pt">AI-drevet erhvervsintelligens — ubesat kategori</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+
+      <div class="hub-tile" data-target="s-gtm">
+        <div>
+          <div class="tile-num">03 / 04</div>
+          <div class="tile-h">Go-to-market<br>& distribution</div>
+          <div class="tile-pts">
+            <div class="tile-pt">6 partnerorganisationer · 70.000+ virksomheder</div>
+            <div class="tile-pt">AI-paradoks: kommunikationsvalg A / B / C</div>
+            <div class="tile-pt">Soft launch Business: 1. oktober 2026</div>
+            <div class="tile-pt">Acquisition-pool: 25.000 daglige Y.dk-besøg</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+
+      <div class="hub-tile" data-target="s-prd">
+        <div>
+          <div class="tile-num">04 / 04</div>
+          <div class="tile-h">Produkt<br>& roadmap</div>
+          <div class="tile-pts">
+            <div class="tile-pt">5 produktlag inkl. markedsovervågning</div>
+            <div class="tile-pt">11 offentlige API-endpoints (CVR, udbud, regulatory)</div>
+            <div class="tile-pt">Supertrends-integration — kritisk afhængighed</div>
+            <div class="tile-pt">Scope: inkluderet vs. ikke fase 1</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+    </div>
+
+    <div class="hub-stats">
+      <div class="stat-cell"><div class="stat-v">5.000 kr</div><div class="stat-l">Årsabonnement</div></div>
+      <div class="stat-cell"><div class="stat-v">1.500</div><div class="stat-l">Virksomhedsmål år 1</div></div>
+      <div class="stat-cell"><div class="stat-v">7,5M DKK</div><div class="stat-l">ARR ved målopfyldelse</div></div>
+      <div class="stat-cell"><div class="stat-v">Okt. 2026</div><div class="stat-l">Soft launch — Business</div></div>
+    </div>
+  </div>
+  <div class="pnum">Y Business · Intern · 2026</div>
+</div>
+
+
+<!-- ======================================================
+     01 BUSINESS MODEL
+     ====================================================== -->
+<div class="screen" id="s-biz">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Forretningsmodel 2026</div></div>
+    <div class="dash-meta"><span class="dash-tag">CEO · Tech Lead · Commercial Lead</span><span class="dash-tag hi">Intern · Juni 2026</span></div>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Business model & revenue</div>
+    <div class="sec-num">01 / 04</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Abonnementsmodel — Ét produkt, to betalingsmodeller</div>
+      <table class="tbl">
+        <thead><tr><th>Dimension</th><th>Månedlig</th><th>Årsplan</th></tr></thead>
+        <tbody>
+          <tr><td class="str">Pris</td><td class="hi">500 DKK/md</td><td class="hi">5.000 DKK/år</td></tr>
+          <tr><td class="str">Binding</td><td>Løbende — ingen binding</td><td>Ét år ad gangen</td></tr>
+          <tr><td class="str">Adgang</td><td colspan="2">Identisk — alle 5 produktlag for virksomheden</td></tr>
+          <tr><td class="str">Markedsføring på Y.dk</td><td style="color:var(--muted); font-style:italic;">Ikke inkluderet</td><td class="hi">5.000 DKK inkluderet</td></tr>
+          <tr class="hl"><td class="str">Nettopris — årsplan</td><td colspan="2">Reelt 0 DKK for virksomheder der ønsker eksponering mod Y.dk's erhvervslæsere</td></tr>
+        </tbody>
+      </table>
+
+      <div class="rev-box">
+        <div class="rev-box-t">ARR-beregning — år 1 ved 1.500 virksomhedsabonnenter</div>
+        <div class="rev-row"><span>750 × årsplan (5.000 DKK)</span><span>3,75M DKK</span></div>
+        <div class="rev-row"><span>750 × månedspris (500 DKK/md annualiseret)</span><span>4,50M DKK</span></div>
+        <div class="rev-row tot"><span>Samlet ARR — estimat</span><span>~7,5M DKK</span></div>
+      </div>
+
+      <div style="margin-top:14px; font-family:var(--sans); font-size:12px; color:var(--muted); line-height:1.55;">
+        Business genererer <strong style="color:var(--ink70)">10× mere revenue per abonnent</strong> end Private (500 DKK vs. 50 DKK/md). Private er platform-driver der konverterer daglig trafik til virksomhedsabonnenter.
+      </div>
+    </div>
+
+    <div class="col ani">
+      <div class="col-label">Virksomhedsabonnement & prisanker</div>
+
+      <div class="ibox">
+        <div class="ibox-t">Virksomhedsløsning — ikke personalegode</div>
+        <div class="ibox-b">Y Business er et virksomhedsabonnement — virksomheden køber adgang som en driftsudgift, besluttet og betalt på virksomhedsniveau. Kommunikeres og prissættes som <strong>B2B-driftsomkostning der trækkes fra</strong> — ikke som personligt medieabonnement.</div>
+      </div>
+
+      <div class="ibox accent">
+        <div class="ibox-t">Årsplan — markedsføringsbidrag</div>
+        <div class="ibox-b">Virksomheder der tegner årsplan modtager <strong>5.000 DKK i markedsføring på Y.dk's platforme</strong> svarende til abonnementsprisen. Årsplanen er reelt omkostningsneutral for virksomheder der ønsker eksponering.</div>
+        <ul class="chk">
+          <li>Årsplan = adgang + synlighed mod Y.dk's erhvervslæsere</li>
+          <li>Markedsføringsbidrag svarer til abonnementsprisen</li>
+          <li>Stærkt salgsargument til Commercial Lead</li>
+        </ul>
+      </div>
+
+      <div class="ibox green">
+        <div class="ibox-t" style="color:var(--green)">Prisankeret holder</div>
+        <div class="ibox-b"><strong>5.000 DKK/år</strong> er billigere end Finans.dk alene (4.500 DKK/år). Valideret stack-omkostning for SMV 50-150 ansatte: <strong>120.000–180.000 DKK/år</strong> på 5-8 separate værktøjer. ROI år 1: 60-75% omkostningsreduktion + 95% mindre manuelt arbejde.</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">Business model & revenue · 01/04</div>
+</div>
+
+
+<!-- ======================================================
+     02 POSITIONERING
+     ====================================================== -->
+<div class="screen" id="s-pos">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Forretningsmodel 2026</div></div>
+    <div class="dash-meta"><span class="dash-tag">CEO · Tech Lead · Commercial Lead</span><span class="dash-tag hi">Intern · Juni 2026</span></div>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Markedspositionering</div>
+    <div class="sec-num">02 / 04</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Kategori & strukturelle drivere</div>
+      <div class="cat-box">
+        <div class="cat-lbl">Kategorien vi ejer</div>
+        <div class="cat-txt">AI-drevet erhvervsintelligens til SMV-priser</div>
+      </div>
+      <div class="drv-list">
+        <div class="drv">
+          <div class="drv-n">1</div>
+          <div><div class="drv-t">SMV-segmentet er underservet</div><div class="drv-d">Børsen og Finans.dk skriver primært til kapitalmarkedet og C25. SMV-ejere betaler for et produkt der er skrevet til andre — og har ikke råd til dedikerede BI-løsninger som Meltwater eller Keystone.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">2</div>
+          <div><div class="drv-t">AI ændrer cost-strukturen fundamentalt</div><div class="drv-d">Supertrends-platformen crawler 5.000 kilder 24/7. Det muliggør en redaktionel dækning og et overvågningsprodukt der tidligere krævede stor redaktion eller enterprise-budget.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">3</div>
+          <div><div class="drv-t">Mainstream-medier er ensrettede</div><div class="drv-d">Reelt og udækket behov for erhvervsindhold der systematisk afdækker modpolen og nuancen — ikke som redaktionel ideologi, men som konkret forretningsmæssig edge for den læser der vil vide mere end sine konkurrenter.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col ani">
+      <div class="col-label">Konkurrentlandskab</div>
+      <table class="tbl">
+        <thead><tr><th>Platform</th><th>Pris/år</th><th>Hvad det er</th><th>Hvad det mangler</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="str">Børsen / Finans.dk</td>
+            <td class="hi" style="color:var(--red); font-style:normal; font-size:13px; font-family:var(--mono);">4.500+ DKK</td>
+            <td>Erhvervsnyheder skrevet til C25 og kapitalmarkedet</td>
+            <td>Overvågning, SMV-fokus, intelligence</td>
+          </tr>
+          <tr>
+            <td class="str">Meltwater / Retriever</td>
+            <td class="hi" style="color:var(--red); font-style:normal; font-size:13px; font-family:var(--mono);">24.000+ DKK</td>
+            <td>PR-medieovervågning til enterprise-kommunikation</td>
+            <td>Nyheder, redaktionel analyse</td>
+          </tr>
+          <tr>
+            <td class="str">LassoX og lign.</td>
+            <td class="hi" style="color:var(--red); font-style:normal; font-size:13px; font-family:var(--mono);">12.000–36.000 DKK</td>
+            <td>Salgstriggers og leadkort på virksomhedsdata</td>
+            <td>Intelligence, branchetendenser</td>
+          </tr>
+          <tr class="hl">
+            <td class="str" style="color:var(--accent); font-style:italic; font-family:var(--serif); font-size:14px;">Y Business</td>
+            <td class="hi">5.000 DKK</td>
+            <td>Nyheder + overvågning + trends + briefs — samlet</td>
+            <td style="color:var(--line);">—</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ibox" style="margin-top:8px;">
+        <div class="ibox-t" style="font-size:13px;">Problemet vi løser</div>
+        <div class="ibox-b">En SMV-ejer bruger i dag tid og penge på: et erhvervsmedie der skriver til andre, et medieovervågningsværktøj prissat til enterprise, en algoritmisk LinkedIn-feed og ad hoc-søgninger uden systematisk overblik.<br><br><strong>Veldrevne SMV'er løser fragmenteringen ved at udpege en "videnskoordinator" — Y Business automatiserer det job.</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">Markedspositionering · 02/04</div>
+</div>
+
+
+<!-- ======================================================
+     03 GO-TO-MARKET
+     ====================================================== -->
+<div class="screen" id="s-gtm">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Forretningsmodel 2026</div></div>
+    <div class="dash-meta"><span class="dash-tag">CEO · Tech Lead · Commercial Lead</span><span class="dash-tag hi">Intern · Juni 2026</span></div>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Go-to-market & distribution</div>
+    <div class="sec-num">03 / 04</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Partnerorganisationer — 70.000+ virksomheder i direkte reach</div>
+      <table class="tbl">
+        <thead><tr><th>Organisation</th><th>Segment</th><th>Medl.</th><th>Rolle i udrulning</th></tr></thead>
+        <tbody>
+          <tr><td class="str">SMVdanmark<span class="badge">Primær distributionspartner</span></td><td>SMV-ejere</td><td>15.000+</td><td>Tættest match på kernemålgruppen</td></tr>
+          <tr><td class="str">Dansk Erhverv</td><td>Handel, service</td><td>18.000+</td><td>Beta-rekruttering, partneraftale, distribution</td></tr>
+          <tr><td class="str">Dansk Industri (DI)</td><td>Produktion</td><td>10.000+</td><td>Beta-rekruttering, anbefaling, mediesamarb.</td></tr>
+          <tr><td class="str">IT-Branchen</td><td>Tech, tele</td><td>—</td><td>Distribution til tech-segment + AI-sektion</td></tr>
+          <tr><td class="str">Landbrug & Fødevarer</td><td>Agri</td><td>—</td><td>Sektorspecifik distribution, regulatory</td></tr>
+          <tr><td class="str">TEKNIQ Arbejdsgiverne</td><td>Byggeri</td><td>—</td><td>Bygge- og installationssektor</td></tr>
+        </tbody>
+      </table>
+      <div style="background:var(--tint); border:1px solid var(--line); padding:14px 20px; display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+        <div style="font-family:var(--serif); font-size:28px; font-weight:700; color:var(--accent); font-style:italic;">70.000+</div>
+        <div style="font-family:var(--sans); font-size:12px; color:var(--ink70); text-align:right; line-height:1.5;">virksomheder i samlet reach<br>uden kold outreach</div>
+      </div>
+      <div style="font-family:var(--sans); font-size:12px; color:var(--muted); line-height:1.65;"><strong style="color:var(--ink70)">25.000 daglige Y.dk-besøg i september 2026</strong> — rekrutteringspool suppleret af LinkedIn, PR og partnerkanaler.</div>
+    </div>
+
+    <div class="col ani">
+      <div class="col-label">AI-paradoks — kommunikationsvalg (afventer beslutning)</div>
+      <div class="ai-opt rec">
+        <div class="ai-letter">A</div>
+        <div>
+          <div class="rec-badge">Anbefalet — fase 1</div>
+          <div class="ai-t">Teknologien er usynlig</div>
+          <div class="ai-d">AI nævnes aldrig i produkt, UI eller marketing. Kommunikationsplatform: "Redaktionelt verificeret erhvervsintelligens fra 5.000 kilder." <strong>Fase 1 af en planlagt kommunikationssekvens — ikke permanent hemmeligholdelse.</strong></div>
+        </div>
+      </div>
+      <div class="ai-opt">
+        <div class="ai-letter">B</div>
+        <div>
+          <div class="ai-t">Eje det selektivt</div>
+          <div class="ai-d">"Redaktionelt verificeret indhold fra 5.000 kilder" i UI. AI nævnes i presse og investor-kommunikation — ikke over for abonnenter. Kræver præcis kommunikationsdisciplin.</div>
+        </div>
+      </div>
+      <div class="ai-opt">
+        <div class="ai-letter">C</div>
+        <div>
+          <div class="ai-t">Fuld transparens</div>
+          <div class="ai-d">"AI producerer, mennesker verificerer" som eksplicit USP. 53% er utrygge ved AI-journalistik — kun 9% mener AI gør nyheder mere pålidelige (RUC 2024). Modvirker betalingsvillighed i SMV-segment i dag.</div>
+        </div>
+      </div>
+
+      <div class="col-label" style="margin-top:22px; margin-bottom:10px;">Launch-faser</div>
+      <div class="tl">
+        <div class="tl-row"><div class="tl-d">Nu → Aug.</div><div class="tl-t"><strong>Discovery & build</strong> — Redaktionelt koncept (30/6), tech-konfiguration, design</div></div>
+        <div class="tl-row"><div class="tl-d">1. okt. 2026</div><div class="tl-t"><strong>Soft launch — Business</strong> · Mål: 1.500 virksomhedsabonnenter</div></div>
+        <div class="tl-row"><div class="tl-d">1. nov. 2026</div><div class="tl-t"><strong>Paywall — Private</strong> · Mål: 1.500 abonnenter · 50 DKK/md</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">Go-to-market & distribution · 03/04</div>
+</div>
+
+
+<!-- ======================================================
+     04 PRODUKT & ROADMAP
+     ====================================================== -->
+<div class="screen" id="s-prd">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Forretningsmodel 2026</div></div>
+    <div class="dash-meta"><span class="dash-tag">CEO · Tech Lead · Commercial Lead</span><span class="dash-tag hi">Intern · Juni 2026</span></div>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Produkt & roadmap</div>
+    <div class="sec-num">04 / 04</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">5 produktlag — soft launch oktober 2026</div>
+      <div class="layers">
+        <div class="layer"><div class="layer-n">01</div><div><div class="layer-t">Erhvervsnyheder</div><div class="layer-d">SMV-fokuseret nyhedsdækning med redaktionel vinkel. Originalt indhold + AI-bearbejdede nyheder. Tekst og lyd — morgenbrief kl. 06:00.</div></div></div>
+        <div class="layer"><div class="layer-n">02</div><div><div class="layer-t">C-level indhold & analyser</div><div class="layer-d">Dybdegående strategiske analyser, datadrevet research og trendrapporter. Indhold der kræver fordybelse — ikke 30 sekunders scanning.</div></div></div>
+        <div class="layer"><div class="layer-n">03</div><div><div class="layer-t">Markedsovervågning</div><div class="layer-d">11 direkte offentlige API-endpoints: regulatory, udbud, CVR, selskabsdata m.fl. Smart Scans — brugerstyrede notifikationer via Supertrends-infrastrukturen.</div></div></div>
+        <div class="layer"><div class="layer-n">04</div><div><div class="layer-t">Branchetrends</div><div class="layer-d">AI-aggregeret trendanalyse på tværs af 5.000 kilder. Ugentlig trendrapport. Y verificerer — abonnenten får analysens konklusion.</div></div></div>
+        <div class="layer"><div class="layer-n">05</div><div><div class="layer-t">B2B-briefs & community</div><div class="layer-d">On-demand situationsbriefs på under 60 sekunder. Lukket abonnentfællesskab. Det du skal vide inden et møde eller en strategisk beslutning.</div></div></div>
+      </div>
+    </div>
+
+    <div class="col ani">
+      <div class="col-label">Scope & afhængigheder</div>
+      <div class="scope-g">
+        <div class="scope-box in">
+          <div class="scope-hl">Inkluderet — fase 1</div>
+          <ul class="scope-list">
+            <li>Personaliseret nyhedsfeed</li>
+            <li>Morgenbrief tekst + lyd kl. 06:00</li>
+            <li>Markedsovervågning (begrænset profil)</li>
+            <li>Branchetrends (udvalgte sektorer)</li>
+            <li>B2B-briefs (template-format)</li>
+            <li>Lukket abonnentfællesskab</li>
+            <li>Web og mobil</li>
+          </ul>
+        </div>
+        <div class="scope-box out">
+          <div class="scope-hl">Ikke fase 1</div>
+          <ul class="scope-list">
+            <li>Video-format</li>
+            <li>Team-abonnement</li>
+            <li>ML-personalisering</li>
+            <li>API-integration (enterprise)</li>
+            <li>Internationalt indhold</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="risk">
+        <div class="risk-t">Supertrends — kritisk afhængighed</div>
+        <p>Lars Tvede er del af ejerkredsen — platformen stilles til rådighed til kostpris. <strong>Dansk SMV-indhold kræver rekonfiguration af motoren eller et selvstændigt LLM-lag.</strong> Feature-request: person- og ekspertovervågning via Smart Scans vurderes på separat teknisk møde. Ledelsen godkender afhængigheden inden build.</p>
+      </div>
+
+      <div class="col-label-sm">Roadmap — næste milepæle</div>
+      <div class="tl">
+        <div class="tl-row"><div class="tl-d">30. juni</div><div class="tl-t"><strong>Redaktionelt koncept klar</strong> · Chefredaktør + PM</div></div>
+        <div class="tl-row"><div class="tl-d">Juli–aug.</div><div class="tl-t"><strong>Design & build</strong> · Tech Lead + Designer (identificeres senest 30/6)</div></div>
+        <div class="tl-row"><div class="tl-d">1. okt. 2026</div><div class="tl-t"><strong>Soft launch — Business</strong> · 1.500 virksomhedsabonnenter</div></div>
+        <div class="tl-row"><div class="tl-d">1. nov. 2026</div><div class="tl-t"><strong>Paywall — Private</strong> · 1.500 abonnenter · 50 DKK/md</div></div>
+        <div class="tl-row"><div class="tl-d">Fase 2</div><div class="tl-t">Team-abonnement · ML-personalisering · Ekspertovervågning</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">Produkt & roadmap · 04/04</div>
+</div>
+
+</div><!-- /.deck-stage -->
+</div><!-- /.deck-viewport -->
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  function scale() {
+    var r = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    var x = (window.innerWidth  - 1920 * r) / 2;
+    var y = (window.innerHeight - 1080 * r) / 2;
+    stage.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
+  }
+  scale();
+  window.addEventListener('resize', scale);
+}());
+
+(function () {
+  var current = 'hub';
+  function navigate(id) {
+    if (!id || id === current) return;
+    document.getElementById(current).classList.remove('active');
+    var to = document.getElementById(id);
+    if (!to) return;
+    to.classList.add('active');
+    if (id !== 'hub') {
+      to.querySelectorAll('.ani').forEach(function (el) {
+        el.style.animation = 'none';
+        void el.offsetHeight;
+        el.style.animation = '';
+      });
+    }
+    current = id;
+  }
+  document.querySelectorAll('[data-target]').forEach(function (el) {
+    el.addEventListener('click', function () { navigate(this.getAttribute('data-target')); });
+  });
+
+  /* Header brand click → always back to hub */
+  document.querySelectorAll('.dash-brand').forEach(function (el) {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', function () { navigate('hub'); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.target && e.target.getAttribute('contenteditable')) return;
+    if (e.key === 'Escape' || e.key === 'Backspace') { if (current !== 'hub') navigate('hub'); }
+    else if (e.key === '1') navigate('s-biz');
+    else if (e.key === '2') navigate('s-pos');
+    else if (e.key === '3') navigate('s-gtm');
+    else if (e.key === '4') navigate('s-prd');
+  });
+}());
+
+/* === INLINE EDITING & GEM TIL DISK ===
+   E-tast eller klik på ✏-ikon aktiverer redigeringstilstand.
+   MutationObserver opdager ændringer → viser Gem-knap.
+   Gem bruger File System Access API (Chrome/Edge/Safari 15.2+)
+   til at skrive direkte tilbage til HTML-filen på disk.
+   Ctrl/Cmd+S gemmer uden at klikke på knappen.
+========================================= */
+(function () {
+  var isEditing = false;
+  var isDirty   = false;
+  var fileHandle = null;
+
+  /* ── Editable areas (ikke nav/js/css) ── */
+  var EDITABLE_SEL = [
+    '.col', '.hub-intro', '.stat-cell',
+    '.hub-tile > div:first-child'
+  ].join(', ');
+
+  /* ── Opret Gem-knap i viewport (udenfor scaled stage) ── */
+  var saveBar = document.createElement('div');
+  saveBar.style.cssText = [
+    'position:fixed', 'top:0', 'left:0', 'right:0',
+    'height:52px',
+    'background:rgba(54,19,82,0.97)',
+    'display:flex', 'align-items:center', 'justify-content:space-between',
+    'padding:0 24px',
+    'z-index:99999',
+    'opacity:0', 'pointer-events:none',
+    'transition:opacity 0.2s ease',
+    'box-shadow:0 2px 16px rgba(54,19,82,0.35)',
+    'backdrop-filter:blur(8px)'
+  ].join(';');
+
+  var saveBarLabel = document.createElement('span');
+  saveBarLabel.style.cssText = 'font-family:Schibsted Grotesk,sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:0.02em;';
+  saveBarLabel.textContent = 'Uregemte ændringer — Ctrl+S eller klik Gem';
+
+  var saveBarRight = document.createElement('div');
+  saveBarRight.style.cssText = 'display:flex;gap:10px;align-items:center;';
+
+  var discardBtn = document.createElement('button');
+  discardBtn.textContent = 'Kassér';
+  discardBtn.style.cssText = [
+    'padding:7px 18px', 'border-radius:5px',
+    'background:rgba(255,255,255,0.1)', 'border:1px solid rgba(255,255,255,0.2)',
+    'color:rgba(255,255,255,0.7)', 'font-family:Schibsted Grotesk,sans-serif',
+    'font-size:12px', 'font-weight:600', 'cursor:pointer',
+    'transition:background 0.15s'
+  ].join(';');
+
+  var saveBtn = document.createElement('button');
+  saveBtn.textContent = 'Gem til fil';
+  saveBtn.style.cssText = [
+    'padding:7px 20px', 'border-radius:5px',
+    'background:#fff', 'border:none',
+    'color:#361352', 'font-family:Schibsted Grotesk,sans-serif',
+    'font-size:13px', 'font-weight:800', 'cursor:pointer',
+    'transition:transform 0.1s ease, background 0.15s',
+    'letter-spacing:-0.01em'
+  ].join(';');
+  saveBtn.addEventListener('mouseenter', function() { this.style.background = '#EDE8F4'; });
+  saveBtn.addEventListener('mouseleave', function() { this.style.background = '#fff'; });
+  saveBtn.addEventListener('mousedown', function() { this.style.transform = 'scale(0.96)'; });
+  saveBtn.addEventListener('mouseup',   function() { this.style.transform = ''; });
+
+  saveBarRight.appendChild(discardBtn);
+  saveBarRight.appendChild(saveBtn);
+  saveBar.appendChild(saveBarLabel);
+  saveBar.appendChild(saveBarRight);
+  document.body.appendChild(saveBar);
+
+  /* ── Edit-toggle ikon (hover øverst til venstre, udenfor stage) ── */
+  var hotzone = document.createElement('div');
+  hotzone.style.cssText = 'position:fixed;top:0;left:0;width:72px;height:72px;z-index:9998;cursor:pointer;';
+
+  var editToggle = document.createElement('button');
+  editToggle.title = 'Redigeringstilstand (E)';
+  editToggle.style.cssText = [
+    'position:fixed', 'top:14px', 'left:16px', 'z-index:9999',
+    'width:36px', 'height:36px',
+    'border-radius:50%',
+    'background:rgba(54,19,82,0.08)', 'border:1px solid rgba(54,19,82,0.18)',
+    'color:#361352', 'font-size:15px', 'cursor:pointer',
+    'opacity:0', 'pointer-events:none',
+    'transition:opacity 0.2s ease, background 0.15s',
+    'display:flex', 'align-items:center', 'justify-content:center'
+  ].join(';');
+  editToggle.innerHTML = '✏';
+  document.body.appendChild(hotzone);
+  document.body.appendChild(editToggle);
+
+  var hideTimer = null;
+  function showToggle() {
+    clearTimeout(hideTimer);
+    editToggle.style.opacity = '1';
+    editToggle.style.pointerEvents = 'auto';
+  }
+  function scheduleHide() {
+    hideTimer = setTimeout(function() {
+      if (!isEditing) {
+        editToggle.style.opacity = '0';
+        editToggle.style.pointerEvents = 'none';
+      }
+    }, 400);
+  }
+  hotzone.addEventListener('mouseenter', showToggle);
+  hotzone.addEventListener('mouseleave', scheduleHide);
+  editToggle.addEventListener('mouseenter', showToggle);
+  editToggle.addEventListener('mouseleave', scheduleHide);
+
+  /* ── Markér dirty ── */
+  function markDirty() {
+    if (isDirty) return;
+    isDirty = true;
+    saveBar.style.opacity = '1';
+    saveBar.style.pointerEvents = 'auto';
+    /* Skub stage ned så save-bar ikke dækker header */
+    document.getElementById('stage').style.top = '52px';
+    rescaleStage();
+  }
+
+  function clearDirty() {
+    isDirty = false;
+    saveBar.style.opacity = '0';
+    saveBar.style.pointerEvents = 'none';
+    document.getElementById('stage').style.top = '0';
+    rescaleStage();
+  }
+
+  function rescaleStage() {
+    var s = document.getElementById('stage');
+    var offset = isDirty ? 52 : 0;
+    var availH = window.innerHeight - offset;
+    var r = Math.min(window.innerWidth / 1920, availH / 1080);
+    var x = (window.innerWidth  - 1920 * r) / 2;
+    var y = offset + (availH - 1080 * r) / 2;
+    s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
+  }
+
+  /* MutationObserver — opdager alle tekst-ændringer */
+  var observer = new MutationObserver(function(mutations) {
+    if (!isEditing) return;
+    for (var i = 0; i < mutations.length; i++) {
+      markDirty();
+      break;
+    }
+  });
+
+  /* ── Aktiver redigering ── */
+  function enableEditing() {
+    if (isEditing) return;
+    isEditing = true;
+    editToggle.innerHTML = '✓';
+    editToggle.style.background = 'rgba(54,19,82,0.15)';
+    editToggle.style.opacity = '1';
+    editToggle.style.pointerEvents = 'auto';
+
+    document.querySelectorAll(EDITABLE_SEL).forEach(function(el) {
+      el.setAttribute('contenteditable', 'true');
+      el.style.outline = '1.5px dashed rgba(54,19,82,0.18)';
+      el.style.outlineOffset = '3px';
+      el.style.minHeight = '1em';
+    });
+
+    observer.observe(document.getElementById('stage'), {
+      childList: true, subtree: true, characterData: true
+    });
+  }
+
+  function disableEditing() {
+    if (!isEditing) return;
+    isEditing = false;
+    observer.disconnect();
+    editToggle.innerHTML = '✏';
+    editToggle.style.background = 'rgba(54,19,82,0.08)';
+
+    document.querySelectorAll('[contenteditable]').forEach(function(el) {
+      el.removeAttribute('contenteditable');
+      el.style.outline = '';
+      el.style.outlineOffset = '';
+    });
+  }
+
+  editToggle.addEventListener('click', function() {
+    isEditing ? disableEditing() : enableEditing();
+  });
+  hotzone.addEventListener('click', function() {
+    isEditing ? disableEditing() : enableEditing();
+  });
+
+  /* ── Gem til disk ── */
+  async function saveToFile() {
+    /* Midlertidigt fjern contenteditable inden HTML serialiseres */
+    var edited = document.querySelectorAll('[contenteditable]');
+    edited.forEach(function(el) { el.removeAttribute('contenteditable'); el.style.outline = ''; el.style.outlineOffset = ''; });
+
+    /* Fjern save-bar offset inden serialisering */
+    var stage = document.getElementById('stage');
+    var origTop = stage.style.top;
+    stage.style.top = '0';
+
+    var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    /* Gendan */
+    stage.style.top = origTop;
+    if (isEditing) {
+      edited.forEach(function(el) {
+        el.setAttribute('contenteditable', 'true');
+        el.style.outline = '1.5px dashed rgba(54,19,82,0.18)';
+        el.style.outlineOffset = '3px';
+      });
+    }
+
+    if (window.showSaveFilePicker) {
+      try {
+        if (!fileHandle) {
+          fileHandle = await window.showSaveFilePicker({
+            suggestedName: 'ybusiness-dashboard.html',
+            types: [{ description: 'HTML-fil', accept: { 'text/html': ['.html'] } }]
+          });
+        }
+        var writable = await fileHandle.createWritable();
+        await writable.write(html);
+        await writable.close();
+        clearDirty();
+        var orig = saveBtn.textContent;
+        saveBtn.textContent = 'Gemt ✓';
+        setTimeout(function() { saveBtn.textContent = orig; }, 2000);
+      } catch (err) {
+        if (err.name !== 'AbortError') downloadFallback(html);
+      }
+    } else {
+      downloadFallback(html);
+    }
+  }
+
+  function downloadFallback(html) {
+    var blob = new Blob([html], { type: 'text/html' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ybusiness-dashboard.html';
+    a.click();
+    clearDirty();
+  }
+
+  saveBtn.addEventListener('click', saveToFile);
+
+  discardBtn.addEventListener('click', function() {
+    if (confirm('Kassér alle uregemte ændringer og genindlæs?')) {
+      location.reload();
+    }
+  });
+
+  /* Ctrl/Cmd+S */
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+      e.preventDefault();
+      if (isDirty) saveToFile();
+    }
+    /* E-tast toggle */
+    if ((e.key === 'e' || e.key === 'E') && !e.target.getAttribute('contenteditable')) {
+      isEditing ? disableEditing() : enableEditing();
+    }
+  });
+
+  /* Resize — gentilpas med evt. save-bar offset */
+  window.addEventListener('resize', rescaleStage);
+}());
+</script>
+</body>
+</html>
