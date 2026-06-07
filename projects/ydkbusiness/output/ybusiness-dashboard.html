@@ -164,7 +164,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   cursor: pointer; display: flex; flex-direction: column;
   justify-content: space-between;
   transition: background 0.18s ease, transform 0.1s cubic-bezier(0.2, 0, 0, 1);
-  position: relative; overflow: hidden;
+  position: relative; overflow-y: auto;
 }
 .hub-tile::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
@@ -252,7 +252,11 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1px; background: var(--line);
 }
-.col { background: var(--card); padding: 40px 48px; overflow: hidden; position: relative; }
+.col { background: var(--card); padding: 40px 48px; overflow-y: auto; position: relative; }
+.col::-webkit-scrollbar { width: 4px; }
+.col::-webkit-scrollbar-track { background: transparent; }
+.col::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+.col::-webkit-scrollbar-thumb:hover { background: var(--accent-30); }
 
 /* === ANNOTATION BOXES === */
 .annotation-box {
