@@ -1118,7 +1118,6 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   var current = 'hub';
   function navigate(id) {
     if (!id || id === current) return;
-    if (isEditing) return;
     document.getElementById(current).classList.remove('active');
     var to = document.getElementById(id);
     if (!to) return;
@@ -1135,6 +1134,15 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
       item.classList.toggle('nav-active', item.getAttribute('data-target') === id);
     });
     current = id;
+    /* Aktiver contenteditable på ny slide hvis redigering er aktiv */
+    if (isEditing) {
+      document.querySelectorAll(EDITABLE_SEL).forEach(function(el) {
+        el.setAttribute('contenteditable', 'true');
+        el.style.outline = '1.5px dashed rgba(54,19,82,0.25)';
+        el.style.outlineOffset = '3px';
+        el.style.cursor = 'text';
+      });
+    }
   }
   document.querySelectorAll('[data-target]').forEach(function (el) {
     el.addEventListener('click', function () { navigate(this.getAttribute('data-target')); });
@@ -1181,7 +1189,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
   var saveBarLabel = document.createElement('span');
   saveBarLabel.style.cssText = 'font-family:Schibsted Grotesk,sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);';
-  saveBarLabel.textContent = 'Uregemte ændringer — Cmd+S eller klik Gem';
+  saveBarLabel.textContent = 'Ændringer registreret — gem samlet når du er klar';
 
   var saveBarRight = document.createElement('div');
   saveBarRight.style.cssText = 'display:flex;gap:10px;align-items:center;';
@@ -1196,7 +1204,6 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   saveBtn.addEventListener('mousedown', function() { this.style.transform = 'scale(0.96)'; });
   saveBtn.addEventListener('mouseup',   function() { this.style.transform = ''; });
 
-  saveBarRight.appendChild(discardBtn);
   saveBarRight.appendChild(saveBtn);
   saveBar.appendChild(saveBarLabel);
   saveBar.appendChild(saveBarRight);
@@ -1262,7 +1269,6 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
   /* ── Aktiver / deaktiver redigering ── */
   function enableEditing() {
-    if (isEditing) return;
     isEditing = true;
     editToggle.innerHTML = '✓&nbsp;Færdig';
     editToggle.style.background = '#22a06b';
