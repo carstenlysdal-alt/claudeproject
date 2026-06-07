@@ -1118,6 +1118,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   var current = 'hub';
   function navigate(id) {
     if (!id || id === current) return;
+    if (isEditing) return;
     document.getElementById(current).classList.remove('active');
     var to = document.getElementById(id);
     if (!to) return;
