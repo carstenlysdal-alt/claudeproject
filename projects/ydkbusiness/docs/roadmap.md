@@ -4,7 +4,7 @@
 
 PM-engagement løber 1. juni – 30. september 2026.
 3 effektive arbejdsmåneder: juni, august, september. Juli er sommerferie — PM er ikke tilgængelig.
-Soft launch: 1. oktober 2026. Nyhedsmotoren er i drift. PM-leverancerne aktiverer og konfigurerer platformen.
+Launch: 1. oktober 2026. Nyhedsmotoren er i drift. PM-leverancerne aktiverer og konfigurerer platformen.
 
 **Kritisk konsekvens af juli-ferie:** Juni-leverancerne skal pakkes så Tech Lead kan eksekvere selvstændigt hele juli uden PM-sparring. Ufuldstændige leverancer ved udgangen af juni = stilstand i juli = forsinkelse af 1. oktober.
 
@@ -18,7 +18,7 @@ Y Business er ét produkt på en bredere platform. Nedenstående milepæle tilh�
 |---|---|---|
 | Y.dk internal soft launch | 10. juni 2026 | Tech Lead + Redaktion |
 | Y.dk public launch (fri adgang + annoncer) | 10. august 2026 | CEO + Commercial Lead |
-| **Y Business launch** | **1. oktober 2026** | **PM + Tech Lead** |
+| **Y Business launch (invited beta)** | **1. oktober 2026** | **PM + Tech Lead** |
 | Paywall live – Private & Business | 1. november 2026 | Tech Lead + Commercial Lead |
 | Y Rails – full product launch | 1. december 2026 | Tech Lead |
 
@@ -50,13 +50,14 @@ Hvad PM leverer hvornår, og hvem der låses op af det.
 | 1-2 | Supertrends-møde: tre tekniske afklaringer med Lars Tvede | PM + Tech Lead | ✓ Done 3. juni — se output/supertrends-moedereferat.md |
 | 2-3 | Redaktionelt koncept (kilder, vinkler, outputformat, produktionsarkitektur) | PM + Chefredaktør | Tech-konfiguration af motor |
 | 3-4 | Commercial Lead briefet: acquisition-budget og kanalvalg | PM + Commercial Lead | GTM-plan |
+| 3-4 | Behovsafdækning igangsat: møder med SMVdanmark, Dansk Erhverv, DI, IT-Branchen, Landbrug & Fødevarer og TEKNIQ — validerer behov, identificerer beta-kandidater og lægger fundament for kommercielle aftaler | PM + Commercial Lead | Beta-rekruttering og partnerkanaler |
 | 4 | Features spec v1.0 — final (lukker åbne punkter fra Supertrends-møde) | PM + Tech Lead | Design og build |
 | 4 | Konceptdokument — final version til stakeholders | PM | Stakeholder-alignment |
 
 **Juni-milestone:** Redaktionelt koncept + features spec v1.0 afleveret til tech-teamet senest 30. juni.
 
-**Tre beslutninger der SKAL ud af ledelsesmødet:**
-1. AI-paradoks — præcist sprogbrug i UI og marketing (blokerer al kommunikation og design)
+**Tre beslutninger, der SKAL afklares i fællesskab:**
+1. AI-kommunikation — præcist sprogbrug i UI og marketing. Formlen "AI producerer, mennesker verificerer" er bekræftet retning — vi afklarer konkret implementering i UI og kanalerne (blokerer design og kommunikation)
 2. Tier-struktur — Basis vs. Pro, hvad der er i hvilken pakke, prisniveau
 3. Produktgodkendelse — CEO bekræfter scope og retning
 
@@ -74,7 +75,7 @@ Hvis redaktionelt koncept og features spec v1.0 ikke er fuldt pakket ved udgange
 
 ---
 
-### August — Design og tech-spec
+### August — Design og build (start)
 
 **Forudsætning:** Designer-ressource identificeret inden august. Ikke opfyldt = august-leverancer i fare.
 
@@ -85,18 +86,20 @@ Hvis redaktionelt koncept og features spec v1.0 ikke er fuldt pakket ved udgange
 | 3-4 | Teknologisk platform-spec (arkitektur, Supertrends-integration, skalering) | PM + Tech Lead | Backend-build |
 | 3-4 | Commercial Lead: acquisition-budget bekræftet, kanalvalg besluttet | PM + Commercial Lead | GTM-eksekvering |
 | 4 | Stakeholder-præsentation: concept + design + tech + GTM | PM | Go/no-go beslutning |
+| 4+ | Frontend-build påbegyndes — fortsætter ind i september | Tech Lead + Designer | Launch 1. oktober |
 
-**August-milestone:** Go/no-go fra ledelsen senest 31. august.
+**August-milestone:** Go/no-go bekræftet senest 31. august. Build er i gang.
 
 ---
 
-### September — Launch-forberedelse
+### September — Build (afslutning) og launch-forberedelse
 
-Launch er 1. oktober. September har nul buffer — alle leverancer skal holde.
+Launch er 1. oktober. September har nul buffer — alle leverancer skal holde. Build fra august fortsætter i september parallelt med launch-forberedelse.
 
 | Uge | Leverance | Ejer | Note |
 |---|---|---|---|
 | 1 | Launch-plan og GTM-brief færdig | PM + Commercial Lead | Acquisition-strategi klar til eksekvering |
+| 1-2 | Frontend-build færdiggøres — kritiske features til launch | Tech Lead + Designer | Parallelt med launch-forberedelse |
 | 1-2 | Beta-test: 10-20 udvalgte SMV-ejere inviteret og onboardet | PM + Tech Lead | Kvalitativ validering inden launch |
 | 3 | Justeringer baseret på beta-feedback implementeret | PM + Tech Lead | Kun kritiske fixes — ikke ny funktionalitet |
 | 4 | Platform klar til 1. oktober. Overlevering til drift | PM | PM-engagement afsluttet |
@@ -109,7 +112,7 @@ Launch er 1. oktober. September har nul buffer — alle leverancer skal holde.
 
 Hvad der er med hvornår — og hvad der afventer næste fase.
 
-### 1. oktober 2026 — Soft launch (invited beta)
+### 1. oktober 2026 — Launch (invited beta)
 
 **Hvad er med:**
 - Personaliseret nyhedsfeed + morgenbrief (tekst + lyd)
@@ -165,8 +168,8 @@ Paywall aktiveres 1. november for både Private og Business. Y Business-subscrib
 
 | Afhængighed | Risiko | Mitigation |
 |---|---|---|
-| Ledelsesmøde uge 1 juni — tre beslutninger skal ud | Forsinkelse her forsinker hele kæden | Book mødet nu. Send beslutningsdokument som pre-read. |
-| Supertrends-møde med Lars Tvede — tre tech-spørgsmål | Features spec v1.0 kan ikke lukkes uden svar | Book som separat møde, ikke "parallel aktivitet" |
+| Fælles afklaringsmøde uge 1 juni — tre beslutninger skal ud | Forsinkelse her forsinker hele kæden | Book mødet nu. Send beslutningsdokument som pre-read. |
+| Supertrends — Jens/Supertrends undersøger nu konkret hvad platformen kan levere til dansk SMV-segment | Features spec v1.0 lukkes når kapabilitetsrapport foreligger | Opfølgende teknisk møde med Tech Lead og Lars Tvede |
 | Designer ikke identificeret | August-leverancer i fare | CEO afklarer ressource inden udgangen af juni |
 | Redaktionelt koncept → tech-konfiguration | Tech kan ikke konfigurere motor uden det | Lever senest 30. juni |
 | Commercial Lead involveres for sent | GTM-brief i september = for lidt tid til acquisition | Bring Commercial Lead ind i august-præsentation |
@@ -178,7 +181,7 @@ Paywall aktiveres 1. november for både Private og Business. Y Business-subscrib
 
 | Risiko | Sandsynlighed | Konsekvens | Handling |
 |---|---|---|---|
-| AI-paradoks-beslutning forsinkes | Medium | Blokerer kommunikation og UI-sprogbrug | Tag det som punkt 1 på ledelsesmøde |
+| AI-kommunikationsbeslutning forsinkes | Medium | Blokerer UI-sprogbrug og kanalimplementering | Tag det som punkt 1 på fælles afklaringsmøde |
 | Juli: Tech Lead mangler input og stopper | Høj | Motor ikke konfigureret til august | Juni-leverancerne skal være selveksekverende — ingen åbne spørgsmål |
 | Beta-feedback kræver større justeringer | Medium | Forsinker 1. oktober | September har nul buffer — kun kritiske fixes går ind |
 | 1.500 abonnenter kræver acquisition-investering der ikke er budgetteret | Ukendt | Mål nås ikke år 1 | Afklar budget med Commercial Lead i august |
@@ -193,7 +196,7 @@ Paywall aktiveres 1. november for både Private og Business. Y Business-subscrib
 | Features spec | Committed — leveres juni |
 | UI-wireframes | Committed — leveres august |
 | Tech platform-spec | Committed — leveres august |
-| Soft launch | Committed — 1. oktober 2026 |
+| Launch (invited beta) | Committed — 1. oktober 2026 |
 | Fuld lancering | Directional — november/december 2026 |
 | 1.500 Business + 1.500 Private subscribers | Committed — 1. november 2026 (paywall) |
 | Video-format | Speculative — afhænger af motor |

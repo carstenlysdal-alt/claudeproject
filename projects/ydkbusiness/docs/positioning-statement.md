@@ -2,7 +2,7 @@
 
 ## Statement
 
-For SMV-ejere og erhvervsledere i Danmark der bruger tid og penge på at sy et kludetæppe af separate tjenester sammen, er Y.dk Business en AI-drevet erhvervsplatform der leverer nyheder, markedsovervågning, trends, B2B-briefs og lukket abonnentfællesskab i ét abonnement til 5.000 kr./år. I modsætning til Finans.dk og Retriever/Meltwater kombineret giver Y.dk Business AI-produceret, redaktionelt verificeret intelligence fra 5.000 kilder — samlet på én platform til under en femtedel af prisen.
+For SMV-ejere og erhvervsledere i Danmark, der bruger tid og penge på at sy et kludetæppe af separate tjenester sammen, er Y.dk Business en AI-drevet erhvervsplatform, der leverer nyheder, markedsovervågning, trends, B2B-briefs, leadgenerering og lukket abonnentfællesskab i ét abonnement til 5.000 kr./år. I modsætning til Finans.dk og Retriever/Meltwater kombineret giver Y.dk Business AI-produceret, redaktionelt verificeret intelligence fra 5.000 kilder — samlet på én platform til under en femtedel af prisen.
 
 ---
 
@@ -40,12 +40,15 @@ Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikk
 | Google Alerts + RSS | 0 | Massiv støj, ingen syntese, ingen dækning bag betalingsmure |
 | Ingen struktureret løsning | 0 | Størst segment — ubesat kategori |
 
-**Validerede stack-omkostninger per segment (juni 2026):**
-- SMV 5-50 ansatte: 23.000–44.000 kr./år + 20.000–40.000 i skjult tidstab
-- SMV 50-150 ansatte: 120.000–180.000 kr./år (ekskl. integration)
-- 150+ ansatte: 250.000–400.000+ kr./år
+**Sammenligning — virksomhedsabonnement (company-level):**
+- Finans.dk: 4.500–5.500 kr./år — nyheder uden overvågnings- og BI-lag
+- Retriever: 15.000–50.000 kr./år — overvågning uden redaktionel nyhedsdækning
+- Meltwater: 50.000–140.000 kr./år — enterprise-prissat, ingen nyheder, intet community
+- Finans.dk + Retriever kombineret: 20.000–55.000 kr./år minimum
 
-**Y.dk Business: 5.000 kr./år** — nyheder, overvågning, trends og briefs i ét abonnement. Ingen silo. Ingen videnskoordinator. Ingen Frankenstein-stack.
+**Y.dk Business: 5.000 kr./år** — nyheder, overvågning, trends, briefs og leadgenerering i ét abonnement. Billigere end Finans.dk alene — og med fem ekstra lag. Ingen silo. Ingen videnskoordinator. Ingen Frankenstein-stack.
+
+*Note: Omkostningstal for virksomheder med 50+ ansatte der skalerer per bruger (120.000–180.000 kr./år) er ikke relevant sammenligning — Y Business er ét virksomhedsabonnement uanset medarbejderantal.*
 
 ---
 

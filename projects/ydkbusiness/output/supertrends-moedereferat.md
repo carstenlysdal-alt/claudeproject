@@ -1,13 +1,15 @@
 # Supertrends — Mødereferat og arkitekturkonklusioner
 **Dato:** 3. juni 2026
 **Deltagere:** PM + Supertrends
-**Status:** Arbejdsdokument — afventer rammeaftale
+**Status:** Aktiv partner bekræftet — teknisk undersøgelse igangsat
 
 ---
 
 ## Konklusion øverst
 
 Supertrends er dybere integreret i Y.dk Business end antaget inden mødet. De leverer ikke blot data via API — de leverer CMS, datastruktur og overvågningsmotor. Valg A er bekræftet: Y.dk Business bygger oven på Supertrends' infrastruktur. Y.dk's tekniske ansvar er frontend, interface og kildekobling. Supertrends er rygraden.
+
+Partnerbrief er sendt efter mødet. Jens/Supertrends undersøger nu konkret, hvad platformen kan levere til dansk SMV-segment — kilder, motorkonfiguration og kapabiliteter. Rapport afventes inden features spec v1.0 lukkes.
 
 ---
 
@@ -62,9 +64,10 @@ Briefs automatiseres af brugerne selv ud fra præferencer i alle lag:
 
 | Punkt | Ansvarlig | Deadline | Note |
 |---|---|---|---|
-| Rammeaftale — prissætning | CEO + PM + Supertrends | Afventer kildeaftale | Fee, procentdel eller hybrid — besluttes efter kilder og bidrag er defineret |
+| Kapabilitetsrapport — hvad Supertrends kan levere til dansk SMV-segment | Jens/Supertrends | Igangsat juni 2026 | Kilder, motorkonfiguration og kapabiliteter — afventes inden features spec v1.0 lukkes |
+| Rammeaftale — prissætning | CEO + PM + Supertrends | Afventer kildestruktur | Fee, procentdel eller hybrid — besluttes efter kilder og bidrag er defineret |
 | Kildekobling — nyheder | Tech Lead + PM | Afklares juli | Datastruktur på plads, kobling skal bygges |
-| Frontend og interface | Tech Lead | Roadmap august | Y.dk's ansvar — dette er udvikling |
+| Frontend og interface | Tech Lead | Roadmap august–september | Y.dk's ansvar — dette er udvikling |
 | Landing page for premium-kunder | Tech Lead + PM | Roadmap august | Konfigureres som primært brugerværktøj |
 | On-demand briefs (ad hoc, 60 sek.) | PM + Tech Lead | Afklares inden kravspec v1.0 | Kræver sandsynligvis separat LLM-lag — ikke dækket af præferencebaseret automatisering |
 

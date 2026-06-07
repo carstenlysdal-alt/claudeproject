@@ -9,7 +9,7 @@
 
 ## Scope og afgrænsning
 
-### Inkluderet i fase 1 (soft launch oktober 2026)
+### Inkluderet i fase 1 (Launch — invited beta, oktober 2026)
 
 - Personaliseret nyhedsfeed og morgenbrief (tekst + lyd)
 - Markedsovervågning med regulatory-kategori
@@ -31,15 +31,15 @@
 
 ## Adgangsstruktur — tier-model
 
-Eksakt prisstruktur afklares med ledelsen i juni. Kravspecifikationen opererer med to lag:
+Eksakt prisstruktur afklares i fællesskab i juni. Kravspecifikationen opererer med to lag:
 
 | Tier | Arbejdsnavn | Indhold | Prisindikation |
 |---|---|---|---|
 | Basis | Y.dk Business Basis | Nyhedsfeed + morgenbrief | 50 DKK/md |
-| Fuld | Y.dk Business Pro | Alle fem lag inkl. community | 500 DKK/md / 5.000 DKK/år |
+| Fuld | Y.dk Business Pro | Alle seks lag inkl. community og leadgenerering | 500 DKK/md / 5.000 DKK/år |
 
-**Regel:** Intet indhold vises bag betalingsmur uden at brugeren har set eksempel på produktet.
-Onboarding må ikke kræve betaling inden brugeren har oplevet mindst ét morgenbrief.
+**Regel:** Intet indhold vises bag betalingsmur, uden at brugeren har set eksempel på produktet.
+Onboarding må ikke kræve betaling, inden brugeren har oplevet mindst ét morgenbrief.
 
 ---
 
@@ -52,7 +52,7 @@ Onboarding må ikke kræve betaling inden brugeren har oplevet mindst ét morgen
 - Minimum 5 nye feed-elementer pr. dag for enhver gyldig brancheprofil
 - To indholdsspor kombineres i feedet:
   - **Originalt indhold:** Egne historier og analyser produceret af redaktionen
-  - **Aggregeret indhold:** Nyheder fra nationale og internationale medier, bureauer (Reuters, AP, Bloomberg m.fl.), organisationer og virksomheder — AI-sorteret og bearbejdet med redaktionel vinkel
+  - **Aggregeret indhold:** Nyheder fra nationale og internationale medier, bureauer (Reuters, AP, Bloomberg m.fl.), organisationer og virksomheder — AI-sorteret og bearbejdet med redaktionel vinkel. "AI producerer, mennesker verificerer" — alle aggregerede nyheder passerer redaktionelt verificeringslag
 - Redaktionel vinkel: modpol og nuance som standard — ikke neutralt referat
 - Sortering: relevans (personalisering) som standard; dato som alternativ
 
@@ -96,8 +96,8 @@ Onboarding må ikke kræve betaling inden brugeren har oplevet mindst ét morgen
 | Morgenbrief (lyd) | — | ✓ |
 | Nyhedsfeed (begrænset) | ✓ (5/dag) | ✓ (ubegrænset) |
 | Fuld artikelvisning | — | ✓ |
-| AI & tech-sektion | — | ✓ |
-| C-level intelligence (analyser, research, opinion, trends) | — | ✓ |
+| AI & tech-sektion (Pro + potentielt sponsoreret af IT-Branchen m.fl.) | — | ✓ |
+| C-level intelligence — national og international dækning (Reuters, AP, Bloomberg m.fl.) | — | ✓ |
 
 ---
 
@@ -467,7 +467,7 @@ Brugeren definerer tidsrum uden push-notifikationer. Standard: ingen stille time
 
 Disse krav er ikke forhandlingsbare og gælder på tværs af alle features:
 
-1. **AI synliggøres ikke i brugerflade.** Ingen "AI-genereret", ingen AI-ikoner, ingen prompt-sprog i UI. Back-end motor — ikke front-end identitet.
+1. **AI kommunikeres aktivt — ikke skjult.** Y's redaktionelle retning: "Vi er fronten af AI i mediebranchen." Formlen er "AI producerer, mennesker verificerer" — skalaen kommer fra teknologien, troværdigheden fra det redaktionelle lag. AI-ikonet og "Powered by Supertrends"-branding vises der, hvor det er relevant. Barrieren hos de 53%, der er utrygge ved AI-journalistik, håndteres med kompetent kommunikation om verificeringsprocessen — ikke med tavshed om AI.
 
 2. **Produktet kommunikeres som virksomhedsudgift.** Checkout, faktura og onboarding bruger altid firmasprog: "Tilmeld din virksomhed" — ikke "Tilmeld dig selv". Faktura udstedes til virksomhed, ikke person.
 
@@ -517,7 +517,7 @@ Opdateret efter platformsundersøgelse maj 2026. Spørgsmål der er besvaret af 
 
 ---
 
-## Go/no-go-kriterier for soft launch (oktober 2026)
+## Go/no-go-kriterier for launch — invited beta (oktober 2026)
 
 Fase 1 launcher kun hvis samtlige nedenstående er opfyldt:
 
@@ -537,5 +537,5 @@ Fase 1 launcher kun hvis samtlige nedenstående er opfyldt:
 | Afklaring Q1–Q5 med Tech Lead (Supertrends-kapabilitet) | PM + Tech Lead | 30. juni 2026 |
 | Afklaring Q6 (community-platform) | Tech Lead | 30. juni 2026 |
 | Afklaring Q8 (app vs. PWA) | Tech Lead + PM | 30. juni 2026 |
-| Tier-struktur og prissætning besluttes | CEO + Commercial Lead | 30. juni 2026 |
+| Tier-struktur og prissætning afklares | CEO + Commercial Lead + PM | 30. juni 2026 |
 | Kravspec v1.0 — final version | PM | 15. juli 2026 |

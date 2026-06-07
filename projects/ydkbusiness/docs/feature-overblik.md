@@ -86,8 +86,8 @@ To indholdsspor:
 **Premium-indhold bag Pro-adgangsvæg**
 To dedikerede sektioner med adgang kun for Pro-abonnenter:
 
-- **AI & tech for erhverv** — dybdegående dækning af AI og teknologi med direkte erhvervsrelevans
-- **C-level intelligence** — strategiske analyser, datadrevet research, credibel ekspertopinion og trendrapporter til topledelsen. Indhold der kræver fordybelse, ikke scanning. Rettet mod CEO, COO, CFO og seniorledere i SMV og mellemstore virksomheder.
+- **AI & tech for erhverv** — dybdegående dækning af AI og teknologi med direkte erhvervsrelevans. Dedikeret Pro-sektion med potentiale for sponsorsamarbejde med IT-Branchen og andre brancheorganisationer, der har særlig faglig adgang til netop dette stof. Sponsormodellen giver organisationen redaktionelt medejerskab af en sektion, som deres medlemmer har direkte interesse i — og Y Business en supplerende indtægtskilde ud over abonnementsmodellen.
+- **C-level intelligence** — strategiske analyser, datadrevet research, credibel ekspertopinion og trendrapporter til topledelsen med national og international dækning fra Reuters, AP, Bloomberg m.fl. Indhold, der kræver fordybelse, ikke scanning. Rettet mod CEO, COO, CFO og seniorledere i SMV og mellemstore virksomheder.
 
 **Brugerflow:**
 ```
@@ -160,7 +160,7 @@ Søg emne → Generer brief → Læs / lyt → Download / del
 
 ## Personalisering — tværgående lag
 
-Personalisering er det der binder de fire lag sammen og adskiller Y.dk Business
+Personalisering er det, der binder de seks lag sammen og adskiller Y.dk Business
 fra et generisk erhvervsmedie.
 
 **Onboarding-profil (opsættes ved tilmelding):**
@@ -241,9 +241,8 @@ på tværs af brancher. Adgang kun for betalende abonnenter.
 
 ## Designkrav fra markedsvalidering
 
-**AI må aldrig fremgå i brugerflade eller kommunikation.**
-53% af danskerne er utrygge ved AI-journalistik. AI er back-end motor — ikke front-end identitet.
-Produktet kommunikerer redaktionel kvalitet og menneskelig stemme.
+**AI kommunikeres aktivt som styrke — ikke skjult.**
+Y's redaktionelle linje: "Vi er fronten af AI i mediebranchen. Al produktion er baseret på AI, men mennesker styrer processen." Formlen er "AI producerer, mennesker verificerer." AI er en del af produktidentiteten og kommunikeres som sådan. 53% af danskerne er utrygge ved AI-journalistik — den barriere håndteres med kompetent kommunikation koblet til verificeringsprocessen, ikke med tavshed. "Powered by Supertrends" vises på relevante komponenter.
 
 **Produktet kommunikeres altid som virksomhedsudgift.**
 Betalingsvillighed for personlige nyheder (35-54 år): 11-12%.

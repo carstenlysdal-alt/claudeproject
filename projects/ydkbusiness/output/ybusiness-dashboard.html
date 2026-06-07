@@ -17,14 +17,14 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 .deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #FAFAF8; }
-.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; overflow: hidden; transform-origin: 0 0; }
 img, video, canvas, svg { max-width: 100%; max-height: 100%; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
 
 /* === SCREENS === */
 .screen {
   position: absolute; inset: 0;
-  width: 1920px; height: 1080px;
+  width: 1440px; height: 900px;
   overflow: hidden; display: block;
   visibility: hidden; opacity: 0;
   pointer-events: none;
@@ -156,7 +156,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 /* 4 tiles */
 .hub-tiles {
   flex: 1;
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(5, 1fr);
   gap: 1px; background: var(--line);
 }
 .hub-tile {
@@ -252,7 +252,67 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1px; background: var(--line);
 }
-.col { background: var(--card); padding: 40px 48px; overflow: hidden; }
+.col { background: var(--card); padding: 40px 48px; overflow: hidden; position: relative; }
+
+/* === ANNOTATION BOXES === */
+.annotation-box {
+  position: absolute;
+  background: #FFFBEA;
+  border: 1.5px solid rgba(180,140,20,0.35);
+  border-radius: 4px;
+  padding: 6px 28px 6px 6px;
+  min-height: 40px;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06);
+  cursor: default;
+}
+.annotation-box:focus-within {
+  outline: 2px solid rgba(180,140,20,0.45);
+  outline-offset: 1px;
+}
+/* textarea inde i boksen — altid skrivbar, uanset forældrens contenteditable */
+.annotation-textarea {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  font-family: 'Schibsted Grotesk', sans-serif;
+  font-size: 13px;
+  color: #44413C;
+  line-height: 1.55;
+  cursor: text;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.annotation-textarea::placeholder {
+  color: rgba(124,121,114,0.5);
+  font-style: italic;
+}
+.annotation-close {
+  position: absolute;
+  top: 4px; right: 6px;
+  background: none; border: none;
+  font-size: 14px; line-height: 1;
+  color: rgba(124,121,114,0.5);
+  cursor: pointer; padding: 1px 3px;
+  transition: color 0.15s;
+  z-index: 51;
+}
+.annotation-close:hover { color: #C43A49; }
+/* Drag preview ghost */
+.annotation-preview {
+  position: absolute;
+  border: 2px dashed rgba(54,19,82,0.35);
+  background: rgba(54,19,82,0.04);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 100;
+}
 
 /* === COMPONENTS === */
 .col-label {
@@ -279,13 +339,13 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 }
 .ibox.green .ibox-t { color: var(--green); }
 .ibox.amber .ibox-t { color: var(--amber); }
-.ibox-b { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink70); line-height: 1.65; }
+.ibox-b { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.65; }
 .ibox-b strong { color: var(--ink); font-weight: 600; }
 
 /* Checklist */
 .chk { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 7px; }
 .chk li {
-  font-family: var(--sans); font-size: 13px; font-weight: 400;
+  font-family: var(--sans); font-size: 14px; font-weight: 400;
   color: var(--ink70); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45;
 }
 .chk li::before { content: '✓'; color: var(--green); flex-shrink: 0; font-weight: 700; }
@@ -301,7 +361,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   border-bottom: 2px solid var(--line);
 }
 .tbl td {
-  padding: 12px 12px; font-family: var(--sans); font-size: 13px; font-weight: 400;
+  padding: 10px 12px; font-family: var(--sans); font-size: 13px; font-weight: 400;
   color: var(--ink70); border-bottom: 1px solid var(--line2);
   vertical-align: top; line-height: 1.4;
 }
@@ -327,7 +387,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   color: var(--accent); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 12px;
 }
 .rev-row {
-  font-family: var(--sans); font-size: 13px; font-weight: 400;
+  font-family: var(--sans); font-size: 14px; font-weight: 400;
   color: var(--ink70); line-height: 1.9; display: flex; justify-content: space-between;
 }
 .rev-row.tot {
@@ -362,7 +422,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   color: var(--accent); opacity: 0.2; line-height: 1; font-style: italic;
 }
 .drv-t { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
-.drv-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
+.drv-d { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
 
 /* AI options */
 .ai-opt {
@@ -382,7 +442,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   color: var(--muted); margin-bottom: 3px;
 }
 .ai-opt.rec .ai-t { color: var(--ink); }
-.ai-d { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--muted); line-height: 1.55; }
+.ai-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.55; }
 .ai-d strong { color: var(--accent); font-weight: 600; }
 .rec-badge {
   font-family: var(--mono); font-size: 9px; font-weight: 700;
@@ -402,7 +462,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   font-family: var(--mono); font-size: 10px; font-weight: 700;
   color: var(--accent); letter-spacing: 0.06em; padding-top: 1px;
 }
-.tl-t { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink70); line-height: 1.5; }
+.tl-t { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.5; }
 .tl-t strong { color: var(--ink); font-weight: 700; }
 
 /* Product layers */
@@ -417,7 +477,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   color: var(--accent); opacity: 0.45; padding-top: 2px;
 }
 .layer-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
-.layer-d { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--muted); line-height: 1.55; }
+.layer-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.55; }
 
 /* Scope grid */
 .scope-g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
@@ -432,7 +492,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .scope-box.out .scope-hl { color: var(--red); }
 .scope-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .scope-list li {
-  font-family: var(--sans); font-size: 12px; font-weight: 400;
+  font-family: var(--sans); font-size: 13px; font-weight: 400;
   color: var(--ink70); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
 }
 .scope-box.in  .scope-list li::before { content: '✓'; color: var(--green); font-weight: 700; }
@@ -444,7 +504,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   padding: 18px 22px; margin-bottom: 16px;
 }
 .risk-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 7px; }
-.risk p { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
+.risk p { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
 .risk p strong { color: var(--ink); font-weight: 600; }
 
 /* Page number */
@@ -453,6 +513,30 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   font-family: var(--mono); font-size: 10px; font-weight: 500;
   color: var(--line); letter-spacing: 0.1em; z-index: 10;
 }
+
+/* === SECTION NAV === */
+.dash-nav {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: stretch; height: 64px; gap: 0;
+}
+.dash-nav-item {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0 20px; display: flex; align-items: center;
+  cursor: pointer; position: relative; white-space: nowrap;
+  border: none; background: none;
+  transition: color 0.15s ease;
+}
+.dash-nav-item::after {
+  content: ''; position: absolute; bottom: 0; left: 20px; right: 20px;
+  height: 2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: center;
+  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.dash-nav-item:hover { color: var(--ink70); }
+.dash-nav-item:active { transform: scale(0.96); }
+.dash-nav-item.nav-active { color: var(--accent); }
+.dash-nav-item.nav-active::after { transform: scaleX(1); }
 
 /* === ANIMATIONS === */
 .screen.active .ani { animation: riseIn 0.5s cubic-bezier(0.22,0.61,0.36,1) both; }
@@ -497,14 +581,13 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   <div class="hub-body">
     <div class="hub-intro">
       <div class="hub-eyebrow">Ledelsespræsentation</div>
-      <div class="hub-h1">Business model, positionering & go-to-market<br>mod <em>soft launch oktober 2026</em></div>
-      <div class="hub-sub">Klik et fokusområde · Escape vender tilbage til oversigten · Genveje: tast 1–4</div>
+      <div class="hub-h1">Konceptet, modellen og vejen til <em>launch 1. oktober 2026</em></div>
     </div>
 
     <div class="hub-tiles">
       <div class="hub-tile" data-target="s-biz">
         <div>
-          <div class="tile-num">01 / 04</div>
+          <div class="tile-num">01 / 05</div>
           <div class="tile-h">Business model<br>& revenue</div>
           <div class="tile-pts">
             <div class="tile-pt">Ét produkt — to betalingsmodeller</div>
@@ -516,14 +599,28 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
         <div class="tile-cta">Åbn</div>
       </div>
 
+      <div class="hub-tile" data-target="s-prd">
+        <div>
+          <div class="tile-num">02 / 05</div>
+          <div class="tile-h">Produkt</div>
+          <div class="tile-pts">
+            <div class="tile-pt">6+ produktlag inkl. leadgenerering fra markedssignaler</div>
+            <div class="tile-pt">11+ offentlige API-endpoints (CVR, udbud, regulatory)</div>
+            <div class="tile-pt">Supertrends — aktiv partner, teknisk vurdering i gang</div>
+            <div class="tile-pt">Scope: inkluderet vs. ikke fase 1</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+
       <div class="hub-tile" data-target="s-pos">
         <div>
-          <div class="tile-num">02 / 04</div>
+          <div class="tile-num">03 / 05</div>
           <div class="tile-h">Markeds&shy;positionering</div>
           <div class="tile-pts">
-            <div class="tile-pt">SMV-segmentet er underservet af eksisterende medier</div>
-            <div class="tile-pt">4 konkurrenter analyseret: Børsen, Meltwater, LassoX</div>
-            <div class="tile-pt">Prisanker: 10× billigere end samlet alternativ</div>
+            <div class="tile-pt">SMV-segmentet er overset af eksisterende medier</div>
+            <div class="tile-pt">10 konkurrenter analyseret</div>
+            <div class="tile-pt">Prisanker: under en femtedel af Finans.dk + Retriever-stakken</div>
             <div class="tile-pt">AI-drevet erhvervsintelligens — ubesat kategori</div>
           </div>
         </div>
@@ -532,27 +629,27 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
       <div class="hub-tile" data-target="s-gtm">
         <div>
-          <div class="tile-num">03 / 04</div>
-          <div class="tile-h">Go-to-market<br>& distribution</div>
+          <div class="tile-num">04 / 05</div>
+          <div class="tile-h">Go-to-market<br>& roadmap</div>
           <div class="tile-pts">
             <div class="tile-pt">6 partnerorganisationer · 70.000+ virksomheder</div>
-            <div class="tile-pt">AI-paradoks: kommunikationsvalg A / B / C</div>
-            <div class="tile-pt">Soft launch Business: 1. oktober 2026</div>
-            <div class="tile-pt">Acquisition-pool: 25.000 daglige Y.dk-besøg</div>
+            <div class="tile-pt">AI kommunikeres aktivt som styrke</div>
+            <div class="tile-pt">Launch Y Business: 1. oktober 2026</div>
+            <div class="tile-pt">Roadmap: milepæle juni → november 2026</div>
           </div>
         </div>
         <div class="tile-cta">Åbn</div>
       </div>
 
-      <div class="hub-tile" data-target="s-prd">
+      <div class="hub-tile" data-target="s-ai" style="background:var(--accent-10); border-left: 3px solid var(--accent);">
         <div>
-          <div class="tile-num">04 / 04</div>
-          <div class="tile-h">Produkt<br>& roadmap</div>
+          <div class="tile-num" style="opacity:1; color:var(--accent);">05 / 05 · Særlig sektion</div>
+          <div class="tile-h" style="color:var(--accent);">AI & tech<br>for erhverv</div>
           <div class="tile-pts">
-            <div class="tile-pt">5 produktlag inkl. markedsovervågning</div>
-            <div class="tile-pt">11 offentlige API-endpoints (CVR, udbud, regulatory)</div>
-            <div class="tile-pt">Supertrends-integration — kritisk afhængighed</div>
-            <div class="tile-pt">Scope: inkluderet vs. ikke fase 1</div>
+            <div class="tile-pt">Dansk erhvervsliv i AI-transformation — Y dækker det</div>
+            <div class="tile-pt">Dedikeret Pro-sektion bag adgangsvæg</div>
+            <div class="tile-pt">Sponsormodel med IT-Branchen m.fl.</div>
+            <div class="tile-pt">Kommende USP — kommunikeres aktivt</div>
           </div>
         </div>
         <div class="tile-cta">Åbn</div>
@@ -563,7 +660,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
       <div class="stat-cell"><div class="stat-v">5.000 kr</div><div class="stat-l">Årsabonnement</div></div>
       <div class="stat-cell"><div class="stat-v">1.500</div><div class="stat-l">Virksomhedsmål år 1</div></div>
       <div class="stat-cell"><div class="stat-v">7,5M DKK</div><div class="stat-l">ARR ved målopfyldelse</div></div>
-      <div class="stat-cell"><div class="stat-v">Okt. 2026</div><div class="stat-l">Soft launch — Business</div></div>
+      <div class="stat-cell"><div class="stat-v">Okt. 2026</div><div class="stat-l">Launch — Y Business</div></div>
     </div>
   </div>
   <div class="pnum">Y Business · Intern · 2026</div>
@@ -578,12 +675,19 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   <div class="accent-bar"></div>
   <header class="dash-header">
     <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Forretningsmodel 2026</div></div>
-    <div class="dash-meta"><span class="dash-tag">CEO · Tech Lead · Commercial Lead</span><span class="dash-tag hi">Intern · Juni 2026</span></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item nav-active" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
+    </nav>
+
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
     <div class="sec-title">Business model & revenue</div>
-    <div class="sec-num">01 / 04</div>
+    <div class="sec-num">01 / 05</div>
   </div>
 
   <div class="sec-body">
@@ -596,7 +700,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
           <tr><td class="str">Binding</td><td>Løbende — ingen binding</td><td>Ét år ad gangen</td></tr>
           <tr><td class="str">Adgang</td><td colspan="2">Identisk — alle 5 produktlag for virksomheden</td></tr>
           <tr><td class="str">Markedsføring på Y.dk</td><td style="color:var(--muted); font-style:italic;">Ikke inkluderet</td><td class="hi">5.000 DKK inkluderet</td></tr>
-          <tr class="hl"><td class="str">Nettopris — årsplan</td><td colspan="2">Reelt 0 DKK for virksomheder der ønsker eksponering mod Y.dk's erhvervslæsere</td></tr>
+          <tr class="hl"><td class="str">Nettopris — årsplan</td><td colspan="2">Reelt 0 DKK for virksomheder, der ønsker eksponering mod Y.dk's erhvervslæsere</td></tr>
         </tbody>
       </table>
 
@@ -617,12 +721,12 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
       <div class="ibox">
         <div class="ibox-t">Virksomhedsløsning — ikke personalegode</div>
-        <div class="ibox-b">Y Business er et virksomhedsabonnement — virksomheden køber adgang som en driftsudgift, besluttet og betalt på virksomhedsniveau. Kommunikeres og prissættes som <strong>B2B-driftsomkostning der trækkes fra</strong> — ikke som personligt medieabonnement.</div>
+        <div class="ibox-b">Y Business er et virksomhedsabonnement — virksomheden køber adgang som en driftsudgift, besluttet og betalt på virksomhedsniveau. Kommunikeres og prissættes som <strong>B2B-driftsomkostning, der trækkes fra</strong> — ikke som personligt medieabonnement.</div>
       </div>
 
       <div class="ibox accent">
         <div class="ibox-t">Årsplan — markedsføringsbidrag</div>
-        <div class="ibox-b">Virksomheder der tegner årsplan modtager <strong>5.000 DKK i markedsføring på Y.dk's platforme</strong> svarende til abonnementsprisen. Årsplanen er reelt omkostningsneutral for virksomheder der ønsker eksponering.</div>
+        <div class="ibox-b">Virksomheder, der tegner årsplan, modtager <strong>5.000 DKK i markedsføring på Y.dk's platforme</strong> svarende til abonnementsprisen. Årsplanen er reelt omkostningsneutral for virksomheder, der ønsker eksponering.</div>
         <ul class="chk">
           <li>Årsplan = adgang + synlighed mod Y.dk's erhvervslæsere</li>
           <li>Markedsføringsbidrag svarer til abonnementsprisen</li>
@@ -632,7 +736,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
       <div class="ibox green">
         <div class="ibox-t" style="color:var(--green)">Prisankeret holder</div>
-        <div class="ibox-b"><strong>5.000 DKK/år</strong> er billigere end Finans.dk alene (4.500 DKK/år). Valideret stack-omkostning for SMV 50-150 ansatte: <strong>120.000–180.000 DKK/år</strong> på 5-8 separate værktøjer. ROI år 1: 60-75% omkostningsreduktion + 95% mindre manuelt arbejde.</div>
+        <div class="ibox-b"><strong>5.000 DKK/år</strong> er billigere end Finans.dk alene (4.500–5.500 DKK/år). Retriever starter ved 15.000 DKK/år — 3× Y Business. Meltwater starter ved 50.000 DKK/år — 10× Y Business. LassoX: 40.000–82.000 DKK/år. <strong>Ét virksomhedsabonnement på Y Business erstatter hele stakken til under en femtedel af prisen.</strong></div>
       </div>
     </div>
   </div>
@@ -648,17 +752,24 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   <div class="accent-bar"></div>
   <header class="dash-header">
     <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Forretningsmodel 2026</div></div>
-    <div class="dash-meta"><span class="dash-tag">CEO · Tech Lead · Commercial Lead</span><span class="dash-tag hi">Intern · Juni 2026</span></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item nav-active" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
+    </nav>
+
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
     <div class="sec-title">Markedspositionering</div>
-    <div class="sec-num">02 / 04</div>
+    <div class="sec-num">03 / 05</div>
   </div>
 
   <div class="sec-body">
     <div class="col ani">
-      <div class="col-label">Kategori & strukturelle drivere</div>
+      <div class="col-label">Kategori & dokumenterede fordele</div>
       <div class="cat-box">
         <div class="cat-lbl">Kategorien vi ejer</div>
         <div class="cat-txt">AI-drevet erhvervsintelligens til SMV-priser</div>
@@ -666,57 +777,103 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
       <div class="drv-list">
         <div class="drv">
           <div class="drv-n">1</div>
-          <div><div class="drv-t">SMV-segmentet er underservet</div><div class="drv-d">Børsen og Finans.dk skriver primært til kapitalmarkedet og C25. SMV-ejere betaler for et produkt der er skrevet til andre — og har ikke råd til dedikerede BI-løsninger som Meltwater eller Keystone.</div></div>
+          <div><div class="drv-t">Massivt og overset segment</div><div class="drv-d">99% af alle kommercielle selskaber i Danmark er SMV'er. De tegner sig for 50% af erhvervslivets samlede årsresultat og 39% af nettoinvesteringerne — og ingen eksisterende platform er bygget til dem.</div></div>
         </div>
         <div class="drv">
           <div class="drv-n">2</div>
-          <div><div class="drv-t">AI ændrer cost-strukturen fundamentalt</div><div class="drv-d">Supertrends-platformen crawler 5.000 kilder 24/7. Det muliggør en redaktionel dækning og et overvågningsprodukt der tidligere krævede stor redaktion eller enterprise-budget.</div></div>
+          <div><div class="drv-t">Smerten er konkret og målbar</div><div class="drv-d">SMV-ledere bruger 3,5 timer/uge på statsrelateret papirarbejde — 16,5 mia. DKK/år for segmentet. 35% finder nyhedsudbud overvældende. Fuld dækning via separate værktøjer koster 20.000+ kr./år.</div></div>
         </div>
         <div class="drv">
           <div class="drv-n">3</div>
-          <div><div class="drv-t">Mainstream-medier er ensrettede</div><div class="drv-d">Reelt og udækket behov for erhvervsindhold der systematisk afdækker modpolen og nuancen — ikke som redaktionel ideologi, men som konkret forretningsmæssig edge for den læser der vil vide mere end sine konkurrenter.</div></div>
+          <div><div class="drv-t">Betalingsvillighed er valideret</div><div class="drv-d">Frihedsbrevet: 5.000 abonnenter til break-even, 14,6M DKK bruttoindtægt 2023 — ren abonnementsmodel. Nordisk SaaS-prispræmie: +28% over US-baseline. Y Business er priset konservativt under nordisk gennemsnit.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">4</div>
+          <div><div class="drv-t">Partnerne er supplement — ikke konkurrenter</div><div class="drv-d">DI, Dansk Erhverv og SMVdanmark leverer compliance og lobbyisme. De leverer ikke markedsintelligens og konkurrentovervågning. Pitch: <em>"Jeres medlemmer bruger jer til compliance — Y Business giver dem det, I ikke kan."</em></div></div>
         </div>
       </div>
     </div>
 
     <div class="col ani">
       <div class="col-label">Konkurrentlandskab</div>
-      <table class="tbl">
+      <table class="tbl" style="font-size:13px;">
         <thead><tr><th>Platform</th><th>Pris/år</th><th>Hvad det er</th><th>Hvad det mangler</th></tr></thead>
         <tbody>
           <tr>
-            <td class="str">Børsen / Finans.dk</td>
-            <td class="hi" style="color:var(--red); font-style:normal; font-size:13px; font-family:var(--mono);">4.500+ DKK</td>
-            <td>Erhvervsnyheder skrevet til C25 og kapitalmarkedet</td>
-            <td>Overvågning, SMV-fokus, intelligence</td>
+            <td class="str" style="font-size:13px;">Finans.dk</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">4.500–5.500 DKK</td>
+            <td style="font-size:13px;">Erhvervsnyheder — digitalt fokus</td>
+            <td style="font-size:13px;">Overvågning, SMV-fokus, intelligence</td>
           </tr>
           <tr>
-            <td class="str">Meltwater / Retriever</td>
-            <td class="hi" style="color:var(--red); font-style:normal; font-size:13px; font-family:var(--mono);">24.000+ DKK</td>
-            <td>PR-medieovervågning til enterprise-kommunikation</td>
-            <td>Nyheder, redaktionel analyse</td>
+            <td class="str" style="font-size:13px;">Børsen</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">~7.200 DKK</td>
+            <td style="font-size:13px;">Erhvervsnyheder skrevet til C25 og kapitalmarkedet</td>
+            <td style="font-size:13px;">SMV-relevans, overvågning</td>
           </tr>
           <tr>
-            <td class="str">LassoX og lign.</td>
-            <td class="hi" style="color:var(--red); font-style:normal; font-size:13px; font-family:var(--mono);">12.000–36.000 DKK</td>
-            <td>Salgstriggers og leadkort på virksomhedsdata</td>
-            <td>Intelligence, branchetendenser</td>
+            <td class="str" style="font-size:13px;">Retriever</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">15.000–50.000+ DKK</td>
+            <td style="font-size:13px;">Medieovervågning, nordisk dækning</td>
+            <td style="font-size:13px;">Nyheder, redaktionel analyse</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Meltwater</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">50.000–140.000+ DKK</td>
+            <td style="font-size:13px;">Global medieovervågning til enterprise</td>
+            <td style="font-size:13px;">SMV-prissætning, nyheder, community</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Infomedia</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">10.000–50.000+ DKK</td>
+            <td style="font-size:13px;">Dansk/nordisk mediarkiv og brandtracking</td>
+            <td style="font-size:13px;">Min. 20 licenser — ingen nyheder eller intelligence</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Karnov Online</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">10.000–40.000+ DKK</td>
+            <td style="font-size:13px;">Dansk lovgivning og retspraksis</td>
+            <td style="font-size:13px;">Kun regulatorisk — bygget til jurister</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">LassoX</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">40.000–82.000 DKK</td>
+            <td style="font-size:13px;">Salgstriggers og leadkort på CVR-data</td>
+            <td style="font-size:13px;">Intelligence, branchetendenser, nyheder</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Watch Medier</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">2.500–6.500 DKK/medie</td>
+            <td style="font-size:13px;">Niche-branchenyheder — én titel per abonnement</td>
+            <td style="font-size:13px;">Separat abonnement per branche — fragmenteret</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">LinkedIn-feed</td>
+            <td style="color:var(--muted); font-family:var(--mono); font-size:10px;">0</td>
+            <td style="font-size:13px;">Netværk og algoritmisk nyhedsstrøm</td>
+            <td style="font-size:13px;">Ufiltreret, tidskrævende, ingen syntese</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Ingen struktureret løsning</td>
+            <td style="color:var(--muted); font-family:var(--mono); font-size:10px;">0</td>
+            <td style="font-size:13px;">Ad hoc-søgninger, nyhedsbreve, RSS</td>
+            <td style="font-size:13px;">Størst segment — ubesat kategori</td>
           </tr>
           <tr class="hl">
-            <td class="str" style="color:var(--accent); font-style:italic; font-family:var(--serif); font-size:14px;">Y Business</td>
+            <td class="str" style="color:var(--accent); font-style:italic; font-family:var(--serif); font-size:13px;">Y Business</td>
             <td class="hi">5.000 DKK</td>
-            <td>Nyheder + overvågning + trends + briefs — samlet</td>
+            <td style="font-size:13px;">Nyheder + overvågning + trends + briefs + leads — samlet</td>
             <td style="color:var(--line);">—</td>
           </tr>
         </tbody>
       </table>
       <div class="ibox" style="margin-top:8px;">
         <div class="ibox-t" style="font-size:13px;">Problemet vi løser</div>
-        <div class="ibox-b">En SMV-ejer bruger i dag tid og penge på: et erhvervsmedie der skriver til andre, et medieovervågningsværktøj prissat til enterprise, en algoritmisk LinkedIn-feed og ad hoc-søgninger uden systematisk overblik.<br><br><strong>Veldrevne SMV'er løser fragmenteringen ved at udpege en "videnskoordinator" — Y Business automatiserer det job.</strong></div>
+        <div class="ibox-b">En SMV-ejer bruger i dag tid og penge på: et erhvervsmedie, der skriver til andre, et medieovervågningsværktøj prissat til enterprise, en algoritmisk LinkedIn-feed og ad hoc-søgninger uden systematisk overblik.<br><br><strong>Veldrevne SMV'er løser fragmenteringen ved at udpege en "videnskoordinator" — Y Business automatiserer det job.</strong></div>
       </div>
     </div>
   </div>
-  <div class="pnum">Markedspositionering · 02/04</div>
+  <div class="pnum">Markedspositionering · 03/04</div>
 </div>
 
 
@@ -728,12 +885,19 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   <div class="accent-bar"></div>
   <header class="dash-header">
     <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Forretningsmodel 2026</div></div>
-    <div class="dash-meta"><span class="dash-tag">CEO · Tech Lead · Commercial Lead</span><span class="dash-tag hi">Intern · Juni 2026</span></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item nav-active" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
+    </nav>
+
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
-    <div class="sec-title">Go-to-market & distribution</div>
-    <div class="sec-num">03 / 04</div>
+    <div class="sec-title">Go-to-market & roadmap</div>
+    <div class="sec-num">04 / 04</div>
   </div>
 
   <div class="sec-body">
@@ -745,7 +909,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
           <tr><td class="str">SMVdanmark<span class="badge">Primær distributionspartner</span></td><td>SMV-ejere</td><td>15.000+</td><td>Tættest match på kernemålgruppen</td></tr>
           <tr><td class="str">Dansk Erhverv</td><td>Handel, service</td><td>18.000+</td><td>Beta-rekruttering, partneraftale, distribution</td></tr>
           <tr><td class="str">Dansk Industri (DI)</td><td>Produktion</td><td>10.000+</td><td>Beta-rekruttering, anbefaling, mediesamarb.</td></tr>
-          <tr><td class="str">IT-Branchen</td><td>Tech, tele</td><td>—</td><td>Distribution til tech-segment + AI-sektion</td></tr>
+          <tr><td class="str">IT-Branchen<span class="badge">Potentiel sponsor — AI & tech</span></td><td>Tech, tele</td><td>—</td><td>Distribution til tech-segment + potentiel sponsor af AI & tech-sektionen — særlig faglig adgang og troværdighed i segmentet</td></tr>
           <tr><td class="str">Landbrug & Fødevarer</td><td>Agri</td><td>—</td><td>Sektorspecifik distribution, regulatory</td></tr>
           <tr><td class="str">TEKNIQ Arbejdsgiverne</td><td>Byggeri</td><td>—</td><td>Bygge- og installationssektor</td></tr>
         </tbody>
@@ -754,43 +918,29 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
         <div style="font-family:var(--serif); font-size:28px; font-weight:700; color:var(--accent); font-style:italic;">70.000+</div>
         <div style="font-family:var(--sans); font-size:12px; color:var(--ink70); text-align:right; line-height:1.5;">virksomheder i samlet reach<br>uden kold outreach</div>
       </div>
-      <div style="font-family:var(--sans); font-size:12px; color:var(--muted); line-height:1.65;"><strong style="color:var(--ink70)">25.000 daglige Y.dk-besøg i september 2026</strong> — rekrutteringspool suppleret af LinkedIn, PR og partnerkanaler.</div>
+      <div style="font-family:var(--sans); font-size:12px; color:var(--amber); line-height:1.65;"><strong style="color:var(--amber)">Acquisition-pool — afventer tal fra Tech Lead</strong> · Daglige Y.dk-besøg i september 2026 er ikke bekræftet. Rekrutteringspool suppleres af LinkedIn, PR og partnerkanaler.</div>
     </div>
 
     <div class="col ani">
-      <div class="col-label">AI-paradoks — kommunikationsvalg (afventer beslutning)</div>
-      <div class="ai-opt rec">
-        <div class="ai-letter">A</div>
-        <div>
-          <div class="rec-badge">Anbefalet — fase 1</div>
-          <div class="ai-t">Teknologien er usynlig</div>
-          <div class="ai-d">AI nævnes aldrig i produkt, UI eller marketing. Kommunikationsplatform: "Redaktionelt verificeret erhvervsintelligens fra 5.000 kilder." <strong>Fase 1 af en planlagt kommunikationssekvens — ikke permanent hemmeligholdelse.</strong></div>
-        </div>
-      </div>
-      <div class="ai-opt">
-        <div class="ai-letter">B</div>
-        <div>
-          <div class="ai-t">Eje det selektivt</div>
-          <div class="ai-d">"Redaktionelt verificeret indhold fra 5.000 kilder" i UI. AI nævnes i presse og investor-kommunikation — ikke over for abonnenter. Kræver præcis kommunikationsdisciplin.</div>
-        </div>
-      </div>
-      <div class="ai-opt">
-        <div class="ai-letter">C</div>
-        <div>
-          <div class="ai-t">Fuld transparens</div>
-          <div class="ai-d">"AI producerer, mennesker verificerer" som eksplicit USP. 53% er utrygge ved AI-journalistik — kun 9% mener AI gør nyheder mere pålidelige (RUC 2024). Modvirker betalingsvillighed i SMV-segment i dag.</div>
-        </div>
+      <div class="col-label">AI-kommunikation</div>
+      <div class="ibox accent">
+        <div class="ibox-t">Formlen er enkel — og kommunikeres åbent</div>
+        <div class="ibox-b">AL produktion er baseret på AI, men mennesker styrer processen. AI er en del af Y's identitet og kommunikeres åbent — ikke skjult. Formlen: <strong>"AI producerer, mennesker verificerer."</strong><br><br>AI er en kommende USP. Y sætter nye standarder for brug af AI i medieproduktion og personaliseret distribution.</div>
       </div>
 
-      <div class="col-label" style="margin-top:22px; margin-bottom:10px;">Launch-faser</div>
+      <div class="col-label" style="margin-top:22px; margin-bottom:10px;">Roadmap — næste milepæle</div>
       <div class="tl">
-        <div class="tl-row"><div class="tl-d">Nu → Aug.</div><div class="tl-t"><strong>Discovery & build</strong> — Redaktionelt koncept (30/6), tech-konfiguration, design</div></div>
-        <div class="tl-row"><div class="tl-d">1. okt. 2026</div><div class="tl-t"><strong>Soft launch — Business</strong> · Mål: 1.500 virksomhedsabonnenter</div></div>
-        <div class="tl-row"><div class="tl-d">1. nov. 2026</div><div class="tl-t"><strong>Paywall — Private</strong> · Mål: 1.500 abonnenter · 50 DKK/md</div></div>
+        <div class="tl-row"><div class="tl-d" style="color:var(--green);">Nu · Juni</div><div class="tl-t"><strong style="color:var(--green);">Behovsafdækning hos partnere</strong> · Møder med SMVdanmark, Dansk Erhverv, DI, IT-Branchen, L&F og TEKNIQ igangsat. Formål: validere behov, identificere beta-kandidater og lægge fundament for kommercielle aftaler inden launch.</div></div>
+        <div class="tl-row"><div class="tl-d" style="color:var(--green);">Nu · Juni</div><div class="tl-t"><strong style="color:var(--green);">Supertrends teknisk vurdering</strong> · Jens/Supertrends kortlægger kapabiliteter, kildestruktur og motorkonfiguration for dansk SMV-segment.</div></div>
+        <div class="tl-row"><div class="tl-d">30. juni</div><div class="tl-t"><strong>Redaktionelt koncept klar</strong> · Chefredaktør + PM</div></div>
+        <div class="tl-row"><div class="tl-d">Aug.–sept.</div><div class="tl-t"><strong>Design & build</strong> · Designer identificeres senest 30/6</div></div>
+        <div class="tl-row"><div class="tl-d">1. okt. 2026</div><div class="tl-t"><strong>Launch — Y Business</strong> · Invited beta · Mål: 1.500 virksomhedsabonnenter</div></div>
+        <div class="tl-row"><div class="tl-d">1. nov. 2026</div><div class="tl-t"><strong>Paywall live — Business & Private</strong> · Kommercielle partneraftaler aktive · Private: 1.500 abonnenter · 50 DKK/md</div></div>
+        <div class="tl-row"><div class="tl-d">Fase 2</div><div class="tl-t">Team-abonnement · ML-personalisering · Ekspertovervågning</div></div>
       </div>
     </div>
   </div>
-  <div class="pnum">Go-to-market & distribution · 03/04</div>
+  <div class="pnum">Go-to-market & roadmap · 04/04</div>
 </div>
 
 
@@ -802,37 +952,48 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   <div class="accent-bar"></div>
   <header class="dash-header">
     <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Forretningsmodel 2026</div></div>
-    <div class="dash-meta"><span class="dash-tag">CEO · Tech Lead · Commercial Lead</span><span class="dash-tag hi">Intern · Juni 2026</span></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item nav-active" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
+    </nav>
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
-    <div class="sec-title">Produkt & roadmap</div>
-    <div class="sec-num">04 / 04</div>
+    <div class="sec-title">Produkt</div>
+    <div class="sec-num">02 / 05</div>
   </div>
 
   <div class="sec-body">
     <div class="col ani">
-      <div class="col-label">5 produktlag — soft launch oktober 2026</div>
+      <div class="cat-box" style="margin-bottom:20px;">
+        <div class="cat-lbl">Value proposition</div>
+        <div class="cat-txt">Ét abonnement erstatter din videnskoordinator — og hele kludetæppet af separate værktøjer.</div>
+      </div>
       <div class="layers">
-        <div class="layer"><div class="layer-n">01</div><div><div class="layer-t">Erhvervsnyheder</div><div class="layer-d">SMV-fokuseret nyhedsdækning med redaktionel vinkel. Originalt indhold + AI-bearbejdede nyheder. Tekst og lyd — morgenbrief kl. 06:00.</div></div></div>
-        <div class="layer"><div class="layer-n">02</div><div><div class="layer-t">C-level indhold & analyser</div><div class="layer-d">Dybdegående strategiske analyser, datadrevet research og trendrapporter. Indhold der kræver fordybelse — ikke 30 sekunders scanning.</div></div></div>
-        <div class="layer"><div class="layer-n">03</div><div><div class="layer-t">Markedsovervågning</div><div class="layer-d">11 direkte offentlige API-endpoints: regulatory, udbud, CVR, selskabsdata m.fl. Smart Scans — brugerstyrede notifikationer via Supertrends-infrastrukturen.</div></div></div>
-        <div class="layer"><div class="layer-n">04</div><div><div class="layer-t">Branchetrends</div><div class="layer-d">AI-aggregeret trendanalyse på tværs af 5.000 kilder. Ugentlig trendrapport. Y verificerer — abonnenten får analysens konklusion.</div></div></div>
-        <div class="layer"><div class="layer-n">05</div><div><div class="layer-t">B2B-briefs & community</div><div class="layer-d">On-demand situationsbriefs på under 60 sekunder. Lukket abonnentfællesskab. Det du skal vide inden et møde eller en strategisk beslutning.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Personaliseret nyhedsfeed + morgenbrief</div><div class="layer-d">Dagens vigtigste erhvervsnyheder kl. 06:00 — skræddersyet til din branche og dit marked. Originalt redaktionelt indhold kombineret med AI-bearbejdede nyheder fra nationale og internationale medier og bureauer. Tekst og lyd. Ingen manuel sortering.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Markedsovervågning</div><div class="layer-d">Automatisk overvågning af konkurrenter, regulering, EU-direktiver og offentlige udbud. Alerts ved nye hits. Du reagerer, inden konkurrenterne ser det.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Markedstrends</div><div class="layer-d">Ugentlig trendanalyse fra 5.000 kilder. Du forstår din branche ugen før alle andre — uden at have en analytiker.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Leadgenerering fra markedssignaler</div><div class="layer-d">Reguleringsændringer, ekspansioner og lederskifter identificerer automatisk, hvilke virksomheder der er klar til at handle. Understøttes af CVR-søgning.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">B2B-briefs på 60 sekunder</div><div class="layer-d">Situationsbrief om en virksomhed, konkurrent eller reguleringsemne — genereret inden mødet. Det du skal vide, samlet på én side.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">C-level intelligence + AI & tech for erhverv</div><div class="layer-d">Strategiske analyser, datadrevet research og trendrapporter til topledelsen — national og international dækning fra Reuters, AP, Bloomberg m.fl. Indhold, der kræver fordybelse. <strong>AI & tech-sektionen</strong> er dedikeret Pro-indhold med potentiale for sponsorsamarbejde med IT-Branchen og andre brancheorganisationer med særlig faglig adgang til netop dette stof.</div></div></div>
       </div>
     </div>
 
     <div class="col ani">
-      <div class="col-label">Scope & afhængigheder</div>
+      <div class="col-label">Scope — fase 1</div>
       <div class="scope-g">
         <div class="scope-box in">
-          <div class="scope-hl">Inkluderet — fase 1</div>
+          <div class="scope-hl">Inkluderet</div>
           <ul class="scope-list">
             <li>Personaliseret nyhedsfeed</li>
             <li>Morgenbrief tekst + lyd kl. 06:00</li>
             <li>Markedsovervågning (begrænset profil)</li>
             <li>Branchetrends (udvalgte sektorer)</li>
             <li>B2B-briefs (template-format)</li>
+            <li>Leadgenerering — signal-baseret + CVR-søgning</li>
             <li>Lukket abonnentfællesskab</li>
             <li>Web og mobil</li>
           </ul>
@@ -849,22 +1010,88 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
         </div>
       </div>
 
-      <div class="risk">
-        <div class="risk-t">Supertrends — kritisk afhængighed</div>
-        <p>Lars Tvede er del af ejerkredsen — platformen stilles til rådighed til kostpris. <strong>Dansk SMV-indhold kræver rekonfiguration af motoren eller et selvstændigt LLM-lag.</strong> Feature-request: person- og ekspertovervågning via Smart Scans vurderes på separat teknisk møde. Ledelsen godkender afhængigheden inden build.</p>
+      <div class="ibox green">
+        <div class="ibox-t" style="color:var(--green)">Supertrends — aktiv partner · møde afholdt 3. juni</div>
+        <div class="ibox-b"><strong>Valg A bekræftet:</strong> Y.dk Business bygger oven på Supertrends' infrastruktur — CMS, datastruktur og overvågningsmotor. Partnerbrief sendt juni 2026. <strong>Jens/Supertrends undersøger nu konkret, hvad platformen kan levere</strong> til markedsovervågning, trends og briefs for dansk SMV-segment — herunder kildestruktur, motorkonfiguration og evt. ekstern supplementering.<br><br>Features leveret af Supertrends brandes <strong>"Powered by Supertrends"</strong> i produktet.<br><br><strong>Udeståender:</strong> Teknisk kapacitetsvurdering fra Supertrends afventes · Rammeaftale prissættes efter kildestruktur er fastlagt · Kildekobling til nyheder afklares inden build · On-demand briefs kræver sandsynligvis eksternt LLM-lag.</div>
       </div>
 
-      <div class="col-label-sm">Roadmap — næste milepæle</div>
+    </div>
+  </div>
+  <div class="pnum">Produkt · 02/05</div>
+</div>
+
+
+<!-- ======================================================
+     05 AI & TECH FOR ERHVERV
+     ====================================================== -->
+<div class="screen" id="s-ai">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Forretningsmodel 2026</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item nav-active" data-target="s-ai">AI & tech</button>
+    </nav>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">AI & tech for erhverv</div>
+    <div class="sec-num">05 / 05</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="cat-box" style="margin-bottom:24px;">
+        <div class="cat-lbl">Y's position</div>
+        <div class="cat-txt">Dansk erhvervsliv er midt i en AI-transformation. Y dækker den — med dybde og uafhængig redaktionel vinkel.</div>
+      </div>
+      <div class="col-label">Hvad AI & tech for erhverv er</div>
+      <div class="drv-list">
+        <div class="drv">
+          <div class="drv-n">→</div>
+          <div><div class="drv-t">Dedikeret Pro-sektion</div><div class="drv-d">Dybdegående dækning af AI og teknologi med direkte erhvervsrelevans — ikke tech-journalistik for tech-folk, men AI og digitalisering som strategisk ledelsesredskab for SMV-ejere og C-level.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">→</div>
+          <div><div class="drv-t">National og international dækning</div><div class="drv-d">Aggregeret fra nationale og internationale medier og bureauer. AI-bearbejdet, redaktionelt verificeret. Y leverer syntesen — ikke råstoffet.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">→</div>
+          <div><div class="drv-t">AL produktion baseret på AI — mennesker styrer processen</div><div class="drv-d">"AI producerer, mennesker verificerer." Y sætter nye standarder for brug af AI i medieproduktion og personaliseret distribution. AI er en kommende USP — ikke skjult, men kommunikeret som styrke.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col ani">
+      <div class="col-label">Kommerciel model — sponsorsamarbejde</div>
+      <div class="ibox accent" style="margin-bottom:16px;">
+        <div class="ibox-t">IT-Branchen og brancheorganisationer med særlig adgang</div>
+        <div class="ibox-b">AI & tech-sektionen er oplagt som sponsorsamarbejde med brancheorganisationer, der har særlig faglig adgang og troværdighed i segmentet. Modellen: organisationen sponserer sektionen og får redaktionelt medejerskab — deres medlemmer får dedikeret dækning af det stof, der er mest relevant for dem. Y Business får en supplerende indtægtskilde ud over abonnementsmodellen.<br><br><strong>IT-Branchen</strong> er den primære kandidat: tech, tele og elektronik — og allerede identificeret som distributionspartner i behovsafdækningen.</div>
+      </div>
+      <div class="ibox" style="margin-bottom:16px;">
+        <div class="ibox-t">Hvorfor det virker kommercielt</div>
+        <div class="ibox-b">
+          <ul class="chk" style="margin-top:0;">
+            <li>Organisationen betaler for eksponering mod Y's betalende Pro-abonnenter</li>
+            <li>Medlemmerne oplever sektionen som en fordel ved medlemskabet</li>
+            <li>Y's redaktionelle uafhængighed fastholdes — sponsoren leverer adgang og faglig kontekst, ikke redaktionel kontrol</li>
+            <li>Modellen skalerer til andre vertikaler: Landbrug & Fødevarer, TEKNIQ m.fl.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-label-sm">Status</div>
       <div class="tl">
-        <div class="tl-row"><div class="tl-d">30. juni</div><div class="tl-t"><strong>Redaktionelt koncept klar</strong> · Chefredaktør + PM</div></div>
-        <div class="tl-row"><div class="tl-d">Juli–aug.</div><div class="tl-t"><strong>Design & build</strong> · Tech Lead + Designer (identificeres senest 30/6)</div></div>
-        <div class="tl-row"><div class="tl-d">1. okt. 2026</div><div class="tl-t"><strong>Soft launch — Business</strong> · 1.500 virksomhedsabonnenter</div></div>
-        <div class="tl-row"><div class="tl-d">1. nov. 2026</div><div class="tl-t"><strong>Paywall — Private</strong> · 1.500 abonnenter · 50 DKK/md</div></div>
-        <div class="tl-row"><div class="tl-d">Fase 2</div><div class="tl-t">Team-abonnement · ML-personalisering · Ekspertovervågning</div></div>
+        <div class="tl-row"><div class="tl-d" style="color:var(--green);">Nu · Juni</div><div class="tl-t"><strong style="color:var(--green);">Behovsafdækning igangsat</strong> · IT-Branchen indgår i møderunde med øvrige partnerorganisationer</div></div>
+        <div class="tl-row"><div class="tl-d">Aug.–sept.</div><div class="tl-t">Sponsormodel konkretiseres parallelt med design & build</div></div>
+        <div class="tl-row"><div class="tl-d">1. okt. 2026</div><div class="tl-t">AI & tech-sektion lanceres som del af Y Business Pro ved invited beta</div></div>
       </div>
     </div>
   </div>
-  <div class="pnum">Produkt & roadmap · 04/04</div>
+  <div class="pnum">AI & tech for erhverv · 05/05</div>
 </div>
 
 </div><!-- /.deck-stage -->
@@ -874,9 +1101,9 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 (function () {
   var stage = document.getElementById('stage');
   function scale() {
-    var r = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-    var x = (window.innerWidth  - 1920 * r) / 2;
-    var y = (window.innerHeight - 1080 * r) / 2;
+    var r = Math.min(window.innerWidth / 1440, window.innerHeight / 900);
+    var x = (window.innerWidth  - 1440 * r) / 2;
+    var y = (window.innerHeight - 900 * r) / 2;
     stage.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
   }
   scale();
@@ -898,6 +1125,10 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
         el.style.animation = '';
       });
     }
+    /* Opdater aktiv navmarkering på tværs af alle sektionsnavs */
+    document.querySelectorAll('.dash-nav-item').forEach(function (item) {
+      item.classList.toggle('nav-active', item.getAttribute('data-target') === id);
+    });
     current = id;
   }
   document.querySelectorAll('[data-target]').forEach(function (el) {
@@ -913,74 +1144,50 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
     if (e.target && e.target.getAttribute('contenteditable')) return;
     if (e.key === 'Escape' || e.key === 'Backspace') { if (current !== 'hub') navigate('hub'); }
     else if (e.key === '1') navigate('s-biz');
-    else if (e.key === '2') navigate('s-pos');
-    else if (e.key === '3') navigate('s-gtm');
-    else if (e.key === '4') navigate('s-prd');
+    else if (e.key === '2') navigate('s-prd');
+    else if (e.key === '3') navigate('s-pos');
+    else if (e.key === '4') navigate('s-gtm');
+    else if (e.key === '5') navigate('s-ai');
   });
 }());
 
-/* === INLINE EDITING & GEM TIL DISK ===
-   E-tast eller klik på ✏-ikon aktiverer redigeringstilstand.
-   MutationObserver opdager ændringer → viser Gem-knap.
-   Gem bruger File System Access API (Chrome/Edge/Safari 15.2+)
-   til at skrive direkte tilbage til HTML-filen på disk.
-   Ctrl/Cmd+S gemmer uden at klikke på knappen.
-========================================= */
+/* === INLINE EDITING & GEM TIL DISK === */
 (function () {
   var isEditing = false;
   var isDirty   = false;
   var fileHandle = null;
 
-  /* ── Editable areas (ikke nav/js/css) ── */
   var EDITABLE_SEL = [
     '.col', '.hub-intro', '.stat-cell',
     '.hub-tile > div:first-child'
   ].join(', ');
 
-  /* ── Opret Gem-knap i viewport (udenfor scaled stage) ── */
+  /* ── Save-bjælke (vises ved ændringer) ── */
   var saveBar = document.createElement('div');
   saveBar.style.cssText = [
-    'position:fixed', 'top:0', 'left:0', 'right:0',
-    'height:52px',
+    'position:fixed', 'top:0', 'left:0', 'right:0', 'height:52px',
     'background:rgba(54,19,82,0.97)',
     'display:flex', 'align-items:center', 'justify-content:space-between',
-    'padding:0 24px',
-    'z-index:99999',
+    'padding:0 24px', 'z-index:99999',
     'opacity:0', 'pointer-events:none',
     'transition:opacity 0.2s ease',
-    'box-shadow:0 2px 16px rgba(54,19,82,0.35)',
-    'backdrop-filter:blur(8px)'
+    'box-shadow:0 2px 16px rgba(54,19,82,0.35)'
   ].join(';');
 
   var saveBarLabel = document.createElement('span');
-  saveBarLabel.style.cssText = 'font-family:Schibsted Grotesk,sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:0.02em;';
-  saveBarLabel.textContent = 'Uregemte ændringer — Ctrl+S eller klik Gem';
+  saveBarLabel.style.cssText = 'font-family:Schibsted Grotesk,sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);';
+  saveBarLabel.textContent = 'Uregemte ændringer — Cmd+S eller klik Gem';
 
   var saveBarRight = document.createElement('div');
   saveBarRight.style.cssText = 'display:flex;gap:10px;align-items:center;';
 
   var discardBtn = document.createElement('button');
   discardBtn.textContent = 'Kassér';
-  discardBtn.style.cssText = [
-    'padding:7px 18px', 'border-radius:5px',
-    'background:rgba(255,255,255,0.1)', 'border:1px solid rgba(255,255,255,0.2)',
-    'color:rgba(255,255,255,0.7)', 'font-family:Schibsted Grotesk,sans-serif',
-    'font-size:12px', 'font-weight:600', 'cursor:pointer',
-    'transition:background 0.15s'
-  ].join(';');
+  discardBtn.style.cssText = 'padding:7px 18px;border-radius:5px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);font-family:Schibsted Grotesk,sans-serif;font-size:12px;font-weight:600;cursor:pointer;';
 
   var saveBtn = document.createElement('button');
   saveBtn.textContent = 'Gem til fil';
-  saveBtn.style.cssText = [
-    'padding:7px 20px', 'border-radius:5px',
-    'background:#fff', 'border:none',
-    'color:#361352', 'font-family:Schibsted Grotesk,sans-serif',
-    'font-size:13px', 'font-weight:800', 'cursor:pointer',
-    'transition:transform 0.1s ease, background 0.15s',
-    'letter-spacing:-0.01em'
-  ].join(';');
-  saveBtn.addEventListener('mouseenter', function() { this.style.background = '#EDE8F4'; });
-  saveBtn.addEventListener('mouseleave', function() { this.style.background = '#fff'; });
+  saveBtn.style.cssText = 'padding:7px 20px;border-radius:5px;background:#fff;border:none;color:#361352;font-family:Schibsted Grotesk,sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:-0.01em;transition:transform 0.1s ease;';
   saveBtn.addEventListener('mousedown', function() { this.style.transform = 'scale(0.96)'; });
   saveBtn.addEventListener('mouseup',   function() { this.style.transform = ''; });
 
@@ -990,44 +1197,25 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   saveBar.appendChild(saveBarRight);
   document.body.appendChild(saveBar);
 
-  /* ── Edit-toggle ikon (hover øverst til venstre, udenfor stage) ── */
-  var hotzone = document.createElement('div');
-  hotzone.style.cssText = 'position:fixed;top:0;left:0;width:72px;height:72px;z-index:9998;cursor:pointer;';
-
+  /* ── Edit-knap — altid synlig i nederste højre hjørne ── */
   var editToggle = document.createElement('button');
   editToggle.title = 'Redigeringstilstand (E)';
+  editToggle.innerHTML = '✏&nbsp;Rediger';
   editToggle.style.cssText = [
-    'position:fixed', 'top:14px', 'left:16px', 'z-index:9999',
-    'width:36px', 'height:36px',
-    'border-radius:50%',
-    'background:rgba(54,19,82,0.08)', 'border:1px solid rgba(54,19,82,0.18)',
-    'color:#361352', 'font-size:15px', 'cursor:pointer',
-    'opacity:0', 'pointer-events:none',
-    'transition:opacity 0.2s ease, background 0.15s',
-    'display:flex', 'align-items:center', 'justify-content:center'
+    'position:fixed', 'bottom:20px', 'right:20px', 'z-index:99998',
+    'padding:9px 18px', 'border-radius:8px',
+    'background:rgba(54,19,82,0.9)', 'border:none',
+    'color:#fff', 'font-family:Schibsted Grotesk,sans-serif',
+    'font-size:13px', 'font-weight:700', 'cursor:pointer',
+    'box-shadow:0 4px 16px rgba(54,19,82,0.3)',
+    'transition:transform 0.1s ease, background 0.15s',
+    'display:flex', 'align-items:center', 'gap:6px'
   ].join(';');
-  editToggle.innerHTML = '✏';
-  document.body.appendChild(hotzone);
+  editToggle.addEventListener('mouseenter', function() { this.style.background = '#4a1a6e'; });
+  editToggle.addEventListener('mouseleave', function() { this.style.background = isEditing ? '#22a06b' : 'rgba(54,19,82,0.9)'; });
+  editToggle.addEventListener('mousedown', function() { this.style.transform = 'scale(0.96)'; });
+  editToggle.addEventListener('mouseup',   function() { this.style.transform = ''; });
   document.body.appendChild(editToggle);
-
-  var hideTimer = null;
-  function showToggle() {
-    clearTimeout(hideTimer);
-    editToggle.style.opacity = '1';
-    editToggle.style.pointerEvents = 'auto';
-  }
-  function scheduleHide() {
-    hideTimer = setTimeout(function() {
-      if (!isEditing) {
-        editToggle.style.opacity = '0';
-        editToggle.style.pointerEvents = 'none';
-      }
-    }, 400);
-  }
-  hotzone.addEventListener('mouseenter', showToggle);
-  hotzone.addEventListener('mouseleave', scheduleHide);
-  editToggle.addEventListener('mouseenter', showToggle);
-  editToggle.addEventListener('mouseleave', scheduleHide);
 
   /* ── Markér dirty ── */
   function markDirty() {
@@ -1052,9 +1240,9 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
     var s = document.getElementById('stage');
     var offset = isDirty ? 52 : 0;
     var availH = window.innerHeight - offset;
-    var r = Math.min(window.innerWidth / 1920, availH / 1080);
-    var x = (window.innerWidth  - 1920 * r) / 2;
-    var y = offset + (availH - 1080 * r) / 2;
+    var r = Math.min(window.innerWidth / 1440, availH / 900);
+    var x = (window.innerWidth  - 1440 * r) / 2;
+    var y = offset + (availH - 900 * r) / 2;
     s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
   }
 
@@ -1067,21 +1255,21 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
     }
   });
 
-  /* ── Aktiver redigering ── */
+  /* ── Aktiver / deaktiver redigering ── */
   function enableEditing() {
     if (isEditing) return;
     isEditing = true;
-    editToggle.innerHTML = '✓';
-    editToggle.style.background = 'rgba(54,19,82,0.15)';
-    editToggle.style.opacity = '1';
-    editToggle.style.pointerEvents = 'auto';
+    editToggle.innerHTML = '✓&nbsp;Færdig';
+    editToggle.style.background = '#22a06b';
 
     document.querySelectorAll(EDITABLE_SEL).forEach(function(el) {
       el.setAttribute('contenteditable', 'true');
-      el.style.outline = '1.5px dashed rgba(54,19,82,0.18)';
+      el.style.outline = '1.5px dashed rgba(54,19,82,0.25)';
       el.style.outlineOffset = '3px';
-      el.style.minHeight = '1em';
+      el.style.cursor = 'text';
     });
+
+    /* Annotation-textarea'er behøver ingen genaktivering — de er altid skrivbare */
 
     observer.observe(document.getElementById('stage'), {
       childList: true, subtree: true, characterData: true
@@ -1092,28 +1280,147 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
     if (!isEditing) return;
     isEditing = false;
     observer.disconnect();
-    editToggle.innerHTML = '✏';
-    editToggle.style.background = 'rgba(54,19,82,0.08)';
+    editToggle.innerHTML = '✏&nbsp;Rediger';
+    editToggle.style.background = 'rgba(54,19,82,0.9)';
 
     document.querySelectorAll('[contenteditable]').forEach(function(el) {
       el.removeAttribute('contenteditable');
       el.style.outline = '';
       el.style.outlineOffset = '';
+      el.style.cursor = '';
     });
   }
 
   editToggle.addEventListener('click', function() {
     isEditing ? disableEditing() : enableEditing();
   });
-  hotzone.addEventListener('click', function() {
-    isEditing ? disableEditing() : enableEditing();
+
+  /* ── Drag-to-annotate ─────────────────────────────────────────
+     Kun aktiv i redigeringstilstand.
+     Registrerer mousedown på .col baggrund (ikke på tekst/annotation).
+     Koordinater omregnes fra viewport til element-lokal CSS-space
+     via scale-faktoren fra stage-transformationen.
+  ──────────────────────────────────────────────────────────────── */
+
+  function getStageScale() {
+    var m = new DOMMatrix(window.getComputedStyle(document.getElementById('stage')).transform);
+    return m.a; // uniform scale
+  }
+
+  function toLocalCoords(clientX, clientY, el) {
+    var rect = el.getBoundingClientRect();
+    var s = getStageScale();
+    return {
+      x: (clientX - rect.left) / s,
+      y: (clientY - rect.top)  / s
+    };
+  }
+
+  var dragState = null;
+
+  document.getElementById('stage').addEventListener('mousedown', function(e) {
+    if (!isEditing) return;
+
+    /* Find nærmeste .col (ikke hub-tile — de er allerede contenteditable) */
+    var col = e.target.closest('.col');
+    if (!col) return;
+
+    /* Ignorer klik inde i eksisterende tekst eller annotation */
+    if (e.target.closest('.annotation-box')) return;
+    if (e.target.closest('[contenteditable]') && e.target !== col) return;
+
+    var start = toLocalCoords(e.clientX, e.clientY, col);
+
+    /* Preview-boks */
+    var preview = document.createElement('div');
+    preview.className = 'annotation-preview';
+    col.appendChild(preview);
+
+    dragState = { col: col, start: start, preview: preview };
+    e.preventDefault(); // undgå tekstmarkering under drag
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!dragState) return;
+    var cur = toLocalCoords(e.clientX, e.clientY, dragState.col);
+    var x = Math.min(dragState.start.x, cur.x);
+    var y = Math.min(dragState.start.y, cur.y);
+    var w = Math.abs(cur.x - dragState.start.x);
+    var h = Math.abs(cur.y - dragState.start.y);
+    var p = dragState.preview;
+    p.style.left   = x + 'px';
+    p.style.top    = y + 'px';
+    p.style.width  = w + 'px';
+    p.style.height = h + 'px';
+  });
+
+  document.addEventListener('mouseup', function(e) {
+    if (!dragState) return;
+    var ds = dragState;
+    dragState = null;
+    ds.col.removeChild(ds.preview);
+
+    var end = toLocalCoords(e.clientX, e.clientY, ds.col);
+    var x = Math.min(ds.start.x, end.x);
+    var y = Math.min(ds.start.y, end.y);
+    var w = Math.abs(end.x - ds.start.x);
+    var h = Math.abs(end.y - ds.start.y);
+
+    if (w < 30 || h < 20) return; /* for lille — ignorer */
+
+    /* Opret annotation-boks med <textarea> — løser nested-contenteditable-problemet */
+    var note = document.createElement('div');
+    note.className = 'annotation-box';
+    note.style.left      = x + 'px';
+    note.style.top       = y + 'px';
+    note.style.width     = w + 'px';
+    note.style.minHeight = h + 'px';
+
+    /* textarea — altid skrivbar uanset forældrens contenteditable-tilstand */
+    var ta = document.createElement('textarea');
+    ta.className = 'annotation-textarea';
+    ta.placeholder = 'Skriv bemærkning…';
+    ta.style.height = Math.max(28, h - 12) + 'px';
+
+    /* Auto-resize textarea med indholdet */
+    ta.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+      markDirty();
+    });
+
+    /* × Luk-knap */
+    var close = document.createElement('button');
+    close.className = 'annotation-close';
+    close.innerHTML = '×';
+    close.addEventListener('mousedown', function(ev) { ev.stopPropagation(); });
+    close.addEventListener('click', function(ev) {
+      ev.stopPropagation();
+      note.remove();
+      markDirty();
+    });
+
+    note.appendChild(ta);
+    note.appendChild(close);
+
+    ds.col.style.overflow = 'visible';
+    ds.col.appendChild(note);
+
+    /* Fokusér textarea direkte */
+    ta.focus();
+
+    markDirty();
   });
 
   /* ── Gem til disk ── */
   async function saveToFile() {
-    /* Midlertidigt fjern contenteditable inden HTML serialiseres */
-    var edited = document.querySelectorAll('[contenteditable]');
-    edited.forEach(function(el) { el.removeAttribute('contenteditable'); el.style.outline = ''; el.style.outlineOffset = ''; });
+    /* Midlertidigt fjern contenteditable fra redigerbare felter inden serialisering */
+    var edited = Array.from(document.querySelectorAll('[contenteditable]'));
+    edited.forEach(function(el) {
+      el.removeAttribute('contenteditable');
+      el.style.outline = '';
+      el.style.outlineOffset = '';
+    });
 
     /* Fjern save-bar offset inden serialisering */
     var stage = document.getElementById('stage');

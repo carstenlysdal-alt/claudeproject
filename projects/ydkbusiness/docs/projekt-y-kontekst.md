@@ -51,7 +51,7 @@ Fase 2: Internationale læsere
 - First-mover i AI-journalistik i Danmark
 
 ### Svagheder
-- Kun 10% af danskerne er trygge ved AI-journalistik (RUC-undersøgelse)
+- 53% af danskerne er utrygge ved AI-journalistik (RUC-undersøgelse) — håndteres med aktiv kommunikation om verificeringsprocessen, ikke tavshed
 - AI-indhold citeres sjældent af andre medier — svært at sætte dagsorden
 - Michael Dyrbys MeToo-baggage
 - 12 mandlige, 1 kvindelig stifter

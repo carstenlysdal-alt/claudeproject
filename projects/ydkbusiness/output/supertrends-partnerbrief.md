@@ -33,10 +33,12 @@ Erhvervslivet betaler i dag for et kludetæppe af separate tjenester der tilsamm
 | LinkedIn Sales Navigator | Leadgenerering | 8.500–12.000 pr. bruger |
 | DI / Dansk Erhverv kontingent | Compliance og branchenyheder | 10.000–100.000 |
 
-**Validerede stack-omkostninger per segment:**
-- SMV 5-50 ansatte: 23.000–44.000 kr./år + 20.000–40.000 i skjult tidstab
-- SMV 50-150 ansatte: 120.000–180.000 kr./år
-- 150+ ansatte: 250.000–400.000+ kr./år
+**Validerede stack-omkostninger — company-level sammenligninger:**
+- Finans.dk: 4.500–5.500 kr./år
+- Retriever: 15.000–50.000 kr./år
+- Meltwater: 50.000–140.000 kr./år
+- Finans.dk + Retriever kombineret: 20.000–55.000 kr./år minimum
+- SMV 5-50 ansatte: 23.000–44.000 kr./år i samlede informationsomkostninger + 20.000–40.000 i skjult tidstab
 
 Problemet er ikke mangel på information. Det er mangel på syntese og ét samlet sted.
 
@@ -198,10 +200,10 @@ Nedenstående oversigt viser alle værktøjer og platforme som danske SMV'er i d
 
 ## Konklusion: Hvorfor Y.dk Business løser problemet
 
-**Fragmenteringen:** En typisk dansk SMV med 50-150 ansatte spenderer 120.000-180.000 DKK årligt på 5-8 separate værktøjer uden at de kommunikerer.
+**Fragmenteringen:** En typisk dansk SMV betaler for et kludetæppe af separate tjenester, der ikke kommunikerer. Finans.dk + Retriever kombineret koster minimum 20.000–55.000 kr./år — og dækker kun nyheder og medieovervågning.
 
 **Tabet:** En dedikeret "videnskoordinator" bruger 5-10 timer ugentligt på manuelt at destillere information fra disse værktøjer ned til 3-4 bulletpoints. Det koster 15.000-25.000 DKK årligt i tabt produktivitet.
 
-**Løsningen:** Y.dk Business gør alt dette for 5.000 DKK årligt, helt automatiseret, og leverer det struktureret og mødesæt hver morgen.
+**Løsningen:** Y.dk Business gør alt dette for 5.000 DKK årligt som ét virksomhedsabonnement — nyheder, overvågning, trends, briefs og leadgenerering. Billigere end Finans.dk alene.
 
-**ROI:** 60-75% omkostningsreduktion + 95% mindre manuelt arbejde = 266-367% Year 1 ROI.
+**ROI:** Markant omkostningsreduktion + eliminering af manuelt videnskoordinatorarbejde fra dag ét.

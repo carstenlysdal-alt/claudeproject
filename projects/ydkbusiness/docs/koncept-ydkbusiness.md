@@ -2,9 +2,9 @@
 
 ## Produktvision
 
-Y.dk Business er en AI-drevet erhvervsplatform der leverer erhvervsnyheder,
-markedsovervågning, branchetrends og B2B-briefs i ét samlet abonnement.
-Produktet erstatter det kludetæppe af separate tjenester som SMV-ejere
+Y.dk Business er en AI-drevet erhvervsplatform, der leverer erhvervsnyheder,
+markedsovervågning, branchetrends, B2B-briefs og leadgenerering i ét samlet abonnement.
+Produktet erstatter det kludetæppe af separate tjenester, som SMV-ejere
 og erhvervsledere i dag betaler for på tværs af flere udbydere.
 
 Prispunkt år 1: 5.000 kr./år. Ét login. Én platform.
@@ -36,11 +36,12 @@ ikke er skrevet til ham.
 | Hvad du har brug for | I dag | Med Y.dk Business |
 |---|---|---|
 | Erhvervsnyheder relevante for din virksomhed | Børsen/Finans.dk — skrevet til C25 | ✓ SMV-fokuseret, personaliseret |
-| Overvågning af konkurrenter og marked | Retriever/Meltwater — 24.000+ kr./år | ✓ Inkluderet i abonnementet |
+| Overvågning af konkurrenter og marked | Retriever/Meltwater — 15.000–140.000 kr./år | ✓ Inkluderet i abonnementet |
 | Branchetrends og strategisk analyse | Intet tilgængeligt for SMV | ✓ Ugentlig trendrapport |
 | Situationsbriefs til møder og beslutninger | Intet — du researcher selv | ✓ On-demand på 60 sekunder |
+| Leadgenerering fra markedssignaler | LassoX — statiske CVR-data, 40.000–82.000 kr./år | ✓ Dynamiske signaler inkluderet |
 | Samlet overblik på ét sted | 3-5 separate tjenester og login | ✓ Ét login, én platform |
-| **Samlet pris** | **20.000-50.000 kr./år** | **5.000 kr./år** |
+| **Samlet pris** | **Finans.dk + Retriever: 20.000–55.000 kr./år** | **5.000 kr./år** |
 
 Y.dk Business er ikke et salgsværktøj. Det er ikke et PR-overvågningsværktøj.
 Det er erhvervsintelligens — det du har brug for for at træffe bedre beslutninger,
@@ -94,30 +95,40 @@ Y.dk Business automatiserer det job.
 
 ## Produktbeskrivelse
 
-Y.dk Business leverer fire sammenhængende produktlag:
+Y.dk Business leverer seks sammenhængende produktlag:
 
 **Erhvervsnyheder**
-Bred nyhedsdækning der kombinerer originalt redaktionelt indhold med
+Bred nyhedsdækning, der kombinerer originalt redaktionelt indhold med
 AI-bearbejdede nyheder fra nationale og internationale medier, nyhedsbureauer,
 organisationer og virksomheder. Ikke kapitalmarked og C25 — men politiske
-beslutninger, regulering, brancheforhold og erhvervsliv der påvirker
+beslutninger, regulering, brancheforhold og erhvervsliv, der påvirker
 virksomheder med 5-250 ansatte. Leveres som tekst og lyd.
 
 **C-level indhold — analyser, research og opinion**
 Særligt fokus på indhold til topledelsen: dybdegående strategiske analyser,
 datadrevet research, credibel ekspertopinion og trendrapporter med
-direktekonsekvens for ledelsesniveau-beslutninger. Adskilt fra det løbende
-nyhedsfeed — dette er indhold der kræver tid og fordybelse, ikke 30 sekunders
+direktekonsekvens for beslutninger på ledelsesniveau — med national og
+international dækning fra Reuters, AP, Bloomberg m.fl. Adskilt fra det løbende
+nyhedsfeed — dette er indhold, der kræver tid og fordybelse, ikke 30 sekunders
 scanning. Primært bag Pro-adgangsvæg sammen med AI & tech-sektionen.
+
+**AI & tech for erhverv** er en dedikeret Pro-sektion med dybdegående dækning
+af AI og teknologi med direkte erhvervsrelevans. Sektionen er kommercielt
+interessant som sponsorsamarbejde med brancheorganisationer, der har særlig
+faglig adgang og troværdighed i segmentet — primært IT-Branchen, men også
+relevante aktører inden for digitalisering og tech. Sponsormodellen giver
+organisationen redaktionelt medejerskab af en sektion, deres medlemmer har
+direkte interesse i, og Y Business en supplerende indtægtskilde ud over
+abonnementsmodellen.
 
 **Markedsovervågning**
 Systematisk overvågning af relevante kilder, konkurrenter, branche og
 marked — tilpasset den enkelte virksomheds profil. Erstatter LassoX
-og Meltwater for det segment der ikke har råd til enterprise-løsninger.
+og Meltwater for det segment, der ikke har råd til enterprise-løsninger.
 
 **Branchetrends**
 AI-aggregeret trendanalyse på tværs af 5.000 kilder. Det Y leverer er
-ikke rådata — det er den verificerede analyse der ellers kræver en
+ikke rådata — det er den verificerede analyse, der ellers kræver en
 dedikeret analytiker.
 
 **B2B-briefs**
@@ -128,7 +139,7 @@ vide inden et møde, en forhandling eller en strategisk beslutning.
 **Leadgenerering**
 Markedssignaler omsættes automatisk til salgsmuligheder. Når en reguleringsændring
 rammer en branche, en virksomhed annoncerer ekspansion eller en leder skifter job,
-identificerer platformen hvilke virksomheder der er påvirkede — og hvornår timing
+identificerer platformen, hvilke virksomheder, der er påvirkede — og hvornår timing
 er rigtig til at kontakte dem. Understøttes af CVR-søgning på branche, størrelse og geografi.
 Signal-baseret leadgenerering er det ingen konkurrent tilbyder i dag.
 
@@ -159,11 +170,10 @@ De tre registre er ikke separate sektioner eller rubrikker — de er
 redaktionelle tilstande morgenbrief, feed og B2B-briefs skifter imellem
 afhængigt af nyhedens karakter.
 
-**AI producerer, mennesker verificerer** — skalaen kommer fra
-teknologien, troværdigheden fra det redaktionelle lag.
+**AI producerer, mennesker verificerer** — skalaen kommer fra teknologien, troværdigheden fra det redaktionelle lag. AI er en del af Y's identitet og kommunikeres aktivt som styrke. "Vi er fronten af AI i mediebranchen" er ikke en intern beskrivelse — det er et eksternt budskab.
 
 Den redaktionelle identitet er ikke til hinder for det kommercielle produkt.
-Den er årsagen til at produktet er mere end en datafeed.
+Den er årsagen til, at produktet er mere end en datafeed.
 
 ---
 
@@ -199,11 +209,11 @@ Pitchet til alle seks: *"Jeres medlemmer bruger jer til compliance og interessev
 | Dansk Industri (DI) | Produktion og servicevirksomheder | 10.000+ | Beta-rekruttering, anbefaling til medlemmer, evt. mediesamarbejde |
 | Dansk Erhverv | Handel, service og vidensvirksomheder | 18.000+ | Beta-rekruttering, partneraftale, distributionskanal |
 | SMVdanmark | Ejer-ledere og SMV'er | 15.000+ | Primær distributionspartner — tættest match på kernemålgruppen |
-| IT-Branchen | Tech, tele og elektronik | — | Distribution til tech-segment, samarbejde om AI & tech-sektionen |
+| IT-Branchen | Tech, tele og elektronik | — | Distribution til tech-segment + potentiel sponsor af AI & tech-sektionen — særlig faglig adgang og troværdighed giver grundlag for redaktionelt medejerskab af sektionen |
 | Landbrug & Fødevarer (L&F) | Landbrug og fødevareindustri | — | Sektorspecifik distribution, regulatory-validering, lokale datterforeninger som indgang |
 | TEKNIQ Arbejdsgiverne | Installation og byggeri | — | Distribution til bygge- og installationssektor, regulatory-fokus |
 
-Virksomheder der betaler DI-kontingent (5.000–50.000+ kr./år) er dokumenteret betalingsvillige for erhvervsrelaterede informationsværktøjer. Partnerskabssamtaler startes som research-dialog i discovery-fasen og konverteres til kommercielle aftaler inden fuld lancering november 2026.
+Virksomheder der betaler DI-kontingent (5.000–50.000+ kr./år) er dokumenteret betalingsvillige for erhvervsrelaterede informationsværktøjer. Behovsafdækning er igangsat juni 2026. Møder med alle seks organisationer er i gang med formål at validere behov, identificere beta-kandidater og lægge fundament for kommercielle aftaler inden launch (invited beta) 1. oktober og fuld lancering november 2026.
 
 ---
 
@@ -213,12 +223,12 @@ Business-abonnement: **500 DKK/md** eller **5.000 DKK/år** (årsplan). 50% af B
 
 Virksomheder der binder sig for et år får 5.000 DKK i markedsføring på platformen inkluderet — svarende til abonnementsprisen. Årsplanen er dermed reelt omkostningsneutral for virksomheder der ønsker eksponering mod Y.dk's erhvervslæsere.
 
-Prisankeret holder: 5.000 DKK/år er billigere end Finans.dk alene og langt under Retriever + Børsen kombineret (20.000+ kr./år).
+Prisankeret holder: 5.000 DKK/år er billigere end Finans.dk alene (4.500–5.500 kr./år) og langt under Retriever + Børsen kombineret (22.000–57.000 kr./år). Sammenligningen er company-level — ét virksomhedsabonnement uanset medarbejderantal.
 
 **Fri avis — skattemæssig driver:**
 Skattestyrelsens regler tillader at arbejdsgivere betaler Y.dk Business som skattefrit personalegode for medarbejderen, forudsat abonnementet er "i overvejende grad til brug for arbejdet." Bagatelgrænsen for personalegoder er 7.600 DKK/år i 2026 — Y.dk Business på 5.000 DKK/år er inden for denne grænse. Abonnementet er dermed skattefrit for modtageren og fradragsberettiget for virksomheden. Dette fjerner den personlige betalingsvilligheds-barriere og placerer beslutningen i HR/økonomiafdelingen — ikke hos den individuelle leder. Al kommunikation til virksomheder bør adressere dette eksplicit.
 
-Eksakt tier-struktur (Basis vs. Pro) afklares med ledelsen. Kommunikeres altid som virksomhedsudgift der trækkes fra — ikke personligt medieabonnement.
+Eksakt tier-struktur (Basis vs. Pro) afklares i fællesskab. Kommunikeres altid som virksomhedsudgift, der trækkes fra — ikke personligt medieabonnement.
 
 ---
 
@@ -245,6 +255,7 @@ Business genererer 10x mere revenue per abonnent end Private (500 DKK vs. 50 DKK
 - Markedsovervågning (begrænset profil-opsætning)
 - Branchetrends (udvalgte sektorer)
 - B2B-briefs (template-format)
+- Leadgenerering — signal-baseret + CVR-søgning
 - Web og mobil — tekst og lyd
 
 **Ikke inkluderet i fase 1**
@@ -258,14 +269,10 @@ Business genererer 10x mere revenue per abonnent end Private (500 DKK vs. 50 DKK
 ## Afhængigheder og risici
 
 **Supertrends-integration**
-Produktet forudsætter adgang til Supertrends-platformen og løbende
-teknisk samarbejde med Lars Tvede. Afhængighed af ekstern teknologi
-er en strukturel risiko der kræver klare SLA-aftaler.
+Møde afholdt 3. juni 2026. Valg A bekræftet: Y bygger oven på Supertrends' infrastruktur. Partnerbrief sendt. Jens/Supertrends undersøger konkret, hvad platformen kan levere til dansk SMV-segment (kilder, motorkonfiguration, kapabiliteter). Features leveret af Supertrends brandes "Powered by Supertrends". Åbne udeståender: rammeaftale (afventer kildestruktur), kildekobling til nyheder og on-demand briefs (kræver sandsynligvis eksternt LLM-lag). Afhængighed af ekstern teknologi er en strukturel risiko, der kræver klare SLA-aftaler.
 
-**Troværdighed**
-Kun 10% af danskerne er i dag trygge ved AI-journalistik (RUC 2024).
-Det redaktionelle verificeringslag er ikke kun kvalitetssikring —
-det er den primære mekanisme der adresserer denne barriere.
+**AI-kommunikation og troværdighed**
+Y's redaktionelle linje kommunikerer AI aktivt: "Vi er fronten af AI i mediebranchen — AI producerer, mennesker verificerer." Kun 10% af danskerne er i dag trygge ved AI-journalistik (RUC 2024). Den barriere håndteres ikke med tavshed, men med transparent kommunikation om verificeringsprocessen koblet til det redaktionelle lag. AI er en del af produktets identitet og markedsføres som styrke — ikke skjult som teknisk infrastruktur.
 
 **Troværdighed og politisk profil**
 Y har en borgerlig grundholdning der appellerer til et klart segment, men
@@ -281,4 +288,6 @@ kommunikerer sig selv på redaktionel uafhængighed og faktabaseret indhold.
 | Redaktionelt koncept | Chefredaktør + PM | Ikke påbegyndt |
 | Kommerciel model | Commercial Lead + PM | Ikke påbegyndt |
 | Teknologisk platform | Tech Lead + PM | Ikke påbegyndt |
+| Supertrends — teknisk kapabilitetsrapport (dansk SMV-segment) | Jens/Supertrends | Igangsat juni 2026 |
+| Behovsafdækning hos erhvervsorganisationer: SMVdanmark, Dansk Erhverv, DI, IT-Branchen, Landbrug & Fødevarer, TEKNIQ | PM + Commercial Lead | Igangsat juni 2026 — møder i gang |
 | Stakeholder-præsentation | PM | Afventer øvrige leverancer |
