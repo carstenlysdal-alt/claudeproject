@@ -26,7 +26,25 @@ og annotér i ét sætning hvilken skill der aktiveres og hvorfor.
 
 Matches flere skills, aktivér den mest centrale først og nævn de øvrige.
 
-### Trigger-tabel (aktivér automatisk)
+### Bundles — aktivér helt sæt af skills per opgavetype
+
+Kald et bundle direkte med `/bundle-navn` for at aktivere alle relevante skills på én gang.
+
+| Opgavetype | Bundle | Indeholder |
+|---|---|---|
+| Produktstrategi, roadmap, PRD, discovery, OKR, positionering | `/pm-strategi` | prd-development, roadmap-planning, discovery, jobs-to-be-done, opportunity-solution-tree, positioning-workshop, tam-som, prioritization, pm-okrs, stakeholder-map, grill-with-docs m.fl. |
+| Metrics, A/B-tests, eksperimenter, surveys, dashboards, North Star | `/metrics-eksperimenter` | ab-test-analysis, measure-experiment-design, measure-survey-analysis, metrics-dashboard, north-star-metric, pm-okrs, feedback-analyse, outcome-analyse |
+| GTM, launch, salg, SEO, email, cold outreach, CRO, analytics | `/gtm-kommerciel` | launch, sales-enablement, revops, content-strategy, seo-audit, emails, cold-email, cro, analytics, growth-loops, ads, social |
+| Artikler, klummer, SoMe-opslag, pitches, pressemeddelelser (dansk) | `/redaktion-indhold` | redaktionel-tekst, social, emails, content-strategy, copywriting, copy-editing, prompt-creator |
+| UI/UX, wireframes, designaudit, komponentimplementering, typografi | `/design-ui` | impeccable, ui-ux-pro-max, design-taste-frontend, accessibility, web-design-guidelines, design-prompt |
+| Præsentationer, slides, PowerPoint, C-suite-dokumenter | `/praesentation` | slidespeak, frontend-slides, document-quality |
+| Kode, arkitektur, debugging, tests, performance, code review | `/tech-kode` | tdd, webapp-testing, improve-codebase-architecture, best-practices, performance, core-web-vitals, diagnose, grill-with-docs |
+
+Bundle-SKILL.md-filer: `.claude/skills/bundles/`
+
+---
+
+### Trigger-tabel — enkelt-skills (aktivér automatisk)
 
 | Kontekst / signal | Aktivér |
 |---|---|
@@ -211,6 +229,22 @@ Mønstre i kundesprog → Årsagshypoteser → Prioriterede produktanbefalinger
 ---
 
 ## Skills-bibliotek
+
+### LAG 0 — Bundles (kald ét bundle per opgavetype)
+
+| Bundle | Kommando | Dækker |
+|---|---|---|
+| PM-Strategi | `/pm-strategi` | Roadmap, PRD, discovery, JTBD, positionering, OKR, stakeholders |
+| Metrics & Eksperimenter | `/metrics-eksperimenter` | A/B-test, North Star, surveys, dashboards, outcome-analyse |
+| GTM & Kommerciel | `/gtm-kommerciel` | Launch, salg, SEO, email, CRO, analytics, vækst-loops |
+| Redaktion & Indhold | `/redaktion-indhold` | Artikler, klummer, SoMe, nyhedsbreve, pitches (dansk) |
+| Design & UI | `/design-ui` | Audit, polish, UI-komponenter, frontend-implementering |
+| Præsentation | `/praesentation` | PowerPoint, HTML-slides, C-suite-dokumentkvalitet |
+| Tech & Kode | `/tech-kode` | TDD, tests, arkitektur, performance, code review |
+
+Bundle-filer: `.claude/skills/bundles/`
+
+---
 
 ### LAG 1 — Fundament
 **deanpeters/Product-Manager-Skills**
