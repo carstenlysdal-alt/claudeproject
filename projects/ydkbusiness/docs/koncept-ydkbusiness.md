@@ -113,10 +113,10 @@ nyhedsfeed — dette er indhold, der kræver tid og fordybelse, ikke 30 sekunder
 scanning. Primært bag Pro-adgangsvæg sammen med AI & tech-sektionen.
 
 **AI & tech for erhverv** er en dedikeret Pro-sektion med dybdegående dækning
-af AI og teknologi med direkte erhvervsrelevans. Sektionen er kommercielt
-interessant som sponsorsamarbejde med brancheorganisationer, der har særlig
-faglig adgang og troværdighed i segmentet — primært IT-Branchen, men også
-relevante aktører inden for digitalisering og tech. Sponsormodellen giver
+af AI og teknologi med direkte erhvervsrelevans. Sektionen har potentiale som
+sponsorsamarbejde med brancheorganisationer, der har særlig faglig adgang og
+troværdighed i segmentet — IT-Branchen, Dansk Industri og Dansk Erhverv er
+oplagte kandidater, men ingen aftaler er indgået. En sådan model vil give
 organisationen redaktionelt medejerskab af en sektion, deres medlemmer har
 direkte interesse i, og Y Business en supplerende indtægtskilde ud over
 abonnementsmodellen.
@@ -208,7 +208,7 @@ Pitchet til alle seks: *"Jeres medlemmer bruger jer til compliance og interessev
 |---|---|---|---|
 | Dansk Industri (DI) | Produktion og servicevirksomheder | 10.000+ | Beta-rekruttering, anbefaling til medlemmer, evt. mediesamarbejde |
 | Dansk Erhverv | Handel, service og vidensvirksomheder | 18.000+ | Beta-rekruttering, partneraftale, distributionskanal |
-| SMVdanmark | Ejer-ledere og SMV'er | 15.000+ | Primær distributionspartner — tættest match på kernemålgruppen |
+| SMVdanmark | Ejer-ledere og SMV'er | 15.000+ | Potentiel distributionspartner — tættest match på kernemålgruppen, men ingen aftale indgået |
 | IT-Branchen | Tech, tele og elektronik | — | Distribution til tech-segment + potentiel sponsor af AI & tech-sektionen — særlig faglig adgang og troværdighed giver grundlag for redaktionelt medejerskab af sektionen |
 | Landbrug & Fødevarer (L&F) | Landbrug og fødevareindustri | — | Sektorspecifik distribution, regulatory-validering, lokale datterforeninger som indgang |
 | TEKNIQ Arbejdsgiverne | Installation og byggeri | — | Distribution til bygge- og installationssektor, regulatory-fokus |
