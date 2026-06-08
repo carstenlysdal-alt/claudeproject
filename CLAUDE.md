@@ -86,6 +86,7 @@ Bundle-SKILL.md-filer: `.claude/skills/bundles/`
 | Lav en skarp, velstruktureret prompt til Claude/GPT/Gemini | `prompt-creator` |
 | Specificér hvad der mangler af ekstern viden efter session | `research-brief` |
 | Korteste præcise svar, token-effektivitet, kodegennemgang | `caveman` |
+| Søg i bundles, find det rigtige bundle, vis tilgængelige skills, hvad kan jeg bruge | `skill-soeg` |
 
 ---
 
