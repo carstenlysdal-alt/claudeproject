@@ -594,10 +594,10 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
           <div class="tile-num">01 / 05</div>
           <div class="tile-h">Business model<br>& revenue</div>
           <div class="tile-pts">
-            <div class="tile-pt">Ét produkt — to betalingsmodeller</div>
-            <div class="tile-pt">Månedlig: 500 DKK/md · Årsplan: 5.000 DKK/år</div>
-            <div class="tile-pt">Årsplan inkl. 5.000 DKK i markedsføring på Y.dk</div>
-            <div class="tile-pt">7,5M DKK ARR ved 1.500 virksomhedsabonnenter</div>
+            <div class="tile-pt">5 tiers: Erhverv · Erhverv+ · Premium · Partner · API</div>
+            <div class="tile-pt">Erhverv 500 kr/md · Erhverv+ 7.500 kr/år · Premium 12.500 kr/år</div>
+            <div class="tile-pt">Kampagne: op til 3 mdr. gratis — deadline 20. november</div>
+            <div class="tile-pt">Partner 25–75.000 kr/år · API op til 250.000 kr/år</div>
           </div>
         </div>
         <div class="tile-cta">Åbn</div>
@@ -661,10 +661,10 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
     </div>
 
     <div class="hub-stats">
-      <div class="stat-cell"><div class="stat-v">5.000 kr</div><div class="stat-l">Årsabonnement</div></div>
+      <div class="stat-cell"><div class="stat-v">Fra 500 kr</div><div class="stat-l">Erhverv — indgangspris/md</div></div>
       <div class="stat-cell"><div class="stat-v">1.500</div><div class="stat-l">Virksomhedsmål år 1</div></div>
-      <div class="stat-cell"><div class="stat-v">7,5M DKK</div><div class="stat-l">ARR ved målopfyldelse</div></div>
-      <div class="stat-cell"><div class="stat-v">Okt. 2026</div><div class="stat-l">Launch — Y Business</div></div>
+      <div class="stat-cell"><div class="stat-v">20. nov.</div><div class="stat-l">Paywall live — kampagne slutter</div></div>
+      <div class="stat-cell"><div class="stat-v">Okt. 2026</div><div class="stat-l">Launch — Y Business beta</div></div>
     </div>
   </div>
   <div class="pnum">Y Business · Intern · 2026</div>
@@ -696,55 +696,95 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
   <div class="sec-body">
     <div class="col ani">
-      <div class="col-label">Abonnementsmodel — Ét produkt, to betalingsmodeller</div>
-      <table class="tbl">
-        <thead><tr><th>Dimension</th><th>Månedlig</th><th>Årsplan</th></tr></thead>
+      <div class="col-label">Abonnementsmodel — 5 tiers fra Erhverv til API</div>
+      <table class="tbl" style="font-size:12px;">
+        <thead><tr><th>Tier</th><th>Normalpris</th><th>Kampagnepris</th><th>Logik</th></tr></thead>
         <tbody>
-          <tr><td class="str">Pris</td><td class="hi">500 DKK/md</td><td class="hi">5.000 DKK/år</td></tr>
-          <tr><td class="str">Binding</td><td>Løbende — ingen binding</td><td>Ét år ad gangen</td></tr>
-          <tr><td class="str">Adgang</td><td colspan="2">Identisk — alle 5 produktlag for virksomheden</td></tr>
-          <tr><td class="str">Markedsføring på Y.dk</td><td style="color:var(--muted); font-style:italic;">Ikke inkluderet</td><td class="hi">5.000 DKK inkluderet</td></tr>
-          <tr class="hl"><td class="str">Nettopris — årsplan</td><td colspan="2">Reelt 0 DKK for virksomheder, der ønsker eksponering mod Y.dk's erhvervslæsere</td></tr>
+          <tr>
+            <td class="str">Erhverv</td>
+            <td class="hi" style="font-size:13px;">500 kr/md</td>
+            <td style="color:var(--green); font-weight:600; font-size:12px;">3 mdr. gratis</td>
+            <td>Læseadgang: artikler, podcast, video — én bruger</td>
+          </tr>
+          <tr>
+            <td class="str">Erhverv+</td>
+            <td class="hi" style="font-size:13px;">7.500 kr/år</td>
+            <td style="color:var(--green); font-weight:600; font-size:12px;">5.000 kr/år</td>
+            <td>Team + overvågning: reklamefri, artikel-deling, 5 brands</td>
+          </tr>
+          <tr class="hl">
+            <td class="str" style="color:var(--accent);">Erhverv Premium</td>
+            <td class="hi" style="font-size:13px;">12.500 kr/år</td>
+            <td style="color:var(--green); font-weight:600; font-size:12px;">9.500 kr/år</td>
+            <td>CVR-overvågning + brugsret til artikler + kick-back</td>
+          </tr>
+          <tr>
+            <td class="str">Partner</td>
+            <td style="font-family:var(--mono); font-size:11px; color:var(--ink70);">25–75.000 kr/år</td>
+            <td style="color:var(--muted); font-size:11px;">—</td>
+            <td>Sponsor/relation: events, brancheindblik, synlighed</td>
+          </tr>
+          <tr>
+            <td class="str">API</td>
+            <td style="font-family:var(--mono); font-size:11px; color:var(--ink70);">100–250.000 kr/år</td>
+            <td style="color:var(--muted); font-size:11px;">—</td>
+            <td>Enterprise: nyhedsfeeds, alerts, data til CRM/intranet</td>
+          </tr>
         </tbody>
       </table>
 
+      <div style="background:var(--accent-10); border:1px solid var(--accent-30); padding:12px 18px; margin-bottom:14px;">
+        <div style="font-family:var(--mono); font-size:9px; font-weight:700; color:var(--accent); letter-spacing:0.13em; text-transform:uppercase; margin-bottom:8px;">Kampagne — deadline 20. november 2026</div>
+        <div style="font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.6;">Erhverv: <strong>3 måneder gratis</strong> ved tegning senest 20. november.<br>Erhverv+: <strong>5.000 kr i stedet for 7.500 kr</strong> første år.<br>Premium: <strong>9.500 kr i stedet for 12.500 kr</strong> første år.</div>
+      </div>
+
       <div class="rev-box">
-        <div class="rev-box-t">ARR-beregning — år 1 ved 1.500 virksomhedsabonnenter</div>
-        <div class="rev-row"><span>750 × årsplan (5.000 DKK)</span><span>3,75M DKK</span></div>
-        <div class="rev-row"><span>750 × månedspris (500 DKK/md annualiseret)</span><span>4,50M DKK</span></div>
-        <div class="rev-row tot"><span>Samlet ARR — estimat</span><span>~7,5M DKK</span></div>
+        <div class="rev-box-t">Opgraderingslogikken — Erhverv er indgangen</div>
+        <div class="rev-row"><span>Erhverv → Erhverv+</span><span>Overvågning + team</span></div>
+        <div class="rev-row"><span>Erhverv+ → Premium</span><span>Rettigheder + eksponering</span></div>
+        <div class="rev-row tot"><span>Medie- og CVR-overvågning er de primære upgrade-drivere</span></div>
       </div>
 
       <div style="margin-top:14px; font-family:var(--sans); font-size:12px; color:var(--muted); line-height:1.55;">
-        Business genererer <strong style="color:var(--ink70)">10× mere revenue per abonnent</strong> end Private (500 DKK vs. 50 DKK/md). Private er platform-driver der konverterer daglig trafik til virksomhedsabonnenter.
+        Feature-allokering per tier afklares endeligt efter redaktionelt koncept (Lysdal + Dyrby, deadline 22. juni 2026).
       </div>
     </div>
 
     <div class="col ani">
-      <div class="col-label">Virksomhedsabonnement & prisanker</div>
+      <div class="col-label">Kommercielle mekanikker</div>
 
       <div class="ibox">
-        <div class="ibox-t">Virksomhedsløsning — ikke personalegode</div>
-        <div class="ibox-b">Y Business er et virksomhedsabonnement — virksomheden køber adgang som en driftsudgift, besluttet og betalt på virksomhedsniveau. Kommunikeres og prissættes som <strong>B2B-driftsomkostning, der trækkes fra</strong> — ikke som personligt medieabonnement.</div>
+        <div class="ibox-t">Virksomhedsudgift — ikke personalegode</div>
+        <div class="ibox-b">Alle pakker kommunikeres som <strong>B2B-driftsomkostning, der trækkes fra</strong> — aldrig som personligt medieabonnement. Beslutningen placeres i HR/økonomiafdelingen, ikke hos den individuelle leder.</div>
       </div>
 
       <div class="ibox accent">
-        <div class="ibox-t">Årsplan — markedsføringsbidrag</div>
-        <div class="ibox-b">Virksomheder, der tegner årsplan, modtager <strong>5.000 DKK i markedsføring på Y.dk's platforme</strong> svarende til abonnementsprisen. Årsplanen er reelt omkostningsneutral for virksomheder, der ønsker eksponering.</div>
+        <div class="ibox-t">Fri avis — skattemæssig driver</div>
+        <div class="ibox-b">Skattestyrelsens bagatelgrænse for personalegoder: <strong>7.600 DKK/år i 2026</strong>. Erhverv+ på 7.500 DKK/år er inden for grænsen — skattefrit for modtageren, fradragsberettiget for virksomheden. Dette fjerner betalingsvilligheds-barrieren på individniveau og gør Erhverv+ til en HR-beslutning.</div>
         <ul class="chk">
-          <li>Årsplan = adgang + synlighed mod Y.dk's erhvervslæsere</li>
-          <li>Markedsføringsbidrag svarer til abonnementsprisen</li>
-          <li>Stærkt salgsargument til Commercial Lead</li>
+          <li>Erhverv+ 7.500 kr/år ≤ bagatelgrænse 7.600 kr/år</li>
+          <li>Skattefrit for medarbejderen, fradrag for virksomheden</li>
+          <li>Ekspliciteres i checkout-flow og salgsmateriale</li>
         </ul>
       </div>
 
+      <div class="ibox accent" style="margin-bottom:10px;">
+        <div class="ibox-t">Marketing kick-back — inkluderet i Erhverv+ og Premium</div>
+        <div class="ibox-b">Abonnenter modtager annonceringsværdi på platformen: bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel. <strong>Erhverv+: 5.000 kr. Premium: 7.500–9.500 kr.</strong> Stærkt salgsargument til virksomheder der allerede annoncerer eller ønsker PR-eksponering.</div>
+      </div>
+
       <div class="ibox green">
-        <div class="ibox-t" style="color:var(--green)">Prisankeret holder</div>
-        <div class="ibox-b"><strong>5.000 DKK/år</strong> er billigere end Finans.dk alene (4.500–5.500 DKK/år). Retriever starter ved 15.000 DKK/år — 3× Y Business. Meltwater starter ved 50.000 DKK/år — 10× Y Business. LassoX: 40.000–82.000 DKK/år. <strong>Ét virksomhedsabonnement på Y Business erstatter hele stakken til under en femtedel af prisen.</strong></div>
+        <div class="ibox-t" style="color:var(--green)">Artikel-deling og brugsrettigheder — ny engagementsmekanik</div>
+        <div class="ibox-b">Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>. Erhverv: 5/md · Erhverv+: 25/md · Premium: 100/md. Desuden: brugsret til artikler i egen markedsføring (SoMe, nyhedsbreve, investor-materiale) for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</div>
+      </div>
+
+      <div class="ibox green" style="border-color:var(--green); background:var(--green-s);">
+        <div class="ibox-t" style="color:var(--green)">Prisankeret holder — Erhverv+ mod konkurrenter</div>
+        <div class="ibox-b">Erhverv+ til 7.500 DKK/år inkluderer overvågning, team-adgang, artikel-deling og marketing kick-back. Retriever (overvågning alene): 15.000–50.000+ DKK/år. Meltwater: 50.000–140.000+ DKK/år. LassoX: 40.000–82.000 DKK/år. <strong>Erhverv+ erstatter 2–3 separate tjenester til en femtedel af prisen.</strong></div>
       </div>
     </div>
   </div>
-  <div class="pnum">Business model & revenue · 01/04</div>
+  <div class="pnum">Business model & revenue · 01/05</div>
 </div>
 
 
@@ -936,11 +976,12 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
       <div class="tl">
         <div class="tl-row"><div class="tl-d" style="color:var(--green);">Nu · Juni</div><div class="tl-t"><strong style="color:var(--green);">Behovsafdækning hos partnere</strong> · Møder med SMVdanmark, Dansk Erhverv, DI, IT-Branchen, L&F og TEKNIQ igangsat. Formål: validere behov, identificere beta-kandidater og lægge fundament for kommercielle aftaler inden launch.</div></div>
         <div class="tl-row"><div class="tl-d" style="color:var(--green);">Nu · Juni</div><div class="tl-t"><strong style="color:var(--green);">Supertrends teknisk vurdering</strong> · Jens/Supertrends kortlægger kapabiliteter, kildestruktur og motorkonfiguration for dansk SMV-segment.</div></div>
-        <div class="tl-row"><div class="tl-d">30. juni</div><div class="tl-t"><strong>Redaktionelt koncept klar</strong> · Chefredaktør + PM</div></div>
+        <div class="tl-row"><div class="tl-d" style="color:var(--red);">22. juni</div><div class="tl-t"><strong style="color:var(--red);">Redaktionelt koncept — deadline</strong> · Lysdal + Dyrby · Forudsætning for features spec v1.0 og tech-konfiguration. Ingen yderligere produktdrøftelser før det foreligger.</div></div>
+        <div class="tl-row"><div class="tl-d">30. juni</div><div class="tl-t"><strong>Features spec v1.0 klar</strong> · PM + Tech Lead · Afventer redaktionelt koncept</div></div>
         <div class="tl-row"><div class="tl-d">Aug.–sept.</div><div class="tl-t"><strong>Design & build</strong> · Frontend og design løses internt</div></div>
-        <div class="tl-row"><div class="tl-d">1. okt. 2026</div><div class="tl-t"><strong>Launch — Y Business</strong> · Invited beta · Mål: 1.500 virksomhedsabonnenter</div></div>
-        <div class="tl-row"><div class="tl-d">1. nov. 2026</div><div class="tl-t"><strong>Paywall live — Business & Private</strong> · Kommercielle partneraftaler aktive · Private: 1.500 abonnenter · 50 DKK/md</div></div>
-        <div class="tl-row"><div class="tl-d">Fase 2</div><div class="tl-t">ML-personalisering · Ekspertovervågning</div></div>
+        <div class="tl-row"><div class="tl-d">1. okt. 2026</div><div class="tl-t"><strong>Launch — Y Business invited beta</strong> · Mål: kvalitativ validering · Kampagnetilbud aktiveres</div></div>
+        <div class="tl-row"><div class="tl-d">20. nov. 2026</div><div class="tl-t"><strong>Paywall live — kampagneperiode slutter</strong> · Business & Private · Mål: 1.500 virksomhedsabonnenter · Private: 1.500 abonnenter · 50 DKK/md</div></div>
+        <div class="tl-row"><div class="tl-d">Fase 2</div><div class="tl-t">ML-personalisering · Internationale versioner (development track) · Karrierekanon · Community markedsplads · API-enterprise</div></div>
       </div>
     </div>
   </div>

@@ -398,6 +398,66 @@ Primær differentiator mod LassoX: LassoX leverer statiske virksomhedsdata fra C
 
 ---
 
+## Lag 7 — Artikel-deling og brugsrettigheder
+
+Besluttet juni 2026: Bygges af Y.dk. Gælder hele Y.dk-platformen — ikke kun Business. Tænkes ind som del af Y.dk's samlede produkt- og engagementstrategi.
+
+### F7.1 — Artikel-deling via tokeniserede links
+
+**Beskrivelse:** Abonnenter kan videresende et antal artikler bag betalingsmuren til modtagere uden abonnement.
+
+**Funktionelle krav:**
+- Hvert delt link er bundet til én specifik modtager (token-baseret adgang)
+- Linket kan ikke videresendes — åbnes det af en anden end den tilsigtede modtager, afvises adgang
+- Brugeren ser sin resterende kvote af delbare artikler i sin profil
+- Teknisk udfordring: link-caching ved deling på sociale medier skal håndteres
+
+**Kvote pr. tier:**
+
+| Tier | Artikler pr. måned |
+|---|---|
+| Erhverv | 5 |
+| Erhverv+ | 25 |
+| Premium | 100 |
+
+### F7.2 — Brugsret til artikler i markedsføring
+
+**Beskrivelse:** Abonnenter får ret til at bruge artikler, hvor de eller deres virksomhed nævnes, i egen markedsføring (SoMe, nyhedsbreve, hjemmesider, investor-/PR-materiale).
+
+**Tier-adgang:**
+
+| Tier | Brugsret |
+|---|---|
+| Erhverv | Ingen |
+| Erhverv+ | Ca. 5 artikler/år |
+| Premium | Ca. 20 artikler/år |
+
+**Tekniske og juridiske krav:** Klare vilkår for tilladt brug. Redaktionen godkender ikke aktivt — brug er begrænset til tilfælde, hvor virksomheden er nævnt i artiklen.
+
+### F7.3 — Marketing kick-back
+
+**Beskrivelse:** Erhverv+ og Premium inkluderer annonceringsværdi på platformen — bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel.
+
+| Tier | Marketingværdi inkluderet |
+|---|---|
+| Erhverv | 0 kr. |
+| Erhverv+ | 5.000 kr. |
+| Premium | 7.500–9.500 kr. |
+
+**Note:** Kick-back-annoncering håndteres af Commercial Lead og må ikke gribe ind i den redaktionelle indholdsplanlægning.
+
+### F7.4 — Reklamefri adgang
+
+**Beskrivelse:** Erhverv+ og Premium er fri for annoncer — herunder pre-roll, mid-roll og out-stream/videoannoncer.
+
+| Tier | Reklamefri |
+|---|---|
+| Erhverv | Nej |
+| Erhverv+ | ✓ |
+| Premium | ✓ |
+
+---
+
 ## Tværgående krav
 
 ### Personalisering
@@ -534,8 +594,20 @@ Fase 1 launcher kun hvis samtlige nedenstående er opfyldt:
 
 | Opgave | Ansvarlig | Deadline |
 |---|---|---|
+| Redaktionelt koncept — forudsætning for features spec v1.0 | Lysdal + Dyrby | 22. juni 2026 |
 | Afklaring Q1–Q5 med Tech Lead (Supertrends-kapabilitet) | PM + Tech Lead | 30. juni 2026 |
 | Afklaring Q6 (community-platform) | Tech Lead | 30. juni 2026 |
 | Afklaring Q8 (app vs. PWA) | Tech Lead + PM | 30. juni 2026 |
-| Tier-struktur og prissætning afklares | CEO + Commercial Lead + PM | 30. juni 2026 |
+| Tier-feature-allokering — præcis indhold per tier | CEO + Commercial Lead + PM | 30. juni 2026 |
+| Artikel-deling: teknisk scope og Y.dk-bredde | Tech Lead + PM | 30. juni 2026 |
 | Kravspec v1.0 — final version | PM | 15. juli 2026 |
+
+---
+
+## Udeståender
+
+| # | Spørgsmål | Status |
+|---|---|---|
+| U3 | **Partner governance** — præcise grænser for kommerciel adgang vs. redaktionel uafhængighed. Skal formaliseres inden partnerpakken sælges. | Udestående |
+| U5 | **Artikel-deling** — tokeniseret link-model gælder hele Y.dk. Teknisk scope og caching-håndtering afklares med Tech Lead. | Tænkes ind tidligt |
+| — | **Internationale versioner** — development track. Ikke vedtaget endeligt. Kræver mere end maskinoversættelse. | Speculative |

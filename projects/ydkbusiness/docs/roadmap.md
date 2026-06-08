@@ -19,7 +19,7 @@ Y Business er ét produkt på en bredere platform. Nedenstående milepæle tilh�
 | Y.dk internal soft launch | 10. juni 2026 | Tech Lead + Redaktion |
 | Y.dk public launch (fri adgang + annoncer) | 10. august 2026 | CEO + Commercial Lead |
 | **Y Business launch (invited beta)** | **1. oktober 2026** | **PM + Tech Lead** |
-| Paywall live – Private & Business | 1. november 2026 | Tech Lead + Commercial Lead |
+| Paywall live – Private & Business | 20. november 2026 | Tech Lead + Commercial Lead |
 | Y Rails – full product launch | 1. december 2026 | Tech Lead |
 
 Y Business aktiveres altså på en platform der allerede har kørt i åbent beta i 2,5 måned og bygget trafik inden paywall.
@@ -48,13 +48,13 @@ Hvad PM leverer hvornår, og hvem der låses op af det.
 |---|---|---|---|
 | 1 | Ledelsesmøde: AI-paradoks, tier-struktur, produktgodkendelse | PM + CEO | Alt efterfølgende |
 | 1-2 | Supertrends-møde: tre tekniske afklaringer med Lars Tvede | PM + Tech Lead | ✓ Done 3. juni — se output/supertrends-moedereferat.md |
-| 2-3 | Redaktionelt koncept (kilder, vinkler, outputformat, produktionsarkitektur) | PM + Chefredaktør | Tech-konfiguration af motor |
+| 2-3 | Redaktionelt koncept (kilder, vinkler, outputformat, produktionsarkitektur) | Lysdal + Dyrby | Tech-konfiguration af motor — **Deadline: ca. 22. juni 2026** |
 | 3-4 | Commercial Lead briefet: acquisition-budget og kanalvalg | PM + Commercial Lead | GTM-plan |
 | 3-4 | Behovsafdækning igangsat: møder med SMVdanmark, Dansk Erhverv, DI, IT-Branchen, Landbrug & Fødevarer og TEKNIQ — validerer behov, identificerer beta-kandidater og lægger fundament for kommercielle aftaler | PM + Commercial Lead | Beta-rekruttering og partnerkanaler |
 | 4 | Features spec v1.0 — final (lukker åbne punkter fra Supertrends-møde) | PM + Tech Lead | Design og build |
 | 4 | Konceptdokument — final version til stakeholders | PM | Stakeholder-alignment |
 
-**Juni-milestone:** Redaktionelt koncept + features spec v1.0 afleveret til tech-teamet senest 30. juni.
+**Juni-milestone:** Redaktionelt koncept afleveret af Lysdal + Dyrby senest 22. juni. Features spec v1.0 afleveret til tech-teamet senest 30. juni.
 
 **Tre beslutninger, der SKAL afklares i fællesskab:**
 1. AI-kommunikation — præcist sprogbrug i UI og marketing. Formlen "AI producerer, mennesker verificerer" er bekræftet retning — vi afklarer konkret implementering i UI og kanalerne (blokerer design og kommunikation)
@@ -192,12 +192,30 @@ Paywall aktiveres 1. november for både Private og Business. Y Business-subscrib
 
 | Initiativ | Status |
 |---|---|
-| Redaktionelt koncept | Committed — leveres juni |
-| Features spec | Committed — leveres juni |
+| Redaktionelt koncept | Committed — Lysdal + Dyrby, deadline 22. juni 2026 |
+| Features spec | Committed — leveres 30. juni |
 | UI-wireframes | Committed — leveres august |
 | Tech platform-spec | Committed — leveres august |
 | Launch (invited beta) | Committed — 1. oktober 2026 |
-| Fuld lancering | Directional — november/december 2026 |
-| 1.500 Business + 1.500 Private subscribers | Committed — 1. november 2026 (paywall) |
+| Fuld lancering inkl. kampagne | Directional — paywall live 20. november 2026 |
+| 1.500 Business + 1.500 Private subscribers | Committed — 20. november 2026 (paywall) |
 | Video-format | Speculative — afhænger af motor |
-| Internationalisering | Speculative — fase 2 |
+| Internationale versioner | Speculative — development track, ikke vedtaget endeligt |
+| Artikel-deling (tokeniserede links) | Directional — bygges af Y.dk, gælder hele Y.dk-platformen |
+| Karrierekanonen (jobspor) | Speculative — fase 2 |
+| Community markedsplads | Speculative — fase 2+ |
+| Pay-per-view / micropayment | Speculative — fase 2+ |
+| Partner (sponsor/relation) | Directional — governance-model er udestående ⚠ |
+| API (enterprise/data) | Speculative — fase 2 |
+
+---
+
+## Udeståender og åbne spørgsmål
+
+| # | Spørgsmål | Prioritet |
+|---|---|---|
+| U1 | **Redaktionelt koncept** — forudsætning for alt. Lysdal + Dyrby leverer inden 22. juni. Ingen yderligere produktdrøftelser før det foreligger. | Kritisk |
+| U2 | **Tier-feature-allocation** — hvilke features ligger præcist i Erhverv / Erhverv+ / Premium. Afklares efter redaktionelt koncept. | Høj |
+| U3 | **Partner governance** — præcise grænser for kommerciel adgang vs. redaktionel uafhængighed. Skal i scope på sigt. | Udestående |
+| U4 | **Supertrends-prisforhandling** — platformens distributionsværdi for Supertrends. Afventer kildestruktur. | Afventer |
+| U5 | **Artikel-deling** — tokeniseret link-model gælder hele Y.dk, ikke kun Business. Teknisk scope afklares med Tech Lead. | Tænkes ind tidligt |

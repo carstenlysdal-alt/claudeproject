@@ -219,16 +219,22 @@ Virksomheder der betaler DI-kontingent (5.000–50.000+ kr./år) er dokumenteret
 
 ## Kommerciel ramme
 
-Business-abonnement: **500 DKK/md** eller **5.000 DKK/år** (årsplan). 50% af Business-subscribers forventes at vælge årsplan.
+Platformen opererer med fem kommercielle spor. Feature-allokering per tier afklares endeligt efter redaktionelt koncept foreligger (deadline: 22. juni 2026).
 
-Virksomheder der binder sig for et år får 5.000 DKK i markedsføring på platformen inkluderet — svarende til abonnementsprisen. Årsplanen er dermed reelt omkostningsneutral for virksomheder der ønsker eksponering mod Y.dk's erhvervslæsere.
+| Tier | Normalpris | Kampagnepris | Logik |
+|---|---|---|---|
+| **Erhverv** | 500 kr./md | 3 måneder gratis — deadline 20. november | Læseadgang: artikler, podcast, video — én bruger |
+| **Erhverv+** | 7.500 kr./år | 5.000 kr. første år — deadline 20. november | Teamadgang + overvågning: reklamefri, artikel-deling, medieovervågning op til 5 brands |
+| **Erhverv Premium** | 12.500 kr./år | 9.500 kr. første år — deadline 20. november | Overvågning + rettigheder + eksponering: international version, CVR-overvågning, brugsret til artikler, marketing kick-back |
+| **Partner** | 25.000–75.000 kr./år | — | Sponsor/relation: events, brancheindblik, synlighed — redaktionel uafhængighed er ukrænkelig ⚠ |
+| **API** | 100.000–250.000 kr./år | — | Enterprise/data: nyhedsfeeds, alerts og virksomhedsdata i kundens egne systemer |
 
-Prisankeret holder: 5.000 DKK/år er billigere end Finans.dk alene (4.500–5.500 kr./år) og langt under Retriever + Børsen kombineret (22.000–57.000 kr./år). Sammenligningen er company-level — ét virksomhedsabonnement uanset medarbejderantal.
+Alle pakker kommunikeres som virksomhedsudgift, der trækkes fra — aldrig som personligt medieabonnement.
 
 **Fri avis — skattemæssig driver:**
-Skattestyrelsens regler tillader at arbejdsgivere betaler Y.dk Business som skattefrit personalegode for medarbejderen, forudsat abonnementet er "i overvejende grad til brug for arbejdet." Bagatelgrænsen for personalegoder er 7.600 DKK/år i 2026 — Y.dk Business på 5.000 DKK/år er inden for denne grænse. Abonnementet er dermed skattefrit for modtageren og fradragsberettiget for virksomheden. Dette fjerner den personlige betalingsvilligheds-barriere og placerer beslutningen i HR/økonomiafdelingen — ikke hos den individuelle leder. Al kommunikation til virksomheder bør adressere dette eksplicit.
+Skattestyrelsens regler tillader at arbejdsgivere betaler Y.dk Business som skattefrit personalegode for medarbejderen, forudsat abonnementet er "i overvejende grad til brug for arbejdet." Bagatelgrænsen for personalegoder er 7.600 DKK/år i 2026 — Erhverv+ på 7.500 DKK/år er inden for denne grænse. Abonnementet er skattefrit for modtageren og fradragsberettiget for virksomheden. Al kommunikation til virksomheder adresserer dette eksplicit.
 
-Eksakt tier-struktur (Basis vs. Pro) afklares i fællesskab. Kommunikeres altid som virksomhedsudgift, der trækkes fra — ikke personligt medieabonnement.
+**Udestående:** Præcis feature-allokering per tier afklares efter redaktionelt koncept. Partner-governance (grænsen for kommerciel adgang vs. redaktionel uafhængighed) skal formaliseres inden partnerpakken sælges.
 
 ---
 
@@ -236,7 +242,7 @@ Eksakt tier-struktur (Basis vs. Pro) afklares i fællesskab. Kommunikeres altid 
 
 | Metrik | Business | Private |
 |---|---|---|
-| Launch-dato | 1. oktober 2026 | 1. november 2026 (paywall) |
+| Launch-dato | 1. oktober 2026 | 20. november 2026 (paywall) |
 | Subscribers ved paywall | 1.500 | 1.500 |
 | Månedspris | 500 DKK/md | 50 DKK/md |
 | Årsplan | 5.000 DKK/år | — |
