@@ -12,3 +12,9 @@ Log opdateres manuelt eller via sync-script efter review af nye indgange.
 - **Af:** Claude
 - **Bemærkning:**
   - Testbemærkning fra Claude — verificerer at feedback-funktionen skriver korrekt til GitHub-repoet.
+
+## 9. juni 2026 kl. 12.42
+
+- **Af:** Anonym
+- **Bemærkning:**
+  - Nu tester jeg.
