@@ -345,6 +345,8 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .ibox.amber .ibox-t { color: var(--amber); }
 .ibox-b { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.65; }
 .ibox-b strong { color: var(--ink); font-weight: 600; }
+.ibox-b p { margin: 0; }
+.ibox-b p + p { margin-top: 11px; }
 
 /* Checklist */
 .chk { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
@@ -825,12 +827,18 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
       <div class="ibox">
         <div class="ibox-t">Virksomhedsudgift — ikke personalegode</div>
-        <div class="ibox-b">Alle pakker kommunikeres som <strong>B2B-driftsomkostning, der trækkes fra</strong> — aldrig som personligt medieabonnement. Beslutningen placeres i HR/økonomiafdelingen, ikke hos den individuelle leder.</div>
+        <div class="ibox-b">
+          <p>Alle pakker kommunikeres som <strong>B2B-driftsomkostning, der trækkes fra</strong> — aldrig som personligt medieabonnement.</p>
+          <p>Beslutningen placeres i HR/økonomiafdelingen, ikke hos den individuelle leder.</p>
+        </div>
       </div>
 
       <div class="ibox accent">
         <div class="ibox-t">Fri avis — skattemæssig driver</div>
-        <div class="ibox-b">Skattestyrelsens bagatelgrænse for personalegoder: <strong>7.600 DKK/år i 2026</strong>. Erhverv+ på 7.500 DKK/år er inden for grænsen — skattefrit for modtageren, fradragsberettiget for virksomheden. Dette fjerner betalingsvilligheds-barrieren på individniveau og gør Erhverv+ til en HR-beslutning.</div>
+        <div class="ibox-b">
+          <p>Skattestyrelsens bagatelgrænse for personalegoder: <strong>7.600 DKK/år i 2026</strong>. Erhverv+ på 7.500 DKK/år er inden for grænsen — skattefrit for modtageren, fradragsberettiget for virksomheden.</p>
+          <p>Dette fjerner betalingsvilligheds-barrieren på individniveau og gør Erhverv+ til en HR-beslutning frem for en personlig udgift.</p>
+        </div>
         <ul class="chk">
           <li>Erhverv+ 7.500 kr/år ≤ bagatelgrænse 7.600 kr/år</li>
           <li>Skattefrit for medarbejderen, fradrag for virksomheden</li>
@@ -840,17 +848,29 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
       <div class="ibox accent" style="margin-bottom:10px;">
         <div class="ibox-t">Marketing kick-back — inkluderet i Erhverv+ og Premium</div>
-        <div class="ibox-b">Abonnenter modtager annonceringsværdi på platformen: bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel. <strong>Erhverv+: 5.000 kr. Premium: 7.500–9.500 kr.</strong> Stærkt salgsargument til virksomheder der allerede annoncerer eller ønsker PR-eksponering.</div>
+        <div class="ibox-b">
+          <p>Abonnenter modtager annonceringsværdi på platformen: bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel.</p>
+          <p><strong>Erhverv+: 5.000 kr. · Premium: 7.500–9.500 kr.</strong></p>
+          <p>Stærkt salgsargument til virksomheder der allerede annoncerer eller ønsker PR-eksponering.</p>
+        </div>
       </div>
 
       <div class="ibox green">
         <div class="ibox-t" style="color:var(--green)">Artikel-deling og brugsrettigheder — ny engagementsmekanik</div>
-        <div class="ibox-b">Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>. Erhverv: 5/md · Erhverv+: 25/md · Premium: 100/md. Desuden: brugsret til artikler i egen markedsføring (SoMe, nyhedsbreve, investor-materiale) for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</div>
+        <div class="ibox-b">
+          <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>.</p>
+          <p>Erhverv: 5/md · Erhverv+: 25/md · Premium: 100/md</p>
+          <p>Desuden brugsret til artikler i egen markedsføring — SoMe, nyhedsbreve og investor-materiale — for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</p>
+        </div>
       </div>
 
       <div class="ibox green" style="border-color:var(--green); background:var(--green-s);">
         <div class="ibox-t" style="color:var(--green)">Prisankeret holder — Erhverv+ mod konkurrenter</div>
-        <div class="ibox-b">Erhverv+ til 7.500 DKK/år inkluderer overvågning, team-adgang, artikel-deling og marketing kick-back. Retriever (overvågning alene): 15.000–50.000+ DKK/år. Meltwater: 50.000–140.000+ DKK/år. LassoX: 40.000–82.000 DKK/år. <strong>Erhverv+ erstatter 2–3 separate tjenester til en femtedel af prisen.</strong></div>
+        <div class="ibox-b">
+          <p>Erhverv+ til 7.500 DKK/år inkluderer overvågning, team-adgang, artikel-deling og marketing kick-back.</p>
+          <p>Retriever (overvågning alene): 15.000–50.000+ DKK/år · Meltwater: 50.000–140.000+ DKK/år · LassoX: 40.000–82.000 DKK/år</p>
+          <p><strong>Erhverv+ erstatter 2–3 separate tjenester til en femtedel af prisen.</strong></p>
+        </div>
       </div>
 
       <div class="col-label" style="margin-top:22px; margin-bottom:10px;">Væksttrappe — funnel og horisont</div>
