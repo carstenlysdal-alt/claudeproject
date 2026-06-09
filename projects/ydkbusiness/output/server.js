@@ -1,11 +1,14 @@
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const DIR = __dirname;
 
-const FEEDBACK_LOG = path.join(DIR, 'feedback-log.md');
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_REPO  = 'carstenlysdal-alt/claudeproject';
+const FEEDBACK_PATH = 'projects/ydkbusiness/output/feedback-log.md';
 
 const DEPLOY_TIME = new Date().toLocaleString('da-DK', {
   timeZone: 'Europe/Copenhagen',
@@ -29,10 +32,63 @@ function formatEntry(dateStr, author, text) {
   return `\n## ${dateStr}\n\n- **Af:** ${author}\n- **Bemærkning:**\n${bullets}\n`;
 }
 
+function githubGet(filePath) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      hostname: 'api.github.com',
+      path: `/repos/${GITHUB_REPO}/contents/${filePath}`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'User-Agent': 'YBusiness-Dashboard',
+        'Accept': 'application/vnd.github+json',
+      },
+    };
+    const req = https.request(options, r => {
+      let d = '';
+      r.on('data', c => d += c);
+      r.on('end', () => r.statusCode < 300 ? resolve(JSON.parse(d)) : reject(new Error(d)));
+    });
+    req.on('error', reject);
+    req.end();
+  });
+}
+
+function githubPut(filePath, content, sha, message) {
+  const body = JSON.stringify({
+    message,
+    content: Buffer.from(content).toString('base64'),
+    sha,
+    branch: 'main',
+  });
+  return new Promise((resolve, reject) => {
+    const options = {
+      hostname: 'api.github.com',
+      path: `/repos/${GITHUB_REPO}/contents/${filePath}`,
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'User-Agent': 'YBusiness-Dashboard',
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(body),
+      },
+    };
+    const req = https.request(options, r => {
+      let d = '';
+      r.on('data', c => d += c);
+      r.on('end', () => r.statusCode < 300 ? resolve() : reject(new Error(d)));
+    });
+    req.on('error', reject);
+    req.write(body);
+    req.end();
+  });
+}
+
 function handleFeedback(req, res) {
   let body = '';
   req.on('data', c => body += c);
-  req.on('end', () => {
+  req.on('end', async () => {
     try {
       const { text, author } = JSON.parse(body);
       if (!text || text.trim().length < 2) {
@@ -48,12 +104,12 @@ function handleFeedback(req, res) {
       const by = (author || '').trim() || 'Anonym';
       const entry = formatEntry(dateStr, by, text.trim());
 
-      fs.appendFile(FEEDBACK_LOG, entry, err => {
-        if (err) console.error('[feedback] kunne ikke skrive til log:', err.message);
-      });
+      const file = await githubGet(FEEDBACK_PATH);
+      const current = Buffer.from(file.content, 'base64').toString('utf8');
+      await githubPut(FEEDBACK_PATH, current + entry, file.sha, `feedback: bemærkning i Y Business dashboard`);
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: true, entry }));
+      res.end(JSON.stringify({ ok: true }));
     } catch (err) {
       console.error('[feedback]', err.message);
       res.writeHead(500, { 'Content-Type': 'application/json' });

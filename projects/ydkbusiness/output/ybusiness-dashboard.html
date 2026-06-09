@@ -1667,8 +1667,11 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
       e.preventDefault();
       if (isDirty) saveToFile();
     }
-    /* E-tast toggle */
-    if ((e.key === 'e' || e.key === 'E') && !e.target.getAttribute('contenteditable')) {
+    /* E-tast toggle — ikke når feedback-modal er åben eller fokus er i input/textarea */
+    if ((e.key === 'e' || e.key === 'E')
+        && !e.target.getAttribute('contenteditable')
+        && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)
+        && document.getElementById('fb-overlay').classList.contains('hidden')) {
       isEditing ? disableEditing() : enableEditing();
     }
   });
