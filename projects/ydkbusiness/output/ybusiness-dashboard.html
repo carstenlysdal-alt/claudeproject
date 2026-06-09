@@ -557,6 +557,67 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
 @keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
+/* === FEEDBACK === */
+.btn-feedback {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 11px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--tint);
+  color: var(--ink70); font-family: var(--sans); font-size: 11px;
+  font-weight: 500; cursor: pointer; letter-spacing: 0.01em;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn-feedback:hover { background: var(--line2); border-color: var(--accent-30); color: var(--accent); }
+.btn-feedback svg { flex-shrink: 0; }
+
+.fb-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45); z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.fb-overlay.hidden { display: none; }
+.fb-modal {
+  background: var(--card); border-radius: 8px;
+  border: 1px solid var(--line); width: 100%; max-width: 560px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+.fb-modal-head {
+  padding: 14px 16px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fb-modal-title { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); }
+.fb-modal-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 16px; padding: 2px 6px;
+  line-height: 1; border-radius: 4px; font-family: var(--sans);
+}
+.fb-modal-close:hover { background: var(--tint); color: var(--ink); }
+.fb-modal-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.fb-label {
+  display: block; font-family: var(--mono); font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 5px;
+}
+.fb-input, .fb-textarea {
+  width: 100%; padding: 7px 10px;
+  border: 1px solid var(--line); border-radius: 5px;
+  font-family: var(--sans); font-size: 12.5px; color: var(--ink);
+  background: var(--tint); outline: none; transition: border-color 0.15s;
+}
+.fb-input:focus, .fb-textarea:focus { border-color: var(--accent-30); background: #fff; }
+.fb-textarea { resize: vertical; line-height: 1.6; }
+.fb-actions { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.fb-save-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; background: var(--accent); color: #fff;
+  border: none; border-radius: 6px; font-family: var(--sans);
+  font-size: 12.5px; font-weight: 600; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.fb-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.fb-status { font-family: var(--sans); font-size: 12px; }
+.fb-status.ok { color: var(--green); }
+.fb-status.err { color: var(--red); }
+
 </style>
 </head>
 <body>
@@ -579,6 +640,10 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
     <div class="dash-meta">
       <span class="dash-tag">CEO · Tech Lead · Commercial Lead</span>
       <span class="dash-tag hi">Intern · Juni 2026</span>
+      <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Feedback
+      </button>
     </div>
   </header>
 
@@ -1182,6 +1247,31 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 </div><!-- /.deck-stage -->
 </div><!-- /.deck-viewport -->
 
+<!-- ======================================================
+     FEEDBACK MODAL
+     ====================================================== -->
+<div class="fb-overlay hidden" id="fb-overlay">
+  <div class="fb-modal">
+    <div class="fb-modal-head">
+      <span class="fb-modal-title">Feedback — bemærkninger og ideer</span>
+      <button class="fb-modal-close" onclick="window.closeFeedback()">✕</button>
+    </div>
+    <div class="fb-modal-body">
+      <div>
+        <span class="fb-label">Ny bemærkning</span>
+        <input class="fb-input" id="fb-author" type="text" placeholder="Dit navn (valgfrit)">
+      </div>
+      <div>
+        <textarea class="fb-textarea" id="fb-text" rows="5" placeholder="Skriv din bemærkning, idé eller fejlbeskrivelse her…"></textarea>
+      </div>
+      <div class="fb-actions">
+        <button class="fb-save-btn" id="fb-save-btn" onclick="window.saveFeedback()">Gem i feedback</button>
+        <span class="fb-status" id="fb-status"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 (function () {
   var stage = document.getElementById('stage');
@@ -1585,6 +1675,66 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
   /* Resize — gentilpas med evt. save-bar offset */
   window.addEventListener('resize', rescaleStage);
+}());
+</script>
+
+<script>
+(function () {
+  window.openFeedback = function () {
+    document.getElementById('fb-overlay').classList.remove('hidden');
+    setTimeout(function () { document.getElementById('fb-text').focus(); }, 80);
+  };
+
+  window.closeFeedback = function () {
+    document.getElementById('fb-overlay').classList.add('hidden');
+    var s = document.getElementById('fb-status');
+    s.textContent = '';
+    s.className = 'fb-status';
+  };
+
+  window.saveFeedback = async function () {
+    var textEl  = document.getElementById('fb-text');
+    var authorEl = document.getElementById('fb-author');
+    var btn    = document.getElementById('fb-save-btn');
+    var status = document.getElementById('fb-status');
+    var text   = textEl.value.trim();
+    var author = authorEl.value.trim() || 'Anonym';
+
+    if (!text) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Gemmer…';
+    status.textContent = '';
+
+    try {
+      var res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text, author: author }),
+      });
+      if (!res.ok) throw new Error();
+      status.textContent = '✓ Tak for din feedback';
+      status.className = 'fb-status ok';
+      textEl.value = '';
+      authorEl.value = '';
+      btn.textContent = 'Gem i feedback';
+      btn.disabled = false;
+      setTimeout(window.closeFeedback, 3000);
+    } catch {
+      status.textContent = 'Kunne ikke gemme — server nede?';
+      status.className = 'fb-status err';
+      btn.textContent = 'Gem i feedback';
+      btn.disabled = false;
+    }
+  };
+
+  document.getElementById('fb-overlay').addEventListener('click', function (e) {
+    if (e.target === this) window.closeFeedback();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') window.closeFeedback();
+  });
 }());
 </script>
 </body>
