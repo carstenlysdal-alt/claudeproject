@@ -184,7 +184,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   font-family: var(--serif); font-size: 22px; font-weight: 700;
   color: var(--ink); line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.01em;
 }
-.tile-pts { flex: 1; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.tile-pts { flex: 1; display: flex; flex-direction: column; gap: 11px; margin-bottom: 24px; }
 .tile-pt {
   font-family: var(--sans); font-size: 13px; font-weight: 400;
   color: var(--muted); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45;
@@ -417,7 +417,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 /* Driver list */
 .drv-list { display: flex; flex-direction: column; }
 .drv {
-  padding: 16px 0; border-bottom: 1px solid var(--line2);
+  padding: 20px 0; border-bottom: 1px solid var(--line2);
   display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: flex-start;
 }
 .drv:first-child { border-top: 1px solid var(--line2); }
@@ -425,13 +425,13 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   font-family: var(--serif); font-size: 22px; font-weight: 600;
   color: var(--accent); opacity: 0.2; line-height: 1; font-style: italic;
 }
-.drv-t { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
+.drv-t { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
 .drv-d { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
 
 /* AI options */
 .ai-opt {
-  padding: 14px 18px; border: 1px solid var(--line);
-  margin-bottom: 7px; display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px 18px; border: 1px solid var(--line);
+  margin-bottom: 10px; display: flex; gap: 14px; align-items: flex-start;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 .ai-opt:hover { background: var(--tint); }
@@ -443,7 +443,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .ai-opt.rec .ai-letter { opacity: 1; }
 .ai-t {
   font-family: var(--sans); font-size: 13px; font-weight: 700;
-  color: var(--muted); margin-bottom: 3px;
+  color: var(--muted); margin-bottom: 6px;
 }
 .ai-opt.rec .ai-t { color: var(--ink); }
 .ai-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.55; }
@@ -459,7 +459,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .tl { display: flex; flex-direction: column; }
 .tl-row {
   display: grid; grid-template-columns: 108px 1fr; gap: 14px;
-  padding: 11px 0; border-bottom: 1px solid var(--line2); align-items: flex-start;
+  padding: 15px 0; border-bottom: 1px solid var(--line2); align-items: flex-start;
 }
 .tl-row:first-child { border-top: 1px solid var(--line2); }
 .tl-d {
@@ -472,7 +472,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 /* Product layers */
 .layers { display: flex; flex-direction: column; }
 .layer {
-  padding: 14px 0; border-bottom: 1px solid var(--line2);
+  padding: 18px 0; border-bottom: 1px solid var(--line2);
   display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: flex-start;
 }
 .layer:first-child { border-top: 1px solid var(--line2); }
@@ -480,7 +480,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   font-family: var(--mono); font-size: 10px; font-weight: 700;
   color: var(--accent); opacity: 0.45; padding-top: 2px;
 }
-.layer-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.layer-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
 .layer-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.55; }
 
 /* Scope grid */
@@ -494,7 +494,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 }
 .scope-box.in .scope-hl { color: var(--green); }
 .scope-box.out .scope-hl { color: var(--red); }
-.scope-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.scope-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .scope-list li {
   font-family: var(--sans); font-size: 13px; font-weight: 400;
   color: var(--ink70); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
