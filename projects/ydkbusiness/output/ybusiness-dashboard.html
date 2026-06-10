@@ -793,6 +793,8 @@ body.bm-editing .bm-plot-cell .bm-add {
   font-family: var(--mono); font-size: 10px; font-weight: 500;
   color: var(--line); letter-spacing: 0.1em; z-index: 10;
 }
+/* Skjul pnum på hub-skærmen */
+#hub .pnum { display: none; }
 
 /* === SECTION NAV === */
 .dash-nav {
@@ -1127,22 +1129,16 @@ body.bm-editing .bm-plot-cell .bm-add {
             <div class="bm-plot-cell" data-xlsx-key="extra_users_premium"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="ad_free">
-            <div class="bm-plot-feature"><strong data-xlsx-key="ad_free_label">Reklamefri adgang</strong><span data-xlsx-key="ad_free_description">Relevant når produktet bruges af flere i virksomheden.</span></div>
+            <div class="bm-plot-feature"><strong data-xlsx-key="ad_free_label">Reklamefri adgang</strong><span data-xlsx-key="ad_free_description">Ingen annoncer — inkl. pre-roll, mid-roll og out-stream.</span></div>
             <div class="bm-plot-cell" data-xlsx-key="ad_free_erhverv"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell" data-xlsx-key="ad_free_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="ad_free_plus"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="ad_free_premium"><span class="bm-dot"></span></div>
-          </div>
-          <div class="bm-plot-row" data-xlsx-row="media_monitoring">
-            <div class="bm-plot-feature"><strong data-xlsx-key="media_monitoring_label">Medieovervågning</strong><span data-xlsx-key="media_monitoring_description">Alerts når brandet eller navnet nævnes i overvågede kilder.</span></div>
-            <div class="bm-plot-cell" data-xlsx-key="media_monitoring_erhverv"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell" data-xlsx-key="media_monitoring_plus"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell" data-xlsx-key="media_monitoring_premium"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="article_sharing">
             <div class="bm-plot-feature"><strong data-xlsx-key="article_sharing_label">Artikel-deling</strong><span data-xlsx-key="article_sharing_description">Videresend indhold bag betalingsmuren via tokeniserede links.</span></div>
             <div class="bm-plot-cell" data-xlsx-key="article_sharing_erhverv"><span class="bm-mini muted">5/md</span></div>
-            <div class="bm-plot-cell" data-xlsx-key="article_sharing_plus"><span class="bm-mini">25/md</span></div>
-            <div class="bm-plot-cell" data-xlsx-key="article_sharing_premium"><span class="bm-mini">100/md</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_sharing_plus"><span class="bm-mini">10/md</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_sharing_premium"><span class="bm-mini">50/md</span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="article_rights">
             <div class="bm-plot-feature"><strong data-xlsx-key="article_rights_label">Brug artikler i egen markedsføring</strong><span data-xlsx-key="article_rights_description">Sociale medier, nyhedsbreve, PR og social proof.</span></div>
@@ -1153,7 +1149,7 @@ body.bm-editing .bm-plot-cell .bm-add {
           <div class="bm-plot-row" data-xlsx-row="financial_analysis">
             <div class="bm-plot-feature"><strong data-xlsx-key="financial_analysis_label">Finansielle analyser</strong><span data-xlsx-key="financial_analysis_description">Regnskabsanalyser når danske virksomheders tal offentliggøres.</span></div>
             <div class="bm-plot-cell" data-xlsx-key="financial_analysis_erhverv"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell" data-xlsx-key="financial_analysis_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="financial_analysis_plus"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="financial_analysis_premium"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="international_access">
@@ -1162,22 +1158,16 @@ body.bm-editing .bm-plot-cell .bm-add {
             <div class="bm-plot-cell" data-xlsx-key="international_access_plus"><span class="bm-add">Add-on</span></div>
             <div class="bm-plot-cell" data-xlsx-key="international_access_premium"><span class="bm-dot"></span></div>
           </div>
-          <div class="bm-plot-row" data-xlsx-row="community">
-            <div class="bm-plot-feature"><strong data-xlsx-key="community_label">Community markedsplads</strong><span data-xlsx-key="community_description">Basisadgang i indgangspakken, fuld adgang i årspakken.</span></div>
-            <div class="bm-plot-cell" data-xlsx-key="community_erhverv"><span class="bm-mini muted">Basis</span></div>
-            <div class="bm-plot-cell" data-xlsx-key="community_plus"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell" data-xlsx-key="community_premium"><span class="bm-mini">Prioritet</span></div>
-          </div>
           <div class="bm-plot-row" data-xlsx-row="marketing_kickback">
             <div class="bm-plot-feature"><strong data-xlsx-key="marketing_kickback_label">Marketing kick-back</strong><span data-xlsx-key="marketing_kickback_description">Eksponering via bannerannoncer, nyhedsbrev eller sponsoreret artikel.</span></div>
             <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_erhverv"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_plus"><span class="bm-mini">5.000 kr</span></div>
-            <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_premium"><span class="bm-mini">9.500 kr</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_premium"><span class="bm-mini">7.500 kr</span></div>
           </div>
         </div>
         <div class="bm-plot-note">
-          <span><strong>Pointen:</strong> 500 kr-pakken har både indhold og markedsovervågning. Erhverv+ løfter med team, medieovervågning, analyser og kick-back. Premium udvider rettigheder og volumen.</span>
-          <span>Alle abonnements- og B2B-prispunkter er repræsenteret i denne pakkelogik.</span>
+          <span><strong>Pointen:</strong> Erhverv inkluderer indhold og markedsovervågning. Erhverv+ tilføjer teamadgang og kick-back. Premium låser op for reklamefri adgang, finansielle analyser og international version.</span>
+          <span>Medieovervågning og community er tilkøb. Alle abonnements- og B2B-prispunkter er repræsenteret.</span>
         </div>
         <div class="bm-plot-b2b" aria-label="B2B-prisspor">
           <div class="bm-plot-b2b-item">
@@ -1198,7 +1188,7 @@ body.bm-editing .bm-plot-cell .bm-add {
           </div>
           <div class="bm-addon">
             <div class="bm-addon-k" data-xlsx-key="extra_user_label">Ekstra bruger</div>
-            <div class="bm-addon-v" data-xlsx-key="extra_user_terms">Erhverv: <strong>99 kr/md</strong> · Erhverv+: <strong>750 kr/år</strong> · Premium: <strong>500 kr/år</strong></div>
+            <div class="bm-addon-v" data-xlsx-key="extra_user_terms">Erhverv: <strong>350 kr/år</strong> · Erhverv+: <strong>250 kr/år</strong> · Premium: <strong>250 kr/år</strong></div>
           </div>
           <div class="bm-addon">
             <div class="bm-addon-k" data-xlsx-key="extra_brand_label">Ekstra brand/person</div>
@@ -1207,6 +1197,14 @@ body.bm-editing .bm-plot-cell .bm-add {
           <div class="bm-addon">
             <div class="bm-addon-k" data-xlsx-key="international_addon_label">International adgang</div>
             <div class="bm-addon-v" data-xlsx-key="international_addon_terms">Ekstra international bruger: <strong>99 kr/md</strong> · <strong>1.000 kr/år</strong> · <strong>750 kr/år</strong></div>
+          </div>
+          <div class="bm-addon">
+            <div class="bm-addon-k">Medieovervågning</div>
+            <div class="bm-addon-v">Tilkøb — op til 5 brands/personnavne overvåget i 50.000+ kilder. <strong>Pris afklares</strong></div>
+          </div>
+          <div class="bm-addon">
+            <div class="bm-addon-k">Micropayment · Fremtidigt scope</div>
+            <div class="bm-addon-v">Pay-per-view på enkeltartikler, audio og video. <strong>Pris og model afklares</strong></div>
           </div>
         </div>
       </div>
