@@ -23,6 +23,7 @@ const MIME = {
   '.json': 'application/json',
   '.png':  'image/png',
   '.ico':  'image/x-icon',
+  '.xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 };
 
 function formatEntry(dateStr, author, text) {
@@ -126,7 +127,7 @@ http.createServer((req, res) => {
   let filePath = req.url === '/' ? '/ybusiness-dashboard.html' : req.url;
   filePath = path.join(DIR, filePath);
 
-  fs.readFile(filePath, 'utf8', (err, data) => {
+  fs.readFile(filePath, (err, data) => {
     if (err) {
       fs.readFile(path.join(DIR, 'ybusiness-dashboard.html'), 'utf8', (e, d) => {
         const html = d.replace('{{DEPLOY_TIME}}', DEPLOY_TIME);
@@ -137,7 +138,7 @@ http.createServer((req, res) => {
     }
     const ext = path.extname(filePath);
     if (ext === '.html') {
-      const html = data.replace('{{DEPLOY_TIME}}', DEPLOY_TIME);
+      const html = data.toString('utf8').replace('{{DEPLOY_TIME}}', DEPLOY_TIME);
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(html);
     } else {

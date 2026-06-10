@@ -409,6 +409,37 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   background: var(--card);
   position: relative;
 }
+.bm-toolline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin: 28px 0 8px;
+}
+.bm-toolline .col-label-sm { margin-bottom: 0; }
+.bm-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.bm-action-btn {
+  border: 1px solid var(--accent-30);
+  background: var(--card);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.bm-action-btn:hover { background: var(--accent-10); }
+.bm-action-btn:active { transform: scale(0.96); }
+.bm-action-btn { text-decoration: none; }
 .bm-plot-head {
   display: grid;
   grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
@@ -518,6 +549,18 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
     linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(54,19,82,0.05) 50%, transparent calc(50% + 0.5px));
 }
 .bm-plot-cell:last-child { border-right: none; }
+body.bm-editing .bm-plot-cell {
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+body.bm-editing .bm-plot-cell:hover {
+  background: var(--accent-10);
+  box-shadow: inset 0 0 0 1px var(--accent-30);
+}
+body.bm-editing .bm-plot-cell .bm-mini,
+body.bm-editing .bm-plot-cell .bm-add {
+  cursor: text;
+}
 .bm-dot {
   width: 13px;
   height: 13px;
@@ -1039,90 +1082,97 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
         <div style="font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.6;">Erhverv: <strong>3 måneder gratis</strong> ved tegning senest 20. november.<br>Erhverv+: <strong>5.000 kr i stedet for 7.500 kr</strong> første år.<br>Premium: <strong>9.500 kr i stedet for 12.500 kr</strong> første år.</div>
       </div>
 
-      <div class="bm-plot" aria-label="Feature-plot for prismodellen">
+      <div class="bm-toolline">
+        <div class="col-label-sm">Pakkelogik</div>
+        <div class="bm-actions">
+          <a class="bm-action-btn" href="Y-Business-pakkelogik.xlsx" download>Hent som Excel</a>
+        </div>
+      </div>
+
+      <div class="bm-plot" id="bm-package-logic" aria-label="Feature-plot for prismodellen">
         <div class="bm-plot-head">
           <div class="bm-plot-title">Pakkelogik</div>
           <div class="bm-plot-tier">
-            <div class="bm-plot-price">500 kr</div>
-            <div class="bm-plot-period">Erhverv · md</div>
+            <div class="bm-plot-price" data-xlsx-key="tier_erhverv_price">500 kr</div>
+            <div class="bm-plot-period" data-xlsx-key="tier_erhverv_period">Erhverv · md</div>
           </div>
           <div class="bm-plot-tier featured">
-            <div class="bm-plot-price">5.000 kr</div>
-            <div class="bm-plot-period">Erhverv+ · år 1</div>
-            <div class="bm-plot-normal">Normalpris 7.500 kr/år</div>
+            <div class="bm-plot-price" data-xlsx-key="tier_plus_price">5.000 kr</div>
+            <div class="bm-plot-period" data-xlsx-key="tier_plus_period">Erhverv+ · år 1</div>
+            <div class="bm-plot-normal" data-xlsx-key="tier_plus_normal">Normalpris 7.500 kr/år</div>
           </div>
           <div class="bm-plot-tier">
-            <div class="bm-plot-price">9.500 kr</div>
-            <div class="bm-plot-period">Premium · år 1</div>
-            <div class="bm-plot-normal">Normalpris 12.500 kr/år</div>
+            <div class="bm-plot-price" data-xlsx-key="tier_premium_price">9.500 kr</div>
+            <div class="bm-plot-period" data-xlsx-key="tier_premium_period">Premium · år 1</div>
+            <div class="bm-plot-normal" data-xlsx-key="tier_premium_normal">Normalpris 12.500 kr/år</div>
           </div>
         </div>
         <div class="bm-plot-rows">
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Fri adgang til alt business-indhold</strong><span>Artikler, podcast, video og morgenbriefs.</span></div>
-            <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          <div class="bm-plot-row" data-xlsx-row="content_access">
+            <div class="bm-plot-feature"><strong data-xlsx-key="content_access_label">Fri adgang til alt business-indhold</strong><span data-xlsx-key="content_access_description">Artikler, podcast, video og morgenbriefs.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="content_access_erhverv"><span class="bm-dot soft"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="content_access_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="content_access_premium"><span class="bm-dot"></span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Markedsovervågning</strong><span>Op til 5 brands/personer med CVR-signaler og realtidsnotifikationer.</span></div>
-            <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          <div class="bm-plot-row" data-xlsx-row="market_monitoring">
+            <div class="bm-plot-feature"><strong data-xlsx-key="market_monitoring_label">Markedsovervågning</strong><span data-xlsx-key="market_monitoring_description">Op til 5 brands/personer med CVR-signaler og realtidsnotifikationer.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="market_monitoring_erhverv"><span class="bm-dot soft"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="market_monitoring_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="market_monitoring_premium"><span class="bm-dot"></span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>5 ekstra brugere</strong><span>Teamadgang som opgraderingsdriver.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          <div class="bm-plot-row" data-xlsx-row="extra_users">
+            <div class="bm-plot-feature"><strong data-xlsx-key="extra_users_label">5 ekstra brugere</strong><span data-xlsx-key="extra_users_description">Teamadgang som opgraderingsdriver.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="extra_users_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="extra_users_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="extra_users_premium"><span class="bm-dot"></span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Reklamefri adgang</strong><span>Relevant når produktet bruges af flere i virksomheden.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          <div class="bm-plot-row" data-xlsx-row="ad_free">
+            <div class="bm-plot-feature"><strong data-xlsx-key="ad_free_label">Reklamefri adgang</strong><span data-xlsx-key="ad_free_description">Relevant når produktet bruges af flere i virksomheden.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="ad_free_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="ad_free_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="ad_free_premium"><span class="bm-dot"></span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Medieovervågning</strong><span>Alerts når brandet eller navnet nævnes i overvågede kilder.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          <div class="bm-plot-row" data-xlsx-row="media_monitoring">
+            <div class="bm-plot-feature"><strong data-xlsx-key="media_monitoring_label">Medieovervågning</strong><span data-xlsx-key="media_monitoring_description">Alerts når brandet eller navnet nævnes i overvågede kilder.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="media_monitoring_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="media_monitoring_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="media_monitoring_premium"><span class="bm-dot"></span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Artikel-deling</strong><span>Videresend indhold bag betalingsmuren via tokeniserede links.</span></div>
-            <div class="bm-plot-cell"><span class="bm-mini muted">5/md</span></div>
-            <div class="bm-plot-cell"><span class="bm-mini">25/md</span></div>
-            <div class="bm-plot-cell"><span class="bm-mini">100/md</span></div>
+          <div class="bm-plot-row" data-xlsx-row="article_sharing">
+            <div class="bm-plot-feature"><strong data-xlsx-key="article_sharing_label">Artikel-deling</strong><span data-xlsx-key="article_sharing_description">Videresend indhold bag betalingsmuren via tokeniserede links.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_sharing_erhverv"><span class="bm-mini muted">5/md</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_sharing_plus"><span class="bm-mini">25/md</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_sharing_premium"><span class="bm-mini">100/md</span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Brug artikler i egen markedsføring</strong><span>Sociale medier, nyhedsbreve, PR og social proof.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-add">Begrænset</span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          <div class="bm-plot-row" data-xlsx-row="article_rights">
+            <div class="bm-plot-feature"><strong data-xlsx-key="article_rights_label">Brug artikler i egen markedsføring</strong><span data-xlsx-key="article_rights_description">Sociale medier, nyhedsbreve, PR og social proof.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_rights_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_rights_plus"><span class="bm-add">Begrænset</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_rights_premium"><span class="bm-dot"></span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Finansielle analyser</strong><span>Regnskabsanalyser når danske virksomheders tal offentliggøres.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          <div class="bm-plot-row" data-xlsx-row="financial_analysis">
+            <div class="bm-plot-feature"><strong data-xlsx-key="financial_analysis_label">Finansielle analyser</strong><span data-xlsx-key="financial_analysis_description">Regnskabsanalyser når danske virksomheders tal offentliggøres.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="financial_analysis_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="financial_analysis_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="financial_analysis_premium"><span class="bm-dot"></span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>International version</strong><span>Brugere på valgfrit sprog.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-add">Add-on</span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          <div class="bm-plot-row" data-xlsx-row="international_access">
+            <div class="bm-plot-feature"><strong data-xlsx-key="international_access_label">International version</strong><span data-xlsx-key="international_access_description">Brugere på valgfrit sprog.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="international_access_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="international_access_plus"><span class="bm-add">Add-on</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="international_access_premium"><span class="bm-dot"></span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Community markedsplads</strong><span>Basisadgang i indgangspakken, fuld adgang i årspakken.</span></div>
-            <div class="bm-plot-cell"><span class="bm-mini muted">Basis</span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-mini">Prioritet</span></div>
+          <div class="bm-plot-row" data-xlsx-row="community">
+            <div class="bm-plot-feature"><strong data-xlsx-key="community_label">Community markedsplads</strong><span data-xlsx-key="community_description">Basisadgang i indgangspakken, fuld adgang i årspakken.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="community_erhverv"><span class="bm-mini muted">Basis</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="community_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="community_premium"><span class="bm-mini">Prioritet</span></div>
           </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Marketing kick-back</strong><span>Eksponering via bannerannoncer, nyhedsbrev eller sponsoreret artikel.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-mini">5.000 kr</span></div>
-            <div class="bm-plot-cell"><span class="bm-mini">9.500 kr</span></div>
+          <div class="bm-plot-row" data-xlsx-row="marketing_kickback">
+            <div class="bm-plot-feature"><strong data-xlsx-key="marketing_kickback_label">Marketing kick-back</strong><span data-xlsx-key="marketing_kickback_description">Eksponering via bannerannoncer, nyhedsbrev eller sponsoreret artikel.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_plus"><span class="bm-mini">5.000 kr</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_premium"><span class="bm-mini">9.500 kr</span></div>
           </div>
         </div>
         <div class="bm-plot-note">
@@ -1131,32 +1181,32 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
         </div>
         <div class="bm-plot-b2b" aria-label="B2B-prisspor">
           <div class="bm-plot-b2b-item">
-            <div class="bm-plot-b2b-k">Partner</div>
-            <div class="bm-plot-b2b-v">25–75.000 kr/år</div>
-            <div class="bm-plot-b2b-d">Sponsor/relation, events, brancheindblik og synlighed.</div>
+            <div class="bm-plot-b2b-k" data-xlsx-key="partner_label">Partner</div>
+            <div class="bm-plot-b2b-v" data-xlsx-key="partner_price">25–75.000 kr/år</div>
+            <div class="bm-plot-b2b-d" data-xlsx-key="partner_description">Sponsor/relation, events, brancheindblik og synlighed.</div>
           </div>
           <div class="bm-plot-b2b-item">
-            <div class="bm-plot-b2b-k">API</div>
-            <div class="bm-plot-b2b-v">100–250.000 kr/år</div>
-            <div class="bm-plot-b2b-d">Nyhedsfeeds, alerts og data til kundens egne systemer.</div>
+            <div class="bm-plot-b2b-k" data-xlsx-key="api_label">API</div>
+            <div class="bm-plot-b2b-v" data-xlsx-key="api_price">100–250.000 kr/år</div>
+            <div class="bm-plot-b2b-d" data-xlsx-key="api_description">Nyhedsfeeds, alerts og data til kundens egne systemer.</div>
           </div>
         </div>
         <div class="bm-addons" aria-label="Add-ons og vilkår">
           <div class="bm-addon">
-            <div class="bm-addon-k">Kampagnevilkår</div>
-            <div class="bm-addon-v">Erhverv: <strong>3 mdr. gratis</strong> · Erhverv+: <strong>5.000 kr</strong> første år · Premium: <strong>9.500 kr</strong> første år</div>
+            <div class="bm-addon-k" data-xlsx-key="campaign_label">Kampagnevilkår</div>
+            <div class="bm-addon-v" data-xlsx-key="campaign_terms">Erhverv: <strong>3 mdr. gratis</strong> · Erhverv+: <strong>5.000 kr</strong> første år · Premium: <strong>9.500 kr</strong> første år</div>
           </div>
           <div class="bm-addon">
-            <div class="bm-addon-k">Ekstra bruger</div>
-            <div class="bm-addon-v">Erhverv: <strong>99 kr/md</strong> · Erhverv+: <strong>750 kr/år</strong> · Premium: <strong>500 kr/år</strong></div>
+            <div class="bm-addon-k" data-xlsx-key="extra_user_label">Ekstra bruger</div>
+            <div class="bm-addon-v" data-xlsx-key="extra_user_terms">Erhverv: <strong>99 kr/md</strong> · Erhverv+: <strong>750 kr/år</strong> · Premium: <strong>500 kr/år</strong></div>
           </div>
           <div class="bm-addon">
-            <div class="bm-addon-k">Ekstra brand/person</div>
-            <div class="bm-addon-v">Medie: <strong>250 kr/md</strong> / <strong>1.500 kr/år</strong> / <strong>1.000 kr/år</strong> · CVR: <strong>300 kr/md</strong> / <strong>2.000 kr/år</strong> / <strong>1.250 kr/år</strong></div>
+            <div class="bm-addon-k" data-xlsx-key="extra_brand_label">Ekstra brand/person</div>
+            <div class="bm-addon-v" data-xlsx-key="extra_brand_terms">Medie: <strong>250 kr/md</strong> / <strong>1.500 kr/år</strong> / <strong>1.000 kr/år</strong> · CVR: <strong>300 kr/md</strong> / <strong>2.000 kr/år</strong> / <strong>1.250 kr/år</strong></div>
           </div>
           <div class="bm-addon">
-            <div class="bm-addon-k">International adgang</div>
-            <div class="bm-addon-v">Ekstra international bruger: <strong>99 kr/md</strong> · <strong>1.000 kr/år</strong> · <strong>750 kr/år</strong></div>
+            <div class="bm-addon-k" data-xlsx-key="international_addon_label">International adgang</div>
+            <div class="bm-addon-v" data-xlsx-key="international_addon_terms">Ekstra international bruger: <strong>99 kr/md</strong> · <strong>1.000 kr/år</strong> · <strong>750 kr/år</strong></div>
           </div>
         </div>
       </div>
@@ -1836,9 +1886,36 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
     }
   });
 
+  function setPackageDot(cell, enabled) {
+    var isEntryTier = /_erhverv$/.test(cell.getAttribute('data-xlsx-key') || '');
+    cell.innerHTML = enabled
+      ? '<span class="bm-dot' + (isEntryTier ? ' soft' : '') + '"></span>'
+      : '<span class="bm-empty"></span>';
+  }
+
+  function isPackageTextCell(cell) {
+    return !!cell.querySelector('.bm-mini, .bm-add');
+  }
+
+  var packageLogic = document.getElementById('bm-package-logic');
+  if (packageLogic) {
+    packageLogic.addEventListener('click', function(e) {
+      if (!isEditing) return;
+
+      var cell = e.target.closest('.bm-plot-cell');
+      if (!cell || !packageLogic.contains(cell) || isPackageTextCell(cell)) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      setPackageDot(cell, !cell.querySelector('.bm-dot'));
+      markDirty();
+    });
+  }
+
   /* ── Aktiver / deaktiver redigering ── */
   function enableEditing() {
     isEditing = true;
+    document.body.classList.add('bm-editing');
     editToggle.innerHTML = '✓&nbsp;Færdig';
     editToggle.style.background = '#22a06b';
 
@@ -1847,6 +1924,12 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
       el.style.outline = '1.5px dashed rgba(54,19,82,0.25)';
       el.style.outlineOffset = '3px';
       el.style.cursor = 'text';
+    });
+
+    document.querySelectorAll('#bm-package-logic .bm-plot-cell').forEach(function(cell) {
+      cell.title = isPackageTextCell(cell)
+        ? 'Ret teksten direkte'
+        : 'Klik for at slå prik til/fra';
     });
 
     /* Annotation-textarea'er behøver ingen genaktivering — de er altid skrivbare */
@@ -1860,6 +1943,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
     if (!isEditing) return;
     isEditing = false;
     observer.disconnect();
+    document.body.classList.remove('bm-editing');
     editToggle.innerHTML = '✏&nbsp;Rediger';
     editToggle.style.background = 'rgba(54,19,82,0.9)';
 
@@ -1868,6 +1952,10 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
       el.style.outline = '';
       el.style.outlineOffset = '';
       el.style.cursor = '';
+    });
+
+    document.querySelectorAll('#bm-package-logic .bm-plot-cell').forEach(function(cell) {
+      cell.removeAttribute('title');
     });
   }
 
@@ -2078,7 +2166,6 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   window.addEventListener('resize', rescaleStage);
 }());
 </script>
-
 <script>
 (function () {
   window.openFeedback = function () {
