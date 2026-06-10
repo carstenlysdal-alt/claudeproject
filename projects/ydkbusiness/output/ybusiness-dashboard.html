@@ -402,6 +402,156 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   font-family: var(--serif); font-style: italic;
 }
 
+/* Business model feature plot */
+.bm-plot {
+  margin: 34px 0 18px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  position: relative;
+}
+.bm-plot-head {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
+  background: var(--ink);
+  color: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.bm-plot-title {
+  padding: 15px 18px;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  align-self: center;
+}
+.bm-plot-tier {
+  position: relative;
+  min-height: 74px;
+  padding: 12px 8px 10px;
+  border-left: 1px solid rgba(255,255,255,0.22);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.bm-plot-tier.featured::before {
+  content: 'Intropris';
+  position: absolute;
+  top: -29px;
+  left: 8px;
+  right: 8px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.bm-plot-price {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+.bm-plot-period {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.86;
+  margin-top: 5px;
+}
+.bm-plot-rows { display: grid; }
+.bm-plot-row {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
+  min-height: 50px;
+  border-bottom: 1px solid var(--line2);
+}
+.bm-plot-row:last-child { border-bottom: none; }
+.bm-plot-feature {
+  padding: 10px 18px;
+  border-right: 1px solid var(--line2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bm-plot-feature strong {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.bm-plot-feature span {
+  margin-top: 3px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.bm-plot-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--line2);
+  background:
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(54,19,82,0.05) 50%, transparent calc(50% + 0.5px));
+}
+.bm-plot-cell:last-child { border-right: none; }
+.bm-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-10);
+}
+.bm-dot.soft {
+  width: 10px;
+  height: 10px;
+  background: var(--green);
+  box-shadow: 0 0 0 5px var(--green-s);
+}
+.bm-add {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--amber-s);
+  border: 1px solid rgba(180,83,9,0.2);
+  padding: 3px 6px;
+}
+.bm-empty {
+  width: 18px;
+  height: 1px;
+  background: var(--line);
+}
+.bm-plot-note {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 18px;
+  background: var(--tint);
+  border-top: 1px solid var(--line);
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.bm-plot-note strong { color: var(--accent); font-weight: 700; }
+
 /* Category statement */
 .cat-box {
   background: var(--accent-10); border: 1px solid var(--accent-30);
@@ -806,6 +956,84 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
       <div style="background:var(--accent-10); border:1px solid var(--accent-30); padding:12px 18px; margin-bottom:14px;">
         <div style="font-family:var(--mono); font-size:9px; font-weight:700; color:var(--accent); letter-spacing:0.13em; text-transform:uppercase; margin-bottom:8px;">Kampagne — deadline 20. november 2026</div>
         <div style="font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.6;">Erhverv: <strong>3 måneder gratis</strong> ved tegning senest 20. november.<br>Erhverv+: <strong>5.000 kr i stedet for 7.500 kr</strong> første år.<br>Premium: <strong>9.500 kr i stedet for 12.500 kr</strong> første år.</div>
+      </div>
+
+      <div class="bm-plot" aria-label="Feature-plot for prismodellen">
+        <div class="bm-plot-head">
+          <div class="bm-plot-title">Pakkelogik</div>
+          <div class="bm-plot-tier">
+            <div class="bm-plot-price">500 kr</div>
+            <div class="bm-plot-period">Erhverv · md</div>
+          </div>
+          <div class="bm-plot-tier featured">
+            <div class="bm-plot-price">5.000 kr</div>
+            <div class="bm-plot-period">Erhverv+ · år 1</div>
+          </div>
+          <div class="bm-plot-tier">
+            <div class="bm-plot-price">9.500 kr</div>
+            <div class="bm-plot-period">Premium · år 1</div>
+          </div>
+        </div>
+        <div class="bm-plot-rows">
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Fri adgang til alt business-indhold</strong><span>Artikler, podcast, video og morgenbriefs.</span></div>
+            <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>5 ekstra brugere</strong><span>Teamadgang som klar opgraderingsdriver.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Reklamefri adgang</strong><span>For virksomheder der bruger produktet i team og ledelse.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Medieovervågning</strong><span>Op til 5 brands/personer med alerts fra overvågede kilder.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Artikel-deling</strong><span>Tokeniserede links: 5/md, 25/md eller 100/md.</span></div>
+            <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>CVR-/markedsovervågning</strong><span>Regnskaber, bestyrelsesmedlemmer, direktørskift og selskabssignaler.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>International version</strong><span>5 brugere på valgfrit sprog i Premium.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-add">Add-on</span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Community markedsplads</strong><span>Basisadgang, fuld adgang og prioriteret synlighed.</span></div>
+            <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Brugsret og marketing kick-back</strong><span>Brug i egen markedsføring og annonceringsværdi på platformen.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+        </div>
+        <div class="bm-plot-note">
+          <span><strong>Pointen:</strong> Erhverv sælger læseadgang. Erhverv+ sælger team og medieovervågning. Premium sælger markedssignaler, rettigheder og eksponering.</span>
+          <span>Partner og API behandles som separate B2B-salgsspor.</span>
+        </div>
       </div>
 
       <div class="rev-box">
