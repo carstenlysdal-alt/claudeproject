@@ -1,6 +1,6 @@
 ---
 name: redaktion-indhold
-description: "Aktivér dette bundle ved redaktionelt arbejde, artikler, SoMe-opslag, e-mails, pitches, pressemeddelelser og content-produktion på dansk. Trigger: 'skriv en artikel', 'klumme', 'leder', 'SoMe-opslag', 'pressemeddelelse', 'nyhedsbrev', 'pitch', 'redaktionel tekst'."
+description: "Aktivér dette bundle ved redaktionelt arbejde, artikler, SoMe-opslag, e-mails, pitches, pressemeddelelser, content-produktion og redaktionelle produktkoncepter på dansk. Trigger: 'skriv en artikel', 'klumme', 'leder', 'SoMe-opslag', 'pressemeddelelse', 'nyhedsbrev', 'pitch', 'redaktionel tekst', 'redaktionelt koncept', 'indholdsstrategi for platform'."
 metadata:
   version: 1.0.0
   type: bundle
@@ -12,6 +12,13 @@ Samler alle skills til professionel tekstproduktion og indholdsstrategi på dans
 
 ## Skills i dette bundle
 
+### Redaktionel strategi og produktkoncept
+| Skill | Aktivér når |
+|---|---|
+| `redaktionelt-koncept` | Redaktionelt produktkoncept til AI-drevet nyhedsplatform — pillars, kildestruktur, verificeringsmodel, KPI'er |
+| `content-strategy` | Content pillars, topic clusters, redaktionel kalender |
+| `research-brief` | Specificér manglende ekstern viden inden konceptet færdiggøres |
+
 ### Redaktionel tekstproduktion
 | Skill | Aktivér når |
 |---|---|
@@ -20,11 +27,10 @@ Samler alle skills til professionel tekstproduktion og indholdsstrategi på dans
 | `copy-editing` | Korrektur og sprogrensning af eksisterende tekst |
 | `doc-coauthoring` | Fælles redigering og iterativ dokumentudvikling |
 
-### Distribution og strategi
+### Distribution og produktion
 | Skill | Aktivér når |
 |---|---|
 | `social` | SoMe-opslag til LinkedIn, Twitter/X, Instagram |
-| `content-strategy` | Content pillars, topic clusters, redaktionel kalender |
 | `emails` | Nyhedsbreve, drip-kampagner, redaktionelle e-mails |
 
 ### Prompts og AI-assisteret produktion
@@ -43,9 +49,11 @@ Samler alle skills til professionel tekstproduktion og indholdsstrategi på dans
 | Pressemeddelelse | `redaktionel-tekst` | `product-manager-skills:press-release` |
 | Landing page copy | `copywriting` | `cro` til konverteringsoptimering |
 | Pitch til CEO/investor | `sales-enablement` | `redaktionel-tekst` til narrativ |
+| Redaktionelt produktkoncept | `redaktionelt-koncept` | `document-quality` til C-suite-løft |
 
 ## Brugsanvisning
 
-1. Brug altid `redaktionel-tekst` til dansk redaktionelt indhold — ikke den generiske `copywriting`.
-2. Kør `copy-editing` som afslutningstrin på vigtige dokumenter.
-3. Kobl med `content-strategy` når enkeltteksten er del af en større plan.
+1. Brug `redaktionelt-koncept` når opgaven er at definere en platforms redaktionelle model — ikke en enkelttekst.
+2. Brug altid `redaktionel-tekst` til dansk redaktionelt indhold — ikke den generiske `copywriting`.
+3. Kør `copy-editing` som afslutningstrin på vigtige dokumenter.
+4. Kobl med `content-strategy` når enkeltteksten er del af en større plan.
