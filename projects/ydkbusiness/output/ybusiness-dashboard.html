@@ -411,7 +411,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 }
 .bm-plot-head {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) repeat(2, 132px);
+  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
   background: var(--ink);
   color: #fff;
   border-bottom: 1px solid var(--line);
@@ -470,10 +470,19 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   opacity: 0.86;
   margin-top: 5px;
 }
+.bm-plot-normal {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.62);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
 .bm-plot-rows { display: grid; }
 .bm-plot-row {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) repeat(2, 132px);
+  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
   min-height: 50px;
   border-bottom: 1px solid var(--line2);
 }
@@ -560,6 +569,41 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   line-height: 1.45;
 }
 .bm-plot-note strong { color: var(--accent); font-weight: 700; }
+.bm-plot-b2b {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  background: var(--card);
+}
+.bm-plot-b2b-item {
+  padding: 12px 18px;
+  border-right: 1px solid var(--line2);
+}
+.bm-plot-b2b-item:last-child { border-right: none; }
+.bm-plot-b2b-k {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.bm-plot-b2b-v {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.15;
+  font-style: italic;
+}
+.bm-plot-b2b-d {
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.35;
+}
 
 /* Category statement */
 .cat-box {
@@ -977,6 +1021,12 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
           <div class="bm-plot-tier featured">
             <div class="bm-plot-price">5.000 kr</div>
             <div class="bm-plot-period">Erhverv+ · år 1</div>
+            <div class="bm-plot-normal">Normalpris 7.500 kr/år</div>
+          </div>
+          <div class="bm-plot-tier">
+            <div class="bm-plot-price">9.500 kr</div>
+            <div class="bm-plot-period">Premium · år 1</div>
+            <div class="bm-plot-normal">Normalpris 12.500 kr/år</div>
           </div>
         </div>
         <div class="bm-plot-rows">
@@ -984,61 +1034,84 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
             <div class="bm-plot-feature"><strong>Fri adgang til alt business-indhold</strong><span>Artikler, podcast, video og morgenbriefs.</span></div>
             <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>Markedsovervågning</strong><span>Op til 5 brands/personer med CVR-signaler og realtidsnotifikationer.</span></div>
             <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>5 ekstra brugere</strong><span>Teamadgang som opgraderingsdriver.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>Reklamefri adgang</strong><span>Relevant når produktet bruges af flere i virksomheden.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>Medieovervågning</strong><span>Alerts når brandet eller navnet nævnes i overvågede kilder.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>Artikel-deling</strong><span>Videresend indhold bag betalingsmuren via tokeniserede links.</span></div>
             <div class="bm-plot-cell"><span class="bm-mini muted">5/md</span></div>
             <div class="bm-plot-cell"><span class="bm-mini">25/md</span></div>
+            <div class="bm-plot-cell"><span class="bm-mini">100/md</span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>Brug artikler i egen markedsføring</strong><span>Sociale medier, nyhedsbreve, PR og social proof.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell"><span class="bm-add">Begrænset</span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>Finansielle analyser</strong><span>Regnskabsanalyser når danske virksomheders tal offentliggøres.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>International version</strong><span>Brugere på valgfrit sprog.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell"><span class="bm-add">Add-on</span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>Community markedsplads</strong><span>Basisadgang i indgangspakken, fuld adgang i årspakken.</span></div>
             <div class="bm-plot-cell"><span class="bm-mini muted">Basis</span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-mini">Prioritet</span></div>
           </div>
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>Marketing kick-back</strong><span>Eksponering via bannerannoncer, nyhedsbrev eller sponsoreret artikel.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell"><span class="bm-mini">5.000 kr</span></div>
+            <div class="bm-plot-cell"><span class="bm-mini">9.500 kr</span></div>
           </div>
         </div>
         <div class="bm-plot-note">
-          <span><strong>Pointen:</strong> 500 kr-pakken har både indhold og markedsovervågning. Årspakken løfter med medieovervågning, analyser og kick-back.</span>
-          <span>Premium, Partner og API behandles i prismodellen ovenfor.</span>
+          <span><strong>Pointen:</strong> 500 kr-pakken har både indhold og markedsovervågning. Erhverv+ løfter med team, medieovervågning, analyser og kick-back. Premium udvider rettigheder og volumen.</span>
+          <span>Alle abonnements- og B2B-prispunkter er repræsenteret i denne pakkelogik.</span>
+        </div>
+        <div class="bm-plot-b2b" aria-label="B2B-prisspor">
+          <div class="bm-plot-b2b-item">
+            <div class="bm-plot-b2b-k">Partner</div>
+            <div class="bm-plot-b2b-v">25–75.000 kr/år</div>
+            <div class="bm-plot-b2b-d">Sponsor/relation, events, brancheindblik og synlighed.</div>
+          </div>
+          <div class="bm-plot-b2b-item">
+            <div class="bm-plot-b2b-k">API</div>
+            <div class="bm-plot-b2b-v">100–250.000 kr/år</div>
+            <div class="bm-plot-b2b-d">Nyhedsfeeds, alerts og data til kundens egne systemer.</div>
+          </div>
         </div>
       </div>
 
