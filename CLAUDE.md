@@ -49,6 +49,7 @@ Bundle-SKILL.md-filer: `.claude/skills/bundles/`
 | Kontekst / signal | Aktivér |
 |---|---|
 | "Skriv en artikel / klumme / leder / SoMe-opslag / pressemeddelelse / pitch" (dansk) | `redaktionel-tekst` |
+| Redaktionelt koncept, AI-nyhedsmotor, indholdskonfiguration, pillar-strategi, verificeringsmodel | `redaktionelt-koncept` |
 | Stress-test, djævlens advokat, gennemgå beslutning kritisk | `grill-with-docs` |
 | Tegn wireframe, redesign skærmbillede, design audit, polish, typografi | `impeccable` |
 | Byg UI-komponent, implementér design i kode, vælg farver/fonts/layout | `ui-ux-pro-max` |
@@ -428,6 +429,12 @@ Syntese af råt bruger-feedback (interviews, surveys, support-tickets) til
 PM-beslutningsgrundlag. Fem trin: top smertepunkter (frekvens × intensitet)
 → JTBD-mapping → kundesprog → årsagshypoteser → prioriterede produktanbefalinger.
 
+**redaktionelt-koncept** — `.claude/skills/custom/redaktionelt-koncept/`
+Omsætter redaktionel linje og segmentstrategi til konfigurerbare tekniske parametre
+for AI-drevne indholds- og nyhedsplatforme. Seks trin: redaktionel identitet og
+segmentstrategi → kildestruktur → AI-orkestrering → outputformat → verificeringsmodel
+→ åbne beslutninger. Output klar til Tech Lead, CEO og Commercial Lead.
+
 **redaktionel-tekst** — `.claude/skills/custom/copywriting/`
 Professionel tekstforfatter med litterær, journalistisk stemme.
 Leverer færdige tekster på fejlfrit dansk — klar til brug uden
@@ -461,6 +468,7 @@ pm-platform/
 │           ├── prompt-creator/
 │           ├── outcome-analyse/
 │           ├── feedback-analyse/
+│           ├── redaktionelt-koncept/
 │           └── copywriting/          ← skill: redaktionel-tekst
 └── projects/
     ├── pocket-drummer/

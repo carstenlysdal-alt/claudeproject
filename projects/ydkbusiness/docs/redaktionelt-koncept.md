@@ -1,6 +1,6 @@
 # Y.dk Business — Redaktionelt Koncept
 
-**Version:** 0.1 — arbejdsudkast  
+**Version:** 0.2 — revideret udkast  
 **Dato:** 10. juni 2026  
 **Ansvarlig:** Lysdal + Dyrby  
 **Deadline:** 22. juni 2026  
@@ -22,9 +22,149 @@ Det omsætter den redaktionelle linje til konfigurerbare parametre.
 
 ---
 
+## Strategisk ramme
+
+Den strategiske ramme definerer de redaktionelle principper, som alle tekniske parametre
+er afledt af. Enhver konfigurationsbeslutning — kildevalg, pillar-klassificering,
+verificeringsniveau — er en operationalisering af denne ramme.
+
+### Redaktionel identitet — tre pillars i Business-kontekst
+
+Y's tre indholdspillarer (Understand / Challenge / Inspire) er tekniske parametre i motoren.
+Hvert inkommende signal klassificeres på pillar og routes til korrekt prompt og
+verificeringsniveau. Pillar-fordelingen i nyhedsfeedet er: Understand 60 %, Challenge 25 %,
+Inspire 15 %.
+
+**Understand — "Hvad sker der, og hvad betyder det for min virksomhed?"**
+
+Den direkte erhvervsmæssige konsekvens af aktuelle nyheder.
+Ikke "her er nyheden" — men "her er nyheden, og det betyder X for din branche."
+
+Typisk stof: ny regulering med deadline og krav; politisk beslutning med erhvervsmæssig
+implikation; makroøkonomisk indikator med sektorkonsekvens; virksomhedshændelse
+(fusion, konkurs, ekspansion) med branchekonsekvens.
+
+Tone: Saglig, konkret, faktatung. Ingen kommentar — kun konsekvensanalyse.  
+AI-produktionsgrad: Høj. Den eneste pillar hvor AI-assisteret produktion er bredt accepteret
+i det danske marked — se AI-troværdighed nedenfor.
+
+---
+
+**Challenge — "Hvad er den vinkel, du ikke har set?"**
+
+Den underrepræsenterede stemme, den tilbageholdte kilde, myten der holder
+unødigt mange virksomheder tilbage. Y er ikke et korrektiv til andre medier — Y er sig selv,
+og Challenge er ikke polemik, men systematisk søgning efter det, der mangler i den
+dominerende fortolkningsramme.
+
+Typisk stof: den ekspert der siger noget andet end konsensus — med belæg; den regulering
+der viser sig at have modsatrettede effekter af intentionen; den branchetrend der har
+nået toppen uden nogen har opdaget det.
+
+Tone: Forundret, nysgerrig, faktabaseret. Aldrig ideologisk.  
+AI-produktionsgrad: Lav. Kræver altid navngivet menneskelig analyse. Publiceres aldrig automatisk.
+
+---
+
+**Inspire — "Hvad kan vi gøre?"**
+
+Løsningen, muligheden, casen der virker. SMV-ejeren vil ikke kun forstå markedet
+— han vil vide, hvad han skal gøre ved det.
+
+Typisk stof: casestory — virksomhed der løste et problem på en uventet måde; guide til
+håndtering af ny regulering eller mulighed; fremtidsanalyse der åbner muligheder for
+specifikke sektorer; teknologi eller forretningsmodel der er klar til adoption.
+
+Tone: Optimistisk, konkret, handlingsorienteret. Aldrig: "det kunne måske" eller "potentielt."  
+AI-produktionsgrad: Middel. Struktureret caseindsamling kan AI-assisteres;
+vurdering og byline kræver menneske.
+
+---
+
+### Segmentstrategi — pillar-prioritering per læsertype
+
+Y.dk Business skriver til seks identificerede læsersegmenter. Segmenterne er ikke
+udelukkelseskriterier — én abonnent kan tilhøre flere. De er redaktionelle
+prioriteringslinser der styrer, hvilken pillar der vægtes højest i prompt-generering
+og indholdsmix.
+
+Analysen bygger på to parallelle segmentanalyser (juni 2026) med udgangspunkt i dansk
+medieforskning, Reuters Institute-data og internationale forbilleder som Morning Brew,
+Axios Smart Brevity, Sifted og HBR.
+
+| Segment | Primær pillar | Sekundær pillar | AI-produktionsgrad |
+|---|---|---|---|
+| SMV-ejere (5–50 ansatte) | Understand | Inspire | Høj |
+| C-level, mellemstore virksomheder (50–250) | Challenge | Understand | Lav |
+| Iværksættere under 5 år | Challenge | Inspire | Lav |
+| Kommunikations- og marketingfolk | Inspire | Understand | Middel |
+| Investorer, rådgivere og bureauer | Challenge | Understand | Middel |
+| Medarbejdere i større virksomheder (250+) | Understand | — | Høj |
+
+**SMV-ejere:** Understand bæres af regulatory oversættelse og regional erhvervsdynamik —
+systematisk underdækket i dansk erhvervsjournalistik, overladt til interesseorganisationer.
+Inspire er den differentierende konkurrencefordel: peer-cases fra ejerledere i samme størrelse
+og branche i "smarteste ven"-registret. Produktionsprioritet fase 1: Understand.
+Redaktionel differentiering på sigt: Inspire.
+
+**C-level, mellemstore virksomheder:** Denne leder har adgang til nyheder — men mangler
+den velunderbyggede vinkel der bryder konsensus. Challenge som "strategic blind-spot
+reporting": faktatjek af de antagelser dansk ledelse tager for givne. HBR-filteret:
+"vores læsere ved det her allerede." Navngivet menneskelig analyse krævet. Aldrig auto-publisering.
+
+**Iværksættere:** Startup-dækning er hype-drevet og succesfikseret. Det founders faktisk
+mangler: kapital- og sektorbriefs, regulatory traps, fejlanalyser og exit-realiteter.
+Challenge som "founder intelligence": myteknusning med data frem for startup-PR.
+Navngivne kilder og menneskelig vurdering krævet.
+
+**Kommunikations- og marketingfolk:** Disciplinens AI-skifte og krisecases dækkes som
+trendstof — ikke som håndværksjournalistik. Inspire som "case deconstruction": hvad
+de besluttede, hvad de målte, hvad der gik galt, hvad der faktisk virkede. Fast beat i
+tre spor: krisekommunikation, platform og rækkevidde, AI i kommunikation.
+
+**Investorer, rådgivere og bureauer:** Segmentet er informationsmættet men redaktionelt
+underserviceret — de betaler for bedre dømmekraft. Challenge som "signal before deal":
+ledelsesudskiftninger, reguleringsvindue, sektorrotation — inden det bliver til
+pressemeddelelse. Datadrevet overblik egner sig til AI-assisteret produktion; analyse
+ovenpå kræver menneskelig vurdering.
+
+**Medarbejdere i større virksomheder:** Erhvervsstof er skrevet til topledere eller den
+brede offentlighed — sjældent til den fagligt engagerede medarbejder der vil forstå
+sin branches kontekst. Understand som "arbejdsdagsjournalistik": hvad sker der i min
+branche, og hvad betyder det for mit arbejde? Axios' "Why it matters"-logik, dansk og
+sektorspecifik. Det segment, hvor AI-assisteret Understand-indhold har højest troværdighed.
+
+---
+
+### AI-troværdighed — empirisk grundlag for verificeringsmodellen
+
+Reuters Institute *Generative AI and News Report 2025* (seks lande inkl. Danmark,
+~2.000 respondenter per land) dokumenterer en klar troværdighedsskala:
+
+| Produktionsform | Andel komfortable |
+|---|---|
+| Rent AI-produceret | 12 % |
+| Menneskeligt tilsyn (human in the loop) | 21 % |
+| Menneskeledet med AI-hjælp | 43 % |
+| Rent menneskeskabt | 62 % |
+
+Danmark er blandt de mest AI-skeptiske lande. Back-end-brug accepteres bredere:
+stavning/grammatik (55 %), oversættelse (53 %), datastrukturering (45 %).
+AI-labeling alene skaber ikke automatisk tillid — i nogle studier sænker det
+tillidsvurderingen. Publikum forventer, at AI gør nyheder billigere men
+mindre troværdige.
+
+Konsekvens: Understand er den eneste genre, hvor AI-assisteret produktion er bredt
+accepteret. Challenge og Inspire kræver navngivet menneskelig ophav — ikke som
+redaktionel forsigtighedspolitik, men som forudsætning for produktets troværdighed
+i det danske marked. Verificeringsmodellen i afsnit 4 er en direkte operationalisering
+af dette.
+
+---
+
 ## 1. Kildestruktur
 
-Y.dk Business-motoren opererer med fire kildelag.
+Y.dk Business-motoren opererer med fem kildelag.
 
 ### 1.1 Supertrends-infrastruktur (primær motor)
 
@@ -49,14 +189,14 @@ og fremtidsscenarier. Supertrends-indhold brandes "Powered by Supertrends".
 | Finans.dk | Erhvervsmedie | RSS (offentlige feeds) | Lav — begrænset overlap |
 | Branchemedier (per sektor) | Fagmedier | RSS | Høj — sektorspecifik |
 
-**Note:** Dagblade og erhvervsmedier aggregeres til kontekst og
-signaldetektion — ikke til genpublikation. Originalt indhold er Y's.
+**Note:** Dagblade og erhvervsmedier aggregeres til kontekst og signaldetektion
+— ikke til genpublikation. Originalt indhold er Y's.
 
 ### 1.3 Regulatoriske og offentlige datakilder
 
-Lovgivning, regulering og offentlige data er en central del af
-Y.dk Business' value proposition. Disse kilder er gratis og
-udgør en konkurrencemæssig fordel, der ikke kræver partnerskab.
+Lovgivning, regulering og offentlige data er en central del af Y.dk Business'
+value proposition. Disse kilder er gratis og udgør en konkurrencemæssig fordel,
+der ikke kræver partnerskab.
 
 | Kilde | Datatype | Relevans |
 |---|---|---|
@@ -340,7 +480,7 @@ Type B (regulatory) — human review krævet inden publisering.
 - International kontekst: Reuters, AP og Bloomberg som primære inputkilder
 
 **[AFVENTER DYRBY]:** Kommentatornetværk — hvem er Y's navngivne stemmer
-i C-level-sektionen? DI-økonom? Unilateral erhvervsjurist? International analytiker?
+i C-level-sektionen? DI-økonom? Erhvervsjurist? International analytiker?
 
 **Verificeringsniveau:** Human review krævet for al C-level indhold.
 
@@ -359,6 +499,10 @@ Modellen er designet til to mål:
    etisk eller troværdighedsmæssig risiko skal det.
 2. Transparens: brugeren ved hvad der er AI-genereret og hvad der er
    redaktionelt kurateret — det er en styrke, ikke en svaghed.
+
+Det empiriske grundlag for skellet mellem auto-publisering og human review
+er dokumenteret i den strategiske ramme (AI-troværdighed): Understand kan
+AI-produceres bredt; Challenge og Inspire kræver navngivet menneskelig ophav.
 
 ### 4.2 Verificeringsniveauer
 
@@ -415,65 +559,7 @@ Følgende stillinger/roller skal mappes til verificeringsmodellen:
 
 ---
 
-## 5. Redaktionelle vinkler — tre pillars i Business-kontekst
-
-Y's tre indholdspillarer (Understand / Challenge / Inspire) oversættes
-specifikt til Business-redaktionen:
-
-### 5.1 Understand — "Hvad sker der, og hvad betyder det for min virksomhed?"
-
-Den direkte erhvervsmæssige konsekvens af aktuelle nyheder.
-Ikke "her er nyheden" — men "her er nyheden, og det betyder X for din branche."
-
-**Typisk stof:**
-- Ny regulering med deadline og krav
-- Politisk beslutning med erhvervsmæssig implikation
-- Makroøkonomisk indikator med sektorkonsekvens
-- Virksomhedshændelse (fusion, konkurs, ekspansion) med branchekonsekvens
-
-**Tone:** Saglig, konkret, faktatung. Ingen kommentar — kun konsekvensanalyse.
-
----
-
-### 5.2 Challenge — "Hvad er den vinkel, du ikke har set?"
-
-Den underrepræsenterede stemme, den tilbageholdte kilde, myten der
-holder unødigt mange virksomheder tilbage.
-
-Y er ikke et korrektiv til andre medier. Y er sig selv.
-Challenge er ikke polemik — det er systematisk søgning efter
-det, der mangler i den dominerende fortolkningsramme.
-
-**Typisk stof:**
-- Den ekspert der siger noget andet end konsensus — med belæg
-- Den regulering der viser sig at have modsatrettede effekter af intentionen
-- Den branchetrend der har nået toppen uden nogen har opdaget det
-- Den succes-case der ikke passer ind i den gængse fortælling
-
-**Tone:** Forundret, nysgerrig, faktabaseret. Aldrig ideologisk.
-
-**Verificeringskrav:** Altid human review. Challenge-vinkler publiceres
-aldrig automatisk — de kræver en redaktionel vurdering af kildebelæg.
-
----
-
-### 5.3 Inspire — "Hvad kan vi gøre?"
-
-Løsningen, muligheden, casen der virker.
-SMV-ejeren vil ikke kun forstå markedet — han vil vide, hvad han skal gøre ved det.
-
-**Typisk stof:**
-- Casestory: virksomhed der løste et problem på en uventet måde
-- Guide: konkrete trin til at håndtere ny regulering eller mulighed
-- Fremtidsanalyse: trend der åbner muligheder for specifikke sektorer
-- Innovation: teknologi eller forretningsmodel der er klar til adoption
-
-**Tone:** Optimistisk, konkret, handlingsorienteret.
-Aldrig: "det kunne måske" eller "potentielt."
-
----
-
-## 6. Produktionsvolumen — målsætninger ved launch
+## 5. Produktionsvolumen — målsætninger ved launch
 
 Estimaterne forudsætter teknisk konfigurering afsluttet juli 2026
 og testperiode august 2026.
@@ -492,7 +578,7 @@ på motor-kapacitet? Skal vi specificere et minimum og et mål-niveau?
 
 ---
 
-## 7. Åbne beslutninger (kræver Dyrby-input inden 22. juni)
+## 6. Åbne beslutninger (kræver Dyrby-input inden 22. juni)
 
 | # | Beslutning | Konsekvens ved manglende afklaring |
 |---|---|---|
@@ -505,7 +591,7 @@ på motor-kapacitet? Skal vi specificere et minimum og et mål-niveau?
 
 ---
 
-## 8. Udeståender — Tech Lead-afklaringer
+## 7. Udeståender — Tech Lead-afklaringer
 
 | # | Afklaring | Blokerer |
 |---|---|---|
@@ -517,5 +603,5 @@ på motor-kapacitet? Skal vi specificere et minimum og et mål-niveau?
 
 ---
 
-*Næste version (0.2) integrerer Dyrby-input og lukker åbne beslutninger.*  
+*Næste version (0.3) integrerer Dyrby-input og lukker åbne beslutninger.*  
 *Final version (1.0) leveres senest 22. juni 2026 til Tech Lead og CEO.*
