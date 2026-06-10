@@ -604,6 +604,34 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   color: var(--muted);
   line-height: 1.35;
 }
+.bm-addons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line2);
+  border-top: 1px solid var(--line);
+}
+.bm-addon {
+  background: var(--tint);
+  padding: 12px 16px;
+}
+.bm-addon-k {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.bm-addon-v {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink70);
+  line-height: 1.45;
+}
+.bm-addon-v strong { color: var(--accent); font-weight: 700; }
 
 /* Category statement */
 .cat-box {
@@ -1111,6 +1139,24 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
             <div class="bm-plot-b2b-k">API</div>
             <div class="bm-plot-b2b-v">100–250.000 kr/år</div>
             <div class="bm-plot-b2b-d">Nyhedsfeeds, alerts og data til kundens egne systemer.</div>
+          </div>
+        </div>
+        <div class="bm-addons" aria-label="Add-ons og vilkår">
+          <div class="bm-addon">
+            <div class="bm-addon-k">Kampagnevilkår</div>
+            <div class="bm-addon-v">Erhverv: <strong>3 mdr. gratis</strong> · Erhverv+: <strong>5.000 kr</strong> første år · Premium: <strong>9.500 kr</strong> første år</div>
+          </div>
+          <div class="bm-addon">
+            <div class="bm-addon-k">Ekstra bruger</div>
+            <div class="bm-addon-v">Erhverv: <strong>99 kr/md</strong> · Erhverv+: <strong>750 kr/år</strong> · Premium: <strong>500 kr/år</strong></div>
+          </div>
+          <div class="bm-addon">
+            <div class="bm-addon-k">Ekstra brand/person</div>
+            <div class="bm-addon-v">Medie: <strong>250 kr/md</strong> / <strong>1.500 kr/år</strong> / <strong>1.000 kr/år</strong> · CVR: <strong>300 kr/md</strong> / <strong>2.000 kr/år</strong> / <strong>1.250 kr/år</strong></div>
+          </div>
+          <div class="bm-addon">
+            <div class="bm-addon-k">International adgang</div>
+            <div class="bm-addon-v">Ekstra international bruger: <strong>99 kr/md</strong> · <strong>1.000 kr/år</strong> · <strong>750 kr/år</strong></div>
           </div>
         </div>
       </div>
