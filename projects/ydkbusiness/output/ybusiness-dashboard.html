@@ -347,6 +347,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .ibox-b strong { color: var(--ink); font-weight: 600; }
 .ibox-b p { margin: 0; }
 .ibox-b p + p { margin-top: 11px; }
+.col-compact .ibox-b { font-size: 12.5px; line-height: 1.6; }
 
 /* Checklist */
 .chk { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
@@ -1006,8 +1007,8 @@ body.bm-editing .bm-plot-cell .bm-add {
     <div class="hub-stats">
       <div class="stat-cell"><div class="stat-v">Fra 500 kr</div><div class="stat-l">Erhverv — indgangspris/md</div></div>
       <div class="stat-cell"><div class="stat-v">1.500</div><div class="stat-l">Virksomhedsmål år 1</div></div>
-      <div class="stat-cell"><div class="stat-v">Nov. 2026</div><div class="stat-l">Paywall live</div></div>
       <div class="stat-cell"><div class="stat-v">Okt. 2026</div><div class="stat-l">Business-launch</div></div>
+      <div class="stat-cell"><div class="stat-v">Nov. 2026</div><div class="stat-l">Paywall live</div></div>
     </div>
   </div>
   <div class="pnum">Y Business · Intern · Deployed {{DEPLOY_TIME}}</div>
@@ -1056,13 +1057,13 @@ body.bm-editing .bm-plot-cell .bm-add {
             <td class="str">Erhverv+</td>
             <td class="hi" style="font-size:13px;">7.500 kr/år</td>
             <td style="color:var(--green); font-weight:600; font-size:12px;">5.000 kr/år</td>
-            <td>Team + overvågning: artikel-deling, 5 brands</td>
+            <td>Team + overvågning: artikel-deling, kick-back, 5 brands</td>
           </tr>
           <tr class="hl">
             <td class="str" style="color:var(--accent);">Erhverv Premium</td>
             <td class="hi" style="font-size:13px;">12.500 kr/år</td>
             <td style="color:var(--green); font-weight:600; font-size:12px;">9.500 kr/år</td>
-            <td>CVR-overvågning + brugsret til artikler + kick-back</td>
+            <td>Reklamefri + finansielle analyser + indhold på valgfrit sprog</td>
           </tr>
           <tr>
             <td class="str">Partner</td>
@@ -1153,7 +1154,7 @@ body.bm-editing .bm-plot-cell .bm-add {
             <div class="bm-plot-cell" data-xlsx-key="financial_analysis_premium"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="international_access">
-            <div class="bm-plot-feature"><strong data-xlsx-key="international_access_label">International version</strong><span data-xlsx-key="international_access_description">Brugere på valgfrit sprog.</span></div>
+            <div class="bm-plot-feature"><strong data-xlsx-key="international_access_label">Indhold på valgfrit sprog</strong><span data-xlsx-key="international_access_description">Modtag alt indhold på dit foretrukne sprog — ikke begrænset til dansk.</span></div>
             <div class="bm-plot-cell" data-xlsx-key="international_access_erhverv"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="international_access_plus"><span class="bm-add">Add-on</span></div>
             <div class="bm-plot-cell" data-xlsx-key="international_access_premium"><span class="bm-dot"></span></div>
@@ -1195,8 +1196,8 @@ body.bm-editing .bm-plot-cell .bm-add {
             <div class="bm-addon-v" data-xlsx-key="extra_brand_terms">Medie: <strong>250 kr/md</strong> / <strong>1.500 kr/år</strong> / <strong>1.000 kr/år</strong> · CVR: <strong>300 kr/md</strong> / <strong>2.000 kr/år</strong> / <strong>1.250 kr/år</strong></div>
           </div>
           <div class="bm-addon">
-            <div class="bm-addon-k" data-xlsx-key="international_addon_label">International adgang</div>
-            <div class="bm-addon-v" data-xlsx-key="international_addon_terms">Ekstra international bruger: <strong>99 kr/md</strong> · <strong>1.000 kr/år</strong> · <strong>750 kr/år</strong></div>
+            <div class="bm-addon-k" data-xlsx-key="international_addon_label">Ekstra sprogbruger</div>
+            <div class="bm-addon-v" data-xlsx-key="international_addon_terms">Tilkøb for Erhverv+: <strong>99 kr/md</strong> · <strong>1.000 kr/år</strong> · <strong>750 kr/år</strong></div>
           </div>
           <div class="bm-addon">
             <div class="bm-addon-k">Medieovervågning</div>
@@ -1227,7 +1228,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div>
     </div>
 
-    <div class="col ani">
+    <div class="col ani col-compact">
       <div class="col-label">Kommercielle mekanikker</div>
 
       <div class="ibox">
@@ -1255,26 +1256,27 @@ body.bm-editing .bm-plot-cell .bm-add {
         <div class="ibox-t">Marketing kick-back — inkluderet i Erhverv+ og Premium</div>
         <div class="ibox-b">
           <p>Abonnenter modtager annonceringsværdi på platformen: bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel.</p>
-          <p><strong>Erhverv+: 5.000 kr. · Premium: 7.500–9.500 kr.</strong></p>
+          <p><strong>Erhverv+: 5.000 kr. · Premium: 7.500 kr.</strong></p>
           <p>Stærkt salgsargument til virksomheder der allerede annoncerer eller ønsker PR-eksponering.</p>
         </div>
       </div>
 
-      <div class="ibox green">
-        <div class="ibox-t" style="color:var(--green)">Artikel-deling og brugsrettigheder — ny engagementsmekanik</div>
-        <div class="ibox-b">
-          <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>.</p>
-          <p>Erhverv: 5/md · Erhverv+: 10/md · Premium: 50/md</p>
-          <p>Desuden brugsret til artikler i egen markedsføring — SoMe, nyhedsbreve og investor-materiale — for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</p>
+      <div style="display:flex; gap:10px;">
+        <div class="ibox green" style="flex:1; min-width:0; border:1.5px solid var(--green);">
+          <div class="ibox-t" style="color:var(--green)">Artikel-deling og brugsrettigheder — ny engagementsmekanik</div>
+          <div class="ibox-b">
+            <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>.</p>
+            <p>Erhverv: 5/md · Erhverv+: 10/md · Premium: 50/md</p>
+            <p>Desuden brugsret til artikler i egen markedsføring — SoMe, nyhedsbreve og investor-materiale — for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</p>
+          </div>
         </div>
-      </div>
-
-      <div class="ibox green" style="border-color:var(--green); background:var(--green-s);">
-        <div class="ibox-t" style="color:var(--green)">Prisankeret holder — Erhverv+ mod konkurrenter</div>
-        <div class="ibox-b">
-          <p>Erhverv+ til 7.500 DKK/år inkluderer overvågning, team-adgang, artikel-deling og marketing kick-back.</p>
-          <p>Retriever (overvågning alene): 15.000–50.000+ DKK/år · Meltwater: 50.000–140.000+ DKK/år · LassoX: 40.000–82.000 DKK/år</p>
-          <p><strong>Erhverv+ erstatter 2–3 separate tjenester til en femtedel af prisen.</strong></p>
+        <div class="ibox green" style="flex:1; min-width:0; border:1.5px solid var(--green); background:var(--green-s);">
+          <div class="ibox-t" style="color:var(--green)">Prisankeret holder — Erhverv+ mod konkurrenter</div>
+          <div class="ibox-b">
+            <p>Erhverv+ til 7.500 DKK/år inkluderer overvågning, team-adgang, artikel-deling og marketing kick-back.</p>
+            <p>Retriever (overvågning alene): 15.000–50.000+ DKK/år · Meltwater: 50.000–140.000+ DKK/år · LassoX: 40.000–82.000 DKK/år</p>
+            <p><strong>Erhverv+ erstatter 2–3 separate tjenester til en femtedel af prisen.</strong></p>
+          </div>
         </div>
       </div>
 
