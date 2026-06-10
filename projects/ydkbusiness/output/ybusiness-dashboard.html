@@ -1056,7 +1056,7 @@ body.bm-editing .bm-plot-cell .bm-add {
             <td class="str">Erhverv+</td>
             <td class="hi" style="font-size:13px;">7.500 kr/år</td>
             <td style="color:var(--green); font-weight:600; font-size:12px;">5.000 kr/år</td>
-            <td>Team + overvågning: reklamefri, artikel-deling, 5 brands</td>
+            <td>Team + overvågning: artikel-deling, 5 brands</td>
           </tr>
           <tr class="hl">
             <td class="str" style="color:var(--accent);">Erhverv Premium</td>
@@ -1222,12 +1222,8 @@ body.bm-editing .bm-plot-cell .bm-add {
         Business genererer <strong style="color:var(--ink70);">10× mere revenue per abonnent</strong> end Private (500 DKK vs. 50 DKK/md). Private er platform-driver der konverterer daglig trafik til Business-abonnenter. Feature-allokering per tier afklares efter redaktionelt koncept — Lysdal + Dyrby, deadline 22. juni.
       </div>
 
-      <div class="ibox amber" style="margin-top:16px;">
-        <div class="ibox-t" style="color:var(--amber);">Endelig prismodel og tierstruktur afventer</div>
-        <div class="ibox-b">
-          <p>Antal inkluderede brugere per tier er ikke fastlagt. Prismodellens struktur for multi-bruger-adgang — herunder om flere brugere skal kunne tilkøbes som option — afklares som del af features spec v1.0.</p>
-          <p>Ingen commitments på brugerantal eller seat-model inden da.</p>
-        </div>
+      <div style="margin-top:14px; padding:10px 14px; border-left:2px solid var(--amber); background:var(--amber-s);">
+        <span style="font-family:var(--mono); font-size:9px; font-weight:700; color:var(--amber); letter-spacing:0.1em; text-transform:uppercase;">Note — </span><span style="font-family:var(--sans); font-size:11.5px; color:var(--ink70); line-height:1.55;">Antal inkluderede brugere per tier er ikke fastlagt. Seat-model afklares som del af features spec v1.0. Ingen commitments inden da.</span>
       </div>
     </div>
 
@@ -1268,7 +1264,7 @@ body.bm-editing .bm-plot-cell .bm-add {
         <div class="ibox-t" style="color:var(--green)">Artikel-deling og brugsrettigheder — ny engagementsmekanik</div>
         <div class="ibox-b">
           <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>.</p>
-          <p>Erhverv: 5/md · Erhverv+: 25/md · Premium: 100/md</p>
+          <p>Erhverv: 5/md · Erhverv+: 10/md · Premium: 50/md</p>
           <p>Desuden brugsret til artikler i egen markedsføring — SoMe, nyhedsbreve og investor-materiale — for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</p>
         </div>
       </div>
@@ -1439,7 +1435,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div>
     </div>
   </div>
-  <div class="pnum">Markedspositionering · 03/04</div>
+  <div class="pnum">Markedspositionering · 03/05</div>
 </div>
 
 
@@ -1466,7 +1462,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
     <div class="sec-title">Go-to-market & roadmap</div>
-    <div class="sec-num">04 / 04</div>
+    <div class="sec-num">04 / 05</div>
   </div>
 
   <div class="sec-body">
@@ -1510,7 +1506,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div>
     </div>
   </div>
-  <div class="pnum">Go-to-market & roadmap · 04/04</div>
+  <div class="pnum">Go-to-market & roadmap · 04/05</div>
 </div>
 
 
@@ -1571,7 +1567,7 @@ body.bm-editing .bm-plot-cell .bm-add {
             <li>B2B-briefs (template-format)</li>
             <li>Leadgenerering — signal-baseret + CVR-søgning</li>
             <li>Lukket abonnentfællesskab</li>
-            <li>Reklamefri adgang (Erhverv+/Premium)</li>
+            <li>Reklamefri adgang (Premium)</li>
             <li>Artikel-deling — tokeniserede links</li>
             <li>Marketing kick-back (Erhverv+/Premium)</li>
             <li>Web og mobil</li>
@@ -1722,7 +1718,8 @@ body.bm-editing .bm-plot-cell .bm-add {
 (function () {
   var stage = document.getElementById('stage');
   function scale() {
-    var r = Math.min(window.innerWidth / 1440, window.innerHeight / 900);
+    var vpad = 160;
+    var r = Math.min(window.innerWidth / 1440, (window.innerHeight - vpad) / 900);
     var x = (window.innerWidth  - 1440 * r) / 2;
     var y = (window.innerHeight - 900 * r) / 2;
     stage.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
@@ -1868,10 +1865,11 @@ body.bm-editing .bm-plot-cell .bm-add {
   function rescaleStage() {
     var s = document.getElementById('stage');
     var offset = isDirty ? 52 : 0;
-    var availH = window.innerHeight - offset;
+    var vpad = 160;
+    var availH = window.innerHeight - offset - vpad;
     var r = Math.min(window.innerWidth / 1440, availH / 900);
     var x = (window.innerWidth  - 1440 * r) / 2;
-    var y = offset + (availH - 900 * r) / 2;
+    var y = offset + (window.innerHeight - offset - 900 * r) / 2;
     s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
   }
 
