@@ -411,7 +411,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 }
 .bm-plot-head {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
+  grid-template-columns: minmax(240px, 1fr) repeat(2, 132px);
   background: var(--ink);
   color: #fff;
   border-bottom: 1px solid var(--line);
@@ -473,7 +473,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .bm-plot-rows { display: grid; }
 .bm-plot-row {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
+  grid-template-columns: minmax(240px, 1fr) repeat(2, 132px);
   min-height: 50px;
   border-bottom: 1px solid var(--line2);
 }
@@ -533,6 +533,15 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   border: 1px solid rgba(180,83,9,0.2);
   padding: 3px 6px;
 }
+.bm-mini {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.bm-mini.muted { color: var(--muted); }
 .bm-empty {
   width: 18px;
   height: 1px;
@@ -924,7 +933,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
             <td class="str">Erhverv</td>
             <td class="hi" style="font-size:13px;">500 kr/md</td>
             <td style="color:var(--green); font-weight:600; font-size:12px;">3 mdr. gratis</td>
-            <td>Læseadgang: artikler, podcast, video — én bruger</td>
+            <td>Læseadgang + markedsovervågning — én bruger</td>
           </tr>
           <tr>
             <td class="str">Erhverv+</td>
@@ -969,70 +978,67 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
             <div class="bm-plot-price">5.000 kr</div>
             <div class="bm-plot-period">Erhverv+ · år 1</div>
           </div>
-          <div class="bm-plot-tier">
-            <div class="bm-plot-price">9.500 kr</div>
-            <div class="bm-plot-period">Premium · år 1</div>
-          </div>
         </div>
         <div class="bm-plot-rows">
           <div class="bm-plot-row">
             <div class="bm-plot-feature"><strong>Fri adgang til alt business-indhold</strong><span>Artikler, podcast, video og morgenbriefs.</span></div>
             <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>5 ekstra brugere</strong><span>Teamadgang som klar opgraderingsdriver.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-          </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Reklamefri adgang</strong><span>For virksomheder der bruger produktet i team og ledelse.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-          </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Medieovervågning</strong><span>Op til 5 brands/personer med alerts fra overvågede kilder.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-          </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Artikel-deling</strong><span>Tokeniserede links: 5/md, 25/md eller 100/md.</span></div>
+            <div class="bm-plot-feature"><strong>Markedsovervågning</strong><span>Op til 5 brands/personer med CVR-signaler og realtidsnotifikationer.</span></div>
             <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>CVR-/markedsovervågning</strong><span>Regnskaber, bestyrelsesmedlemmer, direktørskift og selskabssignaler.</span></div>
-            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-feature"><strong>5 ekstra brugere</strong><span>Teamadgang som opgraderingsdriver.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>International version</strong><span>5 brugere på valgfrit sprog i Premium.</span></div>
+            <div class="bm-plot-feature"><strong>Reklamefri adgang</strong><span>Relevant når produktet bruges af flere i virksomheden.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Medieovervågning</strong><span>Alerts når brandet eller navnet nævnes i overvågede kilder.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Artikel-deling</strong><span>Videresend indhold bag betalingsmuren via tokeniserede links.</span></div>
+            <div class="bm-plot-cell"><span class="bm-mini muted">5/md</span></div>
+            <div class="bm-plot-cell"><span class="bm-mini">25/md</span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Brug artikler i egen markedsføring</strong><span>Sociale medier, nyhedsbreve, PR og social proof.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-add">Begrænset</span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Finansielle analyser</strong><span>Regnskabsanalyser når danske virksomheders tal offentliggøres.</span></div>
+            <div class="bm-plot-cell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>International version</strong><span>Brugere på valgfrit sprog.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell"><span class="bm-add">Add-on</span></div>
+          </div>
+          <div class="bm-plot-row">
+            <div class="bm-plot-feature"><strong>Community markedsplads</strong><span>Basisadgang i indgangspakken, fuld adgang i årspakken.</span></div>
+            <div class="bm-plot-cell"><span class="bm-mini muted">Basis</span></div>
             <div class="bm-plot-cell"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Community markedsplads</strong><span>Basisadgang, fuld adgang og prioriteret synlighed.</span></div>
-            <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
-          </div>
-          <div class="bm-plot-row">
-            <div class="bm-plot-feature"><strong>Brugsret og marketing kick-back</strong><span>Brug i egen markedsføring og annonceringsværdi på platformen.</span></div>
+            <div class="bm-plot-feature"><strong>Marketing kick-back</strong><span>Eksponering via bannerannoncer, nyhedsbrev eller sponsoreret artikel.</span></div>
             <div class="bm-plot-cell"><span class="bm-empty"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot soft"></span></div>
-            <div class="bm-plot-cell"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell"><span class="bm-mini">5.000 kr</span></div>
           </div>
         </div>
         <div class="bm-plot-note">
-          <span><strong>Pointen:</strong> Erhverv sælger læseadgang. Erhverv+ sælger team og medieovervågning. Premium sælger markedssignaler, rettigheder og eksponering.</span>
-          <span>Partner og API behandles som separate B2B-salgsspor.</span>
+          <span><strong>Pointen:</strong> 500 kr-pakken har både indhold og markedsovervågning. Årspakken løfter med medieovervågning, analyser og kick-back.</span>
+          <span>Premium, Partner og API behandles i prismodellen ovenfor.</span>
         </div>
       </div>
 
