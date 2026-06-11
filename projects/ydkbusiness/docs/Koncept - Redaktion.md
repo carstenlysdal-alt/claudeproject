@@ -395,7 +395,51 @@ andre kan lære og hvad de ikke bør kopiere.
 
 ---
 
-## 10. Kildemodel
+## 10. AI & tech for erhverv — redaktionel profil
+
+Dedikeret Pro-sektion. Den dækker AI og teknologi med direkte erhvervsrelevans
+— men aldrig som teknologistof alene.
+
+### Redaktionel vinkel
+
+Den dominerende AI-dækning handler om teknologien: nye modeller, nye værktøjer,
+nye benchmarks. Y Business skal eje det spørgsmål, der mangler i den fortælling:
+
+**Hvad kræver det af organisationen, ledelsen og processerne?**
+
+Det er her, de fleste virksomheder fejler — ikke i valget af teknologi, men i
+forudsætningerne for at bruge den. AI-implementering er et ledelses- og
+driftsproblem før det er et teknologiproblem.
+
+Intern regel: AI & tech-sektionen skal aldrig publicere en case, der ikke
+svarer på hvad det krævede af organisation, ledelse og proces — ikke kun
+hvad teknologien kan.
+
+### To redaktionelle spor
+
+**Spor 1 — Forudsætningerne**
+Hvad kræver succesfuld AI-implementering? Organisation, ledelse, proces,
+kompetencer, kultur, ansvar. Cases med friktion: hvad gik galt, hvad
+virkede, hvad kostede det, hvad kan andre kopiere?
+
+Pillar: Inspire og Challenge.
+Segmenter: C-level, SMV-ejere, medarbejdere i større virksomheder.
+
+**Spor 2 — Stemmerne**
+Hvad siger de globale AI-meningsdannere — fra Silicon Valley, internationalt
+og nationalt — og hvad betyder det konkret for danske virksomheder?
+
+Formatet oversætter altid: ikke "her er hvad Sam Altman sagde" men "her er
+hvad det betyder for en dansk virksomhed der overvejer samme skridt."
+Succeserne vises altid med metode, friktion og begrænsning — aldrig som
+glorificering.
+
+Pillar: Understand og Challenge.
+Segmenter: C-level, iværksættere, rådgivere/investorer.
+
+---
+
+## 11. Kildemodel
 
 ### Grundprincip
 

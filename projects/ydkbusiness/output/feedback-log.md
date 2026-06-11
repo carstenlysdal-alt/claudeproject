@@ -23,6 +23,7 @@ Skrives automatisk til dette dokument via GitHub API ved hvert indsend.
 - **Af:** Anonym
 - **Bemærkning:**
   - Forudsætning for succesfuld AI-implementering. Organisation, proces og ledelse. Hvad kræver det?
+- **Status:** ✓ Integreret — tilføjet som redaktionelt spor 1 i sektion 10 (AI & tech for erhverv) i `Koncept - Redaktion.md`. Intern regel: AI & tech-sektionen publicerer aldrig en case der ikke svarer på hvad det krævede af organisation, ledelse og proces.
 
 ## 11. juni 2026 kl. 11.17
 
@@ -30,3 +31,4 @@ Skrives automatisk til dette dokument via GitHub API ved hvert indsend.
 - **Bemærkning:**
   - Meningsdannere world-wide: internationatiolt, Silicon Valley, nationalt.
   - Her er successerne.
+- **Status:** ✓ Integreret — tilføjet som redaktionelt spor 2 i sektion 10 (AI & tech for erhverv) i `Koncept - Redaktion.md`. Formatet oversætter altid globale stemmer til dansk virksomhedskontekst. Succeserne vises med metode, friktion og begrænsning.
