@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y Business — Redaktionelt Koncept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+html, body { width:100%; height:100%; margin:0; overflow:hidden; background:#FAFAF8; -webkit-font-smoothing:antialiased; }
+.deck-viewport { position:fixed; inset:0; overflow:hidden; background:#FAFAF8; }
+.deck-stage { position:absolute; left:0; top:0; width:1440px; height:900px; overflow:hidden; transform-origin:0 0; }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.2s !important; } }
+
+.screen { position:absolute; inset:0; width:1440px; height:900px; overflow:hidden; display:block; visibility:hidden; opacity:0; pointer-events:none; background:#FAFAF8; transition:opacity .3s ease; }
+.screen.active { visibility:visible; opacity:1; pointer-events:auto; z-index:1; }
+
+:root {
+  --paper:#FAFAF8; --card:#FFFFFF; --ink:#100C0C; --ink70:#44413C;
+  --muted:#7C7972; --line:#E4E2DD; --line2:#ECEAE4; --tint:#F4F2EC;
+  --accent:#361352; --accent-10:rgba(54,19,82,.08); --accent-20:rgba(54,19,82,.15); --accent-30:rgba(54,19,82,.25);
+  --green:#16A34A; --green-s:rgba(22,163,74,.08);
+  --amber:#B45309; --amber-s:rgba(180,83,9,.08);
+  --red:#C43A49; --red-s:rgba(196,58,73,.07);
+  --sans:'Schibsted Grotesk',system-ui,sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+  --mono:'JetBrains Mono',monospace;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+h1,.hub-h1,.tile-h,.sec-title,.cat-txt { text-wrap:balance; }
+
+/* HEADER */
+.dash-header { position:absolute; top:0; left:0; right:0; height:64px; display:flex; align-items:center; justify-content:space-between; padding:0 52px; background:rgba(250,250,248,.97); border-bottom:2px solid var(--line); backdrop-filter:blur(12px); z-index:10; box-shadow:0 2px 12px rgba(0,0,0,.04); }
+.dash-brand { display:flex; align-items:center; gap:16px; }
+.dash-brand-mark { font-family:var(--serif); font-size:20px; font-weight:700; color:var(--accent); font-style:italic; letter-spacing:-.01em; }
+.dash-divider { width:1px; height:18px; background:var(--line); }
+.dash-brand-sub { font-family:var(--sans); font-size:12px; font-weight:500; color:var(--muted); }
+.dash-meta { display:flex; align-items:center; gap:20px; }
+.dash-tag { font-family:var(--mono); font-size:10px; font-weight:500; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
+.dash-tag.hi { color:var(--accent); background:var(--accent-10); border:1px solid var(--accent-30); padding:3px 10px; border-radius:4px; font-weight:700; }
+.accent-bar { position:absolute; top:0; left:0; width:3px; height:100%; background:var(--accent); }
+.bg-grid { position:absolute; inset:0; pointer-events:none; background-image:radial-gradient(circle,rgba(54,19,82,.04) 1px,transparent 1px); background-size:36px 36px; }
+
+/* HUB */
+.hub-body { position:absolute; top:64px; left:0; right:0; bottom:0; display:flex; flex-direction:column; }
+.hub-intro { padding:34px 56px 26px; background:var(--card); border-bottom:1px solid var(--line); flex-shrink:0; }
+.hub-eyebrow { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.2em; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:10px; }
+.hub-eyebrow::before { content:''; display:block; width:20px; height:1px; background:var(--accent); }
+.hub-h1 { font-family:var(--serif); font-size:36px; font-weight:700; color:var(--ink); line-height:1.1; letter-spacing:-.015em; margin-bottom:7px; }
+.hub-h1 em { font-style:italic; color:var(--accent); font-weight:600; }
+.hub-sub { font-family:var(--sans); font-size:14px; color:var(--muted); line-height:1.5; }
+.hub-tiles { flex:1; display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); }
+.hub-tile { background:var(--card); padding:30px 36px; cursor:pointer; display:flex; flex-direction:column; justify-content:space-between; transition:background .18s ease,transform .1s cubic-bezier(.2,0,0,1); position:relative; }
+.hub-tile::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform .22s ease; }
+.hub-tile:hover { background:var(--tint); }
+.hub-tile:hover::after { transform:scaleX(1); }
+.hub-tile:active { transform:scale(.96); }
+.tile-num { font-family:var(--mono); font-size:10px; font-weight:500; color:var(--accent); opacity:.45; letter-spacing:.08em; margin-bottom:13px; }
+.tile-h { font-family:var(--serif); font-size:20px; font-weight:700; color:var(--ink); line-height:1.2; margin-bottom:13px; letter-spacing:-.01em; }
+.tile-pts { flex:1; display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
+.tile-pt { font-family:var(--sans); font-size:13px; color:var(--muted); display:flex; align-items:flex-start; gap:9px; line-height:1.4; }
+.tile-pt::before { content:'–'; color:var(--accent); flex-shrink:0; opacity:.6; }
+.tile-cta { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.15em; text-transform:uppercase; display:flex; align-items:center; gap:8px; opacity:.7; }
+.tile-cta::after { content:'→'; font-size:12px; opacity:1; }
+.hub-stats { display:grid; grid-template-columns:repeat(4,1fr); background:var(--tint); border-top:2px solid var(--line); height:80px; flex-shrink:0; }
+.stat-cell { display:flex; flex-direction:column; justify-content:center; padding:0 44px; border-right:1px solid var(--line); gap:2px; }
+.stat-cell:last-child { border-right:none; }
+.stat-v { font-family:var(--serif); font-size:22px; font-weight:700; color:var(--accent); line-height:1; letter-spacing:-.01em; font-variant-numeric:tabular-nums; }
+.stat-l { font-family:var(--mono); font-size:10px; font-weight:500; color:var(--muted); letter-spacing:.09em; text-transform:uppercase; }
+
+/* SECTION CHROME */
+.sec-hdr { position:absolute; top:64px; left:0; right:0; height:68px; display:flex; align-items:center; justify-content:space-between; padding:0 52px; background:var(--card); border-bottom:1px solid var(--line); }
+.back-btn { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.14em; text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:8px; background:none; border:none; min-height:40px; padding:8px 16px 8px 0; transition:opacity .18s; opacity:.7; }
+.back-btn::before { content:'←'; font-size:13px; }
+.back-btn:hover { opacity:1; }
+.sec-title { font-family:var(--serif); font-size:17px; font-weight:700; color:var(--ink); letter-spacing:-.01em; font-style:italic; }
+.sec-num { font-family:var(--mono); font-size:10px; font-weight:500; color:var(--muted); letter-spacing:.08em; }
+.sec-body { position:absolute; top:132px; left:0; right:0; bottom:0; display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); }
+.col { background:var(--card); padding:32px 44px; overflow:hidden; position:relative; }
+
+/* NAVIGATION */
+.dash-nav { position:absolute; left:50%; transform:translateX(-50%); display:flex; align-items:stretch; height:64px; }
+.dash-nav-item { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--muted); letter-spacing:.09em; text-transform:uppercase; padding:0 16px; display:flex; align-items:center; cursor:pointer; position:relative; white-space:nowrap; border:none; background:none; transition:color .15s; }
+.dash-nav-item::after { content:''; position:absolute; bottom:0; left:16px; right:16px; height:2px; background:var(--accent); transform:scaleX(0); transform-origin:center; transition:transform .22s cubic-bezier(.22,.61,.36,1); }
+.dash-nav-item:hover { color:var(--ink70); }
+.dash-nav-item.nav-active { color:var(--accent); }
+.dash-nav-item.nav-active::after { transform:scaleX(1); }
+
+/* COMPONENTS */
+.col-label { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.18em; text-transform:uppercase; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--line2); }
+.col-label-sm { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px; }
+
+.ibox { background:var(--tint); border-left:2px solid var(--accent); padding:16px 20px; margin-bottom:14px; }
+.ibox.green { border-color:var(--green); background:var(--green-s); }
+.ibox.accent { border-color:var(--accent); background:var(--accent-10); }
+.ibox-t { font-family:var(--sans); font-size:13px; font-weight:700; color:var(--accent); margin-bottom:7px; }
+.ibox.green .ibox-t { color:var(--green); }
+.ibox-b { font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.6; }
+.ibox-b strong { color:var(--ink); font-weight:600; }
+
+.chk { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.chk li { font-family:var(--sans); font-size:13px; color:var(--ink70); display:flex; align-items:flex-start; gap:10px; line-height:1.45; }
+.chk li::before { content:'✓'; color:var(--green); flex-shrink:0; font-weight:700; }
+.chk li strong { color:var(--ink); font-weight:600; }
+
+.tbl { width:100%; border-collapse:collapse; margin-bottom:14px; }
+.tbl th { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.1em; text-transform:uppercase; padding:8px 12px; text-align:left; background:var(--tint); border-bottom:2px solid var(--line); }
+.tbl td { padding:8px 12px; font-family:var(--sans); font-size:13px; color:var(--ink70); border-bottom:1px solid var(--line2); vertical-align:top; line-height:1.4; }
+.tbl td.str { color:var(--ink); font-weight:600; }
+.tbl tr.hl td { background:var(--accent-10); color:var(--ink); font-weight:600; border-color:var(--line); }
+
+.cat-box { background:var(--accent-10); border:1px solid var(--accent-30); padding:18px 22px; margin-bottom:18px; }
+.cat-lbl { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.16em; text-transform:uppercase; margin-bottom:7px; }
+.cat-txt { font-family:var(--serif); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; line-height:1.3; font-style:italic; }
+
+/* Driver list */
+.drv-list { display:flex; flex-direction:column; }
+.drv { padding:13px 0; border-bottom:1px solid var(--line2); display:grid; grid-template-columns:28px 1fr; gap:12px; align-items:flex-start; }
+.drv:first-child { border-top:1px solid var(--line2); }
+.drv-n { font-family:var(--serif); font-size:17px; font-weight:600; color:var(--accent); opacity:.18; line-height:1; font-style:italic; }
+.drv-t { font-family:var(--sans); font-size:13px; font-weight:700; color:var(--ink); margin-bottom:3px; line-height:1.3; }
+.drv-d { font-family:var(--sans); font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+/* Layer list */
+.layers { display:flex; flex-direction:column; }
+.layer { padding:12px 0; border-bottom:1px solid var(--line2); display:grid; grid-template-columns:36px 1fr; gap:10px; align-items:flex-start; }
+.layer:first-child { border-top:1px solid var(--line2); }
+.layer-n { font-family:var(--mono); font-size:9px; font-weight:700; color:var(--accent); opacity:.5; padding-top:2px; letter-spacing:.06em; }
+.layer-t { font-family:var(--sans); font-size:13px; font-weight:700; color:var(--ink); margin-bottom:3px; }
+.layer-d { font-family:var(--sans); font-size:12px; color:var(--muted); line-height:1.5; }
+
+/* Timeline */
+.tl { display:flex; flex-direction:column; }
+.tl-row { display:grid; grid-template-columns:96px 1fr; gap:14px; padding:10px 0; border-bottom:1px solid var(--line2); align-items:flex-start; }
+.tl-row:first-child { border-top:1px solid var(--line2); }
+.tl-d { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.06em; text-transform:uppercase; line-height:1.4; }
+.tl-t { font-family:var(--sans); font-size:12.5px; color:var(--ink70); line-height:1.5; }
+.tl-t strong { color:var(--ink); font-weight:700; }
+
+/* Scope */
+.scope-g { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; }
+.scope-box { padding:13px 14px; }
+.scope-box.out { background:var(--red-s); border:1px solid rgba(196,58,73,.13); }
+.scope-hl { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; margin-bottom:8px; }
+.scope-box.out .scope-hl { color:var(--red); }
+.scope-list { list-style:none; display:flex; flex-direction:column; gap:7px; }
+.scope-list li { font-family:var(--sans); font-size:12px; color:var(--ink70); display:flex; align-items:flex-start; gap:7px; line-height:1.4; }
+.scope-box.out .scope-list li::before { content:'–'; color:var(--red); opacity:.6; }
+
+/* Page number */
+.pnum { position:absolute; bottom:16px; right:22px; font-family:var(--mono); font-size:10px; font-weight:500; color:var(--line); letter-spacing:.1em; z-index:10; }
+#hub .pnum { display:none; }
+
+/* PILLAR BADGES */
+.pb { display:inline-flex; align-items:center; font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:2px 7px; border:1px solid currentColor; }
+.pb.u { color:var(--accent); border-color:var(--accent-30); background:var(--accent-10); }
+.pb.c { color:var(--amber); border-color:rgba(180,83,9,.3); background:var(--amber-s); }
+.pb.i { color:var(--green); border-color:rgba(22,163,74,.25); background:var(--green-s); }
+
+/* DISTRIBUTION BAR */
+.dist-bar { display:flex; height:5px; border-radius:2px; overflow:hidden; margin:12px 0 5px; }
+.dist-seg.u { background:var(--accent); }
+.dist-seg.c { background:var(--amber); }
+.dist-seg.i { background:var(--green); }
+.dist-labels { display:flex; gap:14px; }
+.dist-lbl { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+.dist-lbl.u { color:var(--accent); }
+.dist-lbl.c { color:var(--amber); }
+.dist-lbl.i { color:var(--green); }
+
+/* CONTRAST PAIRS */
+.contrast-section { margin-bottom:12px; }
+.contrast-ph { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; padding:6px 0 5px; margin-bottom:5px; }
+.contrast-ph.u { color:var(--accent); border-bottom:1px solid var(--accent-20); }
+.contrast-ph.c { color:var(--amber); border-bottom:1px solid rgba(180,83,9,.2); }
+.contrast-ph.i { color:var(--green); border-bottom:1px solid rgba(22,163,74,.2); }
+.contrast-pair { border:1px solid var(--line2); margin-bottom:7px; overflow:hidden; }
+.contrast-row { display:grid; grid-template-columns:44px 1fr; }
+.contrast-row.neg { border-bottom:1px solid var(--line2); }
+.contrast-mk { font-family:var(--mono); font-size:8px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; padding:9px 0; }
+.contrast-row.neg .contrast-mk { background:var(--tint); color:var(--muted); border-right:1px solid var(--line2); }
+.contrast-row.pos .contrast-mk { background:var(--accent-10); color:var(--accent); border-right:1px solid var(--accent-20); }
+.contrast-tx { font-family:var(--sans); font-size:12.5px; line-height:1.5; padding:9px 13px; }
+.contrast-row.neg .contrast-tx { color:var(--muted); }
+.contrast-row.pos .contrast-tx { color:var(--ink); font-weight:500; }
+
+/* SEGMENT COMPACT (section 03 right) */
+.seg-list { display:flex; flex-direction:column; }
+.seg-item { padding:13px 0; border-bottom:1px solid var(--line2); }
+.seg-item:first-child { border-top:1px solid var(--line2); }
+.seg-name { font-family:var(--sans); font-size:13px; font-weight:700; color:var(--ink); margin-bottom:7px; }
+.seg-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:6px; }
+.seg-tag { font-family:var(--mono); font-size:9px; font-weight:700; color:var(--ink70); letter-spacing:.05em; background:var(--tint); border:1px solid var(--line2); padding:2px 7px; text-transform:uppercase; }
+.seg-tone { font-family:var(--mono); font-size:9px; font-weight:500; color:var(--muted); letter-spacing:.05em; text-transform:uppercase; }
+
+/* FEEDBACK */
+.btn-feedback { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; border-radius:6px; border:1px solid var(--line); background:var(--tint); color:var(--ink70); font-family:var(--sans); font-size:11px; font-weight:500; cursor:pointer; transition:background .15s,border-color .15s; }
+.btn-feedback:hover { background:var(--line2); border-color:var(--accent-30); color:var(--accent); }
+.fb-overlay { position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:9999; display:flex; align-items:center; justify-content:center; }
+.fb-overlay.hidden { display:none; }
+.fb-modal { background:var(--card); border-radius:8px; border:1px solid var(--line); width:100%; max-width:520px; box-shadow:0 20px 60px rgba(0,0,0,.18); }
+.fb-modal-head { padding:14px 16px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; }
+.fb-modal-title { font-family:var(--sans); font-size:13px; font-weight:700; color:var(--ink); }
+.fb-modal-close { background:none; border:none; cursor:pointer; color:var(--muted); font-size:16px; padding:2px 6px; border-radius:4px; }
+.fb-modal-close:hover { background:var(--tint); color:var(--ink); }
+.fb-modal-body { padding:16px; display:flex; flex-direction:column; gap:10px; }
+.fb-label { display:block; font-family:var(--mono); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:4px; }
+.fb-input,.fb-textarea { width:100%; padding:7px 10px; border:1px solid var(--line); border-radius:5px; font-family:var(--sans); font-size:12.5px; color:var(--ink); background:var(--tint); outline:none; transition:border-color .15s; }
+.fb-input:focus,.fb-textarea:focus { border-color:var(--accent-30); background:#fff; }
+.fb-textarea { resize:vertical; line-height:1.6; }
+.fb-actions { display:flex; align-items:center; gap:10px; margin-top:4px; }
+.fb-save-btn { padding:8px 16px; background:var(--accent); color:#fff; border:none; border-radius:6px; font-family:var(--sans); font-size:12.5px; font-weight:600; cursor:pointer; }
+.fb-save-btn:disabled { opacity:.5; cursor:not-allowed; }
+.fb-status { font-family:var(--sans); font-size:12px; }
+.fb-status.ok { color:var(--green); }
+.fb-status.err { color:var(--red); }
+
+/* ANIMATIONS */
+.screen.active .ani { animation:riseIn .5s cubic-bezier(.22,.61,.36,1) both; }
+.screen.active .ani:nth-child(1) { animation-delay:.06s; }
+.screen.active .ani:nth-child(2) { animation-delay:.14s; }
+.screen.active .hub-intro  { animation:riseIn .45s cubic-bezier(.22,.61,.36,1) .02s both; }
+.screen.active .hub-tile   { animation:riseIn .55s cubic-bezier(.22,.61,.36,1) both; }
+.screen.active .hub-tile:nth-child(1) { animation-delay:.08s; }
+.screen.active .hub-tile:nth-child(2) { animation-delay:.16s; }
+.screen.active .hub-tile:nth-child(3) { animation-delay:.24s; }
+.screen.active .hub-tile:nth-child(4) { animation-delay:.32s; }
+.screen.active .hub-tile:nth-child(5) { animation-delay:.40s; }
+.screen.active .hub-stats  { animation:riseIn .45s cubic-bezier(.22,.61,.36,1) .46s both; }
+@keyframes riseIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+<div class="deck-stage" id="stage">
+
+<!-- HUB -->
+<div class="screen active" id="hub">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand">
+      <div class="dash-brand-mark">Y Business</div>
+      <div class="dash-divider"></div>
+      <div class="dash-brand-sub">Redaktionelt Koncept</div>
+    </div>
+    <div class="dash-meta">
+      <span class="dash-tag">CEO · Tech Lead · Chefredaktør</span>
+      <span class="dash-tag hi">Intern · Juni 2026</span>
+      <button class="btn-feedback" onclick="window.openFeedback()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Feedback
+      </button>
+    </div>
+  </header>
+  <div class="hub-body">
+    <div class="hub-intro">
+      <div class="hub-eyebrow">Redaktionelt Koncept</div>
+      <div class="hub-h1">Y Business er ikke et erhvervsmedie.<br>Det er <em>redaktionel erhvervsintelligens</em>.</div>
+      <div class="hub-sub">De tre pillars, seks segmenter, otte signaturformater, kildemodel og AI's rolle.</div>
+    </div>
+    <div class="hub-tiles">
+      <div class="hub-tile" data-target="s-koncept">
+        <div>
+          <div class="tile-num">01 / 05</div>
+          <div class="tile-h">Konceptet</div>
+          <div class="tile-pts">
+            <div class="tile-pt">Et redigeringsproblem, ikke et informationsproblem</div>
+            <div class="tile-pt">6 painpoints erhvervsjournalistikken ikke løser</div>
+            <div class="tile-pt">Genrebestemmelse og de fem redaktionelle løfter</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+      <div class="hub-tile" data-target="s-pillarer">
+        <div>
+          <div class="tile-num">02 / 05</div>
+          <div class="tile-h">Pillarer</div>
+          <div class="tile-pts">
+            <div class="tile-pt">Understand — konsekvensnær forklaring</div>
+            <div class="tile-pt">Challenge — dokumenteret udfordring</div>
+            <div class="tile-pt">Inspire — faktabaseret optimisme med friktion</div>
+            <div class="tile-pt">Intern regel per pillar · 60 / 25 / 15 %</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+      <div class="hub-tile" data-target="s-segmenter">
+        <div>
+          <div class="tile-num">03 / 05</div>
+          <div class="tile-h">Segmenter</div>
+          <div class="tile-pts">
+            <div class="tile-pt">SMV-ejere — "Hvad rammer din drift, før det rammer dig"</div>
+            <div class="tile-pt">C-level — "Det der ændrer beslutningsrummet"</div>
+            <div class="tile-pt">Iværksættere, kommunikation, rådgivere, medarbejdere</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+      <div class="hub-tile" data-target="s-formater">
+        <div>
+          <div class="tile-num">04 / 05</div>
+          <div class="tile-h">Formater</div>
+          <div class="tile-pts">
+            <div class="tile-pt">Morgenbriefet dagligt kl. 06.00</div>
+            <div class="tile-pt">8 signaturformater med fast rytme og struktur</div>
+            <div class="tile-pt">3 klummer — det format AI ikke kan producere</div>
+            <div class="tile-pt">Minimum viable newsroom: 5 spor år 1</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+      <div class="hub-tile" data-target="s-kilder">
+        <div>
+          <div class="tile-num">05 / 05</div>
+          <div class="tile-h">Kildemodel & AI</div>
+          <div class="tile-pts">
+            <div class="tile-pt">Primærkilder, signalkilder, kildetyper der undgås</div>
+            <div class="tile-pt">AI overvåger — redaktionen afgør</div>
+            <div class="tile-pt">5 dogmer og det kompromisløse princip</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+    </div>
+    <div class="hub-stats">
+      <div class="stat-cell"><div class="stat-v">3 pillars</div><div class="stat-l">Understand · Challenge · Inspire</div></div>
+      <div class="stat-cell"><div class="stat-v">6 segmenter</div><div class="stat-l">SMV-ejere til medarbejdere</div></div>
+      <div class="stat-cell"><div class="stat-v">8 formater</div><div class="stat-l">Morgenbrief til Før handlen</div></div>
+      <div class="stat-cell"><div class="stat-v">5 dogmer</div><div class="stat-l">Det kompromisløse princip</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 01 KONCEPTET -->
+<div class="screen" id="s-koncept">
+  <div class="bg-grid"></div><div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Redaktionelt Koncept</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item nav-active" data-target="s-koncept">Konceptet</button>
+      <button class="dash-nav-item" data-target="s-pillarer">Pillarer</button>
+      <button class="dash-nav-item" data-target="s-segmenter">Segmenter</button>
+      <button class="dash-nav-item" data-target="s-formater">Formater</button>
+      <button class="dash-nav-item" data-target="s-kilder">Kildemodel & AI</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Feedback</button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Konceptet — redaktionel erhvervsintelligens</div>
+    <div class="sec-num">01 / 05</div>
+  </div>
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Et redigeringsproblem, ikke et informationsproblem</div>
+      <div class="drv-list">
+        <div class="drv">
+          <div class="drv-n">1</div>
+          <div><div class="drv-t">Erhvervsmedierne er for langt fra virksomhedens hverdag</div><div class="drv-d">Hvad koster det? Hvem rammes først? Hvilken frist nærmer sig? Y Business svarer.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">2</div>
+          <div><div class="drv-t">Regler refereres — konsekvenser forklares ikke</div><div class="drv-d">Lovforslag fremsat er ikke en nyhed. Hvem rammes hvornår og til hvilken pris — det er det.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">3</div>
+          <div><div class="drv-t">Informationsmarkedet er fragmenteret</div><div class="drv-d">Finans.dk + Børsen + LinkedIn + nyhedsbreve er ikke overblik. Det er støj med høj selvtillid.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">4</div>
+          <div><div class="drv-t">Den blinde vinkel mangler</div><div class="drv-d">Vækst er ikke altid godt, funding ikke altid succes. Y Business spørger: hvad mangler i fortællingen?</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">5</div>
+          <div><div class="drv-t">Løsninger bliver for ofte til PR</div><div class="drv-d">Ingen Inspire uden modstand, fejl eller dokumenteret effekt. Ellers er det content marketing.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">6</div>
+          <div><div class="drv-t">AI bruges til produktion — ikke til dømmekraft</div><div class="drv-d">AI overvåger. Redaktionen prioriterer, kildekritiserer og tager det redaktionelle ansvar.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col ani">
+      <div class="col-label">Genrebestemmelse og redaktionelle løfter</div>
+      <div class="cat-box">
+        <div class="cat-lbl">Genren</div>
+        <div class="cat-txt">Redaktionel erhvervsintelligens.<br>Journalistik + overvågning + AI + kildekritik.</div>
+      </div>
+      <table class="tbl" style="margin-bottom:20px;">
+        <thead><tr><th>Et erhvervsmedie …</th><th>Y Business …</th></tr></thead>
+        <tbody>
+          <tr><td>fortæller hvad der sker</td><td class="str">forklarer hvad det betyder for din virksomhed</td></tr>
+          <tr><td>finder omtale</td><td class="str">afgør hvad der er vigtigt</td></tr>
+          <tr><td>sælger analyse på projektbasis</td><td class="str">giver daglig redaktionel dømmekraft</td></tr>
+          <tr><td>opsummerer</td><td class="str">prioriterer, udfordrer og anviser</td></tr>
+        </tbody>
+      </table>
+      <div class="col-label-sm" style="margin-bottom:12px;">De fem redaktionelle løfter</div>
+      <ul class="chk">
+        <li><strong>Vi gør det relevante synligt</strong> — vi overvåger, filtrerer og prioriterer for dig.</li>
+        <li><strong>Vi oversætter nyheder til konsekvens</strong> — ikke hvad sker, men hvad det betyder.</li>
+        <li><strong>Vi finder den vinkel, andre mangler</strong> — kilden der ikke citeres, prisen der skjules.</li>
+        <li><strong>Vi viser det, der virker</strong> — med metode, friktion og kopierbar læring.</li>
+        <li><strong>Vi bruger AI åbent, men ikke ukritisk</strong> — AI giver rækkevidde, journalistikken giver dømmekraft.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pnum">01 / 05</div>
+</div>
+
+
+<!-- 02 PILLARER -->
+<div class="screen" id="s-pillarer">
+  <div class="bg-grid"></div><div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Redaktionelt Koncept</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-koncept">Konceptet</button>
+      <button class="dash-nav-item nav-active" data-target="s-pillarer">Pillarer</button>
+      <button class="dash-nav-item" data-target="s-segmenter">Segmenter</button>
+      <button class="dash-nav-item" data-target="s-formater">Formater</button>
+      <button class="dash-nav-item" data-target="s-kilder">Kildemodel & AI</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Feedback</button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">De tre pillars — Understand · Challenge · Inspire</div>
+    <div class="sec-num">02 / 05</div>
+  </div>
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Tre pillars — redaktionel model</div>
+      <div class="drv-list">
+        <div class="drv">
+          <div class="drv-n" style="opacity:1;color:var(--accent);">U</div>
+          <div>
+            <div class="drv-t">Understand — Hvad sker der, og hvad betyder det for min virksomhed?</div>
+            <div class="drv-d" style="margin-bottom:6px;">Konsekvensnær forklaring — aldrig generisk baggrundsstof, altid den konkrete erhvervsmæssige implikation.</div>
+            <div style="margin-bottom:4px;"><span class="pb u">Intern regel</span></div>
+            <div style="font-family:var(--sans);font-size:12px;color:var(--muted);font-style:italic;margin-bottom:4px;">Ingen Understand uden konsekvens.</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">Tone: saglig · konkret · faktatung · ingen kommentar</div>
+          </div>
+        </div>
+        <div class="drv">
+          <div class="drv-n" style="opacity:1;color:var(--amber);">C</div>
+          <div>
+            <div class="drv-t">Challenge — Hvad mangler i den dominerende fortælling?</div>
+            <div class="drv-d" style="margin-bottom:6px;">Dokumenteret udfordring bygger på: manglende kilde, skjult omkostning, data der modsiger narrativet eller kommerciel interesse.</div>
+            <div style="margin-bottom:4px;"><span class="pb c">Intern regel</span></div>
+            <div style="font-family:var(--sans);font-size:12px;color:var(--muted);font-style:italic;margin-bottom:4px;">Ingen Challenge uden dokumentation. Vi udfordrer, fordi noget mangler.</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">Tone: forundret · nysgerrig · faktabaseret · aldrig ideologisk</div>
+          </div>
+        </div>
+        <div class="drv">
+          <div class="drv-n" style="opacity:1;color:var(--green);">I</div>
+          <div>
+            <div class="drv-t">Inspire — Hvad virker, og hvad kan andre bruge?</div>
+            <div class="drv-d" style="margin-bottom:6px;">Faktabaseret optimisme med problem, metode, friktion, resultat, begrænsning og kopierbar læring.</div>
+            <div style="margin-bottom:4px;"><span class="pb i">Intern regel</span></div>
+            <div style="font-family:var(--sans);font-size:12px;color:var(--muted);font-style:italic;margin-bottom:4px;">Ingen Inspire uden friktion. En case uden fejl og metode er PR.</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">Tone: optimistisk · konkret · handlingsorienteret</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:18px;padding:14px 16px;background:var(--tint);border-top:2px solid var(--line);">
+        <div class="col-label-sm" style="margin-bottom:8px;">Pillar-fordeling i nyhedsfeed</div>
+        <div class="dist-bar"><div class="dist-seg u" style="width:60%;height:100%;"></div><div class="dist-seg c" style="width:25%;height:100%;"></div><div class="dist-seg i" style="width:15%;height:100%;"></div></div>
+        <div class="dist-labels"><span class="dist-lbl u">Understand 60%</span><span class="dist-lbl c">Challenge 25%</span><span class="dist-lbl i">Inspire 15%</span></div>
+      </div>
+    </div>
+    <div class="col ani">
+      <div class="col-label">Den interne test — Ikke / Men</div>
+      <div style="font-family:var(--sans);font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.5;">"Ikke" er den klassiske erhvervsjournalistiske reflex. "Men" er Y Business.</div>
+      <div class="contrast-section">
+        <div class="contrast-ph u">Understand</div>
+        <div class="contrast-pair">
+          <div class="contrast-row neg"><div class="contrast-mk">Ikke</div><div class="contrast-tx">EU har vedtaget nye regler for betalingstjenester.</div></div>
+          <div class="contrast-row pos"><div class="contrast-mk">Men</div><div class="contrast-tx">De nye EU-regler rammer først de virksomheder uden compliancefunktion — deadline 1. januar.</div></div>
+        </div>
+        <div class="contrast-pair">
+          <div class="contrast-row neg"><div class="contrast-mk">Ikke</div><div class="contrast-tx">AI ændrer arbejdsmarkedet.</div></div>
+          <div class="contrast-row pos"><div class="contrast-mk">Men</div><div class="contrast-tx">AI skaber en produktivitetskløft mellem dem der ændrer processer og dem der bare køber værktøjer.</div></div>
+        </div>
+      </div>
+      <div class="contrast-section">
+        <div class="contrast-ph c">Challenge</div>
+        <div class="contrast-pair">
+          <div class="contrast-row neg"><div class="contrast-mk">Ikke</div><div class="contrast-tx">Startup-hypen er tom.</div></div>
+          <div class="contrast-row pos"><div class="contrast-mk">Men</div><div class="contrast-tx">Fundingrunden er ikke succesen — kundetabet seks måneder senere er historien.</div></div>
+        </div>
+        <div class="contrast-pair">
+          <div class="contrast-row neg"><div class="contrast-mk">Ikke</div><div class="contrast-tx">Reguleringen er dårlig for erhvervslivet.</div></div>
+          <div class="contrast-row pos"><div class="contrast-mk">Men</div><div class="contrast-tx">Reguleringen rammer skævt, fordi de mindste virksomheder mangler compliancekapacitet.</div></div>
+        </div>
+      </div>
+      <div class="contrast-section">
+        <div class="contrast-ph i">Inspire</div>
+        <div class="contrast-pair">
+          <div class="contrast-row neg"><div class="contrast-mk">Ikke</div><div class="contrast-tx">Sådan bruger de AI i virksomheden.</div></div>
+          <div class="contrast-row pos"><div class="contrast-mk">Men</div><div class="contrast-tx">AI virkede først da de fjernede to manuelle godkendelser — det kostede tre måneders friktion.</div></div>
+        </div>
+        <div class="contrast-pair">
+          <div class="contrast-row neg"><div class="contrast-mk">Ikke</div><div class="contrast-tx">Her er en inspirerende founder.</div></div>
+          <div class="contrast-row pos"><div class="contrast-mk">Men</div><div class="contrast-tx">Her er fejlen, der næsten kostede virksomheden livet — og metoden, der rettede den op.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">02 / 05</div>
+</div>
+
+
+<!-- 03 SEGMENTER -->
+<div class="screen" id="s-segmenter">
+  <div class="bg-grid"></div><div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Redaktionelt Koncept</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-koncept">Konceptet</button>
+      <button class="dash-nav-item" data-target="s-pillarer">Pillarer</button>
+      <button class="dash-nav-item nav-active" data-target="s-segmenter">Segmenter</button>
+      <button class="dash-nav-item" data-target="s-formater">Formater</button>
+      <button class="dash-nav-item" data-target="s-kilder">Kildemodel & AI</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Feedback</button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Seks segmenter — redaktionelle løfter og prioriteter</div>
+    <div class="sec-num">03 / 05</div>
+  </div>
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Segmentoversigt</div>
+      <table class="tbl">
+        <thead><tr><th>Segment</th><th>Pillars</th><th>Redaktionelt løfte</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="str">SMV-ejere<br><span style="font-weight:400;font-size:11px;color:var(--muted);">5–50 ansatte</span></td>
+            <td><span class="pb u">U</span>&nbsp;<span class="pb i">I</span></td>
+            <td>Vi fortæller dig, hvad der rammer din drift — før det rammer dig</td>
+          </tr>
+          <tr>
+            <td class="str">C-level<br><span style="font-weight:400;font-size:11px;color:var(--muted);">50–250 ansatte</span></td>
+            <td><span class="pb c">C</span>&nbsp;<span class="pb u">U</span></td>
+            <td>Vi viser dig det, der ændrer beslutningsrummet</td>
+          </tr>
+          <tr>
+            <td class="str">Iværksættere<br><span style="font-weight:400;font-size:11px;color:var(--muted);">Under 5 år</span></td>
+            <td><span class="pb c">C</span>&nbsp;<span class="pb i">I</span></td>
+            <td>Vi skiller founderfortællingen fra virkeligheden</td>
+          </tr>
+          <tr>
+            <td class="str">Kommunikation<br><span style="font-weight:400;font-size:11px;color:var(--muted);">&amp; marketing</span></td>
+            <td><span class="pb i">I</span>&nbsp;<span class="pb u">U</span></td>
+            <td>Vi viser, hvad der virker, når platforme og AI flytter sig</td>
+          </tr>
+          <tr>
+            <td class="str">Rådgivere<br><span style="font-weight:400;font-size:11px;color:var(--muted);">&amp; investorer</span></td>
+            <td><span class="pb c">C</span>&nbsp;<span class="pb u">U</span></td>
+            <td>Vi finder signalet, før markedet kalder det en trend</td>
+          </tr>
+          <tr>
+            <td class="str">Medarbejdere<br><span style="font-weight:400;font-size:11px;color:var(--muted);">250+ ansatte</span></td>
+            <td><span class="pb u">U</span></td>
+            <td>Vi gør dig klogere på det, der påvirker dit arbejde</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ibox accent">
+        <div class="ibox-t">Segmenterne er prioriteringslinser, ikke bokse</div>
+        <div class="ibox-b">Én abonnent kan tilhøre flere segmenter. De styrer pillar-vægtning i prompts og indholdsmix.</div>
+      </div>
+    </div>
+    <div class="col ani">
+      <div class="col-label">Prioriteter og tone per segment</div>
+      <div class="seg-list">
+        <div class="seg-item">
+          <div class="seg-name">SMV-ejere — 5–50 ansatte</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Regulering</span><span class="seg-tag">AI i drift</span><span class="seg-tag">Udbud</span><span class="seg-tag">Likviditet</span><span class="seg-tag">Brancherisici</span>
+          </div>
+          <div class="seg-tone">Tone: kort · konkret · respektfuld · uden finansjargon</div>
+        </div>
+        <div class="seg-item">
+          <div class="seg-name">C-level — 50–250 ansatte</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Geopolitik</span><span class="seg-tag">AI-transformation</span><span class="seg-tag">Supply chains</span><span class="seg-tag">Kapitaldisponering</span><span class="seg-tag">Bestyrelse</span>
+          </div>
+          <div class="seg-tone">Tone: analytisk · kompakt · datadrevet · uden managementfloskler</div>
+        </div>
+        <div class="seg-item">
+          <div class="seg-name">Iværksættere — under 5 år</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Fundingrealisme</span><span class="seg-tag">Runway</span><span class="seg-tag">Regulatory traps</span><span class="seg-tag">GTM-fejl</span><span class="seg-tag">Exit</span>
+          </div>
+          <div class="seg-tone">Tone: direkte · energisk · anti-hype · læringsorienteret</div>
+        </div>
+        <div class="seg-item">
+          <div class="seg-name">Kommunikation &amp; marketing</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Krisekommunikation</span><span class="seg-tag">AI i kommunikation</span><span class="seg-tag">PR-måling</span><span class="seg-tag">Platformsskift</span>
+          </div>
+          <div class="seg-tone">Tone: håndværksnær · kritisk · konkret · ikke buzzword-glad</div>
+        </div>
+        <div class="seg-item">
+          <div class="seg-name">Rådgivere &amp; investorer</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Dealflow</span><span class="seg-tag">Lederskifter</span><span class="seg-tag">Sektorrotation</span><span class="seg-tag">Reguleringsvinduer</span><span class="seg-tag">M&amp;A</span>
+          </div>
+          <div class="seg-tone">Tone: kort · datadrevet · skeptisk · signalorienteret</div>
+        </div>
+        <div class="seg-item">
+          <div class="seg-name">Medarbejdere — 250+ ansatte</div>
+          <div class="seg-tags">
+            <span class="seg-tag">AI i hverdagen</span><span class="seg-tag">Kompetencekrav</span><span class="seg-tag">Brancheskift</span><span class="seg-tag">Mellemlederrollen</span>
+          </div>
+          <div class="seg-tone">Tone: forklarende · anvendelig · ikke elitær</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">03 / 05</div>
+</div>
+
+
+<!-- 04 FORMATER -->
+<div class="screen" id="s-formater">
+  <div class="bg-grid"></div><div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Redaktionelt Koncept</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-koncept">Konceptet</button>
+      <button class="dash-nav-item" data-target="s-pillarer">Pillarer</button>
+      <button class="dash-nav-item" data-target="s-segmenter">Segmenter</button>
+      <button class="dash-nav-item nav-active" data-target="s-formater">Formater</button>
+      <button class="dash-nav-item" data-target="s-kilder">Kildemodel & AI</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Feedback</button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Otte signaturformater, tre klummer, minimum viable newsroom</div>
+    <div class="sec-num">04 / 05</div>
+  </div>
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Frekvenstabel</div>
+      <table class="tbl" style="font-size:12px;">
+        <thead><tr><th>Format</th><th>Frekvens</th><th>Pillar</th></tr></thead>
+        <tbody>
+          <tr><td class="str">Morgenbriefet</td><td>Dagligt kl. 06.00, man–fre</td><td><span class="pb u" style="font-size:8px;padding:2px 5px;">U</span></td></tr>
+          <tr><td class="str">Det betyder det for din virksomhed</td><td>2–3 gange ugentligt</td><td><span class="pb u" style="font-size:8px;padding:2px 5px;">U</span></td></tr>
+          <tr><td class="str">Den blinde vinkel</td><td>1 gang ugentligt</td><td><span class="pb c" style="font-size:8px;padding:2px 5px;">C</span></td></tr>
+          <tr><td class="str">Myten om …</td><td>Hver 14. dag</td><td><span class="pb c" style="font-size:8px;padding:2px 5px;">C</span></td></tr>
+          <tr><td class="str">Casen der virker</td><td>1 gang ugentligt</td><td><span class="pb i" style="font-size:8px;padding:2px 5px;">I</span></td></tr>
+          <tr><td class="str">Signalradaren</td><td>1 gang ugentligt + situationsbestemt</td><td><span class="pb u" style="font-size:8px;padding:2px 5px;">U</span>&nbsp;<span class="pb c" style="font-size:8px;padding:2px 5px;">C</span></td></tr>
+          <tr><td class="str">Før mødet</td><td>Situationsbestemt, 1–2/uge</td><td><span class="pb u" style="font-size:8px;padding:2px 5px;">U</span>&nbsp;<span class="pb i" style="font-size:8px;padding:2px 5px;">I</span></td></tr>
+          <tr><td class="str">Før handlen</td><td>2–4 gange månedligt</td><td><span class="pb c" style="font-size:8px;padding:2px 5px;">C</span>&nbsp;<span class="pb u" style="font-size:8px;padding:2px 5px;">U</span></td></tr>
+        </tbody>
+      </table>
+      <div class="col-label-sm" style="margin-bottom:10px;">Minimum viable newsroom — 5 spor år 1</div>
+      <ul class="chk" style="margin-bottom:16px;">
+        <li><strong>Morgenbriefet</strong> — skaber vanen</li>
+        <li><strong>Det betyder det for din virksomhed</strong> — skaber nytten</li>
+        <li><strong>Den blinde vinkel</strong> — skaber kanten</li>
+        <li><strong>Casen der virker</strong> — skaber handlekraften</li>
+        <li><strong>Signalradaren</strong> — skaber forspringet</li>
+      </ul>
+      <div class="ibox accent">
+        <div class="ibox-t">AI &amp; tech for erhverv — dedikeret Pro-sektion</div>
+        <div class="ibox-b">Kernen: <strong>Hvad kræver det af organisation, ledelse og processer?</strong> To spor: Forudsætningerne (cases med friktion) og Stemmerne (globale meningsdannere oversat til dansk virksomhedskontekst).</div>
+      </div>
+    </div>
+    <div class="col ani">
+      <div class="col-label">Fast struktur per format</div>
+      <div class="layers">
+        <div class="layer">
+          <div class="layer-n">MB</div>
+          <div><div class="layer-t">Morgenbriefet</div><div class="layer-d">Hvad er vigtigt? → Hvem rammes? → Hvorfor? → Hold øje med → Hvad gør du?</div></div>
+        </div>
+        <div class="layer">
+          <div class="layer-n">DET</div>
+          <div><div class="layer-t">Det betyder det for din virksomhed</div><div class="layer-d">Hvad sket? → Hvem rammes? → Hvornår? → Hvad koster det? → Handling → Udeståender</div></div>
+        </div>
+        <div class="layer">
+          <div class="layer-n">BV</div>
+          <div><div class="layer-t">Den blinde vinkel — bør ikke overlades til uerfaren produktion</div><div class="layer-d">Dominerende fortælling → hvad mangler → hvem ikke hørt → hvad viser dokumentationen</div></div>
+        </div>
+        <div class="layer">
+          <div class="layer-n">MYT</div>
+          <div><div class="layer-t">Myten om …</div><div class="layer-d">Eks.: Myten om at AI sparer tid. Myten om at funding er lig med succes.</div></div>
+        </div>
+        <div class="layer">
+          <div class="layer-n">CAS</div>
+          <div><div class="layer-t">Casen der virker — ingen case uden friktion</div><div class="layer-d">Problem → Hvad prøvede de → Hvad gik galt → Hvad virkede → Hvad kan kopieres</div></div>
+        </div>
+        <div class="layer">
+          <div class="layer-n">SIG</div>
+          <div><div class="layer-t">Signalradaren</div><div class="layer-d">Signalet → Kilde → Styrke → Hvem påvirkes → Hvad kan det føre til</div></div>
+        </div>
+        <div class="layer">
+          <div class="layer-n">FMØ</div>
+          <div><div class="layer-t">Før mødet — 60-sekunders brief</div><div class="layer-d">Baggrund → Udvikling → Risici → Muligheder → Spørgsmål du bør stille</div></div>
+        </div>
+        <div class="layer">
+          <div class="layer-n">FHA</div>
+          <div><div class="layer-t">Før handlen</div><div class="layer-d">Signal → Selskaber → Sektor → Regulering → Kapital → Mulig bevægelse</div></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding:12px 16px;background:var(--tint);border-top:2px solid var(--line);">
+        <div class="col-label-sm" style="margin-bottom:8px;">3 klummer — det format AI ikke kan producere</div>
+        <div class="tl">
+          <div class="tl-row"><div class="tl-d">Den blinde vinkel</div><div class="tl-t"><strong>Ugentligt · Challenge</strong> — Erfaren erhvervsjournalist med kildekritisk tyngde.</div></div>
+          <div class="tl-row"><div class="tl-d">Mandag morgen</div><div class="tl-t"><strong>Ugentligt · Understand</strong> — Direktør eller strategirådgiver. Ugens beslutningsbillede.</div></div>
+          <div class="tl-row"><div class="tl-d">Hvad virker?</div><div class="tl-t"><strong>Hver 14. dag · Inspire</strong> — Praktiker med erfaring og villighed til at tale om fejl.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">04 / 05</div>
+</div>
+
+
+<!-- 05 KILDEMODEL & AI -->
+<div class="screen" id="s-kilder">
+  <div class="bg-grid"></div><div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div><div class="dash-divider"></div><div class="dash-brand-sub">Redaktionelt Koncept</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-koncept">Konceptet</button>
+      <button class="dash-nav-item" data-target="s-pillarer">Pillarer</button>
+      <button class="dash-nav-item" data-target="s-segmenter">Segmenter</button>
+      <button class="dash-nav-item" data-target="s-formater">Formater</button>
+      <button class="dash-nav-item nav-active" data-target="s-kilder">Kildemodel & AI</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Feedback</button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Kildemodel &amp; AI — redaktionel motor og fem dogmer</div>
+    <div class="sec-num">05 / 05</div>
+  </div>
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Kildemodel — tre grupper med adskilte funktioner</div>
+      <div class="col-label-sm" style="margin-bottom:8px;">Primærkilder — dokumenterer virkeligheden</div>
+      <table class="tbl" style="font-size:12px;margin-bottom:16px;">
+        <thead><tr><th>Kildetype</th><th>Eksempler</th><th>Tjener</th></tr></thead>
+        <tbody>
+          <tr><td class="str">Offentlige myndigheder</td><td>CVR, Retsinformation, EUR-Lex</td><td><span class="pb u" style="font-size:8px;padding:2px 4px;">U</span>&nbsp;<span class="pb c" style="font-size:8px;padding:2px 4px;">C</span></td></tr>
+          <tr><td class="str">Virksomhedsdata</td><td>Årsrapporter, konkursdata, regnskaber</td><td><span class="pb c" style="font-size:8px;padding:2px 4px;">C</span></td></tr>
+          <tr><td class="str">Forskning &amp; tænketanke</td><td>CBS, Kraka, VIVE, OECD, DST</td><td><span class="pb u" style="font-size:8px;padding:2px 4px;">U</span>&nbsp;<span class="pb c" style="font-size:8px;padding:2px 4px;">C</span></td></tr>
+          <tr><td class="str">Brancheorganisationer</td><td>DI, Dansk Erhverv, SMVdanmark</td><td style="font-style:italic;color:var(--amber);font-size:12px;">Altid med modkilde</td></tr>
+          <tr><td class="str">Direkte virksomhedskilder</td><td>Ejerledere, founders, CFO'er</td><td><span class="pb i" style="font-size:8px;padding:2px 4px;">I</span></td></tr>
+        </tbody>
+      </table>
+      <div class="col-label-sm" style="margin-bottom:8px;">Signalkilder — peger på tidlige bevægelser</div>
+      <table class="tbl" style="font-size:12px;margin-bottom:14px;">
+        <thead><tr><th>Kildetype</th><th>Redaktionel brug</th></tr></thead>
+        <tbody>
+          <tr><td class="str">Udbud og offentlige indkøb</td><td>Markedsmuligheder og SMV-adgang</td></tr>
+          <tr><td class="str">Jobopslag og rekruttering</td><td>Hvilke kompetencer efterspørges</td></tr>
+          <tr><td class="str">Lederskifter og bestyrelsesændringer</td><td>M&amp;A-indikationer og strategiskift</td></tr>
+          <tr><td class="str">LinkedIn-signaler</td><td>Kun som signal — verificeres altid</td></tr>
+          <tr><td class="str">Pressemeddelelser</td><td>Kun som tip — aldrig slutprodukt</td></tr>
+        </tbody>
+      </table>
+      <div class="col-label-sm" style="margin-bottom:8px;">Kildetyper der undgås</div>
+      <div class="scope-g">
+        <div class="scope-box out">
+          <div class="scope-hl">Undgå</div>
+          <ul class="scope-list">
+            <li>Ukritiske LinkedIn-fortællinger</li>
+            <li>PR-cases uden friktion</li>
+            <li>Konsulentrapporter uden metode</li>
+            <li>Brancheorganisationer som enkiltkilder</li>
+          </ul>
+        </div>
+        <div class="scope-box out">
+          <div class="scope-hl">Undgå</div>
+          <ul class="scope-list">
+            <li>Generiske AI-trendlister</li>
+            <li>Internationale historier uden dansk kobling</li>
+            <li>Cases uden modstand og fejl</li>
+            <li>Anonyme "eksperter"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col ani">
+      <div class="col-label">Den redaktionelle motor</div>
+      <div class="ibox" style="margin-bottom:12px;">
+        <div class="ibox-t">AI gør det brede arbejde</div>
+        <div class="ibox-b">Overvåger medier, regulering, CVR-signaler, udbud, regnskaber og internationale kilder. Finder signaler, mønstre og manglende perspektiver.</div>
+      </div>
+      <div class="ibox green" style="margin-bottom:20px;">
+        <div class="ibox-t">Redaktionen gør det afgørende arbejde</div>
+        <div class="ibox-b">Afgør hvad der er vigtigt og sandt nok. Ejer prioritering, kildekritik, interviews, opinion og endelig publicering.</div>
+      </div>
+      <div class="col-label-sm" style="margin-bottom:12px;">De fem redaktionelle dogmer</div>
+      <ul class="chk" style="margin-bottom:20px;">
+        <li><strong>Ingen nyhed uden konsekvens</strong> — Kan vi ikke forklare hvem det betyder noget for, skriver vi den ikke.</li>
+        <li><strong>Ingen Challenge uden dokumentation</strong> — Vi udfordrer, fordi noget mangler.</li>
+        <li><strong>Ingen Inspire uden friktion</strong> — En case uden fejl og metode er PR.</li>
+        <li><strong>Ingen AI uden ansvar</strong> — AI producerer. Mennesker verificerer og tager ansvaret.</li>
+        <li><strong>Ingen erhvervsjournalistik uden læserens situation</strong> — Vi skriver til mennesker, der træffer beslutninger.</li>
+      </ul>
+      <div class="cat-box">
+        <div class="cat-lbl">Det kompromisløse princip</div>
+        <div class="cat-txt">Y Business publicerer ikke, fordi noget er nyt. Men fordi det er relevant, konsekvensbærende, underbelyst eller brugbart.</div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">05 / 05</div>
+</div>
+
+</div></div>
+
+<!-- FEEDBACK -->
+<div class="fb-overlay hidden" id="fb-overlay">
+  <div class="fb-modal">
+    <div class="fb-modal-head">
+      <div class="fb-modal-title">Skriv en bemærkning</div>
+      <button class="fb-modal-close" onclick="window.closeFeedback()">✕</button>
+    </div>
+    <div class="fb-modal-body">
+      <div><label class="fb-label" for="fb-name">Navn (valgfrit)</label><input class="fb-input" id="fb-name" type="text" placeholder="fx Dyrby, Lysdal …"></div>
+      <div><label class="fb-label" for="fb-section">Sektion</label><input class="fb-input" id="fb-section" type="text" placeholder="fx Pillarer, Formater …"></div>
+      <div><label class="fb-label" for="fb-text">Bemærkning</label><textarea class="fb-textarea" id="fb-text" rows="4" placeholder="Kommentar, spørgsmål eller ændring …"></textarea></div>
+      <div class="fb-actions">
+        <button class="fb-save-btn" onclick="window.saveFeedback()" id="fb-save-btn">Gem i feedback</button>
+        <span class="fb-status" id="fb-status"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  function scale(){ const s=Math.min(window.innerWidth/1440,window.innerHeight/900); stage.style.transform='scale('+s+')'; stage.style.left=((window.innerWidth-1440*s)/2)+'px'; stage.style.top=((window.innerHeight-900*s)/2)+'px'; }
+  scale(); window.addEventListener('resize',scale);
+  const order=['hub','s-koncept','s-pillarer','s-segmenter','s-formater','s-kilder'];
+  function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); const t=document.getElementById(id); if(t)t.classList.add('active'); document.querySelectorAll('.dash-nav-item').forEach(b=>b.classList.toggle('nav-active',b.dataset.target===id)); }
+  document.addEventListener('click',function(e){ const b=e.target.closest('[data-target]'); if(b&&b.dataset.target)show(b.dataset.target); });
+  document.addEventListener('keydown',function(e){ const c=document.querySelector('.screen.active'); if(!c)return; const i=order.indexOf(c.id); if(e.key==='ArrowRight'&&i<order.length-1)show(order[i+1]); if(e.key==='ArrowLeft'&&i>0)show(order[i-1]); if(e.key==='Escape'&&c.id!=='hub')show('hub'); });
+  window.openFeedback=function(){ document.getElementById('fb-overlay').classList.remove('hidden'); setTimeout(function(){ document.getElementById('fb-text').focus(); },80); };
+  window.closeFeedback=function(){ document.getElementById('fb-overlay').classList.add('hidden'); var s=document.getElementById('fb-status'); s.textContent=''; s.className='fb-status'; };
+  document.getElementById('fb-overlay').addEventListener('click',function(e){ if(e.target===this)window.closeFeedback(); });
+  window.saveFeedback=async function(){
+    var textEl=document.getElementById('fb-text'), nameEl=document.getElementById('fb-name'), sectionEl=document.getElementById('fb-section');
+    var btn=document.getElementById('fb-save-btn'), status=document.getElementById('fb-status');
+    var text=textEl.value.trim(), author=nameEl.value.trim()||'Anonym', section=sectionEl.value.trim();
+    if(!text){ status.textContent='Skriv en bemærkning først.'; status.className='fb-status err'; return; }
+    var fullText=section?'['+section+']\n'+text:text;
+    btn.disabled=true; btn.textContent='Gemmer…'; status.textContent='';
+    try{
+      var res=await fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:fullText,author:author,source:'Redaktionelt Koncept'})});
+      if(!res.ok) throw new Error();
+      status.textContent='✓ Tak for din feedback'; status.className='fb-status ok';
+      textEl.value=''; nameEl.value=''; sectionEl.value='';
+      btn.textContent='Gem i feedback'; btn.disabled=false;
+      setTimeout(window.closeFeedback,3000);
+    }catch{
+      status.textContent='Kunne ikke gemme — server nede?'; status.className='fb-status err';
+      btn.textContent='Gem i feedback'; btn.disabled=false;
+    }
+  };
+})();
+</script>
+</body>
+</html>

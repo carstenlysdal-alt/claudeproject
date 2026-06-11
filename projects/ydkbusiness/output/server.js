@@ -26,11 +26,12 @@ const MIME = {
   '.xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 };
 
-function formatEntry(dateStr, author, text) {
+function formatEntry(dateStr, author, text, source) {
   const bullets = text.trim().split(/\n\s*\n/)
     .map(p => p.replace(/\s*\n\s*/g, ' ').trim()).filter(Boolean)
     .map(p => `  - ${p}`).join('\n');
-  return `\n## ${dateStr}\n\n- **Af:** ${author}\n- **Bemærkning:**\n${bullets}\n`;
+  const sourceLine = source ? `\n- **Dashboard:** ${source}` : '';
+  return `\n## ${dateStr}\n\n- **Af:** ${author}${sourceLine}\n- **Bemærkning:**\n${bullets}\n`;
 }
 
 function githubGet(filePath) {
@@ -91,7 +92,7 @@ function handleFeedback(req, res) {
   req.on('data', c => body += c);
   req.on('end', async () => {
     try {
-      const { text, author } = JSON.parse(body);
+      const { text, author, source } = JSON.parse(body);
       if (!text || text.trim().length < 2) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'Bemærkning må ikke være tom.' }));
@@ -103,11 +104,13 @@ function handleFeedback(req, res) {
         hour: '2-digit', minute: '2-digit',
       });
       const by = (author || '').trim() || 'Anonym';
-      const entry = formatEntry(dateStr, by, text.trim());
+      const src = (source || '').trim();
+      const entry = formatEntry(dateStr, by, text.trim(), src);
 
       const file = await githubGet(FEEDBACK_PATH);
       const current = Buffer.from(file.content, 'base64').toString('utf8');
-      await githubPut(FEEDBACK_PATH, current + entry, file.sha, `feedback: bemærkning i Y Business dashboard`);
+      const label = src || 'Y Business dashboard';
+      await githubPut(FEEDBACK_PATH, current + entry, file.sha, `feedback: bemærkning fra ${label}`);
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ ok: true }));
