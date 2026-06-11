@@ -1,540 +1,262 @@
-# Y Business
-## Redaktionel erhvervsintelligens for virksomheder, der ikke har tid til støj
+# Y Business — Samlet platformskoncept
+
+**Primær læser:** CEO, Tech Lead, Commercial Lead, Chefredaktør
+**Status:** Arbejdsdokument — løbende opdateret
+**Detaljeniveau:** Overblik. Hvert lag har sit eget dokument — se afsnit 8.
 
 ---
 
-Y Business er et AI-drevet erhvervsmedie, der gør danske virksomheder klogere,
-hurtigere og bedre i stand til at handle ved at kombinere markedsovervågning,
-redaktionel dømmekraft og konsekvensjournalistik i ét samlet intelligenslag.
+## 1. Hvad Y Business er
 
-Y Business skal være den videnskoordinator, danske virksomheder ikke har råd
-til at ansætte — og den redaktør, algoritmen aldrig bliver.
+Y Business er en AI-drevet erhvervsintelligensplatform for danske virksomheder
+med 5-250 ansatte. Platformen kombinerer originalt redaktionelt indhold,
+AI-drevet markedsovervågning, branchetrends, on-demand briefs og
+signal-baseret leadgenerering i ét abonnement til 5.000 kr./år.
+
+Y Business erstatter det kludetæppe af separate tjenester — Finans.dk,
+Retriever, LinkedIn-overvågning, branchenyhedsbreve, konsulentrapporter —
+som professionelle i dag bruger 2-5 timer om ugen på at navigere i.
+
+Produktet er ikke et erhvervsmedie. Det er redaktionel erhvervsintelligens:
+journalistik, overvågning, AI og kildekritik samlet i ét arbejdsredskab.
+
+**Y Business skal være den videnskoordinator, danske virksomheder ikke har
+råd til at ansætte — og den redaktør, algoritmen aldrig bliver.**
 
 ---
 
-## 1. Et redigeringsproblem, ikke et informationsproblem
+## 2. Problemet vi løser
 
 Dansk erhvervsliv drukner ikke i for lidt information.
-
 Det drukner i for meget irrelevant information.
 
-Den professionelle læser tilbringer en stigende del af sin arbejdsdag med at
-navigere i støj: nyhedsbreve der ankommer, alerts der popper op, rapporter der
-downloades, LinkedIn-opslag der deles — og alligevel sidder hun og ved ikke,
-hvad der er vigtigt for hendes virksomhed, hendes branche, hendes beslutning.
+Den professionelle læser lapper sin viden sammen fra et kludetæppe og bruger
+2-5 timer om ugen på informationssøgning uden at få et klart svar på det
+eneste spørgsmål, der reelt betyder noget:
 
-De store erhvervsmedier dækker børsen, Christiansborg, direktionsgangen og
-pressemeddelelsen glimrende. Men for store dele af dansk erhvervsliv — ejere,
-ledere, founders, rådgivere og kommunikationsfolk — rammer dækningen for
-sjældent der, hvor det gør ondt: driften, markedet, reguleringen, den konkrete
-beslutning.
+**Hvad betyder det for vores virksomhed?**
 
-Det er ikke et stofproblem. Det er et relevansproblem.
+De eksisterende alternativer løser problemet halvt:
 
-Y Business er svaret.
+- Erhvervsmedier leverer nyheder — men sjældent konsekvens og aldrig overvågning
+- Overvågningsværktøjer (Retriever, Meltwater) leverer omtale — men ingen redaktionel syntese
+- Konsulenthuse leverer analyse — men til enterprise-priser og på projekt-basis
+- Branchenyhedsbreve leverer niche — men kræver et separat abonnement per branche
 
-Vi overvåger bredere, end en redaktion kan gøre alene.
-Vi sorterer hårdere, end algoritmerne gør.
-Vi forklarer skarpere, end de klassiske erhvervsmedier.
-Vi spørger skarpere, end pressemeddelelsen ønsker.
+Y Business ejer det ubesatte mellemrum: AI-drevet erhvervsintelligens
+til SMV-priser med redaktionel dømmekraft som differentiator.
 
 ---
 
-## 2. De seks painpoints vi dækker
+## 3. Platformen — seks lag
 
-### Painpoint 1: Erhvervsmedierne er for langt fra virksomhedens hverdag
+En bruger logger ind og får adgang til seks integrerede lag.
+Alle lag er personaliserede på branche, marked og interesseprofil.
 
-En ejerleder med 23 ansatte, en COO i en virksomhed med 140 medarbejdere
-eller en founder i sit fjerde år har et konkret spørgsmål:
+### Lag 1 — Erhvervsnyheder
 
-Hvad betyder det her for min virksomhed?
+Originalt redaktionelt indhold kombineret med AI-sorterede nyheder fra
+nationale og internationale medier, bureauer og organisationer. Vinklet
+mod konsekvens for virksomheder med 5-250 ansatte — ikke kapitalmarked
+og C25.
 
-Ikke abstrakt. Ikke nationaløkonomisk. Men konkret:
+Kerneprodukter: personaliseret nyhedsfeed + morgenbrief kl. 06.00 (tekst + lyd).
 
-Hvad ændrer det i min drift?
-Hvad koster det?
-Hvem rammes først?
-Hvilken frist nærmer sig?
-Hvad gør mine konkurrenter?
-Hvad bør jeg gøre mandag morgen?
+### Lag 2 — Markedsovervågning
 
-Det er her, Y Business skal stå.
+Erstatning for Retriever/Meltwater til SMV-priser. Brugeren opsætter
+overvågning på konkurrenter, nøgleord, brancher og regulering.
+Alerts ved vigtige ændringer. Ugentlig digest mandage.
 
----
+Obligatorisk kategori: regulering og erhvervspolitik med direkte
+SMV-konsekvens. Statsrelateret papirarbejde koster SMV-segmentet
+16,5 mia. DKK/år — regulatory overvågning er produktets stærkeste
+ROI-argument over for abonnenten.
 
-### Painpoint 2: Regler refereres — konsekvenser forklares ikke
+### Lag 3 — Branchetrends
 
-Regulering dækkes ofte som processtof: lovforslag fremsat, direktivet vedtaget,
-branchen kritiserer, ministeren svarer.
+Ugentlig AI-aggregeret trendanalyse for brugerens branche.
+Filtrerbart på tidshorisont: nu / 6 måneder / 1-3 år.
+Det der normalt kræver en dedikeret analytiker.
 
-Y Business skal gøre noget andet:
+### Lag 4 — B2B-Briefs
 
-Hvem rammes? Hvornår? Hvad koster det? Hvem opdager det for sent?
-Hvilke virksomheder kan bruge det som fordel?
+On-demand situationsbrief på under 60 sekunder om en virksomhed,
+et marked, en konkurrent eller et reguleringsemne — inden et møde,
+en forhandling eller en beslutning. 1 side: baggrund, nøgletal,
+aktuelle nyheder, risici, muligheder.
 
-Det er ikke regeljournalistik. Det er konsekvensjournalistik.
+### Lag 5 — Abonnentfællesskab
 
-Og det er et af de stærkeste kommercielle argumenter for Y Business: Hvis en
-virksomhed opdager en regulatorisk ændring for sent, kan prisen være langt
-højere end abonnementet.
+Lukket, modereret forum for betalende abonnenter. Branchespecifikke rum
+og direkte adgang til redaktionen. Fastholdelsesmekanisme: SMV-ejere
+betaler i dag 12.000 kr./år for ejerledernetværk.
 
----
+### Lag 6 — Leadgenerering
 
-### Painpoint 3: Informationsmarkedet er fragmenteret
+Ingen konkurrent tilbyder dette. Overvågningssignaler omsættes automatisk
+til salgsmuligheder:
 
-Den professionelle læser lapper i dag sin viden sammen fra et kludetæppe:
-Finans.dk, Børsen, Berlingske Business, LinkedIn, Google Alerts, nyhedsbreve,
-brancheorganisationer, fagmedier, rapporter og ad hoc-research.
+- Reguleringsændring → identificerer virksomheder i scope
+- Ekspansionsmeddelelse → potentiel køber af services
+- Lederskifte → ny beslutningstager med nye prioriteter
 
-Resultatet er ikke overblik. Det er støj med høj selvtillid.
-
-Y Business skal være den redaktionelle syntese.
-
----
-
-### Painpoint 4: Den blinde vinkel mangler
-
-Meget erhvervsjournalistik gengiver de samme kilder, de samme narrativer og
-de samme logikker: vækst er altid godt, funding er altid succes, AI er altid
-effektivisering, store virksomheder er målestokken, topchefen er hovedpersonen.
-
-Y Business skal konsekvent spørge: hvad mangler i den fortælling?
-
-Challenge betyder: find den manglende kilde, den skjulte omkostning, den
-ufortalte konsekvens, myten der gentages, data der modsiger fortællingen.
-
-Det er her, Y Business får kant.
+Suppleret af CVR-baseret virksomhedssøgning på branche, størrelse og geografi.
 
 ---
 
-### Painpoint 5: Løsninger bliver for ofte til PR
+## 4. Det redaktionelle fundament
 
-Erhvervslivet har brug for inspiration. Men meget inspirationsstof er
-glansbilleder: sådan fik virksomheden succes, sådan bruger de AI, sådan voksede de.
+Y Business' redaktionelle model bygger på tre pillars:
 
-Y Business' Inspire skal være hårdere og mere journalistisk:
+**Understand** — konsekvensnær forklaring: ikke hvad der er sket,
+men hvad det betyder for læserens virksomhed.
 
-Hvad var problemet? Hvad prøvede de først? Hvad mislykkedes? Hvad kostede det?
-Hvad virkede faktisk? Hvad kan andre kopiere — og hvad kan de ikke?
+**Challenge** — dokumenteret udfordring af dominerende fortællinger:
+den manglende kilde, den skjulte omkostning, den ufortalte konsekvens.
 
-Intern regel: ingen Inspire uden friktion. Hvis der ikke er modstand, fejl,
-omkostning eller dokumenteret effekt, er det ikke Y Business. Så er det
-content marketing.
+**Inspire** — faktabaserede cases med friktion, metode og kopierbar
+læring. Aldrig PR-prosa.
 
----
+Seks segmenter betjenes med skræddersyet redaktionel profil:
+SMV-ejere, C-level i mellemstore virksomheder, iværksættere,
+kommunikations- og marketingfolk, investorer og rådgivere,
+medarbejdere i større virksomheder.
 
-### Painpoint 6: AI bruges til produktion — ikke til dømmekraft
+Otte signaturformater giver platformen rytme og genkendelse:
+Morgenbriefet, Det betyder det for din virksomhed, Den blinde vinkel,
+Myten om, Casen der virker, Signalradaren, Før mødet, Før handlen.
 
-Mange medier bruger AI til at skrive hurtigere. Det er ikke nok.
+Tre faste klummer bærer stemme og autoritet — det eneste format
+der ikke kan produceres af AI.
 
-Y Business bruger AI der, hvor det skaber et redaktionelt forspring: overvåge
-flere kilder, opdage svage signaler, sammenligne på tværs af brancher, finde
-mønstre før de bliver mainstream, oversætte regulering til praktiske konsekvenser.
+Intern dogme: AI overvåger markedet. Journalisterne afgør,
+hvad der betyder noget.
 
-Mennesket ejer: prioriteringen, kildekritikken, de kontroversielle vinkler,
-interviews, opinion og endelig publicering.
-
-Y Business siger ikke: AI skriver vores journalistik.
-Y Business siger: AI overvåger markedet. Journalisterne afgør, hvad der
-betyder noget.
-
----
-
-## 3. Value proposition
-
-### Kort
-
-Y Business gør erhvervsnyheder til beslutningskraft.
-
-### Lidt længere
-
-Y Business er et AI-drevet, redaktionelt verificeret erhvervsmedie, der
-overvåger markedet, sorterer støjen fra og leverer den viden, danske
-virksomheder skal bruge for at forstå, udfordre og handle på virkeligheden.
-
-### Kommercielt
-
-For virksomheder, der i dag spilder tid og penge på fragmenterede nyheder,
-overvågning, rapporter, LinkedIn-støj og ad hoc-research, er Y Business ét
-samlet redaktionelt intelligenslag — ikke som endnu et abonnement, men som
-en daglig arbejdsfunktion.
+Fuldt redaktionelt koncept: *Koncept — Redaktion.md*
+Formater, klummer og kildemodel: *Koncept — Indholdsformater.md*
 
 ---
 
-## 4. Den redaktionelle hovedidé
+## 5. Den kommercielle model
 
-Y Business er ikke et erhvervsmedie. Det er redaktionel erhvervsintelligens.
+### Abonnementspris og målsætning år 1
 
-Et erhvervsmedie fortæller, hvad der sker i erhvervslivet.
-Y Business forklarer, hvad det betyder for den enkelte virksomhed, branche,
-rolle og beslutning.
+| Metrik | Mål |
+|---|---|
+| Abonnementspris | 5.000 DKK/år (500 DKK/md) |
+| Abonnentmål år 1 | 1.500 Business + 1.500 Private |
+| ARR ved Business-målopfyldelse | 7,5M DKK |
 
-Et overvågningsværktøj finder omtale.
-Y Business afgør, hvad der er vigtigt.
+### Tier-struktur
 
-Et konsulenthus sælger analyse.
-Y Business giver læseren daglig dømmekraft.
+| Tier | Indhold | Pris |
+|---|---|---|
+| Basis | Nyhedsfeed + morgenbrief (tekst) | 50 DKK/md |
+| Pro | Alle seks lag inkl. lyd, community og leadgenerering | 500 DKK/md / 5.000 DKK/år |
 
-Et nyhedsbrev opsummerer.
-Y Business prioriterer, udfordrer og anviser.
+Abonnementet er inden for bagatelgrænsen (7.600 DKK/år) og dermed
+et skattefrit personalegode for modtageren — fradragsberettiget for
+virksomheden. Årsabonnenter får 5.000 DKK i platformsannoncering
+inkluderet: abonnementet er reelt omkostningsneutralt for virksomheder
+der ønsker eksponering mod Y's erhvervslæsere.
 
-Genren: redaktionel erhvervsintelligens.
+### Konkurrentpositionering
 
-Ikke business news. Ikke business intelligence alene. Men det stærke
-mellemrum: journalistik + overvågning + AI + kildekritik + beslutningsstøtte.
+| Alternativ | Pris DKK/år | Svaghed Y Business udnytter |
+|---|---|---|
+| Finans.dk | 4.500–5.500 | Nyheder uden overvågnings- og BI-lag |
+| Børsen | ca. 7.200 | Finansmarkedsfokus, ikke SMV-relevant |
+| Retriever | 15.000–50.000+ | Overvågning uden redaktionel dækning |
+| Meltwater | 50.000–140.000+ | Enterprise-prissat, ingen nyheder |
+| Finans.dk + Retriever kombineret | 20.000–55.000+ | To siloer, ingen syntese |
+| **Y Business** | **5.000** | **Nyheder + overvågning + trends + briefs + leads i ét** |
 
----
+Y Business konkurrerer ikke primært med andre erhvervsmedier.
+Produktet ejer en kategori der i dag er ubesat for SMV-segmentet.
 
-## 5. Det redaktionelle løfte
+### Sekundære indtægtsstrømme
 
-Y Business lover læseren fem ting:
-
-**1. Vi gør det relevante synligt**
-Du skal ikke selv finde nålen i høstakken. Vi overvåger, filtrerer og prioriterer.
-
-**2. Vi oversætter nyheder til konsekvens**
-Vi stopper ikke ved "hvad er sket?". Vi forklarer "hvad betyder det for dig?".
-
-**3. Vi finder den vinkel, andre mangler**
-Vi spørger, hvem der ikke er hørt, hvad der ikke bliver sagt, og hvilken pris
-der skjules.
-
-**4. Vi viser det, der virker**
-Vi fortæller ikke succeshistorier uden modstand. Vi viser metoden, friktionen
-og læringen.
-
-**5. Vi bruger AI åbent — men ikke ukritisk**
-AI giver rækkevidde. Journalistikken giver dømmekraft.
-
----
-
-## 6. De tre pillars
-
-### Understand — Hvad sker der, og hvad betyder det for min virksomhed?
-
-Understand er Y Business' grundmotor. Men den må aldrig blive generisk
-baggrundsstof. Det skal være konsekvensnær forklaring.
-
-Ikke: *EU har vedtaget nye regler.*
-Men: *De nye EU-regler rammer først de virksomheder, der ikke har en compliancefunktion.*
-
-Ikke: *Renten kan falde.*
-Men: *Et rentefald åbner et investeringsvindue for ejerledede virksomheder —
-men kun for dem med styr på likviditeten.*
-
-Ikke: *AI ændrer arbejdsmarkedet.*
-Men: *AI skaber en produktivitetskløft mellem virksomheder, der ændrer processer,
-og virksomheder, der bare køber værktøjer.*
-
-Intern regel: ingen Understand uden konsekvens.
+- Sektorsponsorat: dedikerede Pro-sektioner (AI & tech, C-level intelligence)
+  med potentiale for brancheorganisationer som redaktionelle medejere
+- Platformsannoncering inkluderet i årsabonnement
+- B2B-salg mod mellemstore virksomheder fra Q1 2027
 
 ---
 
-### Challenge — Hvad mangler i den dominerende fortælling?
+## 6. Teknologisk fundament
 
-Challenge er Y Business' kant. Men det må aldrig blive attitude. Det skal være
-metode.
+### Supertrends-platformen
 
-Challenge bygger på mindst én af disse: manglende kilde, skjult omkostning,
-overset gruppe, ufortalt konsekvens, svag antagelse, data der modsiger
-narrativet, international sammenligning, kommerciel eller politisk interesse.
+Nyhedsmotoren er i drift i dag og crawler 5.000 kilder 24/7.
+Y Business er ikke et nyt teknologiprojekt — det konfigurerer og
+udvider eksisterende infrastruktur.
 
-Ikke: *AI er overvurderet.*
-Men: *AI sparer ikke tid i virksomheder, der ikke ændrer arbejdsgangen.*
+Supertrends leverer: CMS, datastruktur, overvågningsmotor,
+AI-analyse, automatiserede briefs.
 
-Ikke: *Reguleringen er dårlig.*
-Men: *Reguleringen rammer skævt, fordi de mindste virksomheder mangler compliancekapacitet.*
+Y Business bygger oven på: frontend, interface, redaktionelt lag,
+personalisering og brugerrejse.
 
-Ikke: *Startup-hypen er tom.*
-Men: *Fundingrunden er ikke succesen — kundetabet seks måneder senere er historien.*
+### Offentlige datakilder (direkte API-integration)
 
-Intern regel: ingen Challenge uden dokumentation.
+Retsinformation, EUR-Lex, udbud.dk, Folketing ODA,
+CVR + XBRL, Danmarks Statistik, Via Ritzau API.
 
----
+### Tre tekniske afklaringer (afsluttet juni 2026)
 
-### Inspire — Hvad virker, og hvad kan andre bruge?
+Supertrends-møde 3. juni bekræftede platformens kapabiliteter.
+Se `output/supertrends-moedereferat.md`.
 
-Inspire er Y Business' handlingskraft. Men det må aldrig blive feelgood,
-sponsorlogik eller ukritisk caseprosa. Inspire skal være faktabaseret optimisme.
+### Åbne tekniske spørgsmål
 
-Ikke: *Sådan bruger de AI.*
-Men: *AI virkede først, da de fjernede to manuelle godkendelser og ændrede ansvarsfordelingen.*
-
-Ikke: *Her er en inspirerende founder.*
-Men: *Her er fejlen, der næsten kostede virksomheden livet — og metoden, der rettede den op.*
-
-Inspire skal altid indeholde: problem, metode, friktion, resultat, begrænsning
-og kopierbar læring.
-
-Intern regel: ingen Inspire uden friktion.
+- On-demand briefs (60 sek.) — kræver LLM-lag?
+- Personovervågning (eksperter, analytikere) — feature-request til Supertrends
+- TTS-motor til lyd — ekstern service kræves
+- Rammeaftale Supertrends: fee-struktur afventer forhandling
 
 ---
 
-## 7. Segmenternes redaktionelle løfter
+## 7. Lanceringsplan
 
-### 1. SMV-ejeren
-*"Vi fortæller dig, hvad der rammer din drift — før det rammer dig."*
+| Milepæl | Dato | Ejer |
+|---|---|---|
+| Y.dk internal soft launch | 10. juni 2026 | Tech Lead + Redaktion |
+| Y.dk public launch (fri adgang) | 10. august 2026 | CEO + Commercial Lead |
+| Redaktionelt koncept og features spec v1.0 | 30. juni 2026 | PM + Lysdal/Dyrby |
+| UI-wireframes og go/no-go | 31. august 2026 | PM + Designer |
+| **Y Business launch (invited beta)** | **1. oktober 2026** | **PM + Tech Lead** |
+| Paywall live — Private og Business | 20. november 2026 | Tech Lead + Commercial Lead |
+| Y Rails — fuld produktlancering | 1. december 2026 | Tech Lead |
 
-Primær pillar: Understand. Sekundær: Inspire.
+**Kritisk afhængighed:** Redaktionelt koncept skal være leveret inden
+30. juni, så Tech Lead kan konfigurere motoren selvstændigt i juli
+(PM er ikke tilgængelig). Ufuldstændige leverancer ved udgangen af juni
+= stilstand i juli = forsinkelse af 1. oktober.
 
-Prioritér: regulering, kommunale udbud, administrative byrder, arbejdskraft,
-AI i drift, likviditet, lokale markeder, branchespecifikke risici.
+**Beta-mål:** 1.500 Business + 1.500 Private subscribers ved
+paywall-lancering 20. november 2026.
 
-Tone: kort, konkret, respektfuld, uden finansjargon, uden konsulenttåge.
-
----
-
-### 2. C-level i mellemstore virksomheder
-*"Vi viser dig det, der ændrer beslutningsrummet."*
-
-Primær pillar: Challenge. Sekundær: Understand.
-
-Prioritér: geopolitik oversat til dansk mid-market, AI som strategisk
-transformation, supply chains, regulering, kapitaldisponering, international
-konkurrence, bestyrelsesrelevante tendenser.
-
-Tone: analytisk, kompakt, datadrevet, skarp, uden managementfloskler.
+Fuldt roadmap: *Produkt — Roadmap.md*
 
 ---
 
-### 3. Iværksættere
-*"Vi skiller founderfortællingen fra virkeligheden."*
-
-Primær pillar: Challenge. Sekundær: Inspire.
-
-Prioritér: fundingrealisme, runway, kundekoncentration, exits, M&A,
-regulatory traps, GTM-fejl, skalering, founder burnout.
-
-Tone: direkte, energisk, anti-hype, læringsorienteret.
-
----
-
-### 4. Kommunikations- og marketingfolk
-*"Vi viser, hvad der virker, når offentlighed, platforme og AI flytter sig."*
-
-Primær pillar: Inspire. Sekundær: Understand.
-
-Prioritér: krisekommunikation, AI i kommunikation, LinkedIn og platformsskift,
-PR-måling, employer branding, CEO-kommunikation, misinformation.
-
-Tone: håndværksnær, kritisk, konkret, målelig, ikke buzzword-glad.
-
----
-
-### 5. Investorer, rådgivere og bureauer
-*"Vi finder signalet, før markedet kalder det en trend."*
-
-Primær pillar: Challenge. Sekundær: Understand.
-
-Prioritér: dealflow-signaler, sektorrotation, lederskifter, kapitalbevægelser,
-reguleringsvinduer, offentlige kontrakter, M&A før pressemeddelelsen.
-
-Tone: kort, datadrevet, skeptisk, signalorienteret.
-
----
-
-### 6. Medarbejdere i større virksomheder
-*"Vi gør dig klogere på det, der påvirker dit arbejde."*
-
-Primær pillar: Understand. Sekundær: Inspire.
-
-Prioritér: AI i hverdagsarbejde, nye kompetencekrav, regulering i praksis,
-brancheskift, mellemlederrollen, produktivitet.
-
-Tone: forklarende, anvendelig, ikke elitær, ikke overstrategisk.
-
----
-
-## 8. De redaktionelle signaturformater
-
-Y Business skal ikke bare have stofområder. Det skal have formater, som
-læseren genkender og vender tilbage til.
-
-| Format | Frekvens | Pillar | Primært segment |
-|---|---|---|---|
-| Morgenbriefet | Dagligt kl. 06.00 | Understand | SMV-ejere, C-level, medarbejdere |
-| Det betyder det for din virksomhed | 2-3 gange ugentligt | Understand | SMV-ejere, C-level, medarbejdere |
-| Den blinde vinkel | 1 gang ugentligt | Challenge | C-level, SMV-ejere, rådgivere |
-| Myten om … | Hver 14. dag | Challenge | Iværksættere, C-level, rådgivere |
-| Casen der virker | 1 gang ugentligt | Inspire | SMV-ejere, kommunikation, iværksættere |
-| Signalradaren | 1 gang ugentligt + situationsbestemt | Understand / Challenge | Rådgivere, C-level, SMV-ejere |
-| Før mødet | Situationsbestemt, 1-2 gange ugentligt | Understand / Inspire | C-level, rådgivere, medarbejdere |
-| Før handlen | 2-4 gange månedligt | Challenge / Understand | Investorer, rådgivere, bureauer |
-
-Fulde formatbeskrivelser med fast struktur og produktionsmodel:
-se *Koncept — Indholdsformater*.
-
----
-
-## 9. Klummer
-
-Signaturformaterne giver struktur og nytteværdi. Klummerne giver noget
-de ikke kan: en personforankret stemme, autoritet og holdning, som læseren
-vender tilbage til — og det eneste format, der ikke kan produceres af AI.
-
-| Klumme | Frekvens | Pillar | Primært segment |
-|---|---|---|---|
-| Den blinde vinkel | Ugentligt | Challenge | C-level, rådgivere, SMV-ejere, iværksættere |
-| Mandag morgen | Ugentligt (mandag) | Understand | C-level, SMV-ejere, medarbejdere |
-| Hvad virker? | Hver 14. dag | Inspire | SMV-ejere, kommunikation, iværksættere |
-
-**Den blinde vinkel:** Skrevet af en erfaren erhvervsjournalist eller analytisk
-kommentator med kildekritisk tyngde og uafhængighed fra brancheinteresser.
-Tager ansvar for den skarpe tese og finder det, der mangler i den dominerende
-fortælling.
-
-**Mandag morgen:** Skrevet af en tidligere direktør, strategirådgiver eller
-bestyrelsesprofil. Ugens vigtigste erhvervsmæssige beslutningsbillede — et
-ledelsesbrief med stemme: hvad er ugens vigtigste signal, hvilken beslutning
-nærmer sig, hvilken risiko undervurderes?
-
-**Hvad virker?:** Skrevet af en praktiker — founder, driftsleder,
-kommunikationschef — med konkret praksiserfaring og villighed til at tale om
-fejl og friktion. Undersøger én metode eller beslutning og svarer på, hvad
-andre kan lære og hvad de ikke bør kopiere.
-
----
-
-## 10. Kildemodel
-
-### Grundprincip
-
-Redaktionen arbejder med tre kildegrupper med klart adskilte funktioner.
-
-**Primærkilder** dokumenterer virkeligheden: offentlige myndigheder og
-registre (Erhvervsstyrelsen, CVR, EUR-Lex), virksomhedsdata og regnskaber,
-brancheorganisationer (altid med modkilde), forskning og tænketanke, direkte
-virksomhedskilder og eksperter med konkret faglig relevans.
-
-**Signalkilder** peger på tidlige bevægelser: udbud og offentlige indkøb,
-jobopslag, lederskifter, LinkedIn-signaler (verificeres altid), pressemeddelelser
-(kun som tip eller anledning, aldrig slutprodukt) og internationale medier
-(oversættes altid til dansk virksomhedskontekst).
-
-**Kildetyper der undgås:** ukritiske LinkedIn-virale fortællinger, PR-cases
-uden friktion, konsulentrapporter uden deklareret metode, brancheorganisationer
-som enkeltkilder, generiske AI-trendlister og internationale historier uden
-dokumenteret dansk relevans.
-
-Fuld kildetaksonomi: se *Koncept — Indholdsformater*.
-
----
-
-## 11. Minimum viable newsroom — år 1
-
-Fem produktionsspor bærer platformen fra dag ét:
-
-1. **Morgenbriefet** — skaber vanen
-2. **Det betyder det for din virksomhed** — skaber nytten
-3. **Den blinde vinkel** — skaber kanten
-4. **Casen der virker** — skaber handlekraften
-5. **Signalradaren** — skaber forspringet
-
-*Myten om*, *Før mødet* og *Før handlen* kører situationsbestemt i begyndelsen
-og skaleres, når redaktionen ser, hvilke segmenter der aktiverer dem mest.
-
-Klummerne løber fra lancering som personlig stemme og loyalitetsdriver.
-
----
-
-## 12. Den redaktionelle motor
-
-### AI gør det brede arbejde
-
-AI overvåger: medier, pressemeddelelser, brancheorganisationer, offentlige
-data, EU-regulering, danske lovforslag, udbud, CVR-signaler, regnskaber,
-lederskifter, LinkedIn-signaler, internationale kilder, rapporter.
-
-AI finder: gentagelser, signaler, mønstre, afvigelser, manglende perspektiver,
-potentielle vinkler, relevante segmenter.
-
-### Redaktionen gør det afgørende arbejde
-
-Redaktionen afgør: hvad der er vigtigt, hvad der er sandt nok til at gå videre
-med, hvad der kræver modkilde, hvad der er en reel vinkel, hvad der bare er støj,
-hvad der skal være Understand, Challenge eller Inspire.
-
-Det er redaktionel dømmekraft som produkt.
-
----
-
-## 13. De fem redaktionelle dogmer
-
-**Dogme 1: Ingen nyhed uden konsekvens**
-Hvis vi ikke kan forklare, hvem det betyder noget for, skal vi ikke skrive den.
-
-**Dogme 2: Ingen Challenge uden dokumentation**
-Vi udfordrer ikke for at være kontrære. Vi udfordrer, fordi noget mangler.
-
-**Dogme 3: Ingen Inspire uden friktion**
-En case uden fejl, metode og begrænsning er PR.
-
-**Dogme 4: Ingen AI uden ansvar**
-AI kan producere. Mennesker verificerer, prioriterer og tager ansvaret.
-
-**Dogme 5: Ingen erhvervsjournalistik uden læserens situation**
-Vi skriver ikke til "markedet". Vi skriver til mennesker, der skal træffe
-beslutninger.
-
----
-
-## 14. Det kompromisløse redaktionelle princip
-
-Y Business skal ikke publicere, fordi noget er nyt.
-
-Y Business skal publicere, fordi noget er relevant, konsekvensbærende,
-underbelyst, handlingsskabende, dokumenteret, brugbart, overraskende
-eller strategisk vigtigt.
-
-Den enkle test:
-
-Kan historien få læseren til at forstå noget, tvivle på noget eller gøre noget?
-
-Hvis ikke, er det ikke Y Business.
-
----
-
-## 15. Pitch
-
-Danske virksomheder drukner ikke i for lidt information.
-De drukner i for meget irrelevant information.
-
-De får nyheder, rapporter, branchemails, LinkedIn-opslag,
-pressemeddelelser, advarsler, analyser og alerts — men alt for sjældent
-et klart svar på det eneste spørgsmål, der betyder noget:
-
-Hvad betyder det for os?
-
-Y Business er svaret.
-
-Vi bygger et AI-drevet erhvervsmedie, der overvåger markedet bredere end
-en redaktion kan gøre alene, sorterer hårdere end algoritmerne og forklarer
-skarpere end de klassiske erhvervsmedier.
-
-Y Business leverer redaktionel erhvervsintelligens:
-
-det vigtigste at forstå
-den vinkel andre mangler
-den løsning der virker
-det signal du bør handle på
-den konsekvens du ikke må overse
-
-For SMV-ejeren: mindre støj og bedre drift.
-For C-level: bedre strategisk overblik.
-For iværksætteren: realitetstest frem for hype.
-For kommunikationsfolk: cases og håndværk, der faktisk kan bruges.
-For rådgivere og investorer: signaler før markedet opdager dem.
-For medarbejdere: erhvervsviden som kompetenceudvikling i arbejdsdagen.
-
-Y Business er ikke endnu et sted at læse nyheder.
-
-Det er stedet, hvor erhvervslivet får svar på:
-
-Hvad skal jeg forstå?
-Hvad skal jeg tvivle på?
-Hvad kan jeg gøre?
-
-AI giver skala.
-Journalistikken giver dømmekraft.
-Platformen giver relevans.
-Y Business giver beslutningskraft.
+## 8. Dokumentoversigt
+
+### Lag 0 — Dette dokument
+**Koncept — Y Business.md** — samlet platformsoverblik til alle stakeholders
+
+### Lag 1 — Redaktionelt
+**Koncept — Redaktion.md** — redaktionel model, pillars, segmenter, løfter og dogmer
+**Koncept — Indholdsformater.md** — signaturformater, klummer og kildetaksonomi
+
+### Lag 1 — Produkt
+**Produkt — Feature-overblik.md** — hvad platformen kan, brugerrejse og arkitektur
+**Produkt — Kravspecifikation.md** — funktionelle krav, acceptkriterier, tier-adgang
+**Produkt — Roadmap.md** — PM-leverancer, launch-plan og afhængigheder
+
+### Lag 1 — Strategi
+**Strategi — Positionering.md** — Geoffrey Moore-statement og konkurrentanalyse
+**Strategi — Projektkontekst.md** — team, mission, SWOT og teknologisk baggrund
+**Strategi — Discovery-plan.md** — behovsafdækning og interviewmålgrupper
+**Redaktion — Redaktionelt koncept.md** — teknisk redaktionskoncept v0.2
