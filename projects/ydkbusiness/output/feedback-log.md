@@ -23,3 +23,10 @@ Skrives automatisk til dette dokument via GitHub API ved hvert indsend.
 - **Af:** Anonym
 - **Bemærkning:**
   - Forudsætning for succesfuld AI-implementering. Organisation, proces og ledelse. Hvad kræver det?
+
+## 11. juni 2026 kl. 11.17
+
+- **Af:** Anonym
+- **Bemærkning:**
+  - Meningsdannere world-wide: internationatiolt, Silicon Valley, nationalt.
+  - Her er successerne.
