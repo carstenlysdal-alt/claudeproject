@@ -17,3 +17,9 @@ Skrives automatisk til dette dokument via GitHub API ved hvert indsend.
 - **Af:** Anonym
 - **Bemærkning:**
   - Nu tester jeg.
+
+## 11. juni 2026 kl. 11.15
+
+- **Af:** Anonym
+- **Bemærkning:**
+  - Forudsætning for succesfuld AI-implementering. Organisation, proces og ledelse. Hvad kræver det?
