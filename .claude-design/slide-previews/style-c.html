@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style C — Nordic Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wdth,wght@0,75..100,400;0,75..100,500;0,75..100,600;1,75..100,400&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+/* === VIEWPORT BASE (mandatory) === */
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #0E0E0E; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #0E0E0E; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: #0E0E0E; }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; display: block; visibility: hidden; opacity: 0; pointer-events: none; background: #0E0E0E; }
+.slide.active { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
+img, video, canvas, svg { max-width: 100%; max-height: 100%; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; } }
+
+/* === NORDIC INTELLIGENCE BRIEF — Custom wildcard === */
+:root {
+  --black: #0E0E0E;
+  --off-black: #161616;
+  --carbon: #1E1E1E;
+  --amber: #E8A020;
+  --amber-dim: rgba(232,160,32,0.12);
+  --amber-glow: rgba(232,160,32,0.06);
+  --white: #EBEBEB;
+  --white-dim: rgba(235,235,235,0.55);
+  --white-ghost: rgba(235,235,235,0.18);
+  --rule: rgba(235,235,235,0.1);
+}
+
+.slide-title { background: var(--black); }
+
+/* Subtle grid */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(235,235,235,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(235,235,235,0.03) 1px, transparent 1px);
+  background-size: 120px 120px;
+  pointer-events: none;
+}
+
+/* Amber vertical accent bar */
+.accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--amber);
+  opacity: 0;
+  animation: barIn 0.6s ease 0.1s forwards;
+}
+
+/* === Top header === */
+.header {
+  position: absolute;
+  top: 52px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.25s forwards;
+}
+
+.header-brand {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--amber);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header-tag {
+  font-family: 'Syne Mono', monospace;
+  font-size: 12px;
+  color: var(--white-dim);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.header-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  opacity: 0.6;
+}
+
+.header-rule {
+  position: absolute;
+  top: 100px;
+  left: 80px;
+  right: 80px;
+  height: 1px;
+  background: var(--rule);
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.35s forwards;
+}
+
+/* === Central title area === */
+.center-block {
+  position: absolute;
+  top: 160px;
+  left: 80px;
+  right: 860px;
+  bottom: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  animation: riseIn 0.9s cubic-bezier(0.22,0.61,0.36,1) 0.4s forwards;
+}
+
+.eyebrow {
+  font-family: 'Syne Mono', monospace;
+  font-size: 13px;
+  color: var(--amber);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 52px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--amber);
+}
+
+.main-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 110px;
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
+}
+
+.main-title .accent-word {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.title-rule {
+  width: 60px;
+  height: 2px;
+  background: var(--amber);
+  margin: 52px 0 44px;
+}
+
+.description {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--white-dim);
+  line-height: 1.65;
+  max-width: 560px;
+}
+
+/* === Right panel — data overview === */
+.right-panel {
+  position: absolute;
+  top: 140px;
+  right: 80px;
+  width: 720px;
+  bottom: 100px;
+  border-left: 1px solid var(--rule);
+  padding: 0 0 0 72px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  animation: riseIn 0.9s cubic-bezier(0.22,0.61,0.36,1) 0.6s forwards;
+}
+
+.panel-header {
+  font-family: 'Syne Mono', monospace;
+  font-size: 12px;
+  color: var(--amber);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Agenda items */
+.agenda {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.agenda-item {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 0 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.agenda-item:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.agenda-item.highlight {
+  background: var(--amber-glow);
+  margin: 0 -24px;
+  padding: 28px 24px;
+}
+
+.agenda-item.highlight::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--amber);
+}
+
+.a-num {
+  font-family: 'Syne Mono', monospace;
+  font-size: 13px;
+  color: var(--amber);
+  opacity: 0.6;
+  padding-top: 3px;
+}
+
+.a-content {}
+
+.a-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.a-desc {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--white-dim);
+  line-height: 1.5;
+}
+
+/* Bottom stat strip */
+.stat-strip {
+  position: absolute;
+  bottom: 0;
+  left: 80px;
+  right: 80px;
+  height: 100px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  opacity: 0;
+  animation: fadeIn 0.7s ease 0.9s forwards;
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 48px;
+  border-right: 1px solid var(--rule);
+}
+
+.stat:first-child { padding-left: 0; }
+.stat:last-child { border-right: none; }
+
+.stat-value {
+  font-family: 'Instrument Serif', serif;
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: var(--white-dim);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes barIn {
+  from { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  to   { opacity: 1; transform: scaleY(1); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+  <div class="deck-stage" id="stage">
+    <div class="slide slide-title active">
+      <div class="bg-grid"></div>
+      <div class="accent-bar"></div>
+
+      <div class="header">
+        <div class="header-brand">Y.dk Business</div>
+        <div class="header-right">
+          <div class="header-tag">Intern ledelsespræsentation</div>
+          <div class="header-dot"></div>
+          <div class="header-tag">Juni 2026</div>
+        </div>
+      </div>
+      <div class="header-rule"></div>
+
+      <div class="center-block">
+        <div class="eyebrow">Forretningsmodel & strategi</div>
+        <div class="main-title">
+          Y Business<br>
+          <span class="accent-word">2026</span>
+        </div>
+        <div class="title-rule"></div>
+        <div class="description">
+          Business model, markedspositionering, go-to-market og produkt-roadmap mod soft launch oktober 2026.
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="panel-header">Dagsorden — 4 fokusområder</div>
+        <div class="agenda">
+          <div class="agenda-item">
+            <div class="a-num">01</div>
+            <div class="a-content">
+              <div class="a-title">Business model & revenue</div>
+              <div class="a-desc">Tier-struktur · priser · ARR-potentiale · skattefordel</div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="a-num">02</div>
+            <div class="a-content">
+              <div class="a-title">Markedspositionering</div>
+              <div class="a-desc">SMV-gap · konkurrentlandskab · prisanker</div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="a-num">03</div>
+            <div class="a-content">
+              <div class="a-title">Go-to-market & distribution</div>
+              <div class="a-desc">Partnerorganisationer · kanaler · launch-faser</div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="a-num">04</div>
+            <div class="a-content">
+              <div class="a-title">Produkt & roadmap</div>
+              <div class="a-desc">Feature-scope · Supertrends-integration · oktober 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat">
+          <div class="stat-value">5.000 kr</div>
+          <div class="stat-label">Årsabonnement</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1.500</div>
+          <div class="stat-label">Abonnentmål år 1</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">7,5M DKK</div>
+          <div class="stat-label">ARR ved målopfyldelse</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">Okt. 2026</div>
+          <div class="stat-label">Soft launch</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  function scale() {
+    var s = document.getElementById('stage');
+    var r = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    var x = (window.innerWidth - 1920 * r) / 2;
+    var y = (window.innerHeight - 1080 * r) / 2;
+    s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
+  }
+  scale();
+  window.addEventListener('resize', scale);
+})();
+</script>
+</body>
+</html>

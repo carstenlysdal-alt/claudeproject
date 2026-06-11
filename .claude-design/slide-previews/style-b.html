@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style B — Emerald Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* === VIEWPORT BASE (mandatory) === */
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #25B377; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #25B377; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: #3CD896; }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; display: block; visibility: hidden; opacity: 0; pointer-events: none; background: #3CD896; }
+.slide.active { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
+img, video, canvas, svg { max-width: 100%; max-height: 100%; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; } }
+
+/* === EMERALD EDITORIAL === */
+:root {
+  --emerald: #3CD896;
+  --emerald-dark: #25B377;
+  --ink: #0F1A5C;
+  --ink-2: #1B2774;
+  --paper: #F1E9D6;
+  --paper-dim: #E8DFC8;
+  --white: #FFFFFF;
+}
+
+.slide-title { background: var(--emerald); }
+
+/* === Header masthead === */
+.masthead {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+  opacity: 0;
+  animation: drop 0.7s ease 0.1s forwards;
+}
+
+.masthead-brand {
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--paper);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.masthead-date {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(241,233,214,0.6);
+  letter-spacing: 0.1em;
+}
+
+/* === Double rule ornament === */
+.ornament-top {
+  position: absolute;
+  top: 140px;
+  left: 80px;
+  right: 80px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.3s forwards;
+}
+.ornament-line {
+  height: 4px;
+  background: var(--ink);
+  margin-bottom: 6px;
+}
+.ornament-line.thin { height: 1.5px; margin-bottom: 0; }
+
+/* === Main title block === */
+.title-block {
+  position: absolute;
+  top: 190px;
+  left: 80px;
+  right: 800px;
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.22,0.61,0.36,1) 0.45s forwards;
+}
+
+.eyebrow {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.main-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 128px;
+  font-weight: 900;
+  line-height: 0.92;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.main-title .italic-line {
+  font-style: italic;
+  font-weight: 700;
+  font-size: 96px;
+}
+
+.subtitle-row {
+  margin-top: 48px;
+  display: flex;
+  gap: 0;
+}
+
+.subtitle-tag {
+  font-family: 'Manrope', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--paper);
+  padding: 12px 24px;
+  margin-right: 3px;
+}
+
+/* === Paper panel === */
+.paper-panel {
+  position: absolute;
+  top: 140px;
+  right: 80px;
+  width: 660px;
+  bottom: 100px;
+  background: var(--paper);
+  padding: 60px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  animation: slideIn 0.8s cubic-bezier(0.22,0.61,0.36,1) 0.6s forwards;
+}
+
+.panel-kicker {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 4px solid var(--ink);
+}
+
+.panel-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.panel-item {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(15,26,92,0.15);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.panel-item:first-child {
+  border-top: 1px solid rgba(15,26,92,0.15);
+}
+
+.item-num {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--emerald-dark);
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.item-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.item-desc {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-2);
+  opacity: 0.65;
+  line-height: 1.5;
+}
+
+.panel-footer {
+  padding-top: 24px;
+  border-top: 4px solid var(--ink);
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  opacity: 0.5;
+  letter-spacing: 0.08em;
+}
+
+/* === Bottom ornament === */
+.ornament-bottom {
+  position: absolute;
+  bottom: 60px;
+  left: 80px;
+  right: 800px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.8s forwards;
+}
+
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+  <div class="deck-stage" id="stage">
+    <div class="slide slide-title active">
+
+      <div class="masthead">
+        <div class="masthead-brand">Y.dk Business</div>
+        <div class="masthead-date">Ledelsespræsentation · Juni 2026</div>
+      </div>
+
+      <div class="ornament-top">
+        <div class="ornament-line"></div>
+        <div class="ornament-line thin"></div>
+      </div>
+
+      <div class="title-block">
+        <div class="eyebrow">Forretningsmodel & strategi</div>
+        <div class="main-title">
+          Y Business<br>
+          <span class="italic-line">2026</span>
+        </div>
+        <div class="subtitle-row">
+          <div class="subtitle-tag">Business model</div>
+          <div class="subtitle-tag">Positionering</div>
+          <div class="subtitle-tag">GTM</div>
+        </div>
+      </div>
+
+      <div class="paper-panel">
+        <div class="panel-kicker">Præsentationens indhold</div>
+        <div class="panel-items">
+          <div class="panel-item">
+            <div class="item-num">01</div>
+            <div>
+              <div class="item-label">Business model & revenue</div>
+              <div class="item-desc">Tier-struktur · priser · ARR-potentiale · skattefordel</div>
+            </div>
+          </div>
+          <div class="panel-item">
+            <div class="item-num">02</div>
+            <div>
+              <div class="item-label">Markedspositionering</div>
+              <div class="item-desc">SMV-gap · konkurrentlandskab · prisanker · differentiering</div>
+            </div>
+          </div>
+          <div class="panel-item">
+            <div class="item-num">03</div>
+            <div>
+              <div class="item-label">Go-to-market & distribution</div>
+              <div class="item-desc">Partnerorganisationer · kanaler · launch-faser</div>
+            </div>
+          </div>
+          <div class="panel-item">
+            <div class="item-num">04</div>
+            <div>
+              <div class="item-label">Produkt & roadmap</div>
+              <div class="item-desc">Feature-scope · Supertrends · soft launch oktober 2026</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">CEO · Tech Lead · Commercial Lead · Fortroligt</div>
+      </div>
+
+      <div class="ornament-bottom">
+        <div class="ornament-line thin"></div>
+        <div style="height:6px;"></div>
+        <div class="ornament-line" style="height:1px;"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  function scale() {
+    var s = document.getElementById('stage');
+    var r = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    var x = (window.innerWidth - 1920 * r) / 2;
+    var y = (window.innerHeight - 1080 * r) / 2;
+    s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
+  }
+  scale();
+  window.addEventListener('resize', scale);
+})();
+</script>
+</body>
+</html>
