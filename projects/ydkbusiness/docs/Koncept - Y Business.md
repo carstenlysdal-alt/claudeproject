@@ -8,6 +8,8 @@
 
 ## 1. Hvad Y Business er
 
+Y Business er ikke endnu et erhvervsmedie.
+
 Y Business er en AI-drevet erhvervsintelligensplatform for danske virksomheder
 med 5-250 ansatte. Platformen kombinerer originalt redaktionelt indhold,
 AI-drevet markedsovervågning, branchetrends, on-demand briefs og
@@ -22,6 +24,12 @@ journalistik, overvågning, AI og kildekritik samlet i ét arbejdsredskab.
 
 **Y Business skal være den videnskoordinator, danske virksomheder ikke har
 råd til at ansætte — og den redaktør, algoritmen aldrig bliver.**
+
+Platformen skal hver dag hjælpe læseren med tre ting:
+
+**Hvad skal jeg forstå?**
+**Hvad skal jeg tvivle på?**
+**Hvad kan jeg gøre?**
 
 ---
 
@@ -279,7 +287,47 @@ Fuldt roadmap: *Produkt — Roadmap.md*
 
 ---
 
-## 9. Dokumentoversigt
+## 9. Den korte interne model
+
+Morgenbriefet skaber vanen.
+Det betyder det for din virksomhed skaber nytten.
+Den blinde vinkel skaber kanten.
+Casen der virker skaber handlekraften.
+Signalradaren skaber forspringet.
+Hyperpersonalisering skaber relevansen.
+Klummerne skaber stemmen.
+Kommentatorerne skaber autoriteten.
+Kilderne skaber troværdigheden.
+AI skaber skalaen.
+Redaktionen skaber dømmekraften.
+
+---
+
+Y Business er ikke endnu et sted at læse erhvervsnyheder.
+
+Det er stedet, hvor erhvervslivet får svar på:
+
+**Hvad skal jeg forstå?**
+**Hvad skal jeg tvivle på?**
+**Hvad kan jeg gøre?**
+
+Svaret er ikke det samme for alle.
+
+Derfor er Y Business hyperpersonaliseret.
+
+Men standarden er den samme for alle:
+
+redaktionel dømmekraft, dokumentation, konsekvens og ansvar.
+
+Det er vores redaktionelle løfte.
+Det er vores kommercielle værdi.
+Og det er den genre, Y Business skal eje:
+
+**redaktionel erhvervsintelligens.**
+
+---
+
+## 10. Dokumentoversigt
 
 ### Lag 0 — Dette dokument
 **Koncept — Y Business.md** — samlet platformsoverblik til alle stakeholders

@@ -34,6 +34,14 @@ Y Business gør noget andet:
 Y Business skal være den videnskoordinator, virksomhederne ikke har råd til
 at ansætte — og den redaktør, algoritmen aldrig bliver.
 
+Platformen skal hver dag hjælpe læseren med tre ting:
+
+**Hvad skal jeg forstå?**
+**Hvad skal jeg tvivle på?**
+**Hvad kan jeg gøre?**
+
+Det er Y Business' redaktionelle og kommercielle kerne.
+
 ---
 
 ## 2. Målgruppehierarki
