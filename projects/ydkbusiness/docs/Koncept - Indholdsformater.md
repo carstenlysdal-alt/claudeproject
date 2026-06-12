@@ -1,20 +1,16 @@
 # Y Business — Indholdsformater, klummer og kildemodel
 
-Dette dokument er et appendix til *Koncept — Y Business* og specificerer
-den operative indholdsstrategi: hvilke formater der udkommer hvornår,
-hvilke klummer der bærer stemme og autoritet, og hvilke kildetyper
-redaktionen bygger sin journalistik på.
+**Primær læser:** Chefredaktør, Tech Lead
+**Status:** Arbejdsdokument — løbende opdateret
+**Relation:** Appendix til *Koncept — Y Business.md* og *Koncept — Redaktion.md*
 
 ---
 
-## 1. Formatplan
+## 1. Launch-modellen
 
-### Grundprincip
+Y Business lancerer ikke med otte ligeværdige formater.
 
-Y Business skal ikke ligne et klassisk erhvervsmedie med løbende artikelflow
-hele dagen. Det skal ligne et redaktionelt intelligenssystem med faste rytmer:
-daglig orientering, ugentlig dybde, situationsbestemte alerts og få,
-gentagelige formater med høj genkendelsesværdi.
+Y Business lancerer med fem bærende formater og tre skalerbare specialformater.
 
 En redaktion på 2-3 journalister med AI-understøttelse kan i år 1 realistisk
 producere:
@@ -27,92 +23,155 @@ producere:
 - 1-2 situationsbestemte briefs om ugen
 - 1-2 klummer om ugen
 
-### Frekvenstabel
-
-| Format | Frekvens | Pillar | Primært segment |
-|---|---|---|---|
-| Morgenbriefet | Dagligt kl. 06.00, man-fre | Understand | SMV-ejere, C-level, medarbejdere |
-| Det betyder det for din virksomhed | 2-3 gange ugentligt | Understand | SMV-ejere, C-level, medarbejdere |
-| Den blinde vinkel | 1 gang ugentligt | Challenge | C-level, SMV-ejere, rådgivere, iværksættere |
-| Myten om … | Hver 14. dag | Challenge | Iværksættere, C-level, rådgivere |
-| Casen der virker | 1 gang ugentligt | Inspire | SMV-ejere, kommunikation/marketing, iværksættere |
-| Signalradaren | 1 gang ugentligt + situationsbestemt | Understand / Challenge | Rådgivere, C-level, SMV-ejere |
-| Før mødet | Situationsbestemt, 1-2 gange ugentligt | Understand / Inspire | C-level, rådgivere, medarbejdere |
-| Før handlen | 2-4 gange månedligt | Challenge / Understand | Investorer, rådgivere, bureauer |
-
 ---
 
-## 2. Formatbeskrivelser
+## 2. Fem bærende formater
 
-### Morgenbriefet
+### Morgenbriefet — skaber vanen
 
-Dagens vigtigste erhvervssignaler — ikke dagens mest støjende nyheder.
-5-7 korte elementer. AI overvåger og prioriterer potentielle emner inden kl. 05.00.
-Journalist/redaktør vælger, skærper vinkler og godkender.
+Dagligt kl. 06.00. Kort, prioriteret og personaliseret.
+
+**Pillar:** Understand
+**Funktion:** Forklare og prioritere
+**Primære segmenter:** SMV-ejere, C-level, medarbejdere
+**Kanaler:** Tekst og lyd
+
+Formålet er ikke at opsummere alt. Formålet er at give læseren det vigtigste
+at forstå, før arbejdsdagen begynder.
+
+Morgenbriefet består af:
+- redaktionelt topvalg
+- personlige branche- og rolleprioriteringer
+- regulerings- eller risikosignaler
+- én blind vinkel, når relevant
+- én konkret "hold øje med"-note
 
 **Fast struktur:** hvad er vigtigt? → hvem rammes? → hvorfor betyder det noget?
-→ hvad skal du holde øje med? → hvad kan du gøre?
+→ hvad skal du holde øje med?
+
+AI overvåger og prioriterer potentielle emner inden kl. 05.00.
+Journalist/redaktør vælger, skærper vinkler og godkender.
 
 ---
 
-### Det betyder det for din virksomhed
+### Det betyder det for din virksomhed — skaber nytten
 
-Y Business' vigtigste forklarende format. Oversætter regler, økonomi,
-teknologi og marked til konkret virksomhedskonsekvens.
+Oversætter regler, økonomi, teknologi og marked til konkret
+virksomhedskonsekvens.
 
-Typiske emner: nye regler, skat, EU-direktiver, AI-regulering,
-arbejdskraft, rente, energi, compliance, data- og rapporteringskrav.
+**Pillar:** Understand
+**Funktion:** Forklare, oversætte, anvise
+**Primære segmenter:** SMV-ejere, C-level, medarbejdere
+**Kanaler:** Tekst, kort lyd og selektiv video
+**Frekvens:** 2-3 gange ugentligt
 
-**Fast struktur:** hvad er sket? → hvem rammes? → hvornår? → hvad koster det?
-→ hvad bør virksomheden gøre? → hvad mangler vi stadig at vide?
+Typiske emner: nye regler, skat, EU-direktiver, AI-regulering, arbejdskraft,
+rente, energi, compliance, data- og rapporteringskrav.
+
+**Fast struktur:**
+1. Hvad er sket?
+2. Hvem rammes?
+3. Hvornår?
+4. Hvad koster det?
+5. Hvad bør virksomheden overveje?
+6. Hvad mangler vi stadig at vide?
 
 ---
 
-### Den blinde vinkel
+### Den blinde vinkel — skaber kanten
 
-Y Business' vigtigste Challenge-format. Skal altid finde noget, der mangler
-i den dominerende fortælling: en kilde der ikke citeres, en gruppe der ikke
-høres, en omkostning der skjules, en antagelse der ikke holder.
+Finder den manglende kilde, skjulte omkostning eller ufortalte konsekvens.
 
-**Fast struktur:** den dominerende fortælling → det der mangler → hvem der
-ikke er hørt → hvad dokumentationen viser → hvem der rammes → hvorfor det
-betyder noget
+**Pillar:** Challenge
+**Funktion:** Udfordre og korrigere
+**Primære segmenter:** C-level, SMV-ejere, rådgivere, iværksættere
+**Kanaler:** Analyse, kommentar, lydklumme, kort video
+**Frekvens:** 1 gang ugentligt
+
+Skal altid finde noget, der mangler i den dominerende fortælling: en kilde
+der ikke citeres, en gruppe der ikke høres, en omkostning der skjules, en
+antagelse der ikke holder.
 
 Bør ikke overlades til uerfaren produktion.
 
----
-
-### Myten om …
-
-Mythbuster-format der tester udbredte erhvervsfortællinger mod data og cases.
-
-Eksempler: *Myten om, at AI automatisk sparer tid* — *Myten om, at funding
-er lig med succes* — *Myten om, at regulering rammer alle ens* — *Myten om,
-at SMV'er ikke kan eksportere*
+**Fast struktur:**
+1. Den dominerende fortælling
+2. Det, der mangler
+3. Hvem der ikke er hørt
+4. Hvad dokumentationen viser
+5. Hvem der rammes
+6. Hvorfor det betyder noget
 
 ---
 
-### Casen der virker
+### Casen der virker — skaber handlekraften
 
-Y Business' vigtigste Inspire-format. Må aldrig blive ukritisk succesfortælling.
+Viser løsninger med metode, friktion, fejl og kopierbar læring.
 
-**Fast struktur:** problemet → hvad virksomheden gjorde → hvad gik galt?
-→ hvad virkede? → hvad kostede det? → hvad kan andre kopiere?
-→ hvad kan andre ikke kopiere?
+**Pillar:** Inspire
+**Funktion:** Lære og anvise
+**Primære segmenter:** SMV-ejere, kommunikation/marketing, iværksættere
+**Kanaler:** Tekst, lydinterview, casevideo
+**Frekvens:** 1 gang ugentligt
 
-Intern regel: ingen case uden friktion.
+Må aldrig blive ukritisk succesfortælling.
+
+**Intern regel: Ingen case uden friktion.**
+
+**Fast struktur:**
+1. Problemet
+2. Hvad virksomheden gjorde
+3. Hvad gik galt?
+4. Hvad virkede?
+5. Hvad kostede det?
+6. Hvad kan andre kopiere?
+7. Hvad kan andre ikke kopiere?
 
 ---
 
-### Signalradaren
+### Signalradaren — skaber forspringet
 
-Identificerer tidlige markedsbevægelser, inden de bliver mainstream.
+Finder svage signaler, før de bliver mainstream.
+
+**Pillar:** Understand / Challenge
+**Funktion:** Varsle og perspektivere
+**Primære segmenter:** C-level, rådgivere, investorer, SMV-ejere
+**Kanaler:** Tekst, ugentlig lydbrief, grafisk video ved behov
+**Frekvens:** 1 gang ugentligt + situationsbestemt
 
 Typiske signaler: brancher under pres, nye udbud, lederskifter,
 regulatoriske deadlines, ændringer i kapitaltilførsel, nye teknologiadoptioner.
 
-**Fast struktur:** signalet → kilde → styrke → hvem påvirkes? → hvad kan
-det føre til? → hvad bør overvåges?
+Signalradaren er både et redaktionelt format og et personaliseringslag.
+
+Brugeren skal kunne følge signaler efter: branche, geografi, virksomhedstype,
+regulering, konkurrenter, teknologi, lederskifter, udbud, kapital, eksport,
+kommunikation, AI.
+
+**Fast struktur:**
+1. Signalet
+2. Kilden
+3. Styrken
+4. Hvem påvirkes?
+5. Hvad kan det føre til?
+6. Hvad bør overvåges?
+
+---
+
+## 3. Tre skalerbare specialformater
+
+Kører situationsbestemt fra launch. Skaleres, når redaktionen ser,
+hvilke segmenter der aktiverer dem mest.
+
+### Myten om …
+
+Tester erhvervslivets etablerede sandheder mod data, cases og virkelighed.
+
+**Pillar:** Challenge
+**Frekvens:** Hver 14. dag
+
+Eksempler: *Myten om, at AI automatisk sparer tid* — *Myten om, at funding
+er lig med succes* — *Myten om, at regulering rammer alle ens*
 
 ---
 
@@ -121,6 +180,11 @@ det føre til? → hvad bør overvåges?
 60-sekunders brief til travle professionelle inden beslutning, møde,
 forhandling eller kundedialog.
 
+**Pillar:** Understand / Inspire
+**Frekvens:** Situationsbestemt, 1-2 gange ugentligt
+
+Kan personaliseres efter: mødetype, branche, virksomhed, emne, rolle.
+
 **Fast struktur:** baggrund → seneste udvikling → risici → muligheder
 → spørgsmål du bør stille → næste signal at overvåge
 
@@ -128,8 +192,14 @@ forhandling eller kundedialog.
 
 ### Før handlen
 
-Signal- og markedsformat for rådgivere, investorer og C-level.
+Signal- og markedsbrief for rådgivere, investorer og C-level.
 Viser bevægelser, inden de bliver til pressemeddelelser.
+
+**Pillar:** Challenge / Understand
+**Frekvens:** 2-4 gange månedligt
+
+Kan personaliseres efter: sektor, virksomhed, transaktionstype,
+reguleringsrisiko, ledelsessignal, konkurrencesituation.
 
 Typiske signaler: lederskifter, nye bestyrelsesprofiler, finansieringsbehov,
 sektorrotation, reguleringsvinduer, opkøbsmønstre.
@@ -139,13 +209,57 @@ sektorrotation, reguleringsvinduer, opkøbsmønstre.
 
 ---
 
-## 3. Klummer
+## 4. Tekst, lyd og video
 
-Faste formater giver struktur og nytteværdi. Klummer giver stemme, autoritet
-og kant — det eneste format, der skaber loyalitet på individniveau, og det
-eneste format, der ikke kan produceres af AI.
+Y Business producerer ikke tekst, lyd og video som tre separate universer.
 
-### Klummeplan
+Det samme redaktionelle stof versioneres efter brugssituation.
+
+### Tekst
+
+Tekst bærer dokumentation, dybde, kilder og arkivværdi.
+
+Bruges til: analyser, forklaringer, cases, signalbriefs, klummer,
+kildestærke artikler.
+
+### Lyd
+
+Lyd bærer vane, relation og mobilitet.
+
+Bruges til:
+- Morgenbriefet
+- Mandag morgen
+- Den blinde vinkel som kommentar
+- Hvad virker? som samtale
+- Signalradaren som kort briefing
+- personaliserede overbliksbriefs
+
+### Video
+
+Video bruges selektivt.
+
+Ikke som volumenformat.
+
+Kun når visuel forklaring gør stoffet bedre.
+
+**Faste videoformater:**
+
+**På 90 sekunder** — kort explainer om regulering, AI, markedsskift
+eller ny forretningsrisiko.
+
+**Whiteboardet** — én graf, én tese, én konsekvens.
+
+**Casekortet** — problem, friktion, løsning, læring.
+
+**Intern regel: Ingen video uden forklaringsbehov.**
+
+---
+
+## 5. Klummer
+
+Signaturformaterne giver struktur og nytteværdi. Klummerne giver noget de
+ikke kan: en personforankret stemme, autoritet og holdning — det eneste
+format, der ikke kan produceres af AI.
 
 | Klumme | Frekvens | Pillar | Primært segment |
 |---|---|---|---|
@@ -164,8 +278,7 @@ kildekritisk tyngde og uafhængighed fra brancheinteresser.
 
 **Redaktionel opgave:** Tager ansvar for den skarpe tese. Finder den manglende
 kilde, den skjulte konsekvens og den interesse, der ikke deklareres.
-Klummeformen giver en klarere redaktionel stemme end artikelformatet — men
-skal stadig være dokumenteret.
+Skal stadig være dokumenteret.
 
 Eksempler: *"Fundingrunden er startupjournalistikkens mest overvurderede nyhed"*
 — *"SMV'erne hyldes i taler og glemmes i systemer"* — *"AI sparer ikke tid,
@@ -177,17 +290,17 @@ hvis processen stadig er manuel"*
 
 **Skribentprofil:** Tidligere direktør, strategirådgiver, bestyrelsesprofil
 eller erhvervsanalytiker med evne til at omsætte ugens signaler til praktisk
-ledelsesrelevans. Troværdighedsgrundlaget er ledelsesforståelse og erfaring
-med beslutningssituationer.
+ledelsesrelevans.
 
 **Redaktionel opgave:** Ugens vigtigste erhvervsmæssige beslutningsbillede.
 Ikke en ugekommentar i klassisk forstand — et ledelsesbrief med stemme:
-hvad er ugens vigtigste signal, hvilken beslutning nærmer sig, hvilken risiko
-undervurderes?
+hvad er ugens vigtigste signal, hvilken beslutning nærmer sig, hvilken
+risiko undervurderes?
 
-Eksempler: *"Tre signaler, der bør ligge på ledermødet i dag"* — *"Ugens
-AI-signal: produktivitetskløften vokser"* — *"Når renteændringen rammer
-investeringslysten"*
+Kernegreb: *Hvad bør ligge på ledermødet i dag?*
+
+Eksempler: *"Tre signaler, der bør ligge på ledermødet i dag"* —
+*"Ugens AI-signal: produktivitetskløften vokser"*
 
 ---
 
@@ -201,13 +314,66 @@ praksiserfaring og villighed til at tale om fejl og friktion.
 svarer på: hvad var problemet, hvad gik galt, hvad virkede, hvad kan andre
 lære? Giver mere personlig og erfaringsbaseret vurdering end caseartiklen.
 
+Kernegreb: *Hvad virkede, hvad gik galt, og hvad kan andre kopiere?*
+
 Eksempler: *"AI virkede først, da virksomheden fjernede to manuelle led"*
-— *"Den bedste krisekommunikation begyndte før krisen"* — *"Hvad en founder
-lærte af den kunde, der sagde op"*
+— *"Den bedste krisekommunikation begyndte før krisen"*
 
 ---
 
-## 4. Kildemodel
+## 6. Kildekrav per format
+
+### Morgenbriefet
+
+Minimum:
+- verificerbar kilde per item
+- tydelig konsekvenssætning
+- ingen rå pressemeddelelse uden redaktionel vurdering
+
+### Det betyder det for din virksomhed
+
+Minimum:
+- primærkilde
+- ekspert eller praktiker
+- konsekvensvurdering
+- tydelig usikkerhed, hvis noget endnu ikke er afklaret
+
+### Den blinde vinkel
+
+Minimum:
+- dokumentation for dominerende fortælling
+- dokumentation for det manglende perspektiv
+- modkilde eller alternativ kilde
+- klar interesse- og usikkerhedsdeklaration
+
+### Casen der virker
+
+Minimum:
+- direkte casekilde
+- konkret problem
+- friktion
+- resultat
+- vurdering af hvad andre kan og ikke kan kopiere
+
+### Signalradaren
+
+Minimum:
+- ét stærkt signal eller flere svagere signaler
+- tydelig kilde
+- vurdering af signalstyrke
+- forklaring af usikkerhed
+
+### Før handlen
+
+Minimum:
+- signal
+- selskabs- eller markedsdata
+- branchekontekst
+- blind vinkel eller risikofaktor
+
+---
+
+## 7. Kildemodel
 
 ### Grundprincip
 
@@ -251,32 +417,14 @@ bevægelser, og kildetyper der undgås eller kun bruges med tydelig advarsel.
 
 ---
 
-## 5. Minimum viable newsroom — år 1
-
-Fem produktionsspor bærer platformen i år 1:
-
-1. **Morgenbriefet** — skaber vanen
-2. **Det betyder det for din virksomhed** — skaber nytten
-3. **Den blinde vinkel** — skaber kanten
-4. **Casen der virker** — skaber handlekraften
-5. **Signalradaren** — skaber forspringet
-
-*Myten om*, *Før mødet* og *Før handlen* kører situationsbestemt fra start
-og skaleres, når redaktionen ser, hvilke segmenter der bruger dem mest.
-
-Det sikrer en daglig Understand, en ugentlig Challenge, en ugentlig Inspire,
-løbende signalovervågning og klummer som personlig stemme og loyalitetsdriver.
-
----
-
-## 6. AI's operative rolle
+## 8. AI's operative rolle
 
 AI er redaktionens research- og overvågningsmotor — ikke skribenten.
 
 AI bruges til: overvågning af kilder, prioriteringsforslag, første udkast
 til morgenbrief, opsummering af rapporter, sammenligning af kilder,
-identifikation af manglende perspektiver, transskription, segmentversionering
-og researchpakker.
+identifikation af manglende perspektiver, transskription,
+segmentversionering og researchpakker.
 
 AI afgør ikke: endelig prioritering, kontroversielle vinkler, kildekritik,
 Challenge-stof, opinion, konklusioner i analyser eller publicering.

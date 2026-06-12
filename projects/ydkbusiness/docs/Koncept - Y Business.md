@@ -2,7 +2,7 @@
 
 **Primær læser:** CEO, Tech Lead, Commercial Lead, Chefredaktør
 **Status:** Arbejdsdokument — løbende opdateret
-**Detaljeniveau:** Overblik. Hvert lag har sit eget dokument — se afsnit 8.
+**Detaljeniveau:** Overblik. Hvert lag har sit eget dokument — se afsnit 9.
 
 ---
 
@@ -105,7 +105,42 @@ Suppleret af CVR-baseret virksomhedssøgning på branche, størrelse og geografi
 
 ---
 
-## 4. Det redaktionelle fundament
+## 4. Platformens kerne: hyperpersonalisering
+
+Y Business er bygget som en hyperpersonaliseret platform.
+
+Feed, morgenbrief, overbliksbriefs, analyser, signaler, klummer, lyd og
+video sorteres efter brugerens:
+
+- rolle og ansvarsområde
+- branche og virksomhedstype
+- geografi
+- interesser og læsehistorik
+- adfærd: hvad brugeren læser, gemmer, deler og springer over
+- præferencer for format og dybde
+
+En SMV-ejer, en C-level-leder, en founder, en investor og en
+kommunikationschef skal ikke nødvendigvis møde det samme Y Business.
+
+De skal møde den samme redaktionelle standard — men forskellige
+prioriteringer.
+
+### Den redaktionelle sikkerhed
+
+Hyperpersonalisering må aldrig blive en filterboble.
+
+Brugeren skal ikke kun have mere af det samme. Brugeren skal også møde
+vigtige signaler, blinde vinkler, regulering, risici og uventede
+perspektiver — stof, der er vigtigt, selv om brugeren ikke selv har
+efterspurgt det.
+
+Grundregel:
+
+> Algoritmen personaliserer relevansen. Redaktionen beskytter horisonten.
+
+---
+
+## 5. Det redaktionelle fundament
 
 Y Business' redaktionelle model bygger på tre pillars:
 
@@ -123,9 +158,12 @@ SMV-ejere, C-level i mellemstore virksomheder, iværksættere,
 kommunikations- og marketingfolk, investorer og rådgivere,
 medarbejdere i større virksomheder.
 
-Otte signaturformater giver platformen rytme og genkendelse:
+**Fem bærende formater** giver platformen rytme og genkendelse:
 Morgenbriefet, Det betyder det for din virksomhed, Den blinde vinkel,
-Myten om, Casen der virker, Signalradaren, Før mødet, Før handlen.
+Casen der virker, Signalradaren.
+
+**Tre skalerbare specialformater** kører situationsbestemt fra launch:
+Myten om, Før mødet, Før handlen.
 
 Tre faste klummer bærer stemme og autoritet — det eneste format
 der ikke kan produceres af AI.
@@ -138,7 +176,7 @@ Formater, klummer og kildemodel: *Koncept — Indholdsformater.md*
 
 ---
 
-## 5. Den kommercielle model
+## 6. Den kommercielle model
 
 ### Abonnementspris og målsætning år 1
 
@@ -184,7 +222,7 @@ Produktet ejer en kategori der i dag er ubesat for SMV-segmentet.
 
 ---
 
-## 6. Teknologisk fundament
+## 7. Teknologisk fundament
 
 ### Supertrends-platformen
 
@@ -217,7 +255,7 @@ Se `output/supertrends-moedereferat.md`.
 
 ---
 
-## 7. Lanceringsplan
+## 8. Lanceringsplan
 
 | Milepæl | Dato | Ejer |
 |---|---|---|
@@ -241,14 +279,14 @@ Fuldt roadmap: *Produkt — Roadmap.md*
 
 ---
 
-## 8. Dokumentoversigt
+## 9. Dokumentoversigt
 
 ### Lag 0 — Dette dokument
 **Koncept — Y Business.md** — samlet platformsoverblik til alle stakeholders
 
 ### Lag 1 — Redaktionelt
-**Koncept — Redaktion.md** — redaktionel model, pillars, segmenter, løfter og dogmer
-**Koncept — Indholdsformater.md** — signaturformater, klummer og kildetaksonomi
+**Koncept — Redaktion.md** — redaktionel model, pillars, segmenter, løfter, protokoller og dogmer
+**Koncept — Indholdsformater.md** — launch-model, signaturformater, klummer og kildetaksonomi
 
 ### Lag 1 — Produkt
 **Produkt — Feature-overblik.md** — hvad platformen kan, brugerrejse og arkitektur
