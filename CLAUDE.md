@@ -87,6 +87,7 @@ Bundle-SKILL.md-filer: `.claude/skills/bundles/`
 | Lav en skarp, velstruktureret prompt til Claude/GPT/Gemini | `prompt-creator` |
 | Specificér hvad der mangler af ekstern viden efter session | `research-brief` |
 | Korteste præcise svar, token-effektivitet, kodegennemgang | `caveman` |
+| Sprogkontrol, AI-mønstre, løft tekst til leveringsklar stand | `sproglig-standard` |
 | Søg i bundles, find det rigtige bundle, vis tilgængelige skills, hvad kan jeg bruge | `skill-soeg` |
 
 ---
@@ -157,14 +158,60 @@ dømmekraft — og drives af at bygge produkter der skaber reel værdi.
 
 ---
 
-## Sproglige standarder
+## Sproglige standarder og skrivestil
 
-- Pletfrit dansk på alle niveauer: grammatik, kommatering og kongruens
-- Aktiv stemme som standard: "vi beslutter" ikke "det besluttes"
-- Korteste præcise ord: "brug" ikke "anvende", "vis" ikke "demonstrere"
-- Ingen jargon uden definition — fagtermer defineres ved første brug
-- Ingen unødige anglicismer — brug danske ækvivalenter hvor de er præcise
-- Accepterede fagtermer der ikke oversættes: roadmap, PRD, outcome, OKR, RICE
+Dette projekt producerer konceptbeskrivelser, dashboards og ledelsesbriefs.
+Alle tekster skal være klar til brug — ingen yderligere redigering nødvendig.
+
+### Sprog og korrekthed
+
+Dansk grammatik og kongruens er ikke forhandlingsbart. Stavning, kommatering
+og tegnsætning følger gældende dansk norm uden undtagelser.
+
+Aktiv stemme som standard: "vi beslutter" ikke "det besluttes".
+Korteste præcise ord: "brug" ikke "anvende", "vis" ikke "demonstrere".
+Ingen jargon uden definition. Ingen unødige anglicismer.
+Accepterede fagtermer der ikke oversættes: roadmap, PRD, outcome, OKR, RICE.
+
+### Tone og stil
+
+Skarp, direkte og journalistisk — med den kant og præcision man kender fra
+den bedste ledelseskommunikation. Teksten har en afsender, en modtager og
+et formål. Den informerer ikke blot — den kommunikerer med hensigt og
+positionerer med autoritet.
+
+Aldrig akademisk eller bureaukratisk. Aldrig unødigt entusiastisk: ikke
+"spændende muligheder", ikke "fantastisk potentiale", ikke "utrolig indsigt".
+
+### Fri for AI-mønstre
+
+Alle tekster gennemgås aktivt for AI-skrivemønstre inden levering:
+
+- Ingen oppustet signifikans: "Dette er afgørende vigtigt for …" → skær indledningen
+- Ingen vage tilskrivninger: "Mange eksperter mener …" → hvem, præcist?
+- Ingen treregels-lister som pynt — brug liste kun når formatet kræver det
+- Ingen "serves as"- eller "highlights"-konstruktioner — omskriv til aktivt
+- Ingen bekræftende indledninger: "Bestemt!", "Her er …", "Selvfølgelig!"
+- Ingen metakommentarer: "I dette dokument vil vi …"
+- Ingen afsluttende opsummeringer: slut med næste skridt, ikke med "Som vi har set …"
+- Ingen symmetri for symmetriens skyld: brug præcis det antal punkter der dækker
+
+Teksten skal lyde som om et skærpet menneske har skrevet den — ikke som det
+statistisk sandsynlige næste ord.
+
+### Format
+
+Prosa er standarden. Overskrifter og punktlister bruges kun når formatet
+eksplicit kræver det. Ingen fed skrift som udsmykning. Strukturen understøtter
+læsningen — den styrer den ikke.
+
+### Ambition
+
+Første udkast er det færdige produkt. Det leveres klar til at gå videre —
+til at blive sendt, præsenteret eller publiceret uden yderligere hånd.
+
+Skill til eksplicit aktivering: `/sproglig-standard`
+Skill-fil: `.claude/skills/custom/sproglig-standard/SKILL.md`
 
 ---
 
@@ -358,6 +405,12 @@ Canva AI og andre AI-modeller og designplatforme.
 Specificerer præcist hvad der mangler af ekstern viden efter
 hver session — med kilder, formål og hvilken Claude Code-session
 der venter på resultatet. Bygges som afsluttende opgave i Etape 1.
+
+**sproglig-standard** — `.claude/skills/custom/sproglig-standard/`
+Gennemgår og løfter tekster til den skarpeste version af sig selv — leveringsklar
+uden yderligere redigering. Fem kontrolpunkter: dansk korrekthed, aktiv stemme,
+AI-mønstre, tone og format. Aktiveres automatisk på alt output; eksplicit med
+`/sproglig-standard`.
 
 **prompt-creator** — `.claude/skills/custom/prompt-creator/`
 Forvandler løse idéer og rå instruktioner til skarpe, velstrukturerede
