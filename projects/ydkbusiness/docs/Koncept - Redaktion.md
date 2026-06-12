@@ -357,9 +357,9 @@ og etiske rammer.
 
 ### Spor 2: Stemmerne
 
-Hvad siger de globale AI-meningsdannere — fra Silicon Valley,
-internationalt og nationalt — og hvad betyder det konkret for
-danske virksomheder?
+Hvad siger de globale AI-meningsdannere — nationalt, internationalt
+og fra Silicon Valley — og hvad betyder det konkret for danske
+virksomheder?
 
 Formatet oversætter altid.
 
@@ -380,8 +380,6 @@ De er en del af produktets loyalitetsmotor.
 AI kan overvåge, strukturere og foreslå. Men den kan ikke skabe troværdig
 personlig dømmekraft, erfaring, kant og ansvar på samme måde som en
 stærk signatur.
-
-Klummerne er forankret i pillars, målgrupper og funktioner.
 
 ### Klumme 1: Mandag morgen
 
@@ -424,8 +422,8 @@ Kernegreb: *Hvad virkede, hvad gik galt, og hvad kan andre kopiere?*
 
 ### Kommentatorpanel
 
-Y Business kan arbejde med et lille panel af faste eller roterende
-kommentatorer inden for:
+Y Business etablerer et panel af faste eller roterende kommentatorer
+inden for:
 - AI og organisation
 - regulering og compliance
 - SMV-drift
@@ -601,7 +599,7 @@ og tager ansvaret.
 
 **5. Ingen personalisering uden redaktionel horisont**
 Brugeren skal have relevant indhold — men også møde vigtige signaler,
-risici og blinde vinkler, hun ikke selv har efterspurgt.
+risici og blinde vinkler, brugeren ikke selv har efterspurgt.
 
 ---
 

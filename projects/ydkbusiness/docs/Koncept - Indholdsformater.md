@@ -273,7 +273,7 @@ format, der ikke kan produceres af AI.
 
 **Skribentprofil:** Erfaren erhvervsjournalist, chefredaktør eller analytisk
 kommentator med dokumenteret erfaring i at gennemskue magt, marked, medier og
-erhvervsfortællinger. Troværdighedsgrundlaget er journalistisk erfaring,
+erhvervsfortællinger. Troværdighed bygger på journalistisk erfaring,
 kildekritisk tyngde og uafhængighed fra brancheinteresser.
 
 **Redaktionel opgave:** Tager ansvar for den skarpe tese. Finder den manglende
@@ -375,11 +375,7 @@ Minimum:
 
 ## 7. Kildemodel
 
-### Grundprincip
-
-Redaktionen arbejder med tre kildegrupper med klart adskilte funktioner:
-primærkilder der dokumenterer virkeligheden, signalkilder der peger på tidlige
-bevægelser, og kildetyper der undgås eller kun bruges med tydelig advarsel.
+Tre kildegrupper med adskilte funktioner.
 
 ### Primærkilder
 
