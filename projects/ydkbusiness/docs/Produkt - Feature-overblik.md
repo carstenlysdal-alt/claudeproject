@@ -77,23 +77,34 @@ To indholdsspor:
 - **Aggregeret indhold:** Nyheder fra nationale medier, internationale bureauer (Reuters, AP, Bloomberg m.fl.), organisationer og virksomheder — AI-sorteret og bearbejdet med redaktionel vinkel
 
 **Funktioner:**
-- Personaliseret nyhedsfeed baseret på branche, marked og interesseprofil
-- Morgenbrief: dagens vigtigste nyheder samlet (tekst + lyd)
+- Personaliseret nyhedsfeed baseret på rolle, branche, adfærd og interesseprofil
+- Morgenbrief kl. 06.00: dagens vigtigste erhvervssignaler (tekst + lyd)
 - Løbende opdatering i løbet af dagen
 - Redaktionel vinkel: modpol og nuance som standard
-- Formater: tekst, lyd — video fase 2
+- Formater: tekst, lyd — video selektivt ved forklaringsbehov
 
-**Premium-indhold bag Pro-adgangsvæg**
-To dedikerede sektioner med adgang kun for Pro-abonnenter:
+**Signaturformater (redaktionelle):**
+Fem bærende formater: Morgenbriefet, Det betyder det for din virksomhed,
+Den blinde vinkel, Casen der virker, Signalradaren.
+Tre skalerbare: Myten om, Før mødet, Før handlen.
+Fuldt format-katalog: *Koncept — Indholdsformater.md*
 
-- **AI & tech for erhverv** — dybdegående dækning af AI og teknologi med direkte erhvervsrelevans. Dedikeret Pro-sektion med potentiale for sponsorsamarbejde med IT-Branchen og andre brancheorganisationer, der har særlig faglig adgang til netop dette stof. Sponsormodellen giver organisationen redaktionelt medejerskab af en sektion, som deres medlemmer har direkte interesse i — og Y Business en supplerende indtægtskilde ud over abonnementsmodellen.
+**Klummer (loyalitetsmotor — det format AI ikke kan producere):**
+- Mandag morgen (ugentligt) — ugens beslutningsbillede, skrevet af direktør eller strategirådgiver
+- Den blinde vinkel (ugentligt) — dokumenteret modfortælling, skrevet af erfaren erhvervsjournalist
+- Hvad virker? (hver 14. dag) — praktisk læring med friktion, skrevet af praktiker
+
+**Erhverv+-indhold bag betalingsmur**
+To dedikerede sektioner med adgang kun for Erhverv+-abonnenter:
+
+- **AI & tech for erhverv** — dybdegående dækning af AI og teknologi med direkte erhvervsrelevans. Dedikeret Erhverv+-sektion med potentiale for sponsorsamarbejde med IT-Branchen og andre brancheorganisationer, der har særlig faglig adgang til netop dette stof. Sponsormodellen giver organisationen redaktionelt medejerskab af en sektion, som deres medlemmer har direkte interesse i — og Y Business en supplerende indtægtskilde ud over abonnementsmodellen.
 - **C-level intelligence** — strategiske analyser, datadrevet research, credibel ekspertopinion og trendrapporter til topledelsen med national og international dækning fra Reuters, AP, Bloomberg m.fl. Indhold, der kræver fordybelse, ikke scanning. Rettet mod CEO, COO, CFO og seniorledere i SMV og mellemstore virksomheder.
 
 **Brugerflow:**
 ```
 Log ind → Morgenbrief (push/mail) → Feed browsing → Artikel → Relaterede briefs
                                                          ↓
-                                              [Pro] AI & tech-sektion
+                                         [Erhverv+] AI & tech-sektion
 ```
 
 ---
@@ -160,19 +171,30 @@ Søg emne → Generer brief → Læs / lyt → Download / del
 
 ## Personalisering — tværgående lag
 
-Personalisering er det, der binder de seks lag sammen og adskiller Y.dk Business
-fra et generisk erhvervsmedie.
+Hyperpersonalisering er platformens kerne og adskiller Y.dk Business fra et generisk
+erhvervsmedie. Feed, morgenbrief, briefs, signaler, lyd og video sorteres efter
+brugerens profil. Algoritmen personaliserer relevansen. Redaktionen beskytter horisonten.
 
 **Onboarding-profil (opsættes ved tilmelding):**
+- Rolle og ansvarsområde (SMV-ejer, C-level, iværksætter, kommunikation, rådgiver, medarbejder)
 - Branche (primær + sekundær)
 - Virksomhedsstørrelse
 - Geografi (Danmark + eksportmarkeder)
 - Konkurrenter at overvåge
 - Interesseområder (regulering, finans, teknologi, arbejdsmarked m.fl.)
+- Foretrukne formater og dybde (scanning vs. dybdelæsning)
+- Ønsket brief-frekvens
 
-**Løbende læring:**
-- Hvad brugeren klikker på og gemmer påvirker feed
+**Løbende adfærdslæring:**
+- Hvad brugeren klikker på, gemmer og deler
+- Hvad brugeren springer over og ignorerer
+- Hvilke emner brugeren vender tilbage til
 - Eksplicitte fravalg ("vis mig ikke mere om X")
+
+**Redaktionel sikkerhed mod filterboble:**
+Personalisering må ikke reduceres til mere af det samme. Vigtige signaler,
+reguleringsalerts og redaktionelt prioriterede historier bryder altid igennem
+— uanset brugerens personlige præferencer.
 
 ---
 
@@ -242,7 +264,12 @@ på tværs af brancher. Adgang kun for betalende abonnenter.
 ## Designkrav fra markedsvalidering
 
 **AI kommunikeres aktivt som styrke — ikke skjult.**
-Y's redaktionelle linje: "Vi er fronten af AI i mediebranchen. Al produktion er baseret på AI, men mennesker styrer processen." Formlen er "AI producerer, mennesker verificerer." AI er en del af produktidentiteten og kommunikeres som sådan. 53% af danskerne er utrygge ved AI-journalistik — den barriere håndteres med kompetent kommunikation koblet til verificeringsprocessen, ikke med tavshed. "Powered by Supertrends" vises på relevante komponenter.
+To formuleringer bruges konsekvent i hver sin kontekst:
+
+- **Ekstern kommunikation til brugeren:** "AI producerer, mennesker verificerer" — kommunikerer skala og troværdighed. Vises i UI og kanalerne.
+- **Intern redaktionel regel:** "AI må foreslå. Redaktionen afgør." — den operationelle beslutningsregel for redaktion og motor.
+
+53% af danskerne er utrygge ved AI-journalistik. Barrieren håndteres med kompetent kommunikation om verificeringsprocessen — ikke med tavshed. "Powered by Supertrends" vises på relevante komponenter.
 
 **Produktet kommunikeres altid som virksomhedsudgift.**
 Betalingsvillighed for personlige nyheder (35-54 år): 11-12%.

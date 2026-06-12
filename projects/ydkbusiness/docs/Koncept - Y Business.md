@@ -198,8 +198,9 @@ Formater, klummer og kildemodel: *Koncept — Indholdsformater.md*
 
 | Tier | Indhold | Pris |
 |---|---|---|
-| Basis | Nyhedsfeed + morgenbrief (tekst) | 50 DKK/md |
-| Pro | Alle seks lag inkl. lyd, community og leadgenerering | 500 DKK/md / 5.000 DKK/år |
+| Erhverv | Nyhedsfeed + morgenbrief (tekst) | 50 DKK/md |
+| Erhverv+ | Alle seks lag inkl. lyd, community og leadgenerering | 500 DKK/md / 5.000 DKK/år |
+| Premium | Erhverv+ inkl. reklamefri adgang, udvidet artikel-deling og marketingværdi | Afklares |
 
 Abonnementet er inden for bagatelgrænsen (7.600 DKK/år) og dermed
 et skattefrit personalegode for modtageren — fradragsberettiget for
@@ -223,7 +224,7 @@ Produktet ejer en kategori der i dag er ubesat for SMV-segmentet.
 
 ### Sekundære indtægtsstrømme
 
-- Sektorsponsorat: dedikerede Pro-sektioner (AI & tech, C-level intelligence)
+- Sektorsponsorat: dedikerede Erhverv+-sektioner (AI & tech, C-level intelligence)
   med potentiale for brancheorganisationer som redaktionelle medejere
 - Platformsannoncering inkluderet i årsabonnement
 - B2B-salg mod mellemstore virksomheder fra Q1 2027

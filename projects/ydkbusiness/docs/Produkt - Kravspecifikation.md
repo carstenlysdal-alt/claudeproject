@@ -35,8 +35,9 @@ Eksakt prisstruktur afklares i fællesskab i juni. Kravspecifikationen opererer 
 
 | Tier | Arbejdsnavn | Indhold | Prisindikation |
 |---|---|---|---|
-| Basis | Y.dk Business Basis | Nyhedsfeed + morgenbrief | 50 DKK/md |
-| Fuld | Y.dk Business Pro | Alle seks lag inkl. community og leadgenerering | 500 DKK/md / 5.000 DKK/år |
+| Erhverv | Y.dk Business Erhverv | Nyhedsfeed + morgenbrief | 50 DKK/md |
+| Erhverv+ | Y.dk Business Erhverv+ | Alle seks lag inkl. lyd, community og leadgenerering | 500 DKK/md / 5.000 DKK/år |
+| Premium | Y.dk Business Premium | Erhverv+ inkl. reklamefri adgang, udvidet artikel-deling og marketingværdi | Afklares |
 
 **Regel:** Intet indhold vises bag betalingsmur, uden at brugeren har set eksempel på produktet.
 Onboarding må ikke kræve betaling, inden brugeren har oplevet mindst ét morgenbrief.
@@ -90,7 +91,7 @@ Onboarding må ikke kræve betaling, inden brugeren har oplevet mindst ét morge
 
 ### Tier-adgang
 
-| Feature | Basis | Pro |
+| Feature | Erhverv | Erhverv+ |
 |---|---|---|
 | Morgenbrief (tekst) | ✓ | ✓ |
 | Morgenbrief (lyd) | — | ✓ |
@@ -108,7 +109,7 @@ Onboarding må ikke kræve betaling, inden brugeren har oplevet mindst ét morge
 **F2.1 — Watchlist-opsætning**
 - Brugeren kan oprette overvågning på: konkurrenter (virksomhedsnavn), nøgleord, brancher, navngivne politikere, reguleringsemner
 - **Enkeltpersoner:** eksperter, analytikere og indflydelsesrige skikkelser inden for specifikke fagområder — særligt tech og AI fra erhvervsperspektiv. Feature-request til Supertrends — afventer teknisk vurdering.
-- Minimum 5 watchlist-elementer pr. bruger i Basis; ubegrænset i Pro
+- Minimum 5 watchlist-elementer pr. bruger i Erhverv; ubegrænset i Erhverv+
 - Hvert element kan tildeles prioritet (høj / normal / lav) der påvirker notifikationsfrekvens
 
 **F2.2 — Regulatory-kategori (obligatorisk)**
@@ -168,7 +169,7 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 
 ### Tier-adgang
 
-| Feature | Basis | Pro |
+| Feature | Erhverv | Erhverv+ |
 |---|---|---|
 | Watchlist (maks. elementer) | 5 | Ubegrænset |
 | Regulatory-kategori | ✓ | ✓ |
@@ -215,7 +216,7 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 
 ### Tier-adgang
 
-| Feature | Basis | Pro |
+| Feature | Erhverv | Erhverv+ |
 |---|---|---|
 | Ugentlig trendrapport (1 branche) | ✓ | ✓ |
 | Trendrapport (flere brancher) | — | ✓ |
@@ -269,7 +270,7 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 
 ### Tier-adgang
 
-| Feature | Basis | Pro |
+| Feature | Erhverv | Erhverv+ |
 |---|---|---|
 | Briefs (antal/mdr.) | 3 | Ubegrænset |
 | Lyt til brief | — | ✓ |
@@ -283,7 +284,7 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 ### Funktionelle krav
 
 **F5.1 — Lukket forum**
-- Adgang kun for betalende Pro-abonnenter
+- Adgang kun for betalende Erhverv+-abonnenter
 - Modereret: alle indlæg godkendes inden for 4 timer i hverdage
 - Brugernavn vises; fulde profil valgfrit
 
@@ -316,7 +317,7 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 
 ### Tier-adgang
 
-| Feature | Basis | Pro |
+| Feature | Erhverv | Erhverv+ |
 |---|---|---|
 | Læseadgang til forum | — | ✓ |
 | Skriveadgang til forum | — | ✓ |
@@ -366,7 +367,7 @@ Primær differentiator mod LassoX: LassoX leverer statiske virksomhedsdata fra C
 - Søgning på: branche (DB07-kode), geografi (kommune/region), virksomhedsstørrelse (ansatte), omsætning, stiftelsesår, ejerstruktur
 - Visning af: virksomhedsnavn, CVR-nummer, adresse, kontaktoplysninger, seneste regnskabstal
 - Eksport af resultatliste (CSV)
-- Maks. 500 resultater pr. søgning i Pro
+- Maks. 500 resultater pr. søgning i Erhverv+
 
 **Tekniske krav:**
 - Datakilde: CVR ElasticSearch API (Erhvervsstyrelsen) — gratis
@@ -389,7 +390,7 @@ Primær differentiator mod LassoX: LassoX leverer statiske virksomhedsdata fra C
 
 ### Tier-adgang
 
-| Feature | Basis | Pro |
+| Feature | Erhverv | Erhverv+ |
 |---|---|---|
 | Signal-alerts (maks. pr. mdr.) | 5 | Ubegrænset |
 | CVR-søgning | — | ✓ |
@@ -464,25 +465,36 @@ Besluttet juni 2026: Bygges af Y.dk. Gælder hele Y.dk-platformen — ikke kun B
 
 **P1 — Onboarding-profil (obligatorisk ved tilmelding)**
 Brugeren angiver:
+- Rolle og ansvarsområde (obligatorisk): SMV-ejer / C-level / Iværksætter / Kommunikation & marketing / Rådgiver & investor / Medarbejder
 - Primær branche (obligatorisk)
 - Sekundær branche (valgfrit)
 - Virksomhedsstørrelse: 1–4 / 5–50 / 51–250 ansatte
 - Geografi: Danmark + op til 3 eksportmarkeder
 - Konkurrenter at overvåge (fri tekst, min. 0 — maks. 10)
 - Interesseområder (flervalg): Regulering, Finans, Teknologi, Arbejdsmarked, Handel, Bæredygtighed, Geopolitik
+- Foretrukket format: Scanning (korte briefs) / Dybdelæsning / Blandet
+- Ønsket brief-frekvens: Dagligt / 3 gange ugentligt / Ugentligt
 
 **P2 — Friktion-regel**
 Onboarding må maksimalt have 3 trin og maks. 5 minutters samlet tidsforbrug.
 Brugeren ser første morgenbrief inden profil er 100% udfyldt.
+Rolle og branche er obligatoriske felter i trin 1 — øvrige er valgfrie.
 
-**P3 — Løbende læring (fase 1: eksplicit)**
+**P3 — Løbende adfærdslæring (fase 1: eksplicit + passiv registrering)**
 - Brugeren kan markere artikler og trends som "Ikke relevant"
 - Eksplicitte fravalg opdaterer feed inden for 24 timer
-- Implicit adfærdsdata (klikfrekvens) gemmes men påvirker ikke feed i fase 1
+- Implicit adfærdsdata registreres: klik, gem, del, scroll-dybde, lyttetid
+- Adfærdsdata påvirker ikke feed aktivt i fase 1 — gemmes til fase 2
 
-**P4 — Profiljustering**
+**P4 — Redaktionel filterboble-sikkerhed**
+Personalisering må aldrig lukke brugeren inde i eget interesserum.
+Regulatory-alerts, redaktionelt prioriterede historier og signaler med
+bredere erhvervsmæssig relevans bryder altid igennem uanset brugerprofil.
+
+**P5 — Profiljustering**
 - Alle onboarding-valg kan ændres i profilindstillinger
 - Ændringer træder i kraft ved næste feed-opdatering (maks. 30 min.)
+- Personaliseringsdeklaration: brugeren kan altid se hvorfor et indhold anbefales
 
 ### Notifikationer
 
@@ -517,9 +529,9 @@ Brugeren definerer tidsrum uden push-notifikationer. Standard: ingen stille time
 ### Sikkerhed og adgangskontrol
 
 - Betalingsstatus verificeres ved hvert login — ikke kun ved session-start
-- Deaktiveret abonnement afskærer øjeblikkeligt adgang til Pro-indhold
-- Basis-abonnenter kan ikke tilgå Pro-URLs direkte
-- Forum-adgang kræver aktiv Pro-session
+- Deaktiveret abonnement afskærer øjeblikkeligt adgang til Erhverv+-indhold
+- Erhverv-abonnenter kan ikke tilgå Erhverv+-URLs direkte
+- Forum-adgang kræver aktiv Erhverv+-session
 
 ---
 

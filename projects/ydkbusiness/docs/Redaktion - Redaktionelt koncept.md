@@ -449,7 +449,7 @@ Type B (regulatory) — human review krævet inden publisering.
 
 **Konfiguration per bruger:**
 - Op til 5 brands/personer/virksomheder (Erhverv+)
-- Op til 10 brands/virksomheder + CVR-overvågning (Erhverv Premium)
+- Op til 10 brands/virksomheder + CVR-overvågning (Premium)
 
 **Alert-typer:**
 
