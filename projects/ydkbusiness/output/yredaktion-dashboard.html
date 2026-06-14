@@ -139,11 +139,40 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .sp-c{color:var(--amber);background:var(--amber-s)}
 .sp-i{color:var(--accent);background:var(--accent-10)}
 
-/* ── S4 FORMATER ── */
-.s4-wrap{height:100%;display:flex;flex-direction:column}
-.s4-intro{padding:12px 52px;border-bottom:1px solid var(--line);background:var(--card);flex-shrink:0}
-.s4-intro p{font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:1.5}
-.s4-grid{flex:1;display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line)}
+/* ── S4 FORMATER — bookend layout ── */
+.s4-layout{display:grid;grid-template-columns:228px 1fr 228px;height:100%;gap:1px;background:var(--line)}
+.s4-feat{padding:26px 22px;display:flex;flex-direction:column;overflow:hidden}
+.s4-feat.base{background:var(--accent)}
+.s4-feat.voice{background:var(--card)}
+.s4-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px}
+.s4-feat.base .s4-eyebrow{color:rgba(250,250,248,.45)}
+.s4-feat.voice .s4-eyebrow{color:var(--accent);opacity:.7}
+.s4-feat-name{font-family:var(--serif);font-size:21px;font-weight:700;line-height:1.15;letter-spacing:-.015em;margin-bottom:4px}
+.s4-feat.base .s4-feat-name{color:#FAFAF8}
+.s4-feat.voice .s4-feat-name{color:var(--ink)}
+.s4-feat-func{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.s4-feat.base .s4-feat-func{color:rgba(250,250,248,.55)}
+.s4-feat.voice .s4-feat-func{color:var(--accent);opacity:.8}
+.s4-feat-q{font-family:var(--serif);font-size:14px;font-weight:600;line-height:1.4;font-style:italic;margin-bottom:14px}
+.s4-feat.base .s4-feat-q{color:rgba(250,250,248,.85)}
+.s4-feat.voice .s4-feat-q{color:var(--ink)}
+.s4-feat-body{font-family:var(--sans);font-size:11.5px;line-height:1.55}
+.s4-feat.base .s4-feat-body{color:rgba(250,250,248,.65)}
+.s4-feat.voice .s4-feat-body{color:var(--muted)}
+.s4-feat-cols{font-family:var(--sans);font-size:11px;line-height:1.55;margin-top:10px}
+.s4-feat.voice .s4-feat-cols{color:var(--ink70)}
+.s4-feat-col-item{display:flex;gap:6px;align-items:flex-start;margin-bottom:4px}
+.s4-feat-col-item::before{content:'–';color:var(--accent);flex-shrink:0;opacity:.5}
+.s4-feat.voice .s4-feat-col-item::before{color:var(--accent)}
+.s4-feat-foot{margin-top:auto;padding-top:14px;border-top:1px solid;display:flex;flex-direction:column;gap:7px}
+.s4-feat.base .s4-feat-foot{border-color:rgba(250,250,248,.12)}
+.s4-feat.voice .s4-feat-foot{border-color:var(--line)}
+.s4-feat-pillars{display:flex;gap:4px;flex-wrap:wrap}
+.s4-feat-freq{font-family:var(--mono);font-size:9px;letter-spacing:.05em}
+.s4-feat.base .s4-feat-freq{color:rgba(250,250,248,.4)}
+.s4-feat.voice .s4-feat-freq{color:var(--muted)}
+.s4-never{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);background:var(--red-s);padding:2px 8px;border-radius:3px;display:inline-block}
+.s4-core{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
 .fmt-card{background:var(--card);padding:16px 16px;display:flex;flex-direction:column}
 .fmt-card.base{border-top:3px solid var(--accent)}
 .fmt-num{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--accent);opacity:.4;letter-spacing:.08em;margin-bottom:9px}
@@ -279,11 +308,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     </div>
     <div class="hub-tile" onclick="goto('s4')">
       <div class="tile-num">04</div>
-      <div class="tile-h">Syv formater</div>
+      <div class="tile-h">Otte formater</div>
       <div class="tile-pts">
         <div class="tile-pt">Brancheoverblikket som basislag</div>
-        <div class="tile-pt">Faste formater med klare funktioner</div>
-        <div class="tile-pt">Tre skalerbare situationsformater</div>
+        <div class="tile-pt">Seks kernformater med klare funktioner</div>
+        <div class="tile-pt">Klummerne — det AI ikke kan</div>
       </div>
       <div class="tile-cta">Åbn</div>
     </div>
@@ -319,7 +348,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     </div>
   </div>
   <div class="hub-stats">
-    <div class="stat-cell"><div class="stat-v">7</div><div class="stat-l">Redaktionelle formater</div></div>
+    <div class="stat-cell"><div class="stat-v">8</div><div class="stat-l">Redaktionelle formater</div></div>
     <div class="stat-cell"><div class="stat-v">6</div><div class="stat-l">Læsersegmenter</div></div>
     <div class="stat-cell"><div class="stat-v">3</div><div class="stat-l">Redaktionelle pillars</div></div>
     <div class="stat-cell"><div class="stat-v">62 %</div><div class="stat-l">Foretrækker menneskeligt ophav</div></div>
@@ -532,25 +561,31 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="bg-grid"></div>
 <header class="dash-header">
   <div class="dash-brand"><span class="dash-brand-mark">Y</span><span class="dash-divider"></span><span class="dash-brand-sub">Redaktionelt Appendix</span></div>
-  <div class="dash-meta"><span class="dash-tag hi">04 — Syv formater</span></div>
+  <div class="dash-meta"><span class="dash-tag hi">04 — Otte formater</span></div>
 </header>
 <div class="sec-hdr">
   <button class="back-btn" onclick="goto('hub')">Oversigt</button>
-  <span class="sec-title">Syv formater — faste, genkendelige, med klart definerede funktioner og læserbehov</span>
+  <span class="sec-title">Otte formater — fundament, redaktionel kerne og den stemme AI ikke kan erstatte</span>
   <span class="sec-num">04 / 07</span>
 </div>
 <div class="sec-body">
-  <div class="s4-wrap">
-    <div class="s4-intro"><p>Formaterne er løfter til læseren om, hvad hun får. Hvert format forløser et specifikt behov og bygger genkendelse over tid. Y Business lancerer med seks plus Brancheoverblikket som basislag — hertil tre skalerbare situationsformater.</p></div>
-    <div class="s4-grid">
-      <div class="fmt-card base">
-        <div class="fmt-num">01</div>
-        <div class="fmt-name">Brancheoverblikket</div>
-        <div class="fmt-func">Orienteringen</div>
-        <div class="fmt-q">"Hvad er sket i min branche siden sidst?"</div>
-        <div class="fmt-freq">Dagligt / løbende</div>
-        <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
+  <div class="s4-layout">
+
+    <!-- VENSTRE BOOKEND: Brancheoverblikket -->
+    <div class="s4-feat base">
+      <div class="s4-eyebrow">01 · Basislag</div>
+      <div class="s4-feat-name">Brancheoverblikket</div>
+      <div class="s4-feat-func">Orienteringen</div>
+      <div class="s4-feat-q">"Hvad er sket i min branche siden sidst?"</div>
+      <div class="s4-feat-body">Det redaktionelle fundament. Giver læseren tryghed for at være orienteret — hurtigt, sorteret og relevant. Ikke altid analyse, ikke altid dybde. Altid overblik.</div>
+      <div class="s4-feat-foot">
+        <div class="s4-feat-pillars"><span class="fp-tag fp-u" style="background:rgba(22,163,74,.2)">Understand</span></div>
+        <div class="s4-feat-freq">Dagligt / løbende</div>
       </div>
+    </div>
+
+    <!-- MIDTERGRID: Seks kernformater -->
+    <div class="s4-core">
       <div class="fmt-card">
         <div class="fmt-num">02</div>
         <div class="fmt-name">Morgenbriefet</div>
@@ -600,6 +635,30 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span><span class="fp-tag fp-i">Inspire</span></div>
       </div>
     </div>
+
+    <!-- HØJRE BOOKEND: Klummerne -->
+    <div class="s4-feat voice">
+      <div class="s4-eyebrow">07 · Stemmen</div>
+      <div class="s4-feat-name">Klummerne</div>
+      <div class="s4-feat-func">Det AI ikke kan</div>
+      <div class="s4-feat-q">"Den personlige vurdering, erfaringen og ansvaret — med navn under."</div>
+      <div class="s4-feat-body">Tre faste klummer forankret i pillars. Navngivet, redigeret og med dokumenteret faglighed. Det eneste format der ikke kan produceres af AI — og det format der giver platformen stemme, relation og loyalitet.</div>
+      <div class="s4-feat-cols">
+        <div class="s4-feat-col-item">Mandag morgen — Understand</div>
+        <div class="s4-feat-col-item">Den blinde vinkel — Challenge</div>
+        <div class="s4-feat-col-item">Hvad virker? — Inspire</div>
+      </div>
+      <div class="s4-feat-foot">
+        <div class="s4-feat-pillars">
+          <span class="fp-tag fp-u">Understand</span>
+          <span class="fp-tag fp-c">Challenge</span>
+          <span class="fp-tag fp-i">Inspire</span>
+        </div>
+        <div class="s4-feat-freq">Fast ugentlig</div>
+        <div class="s4-never">Navngivet ophav — aldrig AI</div>
+      </div>
+    </div>
+
   </div>
 </div>
 </div>
