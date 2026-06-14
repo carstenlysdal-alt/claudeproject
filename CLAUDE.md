@@ -28,6 +28,9 @@ Matches flere skills, aktivér den mest centrale først og nævn de øvrige.
 
 ### Bundles — aktivér helt sæt af skills per opgavetype
 
+Når brugeren skriver "aktiver bundle" uden at angive hvilket, spørg:
+"Hvilket bundle? pm, data, vækst, tekst, design, slides, kode, app eller workflow."
+
 Kald et bundle direkte med `/bundle-navn` for at aktivere alle relevante skills på én gang.
 
 | Opgavetype | Bundle | Indeholder |
