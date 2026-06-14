@@ -1,6 +1,13 @@
 #!/bin/bash
 # Bootstrap et nyt projekt med PM-platform-core fra claudeproject.
-# Kørsel: bash /sti/til/claudeproject/bootstrap.sh /sti/til/nyt-projekt
+#
+# iMac (SSD):
+#   bash "/Volumes/SSD Data/Gits/claudeproject/bootstrap.sh" ~/Documents/nyt-projekt
+#
+# MacBook:
+#   bash ~/Documents/pm-platform/bootstrap.sh ~/Documents/nyt-projekt
+#
+# Erstat "nyt-projekt" med navnet på dit projekt.
 
 set -e
 
