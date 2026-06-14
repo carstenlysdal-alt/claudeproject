@@ -23,9 +23,17 @@ Samler alle skills til professionel tekstproduktion og indholdsstrategi på dans
 | Skill | Aktivér når |
 |---|---|
 | `redaktionel-tekst` | Artikler, klummer, ledere, pitches, pressemeddelelser på dansk |
+| `edit-article` | Redigér og løft en eksisterende artikel — struktur, tempo, præcision |
 | `copywriting` | Konverteringstekst: headlines, CTAs, landing pages (primært engelsk) |
 | `copy-editing` | Korrektur og sprogrensning af eksisterende tekst |
 | `doc-coauthoring` | Fælles redigering og iterativ dokumentudvikling |
+
+### Narrativ struktur og skriveteknik
+| Skill | Aktivér når |
+|---|---|
+| `writing-shape` | Definer tekstens overordnede form og dramaturgi inden skriveprocessen |
+| `writing-beats` | Nedbryd teksten i beats — de afgørende øjeblikke der driver læseren frem |
+| `writing-fragments` | Skriv og iterér på fragmenter — sætninger og afsnit — inden de samles |
 
 ### Distribution og produktion
 | Skill | Aktivér når |

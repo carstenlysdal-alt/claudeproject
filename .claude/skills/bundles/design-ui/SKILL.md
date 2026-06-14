@@ -19,6 +19,8 @@ Samler alle design-skills fra visuel audit til frontend-implementering.
 | `web-design-guidelines` | Tjek mod etablerede web-designstandarder |
 | `extract-design-system` | Ekstraher designsystem fra eksisterende UI |
 | `high-end-visual-design` | Premium visuelt design med høj æstetisk standard |
+| `emil-design-eng` | UI-polish og komponent-craft efter Emil Kowalskis design engineering-filosofi |
+| `data-visualization` | Dataviz: chart-valg, perceptuel præcision, layout-algoritmer, D3/Recharts |
 
 ### Frontend-implementering
 | Skill | Aktivér når |
@@ -27,6 +29,8 @@ Samler alle design-skills fra visuel audit til frontend-implementering.
 | `design-taste-frontend` | Production-grade marketing sites og portfolios |
 | `frontend-design` | Generel frontend-design implementering |
 | `make-interfaces-feel-better` | Mikro-interaktioner og UX-forbedringer |
+| `prototype` | Byg hurtigt interaktivt prototype — validér concept inden fuld implementering |
+| `design-an-interface` | Design en komplet interface fra beskrivelse til specifikation |
 | `accessibility` | WCAG-compliance og tilgængelighed |
 
 ### Design-prompts

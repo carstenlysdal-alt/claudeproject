@@ -32,8 +32,8 @@ Kald et bundle direkte med `/bundle-navn` for at aktivere alle relevante skills 
 
 | Opgavetype | Bundle | Indeholder |
 |---|---|---|
-| Produktstrategi, roadmap, PRD, discovery, OKR, positionering | `/pm-strategi` | prd-development, roadmap-planning, discovery, jobs-to-be-done, opportunity-solution-tree, positioning-workshop, tam-som, prioritization, pm-okrs, stakeholder-map, grill-with-docs m.fl. |
-| Metrics, A/B-tests, eksperimenter, surveys, dashboards, North Star | `/metrics-eksperimenter` | ab-test-analysis, measure-experiment-design, measure-survey-analysis, metrics-dashboard, north-star-metric, pm-okrs, feedback-analyse, outcome-analyse |
+| Produktstrategi, roadmap, PRD, discovery, OKR, positionering | `/bundle-pm-strategi` | prd-development, roadmap-planning, discovery, jobs-to-be-done, opportunity-solution-tree, positioning-workshop, tam-som, prioritization, brainstorm-okrs, stakeholder-map, pre-mortem, grill-with-docs m.fl. |
+| Metrics, A/B-tests, eksperimenter, surveys, dashboards, North Star | `/bundle-metrics-eksperimenter` | ab-test-analysis, measure-experiment-design, measure-survey-analysis, metrics-dashboard, north-star-metric, brainstorm-okrs, foundation-okr-writer, measure-okr-grader, feedback-analyse, outcome-analyse |
 | GTM, launch, salg, SEO, email, cold outreach, CRO, analytics | `/gtm-kommerciel` | launch, sales-enablement, revops, content-strategy, seo-audit, emails, cold-email, cro, analytics, growth-loops, ads, social |
 | Artikler, klummer, SoMe-opslag, pitches, pressemeddelelser (dansk) | `/redaktion-indhold` | redaktionel-tekst, social, emails, content-strategy, copywriting, copy-editing, prompt-creator |
 | UI/UX, wireframes, designaudit, komponentimplementering, typografi | `/design-ui` | impeccable, ui-ux-pro-max, design-taste-frontend, accessibility, web-design-guidelines, design-prompt |
@@ -73,7 +73,9 @@ Bundle-SKILL.md-filer: `.claude/skills/bundles/`
 | Eksekvér en skriftlig plan trin for trin med checkpoints | `executing-plans` |
 | Evaluer afsluttet initiativ: forventet vs. faktisk, iterér/pivotér/stop | `outcome-analyse` |
 | Syntesér bruger-feedback til smertepunkter, JTBD og produktanbefalinger | `feedback-analyse` |
-| OKR: definer, forfin, check-in, score og align på tværs af niveauer | `pm-okrs` |
+| OKR: brainstorm og definer OKR'er på team-niveau | `brainstorm-okrs` |
+| OKR: skriv færdige OKR'er klar til godkendelse | `foundation-okr-writer` |
+| OKR: score OKR'er ved cyklus-afslutning | `measure-okr-grader` |
 | Definer North Star Metric og understøttende input-metrics | `north-star-metric` |
 | Analyser A/B-testresultater: statistisk signifikans, ship/extend/stop | `ab-test-analysis` |
 | Generer eksperiment-hypoteser og pretotypes — validér antagelser billigt | `brainstorm-experiments-existing` |
@@ -421,10 +423,14 @@ skill-description-guide.
 
 ### LAG 2 — Metrics, eksperimenter og vækst (nye)
 
-**pm-okrs** — marfoerst/claude_okr_pm_kill
-Fuld OKR-livscyklus: definer objectives, skriv measurable KRs, mid-cycle check-in,
-end-of-quarter scoring og alignment på tværs af company/team/individ.
-Understøtter Doerr/Google-scoring (0–1.0) og Cagan outcome-baseret format.
+**brainstorm-okrs** — phuryn/pm-skills
+OKR-brainstorm og definition på team-niveau efter Christina Wodtkes Radical Focus-framework.
+
+**foundation-okr-writer** — product-on-purpose/pm-skills
+Skriv færdige OKR'er klar til godkendelse.
+
+**measure-okr-grader** — product-on-purpose/pm-skills
+Score OKR'er ved cyklus-afslutning og formuler næste cyklus.
 https://github.com/marfoerst/claude_okr_pm_kill
 
 **north-star-metric** — phuryn/pm-skills

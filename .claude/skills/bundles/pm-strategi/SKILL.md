@@ -15,7 +15,8 @@ Samler alle strategiske PM-frameworks i ét bundle. Aktivér den skill der passe
 ### Kerne-PM
 | Skill | Aktivér når |
 |---|---|
-| `product-manager-skills:prd-development` | Skrive eller forfine et PRD |
+| `product-manager-skills:prd-development` | Skrive eller forfine et PRD (interaktivt interview-format) |
+| `to-prd` | Konvertere eksisterende samtalekontext direkte til PRD — ingen interview |
 | `product-manager-skills:roadmap-planning` | Planlægge eller kommunikere roadmap |
 | `product-manager-skills:discovery-process` | Starte en discovery-fase |
 | `product-manager-skills:prioritization-advisor` | Prioritere initiativer (RICE, MoSCoW) |
@@ -47,6 +48,9 @@ Samler alle strategiske PM-frameworks i ét bundle. Aktivér den skill der passe
 |---|---|
 | `product-manager-skills:pol-probe-advisor` | Kortlægge politiske dynamikker og stakeholders |
 | `product-manager-skills:executive-onboarding-playbook` | Onboarde ny leder eller stakeholder |
+| `stakeholder-map` | Power/Interest-grid med kommunikationsstrategi per kvadrant |
+| `ubiquitous-language` | Etablere fælles domæneglossar — præcise termer der gælder på tværs af PM, tech og salg |
+| `pre-mortem` | Risikoanalyse inden launch: Tigers, Paper Tigers og Elephants |
 | `grill-with-docs` | Stress-teste strategi og beslutninger |
 | `zoom-out` | Strategisk overblik inden beslutning |
 

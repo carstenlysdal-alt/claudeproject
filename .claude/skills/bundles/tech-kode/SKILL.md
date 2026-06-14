@@ -26,6 +26,7 @@ Samler alle tekniske skills til udvikling, test og arkitektur.
 | `tdd` | Test-drevet udvikling med red-green-refactor |
 | `webapp-testing` | End-to-end og integrationstests til webapps |
 | `web-quality-audit` | Kvalitetsaudit af eksisterende webapp |
+| `qa` | Struktureret QA-gennemgang af feature eller release |
 | `diagnose` | Diagnosticere fejl og uventede behaviours |
 
 ### Performance og core web vitals
@@ -40,6 +41,14 @@ Samler alle tekniske skills til udvikling, test og arkitektur.
 |---|---|
 | `grill-with-docs` | Stress-teste teknisk beslutning mod eksisterende dokumentation |
 | `requesting-code-review` | Strukturere og bede om code review |
+| `request-refactor-plan` | Anmod om en struktureret refaktoreringsplan inden kode ændres |
+| `to-issues` | Nedbryde en plan, spec eller PRD til independently-grabbable GitHub issues |
+
+### Git og CI/CD
+| Skill | Aktivér når |
+|---|---|
+| `git-guardrails-claude-code` | Sæt sikkerhedsregler for git-operationer i Claude Code |
+| `setup-pre-commit` | Konfigurér pre-commit hooks for kvalitetssikring ved hvert commit |
 
 ### Refaktorering og cleanup
 | Skill | Aktivér når |

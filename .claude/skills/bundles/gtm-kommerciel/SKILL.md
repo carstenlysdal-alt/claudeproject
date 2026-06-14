@@ -46,7 +46,8 @@ Samler alle skills til go-to-market eksekvering, salg og kommerciel vækst.
 |---|---|
 | `cro` | Konverteringsoptimering, landing page-audit |
 | `analytics` | Analytics-opsætning, tracking-plan, GA4, GTM |
-| `ads` | Paid advertising: Meta, Google, LinkedIn |
+| `ads` | Paid advertising strategi: Meta, Google, LinkedIn |
+| `ad-creative` | Ad copy og creative iterations — headlines, beskrivelser, varianter i skala |
 | `social` | SoMe-opslag og organisk social distribution |
 
 ## Brugsanvisning

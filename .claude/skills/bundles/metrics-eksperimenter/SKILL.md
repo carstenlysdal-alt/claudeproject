@@ -16,6 +16,7 @@ Samler alle frameworks til at definere, designe og analysere metrics og eksperim
 | Skill | Aktivér når |
 |---|---|
 | `north-star-metric` | Definere North Star Metric og input-metrics |
+| `data-visualization` | Visualisere data: valg af chart-type, perceptuel præcision, D3/Recharts/Victory |
 | `metrics-dashboard` | Designe et metrics-dashboard med KPI'er og alert-tærskler |
 | `product-manager-skills:finance-metrics-quickref` | Hurtig reference til finansielle metrics |
 | `product-manager-skills:saas-revenue-growth-metrics` | SaaS-vækstmetrics og -benchmarks |
@@ -38,15 +39,9 @@ Samler alle frameworks til at definere, designe og analysere metrics og eksperim
 ### OKR og målstyring
 | Skill | Aktivér når |
 |---|---|
-| `pm-okrs` | Definere OKR'er, mid-cycle check-in, end-of-quarter scoring |
-
-## Bemærkning om installation
-
-Følgende skills er dokumenteret i CLAUDE.md men endnu ikke installeret lokalt:
-- `north-star-metric`, `ab-test-analysis`, `measure-experiment-design`, `measure-survey-analysis`, `metrics-dashboard`, `pm-okrs`
-
-Brug `feedback-analyse` og `outcome-analyse` (custom) som alternative.
-Se `.claude/SETUP-NOTES.md` for installationsvejledning.
+| `brainstorm-okrs` | Definere og brainstorme OKR'er på team-niveau (Wodtke/Radical Focus-framework) |
+| `foundation-okr-writer` | Skrive færdige OKR'er klar til godkendelse |
+| `measure-okr-grader` | Score OKR'er ved cyklus-afslutning og formulere næste cyklus |
 
 ## Brugsanvisning
 
