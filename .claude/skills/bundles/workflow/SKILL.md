@@ -17,13 +17,15 @@ Disse skills er domæne-agnostiske og relevante på tværs af alle projekter.
 | Skill | Aktivér når |
 |---|---|
 | `handoff` | Afslut en session med struktureret overdragelsesdokument — hvad blev lavet, hvad er åbent, hvad starter næste session med |
+| `context-mode` | Gendan session-kontekst automatisk når Claude resetter midt i en lang workflow |
 | `executing-plans` | Eksekvér en skriftlig plan trin for trin med checkpoints og verifikation |
 
 ### Prompt og skill-design
 | Skill | Aktivér når |
 |---|---|
 | `prompt-creator` | Forvandl løse idéer til skarpe, velstrukturerede prompts til Claude, GPT, Gemini |
-| `write-a-skill` | Byg en ny SKILL.md fra bunden — struktur, description, triggers og workflow |
+| `skill-creator` | Byg en komplet skill-mappe med SKILL.md, frontmatter og triggers via interaktivt Q&A |
+| `write-a-skill` | Byg en ny SKILL.md fra bunden — hurtigere, mindre guidet end skill-creator |
 | `skill-soeg` | Find det rigtige bundle eller skill til en given opgave |
 | `find-skills` | Søg i installerede skills og beskriv hvad de gør |
 | `triage` | Prioritér og sortér en liste af opgaver, issues eller idéer hurtigt |

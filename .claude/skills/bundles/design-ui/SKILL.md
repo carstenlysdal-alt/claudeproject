@@ -20,7 +20,16 @@ Samler alle design-skills fra visuel audit til frontend-implementering.
 | `extract-design-system` | Ekstraher designsystem fra eksisterende UI |
 | `high-end-visual-design` | Premium visuelt design med høj æstetisk standard |
 | `emil-design-eng` | UI-polish og komponent-craft efter Emil Kowalskis design engineering-filosofi |
+| `dev-design-critique` | Struktureret kritik af designbeslutninger — begrundelse, alternativer, anbefalinger |
 | `data-visualization` | Dataviz: chart-valg, perceptuel præcision, layout-algoritmer, D3/Recharts |
+| `web-artifacts-builder` | Byg og vis interaktive UI-elementer direkte i Claude — hurtig validering uden deploy |
+
+### Kreativ og generativ visualisering
+| Skill | Aktivér når |
+|---|---|
+| `algorithmic-art` | Generativ grafik og visuelle effekter via algoritmer |
+| `typegpu` | GPU-accelereret grafik og interaktive visualiseringer i browser |
+| `theme-factory` | Generér sammenhængende farvetemaer og designtokens |
 
 ### Frontend-implementering
 | Skill | Aktivér når |

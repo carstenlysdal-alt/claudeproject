@@ -16,7 +16,15 @@ Samler alle skills til præsentationer og dokumenter klar til ledelsesniveau.
 | Skill | Aktivér når |
 |---|---|
 | `slidespeak` | PowerPoint/PPTX-filer direkte fra Claude Code (kræver API-nøgle) |
+| `pptx` | Generer PPTX-filer direkte via Python — ingen API-nøgle nødvendig |
 | `frontend-slides` | HTML-præsentation deployet til URL, eksportérbar til PDF |
+
+### Dokumentfiler
+| Skill | Aktivér når |
+|---|---|
+| `pdf` | Generer PDF-filer direkte fra Claude Code |
+| `docx` | Generer Word-dokumenter (.docx) klar til deling |
+| `xlsx` | Generer Excel-filer med data, formler og formatering |
 
 ### Dokumentkvalitet
 | Skill | Aktivér når |
