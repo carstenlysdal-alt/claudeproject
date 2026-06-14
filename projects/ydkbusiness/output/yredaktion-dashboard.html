@@ -75,22 +75,30 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
 /* ── S1 PROBLEMET ── */
 .s1-wrap{display:grid;grid-template-columns:1fr 1fr;height:100%}
-.s1-left{padding:36px 48px;border-right:1px solid var(--line);display:flex;flex-direction:column}
-.s1-right{padding:36px 48px;background:var(--accent);display:flex;flex-direction:column;justify-content:center;gap:24px}
+.s1-left{padding:36px 48px;border-right:1px solid var(--line);display:flex;flex-direction:column;background:var(--card)}
+.s1-right{padding:36px 48px;background:var(--paper);display:flex;flex-direction:column}
 .s1-label{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
-.s1-problem{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.015em;margin-bottom:24px}
+.s1-problem{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink);line-height:1.25;letter-spacing:-.015em;margin-bottom:24px}
 .s1-stats{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
 .s1-stat{display:flex;gap:16px;align-items:flex-start;padding:13px 16px;background:var(--tint);border-left:3px solid var(--accent)}
 .s1-stat-num{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--accent);line-height:1;white-space:nowrap;flex-shrink:0}
 .s1-stat-txt{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.45}
 .s1-src{margin-top:auto;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em}
-.s1-q-label{font-family:var(--mono);font-size:10px;font-weight:700;color:rgba(250,250,248,.5);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
-.s1-q-item{display:flex;gap:16px;align-items:flex-start}
-.s1-q-num{font-family:var(--serif);font-size:28px;font-weight:700;color:rgba(250,250,248,.2);line-height:1;flex-shrink:0;width:28px}
-.s1-q-text{font-family:var(--serif);font-size:18px;font-weight:600;color:#FAFAF8;line-height:1.3;letter-spacing:-.01em}
-.s1-q-text em{font-style:italic;opacity:.75}
-.s1-promise{margin-top:28px;padding-top:22px;border-top:1px solid rgba(250,250,248,.15);font-family:var(--sans);font-size:12.5px;color:rgba(250,250,248,.8);line-height:1.55}
-.s1-promise strong{color:#FAFAF8;font-weight:700}
+/* Right — lys baggrund */
+.s1-q-label{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px;opacity:.8}
+.s1-q-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.s1-q-num{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--accent);opacity:.2;line-height:1;flex-shrink:0;width:26px}
+.s1-q-inner{display:flex;flex-direction:column;gap:3px}
+.s1-q-text{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.01em}
+.s1-q-text em{font-style:italic;color:var(--muted)}
+.s1-q-payoff{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;opacity:.7}
+/* Den korte idé — farvet boks */
+.s1-idé{margin-top:auto;background:var(--accent);padding:18px 22px;border-radius:2px}
+.s1-idé-eye{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.4);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.s1-idé-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:6px}
+.s1-idé-dash{font-family:var(--mono);font-size:11px;color:rgba(250,250,248,.3);flex-shrink:0;line-height:1.55}
+.s1-idé-txt{font-family:var(--sans);font-size:12px;color:rgba(250,250,248,.85);line-height:1.55}
+.s1-idé-close{margin-top:12px;padding-top:10px;border-top:1px solid rgba(250,250,248,.12);font-family:var(--serif);font-size:14px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.3}
 
 /* ── S2 PILLARS ── */
 .s2-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;height:100%}
@@ -272,8 +280,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="hub-body">
   <div class="hub-intro">
     <div class="hub-eyebrow">Redaktionel metode</div>
-    <h1 class="hub-h1">Erhvervsjournalistik der gør <em>støj til beslutningskraft</em></h1>
-    <p class="hub-sub">Det redaktionelle fundament for Y Business — journalistisk metode, segmenteret relevans og den AI-understøttede produktion der giver skala uden at ofre redaktionel dømmekraft.</p>
+    <h1 class="hub-h1">Erhvervsjournalistik for dem, der ikke har <em>tid til at fare vild</em></h1>
+    <p class="hub-sub">Det redaktionelle fundament for Y Business — journalistisk metode, segmenteret relevans og AI-understøttet produktion der giver skala uden at ofre dømmekraft.</p>
   </div>
   <div class="hub-tiles">
     <div class="hub-tile" onclick="goto('s1')">
@@ -365,14 +373,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 </header>
 <div class="sec-hdr">
   <button class="back-btn" onclick="goto('hub')">Oversigt</button>
-  <span class="sec-title">Erhvervslivet mangler ikke information. Det mangler redigeret relevans.</span>
+  <span class="sec-title">Problemet i erhvervslivet er ikke stilhed. Problemet er larm.</span>
   <span class="sec-num">01 / 07</span>
 </div>
 <div class="sec-body">
   <div class="s1-wrap">
     <div class="s1-left">
       <div class="s1-label">Problemet</div>
-      <p class="s1-problem">Erhvervsjournalistik stopper for ofte ved begivenheden.<br>For lidt begynder ved konsekvensen.</p>
+      <p class="s1-problem">Problemet i erhvervslivet er ikke stilhed.<br>Problemet er larm.</p>
       <div class="s1-stats">
         <div class="s1-stat">
           <div class="s1-stat-num">46 mia.</div>
@@ -390,20 +398,42 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="s1-src">Kilde: DA 2025 · SMVdanmark · Reuters Institute Digital News Report 2025</div>
     </div>
     <div class="s1-right">
-      <div class="s1-q-label">De tre spørgsmål Y Business besvarer</div>
+      <div class="s1-q-label">Fire spørgsmål Y Business besvarer</div>
       <div class="s1-q-item">
         <div class="s1-q-num">1</div>
-        <div class="s1-q-text">Hvad er sket i min branche — <em>og hvad betyder det for min virksomhed?</em></div>
+        <div class="s1-q-inner">
+          <div class="s1-q-text">Hvad er sket i min branche <em>siden sidst?</em></div>
+          <div class="s1-q-payoff">Giver orientering</div>
+        </div>
       </div>
       <div class="s1-q-item">
         <div class="s1-q-num">2</div>
-        <div class="s1-q-text">Hvad overser den dominerende fortælling — <em>og hvem taler mod strømmen?</em></div>
+        <div class="s1-q-inner">
+          <div class="s1-q-text">Hvad betyder det <em>for min virksomhed?</em></div>
+          <div class="s1-q-payoff">Giver relevans</div>
+        </div>
       </div>
       <div class="s1-q-item">
         <div class="s1-q-num">3</div>
-        <div class="s1-q-text">Hvad virker konkret — <em>og hvad kostede det at komme dertil?</em></div>
+        <div class="s1-q-inner">
+          <div class="s1-q-text">Hvad overser <em>de andre?</em></div>
+          <div class="s1-q-payoff">Giver kant</div>
+        </div>
       </div>
-      <div class="s1-promise"><strong>Det redaktionelle løfte:</strong> Vi går ikke i markedet med mere erhvervsstof. Vi går i markedet med bedre sortering, skarpere konsekvens, stærkere kritisk blik og brugbar læring — leveret til læseren, der ikke har tid til at vente på, at nyheden bliver relevant for hende.</div>
+      <div class="s1-q-item">
+        <div class="s1-q-num">4</div>
+        <div class="s1-q-inner">
+          <div class="s1-q-text">Hvad kan jeg <em>bruge det til?</em></div>
+          <div class="s1-q-payoff">Giver værdi</div>
+        </div>
+      </div>
+      <div class="s1-idé">
+        <div class="s1-idé-eye">Den korte idé</div>
+        <div class="s1-idé-item"><div class="s1-idé-dash">—</div><div class="s1-idé-txt">Vi overvåger markedet bredt, men publicerer smalt.</div></div>
+        <div class="s1-idé-item"><div class="s1-idé-dash">—</div><div class="s1-idé-txt">Vi samler mange signaler, men leverer få pointer.</div></div>
+        <div class="s1-idé-item"><div class="s1-idé-dash">—</div><div class="s1-idé-txt">Vi bruger AI til at se mere — men journalister til at afgøre, hvad der faktisk betyder noget.</div></div>
+        <div class="s1-idé-close">Y Business gør erhvervsnyheder til beslutningskraft.</div>
+      </div>
     </div>
   </div>
 </div>
