@@ -346,6 +346,76 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s7-txt.never{color:rgba(250,250,248,.85)}
 .s7-dogme{margin-top:auto;padding:14px 18px;background:rgba(250,250,248,.08);border:1px solid rgba(250,250,248,.15);border-radius:4px}
 .s7-dogme p{font-family:var(--serif);font-size:15px;font-weight:700;color:#FAFAF8;line-height:1.4;font-style:italic}
+
+/* ── S4 PAYWALL BAND ── */
+.s4-paywall-band{display:flex;align-items:center;padding:0 28px;height:40px;background:var(--card);border-bottom:1px solid var(--line);flex-shrink:0;gap:0}
+.pwb-side{display:flex;align-items:center;gap:10px}
+.pwb-side.free{flex:1}
+.pwb-side.paid{flex:3}
+.pwb-pct{font-family:var(--serif);font-size:17px;font-weight:700;line-height:1;letter-spacing:-.02em}
+.pwb-pct.free{color:var(--green)}
+.pwb-pct.paid{color:var(--accent)}
+.pwb-tag{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 6px;border-radius:3px}
+.pwb-tag.free{color:var(--green);background:var(--green-s)}
+.pwb-tag.paid{color:var(--accent);background:var(--accent-10)}
+.pwb-items{font-family:var(--sans);font-size:10.5px;color:var(--muted);line-height:1}
+.pwb-sep{width:1px;height:22px;background:var(--line);margin:0 24px;flex-shrink:0}
+
+/* ── S8 MORGENBRIEFET ── */
+.s8-wrap{display:grid;grid-template-columns:248px 1fr 240px;height:100%;gap:1px;background:var(--line)}
+.s8-col{display:flex;flex-direction:column;overflow:hidden}
+.s8-col.blueprint{background:var(--card);padding:24px 22px}
+.s8-col.preview{background:var(--paper);padding:22px 30px}
+.s8-col.pers{background:var(--tint);padding:24px 22px}
+.s8-col-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.s8-col-lbl::before{content:'';display:block;width:14px;height:1px;background:currentColor}
+.s8-bp-item{display:flex;gap:9px;align-items:flex-start;padding-bottom:11px;margin-bottom:11px;border-bottom:1px solid var(--line)}
+.s8-bp-item:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+.s8-bp-n{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);opacity:.3;flex-shrink:0;width:16px;padding-top:1px}
+.s8-bp-tag{font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px;opacity:.6}
+.s8-bp-txt{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.4}
+.s8-timing{margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.s8-timing-lbl{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;opacity:.5}
+.s8-timing-row{display:flex;align-items:baseline;gap:8px;margin-bottom:5px}
+.s8-timing-t{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--accent);opacity:.65;width:42px;flex-shrink:0}
+.s8-timing-d{font-family:var(--sans);font-size:10.5px;color:var(--muted);line-height:1.3}
+.mb-frame{background:var(--card);border:1px solid var(--line);flex:1;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.mb-hd{background:var(--ink);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mb-hd-brand{font-family:var(--serif);font-size:12px;font-weight:700;color:#FAFAF8;font-style:italic;letter-spacing:-.01em}
+.mb-hd-right{display:flex;align-items:center;gap:10px}
+.mb-hd-date{font-family:var(--mono);font-size:8px;color:rgba(250,250,248,.4);letter-spacing:.06em}
+.mb-hd-badge{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--green);background:rgba(22,163,74,.2);border:1px solid rgba(22,163,74,.35);padding:2px 6px;border-radius:2px;letter-spacing:.1em;text-transform:uppercase}
+.mb-body{padding:14px 18px;flex:1;overflow:hidden;display:flex;flex-direction:column;gap:10px}
+.mb-sec{padding-bottom:10px;border-bottom:1px solid var(--line2);flex-shrink:0}
+.mb-sec:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+.mb-sec-tag{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px;opacity:.55}
+.mb-topline{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-.01em;margin-bottom:3px}
+.mb-consequence{font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.45}
+.mb-items{display:flex;flex-direction:column;gap:4px}
+.mb-item{font-family:var(--sans);font-size:10.5px;color:var(--ink70);display:flex;align-items:flex-start;gap:6px;line-height:1.4}
+.mb-item::before{content:'→';font-family:var(--mono);font-size:8.5px;color:var(--accent);flex-shrink:0;opacity:.4;margin-top:1px}
+.mb-src{font-family:var(--mono);font-size:7.5px;color:var(--muted);opacity:.5;flex-shrink:0;margin-left:auto;padding-left:6px}
+.mb-signal-block{display:flex;flex-direction:column;gap:3px}
+.mb-signal{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-bottom:3px;width:fit-content}
+.mb-signal.reg{color:var(--amber);background:var(--amber-s)}
+.mb-signal.blind{color:var(--accent);background:var(--accent-10)}
+.mb-signal.watch{color:var(--green);background:var(--green-s)}
+.mb-signal-txt{font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4}
+.mb-signal-sub{font-family:var(--sans);font-size:9.5px;color:var(--muted);line-height:1.35;margin-top:2px;font-style:italic}
+.mb-ft{background:var(--tint);padding:7px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-top:1px solid var(--line)}
+.mb-ft-meta{font-family:var(--mono);font-size:7.5px;color:var(--muted);letter-spacing:.04em}
+.mb-ft-ch{display:flex;gap:5px}
+.mb-ch{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--accent);background:var(--accent-10);padding:2px 6px;border-radius:2px;letter-spacing:.06em}
+.s8-pers-seg{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.s8-pers-seg:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s8-pers-name{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:3px}
+.s8-pers-priority{font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.5}
+.s8-pers-items{display:flex;flex-direction:column;gap:4px}
+.s8-pers-item{font-family:var(--sans);font-size:10.5px;color:var(--muted);display:flex;align-items:flex-start;gap:5px;line-height:1.35}
+.s8-pers-item::before{content:'↑';font-family:var(--mono);font-size:9px;color:var(--accent);flex-shrink:0;opacity:.4}
+.s8-free-note{margin-top:auto;padding:12px 14px;background:var(--green-s);border:1px solid rgba(22,163,74,.2);border-radius:2px}
+.s8-free-note-lbl{font-family:var(--mono);font-size:8px;font-weight:700;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}
+.s8-free-note-txt{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.45}
 </style>
 </head>
 <body>
@@ -491,6 +561,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
     <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">01 / 07</span></div>
 </header>
@@ -575,6 +646,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
     <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">02 / 07</span></div>
 </header>
@@ -655,6 +727,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
     <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">03 / 07</span></div>
 </header>
@@ -757,6 +830,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
     <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">04 / 07</span></div>
 </header>
@@ -764,8 +838,21 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   <button class="back-btn" data-target="hub">Oversigt</button>
   <span class="sec-num">04 / 07</span>
 </div>
-<div class="sec-body">
-  <div class="s4-layout">
+<div class="sec-body" style="display:flex;flex-direction:column">
+  <div class="s4-paywall-band">
+    <div class="pwb-side free">
+      <span class="pwb-pct free">20 %</span>
+      <span class="pwb-tag free">Gratis</span>
+      <span class="pwb-items">Morgenbriefet · Telegram · Bureaustof</span>
+    </div>
+    <div class="pwb-sep"></div>
+    <div class="pwb-side paid">
+      <span class="pwb-pct paid">80 %</span>
+      <span class="pwb-tag paid">Betalt</span>
+      <span class="pwb-items">Signalradaren · Det betyder det · Den blinde vinkel · Casen der virker · Klummer · Situationsformater</span>
+    </div>
+  </div>
+  <div class="s4-layout" style="flex:1">
 
     <!-- VENSTRE BOOKEND: Brancheoverblikket -->
     <div class="s4-feat base">
@@ -786,7 +873,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
     <!-- MIDTERGRID: Seks kernformater -->
     <div class="s4-core">
-      <div class="fmt-card" style="--sc:#A75D46;--sb:rgba(167,93,70,.04)">
+      <div class="fmt-card" style="--sc:#A75D46;--sb:rgba(167,93,70,.04);cursor:pointer" data-target="s8">
         <div class="fmt-num">02</div>
         <div class="fmt-name">Morgenbriefet</div>
         <div class="fmt-func">Vanen</div>
@@ -795,7 +882,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="fmt-sources"><strong>Kilder:</strong> Ritzau, Børsen, Finans, Danmarks Statistik (DST) og globale erhvervssignaler.</div>
         <div class="fmt-foot">
           <span class="fmt-freq">Dagligt</span>
-          <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <span style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--green);background:var(--green-s);padding:2px 6px;border-radius:2px;letter-spacing:.1em">GRATIS</span>
+            <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
+          </div>
         </div>
       </div>
       <div class="fmt-card" style="--sc:#2D423A;--sb:rgba(45,66,58,.04)">
@@ -911,6 +1001,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <button class="dash-nav-item nav-active" data-target="s5">05 · Eksempler</button>
     <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">05 / 07</span></div>
 </header>
@@ -985,6 +1076,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
     <button class="dash-nav-item nav-active" data-target="s6">06 · Protokoller</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">06 / 07</span></div>
 </header>
@@ -1076,8 +1168,9 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
     <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
     <button class="dash-nav-item nav-active" data-target="s7">07 · AI</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
   </nav>
-  <div class="dash-meta"><span class="dash-tag">07 / 07</span></div>
+  <div class="dash-meta"><span class="dash-tag">07 / 08</span></div>
 </header>
 <div class="sec-hdr">
   <button class="back-btn" data-target="hub">Oversigt</button>
@@ -1148,6 +1241,173 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 </div>
 </div>
 
+<!-- ═══════════ S8 ═══════════ -->
+<div class="screen" id="s8">
+<div class="bg-grid"></div>
+<header class="dash-header">
+  <div class="dash-brand"><span class="dash-brand-mark">Y</span><span class="dash-divider"></span><span class="dash-brand-sub">Redaktionelt Appendix</span></div>
+  <nav class="dash-nav">
+    <button class="dash-nav-item" data-target="s1">01 · Problem</button>
+    <button class="dash-nav-item" data-target="s2">02 · Læserbehov</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
+    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s7">07 · AI</button>
+    <button class="dash-nav-item nav-active" data-target="s8">08 · Morgenbrief</button>
+  </nav>
+  <div class="dash-meta"><span class="dash-tag">08 / 08</span></div>
+</header>
+<div class="sec-hdr">
+  <button class="back-btn" data-target="hub">Oversigt</button>
+  <span class="sec-num">08 / 08</span>
+</div>
+<div class="sec-body">
+  <div class="s8-wrap">
+
+    <!-- VENSTRE: Blueprint -->
+    <div class="s8-col blueprint">
+      <div class="s8-col-lbl">Format · Blueprint</div>
+      <div class="s8-bp-item">
+        <div class="s8-bp-n">1</div>
+        <div>
+          <div class="s8-bp-tag">Topvalg</div>
+          <div class="s8-bp-txt">Redaktørens ét valgte nyhed med konsekvens — AI foreslår, journalist godkender.</div>
+        </div>
+      </div>
+      <div class="s8-bp-item">
+        <div class="s8-bp-n">2</div>
+        <div>
+          <div class="s8-bp-tag">Branche og region</div>
+          <div class="s8-bp-txt">Personaliseret feed: 3–4 items sorteret efter branche, region og adfærd.</div>
+        </div>
+      </div>
+      <div class="s8-bp-item">
+        <div class="s8-bp-n">3</div>
+        <div>
+          <div class="s8-bp-tag">Regulering og risiko</div>
+          <div class="s8-bp-txt">Lovstof og compliance — altid med, når relevant. Deadline og konsekvens angivet.</div>
+        </div>
+      </div>
+      <div class="s8-bp-item">
+        <div class="s8-bp-n">4</div>
+        <div>
+          <div class="s8-bp-tag">Blind vinkel · Situationsbestemt</div>
+          <div class="s8-bp-txt">Aktiveres kun, når Blind Spot-modulet identificerer et dokumenteret hul i mediebilledet.</div>
+        </div>
+      </div>
+      <div class="s8-bp-item">
+        <div class="s8-bp-n">5</div>
+        <div>
+          <div class="s8-bp-tag">Hold øje med</div>
+          <div class="s8-bp-txt">Ét fremadrettet signal. Hvad bør du have i baghovedet inden næste møde eller beslutning.</div>
+        </div>
+      </div>
+      <div class="s8-timing">
+        <div class="s8-timing-lbl">Produktionsrytme</div>
+        <div class="s8-timing-row"><div class="s8-timing-t">03.00</div><div class="s8-timing-d">AI scanner og sorterer kilder</div></div>
+        <div class="s8-timing-row"><div class="s8-timing-t">05.00</div><div class="s8-timing-d">Journalist vurderer og skærper vinkler</div></div>
+        <div class="s8-timing-row"><div class="s8-timing-t">05.47</div><div class="s8-timing-d">Godkendt og klargjort til levering</div></div>
+        <div class="s8-timing-row"><div class="s8-timing-t">06.30</div><div class="s8-timing-d">Levering — tekst og lyd</div></div>
+      </div>
+    </div>
+
+    <!-- MIDTEN: Visual preview -->
+    <div class="s8-col preview">
+      <div class="s8-col-lbl">Format · Preview</div>
+      <div class="mb-frame">
+        <div class="mb-hd">
+          <div class="mb-hd-brand">Y Business Morgenbriefet</div>
+          <div class="mb-hd-right">
+            <div class="mb-hd-date">Mandag 15. juni 2026 · kl. 06.30</div>
+            <div class="mb-hd-badge">Gratis</div>
+          </div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-sec">
+            <div class="mb-sec-tag">Topvalg</div>
+            <div class="mb-topline">Nationalbanken advarer: Renten forbliver høj ind i 2027</div>
+            <div class="mb-consequence">For virksomheder med variabelt forrentede lån stiger udgifterne med 12–18 % fra september. Refinansiering bør planlægges nu — ikke i Q4, når alle andre gør det samme.</div>
+          </div>
+          <div class="mb-sec">
+            <div class="mb-sec-tag">Din branche og region</div>
+            <div class="mb-items">
+              <div class="mb-item">Byggebranchen: Boligsalg stiger 8 % på Sjælland — første stigning siden 2022<div class="mb-src">RealDania</div></div>
+              <div class="mb-item">Transport: Nye kørselstidsbegrænsninger træder i kraft 1. august<div class="mb-src">Vejdirektoratet</div></div>
+              <div class="mb-item">Handel: Detailsalg falder 3,2 % i juni — tredje måned i træk<div class="mb-src">Danmarks Statistik</div></div>
+            </div>
+          </div>
+          <div class="mb-sec">
+            <div class="mb-sec-tag">Regulering og risiko</div>
+            <div class="mb-signal-block">
+              <div class="mb-signal reg">Regulering</div>
+              <div class="mb-signal-txt">Ny ESG-rapporteringspligt for virksomheder med 250+ ansatte · Deadline: 1. januar 2027</div>
+              <div class="mb-signal-sub">23.000 danske virksomheder rammes. Kun 14 % er forberedte, viser ny undersøgelse fra Dansk Erhverv.</div>
+            </div>
+          </div>
+          <div class="mb-sec">
+            <div class="mb-sec-tag">Blind vinkel</div>
+            <div class="mb-signal-block">
+              <div class="mb-signal blind">Blind vinkel</div>
+              <div class="mb-signal-txt">Mediefortællingen om grøn omstilling fokuserer på store selskaber.</div>
+              <div class="mb-signal-sub">SMV'ernes implementeringsomkostninger dækkes ikke — selv om de udgør 67 % af det samlede lovgivningssubjekt.</div>
+            </div>
+          </div>
+          <div class="mb-sec">
+            <div class="mb-sec-tag">Hold øje med</div>
+            <div class="mb-signal-block">
+              <div class="mb-signal watch">Signal</div>
+              <div class="mb-signal-txt">EU's AI Act trin 2 træder i kraft 2. august. Klassificeringen af din virksomheds AI-brug bestemmer, om du er i High-Risk-kategorien.</div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-ft">
+          <div class="mb-ft-meta">Godkendt 05.47 af redaktionen · AI-research kl. 03.00–05.00</div>
+          <div class="mb-ft-ch"><div class="mb-ch">Tekst · 280 ord</div><div class="mb-ch">Lyd · 4 min</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HØJRE: Personalisering -->
+    <div class="s8-col pers">
+      <div class="s8-col-lbl">Personalisering</div>
+      <div class="s8-pers-seg">
+        <div class="s8-pers-name">SMV-ejere</div>
+        <div class="s8-pers-priority">Prioritering</div>
+        <div class="s8-pers-items">
+          <div class="s8-pers-item">Regulering og compliance øverst</div>
+          <div class="s8-pers-item">Branche- og regionssignaler</div>
+          <div class="s8-pers-item">AI i praksis — ikke benchmarks</div>
+        </div>
+      </div>
+      <div class="s8-pers-seg">
+        <div class="s8-pers-name">C-level</div>
+        <div class="s8-pers-priority">Prioritering</div>
+        <div class="s8-pers-items">
+          <div class="s8-pers-item">Blind vinkler og AI-signaler øverst</div>
+          <div class="s8-pers-item">Geopolitik og markedsbevægelser</div>
+          <div class="s8-pers-item">Ledelsesbeslutninger med konsekvens</div>
+        </div>
+      </div>
+      <div class="s8-pers-seg">
+        <div class="s8-pers-name">Format</div>
+        <div class="s8-pers-priority">Valg</div>
+        <div class="s8-pers-items">
+          <div class="s8-pers-item">Tekst: 280 ord · 3 min læsetid</div>
+          <div class="s8-pers-item">Lyd: 4 min · TTS med redaktørstemme</div>
+          <div class="s8-pers-item">Kanal: Email, app og web</div>
+        </div>
+      </div>
+      <div class="s8-free-note">
+        <div class="s8-free-note-lbl">Gratis · 20 %</div>
+        <div class="s8-free-note-txt">Morgenbriefet er fri adgang — rekrutteringskanal til betalingsabonnementet. Alt øvrigt indhold kræver abonnement.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
 </div>
 </div>
 <script>
@@ -1187,7 +1447,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     el.addEventListener('click',function(){ navigate('hub'); });
   });
 
-  var screens=['hub','s1','s2','s3','s4','s5','s6','s7'];
+  var screens=['hub','s1','s2','s3','s4','s5','s6','s7','s8'];
   document.addEventListener('keydown',function(e){
     if(e.target&&['INPUT','TEXTAREA'].includes(e.target.tagName))return;
     if(e.key==='Escape'||e.key==='Backspace'){
