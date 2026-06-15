@@ -282,7 +282,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .fmt-insight{padding:12px;margin-bottom:10px;border-radius:2px;font-family:var(--serif);font-size:11px;font-style:italic;line-height:1.45;letter-spacing:.01em;background:var(--sb);color:var(--sc);border-left:2px solid var(--sc)}
 .fmt-sources{font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4;margin-top:auto;margin-bottom:10px;opacity:.85}
 .fmt-sources strong{font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--sc);margin-right:4px}
-.fmt-foot{padding-top:9px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between;gap:6px}
+.fmt-foot{padding-top:9px;border-top:1px solid var(--line2);display:flex;flex-direction:column;gap:7px}
+.fmt-foot-row{display:flex;align-items:center;justify-content:space-between}
+.fmt-access{display:flex;align-items:center;gap:5px}
+.fmt-access-lbl{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.fmt-access.free .fmt-access-lbl{color:var(--green)}
+.fmt-access.paid .fmt-access-lbl{color:var(--accent)}
 .fmt-freq{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.04em}
 .fmt-pillar{display:flex;gap:4px;flex-wrap:wrap}
 .fp-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px}
@@ -899,6 +904,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <strong style="font-family: var(--mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: rgba(250,250,248,.5); margin-right: 4px;">Kilder:</strong> CVR, Erhvervsstyrelsen, brancheforeninger og lokale erhvervsmedier.
       </div>
       <div class="s4-feat-foot">
+        <div class="fmt-access free" style="margin-bottom:2px">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#16A34A" stroke-width="1.4"/><path d="M4 6.5l1.8 1.8L9 4.5" stroke="#16A34A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="fmt-access-lbl">Gratis</span>
+        </div>
         <div class="s4-feat-pillars"><span class="fp-tag fp-u" style="background:rgba(22,163,74,.2)">Understand</span></div>
         <div class="s4-feat-freq">Dagligt / løbende</div>
       </div>
@@ -914,9 +923,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="fmt-insight">Leveres kl. 06.30 i 5–7 punkter på tekst og lyd — det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel.</div>
         <div class="fmt-sources"><strong>Kilder:</strong> Ritzau, Børsen, Finans, Danmarks Statistik (DST) og globale erhvervssignaler.</div>
         <div class="fmt-foot">
-          <span class="fmt-freq">Dagligt</span>
-          <div style="display:flex;align-items:center;gap:6px">
-            <span style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--green);background:var(--green-s);padding:2px 6px;border-radius:2px;letter-spacing:.1em">GRATIS</span>
+          <div class="fmt-access free">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#16A34A" stroke-width="1.4"/><path d="M4 6.5l1.8 1.8L9 4.5" stroke="#16A34A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="fmt-access-lbl">Gratis</span>
+          </div>
+          <div class="fmt-foot-row">
+            <span class="fmt-freq">Dagligt</span>
             <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
           </div>
         </div>
@@ -929,8 +941,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="fmt-insight">Bygget over en fast 6-punkt struktur, hvor der aldrig drages en konklusion uden en klar konsekvens for din virksomhed.</div>
         <div class="fmt-sources"><strong>Kilder:</strong> Folketingets ODA (lovforslag), EU-direktiver, Erhvervsstyrelsen og høringssvar.</div>
         <div class="fmt-foot">
-          <span class="fmt-freq">Ugentligt eller dagligt + ad hoc</span>
-          <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
+          <div class="fmt-access paid">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
+            <span class="fmt-access-lbl">Abonnement</span>
+          </div>
+          <div class="fmt-foot-row">
+            <span class="fmt-freq">Ugentligt eller dagligt + ad hoc</span>
+            <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
+          </div>
         </div>
       </div>
       <div class="fmt-card" style="--sc:#2F3E4C;--sb:rgba(47,62,76,.04)">
@@ -941,8 +959,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="fmt-insight">Ikke et temperament, men en redaktionel disciplin. Følger vores challenge-protokol og kræver altid en navngivet modkilde.</div>
         <div class="fmt-sources"><strong>Kilder:</strong> Tænketanke (CEPOS, Kraka), fagforeninger (3F, DI), partikilder og akademisk forskning.</div>
         <div class="fmt-foot">
-          <span class="fmt-freq">Ugentligt</span>
-          <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span></div>
+          <div class="fmt-access paid">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
+            <span class="fmt-access-lbl">Abonnement</span>
+          </div>
+          <div class="fmt-foot-row">
+            <span class="fmt-freq">Ugentligt</span>
+            <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span></div>
+          </div>
         </div>
       </div>
       <div class="fmt-card" style="--sc:#4A374E;--sb:rgba(74,55,78,.04)">
@@ -953,8 +977,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="fmt-insight">Viser metode, friktion, fejl og kopierbar læring. En succeshistorie uden modstand er en pressemeddelelse. Tematisk linje: <em>Sådan gjorde jeg</em> — cases fortalt i første person af founder, leder eller AI-praktiker.</div>
         <div class="fmt-sources"><strong>Kilder:</strong> Egne dybdegående SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.</div>
         <div class="fmt-foot">
-          <span class="fmt-freq">Ugentligt</span>
-          <div class="fmt-pillar"><span class="fp-tag fp-i">Inspire</span></div>
+          <div class="fmt-access paid">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
+            <span class="fmt-access-lbl">Abonnement</span>
+          </div>
+          <div class="fmt-foot-row">
+            <span class="fmt-freq">Ugentligt</span>
+            <div class="fmt-pillar"><span class="fp-tag fp-i">Inspire</span></div>
+          </div>
         </div>
       </div>
       <div class="fmt-card" style="--sc:#9E8059;--sb:rgba(158,128,89,.04)">
@@ -969,8 +999,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         </div>
         <div class="fmt-sources"><strong>Kilder:</strong> Eurostat, OECD, World Bank (B-READY), patentdatabaser, Supertrends og medieovervågning.</div>
         <div class="fmt-foot">
-          <span class="fmt-freq">Ugentligt + situationsbestemt</span>
-          <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span><span class="fp-tag fp-c">Challenge</span></div>
+          <div class="fmt-access paid">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
+            <span class="fmt-access-lbl">Abonnement</span>
+          </div>
+          <div class="fmt-foot-row">
+            <span class="fmt-freq">Ugentligt + situationsbestemt</span>
+            <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span><span class="fp-tag fp-c">Challenge</span></div>
+          </div>
         </div>
       </div>
       <div class="fmt-card" style="--sc:#7C7972;--sb:rgba(124,121,114,.04)">
@@ -981,8 +1017,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="fmt-insight">Når situationen kræver det, skifter journalistikken gear. Aktiveres situationsbestemt fra launch.</div>
         <div class="fmt-sources"><strong>Kilder:</strong> Udbudsdatabaser (TED), konkursstatistikker, erhvervstilladelser og krise-skabeloner.</div>
         <div class="fmt-foot">
-          <span class="fmt-freq">Situationsbestemt</span>
-          <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span><span class="fp-tag fp-i">Inspire</span></div>
+          <div class="fmt-access paid">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
+            <span class="fmt-access-lbl">Abonnement</span>
+          </div>
+          <div class="fmt-foot-row">
+            <span class="fmt-freq">Situationsbestemt</span>
+            <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span><span class="fp-tag fp-i">Inspire</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1007,6 +1049,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <strong style="font-family: var(--mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); margin-right: 4px;">Kilder:</strong> AI-praktikere, teknologiledere, founders og egne baggrundsanalyser.
       </div>
       <div class="s4-feat-foot">
+        <div class="fmt-access" style="margin-bottom:2px;display:flex;align-items:center;gap:5px">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="rgba(250,250,248,.5)" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="rgba(250,250,248,.5)" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="rgba(250,250,248,.5)"/></svg>
+          <span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,248,.45)">Abonnement</span>
+        </div>
         <div class="s4-feat-pillars">
           <span class="fp-tag fp-u">Understand</span>
           <span class="fp-tag fp-c">Challenge</span>
