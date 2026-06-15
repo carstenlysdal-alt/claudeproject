@@ -111,6 +111,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s1-vp{margin-top:auto;padding-top:20px;border-top:2px solid var(--accent)}
 .s1-vp-txt{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--accent);font-style:italic;line-height:1.2;letter-spacing:-.01em;margin-bottom:7px}
 .s1-vp-sub{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.55}
+.s1-col.dark{background:var(--accent)}
+.s1-col.dark .s1-col-hdr{color:rgba(250,250,248,.4)}
+.s1-col.dark .s1-col-hdr::before{opacity:.25}
+.s1-col.dark .s1-sol{border-bottom-color:rgba(250,250,248,.1)}
+.s1-col.dark .s1-sol:last-of-type{border-bottom:none}
+.s1-col.dark .s1-sol-arr{color:rgba(250,250,248,.3)}
+.s1-col.dark .s1-sol-txt{color:#FAFAF8}
+.s1-col.dark .s1-sol-sub{color:rgba(250,250,248,.52)}
 
 /* ── HUB RADIAL ── */
 .hub-header-rubrik{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:var(--ink);letter-spacing:-.015em;white-space:nowrap;pointer-events:none}
@@ -601,12 +609,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       </div>
 
       <!-- ── KOL 2: HVAD VI LØSER ── -->
-      <div class="s1-col sol">
+      <div class="s1-col sol dark">
         <div class="s1-col-hdr">Hvad vi løser</div>
 
         <div class="s1-sol">
           <div class="s1-sol-arr">→</div>
-          <div class="s1-sol-txt">Y Business er bygget til SMV-ejeren og lederen i den mellemstore virksomhed — ikke til kapitalfondenes presserum.</div>
+          <div class="s1-sol-txt">Y Business er bygget til SMV-ejeren og lederen i den mellemstore virksomhed.</div>
           <div class="s1-sol-sub">To primære segmenter: SMV-ejere (5–50 ansatte) og C-level (50–250 ansatte). Indholdet kalibreres efter dem.</div>
         </div>
 
