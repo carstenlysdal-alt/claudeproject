@@ -5,6 +5,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const DIR = __dirname;
+const SERVE_FILE = process.env.SERVE_FILE || 'ybusiness-dashboard.html';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = 'carstenlysdal-alt/claudeproject';
@@ -127,12 +128,12 @@ http.createServer((req, res) => {
     return handleFeedback(req, res);
   }
 
-  let filePath = req.url === '/' ? '/ybusiness-dashboard.html' : req.url;
+  let filePath = req.url === '/' ? `/${SERVE_FILE}` : req.url;
   filePath = path.join(DIR, filePath);
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      fs.readFile(path.join(DIR, 'ybusiness-dashboard.html'), 'utf8', (e, d) => {
+      fs.readFile(path.join(DIR, SERVE_FILE), 'utf8', (e, d) => {
         const html = d.replace('{{DEPLOY_TIME}}', DEPLOY_TIME);
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end(html);
