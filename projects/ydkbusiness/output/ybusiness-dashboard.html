@@ -1779,7 +1779,11 @@ body.bm-editing .bm-plot-cell .bm-add {
   });
   document.addEventListener('keydown', function (e) {
     if (e.target && e.target.getAttribute('contenteditable')) return;
-    if (e.key === 'Escape' || e.key === 'Backspace') { if (current !== 'hub') navigate('hub'); }
+    if (e.target && ['INPUT','TEXTAREA'].includes(e.target.tagName)) return;
+    if (e.key === 'Escape' || e.key === 'Backspace') {
+      e.preventDefault();
+      if (current !== 'hub') navigate('hub');
+    }
     else if (e.key === '1') navigate('s-biz');
     else if (e.key === '2') navigate('s-prd');
     else if (e.key === '3') navigate('s-pos');

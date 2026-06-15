@@ -1148,7 +1148,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
   var screens=['hub','s1','s2','s3','s4','s5','s6','s7'];
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'||e.key==='Backspace'){if(current!=='hub')navigate('hub');}
+    if(e.target&&['INPUT','TEXTAREA'].includes(e.target.tagName))return;
+    if(e.key==='Escape'||e.key==='Backspace'){
+      e.preventDefault();
+      if(current!=='hub')navigate('hub');
+    }
     var cur=screens.indexOf(current);
     if(e.key==='ArrowRight'&&cur<screens.length-1)navigate(screens[cur+1]);
     if(e.key==='ArrowLeft'&&cur>0)navigate(screens[cur-1]);
