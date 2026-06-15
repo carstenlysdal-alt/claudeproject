@@ -221,10 +221,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s3-sec-pillars{display:flex;gap:4px;margin-top:9px}
 
 /* ── S4 FORMATER — bookend layout ── */
-.s4-layout{display:grid;grid-template-columns:228px 1fr 228px;height:100%;gap:1px;background:var(--line)}
-.s4-feat{padding:18px 20px;display:flex;flex-direction:column;overflow:hidden}
+.s4-layout{display:grid;grid-template-columns:220px 1fr 220px;height:100%;gap:14px;background:var(--paper);padding:14px}
+.s4-feat{padding:18px 18px;display:flex;flex-direction:column;overflow:hidden;border-radius:3px}
 .s4-feat.base{background:var(--accent)}
-.s4-feat.voice{background:var(--card)}
+.s4-feat.voice{background:var(--card);box-shadow:0 1px 8px rgba(0,0,0,.05)}
 .s4-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px}
 .s4-feat.base .s4-eyebrow{color:rgba(250,250,248,.45)}
 .s4-feat.voice .s4-eyebrow{color:var(--accent);opacity:.7}
@@ -272,10 +272,9 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s4-feat.base .s4-feat-freq{color:rgba(250,250,248,.4)}
 .s4-feat.voice .s4-feat-freq{color:var(--muted)}
 .s4-never{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);background:var(--red-s);padding:2px 8px;border-radius:3px;display:inline-block}
-.s4-core{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1.2fr 0.8fr;gap:1px;background:var(--line)}
-.fmt-card--secondary{opacity:.5;filter:saturate(.5)}
-.fmt-card{background:linear-gradient(160deg,var(--sb,transparent) 0%,var(--card) 48%);padding:18px 18px 14px;display:flex;flex-direction:column;position:relative;overflow:hidden}
-.fmt-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--sc)}
+.s4-core{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1.2fr 0.8fr;gap:10px;background:transparent}
+.fmt-card--secondary{opacity:.45;filter:saturate(.4)}
+.fmt-card{background:var(--card);padding:16px 16px 12px;display:flex;flex-direction:column;position:relative;overflow:hidden;border-radius:3px;border-top:3px solid var(--sc);box-shadow:0 1px 6px rgba(0,0,0,.04)}
 .fmt-num{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--muted);opacity:.5;letter-spacing:.08em;margin-bottom:6px;padding-top:6px}
 .fmt-name{font-family:var(--serif);font-size:17px;font-weight:600;font-style:italic;color:var(--sc);line-height:1.25;margin-bottom:4px;letter-spacing:-.01em}
 .fmt-func{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--sc);letter-spacing:.12em;text-transform:uppercase;margin-bottom:11px}
@@ -364,7 +363,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s7-dogme p{font-family:var(--serif);font-size:15px;font-weight:700;color:#FAFAF8;line-height:1.4;font-style:italic}
 
 /* ── S4 PAYWALL BAND ── */
-.s4-paywall-band{display:flex;align-items:center;padding:0 28px;height:40px;background:var(--card);border-bottom:1px solid var(--line);flex-shrink:0;gap:0}
+.s4-paywall-band{display:flex;align-items:center;padding:0 14px;height:40px;background:var(--paper);flex-shrink:0;gap:0}
 .pwb-side{display:flex;align-items:center;gap:10px}
 .pwb-side.free{flex:1}
 .pwb-side.paid{flex:3}
