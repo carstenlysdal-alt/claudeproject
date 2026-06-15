@@ -64,20 +64,22 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .stat-v{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-.01em}
 .stat-l{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.09em;text-transform:uppercase}
 
-/* SECTION CHROME — individuelle headere skjult; erstattet af delt nav */
-.sec-hdr{display:none!important}
+/* SECTION CHROME */
+.sec-hdr{position:absolute;top:56px;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:var(--card);border-bottom:1px solid var(--line)}
+.back-btn{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;background:none;border:none;min-height:40px;padding:8px 16px 8px 0;transition:opacity .18s;opacity:.7}
+.back-btn::before{content:'←';font-size:13px}
+.back-btn:hover{opacity:1}
+.sec-num{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.08em}
 .sec-body{position:absolute;top:108px;left:0;right:0;bottom:0;overflow:hidden}
 
-/* DELT SEKTIONSNAVIGATION */
-.snav{position:absolute;top:56px;left:0;right:0;height:52px;display:none;align-items:center;justify-content:space-between;padding:0 32px;background:var(--card);border-bottom:1px solid var(--line);z-index:20;gap:12px}
-.snav-back{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:7px;background:none;border:none;padding:6px 14px 6px 0;border-right:1px solid var(--line);opacity:.7;flex-shrink:0;white-space:nowrap;transition:opacity .15s}
-.snav-back::before{content:'←';font-size:13px}
-.snav-back:hover{opacity:1}
-.snav-tabs{display:flex;align-items:center;gap:2px;flex:1;justify-content:center}
-.snav-tab{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.05em;padding:5px 13px;border-radius:3px;cursor:pointer;transition:background .15s,color .15s;white-space:nowrap;border:1px solid transparent;line-height:1}
-.snav-tab:hover{background:var(--tint);color:var(--ink70)}
-.snav-tab.act{background:var(--accent-10);color:var(--accent);border-color:var(--accent-30);font-weight:700}
-.snav-num{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.08em;flex-shrink:0;padding-left:14px;border-left:1px solid var(--line)}
+/* SEKTIONSNAVIGATION — i headeren per screen, ybusiness-mønster */
+.dash-nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:stretch;height:56px;gap:0}
+.dash-nav-item{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:0 16px;display:flex;align-items:center;cursor:pointer;position:relative;white-space:nowrap;border:none;background:none;transition:color .15s}
+.dash-nav-item::after{content:'';position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:center;transition:transform .22s cubic-bezier(.22,.61,.36,1)}
+.dash-nav-item:hover{color:var(--ink70)}
+.dash-nav-item:active{transform:scale(.96)}
+.dash-nav-item.nav-active{color:var(--accent)}
+.dash-nav-item.nav-active::after{transform:scaleX(1)}
 
 /* ── S1 PROBLEMET ── */
 .s1-wrap{display:grid;grid-template-columns:1fr 1fr;height:100%}
@@ -291,7 +293,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <p class="hub-sub">Det redaktionelle fundament for Y Business — journalistisk metode, segmenteret relevans og AI-understøttet produktion der giver skala uden at ofre dømmekraft.</p>
   </div>
   <div class="hub-tiles">
-    <div class="hub-tile" onclick="goto('s1')">
+    <div class="hub-tile" data-target="s1">
       <div class="tile-num">01</div>
       <div class="tile-h">Problemet og vores svar</div>
       <div class="tile-pts">
@@ -301,7 +303,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       </div>
       <div class="tile-cta">Åbn</div>
     </div>
-    <div class="hub-tile" onclick="goto('s2')">
+    <div class="hub-tile" data-target="s2">
       <div class="tile-num">02</div>
       <div class="tile-h">Tre pillars — behov og metode</div>
       <div class="tile-pts">
@@ -311,7 +313,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       </div>
       <div class="tile-cta">Åbn</div>
     </div>
-    <div class="hub-tile" onclick="goto('s3')">
+    <div class="hub-tile" data-target="s3">
       <div class="tile-num">03</div>
       <div class="tile-h">Seks segmenter</div>
       <div class="tile-pts">
@@ -321,7 +323,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       </div>
       <div class="tile-cta">Åbn</div>
     </div>
-    <div class="hub-tile" onclick="goto('s4')">
+    <div class="hub-tile" data-target="s4">
       <div class="tile-num">04</div>
       <div class="tile-h">Otte formater</div>
       <div class="tile-pts">
@@ -331,7 +333,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       </div>
       <div class="tile-cta">Åbn</div>
     </div>
-    <div class="hub-tile" onclick="goto('s5')">
+    <div class="hub-tile" data-target="s5">
       <div class="tile-num">05</div>
       <div class="tile-h">Sådan lyder Y Business</div>
       <div class="tile-pts">
@@ -341,7 +343,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       </div>
       <div class="tile-cta">Åbn</div>
     </div>
-    <div class="hub-tile" onclick="goto('s6')">
+    <div class="hub-tile" data-target="s6">
       <div class="tile-num">06</div>
       <div class="tile-h">Protokollerne</div>
       <div class="tile-pts">
@@ -351,7 +353,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       </div>
       <div class="tile-cta">Åbn</div>
     </div>
-    <div class="hub-tile" onclick="goto('s7')">
+    <div class="hub-tile" data-target="s7">
       <div class="tile-num">07</div>
       <div class="tile-h">AI og redaktion</div>
       <div class="tile-pts">
@@ -376,11 +378,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="bg-grid"></div>
 <header class="dash-header">
   <div class="dash-brand"><span class="dash-brand-mark">Y</span><span class="dash-divider"></span><span class="dash-brand-sub">Redaktionelt Appendix</span></div>
-  <div class="dash-meta"><span class="dash-tag hi">01 — Problemet og vores svar</span></div>
+  <nav class="dash-nav">
+    <button class="dash-nav-item nav-active" data-target="s1">01 · Problem</button>
+    <button class="dash-nav-item" data-target="s2">02 · Pillars</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
+    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s7">07 · AI</button>
+  </nav>
+  <div class="dash-meta"><span class="dash-tag">01 / 07</span></div>
 </header>
 <div class="sec-hdr">
-  <button class="back-btn" onclick="goto('hub')">Oversigt</button>
-  <span class="sec-title">Problemet i erhvervslivet er ikke stilhed. Problemet er larm.</span>
+  <button class="back-btn" data-target="hub">Oversigt</button>
   <span class="sec-num">01 / 07</span>
 </div>
 <div class="sec-body">
@@ -451,11 +461,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="bg-grid"></div>
 <header class="dash-header">
   <div class="dash-brand"><span class="dash-brand-mark">Y</span><span class="dash-divider"></span><span class="dash-brand-sub">Redaktionelt Appendix</span></div>
-  <div class="dash-meta"><span class="dash-tag hi">02 — Tre pillars</span></div>
+  <nav class="dash-nav">
+    <button class="dash-nav-item" data-target="s1">01 · Problem</button>
+    <button class="dash-nav-item nav-active" data-target="s2">02 · Pillars</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
+    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s7">07 · AI</button>
+  </nav>
+  <div class="dash-meta"><span class="dash-tag">02 / 07</span></div>
 </header>
 <div class="sec-hdr">
-  <button class="back-btn" onclick="goto('hub')">Oversigt</button>
-  <span class="sec-title">Tre pillars — ikke sektioner, men arbejdsmetoder der svarer på læserens behov</span>
+  <button class="back-btn" data-target="hub">Oversigt</button>
   <span class="sec-num">02 / 07</span>
 </div>
 <div class="sec-body">
@@ -523,11 +541,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="bg-grid"></div>
 <header class="dash-header">
   <div class="dash-brand"><span class="dash-brand-mark">Y</span><span class="dash-divider"></span><span class="dash-brand-sub">Redaktionelt Appendix</span></div>
-  <div class="dash-meta"><span class="dash-tag hi">03 — Seks segmenter</span></div>
+  <nav class="dash-nav">
+    <button class="dash-nav-item" data-target="s1">01 · Problem</button>
+    <button class="dash-nav-item" data-target="s2">02 · Pillars</button>
+    <button class="dash-nav-item nav-active" data-target="s3">03 · Segmenter</button>
+    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s7">07 · AI</button>
+  </nav>
+  <div class="dash-meta"><span class="dash-tag">03 / 07</span></div>
 </header>
 <div class="sec-hdr">
-  <button class="back-btn" onclick="goto('hub')">Oversigt</button>
-  <span class="sec-title">Seks segmenter — redaktionelt behov og Y Business' løfte til hver</span>
+  <button class="back-btn" data-target="hub">Oversigt</button>
   <span class="sec-num">03 / 07</span>
 </div>
 <div class="sec-body">
@@ -598,11 +624,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="bg-grid"></div>
 <header class="dash-header">
   <div class="dash-brand"><span class="dash-brand-mark">Y</span><span class="dash-divider"></span><span class="dash-brand-sub">Redaktionelt Appendix</span></div>
-  <div class="dash-meta"><span class="dash-tag hi">04 — Otte formater</span></div>
+  <nav class="dash-nav">
+    <button class="dash-nav-item" data-target="s1">01 · Problem</button>
+    <button class="dash-nav-item" data-target="s2">02 · Pillars</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
+    <button class="dash-nav-item nav-active" data-target="s4">04 · Formater</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s7">07 · AI</button>
+  </nav>
+  <div class="dash-meta"><span class="dash-tag">04 / 07</span></div>
 </header>
 <div class="sec-hdr">
-  <button class="back-btn" onclick="goto('hub')">Oversigt</button>
-  <span class="sec-title">Otte formater — fundament, redaktionel kerne og den stemme AI ikke kan erstatte</span>
+  <button class="back-btn" data-target="hub">Oversigt</button>
   <span class="sec-num">04 / 07</span>
 </div>
 <div class="sec-body">
@@ -705,11 +739,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="bg-grid"></div>
 <header class="dash-header">
   <div class="dash-brand"><span class="dash-brand-mark">Y</span><span class="dash-divider"></span><span class="dash-brand-sub">Redaktionelt Appendix</span></div>
-  <div class="dash-meta"><span class="dash-tag hi">05 — Sådan lyder Y Business</span></div>
+  <nav class="dash-nav">
+    <button class="dash-nav-item" data-target="s1">01 · Problem</button>
+    <button class="dash-nav-item" data-target="s2">02 · Pillars</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
+    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
+    <button class="dash-nav-item nav-active" data-target="s5">05 · Eksempler</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s7">07 · AI</button>
+  </nav>
+  <div class="dash-meta"><span class="dash-tag">05 / 07</span></div>
 </header>
 <div class="sec-hdr">
-  <button class="back-btn" onclick="goto('hub')">Oversigt</button>
-  <span class="sec-title">Sådan lyder Y Business — konsekvens frem for referat, kant frem for konsensus</span>
+  <button class="back-btn" data-target="hub">Oversigt</button>
   <span class="sec-num">05 / 07</span>
 </div>
 <div class="sec-body">
@@ -763,11 +805,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="bg-grid"></div>
 <header class="dash-header">
   <div class="dash-brand"><span class="dash-brand-mark">Y</span><span class="dash-divider"></span><span class="dash-brand-sub">Redaktionelt Appendix</span></div>
-  <div class="dash-meta"><span class="dash-tag hi">06 — Protokollerne</span></div>
+  <nav class="dash-nav">
+    <button class="dash-nav-item" data-target="s1">01 · Problem</button>
+    <button class="dash-nav-item" data-target="s2">02 · Pillars</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
+    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
+    <button class="dash-nav-item nav-active" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s7">07 · AI</button>
+  </nav>
+  <div class="dash-meta"><span class="dash-tag">06 / 07</span></div>
 </header>
 <div class="sec-hdr">
-  <button class="back-btn" onclick="goto('hub')">Oversigt</button>
-  <span class="sec-title">Tre protokoller — det redaktionelle grundlag for kvalitet og troværdighed</span>
+  <button class="back-btn" data-target="hub">Oversigt</button>
   <span class="sec-num">06 / 07</span>
 </div>
 <div class="sec-body">
@@ -825,11 +875,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="bg-grid"></div>
 <header class="dash-header">
   <div class="dash-brand"><span class="dash-brand-mark">Y</span><span class="dash-divider"></span><span class="dash-brand-sub">Redaktionelt Appendix</span></div>
-  <div class="dash-meta"><span class="dash-tag hi">07 — AI og redaktion</span></div>
+  <nav class="dash-nav">
+    <button class="dash-nav-item" data-target="s1">01 · Problem</button>
+    <button class="dash-nav-item" data-target="s2">02 · Pillars</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
+    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item nav-active" data-target="s7">07 · AI</button>
+  </nav>
+  <div class="dash-meta"><span class="dash-tag">07 / 07</span></div>
 </header>
 <div class="sec-hdr">
-  <button class="back-btn" onclick="goto('hub')">Oversigt</button>
-  <span class="sec-title">AI giver skala. Redaktionen giver dømmekraft.</span>
+  <button class="back-btn" data-target="hub">Oversigt</button>
   <span class="sec-num">07 / 07</span>
 </div>
 <div class="sec-body">
@@ -895,57 +953,53 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 </div>
 </div>
 
-<!-- DELT SEKTIONSNAVIGATION -->
-<div id="snav" class="snav">
-  <button class="snav-back" onclick="goto('hub')">Oversigt</button>
-  <div class="snav-tabs">
-    <span class="snav-tab" data-s="s1" onclick="goto('s1')">01 · Problem</span>
-    <span class="snav-tab" data-s="s2" onclick="goto('s2')">02 · Pillars</span>
-    <span class="snav-tab" data-s="s3" onclick="goto('s3')">03 · Segmenter</span>
-    <span class="snav-tab" data-s="s4" onclick="goto('s4')">04 · Formater</span>
-    <span class="snav-tab" data-s="s5" onclick="goto('s5')">05 · Eksempler</span>
-    <span class="snav-tab" data-s="s6" onclick="goto('s6')">06 · Protokoller</span>
-    <span class="snav-tab" data-s="s7" onclick="goto('s7')">07 · AI</span>
-  </div>
-  <span class="snav-num" id="snav-num"></span>
-</div>
-
 </div>
 </div>
 <script>
-const stage=document.getElementById('stage');
-const snav=document.getElementById('snav');
-const snavNum=document.getElementById('snav-num');
-const screens=['hub','s1','s2','s3','s4','s5','s6','s7'];
+(function(){
+  var current='hub';
+  var stage=document.getElementById('stage');
 
-function scale(){
-  const vw=window.innerWidth,vh=window.innerHeight;
-  const s=Math.min(vw/1440,vh/900);
-  stage.style.transform=`scale(${s})`;
-  stage.style.left=`${(vw-1440*s)/2}px`;
-  stage.style.top=`${(vh-900*s)/2}px`;
-}
-scale();
-window.addEventListener('resize',scale);
-
-function goto(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if(id==='hub'){
-    snav.style.display='none';
-  } else {
-    snav.style.display='flex';
-    document.querySelectorAll('.snav-tab').forEach(t=>t.classList.toggle('act',t.dataset.s===id));
-    const idx=screens.indexOf(id);
-    snavNum.textContent=String(idx).padStart(2,'0')+' / 07';
+  function scale(){
+    var vw=window.innerWidth,vh=window.innerHeight;
+    var s=Math.min(vw/1440,vh/900);
+    stage.style.transform='scale('+s+')';
+    stage.style.left=((vw-1440*s)/2)+'px';
+    stage.style.top=((vh-900*s)/2)+'px';
   }
-}
+  scale();
+  window.addEventListener('resize',scale);
 
-document.addEventListener('keydown',e=>{
-  const cur=screens.findIndex(s=>document.getElementById(s).classList.contains('active'));
-  if(e.key==='ArrowRight'&&cur<screens.length-1)goto(screens[cur+1]);
-  if(e.key==='ArrowLeft'&&cur>0)goto(screens[cur-1]);
-});
+  function navigate(id){
+    if(!id||id===current)return;
+    var from=document.getElementById(current);
+    var to=document.getElementById(id);
+    if(!to)return;
+    from.classList.remove('active');
+    to.classList.add('active');
+    document.querySelectorAll('.dash-nav-item').forEach(function(el){
+      el.classList.toggle('nav-active',el.getAttribute('data-target')===id);
+    });
+    current=id;
+  }
+
+  document.querySelectorAll('[data-target]').forEach(function(el){
+    el.addEventListener('click',function(){ navigate(this.getAttribute('data-target')); });
+  });
+
+  document.querySelectorAll('.dash-brand').forEach(function(el){
+    el.style.cursor='pointer';
+    el.addEventListener('click',function(){ navigate('hub'); });
+  });
+
+  var screens=['hub','s1','s2','s3','s4','s5','s6','s7'];
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'||e.key==='Backspace'){if(current!=='hub')navigate('hub');}
+    var cur=screens.indexOf(current);
+    if(e.key==='ArrowRight'&&cur<screens.length-1)navigate(screens[cur+1]);
+    if(e.key==='ArrowLeft'&&cur>0)navigate(screens[cur-1]);
+  });
+}());
 </script>
 </body>
 </html>
