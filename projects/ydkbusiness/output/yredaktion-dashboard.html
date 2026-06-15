@@ -118,18 +118,18 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .hub-disc{position:absolute;left:720px;top:386px;transform:translate(-50%,-50%);width:164px;height:164px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;box-shadow:0 4px 40px rgba(54,19,82,.12),0 0 0 10px rgba(54,19,82,.04);z-index:3}
 .hub-disc-y{font-family:var(--serif);font-size:44px;font-weight:700;color:var(--accent);font-style:italic;line-height:1;margin-bottom:2px}
 .hub-disc-sub{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
-.hub-node{position:absolute;width:152px;transform:translate(-50%,-50%);background:var(--card);border-top:3px solid var(--nc);cursor:pointer;padding:11px 13px 10px;transition:box-shadow .22s ease,transform .15s cubic-bezier(.2,0,0,1);z-index:2}
+.hub-node{position:absolute;width:168px;transform:translate(-50%,-50%);background:var(--card);border-top:3px solid var(--nc);cursor:pointer;padding:11px 13px 10px;transition:box-shadow .22s ease,transform .15s cubic-bezier(.2,0,0,1);z-index:2}
 .hub-node::after{content:'';position:absolute;inset:0;background:var(--nc);opacity:.04;pointer-events:none;transition:opacity .2s}
 .hub-node:hover{transform:translate(-50%,-50%) scale(1.09);box-shadow:0 10px 36px var(--ns),0 2px 8px rgba(0,0,0,.05)}
 .hub-node:hover::after{opacity:.10}
 .hub-node:active{transform:translate(-50%,-50%) scale(.97)}
-.node-num{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--nc);opacity:.5;letter-spacing:.12em;margin-bottom:5px}
-.node-h{font-family:var(--serif);font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.25;letter-spacing:-.01em;margin-bottom:7px}
-.node-pts{display:flex;flex-direction:column;gap:3px;margin-bottom:8px}
-.node-pt{font-family:var(--sans);font-size:10px;color:var(--muted);display:flex;align-items:flex-start;gap:5px;line-height:1.35}
-.node-pt::before{content:'–';color:var(--nc);flex-shrink:0;opacity:.55;font-size:10px;margin-top:1px}
-.node-cta{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--nc);letter-spacing:.12em;text-transform:uppercase;opacity:.65;display:flex;align-items:center;gap:5px}
-.node-cta::after{content:'→';font-size:10px}
+.node-num{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--nc);opacity:.5;letter-spacing:.1em;margin-bottom:5px}
+.node-h{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);line-height:1.25;letter-spacing:-.01em;margin-bottom:8px}
+.node-pts{display:flex;flex-direction:column;gap:4px;margin-bottom:9px}
+.node-pt{font-family:var(--sans);font-size:11.5px;color:var(--muted);display:flex;align-items:flex-start;gap:5px;line-height:1.4}
+.node-pt::before{content:'–';color:var(--nc);flex-shrink:0;opacity:.55;font-size:11px;margin-top:1px}
+.node-cta{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--nc);letter-spacing:.12em;text-transform:uppercase;opacity:.65;display:flex;align-items:center;gap:5px}
+.node-cta::after{content:'→';font-size:11px}
 
 /* ── S2 PILLARS ── */
 .s2-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;height:100%}
