@@ -272,7 +272,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s4-feat.base .s4-feat-freq{color:rgba(250,250,248,.4)}
 .s4-feat.voice .s4-feat-freq{color:var(--muted)}
 .s4-never{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);background:var(--red-s);padding:2px 8px;border-radius:3px;display:inline-block}
-.s4-core{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
+.s4-core{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1.2fr 0.8fr;gap:1px;background:var(--line)}
+.fmt-card--secondary{opacity:.5;filter:saturate(.5)}
 .fmt-card{background:linear-gradient(160deg,var(--sb,transparent) 0%,var(--card) 48%);padding:18px 18px 14px;display:flex;flex-direction:column;position:relative;overflow:hidden}
 .fmt-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--sc)}
 .fmt-num{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--muted);opacity:.5;letter-spacing:.08em;margin-bottom:6px;padding-top:6px}
@@ -1009,7 +1010,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
           </div>
         </div>
       </div>
-      <div class="fmt-card" style="--sc:#7C7972;--sb:rgba(124,121,114,.04)">
+      <div class="fmt-card fmt-card--secondary" style="--sc:#7C7972;--sb:rgba(124,121,114,.04)">
         <div class="fmt-num">+3</div>
         <div class="fmt-name">Situationsformater</div>
         <div class="fmt-func">Skalerbare</div>
