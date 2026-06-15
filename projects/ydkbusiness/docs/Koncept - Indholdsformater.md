@@ -6,20 +6,53 @@
 
 ---
 
+## Value proposition
+
+**Du får et forspring.**
+
+Ikke mere information — præcis den information, der afgør din næste beslutning, inden alle andre har den.
+
+---
+
+## Segmenthierarki
+
+SMV-ejere og C-level er primæraudienset. Alt redaktionelt indhold kalibreres efter dem.
+Øvrige segmenter (iværksættere, kommunikationsfolk, investorer, medarbejdere) dækkes med
+samme redaktionelle linje, justeret til kontekst — de staar ikke ved siden af primæraudienset,
+men under det i prioriteringslogikken.
+
+C-level har særligt fokus på **Business og AI/Tech**. Klummerne kredser eksplicit om hi-tech
+og AI som det emneområde, der primært skal pirre og skabe betalingsvilje i dette segment.
+
+---
+
+## Betalingsmodel — 20/80
+
+**20 % gratis:** Telegram, hårde nyheder og bureaustof. Lav adgangsbarriere.
+Rekrutteringskanal til betalingsabonnement.
+
+**80 % betalt:** Signaler, markedstrends, perspektiver og klummer om AI og
+teknologiledelse. Det er her betalingsviljen skabes — ved at levere indhold,
+som læseren ikke kan få andre steder, og som konkret påvirker beslutninger.
+
+---
+
 ## 1. Launch-modellen
 
-Y Business lancerer ikke med otte ligeværdige formater.
+Y Business lancerer ikke med et fast antal ligeværdige formater.
 
-Y Business lancerer med fem bærende formater og tre skalerbare specialformater.
+Frekvensmodellen er enten daglig eller ugentlig — ikke 2-3 gange om ugen som
+mellemvej. Ad hoc-formater aktiveres situationsbestemt. Det skaber klarere
+rytme for læseren og klarere produktionsansvar for redaktionen.
 
 En redaktion på 2-3 journalister med AI-understøttelse kan i år 1 realistisk
 producere:
 
-- 5 morgenbriefs om ugen
-- 2-3 forklarende artikler om ugen
+- 5 morgenbriefs om ugen (dagligt)
+- 1 forklarende artikel om ugen (ugentligt) + ad hoc ved regulatoriske nyheder
 - 1 Challenge-format om ugen
-- 1 Inspire-case om ugen
-- 1 signalradar om ugen
+- 1 Inspire-case / "Sådan gjorde jeg" om ugen
+- 1 signalradar om ugen (inkl. Blind spot-modul)
 - 1-2 situationsbestemte briefs om ugen
 - 1-2 klummer om ugen
 
@@ -108,19 +141,24 @@ Bør ikke overlades til uerfaren produktion.
 
 Viser løsninger med metode, friktion, fejl og kopierbar læring.
 
+**Tematisk linje: Sådan gjorde jeg** — cases fortalt i første person af en
+founder, leder eller AI-praktiker. Skribenten er en del af historien: det
+er ikke en case om "en virksomhed" men om "mig og det jeg valgte". Denne
+linje er Y Business' svar på betalingsvilje i C-level- og SMV-segmentet.
+
 **Pillar:** Inspire
 **Funktion:** Lære og anvise
-**Primære segmenter:** SMV-ejere, kommunikation/marketing, iværksættere
-**Kanaler:** Tekst, lydinterview, casevideo
+**Primære segmenter:** SMV-ejere, kommunikation/marketing, iværksættere, C-level
+**Kanaler:** Tekst, lydinterview
 **Frekvens:** 1 gang ugentligt
 
 Må aldrig blive ukritisk succesfortælling.
 
-**Intern regel: Ingen case uden friktion.**
+**Intern regel: Ingen case uden friktion. Ingen case uden navngivet ophav.**
 
 **Fast struktur:**
-1. Problemet
-2. Hvad virksomheden gjorde
+1. Problemet — hvad pressede beslutningen frem?
+2. Hvad blev gjort?
 3. Hvad gik galt?
 4. Hvad virkede?
 5. Hvad kostede det?
@@ -155,6 +193,30 @@ kommunikation, AI.
 4. Hvem påvirkes?
 5. Hvad kan det føre til?
 6. Hvad bør overvåges?
+
+#### Sub-modul: Blind spot
+
+Fast afsluttende sektion i hver Signalradar. Stiller ét spørgsmål:
+hvad skriver de andre ikke om — og hvorfor ikke?
+
+Typisk vinkel: Børsen dækker sjældent SMV-kritik af storvirksomheders
+leverandørvilkår. DR dækker sjældent regulatorisk byrde for ejerledede
+virksomheder. Finans.dk prioriterer børsnoterede selskabers fortælling.
+Y Business identificerer hullet og forklarer, hvem der ikke høres.
+
+**Redaktionel regel:** Blind spot er ikke kontrarianism. Den kræver
+dokumentation for, hvad andre faktisk har skrevet — og en præcis begrundelse
+for, hvorfor hullet eksisterer.
+
+**Produktionsmodel:** AI overvåger et fast kildeset (Børsen, Berlingske/Finans,
+DR Nyheder, TV2 Business, Epn.dk, Altinget Erhverv) og leverer gap-analyse.
+Journalist vurderer og skriver afsnittet.
+
+**Fast struktur (Blind spot):**
+1. Hvad dækker mediebilledet ikke?
+2. Hvilke medier har det fravalgt?
+3. Hvad er den institutionelle forklaring?
+4. Hvem rammes af hullet?
 
 ---
 
@@ -261,11 +323,16 @@ Signaturformaterne giver struktur og nytteværdi. Klummerne giver noget de
 ikke kan: en personforankret stemme, autoritet og holdning — det eneste
 format, der ikke kan produceres af AI.
 
+Klummerne kredser primært om hi-tech og AI. Det er det emneområde, der
+skaber betalingsvilje i C-level-segmentet og differentierer Y Business
+fra generalistmedier. Skribentprofilen afspejler det: AI-praktikere,
+teknologiledere og founders med erfaring fra organisation og implementation.
+
 | Klumme | Frekvens | Pillar | Primært segment |
 |---|---|---|---|
 | Den blinde vinkel | Ugentligt | Challenge | C-level, rådgivere, SMV-ejere, iværksættere |
 | Mandag morgen | Ugentligt (mandag) | Understand | C-level, SMV-ejere, medarbejdere, rådgivere |
-| Hvad virker? | Hver 14. dag | Inspire | SMV-ejere, kommunikation/marketing, iværksættere |
+| Casen der virker *(Sådan gjorde jeg)* | Ugentligt | Inspire | SMV-ejere, iværksættere, C-level |
 
 ---
 
@@ -304,20 +371,24 @@ Eksempler: *"Tre signaler, der bør ligge på ledermødet i dag"* —
 
 ---
 
-### Klumme 3: Hvad virker?
+### Klumme 3: Sådan gjorde jeg
 
-**Skribentprofil:** Praktiker med stærk faglig troværdighed — erfaren founder,
-driftsleder, transformationsleder eller kommunikationschef med konkret
-praksiserfaring og villighed til at tale om fejl og friktion.
+**Skribentprofil:** Praktiker med stærk faglig troværdighed og personlig
+skriverstemme — erfaren founder, teknologileder, AI-implementer eller
+driftsleder med konkret praksiserfaring og villighed til at tale om fejl
+og friktion. Skribenten er en del af historien: det er ikke en case om
+"en virksomhed" men om "mig og det jeg valgte".
 
-**Redaktionel opgave:** Undersøger én praksis, metode eller beslutning og
-svarer på: hvad var problemet, hvad gik galt, hvad virkede, hvad kan andre
-lære? Giver mere personlig og erfaringsbaseret vurdering end caseartiklen.
+**Redaktionel opgave:** Personforankret case med ét centralt valg som omdrejningspunkt.
+Svarer på: hvad pressede beslutningen frem, hvad gik galt, hvad virkede,
+hvad kan andre kopiere? Fokus er konsekvent på hi-tech og AI som
+implementerings- og ledelseserfaringer.
 
-Kernegreb: *Hvad virkede, hvad gik galt, og hvad kan andre kopiere?*
+Kernegreb: *Hvad besluttede jeg, hvad kostede det, og hvad kan du bruge?*
 
-Eksempler: *"AI virkede først, da virksomheden fjernede to manuelle led"*
-— *"Den bedste krisekommunikation begyndte før krisen"*
+Eksempler: *"Sådan afskedigede jeg mit manuelle processlag og erstattede det med AI"*
+— *"Vi fejlede tre gange med AI-implementering. Her er, hvad der til sidst virkede"*
+— *"Jeg nåede til tops ved at lade data afgøre, hvad jeg ikke skulle bruge tid på"*
 
 ---
 
