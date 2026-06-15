@@ -191,14 +191,35 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s4-feat.voice .s4-feat-freq{color:var(--muted)}
 .s4-never{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);background:var(--red-s);padding:2px 8px;border-radius:3px;display:inline-block}
 .s4-core{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
-.fmt-card{background:var(--card);padding:16px 16px;display:flex;flex-direction:column}
-.fmt-card.base{border-top:3px solid var(--accent)}
-.fmt-num{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--accent);opacity:.4;letter-spacing:.08em;margin-bottom:9px}
-.fmt-name{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:3px;letter-spacing:-.01em}
-.fmt-func{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;opacity:.8}
-.fmt-q{font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.45;font-style:italic;margin-bottom:8px}
-.fmt-freq{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.04em;margin-bottom:8px}
-.fmt-pillar{margin-top:auto;padding-top:8px;border-top:1px solid var(--line2);display:flex;gap:4px;flex-wrap:wrap}
+.fmt-card{background:var(--card);padding:18px 18px 14px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.fmt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.fmt-card.u::before{background:var(--green)}
+.fmt-card.c::before{background:var(--amber)}
+.fmt-card.i::before{background:var(--accent)}
+.fmt-card.uc::before{background:linear-gradient(90deg,var(--green) 50%,var(--amber) 50%)}
+.fmt-card.sp::before{background:var(--line)}
+.fmt-card.u{background:linear-gradient(160deg,rgba(22,163,74,.06) 0%,var(--card) 48%)}
+.fmt-card.c{background:linear-gradient(160deg,rgba(180,83,9,.07) 0%,var(--card) 48%)}
+.fmt-card.i{background:linear-gradient(160deg,rgba(54,19,82,.07) 0%,var(--card) 48%)}
+.fmt-card.sp{background:var(--tint)}
+.fmt-num{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--muted);opacity:.5;letter-spacing:.08em;margin-bottom:6px;padding-top:6px}
+.fmt-name{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:3px;letter-spacing:-.015em}
+.fmt-func{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:11px}
+.fmt-card.u .fmt-func{color:var(--green)}
+.fmt-card.c .fmt-func{color:var(--amber)}
+.fmt-card.i .fmt-func{color:var(--accent)}
+.fmt-card.uc .fmt-func{color:var(--muted)}
+.fmt-card.sp .fmt-func{color:var(--muted)}
+.fmt-q{font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.5;font-style:italic;margin-bottom:10px}
+.fmt-insight{padding:7px 10px;margin-bottom:10px;border-radius:2px;font-family:var(--mono);font-size:9.5px;line-height:1.45;letter-spacing:.01em}
+.fmt-card.u .fmt-insight{background:var(--green-s);color:var(--green);border-left:2px solid var(--green)}
+.fmt-card.c .fmt-insight{background:var(--amber-s);color:var(--amber);border-left:2px solid var(--amber)}
+.fmt-card.i .fmt-insight{background:var(--accent-10);color:var(--accent);border-left:2px solid var(--accent)}
+.fmt-card.uc .fmt-insight{background:var(--tint);color:var(--muted);border-left:2px solid var(--line)}
+.fmt-card.sp .fmt-insight{background:rgba(0,0,0,.03);color:var(--muted);border-left:2px solid var(--line)}
+.fmt-foot{margin-top:auto;padding-top:9px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between;gap:6px}
+.fmt-freq{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.04em}
+.fmt-pillar{display:flex;gap:4px;flex-wrap:wrap}
 .fp-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px}
 .fp-u{color:var(--green);background:var(--green-s)}
 .fp-c{color:var(--amber);background:var(--amber-s)}
@@ -660,53 +681,71 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
     <!-- MIDTERGRID: Seks kernformater -->
     <div class="s4-core">
-      <div class="fmt-card">
+      <div class="fmt-card u">
         <div class="fmt-num">02</div>
         <div class="fmt-name">Morgenbriefet</div>
         <div class="fmt-func">Vanen</div>
         <div class="fmt-q">"Hvad skal jeg forstå, inden arbejdsdagen begynder?"</div>
-        <div class="fmt-freq">Dagligt kl. 06.30</div>
-        <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
+        <div class="fmt-insight">5–7 prioriterede punkter · Tekst og lyd · Kl. 06.30</div>
+        <div class="fmt-foot">
+          <span class="fmt-freq">Dagligt</span>
+          <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
+        </div>
       </div>
-      <div class="fmt-card">
+      <div class="fmt-card u">
         <div class="fmt-num">03</div>
         <div class="fmt-name">Det betyder det</div>
         <div class="fmt-func">Nytten</div>
         <div class="fmt-q">"Hvad betyder det her konkret for min virksomhed?"</div>
-        <div class="fmt-freq">2–3 gange ugentligt</div>
-        <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
+        <div class="fmt-insight">Fast 6-punkt struktur · Ingen konklusion uden konsekvens</div>
+        <div class="fmt-foot">
+          <span class="fmt-freq">2–3 × ugentligt</span>
+          <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
+        </div>
       </div>
-      <div class="fmt-card">
+      <div class="fmt-card c">
         <div class="fmt-num">04</div>
         <div class="fmt-name">Den blinde vinkel</div>
         <div class="fmt-func">Kanten</div>
         <div class="fmt-q">"Hvad overser den dominerende fortælling?"</div>
-        <div class="fmt-freq">Ugentligt</div>
-        <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span></div>
+        <div class="fmt-insight">Challenge-protokol · Navngivet modkilde krævet</div>
+        <div class="fmt-foot">
+          <span class="fmt-freq">Ugentligt</span>
+          <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span></div>
+        </div>
       </div>
-      <div class="fmt-card">
+      <div class="fmt-card i">
         <div class="fmt-num">05</div>
         <div class="fmt-name">Casen der virker</div>
         <div class="fmt-func">Læringen</div>
         <div class="fmt-q">"Hvad kan andre bruge — og hvad kan de ikke kopiere?"</div>
-        <div class="fmt-freq">Ugentligt</div>
-        <div class="fmt-pillar"><span class="fp-tag fp-i">Inspire</span></div>
+        <div class="fmt-insight">Case-protokol · 7 trin · Ingen friktion = ingen publicering</div>
+        <div class="fmt-foot">
+          <span class="fmt-freq">Ugentligt</span>
+          <div class="fmt-pillar"><span class="fp-tag fp-i">Inspire</span></div>
+        </div>
       </div>
-      <div class="fmt-card">
+      <div class="fmt-card uc">
         <div class="fmt-num">06</div>
         <div class="fmt-name">Signalradaren</div>
         <div class="fmt-func">Forspringet</div>
         <div class="fmt-q">"Hvad er ved at ske — og hvem ser det ikke endnu?"</div>
-        <div class="fmt-freq">Ugentligt og situationsbestemt</div>
-        <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span><span class="fp-tag fp-c">Challenge</span></div>
+        <div class="fmt-insight">Signal · Kilde · Styrke · Hvem påvirkes · Hvad overvåges</div>
+        <div class="fmt-foot">
+          <span class="fmt-freq">Ugentligt + situationsbestemt</span>
+          <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span><span class="fp-tag fp-c">Challenge</span></div>
+        </div>
       </div>
-      <div class="fmt-card" style="background:var(--tint)">
+      <div class="fmt-card sp">
         <div class="fmt-num">+3</div>
         <div class="fmt-name">Situationsformater</div>
         <div class="fmt-func">Skalerbare</div>
         <div class="fmt-q">Myten om · Før mødet · Før handlen</div>
-        <div class="fmt-freq">Situationsbestemt fra launch</div>
-        <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span><span class="fp-tag fp-i">Inspire</span></div>
+        <div class="fmt-insight">Aktiveres situationsbestemt fra launch · Alle tre pillars</div>
+        <div class="fmt-foot">
+          <span class="fmt-freq">Situationsbestemt</span>
+          <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span><span class="fp-tag fp-i">Inspire</span></div>
+        </div>
       </div>
     </div>
 
