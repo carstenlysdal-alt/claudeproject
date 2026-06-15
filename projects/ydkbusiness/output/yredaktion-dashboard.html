@@ -188,7 +188,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s4-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px}
 .s4-feat.base .s4-eyebrow{color:rgba(250,250,248,.45)}
 .s4-feat.voice .s4-eyebrow{color:var(--accent);opacity:.7}
-.s4-feat-name{font-family:var(--serif);font-size:21px;font-weight:700;line-height:1.15;letter-spacing:-.015em;margin-bottom:4px}
+.s4-feat-name{font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;line-height:1.15;letter-spacing:-.01em;margin-bottom:4px}
 .s4-feat.base .s4-feat-name{color:#FAFAF8}
 .s4-feat.voice .s4-feat-name{color:var(--ink)}
 .s4-feat-func{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
@@ -200,6 +200,25 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s4-feat-body{font-family:var(--sans);font-size:11.5px;line-height:1.55}
 .s4-feat.base .s4-feat-body{color:rgba(250,250,248,.65)}
 .s4-feat.voice .s4-feat-body{color:var(--muted)}
+.s4-feat-lead {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(250,250,248,.85);
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+.s4-quote {
+  margin: 14px 0;
+  padding-top: 12px;
+  border-top: 1.5px solid var(--accent-30);
+  font-family: var(--serif);
+  font-size: 13.5px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.45;
+}
 .s4-feat-cols{font-family:var(--sans);font-size:11px;line-height:1.55;margin-top:10px}
 .s4-feat.voice .s4-feat-cols{color:var(--ink70)}
 .s4-feat-col-item{display:flex;gap:6px;align-items:flex-start;margin-bottom:4px}
@@ -214,33 +233,16 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s4-feat.voice .s4-feat-freq{color:var(--muted)}
 .s4-never{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);background:var(--red-s);padding:2px 8px;border-radius:3px;display:inline-block}
 .s4-core{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
-.fmt-card{background:var(--card);padding:18px 18px 14px;display:flex;flex-direction:column;position:relative;overflow:hidden}
-.fmt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.fmt-card.u::before{background:var(--green)}
-.fmt-card.c::before{background:var(--amber)}
-.fmt-card.i::before{background:var(--accent)}
-.fmt-card.uc::before{background:linear-gradient(90deg,var(--green) 50%,var(--amber) 50%)}
-.fmt-card.sp::before{background:var(--line)}
-.fmt-card.u{background:linear-gradient(160deg,rgba(22,163,74,.06) 0%,var(--card) 48%)}
-.fmt-card.c{background:linear-gradient(160deg,rgba(180,83,9,.07) 0%,var(--card) 48%)}
-.fmt-card.i{background:linear-gradient(160deg,rgba(54,19,82,.07) 0%,var(--card) 48%)}
-.fmt-card.sp{background:var(--tint)}
+.fmt-card{background:linear-gradient(160deg,var(--sb,transparent) 0%,var(--card) 48%);padding:18px 18px 14px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.fmt-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--sc)}
 .fmt-num{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--muted);opacity:.5;letter-spacing:.08em;margin-bottom:6px;padding-top:6px}
-.fmt-name{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:3px;letter-spacing:-.015em}
-.fmt-func{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:11px}
-.fmt-card.u .fmt-func{color:var(--green)}
-.fmt-card.c .fmt-func{color:var(--amber)}
-.fmt-card.i .fmt-func{color:var(--accent)}
-.fmt-card.uc .fmt-func{color:var(--muted)}
-.fmt-card.sp .fmt-func{color:var(--muted)}
-.fmt-q{font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.5;font-style:italic;margin-bottom:10px}
-.fmt-insight{padding:7px 10px;margin-bottom:10px;border-radius:2px;font-family:var(--mono);font-size:9.5px;line-height:1.45;letter-spacing:.01em}
-.fmt-card.u .fmt-insight{background:var(--green-s);color:var(--green);border-left:2px solid var(--green)}
-.fmt-card.c .fmt-insight{background:var(--amber-s);color:var(--amber);border-left:2px solid var(--amber)}
-.fmt-card.i .fmt-insight{background:var(--accent-10);color:var(--accent);border-left:2px solid var(--accent)}
-.fmt-card.uc .fmt-insight{background:var(--tint);color:var(--muted);border-left:2px solid var(--line)}
-.fmt-card.sp .fmt-insight{background:rgba(0,0,0,.03);color:var(--muted);border-left:2px solid var(--line)}
-.fmt-foot{margin-top:auto;padding-top:9px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between;gap:6px}
+.fmt-name{font-family:var(--serif);font-size:17px;font-weight:600;font-style:italic;color:var(--sc);line-height:1.25;margin-bottom:4px;letter-spacing:-.01em}
+.fmt-func{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--sc);letter-spacing:.12em;text-transform:uppercase;margin-bottom:11px}
+.fmt-q{font-family:var(--serif);font-size:13px;color:var(--muted);line-height:1.5;font-style:italic;margin-bottom:10px}
+.fmt-insight{padding:12px;margin-bottom:10px;border-radius:2px;font-family:var(--serif);font-size:11px;font-style:italic;line-height:1.45;letter-spacing:.01em;background:var(--sb);color:var(--sc);border-left:2px solid var(--sc)}
+.fmt-sources{font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4;margin-top:auto;margin-bottom:10px;opacity:.85}
+.fmt-sources strong{font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--sc);margin-right:4px}
+.fmt-foot{padding-top:9px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between;gap:6px}
 .fmt-freq{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.04em}
 .fmt-pillar{display:flex;gap:4px;flex-wrap:wrap}
 .fp-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px}
@@ -251,8 +253,9 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 /* ── S5 KONKRETE TAKES ── */
 .s5-wrap{height:100%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
 .take-card{background:var(--card);padding:26px 32px;display:flex;flex-direction:column}
-.take-before-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px;opacity:.7}
-.take-before{font-family:var(--sans);font-size:13.5px;color:var(--muted);line-height:1.4;margin-bottom:14px;font-style:italic}
+.take-before-box{padding:12px 14px;background:var(--tint);border-left:2px solid var(--line);border-top:1px solid var(--line2);border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);border-radius:3px;margin-bottom:12px;box-shadow:inset 0 1px 3px rgba(0,0,0,.02)}
+.take-before-lbl{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;opacity:.8}
+.take-before{font-family:var(--mono);font-size:11px;color:var(--ink70);line-height:1.55;font-style:normal}
 .take-arrow{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.12em;margin-bottom:8px;opacity:.6}
 .take-after-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px}
 .take-after{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-.01em}
@@ -260,12 +263,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .take-meta{margin-top:auto;padding-top:12px;border-top:1px solid var(--line2);font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.05em}
 
 /* ── S6 PROTOKOLLER ── */
-.s6-wrap{height:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line)}
-.proto-col{background:var(--card);padding:26px 32px;display:flex;flex-direction:column;overflow:hidden}
+.s6-wrap{height:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.proto-col{background:var(--card);padding:22px 24px;display:flex;flex-direction:column;overflow:hidden}
 .proto-tag{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .proto-tag::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:currentColor}
+.proto-tag.u{color:var(--green)}
 .proto-tag.c{color:var(--amber)}
-.proto-tag.k{color:var(--green)}
+.proto-tag.i{color:#2563EB}
 .proto-tag.a{color:var(--accent)}
 .proto-title{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-.01em;margin-bottom:5px}
 .proto-sub{font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.45;margin-bottom:18px}
@@ -276,9 +280,9 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .proto-no{color:var(--red);opacity:1}
 .proto-t{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.45}
 .proto-divider{margin:14px 0;height:1px;background:var(--line)}
-.proto-rule{padding:11px 14px;background:var(--tint);border-left:3px solid var(--accent);margin-top:auto}
-.proto-rule p{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.45;font-style:italic}
-.proto-rule strong{font-weight:700;color:var(--ink);font-style:normal}
+.proto-rule{margin-top:auto;padding-top:14px;border-top:1px solid var(--line2)}
+.proto-rule p{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.45}
+.proto-rule strong{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-right:4px}
 
 /* ── S7 AI OG REDAKTION ── */
 .s7-wrap{display:grid;grid-template-columns:1fr 1fr;height:100%}
@@ -730,9 +734,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <div class="s4-feat base">
       <div class="s4-eyebrow">01 · Basislag</div>
       <div class="s4-feat-name">Brancheoverblikket</div>
+      <div class="s4-feat-lead">Det er ikke et fælles opslagstavleprodukt.</div>
       <div class="s4-feat-func">Orienteringen</div>
       <div class="s4-feat-q">"Hvad er sket i min branche siden sidst?"</div>
-      <div class="s4-feat-body">Ikke alt behøver en vinkel. Noget behøver bare at blive fundet, sorteret og leveret, inden du åbner din første mail. Brancheoverblikket er personaliseret efter branche, region, emner og adfærd — ikke et fælles opslagstavleprodukt.</div>
+      <div class="s4-feat-body">Ikke alt behøver en vinkel. Noget behøver bare at blive fundet, sorteret og leveret, inden du åbner din første mail. Brancheoverblikket er personaliseret efter branche, region, emner og adfærd.</div>
+      <div class="s4-feat-sources" style="margin-top: 14px; font-family: var(--sans); font-size: 11px; color: rgba(250,250,248,.7); line-height: 1.4;">
+        <strong style="font-family: var(--mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: rgba(250,250,248,.5); margin-right: 4px;">Kilder:</strong> CVR, Erhvervsstyrelsen, brancheforeninger og lokale erhvervsmedier.
+      </div>
       <div class="s4-feat-foot">
         <div class="s4-feat-pillars"><span class="fp-tag fp-u" style="background:rgba(22,163,74,.2)">Understand</span></div>
         <div class="s4-feat-freq">Dagligt / løbende</div>
@@ -741,67 +749,73 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
     <!-- MIDTERGRID: Seks kernformater -->
     <div class="s4-core">
-      <div class="fmt-card u">
+      <div class="fmt-card" style="--sc:#A75D46;--sb:rgba(167,93,70,.04)">
         <div class="fmt-num">02</div>
         <div class="fmt-name">Morgenbriefet</div>
         <div class="fmt-func">Vanen</div>
         <div class="fmt-q">"Hvad skal jeg forstå, inden arbejdsdagen begynder?"</div>
-        <div class="fmt-insight">5–7 punkter · Tekst og lyd · Kl. 06.30 — det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel</div>
+        <div class="fmt-insight">Leveres kl. 06.30 i 5–7 punkter på tekst og lyd — det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel.</div>
+        <div class="fmt-sources"><strong>Kilder:</strong> Ritzau, Børsen, Finans, Danmarks Statistik (DST) og globale erhvervssignaler.</div>
         <div class="fmt-foot">
           <span class="fmt-freq">Dagligt</span>
           <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
         </div>
       </div>
-      <div class="fmt-card u">
+      <div class="fmt-card" style="--sc:#2D423A;--sb:rgba(45,66,58,.04)">
         <div class="fmt-num">03</div>
         <div class="fmt-name">Det betyder det</div>
         <div class="fmt-func">Nytten</div>
         <div class="fmt-q">"Hvad betyder det her konkret for min virksomhed?"</div>
-        <div class="fmt-insight">Fast 6-punkt struktur · Ingen konklusion uden konsekvens</div>
+        <div class="fmt-insight">Bygget over en fast 6-punkt struktur, hvor der aldrig drages en konklusion uden en klar konsekvens for din virksomhed.</div>
+        <div class="fmt-sources"><strong>Kilder:</strong> Folketingets ODA (lovforslag), EU-direktiver, Erhvervsstyrelsen og høringssvar.</div>
         <div class="fmt-foot">
           <span class="fmt-freq">2–3 × ugentligt</span>
           <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
         </div>
       </div>
-      <div class="fmt-card c">
+      <div class="fmt-card" style="--sc:#2F3E4C;--sb:rgba(47,62,76,.04)">
         <div class="fmt-num">04</div>
         <div class="fmt-name">Den blinde vinkel</div>
         <div class="fmt-func">Kanten</div>
         <div class="fmt-q">"Hvad overser den dominerende fortælling?"</div>
-        <div class="fmt-insight">Ikke et temperament — en disciplin. Challenge-protokol · Navngivet modkilde krævet</div>
+        <div class="fmt-insight">Ikke et temperament, men en redaktionel disciplin. Følger vores challenge-protokol og kræver altid en navngivet modkilde.</div>
+        <div class="fmt-sources"><strong>Kilder:</strong> Tænketanke (CEPOS, Kraka), fagforeninger (3F, DI), partikilder og akademisk forskning.</div>
         <div class="fmt-foot">
           <span class="fmt-freq">Ugentligt</span>
           <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span></div>
         </div>
       </div>
-      <div class="fmt-card i">
+      <div class="fmt-card" style="--sc:#4A374E;--sb:rgba(74,55,78,.04)">
         <div class="fmt-num">05</div>
         <div class="fmt-name">Casen der virker</div>
         <div class="fmt-func">Læringen</div>
         <div class="fmt-q">"Hvad kan andre bruge — og hvad kan de ikke kopiere?"</div>
         <div class="fmt-insight">En case publiceres ikke, medmindre den viser, hvad der gik galt, og hvad det kostede. En succeshistorie uden modstand er en pressemeddelelse.</div>
+        <div class="fmt-sources"><strong>Kilder:</strong> Egne dybdegående SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.</div>
         <div class="fmt-foot">
           <span class="fmt-freq">Ugentligt</span>
           <div class="fmt-pillar"><span class="fp-tag fp-i">Inspire</span></div>
         </div>
       </div>
-      <div class="fmt-card uc">
+      <div class="fmt-card" style="--sc:#9E8059;--sb:rgba(158,128,89,.04)">
         <div class="fmt-num">06</div>
         <div class="fmt-name">Signalradaren</div>
         <div class="fmt-func">Forspringet</div>
         <div class="fmt-q">"Hvad er ved at ske — og hvem ser det ikke endnu?"</div>
-        <div class="fmt-insight">For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj. Signal · Kilde · Styrke · Hvem påvirkes</div>
+        <div class="fmt-insight">For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj, ved at kortlægge signalets kilde, styrke og modtagere.</div>
+        <div class="fmt-sources"><strong>Kilder:</strong> Eurostat, OECD, World Bank (B-READY), patentdatabaser og Supertrends-analyser.</div>
         <div class="fmt-foot">
           <span class="fmt-freq">Ugentligt + situationsbestemt</span>
           <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span><span class="fp-tag fp-c">Challenge</span></div>
         </div>
       </div>
-      <div class="fmt-card sp">
+      <div class="fmt-card" style="--sc:#7C7972;--sb:rgba(124,121,114,.04)">
         <div class="fmt-num">+3</div>
         <div class="fmt-name">Situationsformater</div>
         <div class="fmt-func">Skalerbare</div>
         <div class="fmt-q">Myten om · Før mødet · Før handlen</div>
-        <div class="fmt-insight">Når situationen kræver det, skifter journalistikken gear. Aktiveres situationsbestemt fra launch</div>
+        <div class="fmt-insight">Når situationen kræver det, skifter journalistikken gear. Aktiveres situationsbestemt fra launch.</div>
+        <div class="fmt-sources"><strong>Kilder:</strong> Udbudsdatabaser (TED), konkursstatistikker, erhvervstilladelser og krise-skabeloner.</div>
         <div class="fmt-foot">
           <span class="fmt-freq">Situationsbestemt</span>
           <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span><span class="fp-tag fp-i">Inspire</span></div>
@@ -815,11 +829,18 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="s4-feat-name">Klummerne</div>
       <div class="s4-feat-func">Det AI ikke kan</div>
       <div class="s4-feat-q">"Den personlige vurdering, erfaringen og ansvaret — med navn under."</div>
-      <div class="s4-feat-body">Et menneske med navn under. Tre faste skribenter med ansvar for vinklen — ikke for at spejle redaktionen, men for at udfordre den. AI kan opsummere. Den kan ikke have noget på spil. Det er det format, du husker. Og grunden til, at du kommer tilbage.</div>
+      <div class="s4-feat-body">
+        Et menneske med navn under. Tre faste skribenter med ansvar for vinklen — ikke for at spejle redaktionen, men for at udfordre den.
+        <div class="s4-quote">"AI kan opsummere. Den kan ikke have noget på spil."</div>
+        Det er det format, du husker. Og grunden til, at du kommer tilbage.
+      </div>
       <div class="s4-feat-cols">
         <div class="s4-feat-col-item">Mandag morgen — Understand</div>
         <div class="s4-feat-col-item">Den blinde vinkel — Challenge</div>
         <div class="s4-feat-col-item">Hvad virker? — Inspire</div>
+      </div>
+      <div class="s4-feat-sources" style="margin-top: 14px; font-family: var(--sans); font-size: 11px; color: var(--muted); line-height: 1.4;">
+        <strong style="font-family: var(--mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); margin-right: 4px;">Kilder:</strong> Eksterne ekspertskribenter, SMV-profiler, økonomer og egne baggrundsanalyser.
       </div>
       <div class="s4-feat-foot">
         <div class="s4-feat-pillars">
@@ -859,8 +880,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <div class="sec-body">
   <div class="s5-wrap">
     <div class="take-card">
-      <div class="take-before-lbl">Andre skriver</div>
-      <div class="take-before">EU har vedtaget nye regler om emballage og bæredygtig indpakning.</div>
+      <div class="take-before-box">
+        <div class="take-before-lbl">Andre skriver</div>
+        <div class="take-before">EU har vedtaget nye regler om emballage og bæredygtig indpakning.</div>
+      </div>
       <div class="take-arrow">Y Business →</div>
       <div class="take-ybiz">
       <div class="take-after-lbl">Y Business skriver</div>
@@ -869,8 +892,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="take-meta">Format: Det betyder det · Segment: SMV-ejere · Læserbehov:Understand</div>
     </div>
     <div class="take-card">
-      <div class="take-before-lbl">Andre skriver</div>
-      <div class="take-before">Dansk startup rejser 45 mio. kr. i ny finansieringsrunde.</div>
+      <div class="take-before-box">
+        <div class="take-before-lbl">Andre skriver</div>
+        <div class="take-before">Dansk startup rejser 45 mio. kr. i ny finansieringsrunde.</div>
+      </div>
       <div class="take-arrow">Y Business →</div>
       <div class="take-ybiz">
       <div class="take-after-lbl">Y Business skriver</div>
@@ -879,8 +904,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="take-meta">Format: Casen der virker · Segment: Iværksættere · Læserbehov:Challenge + Inspire</div>
     </div>
     <div class="take-card">
-      <div class="take-before-lbl">Andre skriver</div>
-      <div class="take-before">Virksomheder investerer massivt i AI og høster produktivitetsgevinster.</div>
+      <div class="take-before-box">
+        <div class="take-before-lbl">Andre skriver</div>
+        <div class="take-before">Virksomheder investerer massivt i AI og høster produktivitetsgevinster.</div>
+      </div>
       <div class="take-arrow">Y Business →</div>
       <div class="take-ybiz">
       <div class="take-after-lbl">Y Business skriver</div>
@@ -889,8 +916,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="take-meta">Format: Den blinde vinkel · Segment: C-level · Læserbehov:Challenge</div>
     </div>
     <div class="take-card">
-      <div class="take-before-lbl">Andre skriver</div>
-      <div class="take-before">USA indfører nye toldsatser med mulige konsekvenser for dansk eksport.</div>
+      <div class="take-before-box">
+        <div class="take-before-lbl">Andre skriver</div>
+        <div class="take-before">USA indfører nye toldsatser med mulige konsekvenser for dansk eksport.</div>
+      </div>
       <div class="take-arrow">Y Business →</div>
       <div class="take-ybiz">
       <div class="take-after-lbl">Y Business skriver</div>
@@ -924,10 +953,27 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 </div>
 <div class="sec-body">
   <div class="s6-wrap">
+    <!-- COLUMN 1: Understand -->
+    <div class="proto-col">
+      <div class="proto-tag u">Understand-protokol</div>
+      <div class="proto-title">Konsekvens og relevans</div>
+      <p class="proto-sub">Understand er ikke passiv registrering. Hver nyhed skal besvare læserens 'hvad så?' med kolde fakta og operationel nytte.</p>
+      <div class="proto-list">
+        <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvilken konkret begivenhed eller data er anledningen?</div></div>
+        <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad betyder dette direkte for en dansk virksomhed (SMV)?</div></div>
+        <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Er den operationelle konsekvens beskrevet i første afsnit?</div></div>
+        <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Har vi sat tal på (økonomi, tid, ressourcer)?</div></div>
+        <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Er sproget renset for passiv registrering og unødigt jargon?</div></div>
+        <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Hvad er læserens næste naturlige handling?</div></div>
+      </div>
+      <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Understand uden konsekvens. Vi rapporterer ikke blot begivenheder — vi forklarer deres eftervirkninger.</p></div>
+    </div>
+
+    <!-- COLUMN 2: Challenge -->
     <div class="proto-col">
       <div class="proto-tag c">Challenge-protokol</div>
       <div class="proto-title">Dokumenteret modfortælling</div>
-      <p class="proto-sub">Seks spørgsmål skal besvares, inden en Challenge-historie publiceres. Kanten er ikke attitude — det er metode.</p>
+      <p class="proto-sub">Seks spørgsmål skal besvares, inden en Challenge-historie publiceres. Kanten er ikke en holdning — det er en efterprøvet metode.</p>
       <div class="proto-list">
         <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvilken dominerende fortælling udfordrer vi?</div></div>
         <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad mangler konkret og dokumenteret?</div></div>
@@ -938,21 +984,25 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       </div>
       <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Challenge uden dokumentation. En skarp vinkel uden belæg er bare en høj lyd.</p></div>
     </div>
+
+    <!-- COLUMN 3: Inspire -->
     <div class="proto-col">
-      <div class="proto-tag k">Case-protokol</div>
-      <div class="proto-title">Friktion som redaktionelt krav</div>
-      <p class="proto-sub">Inspire kræver friktion. Den stærke case er ikke "sådan fik de succes" — den er, hvad der gik galt, hvad der virkede, og hvad andre faktisk kan kopiere.</p>
+      <div class="proto-tag i">Inspire-protokol</div>
+      <div class="proto-title">Friktion og læring</div>
+      <p class="proto-sub">Inspire kræver friktion. Den stærke case er ikke en succeshistorie, men en ærlig gennemgang af fejl, løsninger og kopierbare resultater.</p>
       <div class="proto-list">
-        <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvad var det konkrete problem?</div></div>
-        <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad gjorde virksomheden — præcist?</div></div>
-        <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Hvad gik galt undervejs?</div></div>
-        <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Hvad virkede — og hvad kostede det?</div></div>
-        <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Hvad er begrænsningen, andre skal kende?</div></div>
-        <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Hvad er den kopierbare læring?</div></div>
-        <div class="proto-item"><div class="proto-n">7</div><div class="proto-t">Hvad er casevirksomhedens interesse i historien?</div></div>
+        <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvad var det konkrete, definerede problem?</div></div>
+        <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad gjorde virksomheden — præcist og operationelt?</div></div>
+        <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Hvilke fejl og modstand stødte de på undervejs?</div></div>
+        <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Hvad virkede, hvad fejlede, og hvad kostede det?</div></div>
+        <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Hvilke rammebetingelser begrænser succesen for andre?</div></div>
+        <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Hvad er den direkte, kopierbare læring for læseren?</div></div>
+        <div class="proto-item"><div class="proto-n">7</div><div class="proto-t">Hvad er casevirksomhedens egen kommercielle interesse i historien?</div></div>
       </div>
-      <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Inspire uden friktion. PR-prosa publiceres ikke — den kan allerede læses gratis andre steder.</p></div>
+      <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Inspire uden friktion. En succeshistorie uden modstand er en pressemeddelelse — og dem bringer vi ikke.</p></div>
     </div>
+
+    <!-- COLUMN 4: AI -->
     <div class="proto-col">
       <div class="proto-tag a">AI-protokol</div>
       <div class="proto-title">Skala med ansvar</div>
