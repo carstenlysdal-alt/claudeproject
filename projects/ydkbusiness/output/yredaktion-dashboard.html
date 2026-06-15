@@ -164,19 +164,21 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s3-intro{padding:14px 52px;border-bottom:1px solid var(--line);background:var(--card);flex-shrink:0}
 .s3-intro p{font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:1.5}
 .s3-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
-.seg-card{background:var(--card);padding:20px 24px;display:flex;flex-direction:column;transition:background .15s}
-.seg-card:hover{background:var(--tint)}
-.seg-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.01em;margin-bottom:3px}
-.seg-scope{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.05em;margin-bottom:10px}
-.seg-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px}
-.seg-lbl.accent{color:var(--accent)}
-.seg-need{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.4;font-style:italic;margin-bottom:10px}
-.seg-promise{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.4;margin-bottom:auto}
-.seg-pillars{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);display:flex;gap:5px}
-.sp-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px}
-.sp-u{color:var(--green);background:var(--green-s)}
-.sp-c{color:var(--amber);background:var(--amber-s)}
-.sp-i{color:var(--accent);background:var(--accent-10)}
+.seg-card{background:var(--sb,var(--card));padding:22px 26px 18px;display:flex;flex-direction:column;transition:filter .2s}
+.seg-card:hover{filter:brightness(.95)}
+.seg-num{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--sc,var(--muted));opacity:.45;letter-spacing:.18em;margin-bottom:10px}
+.seg-name{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--sc,var(--ink));line-height:.95;letter-spacing:-.03em;margin-bottom:5px}
+.seg-scope{font-family:var(--mono);font-size:9px;color:var(--sc,var(--muted));opacity:.5;letter-spacing:.06em;margin-bottom:14px}
+.seg-rule{height:1px;background:var(--sc,var(--line));opacity:.15;margin-bottom:12px;flex-shrink:0}
+.seg-lbl{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--sc,var(--muted));opacity:.45;letter-spacing:.18em;text-transform:uppercase;margin-bottom:3px}
+.seg-lbl.accent{opacity:.7}
+.seg-need{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4;font-style:italic;margin-bottom:10px}
+.seg-promise{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.45;margin-bottom:auto}
+.seg-pillars{margin-top:10px;padding-top:8px;border-top:1px solid rgba(0,0,0,.08);display:flex;gap:5px}
+.sp-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;color:var(--sc,var(--accent));background:rgba(0,0,0,.06)}
+.sp-u{color:var(--sc,var(--green))}
+.sp-c{color:var(--sc,var(--amber))}
+.sp-i{color:var(--sc,var(--accent))}
 
 /* ── S4 FORMATER — bookend layout ── */
 .s4-layout{display:grid;grid-template-columns:228px 1fr 228px;height:100%;gap:1px;background:var(--line)}
@@ -630,54 +632,66 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   <div class="s3-wrap">
     <div class="s3-intro"><p>Seks segmenter med hvert sit redaktionelle løfte. Hvem du er afgør, hvad vi skriver til dig — og i hvilken rækkefølge.</p></div>
     <div class="s3-grid">
-      <div class="seg-card">
+      <div class="seg-card" style="--sc:#7C3AED;--sb:rgba(124,58,237,.07)">
+        <div class="seg-num">01</div>
         <div class="seg-name">SMV-ejere</div>
         <div class="seg-scope">5–50 ansatte</div>
+        <div class="seg-rule"></div>
         <div class="seg-lbl">Primært behov</div>
         <div class="seg-need">Hvad rammer min drift? Hvad kræver den nye regulering? Hvad sker der i min branche og region?</div>
         <div class="seg-lbl accent">Y Business-løfte</div>
         <div class="seg-promise">Vi oversætter regulering, udbud og markedsforhold til drift — ikke som interesseorganisationens bulletin, men som journalistik med konkret konsekvens.</div>
         <div class="seg-pillars"><span class="sp-tag sp-u">Understand</span><span class="sp-tag sp-i">Inspire</span></div>
       </div>
-      <div class="seg-card">
+      <div class="seg-card" style="--sc:#16A34A;--sb:rgba(22,163,74,.07)">
+        <div class="seg-num">02</div>
         <div class="seg-name">C-level</div>
-        <div class="seg-scope">Mellemstore virksomheder, 50–250 ansatte</div>
+        <div class="seg-scope">50–250 ansatte</div>
+        <div class="seg-rule"></div>
         <div class="seg-lbl">Primært behov</div>
         <div class="seg-need">Hvad ændrer beslutningsrummet? Hvad er den velunderbyggede vinkel, der bryder med konsensus?</div>
         <div class="seg-lbl accent">Y Business-løfte</div>
         <div class="seg-promise">Vi leverer vinklen, der ikke stod i Børsen — og grunden til, at konsensus undertiden er den dyreste antagelse, en leder med 140 ansatte kan gøre sig.</div>
         <div class="seg-pillars"><span class="sp-tag sp-c">Challenge</span><span class="sp-tag sp-u">Understand</span></div>
       </div>
-      <div class="seg-card">
-        <div class="seg-name">Iværksættere</div>
+      <div class="seg-card" style="--sc:#D97706;--sb:rgba(217,119,6,.07)">
+        <div class="seg-num">03</div>
+        <div class="seg-name">Iværk&shy;sættere</div>
         <div class="seg-scope">Under 5 år</div>
+        <div class="seg-rule"></div>
         <div class="seg-lbl">Primært behov</div>
         <div class="seg-need">Hvad er realiteten bag hypen? Hvem får kapital og på hvilke vilkår? Hvad er de regulatoriske fælder?</div>
         <div class="seg-lbl accent">Y Business-løfte</div>
         <div class="seg-promise">Vi skiller founderfortællingen fra virkeligheden. Kun 18 procent af founders mener, det er let at rejse kapital — vi fortæller om resten og om, hvad der faktisk virkede.</div>
         <div class="seg-pillars"><span class="sp-tag sp-c">Challenge</span><span class="sp-tag sp-i">Inspire</span></div>
       </div>
-      <div class="seg-card">
-        <div class="seg-name">Kommunikations- og marketingfolk</div>
+      <div class="seg-card" style="--sc:#2563EB;--sb:rgba(37,99,235,.07)">
+        <div class="seg-num">04</div>
+        <div class="seg-name">Kom&shy;munika&shy;tions&shy;folk</div>
         <div class="seg-scope">Fagligt defineret</div>
+        <div class="seg-rule"></div>
         <div class="seg-lbl">Primært behov</div>
         <div class="seg-need">Hvad virker — og hvad viser data? Hvad skete der time for time i den krise, alle taler om?</div>
         <div class="seg-lbl accent">Y Business-løfte</div>
         <div class="seg-promise">Vi obducerer kriserne og AI-skiftet — ikke som trendstof, men som håndværksjournalistik med beslutning, måling, fejl og resultat.</div>
         <div class="seg-pillars"><span class="sp-tag sp-i">Inspire</span><span class="sp-tag sp-u">Understand</span></div>
       </div>
-      <div class="seg-card">
-        <div class="seg-name">Investorer og rådgivere</div>
-        <div class="seg-scope">M&amp;A, VC, revisor, advokat, bureau</div>
+      <div class="seg-card" style="--sc:#DB2777;--sb:rgba(219,39,119,.07)">
+        <div class="seg-num">05</div>
+        <div class="seg-name">Investorer &amp; rådgivere</div>
+        <div class="seg-scope">M&amp;A · VC · revisor · advokat</div>
+        <div class="seg-rule"></div>
         <div class="seg-lbl">Primært behov</div>
         <div class="seg-need">Hvad ser markedet ikke endnu? Hvad peger på bevægelse, inden det bliver en pressemeddelelse?</div>
         <div class="seg-lbl accent">Y Business-løfte</div>
         <div class="seg-promise">Vi leverer signalet, inden markedet kalder det en trend — lederskifter, reguleringsvindue, sektorrotation og dealflow, før alle andre har det.</div>
         <div class="seg-pillars"><span class="sp-tag sp-c">Challenge</span><span class="sp-tag sp-u">Understand</span></div>
       </div>
-      <div class="seg-card">
-        <div class="seg-name">Medarbejdere i større virksomheder</div>
+      <div class="seg-card" style="--sc:#0D9488;--sb:rgba(13,148,136,.07)">
+        <div class="seg-num">06</div>
+        <div class="seg-name">Med&shy;arbejdere</div>
         <div class="seg-scope">250+ ansatte</div>
+        <div class="seg-rule"></div>
         <div class="seg-lbl">Primært behov</div>
         <div class="seg-need">Hvad sker der i min branche — og hvad betyder det for mit arbejde, min rolle og mine prioriteter?</div>
         <div class="seg-lbl accent">Y Business-løfte</div>
