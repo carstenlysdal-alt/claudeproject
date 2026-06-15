@@ -39,7 +39,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .bg-grid{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(54,19,82,.04) 1px,transparent 1px);background-size:36px 36px}
 
 /* HUB */
-.hub-body{position:absolute;top:64px;left:0;right:0;bottom:0;display:flex;flex-direction:column}
+.hub-body{position:absolute;top:64px;left:0;right:0;bottom:0}
 .hub-intro{padding:28px 56px 22px;background:var(--card);border-bottom:1px solid var(--line);flex-shrink:0}
 .hub-eyebrow{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
 .hub-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
@@ -59,7 +59,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .tile-pt::before{content:'–';color:var(--accent);flex-shrink:0;opacity:.6}
 .tile-cta{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;display:flex;align-items:center;gap:6px;opacity:.7}
 .tile-cta::after{content:'→';font-size:11px}
-.hub-stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--tint);border-top:2px solid var(--line);height:64px;flex-shrink:0}
+.hub-stats{position:absolute;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(4,1fr);background:var(--tint);border-top:2px solid var(--line);height:64px}
 .stat-cell{display:flex;flex-direction:column;justify-content:center;padding:0 40px;border-right:1px solid var(--line);gap:2px}
 .stat-cell:last-child{border-right:none}
 .stat-v{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-.01em}
@@ -111,16 +111,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s1-idé-close{margin-top:12px;padding-top:10px;border-top:1px solid rgba(250,250,248,.12);font-family:var(--serif);font-size:14px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.3}
 
 /* ── HUB RADIAL ── */
-.hub-canvas{position:absolute;inset:0;overflow:hidden}
-.spokes-svg{position:absolute;top:0;left:0;width:1440px;height:836px;pointer-events:none}
-.hub-disc{position:absolute;left:720px;top:418px;transform:translate(-50%,-50%);width:196px;height:196px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;box-shadow:0 4px 40px rgba(54,19,82,.12),0 0 0 10px rgba(54,19,82,.04);z-index:3}
-.hub-disc-y{font-family:var(--serif);font-size:40px;font-weight:700;color:var(--accent);font-style:italic;line-height:1;margin-bottom:5px}
-.hub-disc-tag{font-family:var(--sans);font-size:9px;color:var(--muted);line-height:1.5;margin-bottom:9px;letter-spacing:.01em}
-.hub-disc-meta{font-family:var(--mono);font-size:8px;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:3px}
-.hub-disc-meta strong{color:var(--accent);font-weight:700}
-.hd-dot{opacity:.35}
-.hub-disc-trust{font-family:var(--mono);font-size:7.5px;color:var(--muted);opacity:.65;letter-spacing:.03em}
-.hub-disc-trust strong{color:var(--accent);font-weight:700}
+.hub-canvas{position:absolute;top:0;left:0;right:0;bottom:64px;overflow:hidden}
+.spokes-svg{position:absolute;top:0;left:0;width:1440px;height:772px;pointer-events:none}
+.hub-disc{position:absolute;left:720px;top:386px;transform:translate(-50%,-50%);width:164px;height:164px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;box-shadow:0 4px 40px rgba(54,19,82,.12),0 0 0 10px rgba(54,19,82,.04);z-index:3}
+.hub-rubrik{position:absolute;left:50%;top:18px;transform:translateX(-50%);text-align:center;z-index:4;pointer-events:none}
+.hub-disc-y{font-family:var(--serif);font-size:44px;font-weight:700;color:var(--accent);font-style:italic;line-height:1;margin-bottom:2px}
+.hub-disc-sub{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
 .hub-node{position:absolute;width:152px;transform:translate(-50%,-50%);background:var(--card);border-top:3px solid var(--nc);cursor:pointer;padding:11px 13px 10px;transition:box-shadow .22s ease,transform .15s cubic-bezier(.2,0,0,1);z-index:2}
 .hub-node::after{content:'';position:absolute;inset:0;background:var(--nc);opacity:.04;pointer-events:none;transition:opacity .2s}
 .hub-node:hover{transform:translate(-50%,-50%) scale(1.09);box-shadow:0 10px 36px var(--ns),0 2px 8px rgba(0,0,0,.05)}
@@ -338,31 +334,31 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   <div class="hub-canvas">
 
     <!-- SVG: orbitring + farvede eger -->
-    <svg class="spokes-svg" xmlns="http://www.w3.org/2000/svg" width="1440" height="836" viewBox="0 0 1440 836">
-      <circle cx="720" cy="418" r="270" stroke="#E4E2DD" stroke-width="1" fill="none"/>
-      <line x1="720" y1="418" x2="720"  y2="148"  stroke="#7C3AED" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
-      <line x1="720" y1="418" x2="931"  y2="250"  stroke="#16A34A" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
-      <line x1="720" y1="418" x2="983"  y2="478"  stroke="#D97706" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
-      <line x1="720" y1="418" x2="837"  y2="661"  stroke="#2563EB" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
-      <line x1="720" y1="418" x2="603"  y2="661"  stroke="#DB2777" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
-      <line x1="720" y1="418" x2="457"  y2="478"  stroke="#0D9488" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
-      <line x1="720" y1="418" x2="509"  y2="250"  stroke="#C43A49" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <svg class="spokes-svg" xmlns="http://www.w3.org/2000/svg" width="1440" height="772" viewBox="0 0 1440 772">
+      <circle cx="720" cy="386" r="270" stroke="#E4E2DD" stroke-width="1" fill="none"/>
+      <line x1="720" y1="386" x2="720"  y2="116"  stroke="#7C3AED" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <line x1="720" y1="386" x2="931"  y2="218"  stroke="#16A34A" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <line x1="720" y1="386" x2="983"  y2="446"  stroke="#D97706" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <line x1="720" y1="386" x2="837"  y2="629"  stroke="#2563EB" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <line x1="720" y1="386" x2="603"  y2="629"  stroke="#DB2777" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <line x1="720" y1="386" x2="457"  y2="446"  stroke="#0D9488" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <line x1="720" y1="386" x2="509"  y2="218"  stroke="#C43A49" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 5"/>
     </svg>
 
-    <!-- Centralt disc -->
+    <!-- Rubrik over cirklen -->
+    <div class="hub-rubrik">
+      <div class="hub-eyebrow">Redaktionel metode</div>
+      <h1 class="hub-h1">Erhvervsjournalistik for dem, der ikke har <em>tid til at fare vild</em></h1>
+    </div>
+
+    <!-- Centralt disc — kun Y Business som anker -->
     <div class="hub-disc">
       <div class="hub-disc-y">Y</div>
-      <p class="hub-disc-tag">Erhvervsjournalistik for dem,<br>der ikke har tid til at fare vild</p>
-      <div class="hub-disc-meta">
-        <span><strong>8</strong> formater</span>
-        <span class="hd-dot">·</span>
-        <span><strong>3</strong> læserbehov</span>
-      </div>
-      <div class="hub-disc-trust"><strong>62 %</strong> foretrækker menneskeligt ophav</div>
+      <div class="hub-disc-sub">Business</div>
     </div>
 
     <!-- 01 — top -->
-    <div class="hub-node" data-target="s1" style="left:720px;top:148px;--nc:#7C3AED;--ns:rgba(124,58,237,.18)">
+    <div class="hub-node" data-target="s1" style="left:720px;top:116px;--nc:#7C3AED;--ns:rgba(124,58,237,.18)">
       <div class="node-num">01</div>
       <div class="node-h">Problemet og vores svar</div>
       <div class="node-pts">
@@ -374,7 +370,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     </div>
 
     <!-- 02 — øverst til højre -->
-    <div class="hub-node" data-target="s2" style="left:931px;top:250px;--nc:#16A34A;--ns:rgba(22,163,74,.18)">
+    <div class="hub-node" data-target="s2" style="left:931px;top:218px;--nc:#16A34A;--ns:rgba(22,163,74,.18)">
       <div class="node-num">02</div>
       <div class="node-h">Tre læserbehov — og vores metode</div>
       <div class="node-pts">
@@ -386,7 +382,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     </div>
 
     <!-- 03 — højre -->
-    <div class="hub-node" data-target="s3" style="left:983px;top:478px;--nc:#D97706;--ns:rgba(217,119,6,.18)">
+    <div class="hub-node" data-target="s3" style="left:983px;top:446px;--nc:#D97706;--ns:rgba(217,119,6,.18)">
       <div class="node-num">03</div>
       <div class="node-h">Seks segmenter</div>
       <div class="node-pts">
@@ -398,7 +394,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     </div>
 
     <!-- 04 — nederst til højre -->
-    <div class="hub-node" data-target="s4" style="left:837px;top:661px;--nc:#2563EB;--ns:rgba(37,99,235,.18)">
+    <div class="hub-node" data-target="s4" style="left:837px;top:629px;--nc:#2563EB;--ns:rgba(37,99,235,.18)">
       <div class="node-num">04</div>
       <div class="node-h">Otte formater</div>
       <div class="node-pts">
@@ -410,7 +406,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     </div>
 
     <!-- 05 — nederst til venstre -->
-    <div class="hub-node" data-target="s5" style="left:603px;top:661px;--nc:#DB2777;--ns:rgba(219,39,119,.18)">
+    <div class="hub-node" data-target="s5" style="left:603px;top:629px;--nc:#DB2777;--ns:rgba(219,39,119,.18)">
       <div class="node-num">05</div>
       <div class="node-h">Sådan lyder Y Business</div>
       <div class="node-pts">
@@ -422,7 +418,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     </div>
 
     <!-- 06 — venstre -->
-    <div class="hub-node" data-target="s6" style="left:457px;top:478px;--nc:#0D9488;--ns:rgba(13,148,136,.18)">
+    <div class="hub-node" data-target="s6" style="left:457px;top:446px;--nc:#0D9488;--ns:rgba(13,148,136,.18)">
       <div class="node-num">06</div>
       <div class="node-h">Protokollerne</div>
       <div class="node-pts">
@@ -434,7 +430,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     </div>
 
     <!-- 07 — øverst til venstre -->
-    <div class="hub-node" data-target="s7" style="left:509px;top:250px;--nc:#C43A49;--ns:rgba(196,58,73,.18)">
+    <div class="hub-node" data-target="s7" style="left:509px;top:218px;--nc:#C43A49;--ns:rgba(196,58,73,.18)">
       <div class="node-num">07</div>
       <div class="node-h">AI og redaktion</div>
       <div class="node-pts">
@@ -445,6 +441,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="node-cta">Åbn</div>
     </div>
 
+  </div>
+
+  <!-- Statsbar i bunden -->
+  <div class="hub-stats">
+    <div class="stat-cell"><div class="stat-v">8</div><div class="stat-l">Redaktionelle formater</div></div>
+    <div class="stat-cell"><div class="stat-v">6</div><div class="stat-l">Læsersegmenter</div></div>
+    <div class="stat-cell"><div class="stat-v">3</div><div class="stat-l">Læserbehov</div></div>
+    <div class="stat-cell"><div class="stat-v">62 %</div><div class="stat-l">Foretrækker menneskeligt ophav</div></div>
   </div>
 </div>
 </div>
