@@ -40,19 +40,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
 /* HUB */
 .hub-body{position:absolute;top:64px;left:0;right:0;bottom:0}
-/* HUB LEFT PANEL */
-.hub-left{position:absolute;left:0;top:0;bottom:64px;width:368px;background:linear-gradient(to right,var(--paper) 68%,transparent);z-index:4;padding:44px 52px 36px 52px;display:flex;flex-direction:column;pointer-events:auto}
-.hub-left-eye{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.22em;text-transform:uppercase;margin-bottom:20px;opacity:.55;display:flex;align-items:center;gap:10px}
-.hub-left-eye::before{content:'';display:block;width:18px;height:1px;background:var(--accent);opacity:.7}
-.hub-left-vp{font-family:var(--serif);font-size:44px;font-weight:700;color:var(--ink);line-height:.93;letter-spacing:-.025em;margin-bottom:14px;font-style:italic}
-.hub-left-sub{font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:24px;max-width:240px}
-.hub-left-rule{height:1px;background:var(--line);margin-bottom:22px;flex-shrink:0;width:52%}
-.hub-left-stat{margin-bottom:16px}
-.hub-left-stat-num{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-.02em;margin-bottom:3px}
-.hub-left-stat-txt{font-family:var(--sans);font-size:10.5px;color:var(--muted);line-height:1.45;max-width:220px}
-.hub-left-promise{margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
-.hub-left-promise-lbl{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px;opacity:.45}
-.hub-left-promise-txt{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--ink);line-height:1.35;font-style:italic;letter-spacing:-.01em}
+
 .hub-intro{padding:28px 56px 22px;background:var(--card);border-bottom:1px solid var(--line);flex-shrink:0}
 .hub-eyebrow{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
 .hub-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
@@ -97,31 +85,23 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .dash-nav-item.nav-active::after{transform:scaleX(1)}
 
 /* ── S1 PROBLEMET ── */
-.s1-wrap{display:grid;grid-template-columns:1fr 1fr;height:100%}
-.s1-left{padding:36px 48px;border-right:1px solid var(--line);display:flex;flex-direction:column;background:var(--card)}
-.s1-right{padding:36px 48px;background:var(--paper);display:flex;flex-direction:column}
-.s1-label{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
-.s1-problem{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink);line-height:1.25;letter-spacing:-.015em;margin-bottom:24px}
-.s1-stats{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
-.s1-stat{display:flex;gap:16px;align-items:flex-start;padding:13px 16px;background:var(--tint);border-left:3px solid var(--accent)}
-.s1-stat-num{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--accent);line-height:1;white-space:nowrap;flex-shrink:0}
-.s1-stat-txt{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.45}
-.s1-src{margin-top:auto;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em}
-/* Right — lys baggrund */
-.s1-q-label{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px;opacity:.8}
-.s1-q-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
-.s1-q-num{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--accent);opacity:.2;line-height:1;flex-shrink:0;width:26px}
-.s1-q-inner{display:flex;flex-direction:column;gap:3px}
-.s1-q-text{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.01em}
-.s1-q-text em{font-style:italic;color:var(--muted)}
-.s1-q-payoff{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;opacity:.7}
-/* Den korte idé — farvet boks */
-.s1-idé{margin-top:auto;background:var(--accent);padding:18px 22px;border-radius:2px}
-.s1-idé-eye{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.4);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
-.s1-idé-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:6px}
-.s1-idé-dash{font-family:var(--mono);font-size:11px;color:rgba(250,250,248,.3);flex-shrink:0;line-height:1.55}
-.s1-idé-txt{font-family:var(--sans);font-size:12px;color:rgba(250,250,248,.85);line-height:1.55}
-.s1-idé-close{margin-top:12px;padding-top:10px;border-top:1px solid rgba(250,250,248,.12);font-family:var(--serif);font-size:14px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.3}
+.s1-wrap{display:flex;flex-direction:column;height:100%}
+.s1-pair{display:grid;grid-template-columns:1fr 1fr;flex:1;gap:1px;background:var(--line)}
+.s1-pain{background:var(--tint);padding:20px 40px 20px 52px;display:flex;flex-direction:column;justify-content:center}
+.s1-answer{background:var(--card);padding:20px 52px;display:flex;flex-direction:column;justify-content:center}
+.s1-pair-eye{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-bottom:10px}
+.s1-pain-num{font-family:var(--serif);font-size:40px;font-weight:700;color:var(--accent);line-height:.9;letter-spacing:-.025em;margin-bottom:3px}
+.s1-pain-unit{font-family:var(--mono);font-size:9.5px;color:var(--muted);letter-spacing:.07em;margin-bottom:10px;opacity:.7}
+.s1-pain-txt{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.55}
+.s1-src{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.04em;margin-top:10px;opacity:.55}
+.s1-answer-arrow{font-family:var(--mono);font-size:13px;color:var(--accent);opacity:.35;margin-bottom:10px}
+.s1-answer-hed{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.01em;margin-bottom:6px}
+.s1-answer-sub{font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.55}
+.s1-closer{background:var(--accent);padding:16px 52px;display:grid;grid-template-columns:auto 1fr;gap:0 44px;align-items:center;flex-shrink:0;min-height:84px}
+.s1-closer-vp{font-family:var(--serif);font-size:22px;font-weight:700;color:#FAFAF8;font-style:italic;white-space:nowrap;border-right:1px solid rgba(250,250,248,.14);padding-right:44px}
+.s1-closer-items{display:flex;flex-wrap:wrap;gap:4px 32px}
+.s1-closer-item{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.72);display:flex;align-items:flex-start;gap:7px;line-height:1.4;flex-basis:calc(50% - 16px)}
+.s1-closer-item::before{content:'—';font-family:var(--mono);color:rgba(250,250,248,.28);flex-shrink:0}
 
 /* ── HUB RADIAL ── */
 .hub-header-rubrik{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:var(--ink);letter-spacing:-.015em;white-space:nowrap;pointer-events:none}
@@ -551,30 +531,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
   </div>
 
-  <!-- Venstre panel — value proposition -->
-  <div class="hub-left">
-    <div class="hub-left-eye">Y Business</div>
-    <div class="hub-left-vp">Du får<br>et forspring.</div>
-    <div class="hub-left-sub">Ikke mere information — præcis den information, der afgør din næste beslutning, inden alle andre har den.</div>
-    <div class="hub-left-rule"></div>
-    <div class="hub-left-stat">
-      <div class="hub-left-stat-num">99 %</div>
-      <div class="hub-left-stat-txt">af danske virksomheder er SMV'er. Erhvervsmedierne skriver primært om de øverste 1 %.</div>
-    </div>
-    <div class="hub-left-stat">
-      <div class="hub-left-stat-num">2–5 t.</div>
-      <div class="hub-left-stat-txt">om ugen sorterer den travle leder i nyheder — og leder stadig efter svaret på det ene spørgsmål.</div>
-    </div>
-    <div class="hub-left-stat">
-      <div class="hub-left-stat-num">46 mia.</div>
-      <div class="hub-left-stat-txt">kr. i administrative byrder om året. Erhvervsjournalistikken fortæller stadig ikke, hvad det kræver.</div>
-    </div>
-    <div class="hub-left-promise">
-      <div class="hub-left-promise-lbl">Redaktionelt løfte</div>
-      <div class="hub-left-promise-txt">AI overvåger markedet. Journalisterne afgør, hvad der betyder noget.</div>
-    </div>
-  </div>
-
   <!-- Statsbar i bunden -->
   <div class="hub-stats">
     <div class="stat-cell"><div class="stat-v">20/80</div><div class="stat-l">Gratis telegram · Betalt indhold</div></div>
@@ -608,64 +564,69 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 </div>
 <div class="sec-body">
   <div class="s1-wrap">
-    <div class="s1-left">
-      <div class="s1-label">Problemet</div>
-      <p class="s1-problem">Der findes næppe en dansk virksomhed,<br>der mangler information.</p>
-      <div class="s1-stats">
-        <div class="s1-stat">
-          <div class="s1-stat-num">46 mia.</div>
-          <div class="s1-stat-txt">kr. om året bruger danske virksomheder på administrative byrder. Tre ud af fire ejerledere oplever kravene som stigende — og erhvervsjournalistikken fortæller dem stadig ikke, hvad det konkret kræver at drive virksomhed i dag.</div>
-        </div>
-        <div class="s1-stat">
-          <div class="s1-stat-num">2–5 t.</div>
-          <div class="s1-stat-txt">om ugen sorterer den travle leder i nyheder, nyhedsbreve og analyser — og leder stadig efter svaret på det ene spørgsmål: hvad betyder det her for min virksomhed?</div>
-        </div>
-        <div class="s1-stat">
-          <div class="s1-stat-num">99 %</div>
-          <div class="s1-stat-txt">af danske virksomheder er SMV'er. Erhvervsmedierne skriver stadig primært om de øverste 1 procent — børsnoterede selskaber, kapitalfonde og C25-regnskaber.</div>
-        </div>
+
+    <!-- ROW 1 -->
+    <div class="s1-pair">
+      <div class="s1-pain">
+        <div class="s1-pair-eye">Smertepunkt 01</div>
+        <div class="s1-pain-num">46 mia.</div>
+        <div class="s1-pain-unit">kr. om året i administrative byrder</div>
+        <div class="s1-pain-txt">Erhvervsjournalistikken fortæller, hvad der er vedtaget. Sjældent hvad det konkret kræver af virksomheden med 40 ansatte og ingen compliancefunktion.</div>
+        <div class="s1-src">Kilde: DA 2025</div>
       </div>
-      <div class="s1-src">Kilde: DA 2025 · SMVdanmark · Reuters Institute Digital News Report 2025</div>
-    </div>
-    <div class="s1-right">
-      <div class="s1-q-label">Fire spørgsmål Y Business besvarer</div>
-      <div class="s1-q-item">
-        <div class="s1-q-num">1</div>
-        <div class="s1-q-inner">
-          <div class="s1-q-text">Hvad er sket i min branche <em>siden sidst?</em></div>
-          <div class="s1-q-payoff">Giver orientering</div>
-        </div>
-      </div>
-      <div class="s1-q-item">
-        <div class="s1-q-num">2</div>
-        <div class="s1-q-inner">
-          <div class="s1-q-text">Hvad betyder det <em>for min virksomhed?</em></div>
-          <div class="s1-q-payoff">Giver relevans</div>
-        </div>
-      </div>
-      <div class="s1-q-item">
-        <div class="s1-q-num">3</div>
-        <div class="s1-q-inner">
-          <div class="s1-q-text">Hvad overser <em>de andre?</em></div>
-          <div class="s1-q-payoff">Giver kant</div>
-        </div>
-      </div>
-      <div class="s1-q-item">
-        <div class="s1-q-num">4</div>
-        <div class="s1-q-inner">
-          <div class="s1-q-text">Hvad kan jeg <em>bruge det til?</em></div>
-          <div class="s1-q-payoff">Giver værdi</div>
-        </div>
-      </div>
-      <div class="s1-idé">
-        <div class="s1-idé-eye">Den korte idé</div>
-        <div class="s1-idé-item"><div class="s1-idé-dash">—</div><div class="s1-idé-txt">Vi overvåger markedet bredt, men viser dig det, der er relevant først.</div></div>
-        <div class="s1-idé-item"><div class="s1-idé-dash">—</div><div class="s1-idé-txt">Vi samler mange signaler, men leverer få pointer.</div></div>
-        <div class="s1-idé-item"><div class="s1-idé-dash">—</div><div class="s1-idé-txt">Vi personaliserer feed, briefs og formater efter branche, rolle og adfærd.</div></div>
-        <div class="s1-idé-item"><div class="s1-idé-dash">—</div><div class="s1-idé-txt">Vi bruger AI til at se mere — men journalister til at afgøre, hvad der faktisk betyder noget.</div></div>
-        <div class="s1-idé-close">Y Business gør erhvervsnyheder til beslutningskraft.</div>
+      <div class="s1-answer">
+        <div class="s1-pair-eye">Y Business svarer</div>
+        <div class="s1-answer-arrow">→</div>
+        <div class="s1-answer-hed">"Det betyder det for din virksomhed" oversætter EU-direktiver, lovkrav og regulering til konkret driftskonsekvens.</div>
+        <div class="s1-answer-sub">Hvem rammes. Hvornår. Hvad koster det. Hvad mangler vi stadig at vide.</div>
       </div>
     </div>
+
+    <!-- ROW 2 -->
+    <div class="s1-pair">
+      <div class="s1-pain">
+        <div class="s1-pair-eye">Smertepunkt 02</div>
+        <div class="s1-pain-num">99 %</div>
+        <div class="s1-pain-unit">af danske virksomheder er SMV'er</div>
+        <div class="s1-pain-txt">Erhvervsmedierne skriver primært om de øverste 1 % — børsnoterede selskaber, kapitalfonde og C25-regnskaber. SMV-ejeren genkender sjældent sig selv i det, han læser.</div>
+        <div class="s1-src">Kilde: SMVdanmark</div>
+      </div>
+      <div class="s1-answer">
+        <div class="s1-pair-eye">Y Business svarer</div>
+        <div class="s1-answer-arrow">→</div>
+        <div class="s1-answer-hed">Y Business er bygget til SMV-ejeren og lederen i den mellemstore virksomhed — ikke til kapitalfondenes presserum.</div>
+        <div class="s1-answer-sub">To primære segmenter: SMV-ejere (5–50 ansatte) og C-level (50–250 ansatte). Indholdet kalibreres efter dem.</div>
+      </div>
+    </div>
+
+    <!-- ROW 3 -->
+    <div class="s1-pair">
+      <div class="s1-pain">
+        <div class="s1-pair-eye">Smertepunkt 03</div>
+        <div class="s1-pain-num">2–5 t.</div>
+        <div class="s1-pain-unit">om ugen — spildt på sortering</div>
+        <div class="s1-pain-txt">Den travle leder gennemgår nyheder, nyhedsbreve og analyser og finder stadig ikke svaret på det ene spørgsmål: hvad betyder det her for min virksomhed?</div>
+        <div class="s1-src">Kilde: Reuters Institute Digital News Report 2025</div>
+      </div>
+      <div class="s1-answer">
+        <div class="s1-pair-eye">Y Business svarer</div>
+        <div class="s1-answer-arrow">→</div>
+        <div class="s1-answer-hed">Morgenbriefet leverer kl. 06.30. Fem punkter på tekst og lyd — personaliseret efter branche, rolle og adfærd.</div>
+        <div class="s1-answer-sub">AI scanner fra kl. 03. Journalist godkender inden 05.47. Du læser inden det første møde.</div>
+      </div>
+    </div>
+
+    <!-- CLOSER -->
+    <div class="s1-closer">
+      <div class="s1-closer-vp">Du får et forspring.</div>
+      <div class="s1-closer-items">
+        <div class="s1-closer-item">Vi overvåger markedet bredt, men viser dig det, der er relevant — ikke alt.</div>
+        <div class="s1-closer-item">Vi personaliserer feed, briefs og formater efter branche, rolle og adfærd.</div>
+        <div class="s1-closer-item">Vi samler mange signaler, men leverer få pointer.</div>
+        <div class="s1-closer-item">AI ser mere. Journalisterne afgør, hvad der faktisk betyder noget.</div>
+      </div>
+    </div>
+
   </div>
 </div>
 </div>
