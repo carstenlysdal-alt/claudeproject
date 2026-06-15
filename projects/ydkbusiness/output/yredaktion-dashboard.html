@@ -26,20 +26,21 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
-/* HEADER */
-.dash-header{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(250,250,248,.97);border-bottom:2px solid var(--line);backdrop-filter:blur(12px);z-index:10}
-.dash-brand{display:flex;align-items:center;gap:14px}
-.dash-brand-mark{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--accent);font-style:italic;letter-spacing:-.01em}
-.dash-divider{width:1px;height:16px;background:var(--line)}
-.dash-brand-sub{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
-.dash-meta{display:flex;align-items:center;gap:16px}
+/* HEADER — matcher ybusiness-dashboard præcist */
+.dash-header{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(250,250,248,.97);border-bottom:2px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.dash-brand{display:flex;align-items:center;gap:16px}
+.dash-brand-mark{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--accent);font-style:italic;letter-spacing:-.01em}
+.dash-divider{width:1px;height:18px;background:var(--line)}
+.dash-brand-sub{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.01em}
+.dash-meta{display:flex;align-items:center;gap:20px}
 .dash-tag{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
 .dash-tag.hi{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-30);padding:3px 10px;border-radius:4px;font-weight:700}
+.accent-bar{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent)}
 .bg-grid{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(54,19,82,.04) 1px,transparent 1px);background-size:36px 36px}
 
 /* HUB */
-.hub-body{position:absolute;top:56px;left:0;right:0;bottom:0;display:flex;flex-direction:column}
-.hub-intro{padding:22px 52px 18px;background:var(--card);border-bottom:1px solid var(--line);flex-shrink:0}
+.hub-body{position:absolute;top:64px;left:0;right:0;bottom:0;display:flex;flex-direction:column}
+.hub-intro{padding:28px 56px 22px;background:var(--card);border-bottom:1px solid var(--line);flex-shrink:0}
 .hub-eyebrow{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
 .hub-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
 .hub-h1{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);line-height:1.15;letter-spacing:-.015em;margin-bottom:5px}
@@ -64,16 +65,17 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .stat-v{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-.01em}
 .stat-l{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.09em;text-transform:uppercase}
 
-/* SECTION CHROME */
-.sec-hdr{position:absolute;top:56px;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:var(--card);border-bottom:1px solid var(--line)}
-.back-btn{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;background:none;border:none;min-height:40px;padding:8px 16px 8px 0;transition:opacity .18s;opacity:.7}
+/* SECTION CHROME — matcher ybusiness-dashboard */
+.sec-hdr{position:absolute;top:64px;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:var(--card);border-bottom:1px solid var(--line)}
+.back-btn{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;background:none;border:none;min-height:40px;padding:8px 16px 8px 0;transition:opacity .18s ease,transform .1s cubic-bezier(.2,0,0,1);opacity:.7}
 .back-btn::before{content:'←';font-size:13px}
 .back-btn:hover{opacity:1}
+.back-btn:active{transform:scale(.96)}
 .sec-num{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.08em}
-.sec-body{position:absolute;top:108px;left:0;right:0;bottom:0;overflow:hidden}
+.sec-body{position:absolute;top:132px;left:0;right:0;bottom:0;overflow:hidden}
 
 /* SEKTIONSNAVIGATION — i headeren per screen, ybusiness-mønster */
-.dash-nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:stretch;height:56px;gap:0}
+.dash-nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:stretch;height:64px;gap:0}
 .dash-nav-item{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:0 16px;display:flex;align-items:center;cursor:pointer;position:relative;white-space:nowrap;border:none;background:none;transition:color .15s}
 .dash-nav-item::after{content:'';position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:center;transition:transform .22s cubic-bezier(.22,.61,.36,1)}
 .dash-nav-item:hover{color:var(--ink70)}
@@ -275,6 +277,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <!-- ═══════════ HUB ═══════════ -->
 <div class="screen active" id="hub">
 <div class="bg-grid"></div>
+<div class="accent-bar"></div>
 <header class="dash-header">
   <div class="dash-brand">
     <span class="dash-brand-mark">Y</span>
