@@ -84,23 +84,33 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .dash-nav-item.nav-active{color:var(--accent)}
 .dash-nav-item.nav-active::after{transform:scaleX(1)}
 
-/* ── S1 PROBLEMET — VISUAL ── */
-.s1-wrap{display:flex;flex-direction:column;height:100%}
-.s1-cards{display:grid;grid-template-columns:repeat(3,1fr);flex:1;gap:1px;background:var(--line)}
-.s1-card{padding:30px 36px 28px;display:flex;flex-direction:column;overflow:hidden}
-.s1-card-eye{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px;color:rgba(250,250,248,.32)}
-.s1-card-stat{font-family:var(--serif);font-weight:700;line-height:.87;letter-spacing:-.04em;color:#FAFAF8;margin-bottom:4px}
-.s1-stat-unit{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(250,250,248,.38);margin-bottom:16px;display:block}
-.s1-card-svg{flex-shrink:0;margin-bottom:16px}
-.s1-card-pain{font-family:var(--sans);font-size:11.5px;line-height:1.6;color:rgba(250,250,248,.58);flex:1}
-.s1-card-div{height:1px;background:rgba(250,250,248,.1);margin:13px 0;flex-shrink:0}
-.s1-card-ans-lbl{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.3);margin-bottom:6px}
-.s1-card-ans-txt{font-family:var(--serif);font-size:13px;font-weight:600;line-height:1.35;color:rgba(250,250,248,.88);letter-spacing:-.005em}
-.s1-closer{background:var(--ink);padding:15px 52px;display:grid;grid-template-columns:auto 1fr;gap:0 44px;align-items:center;flex-shrink:0;min-height:76px;border-top:2px solid rgba(250,250,248,.06)}
-.s1-closer-vp{font-family:var(--serif);font-size:20px;font-weight:700;color:#FAFAF8;font-style:italic;white-space:nowrap;border-right:1px solid rgba(250,250,248,.1);padding-right:44px}
-.s1-closer-items{display:flex;flex-wrap:wrap;gap:3px 28px}
-.s1-closer-item{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.52);display:flex;align-items:flex-start;gap:7px;line-height:1.4;flex-basis:calc(50% - 14px)}
-.s1-closer-item::before{content:'—';font-family:var(--mono);color:rgba(250,250,248,.2);flex-shrink:0}
+/* ── S1 PROBLEMET ── */
+.s1-wrap{height:100%}
+.s1-cols{display:grid;grid-template-columns:repeat(3,1fr);height:100%;gap:1px;background:var(--line)}
+.s1-col{padding:36px 44px;display:flex;flex-direction:column;overflow:hidden}
+.s1-col.prb{background:var(--tint)}
+.s1-col.sol{background:var(--card)}
+.s1-col.how{background:var(--paper)}
+.s1-col-hdr{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.22em;text-transform:uppercase;margin-bottom:30px;display:flex;align-items:center;gap:10px}
+.s1-col-hdr::before{content:'';display:block;width:16px;height:1px;background:currentColor;opacity:.55}
+.s1-pain{margin-bottom:26px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+.s1-pain:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s1-pain-num{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--accent);line-height:.88;letter-spacing:-.03em;margin-bottom:5px}
+.s1-pain-unit{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;margin-bottom:10px;display:block}
+.s1-pain-txt{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.65}
+.s1-src{margin-top:auto;padding-top:16px;font-family:var(--mono);font-size:9px;color:var(--muted);opacity:.45;letter-spacing:.04em}
+.s1-sol{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.s1-sol:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s1-sol-arr{font-family:var(--mono);font-size:12px;color:var(--accent);opacity:.35;margin-bottom:8px}
+.s1-sol-txt{font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.35;letter-spacing:-.008em;margin-bottom:6px}
+.s1-sol-sub{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.55}
+.s1-how-item{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.s1-how-item:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s1-how-tag{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);opacity:.65;margin-bottom:6px}
+.s1-how-txt{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.6}
+.s1-vp{margin-top:auto;padding-top:20px;border-top:2px solid var(--accent)}
+.s1-vp-txt{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--accent);font-style:italic;line-height:1.2;letter-spacing:-.01em;margin-bottom:7px}
+.s1-vp-sub{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.55}
 
 /* ── HUB RADIAL ── */
 .hub-header-rubrik{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:var(--ink);letter-spacing:-.015em;white-space:nowrap;pointer-events:none}
@@ -563,108 +573,87 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 </div>
 <div class="sec-body">
   <div class="s1-wrap">
-    <div class="s1-cards">
+    <div class="s1-cols">
 
-      <!-- ── KORT 1: 99% — SMV vs. medier ── -->
-      <div class="s1-card" style="background:#1E0B38">
-        <div class="s1-card-eye">01 · Synlighed</div>
-        <div class="s1-card-stat" style="font-size:84px">99<span style="font-size:46px;opacity:.8">%</span></div>
-        <span class="s1-stat-unit">af danske virksomheder er SMV'er</span>
-        <!-- DOT MATRIX: 10×10 = 100 prikker. 99 dæmpede, 1 amber = dem medierne skriver om -->
-        <svg class="s1-card-svg" viewBox="0 0 168 104" width="168" height="104">
-          <defs>
-            <pattern id="dp1" x="4" y="4" width="16" height="16" patternUnits="userSpaceOnUse">
-              <circle cx="6" cy="6" r="3.2" fill="rgba(255,255,255,.12)"/>
-            </pattern>
-          </defs>
-          <rect x="4" y="4" width="160" height="96" fill="url(#dp1)"/>
-          <!-- Den ene: øverste højre hjørne -->
-          <circle cx="158" cy="10" r="7.5" fill="#F59E0B" opacity=".92"/>
-          <circle cx="158" cy="10" r="14" fill="#F59E0B" opacity=".1"/>
-          <text x="158" y="32" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(245,158,11,.55)" letter-spacing=".08em">1%</text>
-        </svg>
-        <div class="s1-card-pain">Erhvervsmedierne skriver om de øverste 1 % — børsnoterede selskaber, kapitalfonde og C25. SMV-ejeren genkender sjældent sig selv i det, han læser.</div>
-        <div class="s1-card-div"></div>
-        <div class="s1-card-ans-lbl">Y Business svarer</div>
-        <div class="s1-card-ans-txt">Bygget til SMV-ejeren og lederen i den mellemstore virksomhed — ikke til kapitalfondenes presserum.</div>
+      <!-- ── KOL 1: PROBLEMERNE ── -->
+      <div class="s1-col prb">
+        <div class="s1-col-hdr">Problemerne</div>
+
+        <div class="s1-pain">
+          <div class="s1-pain-num">99 %</div>
+          <span class="s1-pain-unit">af danske virksomheder er SMV'er</span>
+          <div class="s1-pain-txt">Erhvervsmedierne skriver primært om de øverste 1 % — børsnoterede selskaber, kapitalfonde og C25. SMV-ejeren genkender sjældent sig selv i det, han læser.</div>
+        </div>
+
+        <div class="s1-pain">
+          <div class="s1-pain-num">46 mia.</div>
+          <span class="s1-pain-unit">kr. om året i administrative byrder</span>
+          <div class="s1-pain-txt">Erhvervsjournalistikken fortæller, hvad der er vedtaget. Sjældent hvad det kræver af virksomheden med 40 ansatte og ingen compliancefunktion.</div>
+        </div>
+
+        <div class="s1-pain">
+          <div class="s1-pain-num">2–5 t.</div>
+          <span class="s1-pain-unit">om ugen brugt på nyhedssortering</span>
+          <div class="s1-pain-txt">Den travle leder leder stadig efter svaret på det ene spørgsmål: hvad betyder det her for min virksomhed?</div>
+        </div>
+
+        <div class="s1-src">Kilde: SMVdanmark · DA 2025 · Reuters Institute 2025</div>
       </div>
 
-      <!-- ── KORT 2: 46 mia. — Regulatorisk byrde ── -->
-      <div class="s1-card" style="background:#120A03">
-        <div class="s1-card-eye">02 · Relevans</div>
-        <div class="s1-card-stat" style="font-size:72px">46 <span style="font-size:36px;opacity:.65">mia.</span></div>
-        <span class="s1-stat-unit">kr. om året i administrative byrder</span>
-        <!-- BAR CHART: voksende byrde 2023-2025 -->
-        <svg class="s1-card-svg" viewBox="0 0 210 92" width="210" height="92">
-          <line x1="30" y1="2" x2="30" y2="84" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-          <!-- 2023 -->
-          <rect x="34" y="8" width="96" height="20" fill="rgba(180,83,9,.32)" rx="2"/>
-          <text x="28" y="23" text-anchor="end" fill="rgba(255,255,255,.25)" font-family="monospace" font-size="8.5">23</text>
-          <text x="134" y="23" fill="rgba(255,255,255,.22)" font-family="monospace" font-size="8.5"> 42 mia.</text>
-          <!-- 2024 -->
-          <rect x="34" y="34" width="120" height="20" fill="rgba(180,83,9,.52)" rx="2"/>
-          <text x="28" y="49" text-anchor="end" fill="rgba(255,255,255,.25)" font-family="monospace" font-size="8.5">24</text>
-          <text x="158" y="49" fill="rgba(255,255,255,.22)" font-family="monospace" font-size="8.5"> 44 mia.</text>
-          <!-- 2025 -->
-          <rect x="34" y="60" width="148" height="22" fill="#B45309" rx="2"/>
-          <text x="28" y="76" text-anchor="end" fill="rgba(255,255,255,.4)" font-family="monospace" font-size="8.5">25</text>
-          <text x="186" y="76" fill="rgba(255,255,255,.5)" font-family="monospace" font-size="8.5"> 46 mia.</text>
-        </svg>
-        <div class="s1-card-pain">Erhvervsjournalistikken fortæller, hvad der er vedtaget. Sjældent hvad det kræver af virksomheden med 40 ansatte og ingen compliancefunktion.</div>
-        <div class="s1-card-div"></div>
-        <div class="s1-card-ans-lbl">Y Business svarer</div>
-        <div class="s1-card-ans-txt">"Det betyder det for din virksomhed" oversætter EU-direktiver og lovkrav til konkret driftskonsekvens — med deadline og pris.</div>
+      <!-- ── KOL 2: HVAD VI LØSER ── -->
+      <div class="s1-col sol">
+        <div class="s1-col-hdr">Hvad vi løser</div>
+
+        <div class="s1-sol">
+          <div class="s1-sol-arr">→</div>
+          <div class="s1-sol-txt">Y Business er bygget til SMV-ejeren og lederen i den mellemstore virksomhed — ikke til kapitalfondenes presserum.</div>
+          <div class="s1-sol-sub">To primære segmenter: SMV-ejere (5–50 ansatte) og C-level (50–250 ansatte). Indholdet kalibreres efter dem.</div>
+        </div>
+
+        <div class="s1-sol">
+          <div class="s1-sol-arr">→</div>
+          <div class="s1-sol-txt">"Det betyder det for din virksomhed" oversætter EU-direktiver og lovkrav til konkret driftskonsekvens — med deadline og pris.</div>
+          <div class="s1-sol-sub">Hvem rammes. Hvornår. Hvad koster det. Hvad mangler vi stadig at vide.</div>
+        </div>
+
+        <div class="s1-sol">
+          <div class="s1-sol-arr">→</div>
+          <div class="s1-sol-txt">Morgenbriefet leverer kl. 06.30 — personaliseret efter branche, rolle og adfærd, inden kalenderen tager resten.</div>
+          <div class="s1-sol-sub">Fem punkter på tekst og lyd. AI forbereder. Journalist godkender.</div>
+        </div>
       </div>
 
-      <!-- ── KORT 3: 2-5 t. — Tidsspild ── -->
-      <div class="s1-card" style="background:#050E1C">
-        <div class="s1-card-eye">03 · Tid</div>
-        <div class="s1-card-stat" style="font-size:76px">2–5 <span style="font-size:38px;opacity:.6">t.</span></div>
-        <span class="s1-stat-unit">om ugen brugt på nyhedssortering</span>
-        <!-- CLOCK ARC: 5/24 timer fremhævet -->
-        <svg class="s1-card-svg" viewBox="0 0 200 106" width="200" height="106">
-          <!-- Dial ring dim -->
-          <circle cx="58" cy="53" r="44" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="10"/>
-          <!-- Arc: 5/24 × 276 ≈ 57.5. dashoffset: circumference×(3/4) = start at top -->
-          <!-- Circumference of r=44: 2π×44≈276.5 -->
-          <circle cx="58" cy="53" r="44" fill="none" stroke="#3B82F6" stroke-width="10"
-            stroke-dasharray="57.5 219" stroke-dashoffset="69"
-            stroke-linecap="round"/>
-          <!-- Glow -->
-          <circle cx="58" cy="53" r="44" fill="none" stroke="#3B82F6" stroke-width="22" opacity=".07"
-            stroke-dasharray="57.5 219" stroke-dashoffset="69"/>
-          <!-- Center label -->
-          <text x="58" y="49" text-anchor="middle" fill="rgba(255,255,255,.82)" font-family="'Playfair Display',Georgia,serif" font-size="17" font-weight="700">2–5</text>
-          <text x="58" y="65" text-anchor="middle" fill="rgba(255,255,255,.25)" font-family="monospace" font-size="7.5" letter-spacing="2">TIMER</text>
-          <!-- Legend -->
-          <line x1="116" y1="32" x2="196" y2="32" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-          <rect x="116" y="38" width="10" height="10" fill="#3B82F6" opacity=".8" rx="2"/>
-          <text x="130" y="48" fill="rgba(59,130,246,.7)" font-family="monospace" font-size="8.5">Nyhedssortering</text>
-          <line x1="116" y1="58" x2="196" y2="58" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-          <rect x="116" y="64" width="10" height="10" fill="rgba(255,255,255,.08)" rx="2"/>
-          <text x="130" y="74" fill="rgba(255,255,255,.2)" font-family="monospace" font-size="8.5">Resten af ugen</text>
-          <line x1="116" y1="84" x2="196" y2="84" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-          <text x="116" y="98" fill="rgba(255,255,255,.14)" font-family="monospace" font-size="7.5">Kilde: Reuters Institute 2025</text>
-        </svg>
-        <div class="s1-card-pain">Den travle leder sorterer i nyheder, nyhedsbreve og analyser — og leder stadig efter svaret på: hvad betyder det her for min virksomhed?</div>
-        <div class="s1-card-div"></div>
-        <div class="s1-card-ans-lbl">Y Business svarer</div>
-        <div class="s1-card-ans-txt">Morgenbriefet leverer kl. 06.30 — personaliseret, godkendt, klart. Inden kalenderen tager resten.</div>
+      <!-- ── KOL 3: HVORDAN VI GØR DET ── -->
+      <div class="s1-col how">
+        <div class="s1-col-hdr">Hvordan vi gør det</div>
+
+        <div class="s1-how-item">
+          <div class="s1-how-tag">AI overvåger</div>
+          <div class="s1-how-txt">AI scanner 5.000 kilder fra kl. 03.00, prioriterer signaler og leverer udkast til morgenbrief, signalradar og formatforslag.</div>
+        </div>
+
+        <div class="s1-how-item">
+          <div class="s1-how-tag">Journalisten afgør</div>
+          <div class="s1-how-txt">Vinkel, prioritering, kildekritik og publicering er altid et journalistisk ansvar. AI foreslår. Redaktionen afgør.</div>
+        </div>
+
+        <div class="s1-how-item">
+          <div class="s1-how-tag">Personalisering</div>
+          <div class="s1-how-txt">Feed, briefs og formater kalibreres efter branche, region, rolle og adfærd. Hvem du er bestemmer, hvad vi viser dig — og hvornår.</div>
+        </div>
+
+        <div class="s1-how-item">
+          <div class="s1-how-tag">Formater</div>
+          <div class="s1-how-txt">Morgenbriefet dagligt. Signalradaren ugentligt. Den blinde vinkel, Casen der virker og klummer supplerer med dybde og kant.</div>
+        </div>
+
+        <div class="s1-vp">
+          <div class="s1-vp-txt">Du får et forspring.</div>
+          <div class="s1-vp-sub">Ikke mere information — præcis den information, der afgør din næste beslutning, inden alle andre har den.</div>
+        </div>
       </div>
 
     </div>
-
-    <!-- CLOSER -->
-    <div class="s1-closer">
-      <div class="s1-closer-vp">Du får et forspring.</div>
-      <div class="s1-closer-items">
-        <div class="s1-closer-item">Vi overvåger markedet bredt, men viser dig det, der er relevant — ikke alt.</div>
-        <div class="s1-closer-item">Vi personaliserer feed, briefs og formater efter branche, rolle og adfærd.</div>
-        <div class="s1-closer-item">Vi samler mange signaler, men leverer få pointer.</div>
-        <div class="s1-closer-item">AI ser mere. Journalisterne afgør, hvad der faktisk betyder noget.</div>
-      </div>
-    </div>
-
   </div>
 </div>
 </div>
