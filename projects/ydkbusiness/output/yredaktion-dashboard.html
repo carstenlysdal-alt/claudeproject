@@ -474,34 +474,41 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s8-timing-row{display:flex;align-items:baseline;gap:8px;margin-bottom:5px}
 .s8-timing-t{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--accent);opacity:.65;width:42px;flex-shrink:0}
 .s8-timing-d{font-family:var(--sans);font-size:10.5px;color:var(--muted);line-height:1.3}
-.mb-frame{background:var(--card);border:1px solid var(--line);flex:1;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06)}
-.mb-hd{background:var(--ink);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.mb-hd-brand{font-family:var(--serif);font-size:12px;font-weight:700;color:#FAFAF8;font-style:italic;letter-spacing:-.01em}
-.mb-hd-right{display:flex;align-items:center;gap:10px}
+.mb-frame{background:#FAFAF8;border:1px solid rgba(0,0,0,.1);flex:1;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 8px 36px rgba(0,0,0,.1);border-radius:3px}
+.mb-hd{background:#100C0C;padding:16px 22px 14px;display:flex;align-items:flex-end;justify-content:space-between;flex-shrink:0;border-bottom:3px solid #A75D46}
+.mb-hd-brand{font-family:var(--serif);font-size:19px;font-weight:700;color:#FAFAF8;font-style:italic;letter-spacing:-.02em;line-height:1}
+.mb-hd-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
 .mb-hd-date{font-family:var(--mono);font-size:8px;color:rgba(250,250,248,.4);letter-spacing:.06em}
-.mb-hd-badge{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--green);background:rgba(22,163,74,.2);border:1px solid rgba(22,163,74,.35);padding:2px 6px;border-radius:2px;letter-spacing:.1em;text-transform:uppercase}
-.mb-body{padding:18px 22px;flex:1;overflow:hidden;display:flex;flex-direction:column;gap:13px}
-.mb-sec{padding-bottom:13px;border-bottom:1px solid var(--line2);flex-shrink:0}
-.mb-sec:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
-.mb-sec-tag{font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:5px;opacity:.6}
-.mb-topline{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink);line-height:1.18;letter-spacing:-.025em;margin-bottom:6px}
-.mb-sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.mb-hd-badge{font-family:var(--mono);font-size:7px;font-weight:700;color:var(--green);background:rgba(22,163,74,.18);border:1px solid rgba(22,163,74,.3);padding:2px 7px;border-radius:2px;letter-spacing:.12em;text-transform:uppercase}
+.mb-body{padding:0;flex:1;overflow:hidden;display:flex;flex-direction:column}
+.mb-sec{padding:14px 22px;border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0}
+.mb-sec:last-child{border-bottom:none}
+.mb-sec.topvalg{background:rgba(167,93,70,.07);padding:16px 22px}
+.mb-sec.reg-sec{background:rgba(217,119,6,.05);border:none;border-top:1px solid rgba(217,119,6,.15);border-bottom:1px solid rgba(217,119,6,.15)}
+.mb-sec-tag{display:inline-flex;align-items:center;font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:7px}
+.mb-sec-tag.tag-top{color:#A75D46;background:rgba(167,93,70,.12)}
+.mb-sec-tag.tag-branch{color:#1a6b3a;background:rgba(22,163,74,.1)}
+.mb-sec-tag.tag-reg{color:#92400e;background:rgba(217,119,6,.14)}
+.mb-sec-tag.tag-blind{color:var(--accent);background:var(--accent-10)}
+.mb-sec-tag.tag-watch{color:#166534;background:rgba(22,163,74,.12)}
+.mb-sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
 .mb-sec-hdr .mb-sec-tag{margin-bottom:0}
-.mb-play{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;background:#4C1D95;border:none;border-radius:10px;cursor:pointer;font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.92);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0}
-.mb-consequence{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.55}
-.mb-items{display:flex;flex-direction:column;gap:6px}
-.mb-item{font-family:var(--sans);font-size:12px;color:var(--ink70);display:flex;align-items:flex-start;gap:7px;line-height:1.45}
-.mb-item::before{content:'→';font-family:var(--mono);font-size:9px;color:var(--accent);flex-shrink:0;opacity:.45;margin-top:2px}
-.mb-src{font-family:var(--mono);font-size:8px;color:var(--muted);opacity:.5;flex-shrink:0;margin-left:auto;padding-left:8px}
+.mb-play{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;background:#4C1D95;border:none;border-radius:10px;cursor:pointer;font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.92);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0}
+.mb-topline{font-family:var(--serif);font-size:22px;font-weight:700;color:#100C0C;line-height:1.15;letter-spacing:-.025em;margin-bottom:7px}
+.mb-consequence{font-family:var(--sans);font-size:12.5px;color:rgba(16,12,12,.7);line-height:1.58;font-style:italic}
+.mb-items{display:flex;flex-direction:column;gap:5px}
+.mb-item{font-family:var(--sans);font-size:11px;color:rgba(16,12,12,.68);display:flex;align-items:flex-start;gap:7px;line-height:1.45}
+.mb-item::before{content:'→';font-family:var(--mono);font-size:9px;color:#A75D46;flex-shrink:0;opacity:.6;margin-top:1px}
+.mb-src{font-family:var(--mono);font-size:7.5px;color:var(--muted);opacity:.55;flex-shrink:0;margin-left:auto;padding-left:8px}
 .mb-signal-block{display:flex;flex-direction:column;gap:4px}
-.mb-signal{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-bottom:4px;width:fit-content}
-.mb-signal.reg{color:var(--amber);background:var(--amber-s)}
+.mb-signal{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:5px;width:fit-content}
+.mb-signal.reg{color:#92400e;background:rgba(217,119,6,.15)}
 .mb-signal.blind{color:var(--accent);background:var(--accent-10)}
-.mb-signal.watch{color:var(--green);background:var(--green-s)}
-.mb-signal-txt{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.5}
-.mb-signal-sub{font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.45;margin-top:3px;font-style:italic}
-.mb-ft{background:var(--tint);padding:7px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-top:1px solid var(--line)}
-.mb-ft-meta{font-family:var(--mono);font-size:7.5px;color:var(--muted);letter-spacing:.04em}
+.mb-signal.watch{color:#166534;background:rgba(22,163,74,.12)}
+.mb-signal-txt{font-family:var(--sans);font-size:12px;color:rgba(16,12,12,.75);line-height:1.5;font-weight:500}
+.mb-signal-sub{font-family:var(--sans);font-size:10.5px;color:rgba(16,12,12,.5);line-height:1.45;margin-top:3px}
+.mb-ft{background:#100C0C;padding:8px 22px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mb-ft-meta{font-family:var(--mono);font-size:7.5px;color:rgba(250,250,248,.35);letter-spacing:.04em}
 .mb-ft-ch{display:flex;gap:5px}
 .mb-ch{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--accent);background:var(--accent-10);padding:2px 6px;border-radius:2px;letter-spacing:.06em}
 .s8-pers-seg{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line)}
@@ -1598,22 +1605,22 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
           </div>
         </div>
         <div class="mb-body">
-          <div class="mb-sec">
-            <div class="mb-sec-tag">Topvalg</div>
+          <div class="mb-sec topvalg">
+            <div class="mb-sec-tag tag-top">Topvalg</div>
             <div class="mb-topline">Nationalbanken advarer: Renten forbliver høj ind i 2027</div>
             <div class="mb-consequence">For virksomheder med variabelt forrentede lån stiger udgifterne med 12–18 % fra september. Refinansiering bør planlægges nu — ikke i Q4, når alle andre gør det samme.</div>
           </div>
           <div class="mb-sec">
-            <div class="mb-sec-tag">Din branche og region</div>
-            <div class="mb-items" style="font-size:11px">
+            <div class="mb-sec-tag tag-branch">Din branche og region</div>
+            <div class="mb-items">
               <div class="mb-item">Byggebranchen: Boligsalg stiger 8 % på Sjælland — første stigning siden 2022<div class="mb-src">RealDania</div></div>
               <div class="mb-item">Transport: Nye kørselstidsbegrænsninger træder i kraft 1. august<div class="mb-src">Vejdirektoratet</div></div>
               <div class="mb-item">Handel: Detailsalg falder 3,2 % i juni — tredje måned i træk<div class="mb-src">Danmarks Statistik</div></div>
             </div>
           </div>
-          <div class="mb-sec">
+          <div class="mb-sec reg-sec">
             <div class="mb-sec-hdr">
-              <div class="mb-sec-tag">Regulering og risiko</div>
+              <div class="mb-sec-tag tag-reg">Regulering og risiko</div>
               <button class="mb-play">
                 <svg width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M1.5 1.2l5.5 3.3-5.5 3.3V1.2z" fill="rgba(196,181,253,.92)"/></svg>
                 Lyt
@@ -1626,15 +1633,15 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
             </div>
           </div>
           <div class="mb-sec">
-            <div class="mb-sec-tag">Blind vinkel</div>
+            <div class="mb-sec-tag tag-blind">Blind vinkel</div>
             <div class="mb-signal-block">
               <div class="mb-signal blind">Blind vinkel</div>
-              <div class="mb-signal-txt" style="font-size:11px">Mediefortællingen om grøn omstilling fokuserer på store selskaber.</div>
+              <div class="mb-signal-txt" style="font-size:11px;font-weight:400">Mediefortællingen om grøn omstilling fokuserer på store selskaber.</div>
               <div class="mb-signal-sub">SMV'ernes implementeringsomkostninger dækkes ikke — selv om de udgør 67 % af det samlede lovgivningssubjekt.</div>
             </div>
           </div>
           <div class="mb-sec">
-            <div class="mb-sec-tag">Hold øje med</div>
+            <div class="mb-sec-tag tag-watch">Hold øje med</div>
             <div class="mb-signal-block">
               <div class="mb-signal watch">Signal</div>
               <div class="mb-signal-txt">EU's AI Act trin 2 træder i kraft 2. august. Klassificeringen af din virksomheds AI-brug bestemmer, om du er i High-Risk-kategorien.</div>
