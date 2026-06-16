@@ -329,6 +329,40 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .proto-rule p{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.45}
 .proto-rule strong{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-right:4px}
 
+/* ── S6 V2 — CASEN Q&A + PROTOKOLLER ── */
+.s6-wrap-v2{height:100%;display:grid;grid-template-rows:238px 1fr;gap:1px;background:var(--line)}
+.s6-case-band{background:#FFFBF0;border-left:5px solid #B45309;display:grid;grid-template-columns:248px 1fr 1fr 1fr;overflow:hidden}
+.s6-case-intro{padding:24px 26px;border-right:1px solid rgba(180,83,9,.14);display:flex;flex-direction:column;background:#FEF6E6}
+.s6-case-tag{font-family:var(--mono);font-size:9px;font-weight:700;color:#B45309;letter-spacing:.2em;text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:8px}
+.s6-case-tag::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:#B45309}
+.s6-case-title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-.01em;margin-bottom:7px}
+.s6-case-desc{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.55;flex:1}
+.s6-case-badge{margin-top:12px;padding:4px 9px;background:rgba(180,83,9,.1);border:1px solid rgba(180,83,9,.28);border-radius:3px;font-family:var(--mono);font-size:8px;font-weight:700;color:#B45309;letter-spacing:.1em;text-transform:uppercase;display:inline-block;width:fit-content}
+.s6-case-rule-foot{margin-top:7px;font-family:var(--mono);font-size:9px;color:#92400E;letter-spacing:.03em;opacity:.55;line-height:1.4}
+.s6-case-cluster{padding:20px 20px;border-right:1px solid rgba(180,83,9,.1);display:flex;flex-direction:column}
+.s6-case-cluster:last-child{border-right:none}
+.s6-cluster-lbl{font-family:var(--mono);font-size:8.5px;font-weight:700;color:#92400E;letter-spacing:.18em;text-transform:uppercase;margin-bottom:11px;opacity:.8;display:flex;align-items:center;gap:7px}
+.s6-cluster-lbl::before{content:'';width:13px;height:1px;background:#B45309;opacity:.45}
+.s6-q-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px}
+.s6-q-n{font-family:var(--mono);font-size:9px;font-weight:700;color:#B45309;opacity:.4;flex-shrink:0;width:14px;line-height:1.7;padding-top:1px}
+.s6-q-t{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.45}
+.s6-cluster-rule{margin-top:auto;padding-top:9px;border-top:1px solid rgba(180,83,9,.13);font-family:var(--mono);font-size:8.5px;font-weight:700;color:#B45309;letter-spacing:.05em;opacity:.65}
+.s6-proto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+/* AI dark card */
+.proto-col.ai-dark{background:var(--ink)}
+.proto-col.ai-dark .proto-tag{color:rgba(250,250,248,.45)}
+.proto-col.ai-dark .proto-tag::before{background:rgba(250,250,248,.35)}
+.proto-col.ai-dark .proto-title{color:#FAFAF8}
+.proto-col.ai-dark .proto-sub{color:rgba(250,250,248,.42)}
+.proto-col.ai-dark .proto-item .proto-t{color:rgba(250,250,248,.75)}
+.proto-col.ai-dark .proto-t strong{color:#FAFAF8}
+.proto-col.ai-dark .proto-divider{background:rgba(250,250,248,.09)}
+.proto-col.ai-dark .proto-rule{border-top-color:rgba(250,250,248,.09)}
+.proto-col.ai-dark .proto-rule p{color:rgba(250,250,248,.45)}
+.proto-col.ai-dark .proto-rule strong{color:rgba(250,250,248,.82)}
+.proto-col.ai-dark .proto-ok{color:#4ADE80;opacity:1}
+.proto-col.ai-dark .proto-no{color:#F87171;opacity:1}
+
 /* ── S7 AI OG REDAKTION ── */
 .s7-wrap{display:grid;grid-template-columns:1fr 1fr;height:100%}
 .s7-left{padding:32px 48px;border-right:1px solid var(--line);display:flex;flex-direction:column;background:var(--card)}
@@ -1164,71 +1198,111 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   <span class="sec-num">06 / 07</span>
 </div>
 <div class="sec-body">
-  <div class="s6-wrap">
-    <!-- COLUMN 1: Understand -->
-    <div class="proto-col">
-      <div class="proto-tag u">Understand-protokol</div>
-      <div class="proto-title">Konsekvens og relevans</div>
-      <p class="proto-sub">Understand er ikke passiv registrering. Hver nyhed skal besvare læserens 'hvad så?' med kolde fakta og operationel nytte.</p>
-      <div class="proto-list">
-        <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvilken konkret begivenhed eller data er anledningen?</div></div>
-        <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad betyder dette direkte for en dansk virksomhed (SMV)?</div></div>
-        <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Er den operationelle konsekvens beskrevet i første afsnit?</div></div>
-        <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Har vi sat tal på (økonomi, tid, ressourcer)?</div></div>
-        <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Er sproget renset for passiv registrering og unødigt jargon?</div></div>
-        <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Hvad er læserens næste naturlige handling?</div></div>
+  <div class="s6-wrap-v2">
+
+    <!-- ── CASEN DER VIRKER — Q&A PROTOKOL (horisontal kasse) ── -->
+    <div class="s6-case-band">
+      <div class="s6-case-intro">
+        <div class="s6-case-tag">05 · Q&A Protokol</div>
+        <div class="s6-case-title">Casen der virker</div>
+        <p class="s6-case-desc">Disse spørgsmål sendes til kilden inden produktion. Svarene er råmaterialet — AI strukturerer, redaktøren skærper, byline er kildens.</p>
+        <div class="s6-case-badge">AI in the loop</div>
+        <p class="s6-case-rule-foot">Ingen case uden friktion.<br>Ingen case uden navngivet ophav.</p>
       </div>
-      <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Understand uden konsekvens. Vi rapporterer ikke blot begivenheder — vi forklarer deres eftervirkninger.</p></div>
+
+      <div class="s6-case-cluster">
+        <div class="s6-cluster-lbl">Situationen</div>
+        <div class="s6-q-item"><div class="s6-q-n">1</div><div class="s6-q-t">Hvad var det konkrete problem, der tvang en beslutning frem?</div></div>
+        <div class="s6-q-item"><div class="s6-q-n">2</div><div class="s6-q-t">Hvad havde I prøvet inden — og hvorfor holdt det ikke?</div></div>
+        <div class="s6-q-item"><div class="s6-q-n">3</div><div class="s6-q-t">Hvem var imod beslutningen, og hvad var argumentet?</div></div>
+        <div class="s6-q-item"><div class="s6-q-n">4</div><div class="s6-q-t">Hvad var de vigtigste begrænsninger — budget, tid, kompetencer?</div></div>
+        <div class="s6-cluster-rule">→ Det ene valg som omdrejningspunkt</div>
+      </div>
+
+      <div class="s6-case-cluster">
+        <div class="s6-cluster-lbl">Processen</div>
+        <div class="s6-q-item"><div class="s6-q-n">5</div><div class="s6-q-t">Hvad valgte I at gøre — og hvad fravalgte I aktivt?</div></div>
+        <div class="s6-q-item"><div class="s6-q-n">6</div><div class="s6-q-t">Hvad gik galt undervejs? Vær specifik: hvad kostede fejlen?</div></div>
+        <div class="s6-q-item"><div class="s6-q-n">7</div><div class="s6-q-t">Var der et øjeblik, hvor I overvejede at stoppe eller skifte kurs?</div></div>
+        <div class="s6-q-item"><div class="s6-q-n">8</div><div class="s6-q-t">Hvad overraskede dig mest undervejs?</div></div>
+        <div class="s6-cluster-rule">→ Friktion er ikke kontekst — det er historien</div>
+      </div>
+
+      <div class="s6-case-cluster">
+        <div class="s6-cluster-lbl">Resultatet</div>
+        <div class="s6-q-item"><div class="s6-q-n">9</div><div class="s6-q-t">Hvad virkede? Brug konkrete tal — ikke procenter uden kontekst.</div></div>
+        <div class="s6-q-item"><div class="s6-q-n">10</div><div class="s6-q-t">Hvad kostede det samlet — tid, penge, menneskelige ressourcer?</div></div>
+        <div class="s6-q-item"><div class="s6-q-n">11</div><div class="s6-q-t">Hvad kan en anden virksomhed i samme situation kopiere direkte?</div></div>
+        <div class="s6-q-item"><div class="s6-q-n">12</div><div class="s6-q-t">Hvad kan de ikke kopiere — og hvad ville du gøre anderledes?</div></div>
+        <div class="s6-cluster-rule">→ Kopierbar læring er produktets kernekrav</div>
+      </div>
     </div>
 
-    <!-- COLUMN 2: Challenge -->
-    <div class="proto-col">
-      <div class="proto-tag c">Challenge-protokol</div>
-      <div class="proto-title">Dokumenteret modfortælling</div>
-      <p class="proto-sub">Seks spørgsmål skal besvares, inden en Challenge-historie publiceres. Kanten er ikke en holdning — det er en efterprøvet metode.</p>
-      <div class="proto-list">
-        <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvilken dominerende fortælling udfordrer vi?</div></div>
-        <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad mangler konkret og dokumenteret?</div></div>
-        <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Hvilken dokumentation understøtter vores vinkel?</div></div>
-        <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Hvilken modkilde har vi — med navn?</div></div>
-        <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Hvem kan legitimt kritisere vores vinkel?</div></div>
-        <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Er dette en blind vinkel — eller blot vores egen holdning?</div></div>
-      </div>
-      <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Challenge uden dokumentation. En skarp vinkel uden belæg er bare en høj lyd.</p></div>
-    </div>
+    <!-- ── PROTOKOLLERNE (under Q&A-kassen) ── -->
+    <div class="s6-proto-grid">
 
-    <!-- COLUMN 3: Inspire -->
-    <div class="proto-col">
-      <div class="proto-tag i">Inspire-protokol</div>
-      <div class="proto-title">Friktion og læring</div>
-      <p class="proto-sub">Inspire kræver friktion. Den stærke case er ikke en succeshistorie, men en ærlig gennemgang af fejl, løsninger og kopierbare resultater.</p>
-      <div class="proto-list">
-        <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvad var det konkrete, definerede problem?</div></div>
-        <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad gjorde virksomheden — præcist og operationelt?</div></div>
-        <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Hvilke fejl og modstand stødte de på undervejs?</div></div>
-        <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Hvad virkede, hvad fejlede, og hvad kostede det?</div></div>
-        <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Hvilke rammebetingelser begrænser succesen for andre?</div></div>
-        <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Hvad er den direkte, kopierbare læring for læseren?</div></div>
-        <div class="proto-item"><div class="proto-n">7</div><div class="proto-t">Hvad er casevirksomhedens egen kommercielle interesse i historien?</div></div>
+      <div class="proto-col">
+        <div class="proto-tag u">Understand-protokol</div>
+        <div class="proto-title">Konsekvens og relevans</div>
+        <p class="proto-sub">Understand er ikke passiv registrering. Hver nyhed skal besvare læserens 'hvad så?' med kolde fakta og operationel nytte.</p>
+        <div class="proto-list">
+          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvilken konkret begivenhed eller data er anledningen?</div></div>
+          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad betyder dette direkte for en dansk virksomhed (SMV)?</div></div>
+          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Er den operationelle konsekvens beskrevet i første afsnit?</div></div>
+          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Har vi sat tal på (økonomi, tid, ressourcer)?</div></div>
+          <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Er sproget renset for passiv registrering og unødigt jargon?</div></div>
+          <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Hvad er læserens næste naturlige handling?</div></div>
+        </div>
+        <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Understand uden konsekvens. Vi rapporterer ikke blot begivenheder — vi forklarer deres eftervirkninger.</p></div>
       </div>
-      <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Inspire uden friktion. En succeshistorie uden modstand er en pressemeddelelse — og dem bringer vi ikke.</p></div>
-    </div>
 
-    <!-- COLUMN 4: AI -->
-    <div class="proto-col">
-      <div class="proto-tag a">AI-protokol</div>
-      <div class="proto-title">Skala med ansvar</div>
-      <p class="proto-sub">AI ser bredt. Journalisten ser rigtigt. Det er ikke en holdning — det er en arbejdsdeling, vi ikke forhandler om.</p>
-      <div class="proto-list">
-        <div class="proto-item"><div class="proto-n proto-ok">✓</div><div class="proto-t"><strong>AI må hjælpe med:</strong> overvågning, research, mønstergenkendelse, kildeforslag, strukturering, versionering og databehandling i back-end</div></div>
+      <div class="proto-col">
+        <div class="proto-tag c">Challenge-protokol</div>
+        <div class="proto-title">Dokumenteret modfortælling</div>
+        <p class="proto-sub">Seks spørgsmål skal besvares, inden en Challenge-historie publiceres. Kanten er ikke en holdning — det er en efterprøvet metode.</p>
+        <div class="proto-list">
+          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvilken dominerende fortælling udfordrer vi?</div></div>
+          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad mangler konkret og dokumenteret?</div></div>
+          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Hvilken dokumentation understøtter vores vinkel?</div></div>
+          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Hvilken modkilde har vi — med navn?</div></div>
+          <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Hvem kan legitimt kritisere vores vinkel?</div></div>
+          <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Er dette en blind vinkel — eller blot vores egen holdning?</div></div>
+        </div>
+        <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Challenge uden dokumentation. En skarp vinkel uden belæg er bare en høj lyd.</p></div>
       </div>
-      <div class="proto-divider"></div>
-      <div class="proto-list">
-        <div class="proto-item"><div class="proto-n proto-no">✗</div><div class="proto-t"><strong>AI afgør aldrig alene:</strong> vinkel, prioritering, kildekritik, konklusion eller publicering</div></div>
-        <div class="proto-item"><div class="proto-n proto-no">✗</div><div class="proto-t"><strong>Challenge og Inspire</strong> publiceres aldrig uden navngivet menneskelig byline</div></div>
-        <div class="proto-item"><div class="proto-n proto-no">✗</div><div class="proto-t"><strong>AI-mærkning alene</strong> skaber ikke tillid — jf. Reuters Institute 2025 og SDU</div></div>
+
+      <div class="proto-col">
+        <div class="proto-tag i">Inspire-protokol</div>
+        <div class="proto-title">Friktion og læring</div>
+        <p class="proto-sub">Inspire kræver friktion. Den stærke case er ikke en succeshistorie, men en ærlig gennemgang af fejl, løsninger og kopierbare resultater.</p>
+        <div class="proto-list">
+          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvad var det konkrete, definerede problem?</div></div>
+          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad gjorde virksomheden — præcist og operationelt?</div></div>
+          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Hvilke fejl og modstand stødte de på undervejs?</div></div>
+          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Hvad virkede, hvad fejlede, og hvad kostede det?</div></div>
+          <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Hvilke rammebetingelser begrænser succesen for andre?</div></div>
+          <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Hvad er den direkte, kopierbare læring for læseren?</div></div>
+          <div class="proto-item"><div class="proto-n">7</div><div class="proto-t">Hvad er casevirksomhedens egen kommercielle interesse i historien?</div></div>
+        </div>
+        <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Inspire uden friktion. En succeshistorie uden modstand er en pressemeddelelse — og dem bringer vi ikke.</p></div>
       </div>
-      <div class="proto-rule"><p><strong>Grundregel:</strong> AI foreslår. Redaktionen afgør.</p></div>
+
+      <div class="proto-col ai-dark">
+        <div class="proto-tag a">AI-protokol</div>
+        <div class="proto-title">Skala med ansvar</div>
+        <p class="proto-sub">AI ser bredt. Journalisten ser rigtigt. Det er ikke en holdning — det er en arbejdsdeling, vi ikke forhandler om.</p>
+        <div class="proto-list">
+          <div class="proto-item"><div class="proto-n proto-ok">✓</div><div class="proto-t"><strong>AI må hjælpe med:</strong> overvågning, research, mønstergenkendelse, kildeforslag, strukturering, versionering og databehandling i back-end</div></div>
+        </div>
+        <div class="proto-divider"></div>
+        <div class="proto-list">
+          <div class="proto-item"><div class="proto-n proto-no">✗</div><div class="proto-t"><strong>AI afgør aldrig alene:</strong> vinkel, prioritering, kildekritik, konklusion eller publicering</div></div>
+          <div class="proto-item"><div class="proto-n proto-no">✗</div><div class="proto-t"><strong>Challenge og Inspire</strong> publiceres aldrig uden navngivet menneskelig byline</div></div>
+          <div class="proto-item"><div class="proto-n proto-no">✗</div><div class="proto-t"><strong>AI-mærkning alene</strong> skaber ikke tillid — jf. Reuters Institute 2025 og SDU</div></div>
+        </div>
+        <div class="proto-rule"><p><strong>Grundregel:</strong> AI foreslår. Redaktionen afgør.</p></div>
+      </div>
+
     </div>
   </div>
 </div>
