@@ -283,10 +283,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s4-tier-free .s4-tier-lbl{color:var(--green)}
 .s4-tier-free .s4-tier-note{color:var(--green);opacity:.65}
 .s4-tier-free .s4-tier-line{background:var(--green)}
-.s4-tier-paid .s4-tier-dot{background:var(--accent)}
-.s4-tier-paid .s4-tier-lbl{color:var(--accent)}
-.s4-tier-paid .s4-tier-note{color:var(--accent);opacity:.65}
-.s4-tier-paid .s4-tier-line{background:var(--accent)}
+.s4-paywall-mur{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:#3B0F6E;border-radius:3px;border:1px solid rgba(196,181,253,.18)}
+.s4-pm-left{display:flex;align-items:center;gap:8px}
+.s4-pm-lbl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,181,253,.9)}
+.s4-pm-sep{color:rgba(196,181,253,.3);font-size:10px}
+.s4-pm-note{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;color:rgba(196,181,253,.55)}
+.s4-pm-right{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:rgba(196,181,253,.4);text-transform:uppercase}
 .s4-gratis-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .s4-gratis-aside{display:flex;flex-direction:column;justify-content:center;padding:16px 18px;background:rgba(22,163,74,.05);border:1px solid rgba(22,163,74,.14);border-radius:3px}
 .s4-gratis-aside-txt{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.55}
@@ -1005,11 +1007,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
       <!-- ABONNEMENT -->
       <div class="s4-tier-section">
-        <div class="s4-tier-hdr s4-tier-paid">
-          <span class="s4-tier-dot"></span>
-          <span class="s4-tier-lbl">Abonnement</span>
-          <span class="s4-tier-note">5.000 kr./år · 5 formater</span>
-          <span class="s4-tier-line"></span>
+        <div class="s4-paywall-mur">
+          <div class="s4-pm-left">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6.5" width="9" height="6" rx="1.4" fill="rgba(196,181,253,.15)" stroke="rgba(196,181,253,.7)" stroke-width="1.3"/><path d="M4.5 6.5V5a2.5 2.5 0 0 1 5 0v1.5" stroke="rgba(196,181,253,.7)" stroke-width="1.3" stroke-linecap="round"/><circle cx="7" cy="9.5" r="1" fill="rgba(196,181,253,.8)"/></svg>
+            <span class="s4-pm-lbl">Abonnement</span>
+            <span class="s4-pm-sep">·</span>
+            <span class="s4-pm-note">5.000 kr./år</span>
+          </div>
+          <div class="s4-pm-right">5 formater</div>
         </div>
         <div class="s4-paid-grid">
           <div class="fmt-card" style="--sc:#2D423A;--sb:rgba(45,66,58,.04)">
