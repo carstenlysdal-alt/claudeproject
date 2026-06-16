@@ -1538,7 +1538,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="s8-bp-n">1</div>
         <div>
           <div class="s8-bp-tag">Topvalg</div>
-          <div class="s8-bp-txt">Redaktørens ét valgte nyhed med konsekvens — AI foreslår, journalist godkender.</div>
+          <div class="s8-bp-txt">Redaktørens ét valgte nyhed med konsekvens — AI producerer og leverer automatisk.</div>
         </div>
       </div>
       <div class="s8-bp-item">
@@ -1572,8 +1572,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="s8-timing">
         <div class="s8-timing-lbl">Produktionsrytme</div>
         <div class="s8-timing-row"><div class="s8-timing-t">03.00</div><div class="s8-timing-d">AI scanner og sorterer kilder</div></div>
-        <div class="s8-timing-row"><div class="s8-timing-t">05.00</div><div class="s8-timing-d">Journalist vurderer og skærper vinkler</div></div>
-        <div class="s8-timing-row"><div class="s8-timing-t">05.47</div><div class="s8-timing-d">Godkendt og klargjort til levering</div></div>
+        <div class="s8-timing-row"><div class="s8-timing-t">05.30</div><div class="s8-timing-d">Brief klar — levering planlagt</div></div>
         <div class="s8-timing-row"><div class="s8-timing-t">06.30</div><div class="s8-timing-d">Levering — tekst og lyd</div></div>
       </div>
     </div>
@@ -1628,7 +1627,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
           </div>
         </div>
         <div class="mb-ft">
-          <div class="mb-ft-meta">Godkendt 05.47 af redaktionen · AI-research kl. 03.00–05.00</div>
+          <div class="mb-ft-meta">Klar til levering 05.30 · AI-research kl. 03.00–05.30</div>
           <div class="mb-ft-ch"><div class="mb-ch">Tekst · 280 ord</div><div class="mb-ch">Lyd · 4 min</div></div>
         </div>
       </div>
@@ -1689,7 +1688,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
         <div class="s8-pc-block">
           <div class="s8-pc-tag">&lt;system&gt;</div>
-          <div class="s8-pc-txt">Du er Y Business' redaktionelle AI — en erhvervsjournalistisk assistent der producerer Morgenbriefet dagligt kl. 03.00–05.00.<br><br>Dit output er råmateriale til journalistisk godkendelse kl. 05.00. Du <em>foreslår</em> — redaktøren <em>beslutter</em>.</div>
+          <div class="s8-pc-txt">Du er Y Business' redaktionelle AI — en erhvervsjournalistisk assistent der producerer og udsender Morgenbriefet automatisk dagligt kl. 06.30.<br><br>Briefet er <em>klart til levering</em> kl. 05.30 uden journalistgodkendelse. Redaktøren kan trække det inden levering — men det er undtagelsen, ikke normen.</div>
         </div>
 
         <div class="s8-pc-block">
@@ -1709,17 +1708,17 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
         <div class="s8-pc-block">
           <div class="s8-pc-tag">&lt;constraints&gt;</div>
-          <div class="s8-pc-txt"><s>Generiske formuleringer: "eksperter mener" / "mange virksomheder"</s><br><s>Konklusioner uden navngivet kilde</s><br><s>Mere end 280 ord i alt</s><br><s>Mere end ét topvalg</s><br><br><strong>Aktiv stemme som standard.</strong> Korteste præcise ord.<br><strong>Konkrete tal, navngivne kilder, præcise deadlines.</strong><br>Afslut altid med: <em>Godkendt af redaktionen: ___________</em></div>
+          <div class="s8-pc-txt"><s>Generiske formuleringer: "eksperter mener" / "mange virksomheder"</s><br><s>Konklusioner uden navngivet kilde</s><br><s>Mere end 280 ord i alt</s><br><s>Mere end ét topvalg</s><br><br><strong>Aktiv stemme som standard.</strong> Korteste præcise ord.<br><strong>Konkrete tal, navngivne kilder, præcise deadlines.</strong><br>Afslut med: <em>Klar til levering kl. 06.30 · [dato]</em></div>
         </div>
 
         <div class="s8-pc-block">
           <div class="s8-pc-tag">&lt;output_format&gt;</div>
-          <div class="s8-pc-txt"><em>## Morgenbriefet · [dato] · kl. 06.30</em><br><br><strong>TOPVALG</strong><br>[headline]<br>[konsekvens 2–3 sætninger] (Kilde: [navn])<br><br><strong>DIN BRANCHE OG REGION</strong><br>– [item] ([kilde])<br>– [item] ([kilde])<br><br><strong>REGULERING OG RISIKO</strong> <em>· kun hvis relevant</em><br>[hvad · hvem · deadline]<br><br><strong>BLIND VINKEL</strong> <em>· kun hvis aktiveret</em><br>[faktum · modkilde]<br><br><strong>HOLD ØJE MED</strong><br>[signal · kontekst]<br><br>—<br><em>Godkendt af redaktionen: ___________</em></div>
+          <div class="s8-pc-txt"><em>## Morgenbriefet · [dato] · kl. 06.30</em><br><br><strong>TOPVALG</strong><br>[headline]<br>[konsekvens 2–3 sætninger] (Kilde: [navn])<br><br><strong>DIN BRANCHE OG REGION</strong><br>– [item] ([kilde])<br>– [item] ([kilde])<br><br><strong>REGULERING OG RISIKO</strong> <em>· kun hvis relevant</em><br>[hvad · hvem · deadline]<br><br><strong>BLIND VINKEL</strong> <em>· kun hvis aktiveret</em><br>[faktum · modkilde]<br><br><strong>HOLD ØJE MED</strong><br>[signal · kontekst]<br><br>—<br><em>Klar til levering kl. 06.30 · [dato]</em></div>
         </div>
 
         <div class="s8-pc-block">
           <div class="s8-pc-tag">Kørsel · Timing</div>
-          <div class="s8-pc-txt"><em>03.00</em> — Prompt aktiveres. Supertrends + kildescanning.<br><em>04.30</em> — Udkast genereret og struktureret.<br><em>05.00</em> — Journalist modtager til godkendelse.<br><em>05.47</em> — Godkendt og klargjort.<br><em>06.30</em> — Levering · tekst og lyd.</div>
+          <div class="s8-pc-txt"><em>03.00</em> — Prompt aktiveres. Supertrends + kildescanning.<br><em>04.30</em> — Udkast genereret og struktureret.<br><em>05.30</em> — Brief klar til levering.<br><em>06.30</em> — Automatisk levering · tekst og lyd.</div>
         </div>
       </div>
 
