@@ -836,6 +836,111 @@ body.bm-editing .bm-plot-cell .bm-add {
 
 @keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
+/* === ADDON TIER PRICING === */
+.addon-tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+.addon-tier {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.addon-tier-l {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.addon-tier-v {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink70);
+}
+.addon-mini-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+}
+.addon-mini-tbl th {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 0 4px;
+  text-align: right;
+  border-bottom: 1px solid var(--line2);
+}
+.addon-mini-tbl th:first-child { text-align: left; }
+.addon-mini-tbl td {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink70);
+  padding: 5px 0;
+  text-align: right;
+  border-bottom: 1px solid var(--line2);
+}
+.addon-mini-tbl tr:last-child td { border-bottom: none; }
+.addon-mini-tbl td:first-child {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--muted);
+  text-align: left;
+}
+
+/* === BIZ SECTION TABS === */
+.biz-tabs-nav {
+  display: flex;
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 24px;
+  margin-top: 6px;
+  flex-shrink: 0;
+  gap: 0;
+}
+.biz-tab-btn {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  padding: 12px 22px 12px 0;
+  margin-right: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+.biz-tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.biz-tab-btn:hover { color: var(--ink); }
+.biz-tab-btn.biz-tab-active { color: var(--accent); font-weight: 700; }
+.biz-tab-btn.biz-tab-active::after { transform: scaleX(1); }
+.biz-tab-panel { display: none; flex: 1; overflow-y: auto; }
+.biz-tab-panel.biz-tab-active { display: block; }
+.biz-col-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
 /* === FEEDBACK === */
 .btn-feedback {
   display: inline-flex; align-items: center; gap: 5px;
@@ -1042,8 +1147,18 @@ body.bm-editing .bm-plot-cell .bm-add {
   </div>
 
   <div class="sec-body">
-    <div class="col ani">
-      <div class="col-label">Prismodel — 5 tiers fra Erhverv til API</div>
+    <div class="col ani" style="overflow:hidden; padding-bottom:0;">
+      <div class="biz-col-inner">
+      <div class="col-label" style="flex-shrink:0;">Prismodel — 5 tiers fra Erhverv til API</div>
+
+      <nav class="biz-tabs-nav" aria-label="Business model sektioner">
+        <button class="biz-tab-btn biz-tab-active" data-biz-tab="biz-pakke">Pakkelogik</button>
+        <button class="biz-tab-btn" data-biz-tab="biz-priser">Priser & kampagne</button>
+        <button class="biz-tab-btn" data-biz-tab="biz-revenue">Revenue & add-ons</button>
+      </nav>
+
+      <!-- TAB 1: PRISER & KAMPAGNE -->
+      <div class="biz-tab-panel" id="biz-priser" style="padding-bottom:24px;">
       <table class="tbl" style="font-size:12px;">
         <thead><tr><th>Tier</th><th>Normalpris</th><th>Kampagnepris</th><th>Logik</th></tr></thead>
         <tbody>
@@ -1084,8 +1199,11 @@ body.bm-editing .bm-plot-cell .bm-add {
         <div style="font-family:var(--mono); font-size:9px; font-weight:700; color:var(--accent); letter-spacing:0.13em; text-transform:uppercase; margin-bottom:8px;">Kampagne — deadline 20. november 2026</div>
         <div style="font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.6;">Erhverv: <strong>3 måneder gratis</strong> ved tegning senest 20. november.<br>Erhverv+: <strong>5.000 kr i stedet for 7.500 kr</strong> første år.<br>Premium: <strong>9.500 kr i stedet for 12.500 kr</strong> første år.</div>
       </div>
+      </div>
 
-      <div class="bm-toolline">
+      <!-- TAB 2: PAKKELOGIK -->
+      <div class="biz-tab-panel biz-tab-active" id="biz-pakke" style="padding-bottom:24px;">
+      <div class="bm-toolline" style="margin-top:0;">
         <div class="col-label-sm">Pakkelogik</div>
         <div class="bm-actions">
           <a class="bm-action-btn" href="Y-Business-pakkelogik.xlsx" download>Hent som Excel</a>
@@ -1170,34 +1288,32 @@ body.bm-editing .bm-plot-cell .bm-add {
           <span><strong>Pointen:</strong> Erhverv inkluderer indhold og markedsovervågning. Erhverv+ tilføjer teamadgang og kick-back. Premium låser op for reklamefri adgang, finansielle analyser og international version.</span>
           <span>Medieovervågning og community er tilkøb. Alle abonnements- og B2B-prispunkter er repræsenteret.</span>
         </div>
-        <div class="bm-plot-b2b" aria-label="B2B-prisspor">
-          <div class="bm-plot-b2b-item">
-            <div class="bm-plot-b2b-k" data-xlsx-key="partner_label">Partner</div>
-            <div class="bm-plot-b2b-v" data-xlsx-key="partner_price">25–75.000 kr/år</div>
-            <div class="bm-plot-b2b-d" data-xlsx-key="partner_description">Sponsor/relation, events, brancheindblik og synlighed.</div>
-          </div>
-          <div class="bm-plot-b2b-item">
-            <div class="bm-plot-b2b-k" data-xlsx-key="api_label">API</div>
-            <div class="bm-plot-b2b-v" data-xlsx-key="api_price">100–250.000 kr/år</div>
-            <div class="bm-plot-b2b-d" data-xlsx-key="api_description">Nyhedsfeeds, alerts og data til kundens egne systemer.</div>
-          </div>
-        </div>
         <div class="bm-addons" aria-label="Add-ons og vilkår" style="border:1.5px solid var(--line);">
           <div class="bm-addon">
-            <div class="bm-addon-k" data-xlsx-key="campaign_label">Kampagnevilkår</div>
-            <div class="bm-addon-v" data-xlsx-key="campaign_terms">Erhverv: <strong>3 mdr. gratis</strong> · Erhverv+: <strong>5.000 kr</strong> første år · Premium: <strong>9.500 kr</strong> første år</div>
-          </div>
-          <div class="bm-addon">
             <div class="bm-addon-k" data-xlsx-key="extra_user_label">Ekstra bruger</div>
-            <div class="bm-addon-v" data-xlsx-key="extra_user_terms">Erhverv: <strong>350 kr/år</strong> · Erhverv+: <strong>250 kr/år</strong> · Premium: <strong>250 kr/år</strong></div>
+            <div class="addon-tiers">
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv</span><span class="addon-tier-v">350 kr/år</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv+</span><span class="addon-tier-v">250 kr/år</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">Premium</span><span class="addon-tier-v">250 kr/år</span></div>
+            </div>
           </div>
           <div class="bm-addon">
             <div class="bm-addon-k" data-xlsx-key="extra_brand_label">Ekstra brand/person</div>
-            <div class="bm-addon-v" data-xlsx-key="extra_brand_terms">Medie: <strong>250 kr/md</strong> / <strong>1.500 kr/år</strong> / <strong>1.000 kr/år</strong> · CVR: <strong>300 kr/md</strong> / <strong>2.000 kr/år</strong> / <strong>1.250 kr/år</strong></div>
+            <table class="addon-mini-tbl">
+              <thead><tr><th></th><th>/md</th><th>/år</th><th>/år rabat</th></tr></thead>
+              <tbody>
+                <tr><td>Medie</td><td>250 kr</td><td>1.500 kr</td><td>1.000 kr</td></tr>
+                <tr><td>CVR</td><td>300 kr</td><td>2.000 kr</td><td>1.250 kr</td></tr>
+              </tbody>
+            </table>
           </div>
           <div class="bm-addon">
-            <div class="bm-addon-k" data-xlsx-key="international_addon_label">Ekstra sprogbruger</div>
-            <div class="bm-addon-v" data-xlsx-key="international_addon_terms">Tilkøb for Erhverv+: <strong>99 kr/md</strong> · <strong>1.000 kr/år</strong> · <strong>750 kr/år</strong></div>
+            <div class="bm-addon-k" data-xlsx-key="international_addon_label">Ekstra sprogbruger <span style="font-weight:400; text-transform:none; letter-spacing:0; color:var(--faint);">— Erhverv+</span></div>
+            <div class="addon-tiers">
+              <div class="addon-tier"><span class="addon-tier-l">/md</span><span class="addon-tier-v">99 kr</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">/år</span><span class="addon-tier-v">1.000 kr</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">/år rabat</span><span class="addon-tier-v">750 kr</span></div>
+            </div>
           </div>
           <div class="bm-addon">
             <div class="bm-addon-k">Medieovervågning</div>
@@ -1209,7 +1325,10 @@ body.bm-editing .bm-plot-cell .bm-add {
           </div>
         </div>
       </div>
+      </div><!-- /biz-pakke -->
 
+      <!-- TAB 3: REVENUE & ADD-ONS -->
+      <div class="biz-tab-panel" id="biz-revenue" style="padding-bottom:24px;">
       <div class="rev-box">
         <div class="rev-box-t">Revenue ambition — mål år 1</div>
         <div class="rev-row"><span>1.500 Business subscribers ved paywall</span><span>20. nov. 2026</span></div>
@@ -1220,12 +1339,15 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div>
 
       <div style="margin-top:12px; font-family:var(--sans); font-size:12px; color:var(--muted); line-height:1.55;">
-        Business genererer <strong style="color:var(--ink70);">10× mere revenue per abonnent</strong> end Private (500 DKK vs. 50 DKK/md). Private er platform-driver der konverterer daglig trafik til Business-abonnenter. Feature-allokering per tier afklares efter redaktionelt koncept — Lysdal + Dyrby, deadline 22. juni.
+        Business genererer <strong style="color:var(--ink70);">10× mere revenue per abonnent</strong> end Private (500 DKK vs. 50 DKK/md). Private er platform-driver der konverterer daglig trafik til Business-abonnenter. Feature-allokering per tier afklares i features spec v1.0.
       </div>
 
       <div style="margin-top:14px; padding:10px 14px; border-left:2px solid var(--amber); background:var(--amber-s);">
         <span style="font-family:var(--mono); font-size:9px; font-weight:700; color:var(--amber); letter-spacing:0.1em; text-transform:uppercase;">Note — </span><span style="font-family:var(--sans); font-size:11.5px; color:var(--ink70); line-height:1.55;">Antal inkluderede brugere per tier er ikke fastlagt. Seat-model afklares som del af features spec v1.0. Ingen commitments inden da.</span>
       </div>
+      </div><!-- /biz-revenue -->
+
+      </div><!-- /biz-col-inner -->
     </div>
 
     <div class="col ani col-compact">
@@ -1255,9 +1377,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       <div class="ibox accent" style="margin-bottom:10px;">
         <div class="ibox-t">Marketing kick-back — inkluderet i Erhverv+ og Premium</div>
         <div class="ibox-b">
-          <p>Abonnenter modtager annonceringsværdi på platformen: bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel.</p>
-          <p><strong>Erhverv+: 5.000 kr. · Premium: 7.500 kr.</strong></p>
-          <p>Stærkt salgsargument til virksomheder der allerede annoncerer eller ønsker PR-eksponering.</p>
+          <p>Abonnenter modtager annonceringsværdi på platformen: bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel. Stærkt salgsargument til virksomheder der allerede annoncerer eller ønsker PR-eksponering.</p>
         </div>
       </div>
 
@@ -1265,9 +1385,7 @@ body.bm-editing .bm-plot-cell .bm-add {
         <div class="ibox green" style="flex:1; min-width:0; border:1.5px solid var(--green);">
           <div class="ibox-t" style="color:var(--green)">Artikel-deling og brugsrettigheder — ny engagementsmekanik</div>
           <div class="ibox-b">
-            <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>.</p>
-            <p>Erhverv: 5/md · Erhverv+: 10/md · Premium: 50/md</p>
-            <p>Desuden brugsret til artikler i egen markedsføring — SoMe, nyhedsbreve og investor-materiale — for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</p>
+            <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>. Desuden brugsret til artikler i egen markedsføring — SoMe, nyhedsbreve og investor-materiale — for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</p>
           </div>
         </div>
         <div class="ibox green" style="flex:1; min-width:0; border:1.5px solid var(--green); background:var(--green-s);">
@@ -1499,7 +1617,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       <div class="tl">
         <div class="tl-row"><div class="tl-d" style="color:var(--green);">Nu · Juni</div><div class="tl-t"><strong style="color:var(--green);">Behovsafdækning hos partnere</strong> · SMVdanmark, Dansk Erhverv, DI, IT-Branchen, L&F og TEKNIQ. Formål: validere behov, identificere beta-kandidater og lægge fundament for kommercielle aftaler inden launch. Yderligere drøftelser afventer.</div></div>
         <div class="tl-row"><div class="tl-d" style="color:var(--green);">Nu · Juni</div><div class="tl-t"><strong style="color:var(--green);">Supertrends teknisk vurdering</strong> · Jens/Supertrends kortlægger kapabiliteter, kildestruktur og motorkonfiguration for dansk SMV-segment.</div></div>
-        <div class="tl-row"><div class="tl-d" style="color:var(--red);">22. juni</div><div class="tl-t"><strong style="color:var(--red);">Redaktionelt koncept — deadline</strong> · Lysdal + Dyrby · Forudsætning for features spec v1.0 og tech-konfiguration. Ingen yderligere produktdrøftelser før det foreligger.</div></div>
+        <div class="tl-row"><div class="tl-d" style="color:var(--green);">Juni 2026</div><div class="tl-t"><strong style="color:var(--green);">Redaktionelt koncept — afsluttet</strong> · Forudsætning for features spec v1.0 og tech-konfiguration.</div></div>
         <div class="tl-row"><div class="tl-d">30. juni</div><div class="tl-t"><strong>Features spec v1.0 klar</strong> · PM + Tech Lead · Afventer redaktionelt koncept</div></div>
         <div class="tl-row"><div class="tl-d">Aug.–sept.</div><div class="tl-t"><strong>Design & build</strong> · Frontend og design løses internt</div></div>
         <div class="tl-row"><div class="tl-d">Okt. 2026</div><div class="tl-t"><strong>Business-launch</strong></div></div>
@@ -1789,6 +1907,24 @@ body.bm-editing .bm-plot-cell .bm-add {
     else if (e.key === '3') navigate('s-pos');
     else if (e.key === '4') navigate('s-gtm');
     else if (e.key === '5') navigate('s-ai');
+  });
+}());
+
+/* === BIZ SECTION TABS === */
+(function () {
+  document.querySelectorAll('.biz-tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var tabId = btn.getAttribute('data-biz-tab');
+      document.querySelectorAll('.biz-tab-btn').forEach(function (b) {
+        b.classList.remove('biz-tab-active');
+      });
+      document.querySelectorAll('.biz-tab-panel').forEach(function (p) {
+        p.classList.remove('biz-tab-active');
+      });
+      btn.classList.add('biz-tab-active');
+      var panel = document.getElementById(tabId);
+      if (panel) panel.classList.add('biz-tab-active');
+    });
   });
 }());
 
