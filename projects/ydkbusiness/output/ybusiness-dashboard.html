@@ -331,12 +331,12 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
 /* Info boxes */
 .ibox {
-  background: var(--tint); border-left: 2px solid var(--accent);
-  padding: 22px 24px; margin-bottom: 22px;
+  background: var(--tint); border: 1px solid var(--line);
+  padding: 18px 20px; margin-bottom: 14px;
 }
-.ibox.green { border-color: var(--green); background: var(--green-s); }
-.ibox.amber { border-color: var(--amber); background: var(--amber-s); }
-.ibox.accent { border-color: var(--accent); background: var(--accent-10); }
+.ibox.green { background: var(--green-s); border-color: rgba(22,163,74,0.18); }
+.ibox.amber { background: var(--amber-s); border-color: rgba(180,83,9,0.15); }
+.ibox.accent { background: var(--accent-10); border-color: var(--accent-20); }
 .ibox-t {
   font-family: var(--sans); font-size: 14px; font-weight: 700;
   color: var(--accent); margin-bottom: 12px;
@@ -781,7 +781,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 
 /* Warning box */
 .risk {
-  background: var(--amber-s); border-left: 2px solid var(--amber);
+  background: var(--amber-s); border: 1px solid rgba(180,83,9,0.18);
   padding: 18px 22px; margin-bottom: 16px;
 }
 .risk-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 7px; }
@@ -836,12 +836,53 @@ body.bm-editing .bm-plot-cell .bm-add {
 
 @keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-/* === ADDON TIER PRICING === */
+/* === ADDON DEFINITION ROWS === */
+.bm-addons {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+.addon-group-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--faint);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 10px 18px 6px;
+  background: var(--tint);
+  border-bottom: 1px solid var(--line2);
+}
+.bm-addon {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+  align-items: start;
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--line2);
+  background: var(--card);
+}
+.bm-addon.pending { background: var(--tint); }
+.bm-addon-k {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0;
+  text-transform: none;
+  padding-top: 1px;
+}
+.bm-addon-v {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink70);
+  line-height: 1.45;
+}
 .addon-tiers {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-top: 6px;
+  gap: 4px;
 }
 .addon-tier {
   display: flex;
@@ -863,7 +904,6 @@ body.bm-editing .bm-plot-cell .bm-add {
 .addon-mini-tbl {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 6px;
 }
 .addon-mini-tbl th {
   font-family: var(--mono);
@@ -882,7 +922,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   font-size: 11px;
   font-weight: 700;
   color: var(--ink70);
-  padding: 5px 0;
+  padding: 4px 0;
   text-align: right;
   border-bottom: 1px solid var(--line2);
 }
@@ -1285,10 +1325,10 @@ body.bm-editing .bm-plot-cell .bm-add {
           </div>
         </div>
         <div class="bm-plot-note">
-          <span><strong>Pointen:</strong> Erhverv inkluderer indhold og markedsovervågning. Erhverv+ tilføjer teamadgang og kick-back. Premium låser op for reklamefri adgang, finansielle analyser og international version.</span>
-          <span>Medieovervågning og community er tilkøb. Alle abonnements- og B2B-prispunkter er repræsenteret.</span>
+          <span>Erhverv: indhold og overvågning. Erhverv+: teamadgang og kick-back. Premium: reklamefri, finansielle analyser og valgfrit sprog. Medieovervågning er tilkøb.</span>
         </div>
-        <div class="bm-addons" aria-label="Add-ons og vilkår" style="border:1.5px solid var(--line);">
+        <div class="bm-addons" aria-label="Add-ons og vilkår">
+          <div class="addon-group-label">Tilkøb</div>
           <div class="bm-addon">
             <div class="bm-addon-k" data-xlsx-key="extra_user_label">Ekstra bruger</div>
             <div class="addon-tiers">
@@ -1308,20 +1348,21 @@ body.bm-editing .bm-plot-cell .bm-add {
             </table>
           </div>
           <div class="bm-addon">
-            <div class="bm-addon-k" data-xlsx-key="international_addon_label">Ekstra sprogbruger <span style="font-weight:400; text-transform:none; letter-spacing:0; color:var(--faint);">— Erhverv+</span></div>
+            <div class="bm-addon-k" data-xlsx-key="international_addon_label">Ekstra sprogbruger</div>
             <div class="addon-tiers">
-              <div class="addon-tier"><span class="addon-tier-l">/md</span><span class="addon-tier-v">99 kr</span></div>
-              <div class="addon-tier"><span class="addon-tier-l">/år</span><span class="addon-tier-v">1.000 kr</span></div>
-              <div class="addon-tier"><span class="addon-tier-l">/år rabat</span><span class="addon-tier-v">750 kr</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv+ / md</span><span class="addon-tier-v">99 kr</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv+ / år</span><span class="addon-tier-v">1.000 kr</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv+ / år rabat</span><span class="addon-tier-v">750 kr</span></div>
             </div>
           </div>
-          <div class="bm-addon">
+          <div class="addon-group-label">Afventer afklaring</div>
+          <div class="bm-addon pending">
             <div class="bm-addon-k">Medieovervågning</div>
-            <div class="bm-addon-v">Tilkøb — op til 5 brands/personnavne overvåget i 50.000+ kilder. <strong>Pris afklares</strong></div>
+            <div class="bm-addon-v">Op til 5 brands/personnavne i 50.000+ kilder. <strong style="color:var(--amber);">Pris afklares</strong></div>
           </div>
-          <div class="bm-addon">
-            <div class="bm-addon-k">Micropayment · Fremtidigt scope</div>
-            <div class="bm-addon-v">Pay-per-view på enkeltartikler, audio og video. <strong>Pris og model afklares</strong></div>
+          <div class="bm-addon pending">
+            <div class="bm-addon-k">Micropayment</div>
+            <div class="bm-addon-v">Pay-per-view på enkeltartikler, audio og video. <strong style="color:var(--amber);">Pris og model afklares</strong></div>
           </div>
         </div>
       </div>
@@ -1329,21 +1370,44 @@ body.bm-editing .bm-plot-cell .bm-add {
 
       <!-- TAB 3: REVENUE & ADD-ONS -->
       <div class="biz-tab-panel" id="biz-revenue" style="padding-bottom:24px;">
-      <div class="rev-box">
-        <div class="rev-box-t">Revenue ambition — mål år 1</div>
-        <div class="rev-row"><span>1.500 Business subscribers ved paywall</span><span>20. nov. 2026</span></div>
-        <div class="rev-row"><span>1.500 Private subscribers ved paywall</span><span>50 DKK/md</span></div>
-        <div class="rev-row"><span>ARR baseline — 1.500 × Erhverv (run-rate)</span><span>9M DKK</span></div>
-        <div class="rev-row"><span>ARR opside — opgradering til Erhverv+/Premium</span><span>11–14M DKK</span></div>
-        <div class="rev-row tot"><span>Partner og API ikke inkluderet i basisestimatet</span></div>
+      <div class="bm-addons" style="margin-bottom:16px;">
+        <div class="addon-group-label">Revenue ambition — mål år 1</div>
+        <div class="bm-addon">
+          <div class="bm-addon-k">Business subscribers ved paywall</div>
+          <div class="addon-tiers">
+            <div class="addon-tier"><span class="addon-tier-l">Mål</span><span class="addon-tier-v">1.500</span></div>
+            <div class="addon-tier"><span class="addon-tier-l">Deadline</span><span class="addon-tier-v">20. nov. 2026</span></div>
+          </div>
+        </div>
+        <div class="bm-addon">
+          <div class="bm-addon-k">Private subscribers ved paywall</div>
+          <div class="addon-tiers">
+            <div class="addon-tier"><span class="addon-tier-l">Mål</span><span class="addon-tier-v">1.500</span></div>
+            <div class="addon-tier"><span class="addon-tier-l">Pris</span><span class="addon-tier-v">50 DKK/md</span></div>
+          </div>
+        </div>
+        <div class="bm-addon">
+          <div class="bm-addon-k">ARR baseline</div>
+          <div class="addon-tiers">
+            <div class="addon-tier"><span class="addon-tier-l">1.500 × Erhverv run-rate</span><span class="addon-tier-v">9M DKK</span></div>
+          </div>
+        </div>
+        <div class="bm-addon">
+          <div class="bm-addon-k">ARR opside</div>
+          <div class="addon-tiers">
+            <div class="addon-tier"><span class="addon-tier-l">Opgradering til Erhverv+/Premium</span><span class="addon-tier-v">11–14M DKK</span></div>
+          </div>
+        </div>
+        <div class="addon-group-label" style="color:var(--muted); font-weight:400; text-transform:none; letter-spacing:0; font-size:11px;">Partner og API ikke inkluderet i basisestimatet</div>
       </div>
 
-      <div style="margin-top:12px; font-family:var(--sans); font-size:12px; color:var(--muted); line-height:1.55;">
-        Business genererer <strong style="color:var(--ink70);">10× mere revenue per abonnent</strong> end Private (500 DKK vs. 50 DKK/md). Private er platform-driver der konverterer daglig trafik til Business-abonnenter. Feature-allokering per tier afklares i features spec v1.0.
+      <div class="ibox">
+        <div class="ibox-b">Business genererer <strong>10× mere revenue per abonnent</strong> end Private (500 DKK vs. 50 DKK/md). Private er platform-driver der konverterer daglig trafik til Business-abonnenter. Feature-allokering per tier afklares i features spec v1.0.</div>
       </div>
 
-      <div style="margin-top:14px; padding:10px 14px; border-left:2px solid var(--amber); background:var(--amber-s);">
-        <span style="font-family:var(--mono); font-size:9px; font-weight:700; color:var(--amber); letter-spacing:0.1em; text-transform:uppercase;">Note — </span><span style="font-family:var(--sans); font-size:11.5px; color:var(--ink70); line-height:1.55;">Antal inkluderede brugere per tier er ikke fastlagt. Seat-model afklares som del af features spec v1.0. Ingen commitments inden da.</span>
+      <div class="ibox amber">
+        <div class="ibox-t">Seat-model afventer afklaring</div>
+        <div class="ibox-b">Antal inkluderede brugere per tier er ikke fastlagt. Seat-model afklares som del af features spec v1.0. Ingen commitments inden da.</div>
       </div>
       </div><!-- /biz-revenue -->
 
@@ -1381,20 +1445,18 @@ body.bm-editing .bm-plot-cell .bm-add {
         </div>
       </div>
 
-      <div style="display:flex; gap:10px;">
-        <div class="ibox green" style="flex:1; min-width:0; border:1.5px solid var(--green);">
-          <div class="ibox-t" style="color:var(--green)">Artikel-deling og brugsrettigheder — ny engagementsmekanik</div>
-          <div class="ibox-b">
-            <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>. Desuden brugsret til artikler i egen markedsføring — SoMe, nyhedsbreve og investor-materiale — for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</p>
-          </div>
+      <div class="ibox green">
+        <div class="ibox-t" style="color:var(--green)">Artikel-deling og brugsrettigheder</div>
+        <div class="ibox-b">
+          <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>. Desuden brugsret til artikler i egen markedsføring — SoMe, nyhedsbreve og investor-materiale — for Erhverv+ og Premium. Mekanikken gælder hele Y.dk-platformen.</p>
         </div>
-        <div class="ibox green" style="flex:1; min-width:0; border:1.5px solid var(--green); background:var(--green-s);">
-          <div class="ibox-t" style="color:var(--green)">Prisankeret holder — Erhverv+ mod konkurrenter</div>
-          <div class="ibox-b">
-            <p>Erhverv+ til 7.500 DKK/år inkluderer overvågning, team-adgang, artikel-deling og marketing kick-back.</p>
-            <p>Retriever (overvågning alene): 15.000–50.000+ DKK/år · Meltwater: 50.000–140.000+ DKK/år · LassoX: 40.000–82.000 DKK/år</p>
-            <p><strong>Erhverv+ erstatter 2–3 separate tjenester til en femtedel af prisen.</strong></p>
-          </div>
+      </div>
+      <div class="ibox green">
+        <div class="ibox-t" style="color:var(--green)">Prisankeret holder — Erhverv+ mod konkurrenter</div>
+        <div class="ibox-b">
+          <p>Erhverv+ til 7.500 DKK/år inkluderer overvågning, team-adgang, artikel-deling og marketing kick-back.</p>
+          <p>Retriever (overvågning alene): 15.000–50.000+ DKK/år · Meltwater: 50.000–140.000+ DKK/år · LassoX: 40.000–82.000 DKK/år</p>
+          <p><strong>Erhverv+ erstatter 2–3 separate tjenester til en femtedel af prisen.</strong></p>
         </div>
       </div>
 
