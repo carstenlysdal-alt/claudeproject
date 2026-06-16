@@ -484,7 +484,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .mb-sec{padding-bottom:13px;border-bottom:1px solid var(--line2);flex-shrink:0}
 .mb-sec:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
 .mb-sec-tag{font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:5px;opacity:.6}
-.mb-topline{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-.02em;margin-bottom:5px}
+.mb-topline{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink);line-height:1.18;letter-spacing:-.025em;margin-bottom:6px}
+.mb-sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.mb-sec-hdr .mb-sec-tag{margin-bottom:0}
+.mb-play{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;background:#4C1D95;border:none;border-radius:10px;cursor:pointer;font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.92);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0}
 .mb-consequence{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.55}
 .mb-items{display:flex;flex-direction:column;gap:6px}
 .mb-item{font-family:var(--sans);font-size:12px;color:var(--ink70);display:flex;align-items:flex-start;gap:7px;line-height:1.45}
@@ -1602,14 +1605,20 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
           </div>
           <div class="mb-sec">
             <div class="mb-sec-tag">Din branche og region</div>
-            <div class="mb-items">
+            <div class="mb-items" style="font-size:11px">
               <div class="mb-item">Byggebranchen: Boligsalg stiger 8 % på Sjælland — første stigning siden 2022<div class="mb-src">RealDania</div></div>
               <div class="mb-item">Transport: Nye kørselstidsbegrænsninger træder i kraft 1. august<div class="mb-src">Vejdirektoratet</div></div>
               <div class="mb-item">Handel: Detailsalg falder 3,2 % i juni — tredje måned i træk<div class="mb-src">Danmarks Statistik</div></div>
             </div>
           </div>
           <div class="mb-sec">
-            <div class="mb-sec-tag">Regulering og risiko</div>
+            <div class="mb-sec-hdr">
+              <div class="mb-sec-tag">Regulering og risiko</div>
+              <button class="mb-play">
+                <svg width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M1.5 1.2l5.5 3.3-5.5 3.3V1.2z" fill="rgba(196,181,253,.92)"/></svg>
+                Lyt
+              </button>
+            </div>
             <div class="mb-signal-block">
               <div class="mb-signal reg">Regulering</div>
               <div class="mb-signal-txt">Ny ESG-rapporteringspligt for virksomheder med 250+ ansatte · Deadline: 1. januar 2027</div>
@@ -1620,7 +1629,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
             <div class="mb-sec-tag">Blind vinkel</div>
             <div class="mb-signal-block">
               <div class="mb-signal blind">Blind vinkel</div>
-              <div class="mb-signal-txt">Mediefortællingen om grøn omstilling fokuserer på store selskaber.</div>
+              <div class="mb-signal-txt" style="font-size:11px">Mediefortællingen om grøn omstilling fokuserer på store selskaber.</div>
               <div class="mb-signal-sub">SMV'ernes implementeringsomkostninger dækkes ikke — selv om de udgør 67 % af det samlede lovgivningssubjekt.</div>
             </div>
           </div>
