@@ -778,6 +778,13 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 .scope-box.in  .scope-list li::before { content: '✓'; color: var(--green); font-weight: 700; }
 .scope-box.out .scope-list li::before { content: '–'; color: var(--red); opacity: 0.6; }
+.scope-group-label {
+  font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--green);
+  letter-spacing: 0.1em; text-transform: uppercase; list-style: none;
+  margin-top: 10px; margin-bottom: 0; padding: 0;
+}
+.scope-group-label::before { display: none; }
+.scope-group-label:first-child { margin-top: 0; }
 
 /* Warning box */
 .risk {
@@ -1732,7 +1739,8 @@ body.bm-editing .bm-plot-cell .bm-add {
         <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Markedstrends</div><div class="layer-d">Ugentlig trendanalyse fra 5.000 kilder. Du forstår din branche ugen før alle andre — uden at have en analytiker.</div></div></div>
         <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Leadgenerering fra markedssignaler</div><div class="layer-d">Reguleringsændringer, ekspansioner og lederskifter identificerer automatisk, hvilke virksomheder der er klar til at handle. Understøttes af CVR-søgning.</div></div></div>
         <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">B2B-briefs på 60 sekunder</div><div class="layer-d">Situationsbrief om en virksomhed, konkurrent eller reguleringsemne — genereret inden mødet. Det du skal vide, samlet på én side.</div></div></div>
-        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">C-level intelligence + AI & tech for erhverv</div><div class="layer-d">Strategiske analyser, datadrevet research og trendrapporter til topledelsen — national og international dækning fra Reuters, AP, Bloomberg m.fl. Indhold, der kræver fordybelse.<br><br><strong>AI & tech-sektionen</strong> er dedikeret Pro-indhold med potentiale for sponsorsamarbejde med relevante brancheorganisationer — IT-Branchen, Dansk Industri og Dansk Erhverv er oplagte kandidater, men ingen aftaler er indgået.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">C-level intelligence</div><div class="layer-d">Strategiske analyser, datadrevet research og trendrapporter til topledelsen. National og international dækning fra Reuters, AP, Bloomberg m.fl. Indhold der kræver fordybelse.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">AI & tech for erhverv</div><div class="layer-d">Dedikeret Pro-sektion: AI og digitalisering som strategisk ledelsesredskab for SMV-ejere og C-level. Ikke tech-journalistik for tech-folk.</div></div></div>
       </div>
     </div>
 
@@ -1742,19 +1750,22 @@ body.bm-editing .bm-plot-cell .bm-add {
         <div class="scope-box in">
           <div class="scope-hl">Inkluderet — fase 1</div>
           <ul class="scope-list">
+            <li class="scope-group-label">Alle tiers</li>
             <li>Personaliseret nyhedsfeed</li>
             <li>Morgenbrief tekst + lyd kl. 06:00</li>
             <li>Markedsovervågning (begrænset profil)</li>
-            <li>Medieovervågning — brands og personer (Erhverv+/Premium)</li>
-            <li>CVR- og konkurrentovervågning (Premium)</li>
             <li>Branchetrends (udvalgte sektorer)</li>
             <li>B2B-briefs (template-format)</li>
-            <li>Leadgenerering — signal-baseret + CVR-søgning</li>
-            <li>Lukket abonnentfællesskab</li>
-            <li>Reklamefri adgang (Premium)</li>
-            <li>Artikel-deling — tokeniserede links</li>
-            <li>Marketing kick-back (Erhverv+/Premium)</li>
             <li>Web og mobil</li>
+            <li class="scope-group-label">Erhverv+ og Premium</li>
+            <li>Medieovervågning — brands og personer</li>
+            <li>Artikel-deling — tokeniserede links</li>
+            <li>Marketing kick-back</li>
+            <li>Lukket abonnentfællesskab</li>
+            <li class="scope-group-label">Premium</li>
+            <li>CVR- og konkurrentovervågning</li>
+            <li>Reklamefri adgang</li>
+            <li>Leadgenerering — signal-baseret + CVR-søgning</li>
           </ul>
         </div>
         <div class="scope-box out">
@@ -1774,8 +1785,8 @@ body.bm-editing .bm-plot-cell .bm-add {
       <div class="ibox green">
         <div class="ibox-t" style="color:var(--green)">Supertrends — aktiv partner · møde afholdt 3. juni</div>
         <div class="ibox-b">
-          <p><strong>Valg A bekræftet:</strong> Y.dk Business bygger oven på Supertrends' infrastruktur — CMS, datastruktur og overvågningsmotor. Partnerbrief sendt juni 2026.</p>
-          <p><strong>Jens/Supertrends undersøger nu konkret, hvad platformen kan levere</strong> til markedsovervågning, trends og briefs for dansk SMV-segment — herunder kildestruktur, motorkonfiguration og evt. ekstern supplementering.</p>
+          <p><strong>Beslutning truffet:</strong> Y.dk Business bygger oven på Supertrends' infrastruktur — CMS, datastruktur og overvågningsmotor. Partnerbrief sendt juni 2026.</p>
+          <p><strong>Jens/Supertrends kortlægger nu konkret</strong>, hvad platformen kan levere til markedsovervågning, trends og briefs for dansk SMV-segment: kildestruktur, motorkonfiguration og evt. ekstern supplementering.</p>
           <p>Features leveret af Supertrends brandes <strong>"Powered by Supertrends"</strong> i produktet.</p>
           <p><strong>Udeståender:</strong></p>
           <ul class="chk">
