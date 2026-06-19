@@ -1035,6 +1035,87 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
 <!-- ═══════════ S4 ═══════════ -->
 <div class="screen" id="s4">
+<style>
+/* === S4 FORMATER — A+C redesign: klarhed + format-profiler === */
+
+/* Paywall band — visual proportion fill */
+#s4 .s4-paywall-band{padding:0;height:48px;overflow:hidden}
+#s4 .pwb-sep{display:none}
+#s4 .pwb-side{height:100%;padding:0 20px;display:flex;align-items:center;gap:10px}
+#s4 .pwb-side.free{background:rgba(22,163,74,.07);border-right:2px solid rgba(22,163,74,.2);flex:1}
+#s4 .pwb-side.paid{background:rgba(54,19,82,.04);flex:4}
+#s4 .pwb-pct{font-size:20px}
+#s4 .pwb-pct.free{color:var(--green)}
+#s4 .pwb-pct.paid{color:var(--accent)}
+#s4 .pwb-tag{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;border-radius:2px}
+#s4 .pwb-tag.free{color:var(--green);background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.25)}
+#s4 .pwb-tag.paid{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-20)}
+#s4 .pwb-items{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.03em;opacity:.7}
+
+/* Free zone — Morgenbriefet amber tone */
+#s4 .s4-tier-section.free-zone{background:rgba(167,93,70,.06);border-color:rgba(167,93,70,.22)}
+#s4 .s4-tier-section.free-zone .fmt-card{background:rgba(167,93,70,.08);border-top-color:#A75D46;border-top-width:4px}
+#s4 .s4-tier-section.free-zone .fmt-card:hover{box-shadow:0 6px 24px rgba(167,93,70,.16),0 2px 8px rgba(0,0,0,.04)}
+
+/* General card improvements */
+#s4 .fmt-card{border-top-width:4px;transition:transform .2s cubic-bezier(.2,0,0,1),box-shadow .2s ease}
+#s4 .fmt-name{font-size:24px}
+#s4 .fmt-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.1),0 2px 8px rgba(0,0,0,.04)}
+#s4 .fmt-pillar .fp-tag{font-size:8.5px;padding:2px 9px}
+
+/* Per-format color tones */
+#s4 .s4-paid-grid .fmt-card:nth-child(1){background:rgba(45,66,58,.05)}
+#s4 .s4-paid-grid .fmt-card:nth-child(1):hover{box-shadow:0 8px 28px rgba(45,66,58,.15),0 2px 8px rgba(0,0,0,.04)}
+#s4 .s4-paid-grid .fmt-card:nth-child(2){background:rgba(47,62,76,.05)}
+#s4 .s4-paid-grid .fmt-card:nth-child(2):hover{box-shadow:0 8px 28px rgba(47,62,76,.15),0 2px 8px rgba(0,0,0,.04)}
+#s4 .s4-paid-grid .fmt-card:nth-child(3){background:rgba(74,55,78,.05)}
+#s4 .s4-paid-grid .fmt-card:nth-child(3):hover{box-shadow:0 8px 28px rgba(74,55,78,.15),0 2px 8px rgba(0,0,0,.04)}
+#s4 .s4-paid-grid .fmt-card:nth-child(4){background:rgba(158,128,89,.05)}
+#s4 .s4-paid-grid .fmt-card:nth-child(4):hover{box-shadow:0 8px 28px rgba(158,128,89,.15),0 2px 8px rgba(0,0,0,.04)}
+
+/* Situationsformater */
+#s4 .s4-paid-grid .fmt-card:nth-child(6){background:rgba(124,121,114,.04)}
+#s4 .s4-paid-grid .fmt-card:nth-child(6):hover{box-shadow:0 8px 28px rgba(124,121,114,.12)}
+
+/* ═══ BLIND SPOT — dark navy anchor card (nth-child 5) ═══ */
+#s4 .s4-paid-grid .fmt-card:nth-child(5){background:#0C1929;border-top-color:#3B82F6;border-top-width:5px}
+#s4 .s4-paid-grid .fmt-card:nth-child(5):hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(59,130,246,.25),0 4px 12px rgba(0,0,0,.3)}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-num{color:rgba(147,197,253,.45)}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-name{color:#FAFAF8}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-func{color:rgba(147,197,253,.65)}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-q{color:rgba(250,250,248,.6)}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-insight{background:rgba(59,130,246,.12);color:rgba(147,197,253,.9);border-left-color:#3B82F6}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-sources{color:rgba(250,250,248,.45)}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-sources strong{color:rgba(147,197,253,.6)}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-foot{border-top-color:rgba(255,255,255,.1)}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-freq{color:rgba(250,250,248,.3)}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-access-lbl{color:rgba(196,181,253,.75)}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) .fp-tag{opacity:.8}
+/* 6-type grid — target by attribute string (inline styles) */
+#s4 .s4-paid-grid .fmt-card:nth-child(5) [style*="background:rgba(26,46,74,.06)"]{background:rgba(59,130,246,.1)!important;border-top-color:rgba(59,130,246,.45)!important}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) [style*="color:#1A2E4A"]{color:rgba(147,197,253,.75)!important}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) [style*="color:var(--ink70)"]{color:rgba(250,250,248,.58)!important}
+#s4 .s4-paid-grid .fmt-card:nth-child(5) [style*="border-left:1px solid var(--line2)"]{border-color:rgba(255,255,255,.1)!important}
+
+/* Entry animations */
+@keyframes s4-rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+#s4.screen.active .s4-tier-section.free-zone{animation:s4-rise .5s ease .05s both}
+#s4.screen.active .s4-paywall-mur{animation:s4-rise .4s ease .12s both}
+#s4.screen.active .s4-paid-grid .fmt-card:nth-child(1){animation:s4-rise .5s ease .1s both}
+#s4.screen.active .s4-paid-grid .fmt-card:nth-child(2){animation:s4-rise .5s ease .2s both}
+#s4.screen.active .s4-paid-grid .fmt-card:nth-child(3){animation:s4-rise .5s ease .3s both}
+#s4.screen.active .s4-paid-grid .fmt-card:nth-child(4){animation:s4-rise .5s ease .4s both}
+#s4.screen.active .s4-paid-grid .fmt-card:nth-child(5){animation:s4-rise .5s ease .5s both}
+#s4.screen.active .s4-paid-grid .fmt-card:nth-child(6){animation:s4-rise .5s ease .6s both}
+#s4.screen.active .s4-feat.base{animation:s4-rise .55s ease .08s both}
+#s4.screen.active .s4-feat.voice{animation:s4-rise .55s ease .18s both}
+@media(prefers-reduced-motion:reduce){
+  #s4.screen.active .fmt-card,
+  #s4.screen.active .s4-feat,
+  #s4.screen.active .s4-tier-section,
+  #s4.screen.active .s4-paywall-mur{animation:none!important}
+}
+</style>
 <div class="bg-grid"></div>
 <header class="dash-header">
   <div class="dash-brand"><span class="dash-brand-mark">Y</span></div>
