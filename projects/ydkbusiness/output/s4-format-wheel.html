@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y Business — Formathjulet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFAF8;--card:#FFF;--ink:#100C0C;--ink70:#44413C;
+  --muted:#7C7972;--line:#E4E2DD;--line2:#ECEAE4;--tint:#F4F2EC;
+  --accent:#361352;--accent-10:rgba(54,19,82,.08);--accent-20:rgba(54,19,82,.15);--accent-30:rgba(54,19,82,.25);
+  --sans:'Schibsted Grotesk',system-ui,sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--paper);-webkit-font-smoothing:antialiased}
+.viewport{position:fixed;inset:0;overflow:hidden}
+.stage{position:absolute;left:0;top:0;width:1440px;height:900px;overflow:hidden;transform-origin:0 0;background:var(--paper)}
+.bg-grid{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(54,19,82,.035) 1px,transparent 1px);background-size:36px 36px}
+
+/* HEADER */
+.hdr{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(250,250,248,.97);border-bottom:2px solid var(--line);backdrop-filter:blur(12px);z-index:50;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-y{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--accent);font-style:italic}
+.brand-div{width:1px;height:18px;background:var(--line)}
+.brand-sub{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--muted)}
+.proto-tag{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-30);padding:3px 9px;border-radius:3px}
+
+/* WHEEL SVG — left edge, vertical */
+.wheel-svg{position:absolute;top:64px;left:0;width:220px;height:836px;overflow:visible;z-index:10}
+
+/* FORMAT LABELS — HTML layer on top of wheel */
+.label{
+  position:absolute;left:208px;
+  display:flex;align-items:center;gap:0;
+  cursor:pointer;
+  z-index:15;
+  transition:opacity .2s ease;
+}
+.label-inner{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 0 0 16px;
+  height:52px;
+}
+.label-name{
+  font-family:var(--serif);font-size:19px;font-weight:700;
+  color:var(--ink);line-height:1.1;letter-spacing:-.02em;
+  transition:color .18s ease;
+}
+.label-func{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);opacity:.55;margin-top:3px;
+  transition:opacity .18s ease;
+}
+.label.active .label-name{color:var(--lc,var(--accent))}
+.label.active .label-func{opacity:.8;color:var(--lc,var(--muted))}
+.label.dimmed{opacity:.35}
+.label:hover:not(.active) .label-name{color:var(--lc,var(--ink))}
+.label:hover:not(.active) .label-func{opacity:.75}
+
+/* Connector line from wheel to label */
+.label-line{
+  width:12px;height:2px;border-radius:1px;
+  background:var(--lc,var(--muted));
+  opacity:.35;flex-shrink:0;
+  transition:opacity .18s ease,width .18s ease;
+}
+.label.active .label-line{opacity:.8;width:16px}
+
+/* PETAL — the bloom panel */
+.petal{
+  position:absolute;left:208px;
+  width:1180px;
+  background:var(--card);
+  border-radius:0 14px 14px 0;
+  box-shadow:0 4px 40px rgba(0,0,0,.1),0 1px 8px rgba(0,0,0,.05);
+  border-top:1px solid var(--line);
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  z-index:20;
+  clip-path:inset(0 100% 0 0 round 0 14px 14px 0);
+  transition:clip-path .42s cubic-bezier(.2,0,0,1), top .35s cubic-bezier(.2,0,0,1);
+  pointer-events:none;
+  overflow:hidden;
+}
+.petal.open{
+  clip-path:inset(0 0% 0 0 round 0 14px 14px 0);
+  pointer-events:auto;
+}
+.petal-accent{height:4px;background:var(--pc,var(--accent));transition:background .2s}
+.petal-body{display:grid;grid-template-columns:290px 1fr 240px;height:calc(100% - 4px)}
+.pc{padding:24px 26px;border-right:1px solid var(--line2)}
+.pc:last-child{border-right:none}
+
+/* Petal col 1 */
+.p-num{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;color:var(--accent);opacity:.4;margin-bottom:4px}
+.p-name{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:4px}
+.p-func{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:.6;margin-bottom:14px}
+.p-tags{display:flex;flex-wrap:wrap;gap:5px}
+.p-tag{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:3px}
+.p-tag.free{color:#B45309;background:rgba(180,83,9,.08);border:1px solid rgba(180,83,9,.2)}
+.p-tag.paid{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-20)}
+.p-tag.freq{color:var(--muted);background:var(--tint);border:1px solid var(--line)}
+
+/* Petal col 2 */
+.p-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:.6;margin-bottom:8px}
+.p-desc{font-family:var(--sans);font-size:14px;color:var(--ink70);line-height:1.58;margin-bottom:14px}
+.p-insight{padding:11px 14px;border-left:3px solid var(--pc,var(--accent));background:var(--tint);border-radius:0 4px 4px 0;font-family:var(--sans);font-size:12.5px;font-style:italic;color:var(--ink70);line-height:1.5}
+
+/* Petal col 3 */
+.p-access{padding:10px 12px;border-radius:4px;margin-bottom:12px}
+.p-access-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.p-access-desc{font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.45}
+.p-pillars{display:flex;flex-direction:column;gap:4px}
+.p-pillar{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;color:var(--muted);background:var(--tint);border:1px solid var(--line);width:fit-content}
+
+/* Dark variant for Blind Spot */
+.petal.dark .p-num{color:rgba(147,197,253,.5);opacity:1}
+.petal.dark .p-name{color:#FAFAF8}
+.petal.dark .p-func{color:rgba(147,197,253,.45);opacity:1}
+.petal.dark .pc{background:#0C1929;border-right-color:rgba(255,255,255,.07)}
+.petal.dark .p-desc{color:rgba(250,250,248,.72)}
+.petal.dark .p-insight{background:rgba(59,130,246,.1);color:rgba(147,197,253,.88)}
+.petal.dark .p-lbl{color:rgba(147,197,253,.4);opacity:1}
+.petal.dark .p-pillar{background:rgba(59,130,246,.08);color:rgba(147,197,253,.6);border-color:rgba(59,130,246,.18)}
+.petal.dark .p-access-desc{color:rgba(250,250,248,.45)}
+
+/* CLOSE button inside petal */
+.p-close{position:absolute;top:8px;right:12px;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.05);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:var(--mono);font-size:13px;color:var(--muted);z-index:5;transition:background .15s}
+.p-close:hover{background:var(--line)}
+.petal.dark .p-close{background:rgba(255,255,255,.07);color:rgba(147,197,253,.5)}
+.petal.dark .p-close:hover{background:rgba(255,255,255,.12)}
+
+/* INTRO TEXT — right side, visible when nothing selected */
+.intro{position:absolute;top:50%;right:80px;transform:translateY(-50%);text-align:right;pointer-events:none;z-index:5;transition:opacity .3s ease}
+.intro.hidden{opacity:0}
+.intro-eye{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-bottom:10px}
+.intro-eye::after{content:'';display:block;width:24px;height:1px;background:var(--accent);opacity:.35}
+.intro-h{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:8px}
+.intro-h em{font-style:italic;color:var(--accent)}
+.intro-sub{font-family:var(--sans);font-size:13px;color:var(--muted)}
+
+@media(prefers-reduced-motion:reduce){
+  .petal,.label,.label-name,.label-func,.label-line{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="viewport">
+<div class="stage" id="stage">
+<div class="bg-grid"></div>
+
+<header class="hdr">
+  <div class="brand">
+    <span class="brand-y">Y</span>
+    <div class="brand-div"></div>
+    <span class="brand-sub">Business · Redaktionsdash</span>
+  </div>
+  <span class="proto-tag">04 · Formater · Prototype</span>
+</header>
+
+<svg class="wheel-svg" id="wheelSvg" viewBox="0 0 220 836" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="fadeLeft" cx="0%" cy="50%" r="100%">
+      <stop offset="0%" stop-color="rgba(250,250,248,.9)"/>
+      <stop offset="100%" stop-color="rgba(250,250,248,0)"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<div class="intro" id="intro">
+  <div class="intro-eye">04 · Formater</div>
+  <h1 class="intro-h">Otte formater —<br><em>ét abonnement</em></h1>
+  <p class="intro-sub">Vælg et format til venstre</p>
+</div>
+
+<div class="petal" id="petal">
+  <button class="p-close" id="petalClose">×</button>
+  <div class="petal-accent" id="petalAccent"></div>
+  <div class="petal-body" id="petalBody"></div>
+</div>
+
+</div>
+</div>
+
+<script>
+// ── SCALE ────────────────────────────────────────────────
+const stage = document.getElementById('stage');
+function scale(){
+  const s = Math.min(window.innerWidth/1440, window.innerHeight/900);
+  stage.style.transform = `scale(${s})`;
+  stage.style.left = `${(window.innerWidth - 1440*s)/2}px`;
+  stage.style.top  = `${(window.innerHeight - 900*s)/2}px`;
+}
+scale(); window.addEventListener('resize', scale);
+
+// ── DATA ─────────────────────────────────────────────────
+const FORMATS = [
+  {
+    num:'01', name:'Morgenbriefet', func:'Vanen',
+    tier:'free', freq:'Dagligt · 06.30',
+    desc:'Det daglige overblik over hvad der betyder noget for din virksomhed i dag — komprimeret til ét klart signal inden arbejdsdagen begynder.',
+    insight:'Rekrutteringskanal til abonnementet. Ingen mur, ingen registrering.',
+    pillars:['Understand'],
+    fill:'#A75D46', bg:'rgba(167,93,70,.14)', stroke:'#A75D46',
+  },
+  {
+    num:'02', name:'Brancheoverblikket', func:'Orienteringen',
+    tier:'paid', freq:'Dagligt / løbende',
+    desc:'Ikke alt behøver en vinkel. Noget behøver bare at blive fundet, sorteret og leveret inden du åbner din første mail. Personaliseret efter branche, region og adfærd.',
+    insight:'Det er ikke et fælles opslagstavleprodukt — det er din branche filteret igennem dine parametre.',
+    pillars:['Understand'],
+    fill:'#3D6B50', bg:'rgba(61,107,80,.13)', stroke:'#3D6B50',
+  },
+  {
+    num:'03', name:'Det betyder det', func:'Nytten',
+    tier:'paid', freq:'Ugentligt + ad hoc',
+    desc:'Kontekst og konsekvens bag de nyheder der tilsyneladende ikke angår dig — men gør det inden for 90 dage. Fast 6-punkt-struktur med klar konsekvens for din virksomhed.',
+    insight:'Forklaringsformatet der gør dig klogere end dem der kun læste overskriften.',
+    pillars:['Understand'],
+    fill:'#3B6EA8', bg:'rgba(59,110,168,.13)', stroke:'#3B6EA8',
+  },
+  {
+    num:'04', name:'Blind Spot', func:'Signalmotoren',
+    tier:'paid', freq:'Ugentligt + journalisttriggeret',
+    desc:'Det du ikke vidste, du ikke vidste. Systemet finder sprækken i ugens nyhedsbillede: det dokumenterede hul, den skæve fortælling, den dominerende ramme, den fraværende kilde.',
+    insight:'Ankerformatet. Det format du husker — og grunden til at du kommer tilbage.',
+    pillars:['Challenge'],
+    fill:'#3B82F6', bg:'#0C1929', stroke:'#3B82F6', dark:true,
+  },
+  {
+    num:'05', name:'Den blinde vinkel', func:'Kanten',
+    tier:'paid', freq:'Ugentligt',
+    desc:'Den vinkel erhvervsmedier ikke tager — fordi den ikke er nem, ikke er konsensus, eller kræver en holdning der kan koste læsere. Følger challenge-protokol med navngivet modkilde.',
+    insight:'Modsvar til konsensus. Skrives med kant, med afsender og med ansvar.',
+    pillars:['Challenge'],
+    fill:'#7B4A9E', bg:'rgba(123,74,158,.13)', stroke:'#7B4A9E',
+  },
+  {
+    num:'06', name:'Signalradaren', func:'Forspringet',
+    tier:'paid', freq:'Ugentligt + situationsbestemt',
+    desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — markedsbevægelser, reguleringsudkast og teknologimønstre fremhævet med styrke og modtagere.',
+    insight:'Se mønstre 6–18 måneder før dine konkurrenter. Konkurrencefordelen er tidshorisonten.',
+    pillars:['Understand','Challenge'],
+    fill:'#9E7A35', bg:'rgba(158,122,53,.13)', stroke:'#9E7A35',
+  },
+  {
+    num:'07', name:'Casen der virker', func:'Læringen',
+    tier:'paid', freq:'Ugentligt',
+    desc:'En konkret virksomhed der har løst det du kæmper med — præcist dokumenteret med tal, beslutninger, friktion og resultat. Viser metode, fejl og kopierbar læring.',
+    insight:'Praksis frem for teori. Ingen anonyme eksempler. Altid navngivet afsender.',
+    pillars:['Inspire'],
+    fill:'#4A374E', bg:'rgba(74,55,78,.13)', stroke:'#4A374E',
+  },
+  {
+    num:'+3', name:'Situationsformater', func:'Skalerbare',
+    tier:'paid', freq:'Ad hoc · situationsbestemt',
+    desc:'Særformater der udløses af specifikke begivenheder: valg, krise, markedsuro, reguleringsændringer, teknologiske skred. Journalistikken skifter gear når situationen kræver det.',
+    insight:'Aktiveres kun når situationen kræver det. Ikke kalenderindhold — reaktionsindhold.',
+    pillars:['Understand','Challenge','Inspire'],
+    fill:'#7C7972', bg:'rgba(124,121,114,.13)', stroke:'#7C7972',
+  },
+];
+
+// ── WHEEL GEOMETRY ────────────────────────────────────────
+// Center at left edge, vertical spread
+const CX = 0, CY = 418;          // SVG coords (418 = mid of 836px)
+const INNER_R = 58, OUTER_R = 195;
+const MID_R = (INNER_R + OUTER_R) / 2; // 126.5
+const N = 8, GAP = 2.2;
+const SPAN = 158; // degrees, top to bottom
+const START_A = SPAN / 2;        // 79° from horizontal (upward)
+const SEG = (SPAN - (N-1)*GAP) / N; // ≈ 17.6°
+const RAD = Math.PI / 180;
+
+function pt(a, r){ return { x: r * Math.cos(a*RAD), y: CY - r * Math.sin(a*RAD) }; }
+function f(n){ return n.toFixed(2); }
+
+function arcPath(a1, a2, r1, r2){
+  const p1o=pt(a1,r2), p2o=pt(a2,r2), p2i=pt(a2,r1), p1i=pt(a1,r1);
+  const la = (a1-a2)>180?1:0;
+  return [
+    `M ${f(p1o.x)} ${f(p1o.y)}`,
+    `A ${r2} ${r2} 0 ${la} 0 ${f(p2o.x)} ${f(p2o.y)}`,
+    `L ${f(p2i.x)} ${f(p2i.y)}`,
+    `A ${r1} ${r1} 0 ${la} 1 ${f(p1i.x)} ${f(p1i.y)}`,
+    'Z'
+  ].join(' ');
+}
+
+// ── BUILD WHEEL + LABELS ──────────────────────────────────
+const svg = document.getElementById('wheelSvg');
+const segEls = [];
+const labelEls = [];
+const PETAL_H = 215;
+const HEADER_H = 64;
+let activeIdx = null;
+
+// Center circle (hub)
+const hub = document.createElementNS('http://www.w3.org/2000/svg','circle');
+hub.setAttribute('cx','0'); hub.setAttribute('cy', CY);
+hub.setAttribute('r', INNER_R - 6);
+hub.setAttribute('fill','var(--paper)');
+hub.setAttribute('stroke','var(--line)');
+hub.setAttribute('stroke-width','1.5');
+svg.appendChild(hub);
+
+// Y brand in hub
+const hubY = document.createElementNS('http://www.w3.org/2000/svg','text');
+hubY.setAttribute('x','0'); hubY.setAttribute('y', CY + 1);
+hubY.setAttribute('text-anchor','middle'); hubY.setAttribute('dominant-baseline','middle');
+hubY.setAttribute('font-family',"'Playfair Display',serif");
+hubY.setAttribute('font-size','18'); hubY.setAttribute('font-weight','700');
+hubY.setAttribute('fill','rgba(54,19,82,.35)'); hubY.setAttribute('font-style','italic');
+hubY.textContent = 'Y';
+svg.appendChild(hubY);
+
+// Free/paid separator: thin line between seg 0 and seg 1
+const sepA = START_A - SEG - GAP/2;
+const sp1 = pt(sepA, INNER_R-6), sp2 = pt(sepA, OUTER_R+8);
+const sepL = document.createElementNS('http://www.w3.org/2000/svg','line');
+['x1','y1','x2','y2'].forEach((a,i)=>{
+  sepL.setAttribute(a, f([sp1.x,sp1.y,sp2.x,sp2.y][i]));
+});
+sepL.setAttribute('stroke','rgba(180,83,9,.3)');
+sepL.setAttribute('stroke-width','1.5');
+sepL.setAttribute('stroke-dasharray','4 3');
+sepL.style.pointerEvents='none';
+
+FORMATS.forEach((fmt, i) => {
+  const a1 = START_A - i*(SEG+GAP);
+  const a2 = a1 - SEG;
+  const mid = (a1+a2)/2;
+
+  // ── SVG SEGMENT ──
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.style.cursor='pointer';
+
+  const fill = document.createElementNS('http://www.w3.org/2000/svg','path');
+  fill.setAttribute('d', arcPath(a1, a2, INNER_R, OUTER_R));
+  fill.setAttribute('fill', fmt.bg);
+  fill.setAttribute('stroke', fmt.stroke+'44');
+  fill.setAttribute('stroke-width','1');
+  fill.style.transition='filter .22s ease, opacity .22s ease';
+
+  // Inner accent arc
+  const aR = INNER_R+5, aP1=pt(a1-.4,aR), aP2=pt(a2+.4,aR);
+  const acc = document.createElementNS('http://www.w3.org/2000/svg','path');
+  acc.setAttribute('d',`M ${f(aP1.x)} ${f(aP1.y)} A ${aR} ${aR} 0 0 0 ${f(aP2.x)} ${f(aP2.y)}`);
+  acc.setAttribute('fill','none');
+  acc.setAttribute('stroke', fmt.fill);
+  acc.setAttribute('stroke-width','3');
+  acc.style.pointerEvents='none';
+
+  g.appendChild(fill);
+  g.appendChild(acc);
+  svg.appendChild(g);
+  g.addEventListener('click', ()=>toggle(i));
+  segEls.push({ g, fill, mid, a1, a2 });
+
+  // ── HTML LABEL ──
+  // stage y = HEADER_H + CY - MID_R * sin(mid)
+  const labelCenterY = HEADER_H + CY - MID_R * Math.sin(mid*RAD);
+
+  const lb = document.createElement('div');
+  lb.className = 'label';
+  lb.style.cssText = `
+    top:${labelCenterY - 26}px;
+    --lc:${fmt.fill};
+  `;
+
+  const line = document.createElement('div');
+  line.className = 'label-line';
+
+  const inner = document.createElement('div');
+  inner.className = 'label-inner';
+
+  const name = document.createElement('div');
+  name.className = 'label-name';
+  name.textContent = fmt.name;
+
+  const func = document.createElement('div');
+  func.className = 'label-func';
+  func.textContent = fmt.func;
+
+  inner.appendChild(name);
+  inner.appendChild(func);
+  lb.appendChild(line);
+  lb.appendChild(inner);
+  stage.appendChild(lb);
+
+  lb.addEventListener('click', ()=>toggle(i));
+  labelEls.push(lb);
+});
+
+svg.appendChild(sepL);
+
+// ── PETAL LOGIC ───────────────────────────────────────────
+const petal      = document.getElementById('petal');
+const petalBody  = document.getElementById('petalBody');
+const petalAccent= document.getElementById('petalAccent');
+const petalClose = document.getElementById('petalClose');
+const intro      = document.getElementById('intro');
+
+function toggle(idx){
+  if(activeIdx === idx){ closePetal(); return; }
+  openPetal(idx);
+}
+
+function openPetal(idx){
+  const fmt = FORMATS[idx];
+  activeIdx = idx;
+
+  // Position petal vertically at segment center
+  const mid = segEls[idx].mid;
+  const segCY = HEADER_H + CY - MID_R * Math.sin(mid*RAD);
+  const petalTop = Math.max(HEADER_H+4, Math.min(900-PETAL_H-4, segCY - PETAL_H/2));
+  petal.style.top = `${petalTop}px`;
+  petal.style.height = `${PETAL_H}px`;
+
+  // Color accent
+  petalAccent.style.background = fmt.fill;
+  petal.style.setProperty('--pc', fmt.fill);
+
+  // Dark mode
+  petal.classList.toggle('dark', !!fmt.dark);
+
+  // Segment + label states
+  segEls.forEach(({fill}, i)=>{
+    fill.style.filter = i===idx ? 'brightness(1.18) saturate(1.1)' : 'brightness(.85) saturate(.7)';
+    fill.style.opacity = i===idx ? '1' : '.5';
+  });
+  labelEls.forEach((lb, i)=>{
+    lb.classList.toggle('active', i===idx);
+    lb.classList.toggle('dimmed', i!==idx);
+  });
+
+  // Inject content
+  const dark = fmt.dark;
+  const dk = s => dark ? s : '';
+  const freeTag = fmt.tier==='free'
+    ? `<span class="p-tag free">Gratis</span>`
+    : `<span class="p-tag paid">Betalt</span>`;
+  const pillarsHtml = fmt.pillars.map(p=>`<span class="p-pillar">${p}</span>`).join('');
+  const accessFree = fmt.tier==='free';
+
+  petalBody.innerHTML = `
+    <div class="pc" style="${dark?'background:#0A1625':''};position:relative">
+      <div class="p-num" style="${dk('color:rgba(147,197,253,.5)')}}">${fmt.num} · ${fmt.tier==='free'?'GRATIS':'BETALT'}</div>
+      <div class="p-name" style="${dk('color:#FAFAF8')}">${fmt.name}</div>
+      <div class="p-func" style="${dk('color:rgba(147,197,253,.4);opacity:1')}">${fmt.func}</div>
+      <div class="p-tags">
+        ${freeTag}
+        <span class="p-tag freq" style="${dark?'background:rgba(255,255,255,.05);color:rgba(250,250,248,.4);border-color:rgba(255,255,255,.08)':''}">${fmt.freq}</span>
+      </div>
+    </div>
+    <div class="pc" style="${dark?'background:#0E1F38;border-right-color:rgba(255,255,255,.07)':''}">
+      <div class="p-lbl" style="${dk('color:rgba(147,197,253,.4);opacity:1')}">Funktion</div>
+      <p class="p-desc" style="${dk('color:rgba(250,250,248,.72)')}">${fmt.desc}</p>
+      <div class="p-insight" style="border-left-color:${fmt.fill};${dark?'background:rgba(59,130,246,.1);color:rgba(147,197,253,.88)':''}">${fmt.insight}</div>
+    </div>
+    <div class="pc" style="${dark?'background:#0A1625':''}">
+      <div class="p-lbl" style="${dk('color:rgba(147,197,253,.4);opacity:1')}">Adgang</div>
+      <div class="p-access" style="background:${accessFree?'rgba(22,163,74,.07)':(dark?'rgba(59,130,246,.07)':fmt.bg)};border:1px solid ${accessFree?'rgba(22,163,74,.2)':(dark?'rgba(59,130,246,.18)':fmt.fill+'33')}">
+        <div class="p-access-lbl" style="color:${accessFree?'#16A34A':fmt.fill}">${accessFree?'Åben adgang':'Abonnement'}</div>
+        <div class="p-access-desc" style="${dk('color:rgba(250,250,248,.4)')}">${accessFree?'Tilgængeligt uden registrering.':'Y Business · 5.000 kr./år'}</div>
+      </div>
+      <div class="p-lbl" style="${dk('color:rgba(147,197,253,.4);opacity:1')}">Pillar</div>
+      <div class="p-pillars">${pillarsHtml}</div>
+    </div>`;
+
+  // Bloom open
+  intro.classList.add('hidden');
+  requestAnimationFrame(()=>{ petal.classList.add('open'); });
+}
+
+function closePetal(){
+  activeIdx = null;
+  petal.classList.remove('open');
+  intro.classList.remove('hidden');
+  segEls.forEach(({fill})=>{
+    fill.style.filter='';
+    fill.style.opacity='';
+  });
+  labelEls.forEach(lb=>lb.classList.remove('active','dimmed'));
+}
+
+petalClose.addEventListener('click', e=>{ e.stopPropagation(); closePetal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePetal(); });
+
+// Entry animation
+segEls.forEach(({g},i)=>{
+  g.style.opacity='0';
+  g.style.transform='scaleX(.5)';
+  g.style.transformOrigin='0px 418px';
+  g.style.transition='opacity .5s ease, transform .5s cubic-bezier(.2,0,0,1)';
+  setTimeout(()=>{ g.style.opacity='1'; g.style.transform='scaleX(1)'; }, 60+i*55);
+});
+labelEls.forEach((lb,i)=>{
+  lb.style.opacity='0';
+  lb.style.transform='translateX(-20px)';
+  lb.style.transition='opacity .45s ease, transform .45s cubic-bezier(.2,0,0,1)';
+  setTimeout(()=>{ lb.style.opacity='1'; lb.style.transform='translateX(0)'; }, 100+i*55);
+});
+</script>
+</body>
+</html>

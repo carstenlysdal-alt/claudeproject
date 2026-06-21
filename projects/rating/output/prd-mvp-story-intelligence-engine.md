@@ -286,7 +286,7 @@ missing_sources, summary
 Browser (React + TypeScript, Vite)
     ↓ fetch
 Cloud Run API (Node/Express/TypeScript) — europe-west1
-    ├── /api/y-test-lab/rate          ← SIRE-analyse (Gemini 2.0 Flash)
+    ├── /api/y-test-lab/rate          ← SIRE-analyse (Gemini 2.5 Flash Lite / DeepSeek fallback)
     ├── /api/y-test-lab/summary       ← Asynkron resumégenerering
     ├── /api/y-test-lab/search        ← Inline kildesøgning (Google Search)
     ├── /api/y-test-lab/feeds         ← Feed-liste (25 kilder)
@@ -297,7 +297,7 @@ Cloud Run API (Node/Express/TypeScript) — europe-west1
 Firebase Hosting → sndeepdive.web.app
 ```
 
-**AI-model:** Gemini 2.0 Flash (Google AI SDK) — valgt for lav latens, stærk dansk sprogforståelse og Google-infrastruktursynergi. Prompten returnerer struktureret JSON direkte.
+**AI-model:** Gemini 2.5 Flash Lite (primær) — aktiveres hvis `GEMINI_API_KEY` eller `API_KEY` er sat. Fallback til DeepSeek (`deepseek-chat`) hvis Gemini-nøgle mangler. DeepSeek-model kan overstyres via `DEEPSEEK_MODEL`-miljøvariabel. Prompten returnerer struktureret JSON direkte.
 
 **Intern taksonomi:** Engelsk (stabilitet, internationale kilder, skalerbarhed).  
 **Output i CMS:** Dansk.
@@ -314,7 +314,7 @@ if functions.threat > 85 and ratings.decision_value > 80:
     recommended_format = "alert + guide"
 ```
 
-**Responstid:** ~3–6 sekunder pr. artikel ved Gemini 2.0 Flash.
+**Responstid:** ~3–6 sekunder pr. artikel.
 
 **Hvad CMS-integration skal håndtere (når CMS er klar):**
 - Modtage JSON fra ratingmotor

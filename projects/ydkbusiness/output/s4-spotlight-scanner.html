@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y Business — 04 · Formater</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* === VIEWPORT BASE === */
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#ECEAE4;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.deck-viewport{position:fixed;inset:0;overflow:hidden;background:#ECEAE4}
+.deck-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;
+  overflow:hidden;transform-origin:0 0;background:#FAFAF8}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.1s!important}}
+
+/* === TOKENS === */
+:root{
+  --paper:#FAFAF8;--card:#FFF;--ink:#100C0C;--ink70:#44413C;
+  --muted:#7C7972;--line:#E4E2DD;--line2:#ECEAE4;--tint:#F4F2EC;
+  --accent:#361352;--accent-10:rgba(54,19,82,.08);--accent-20:rgba(54,19,82,.15);
+  --serif:'Playfair Display',Georgia,serif;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Schibsted Grotesk',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,0,0,1);
+}
+
+/* === HEADER === */
+.hdr{
+  position:absolute;top:0;left:0;right:0;height:64px;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;
+  background:rgba(250,250,248,.97);border-bottom:2px solid var(--line);
+  backdrop-filter:blur(16px);box-shadow:0 2px 12px rgba(0,0,0,.04);
+}
+.brand{font-family:var(--serif);font-size:21px;font-weight:700;
+  color:var(--accent);font-style:italic}
+.brand b{font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.2em;color:var(--muted);font-style:normal;
+  margin-left:14px;vertical-align:middle}
+.slide-id{font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+
+/* === PIE AREA === */
+.pie-area{
+  position:absolute;top:64px;left:0;bottom:52px;width:1040px;
+  display:flex;align-items:center;justify-content:center;
+}
+.pie-svg{width:840px;height:840px;overflow:visible;
+  filter:drop-shadow(0 12px 40px rgba(0,0,0,.08))}
+
+/* === SLICES === */
+.slice{
+  cursor:pointer;
+  transition:opacity .3s ease, filter .3s ease;
+  will-change:opacity,filter;
+}
+.slice.dimmed{opacity:.32;filter:saturate(.25) brightness(1.04)}
+.slice.active{filter:brightness(1.07) saturate(1.1)}
+
+/* HTML label overlay — positioned over each slice centroid */
+.slice-lbl{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  pointer-events:none;
+  transition:opacity .3s ease, filter .3s ease, transform .35s var(--ease);
+  z-index:5;
+}
+.slice-lbl.dimmed{opacity:.2;filter:blur(1.5px)}
+.slice-lbl.active .lbl-name{letter-spacing:-.03em}
+.lbl-name{
+  font-family:var(--serif);font-size:20px;font-weight:700;
+  line-height:1.1;letter-spacing:-.02em;
+  display:block;text-wrap:balance;
+  transition:font-size .3s var(--ease), letter-spacing .3s ease;
+}
+.slice-lbl.active .lbl-name{font-size:22px}
+.lbl-func{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  display:block;margin-top:4px;opacity:.5;
+  transition:opacity .2s ease;
+}
+.slice-lbl.active .lbl-func{opacity:.8}
+.lbl-tier{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  display:inline-block;margin-top:6px;
+  padding:2px 7px;border-radius:3px;
+  transition:opacity .2s ease;
+}
+.lbl-tier.free{color:#A75D46;background:rgba(167,93,70,.1);border:1px solid rgba(167,93,70,.2)}
+.lbl-tier.paid{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-20)}
+
+/* === HUB === */
+.hub-group{cursor:pointer}
+.hub-bg{transition:r .3s var(--ease)}
+.hub-group:hover .hub-bg{r:133}
+
+/* === INFO PANEL === */
+.panel{
+  position:absolute;right:40px;top:76px;bottom:64px;
+  width:800px;
+  display:flex;flex-direction:column;justify-content:center;
+  z-index:20;
+}
+.panel-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,.04),
+    0 8px 24px rgba(0,0,0,.07),
+    0 24px 56px rgba(0,0,0,.06);
+  opacity:0;pointer-events:none;
+  transform:translateX(18px);
+  transition:opacity .32s ease, transform .36s var(--ease);
+  position:relative;
+}
+.panel-card.visible{opacity:1;pointer-events:auto;transform:translateX(0)}
+
+/* Top accent */
+.pc-accent{height:5px;transition:background .25s ease}
+
+/* Grid layout */
+.pc-grid{
+  display:grid;grid-template-columns:280px 1fr;
+  min-height:360px;
+}
+.pc-col{padding:28px 28px}
+.pc-col.left{border-right:1px solid var(--line2);padding-right:24px}
+.pc-col.right{padding-left:28px}
+
+/* Left col */
+.pc-num{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.12em;opacity:.4;margin-bottom:8px;
+  transition:opacity .2s ease;
+}
+.pc-name{
+  font-family:var(--serif);font-weight:700;
+  line-height:1.02;letter-spacing:-.03em;
+  margin-bottom:8px;text-wrap:balance;
+}
+.pc-func{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);opacity:.5;margin-bottom:20px;
+}
+.pc-tags{display:flex;flex-direction:column;gap:5px}
+.pc-tag{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:4px;width:fit-content;
+}
+.pc-tag.free{color:#A75D46;background:rgba(167,93,70,.09);border:1px solid rgba(167,93,70,.2)}
+.pc-tag.paid{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-20)}
+.pc-tag.pill{color:var(--muted);background:var(--tint);border:1px solid var(--line)}
+.pc-tag.u{color:#16A34A;background:rgba(22,163,74,.07);border:1px solid rgba(22,163,74,.18)}
+.pc-tag.c{color:#361352;background:rgba(54,19,82,.07);border:1px solid rgba(54,19,82,.12)}
+.pc-tag.i{color:#8B6A25;background:rgba(139,106,37,.07);border:1px solid rgba(139,106,37,.18)}
+
+/* Right col */
+.pc-section{margin-bottom:16px}
+.pc-lbl{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);opacity:.45;margin-bottom:7px;
+}
+.pc-q{
+  font-family:var(--serif);font-size:15px;font-style:italic;
+  color:var(--ink70);line-height:1.5;
+  padding-left:12px;border-left:2px solid var(--line);
+  text-wrap:pretty;
+}
+.pc-desc{
+  font-family:var(--sans);font-size:13.5px;color:var(--ink70);
+  line-height:1.62;text-wrap:pretty;
+}
+.pc-insight{
+  padding:12px 16px;
+  border-left:3px solid var(--cc,var(--accent));
+  background:var(--tint);border-radius:0 5px 5px 0;
+  font-family:var(--sans);font-size:13px;font-style:italic;
+  color:var(--ink70);line-height:1.5;
+}
+.pc-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.pc-gi{
+  padding:8px 10px;border-radius:0 0 4px 4px;
+  border-top:2px solid var(--cc,var(--accent));
+  background:var(--tint);
+}
+.pc-gi-lbl{
+  font-family:var(--mono);font-size:7px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cc,var(--accent));margin-bottom:3px;
+}
+.pc-gi-txt{font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4}
+.pc-note{
+  padding:10px 14px;border-left:3px solid var(--cc);
+  background:var(--tint);border-radius:0 4px 4px 0;
+}
+.pc-note-lbl{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cc);margin-bottom:3px;
+}
+.pc-note-txt{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.45}
+.pc-sources{
+  font-family:var(--sans);font-size:11px;color:var(--muted);
+  line-height:1.45;padding-top:10px;border-top:1px solid var(--line2);
+  margin-top:4px;
+}
+.pc-sources b{
+  font-family:var(--mono);font-size:8px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;
+  color:var(--accent);margin-right:4px;
+}
+
+/* Close */
+.pc-close{
+  position:absolute;top:10px;right:12px;
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--line);background:var(--tint);
+  color:var(--muted);cursor:pointer;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s ease, color .15s ease;
+  pointer-events:auto;
+  font-family:var(--mono);
+}
+.pc-close:hover{background:var(--line);color:var(--ink)}
+
+/* Idle hint */
+.panel-hint{
+  font-family:var(--sans);font-size:15px;color:var(--muted);
+  opacity:.4;text-align:center;padding:60px 40px;
+  text-wrap:balance;line-height:1.6;
+}
+
+/* Stagger animation for panel content */
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.pc-section{animation:fadeUp .38s var(--ease) both}
+
+/* === BOTTOM BAR === */
+.bot{
+  position:absolute;bottom:0;left:0;right:0;height:52px;z-index:60;
+  display:flex;align-items:center;padding:0 52px;gap:10px;
+  background:rgba(250,250,248,.97);border-top:1px solid var(--line);
+  backdrop-filter:blur(16px);
+}
+.bot-dots{display:flex;gap:4px;align-items:center}
+.bot-dot{height:2.5px;border-radius:2px;width:20px;background:var(--line2);
+  cursor:pointer;pointer-events:auto;
+  transition:background .25s ease, width .3s var(--ease);
+  min-width:40px;min-height:12px; /* hit area via transparent padding */
+  display:flex;align-items:center;
+}
+.bot-dot::after{content:'';height:2.5px;width:100%;border-radius:2px;
+  background:var(--line2);transition:background .25s ease,width .3s var(--ease)}
+.bot-dot.active::after{background:var(--dc,var(--accent))}
+.bot-dot.active{width:36px}
+.bot-hint{font-family:var(--mono);font-size:8px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-left:auto;opacity:.5}
+.prog-wrap{position:absolute;bottom:0;left:0;right:0;height:1.5px}
+.prog-fill{height:100%;background:var(--accent);opacity:.25;
+  transform:scaleX(0);transform-origin:left;will-change:transform}
+
+/* === ENTRY ANIMATIONS === */
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.hdr{animation:slideDown .4s var(--ease) both}
+.bot{animation:slideDown .4s var(--ease) .06s both;animation-direction:normal}
+.pie-area{animation:fadeUp .6s var(--ease) .12s both}
+.panel{animation:fadeUp .5s var(--ease) .2s both}
+@keyframes sliceIn{
+  from{opacity:0;transform:scale(.55)}
+  to{opacity:1;transform:scale(1)}
+}
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+<div class="deck-stage" id="stage">
+
+<div class="hdr">
+  <div class="brand">Y<b>Business</b></div>
+  <div class="slide-id">04 · Formater</div>
+</div>
+
+<div class="pie-area">
+  <svg class="pie-svg" id="pieSvg" viewBox="0 0 900 900"
+       xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Y Business formater">
+    <defs id="svgDefs">
+      <radialGradient id="hubGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFFFFF"/>
+        <stop offset="100%" stop-color="#F4F2EC"/>
+      </radialGradient>
+    </defs>
+  </svg>
+</div>
+
+<div class="panel" id="panel">
+  <div class="panel-card" id="panelCard">
+    <button class="pc-close" id="pcClose" aria-label="Luk">×</button>
+    <div class="panel-hint">Før musen over et format<br>for at se definitionen</div>
+  </div>
+</div>
+
+<div class="bot">
+  <div class="bot-dots" id="botDots"></div>
+  <span class="bot-hint">Hover · Klik for at fastholde · Esc lukker</span>
+  <div class="prog-wrap"><div class="prog-fill" id="progFill"></div></div>
+</div>
+
+</div>
+</div>
+<script>
+/* === SCALE === */
+const stageEl=document.getElementById('stage');
+function scaleStage(){
+  const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  stageEl.style.transform=
+    `translate(${(window.innerWidth-1920*s)/2}px,${(window.innerHeight-1080*s)/2}px) scale(${s})`;
+}
+scaleStage(); window.addEventListener('resize',scaleStage);
+
+/* === FORMATS === */
+const F=[
+  {
+    num:'01',name:'Morgenbriefet',func:'Vanen',tier:'free',
+    color:'#A75D46',fill:'rgba(167,93,70,.18)',
+    q:'"Hvad skal jeg forstå, inden arbejdsdagen begynder?"',
+    desc:'Leveres kl. 06.30 i 5–7 punkter på tekst og lyd — det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel.',
+    insight:'Rekrutteringskanal til abonnementet. Ingen mur, ingen registrering.',
+    pillars:['u'],freq:'Dagligt · 06.30',
+    sources:'Ritzau, Børsen, Finans, Danmarks Statistik og globale erhvervssignaler.',
+    special:null,
+  },
+  {
+    num:'02',name:'Blind Spot',func:'Signalmotoren',tier:'paid',
+    color:'#1A3A6A',fill:'rgba(26,58,106,.18)',
+    q:'"Hvad gør nyhedslogikken svært at se — og hvad er den sandsynlige forklaring?"',
+    desc:'Systemet finder sprækken i ugens nyhedsbillede: det dokumenterede hul, den skæve fortælling, den dominerende ramme, den fraværende kilde. Absorberer Den blinde vinkel — redaktionel kildekritik og Challenge er underfunktioner af samme logik.',
+    insight:'Ankerformatet. Det format du husker — og grunden til at du kommer tilbage.',
+    pillars:['c'],freq:'Ugentligt + journalisttriggeret',
+    sources:'15 erhvervsmedier inkl. Børsen, Finans, InsideBusiness, tænketanke, fagforeninger, CVR og regulatoriske databaser.',
+    special:{type:'grid',items:[
+      {l:'Dækningsgab',d:'Et væsentligt emne dækkes slet ikke.'},
+      {l:'Proportionalitet',d:'Dækning eksisterer, men er for tynd.'},
+      {l:'Vinkelblindhed',d:'Kun én fortolkningsramme dominerer.'},
+      {l:'Kildeblindhed',d:'Visse kildetyper dominerer systematisk.'},
+      {l:'Konsekvensgab',d:'Visse konsekvenser beskrives, andre er usynlige.'},
+      {l:'Spektrum',d:'Emnet presses i politisk ramme frem for rigtig forklaring.'},
+    ]},
+  },
+  {
+    num:'03',name:'Det betyder det',func:'Nytten',tier:'paid',
+    color:'#2E5F9A',fill:'rgba(46,95,154,.18)',
+    q:'"Hvad betyder det her konkret for min virksomhed?"',
+    desc:'Bygget over en fast 6-punkt-struktur, hvor der aldrig drages en konklusion uden en klar konsekvens for din virksomhed. Ugentligt + ad hoc ved lovforslag og EU-regulering.',
+    insight:'Forklaringsformatet der gør dig klogere end dem der kun læste overskriften.',
+    pillars:['u'],freq:'Ugentligt + ad hoc',
+    sources:'Folketingets ODA (lovforslag), EU-direktiver, Erhvervsstyrelsen og høringssvar.',
+    special:null,
+  },
+  {
+    num:'04',name:'Signalradaren',func:'Forspringet',tier:'paid',
+    color:'#8C6D28',fill:'rgba(140,109,40,.18)',
+    q:'"Hvad er ved at ske — og hvem ser det ikke endnu?"',
+    desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — markedsbevægelser, reguleringsudkast og teknologimønstre kortlagt med styrke og modtagere.',
+    insight:'Se mønstre 6–18 måneder før dine konkurrenter. Konkurrencefordelen er tidshorisonten.',
+    pillars:['u','c'],freq:'Ugentligt + situationsbestemt',
+    sources:'Eurostat, OECD, World Bank (B-READY), patentdatabaser, Supertrends og medieovervågning.',
+    special:{type:'note',lbl:'Feeds fra · Blind Spot',
+      desc:'Signalradaren opdager bevægelsen. Blind Spot dokumenterer hvad mediebilledet ikke ser — og supplerer radaren med systematisk kildekritik.'},
+  },
+  {
+    num:'05',name:'Casen der virker',func:'Læringen',tier:'paid',
+    color:'#4A2B6A',fill:'rgba(74,43,106,.18)',
+    q:'"Hvad kan andre bruge — og hvad kan de ikke kopiere?"',
+    desc:'En konkret virksomhed der har løst det du kæmper med — dokumenteret med tal, beslutninger, friktion og resultat. Cases fortalt i første person af founder, leder eller AI-praktiker.',
+    insight:'Praksis frem for teori. Ingen anonyme eksempler. Altid navngivet afsender.',
+    pillars:['i'],freq:'Ugentligt',
+    sources:'Egne SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.',
+    special:{type:'proto',lbl:'Q&A · Protokol',
+      desc:'Faste spørgsmål sendes til kilden inden produktion. Sikrer friktion, fejl og konkret resultat — aldrig kun succeshistorien.'},
+  },
+];
+
+/* === PIE GEOMETRY === */
+const svg=document.getElementById('pieSvg');
+const defs=document.getElementById('svgDefs');
+const CX=450,CY=450,OR=390,IR=132,MID_R=261;
+const LIFT=16,GAP=1.8,SLICE=72,START=-90;
+const R=Math.PI/180;
+
+function pt(a,r){return{x:CX+r*Math.cos(a*R),y:CY+r*Math.sin(a*R)}}
+function f(n){return n.toFixed(2)}
+
+function slicePath(a1,a2){
+  const g=GAP/2;
+  const o1=pt(a1+g,OR),o2=pt(a2-g,OR);
+  const i2=pt(a2-g,IR),i1=pt(a1+g,IR);
+  return [
+    `M ${f(o1.x)} ${f(o1.y)}`,
+    `A ${OR} ${OR} 0 0 1 ${f(o2.x)} ${f(o2.y)}`,
+    `L ${f(i2.x)} ${f(i2.y)}`,
+    `A ${IR} ${IR} 0 0 0 ${f(i1.x)} ${f(i1.y)}`,
+    'Z'
+  ].join(' ');
+}
+
+/* Gradient fill per slice */
+function makeGradient(id,color,a1,a2){
+  const mid=(a1+a2)/2;
+  const p1=pt(mid,IR),p2=pt(mid,OR);
+  const grad=document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
+  grad.setAttribute('id',id);
+  grad.setAttribute('gradientUnits','userSpaceOnUse');
+  grad.setAttribute('x1',f(p1.x));grad.setAttribute('y1',f(p1.y));
+  grad.setAttribute('x2',f(p2.x));grad.setAttribute('y2',f(p2.y));
+  const s1=document.createElementNS('http://www.w3.org/2000/svg','stop');
+  s1.setAttribute('offset','0%');s1.setAttribute('stop-color',color);s1.setAttribute('stop-opacity','.08');
+  const s2=document.createElementNS('http://www.w3.org/2000/svg','stop');
+  s2.setAttribute('offset','100%');s2.setAttribute('stop-color',color);s2.setAttribute('stop-opacity','.22');
+  grad.appendChild(s1);grad.appendChild(s2);
+  defs.appendChild(grad);
+}
+
+/* === BUILD === */
+const sliceEls=[],dotEls=[];
+let activeIdx=-1,pinned=false,hideTimer=null,scanTimer=null;
+const SCAN=4200;
+const panelCard=document.getElementById('panelCard');
+const pcClose=document.getElementById('pcClose');
+const progFill=document.getElementById('progFill');
+const botDots=document.getElementById('botDots');
+
+F.forEach((fmt,i)=>{
+  const a1=START+i*SLICE, a2=a1+SLICE, mid=(a1+a2)/2;
+  const midRad=mid*R;
+  const lx=LIFT*Math.cos(midRad), ly=LIFT*Math.sin(midRad);
+
+  /* Gradient */
+  makeGradient(`sg${i}`,fmt.color,a1,a2);
+
+  /* Group */
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.setAttribute('class','slice');
+  g.setAttribute('role','button');
+  g.setAttribute('tabindex','0');
+  g.setAttribute('aria-label',fmt.name);
+
+  /* Fill */
+  const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+  path.setAttribute('d',slicePath(a1,a2));
+  path.setAttribute('fill',`url(#sg${i})`);
+  path.setAttribute('stroke','#FAFAF8');
+  path.setAttribute('stroke-width','3');
+  g.appendChild(path);
+
+  /* Outer arc (color accent) */
+  const oR=OR-3;
+  const op1=pt(a1+GAP/2+1,oR),op2=pt(a2-GAP/2-1,oR);
+  const outerArc=document.createElementNS('http://www.w3.org/2000/svg','path');
+  outerArc.setAttribute('d',`M ${f(op1.x)} ${f(op1.y)} A ${oR} ${oR} 0 0 1 ${f(op2.x)} ${f(op2.y)}`);
+  outerArc.setAttribute('fill','none');
+  outerArc.setAttribute('stroke',fmt.color);
+  outerArc.setAttribute('stroke-width','5');
+  outerArc.setAttribute('stroke-linecap','round');
+  outerArc.style.pointerEvents='none';
+  g.appendChild(outerArc);
+
+  /* Inner accent arc */
+  const iR=IR+4;
+  const ip1=pt(a1+GAP/2+1,iR),ip2=pt(a2-GAP/2-1,iR);
+  const innerArc=document.createElementNS('http://www.w3.org/2000/svg','path');
+  innerArc.setAttribute('d',`M ${f(ip1.x)} ${f(ip1.y)} A ${iR} ${iR} 0 0 1 ${f(ip2.x)} ${f(ip2.y)}`);
+  innerArc.setAttribute('fill','none');
+  innerArc.setAttribute('stroke',fmt.color);
+  innerArc.setAttribute('stroke-width','2.5');
+  innerArc.setAttribute('stroke-linecap','round');
+  innerArc.setAttribute('opacity','.5');
+  innerArc.style.pointerEvents='none';
+  g.appendChild(innerArc);
+
+  /* Interactions on SVG group */
+  g.addEventListener('mouseenter',()=>{
+    lblDiv.style.transform=`translate(calc(-50% + ${f(lx*SVGSC)}px), calc(-50% + ${f(ly*SVGSC)}px))`;
+    if(!pinned){pauseScan();showPanel(i);}
+  });
+  g.addEventListener('mouseleave',()=>{
+    lblDiv.style.transform='translate(-50%,-50%)';
+    if(!pinned){clearTimeout(hideTimer);hideTimer=setTimeout(()=>{if(!pinned){hidePanel();resumeScan();}},220);}
+  });
+  g.addEventListener('click',()=>{
+    if(pinned&&activeIdx===i){pinned=false;hidePanel();resumeScan();}
+    else{pinned=true;pauseScan();showPanel(i);}
+  });
+  g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){
+    if(pinned&&activeIdx===i){pinned=false;hidePanel();resumeScan();}
+    else{pinned=true;pauseScan();showPanel(i);}
+  }});
+
+  /* Staggered entry — opacity only, no SVG transform */
+  g.style.opacity='0';
+  setTimeout(()=>{
+    g.style.transition='opacity .55s ease, filter .3s ease';
+    g.style.opacity='1';
+  }, 200+i*90);
+
+  svg.appendChild(g);
+
+  /* HTML label div — always readable, no SVG transform issues */
+  const SVGS=840,SVGO=100; // SVG rendered size and left offset in pie-area
+  const SVGH_OFFSET=62;    // SVG top offset within pie-area
+  const SVGSC=SVGS/900;    // scale factor
+  const lblDiv=document.createElement('div');
+  lblDiv.className='slice-lbl';
+
+  // Position in pie-area (which is absolute top:64 in stage)
+  // centroid in SVG: (tx, ty); in pie-area: (SVGO+tx*SVGSC, SVGH_OFFSET+ty*SVGSC)
+  const tx=CX+MID_R*Math.cos(midRad);
+  const ty=CY+MID_R*Math.sin(midRad);
+  const stageX=SVGO+tx*SVGSC; // x in pie-area coords
+  const stageY=SVGH_OFFSET+ty*SVGSC; // y in pie-area coords
+
+  lblDiv.style.left=stageX+'px';
+  lblDiv.style.top=stageY+'px';
+  lblDiv.innerHTML=`
+    <span class="lbl-name" style="color:${fmt.color}">${fmt.name}</span>
+    <span class="lbl-func" style="color:${fmt.color}">${fmt.func}</span>
+    <span class="lbl-tier ${fmt.tier}">${fmt.tier==='free'?'Gratis':'Betalt'}</span>`;
+
+  // Mirror hover listeners on label too
+  lblDiv.addEventListener('mouseenter',()=>{
+    g.dispatchEvent(new MouseEvent('mouseenter',{bubbles:false}));
+  });
+  lblDiv.addEventListener('mouseleave',()=>{
+    g.dispatchEvent(new MouseEvent('mouseleave',{bubbles:false}));
+  });
+  lblDiv.addEventListener('click',()=>{g.dispatchEvent(new MouseEvent('click',{bubbles:false}));});
+
+  // Stagger label entry
+  lblDiv.style.opacity='0';
+  setTimeout(()=>{
+    lblDiv.style.transition='opacity .55s ease, filter .3s ease, transform .35s var(--ease)';
+    lblDiv.style.opacity='1';
+  }, 260+i*90);
+
+  // Append to pie-area (not stage) since positions are pie-area-relative
+  document.querySelector('.pie-area').appendChild(lblDiv);
+
+  sliceEls.push({g,lblDiv,mid,lx,ly});
+
+  /* Bot dot */
+  const dot=document.createElement('div');
+  dot.className='bot-dot';
+  dot.style.setProperty('--dc',fmt.color);
+  dot.setAttribute('title',fmt.name);
+  dot.addEventListener('click',()=>{pinned=true;pauseScan();showPanel(i);});
+  botDots.appendChild(dot);
+  dotEls.push(dot);
+});
+
+/* === CENTER HUB === */
+// Outer decorative ring
+const ring=document.createElementNS('http://www.w3.org/2000/svg','circle');
+ring.setAttribute('cx',CX);ring.setAttribute('cy',CY);ring.setAttribute('r',IR-2);
+ring.setAttribute('fill','none');ring.setAttribute('stroke','var(--line)');
+ring.setAttribute('stroke-width','1.5');
+svg.appendChild(ring);
+
+// Hub fill
+const hubBg=document.createElementNS('http://www.w3.org/2000/svg','circle');
+hubBg.setAttribute('class','hub-bg');
+hubBg.setAttribute('cx',CX);hubBg.setAttribute('cy',CY);hubBg.setAttribute('r',IR-4);
+hubBg.setAttribute('fill','url(#hubGrad)');
+svg.appendChild(hubBg);
+
+// Hub group
+const hubG=document.createElementNS('http://www.w3.org/2000/svg','g');
+hubG.setAttribute('class','hub-group');
+hubG.style.cursor='pointer';
+
+function makeTxt(x,y,txt,ff,fs,fw,fill,ls){
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x',x);t.setAttribute('y',y);
+  t.setAttribute('text-anchor','middle');t.setAttribute('dominant-baseline','middle');
+  t.setAttribute('font-family',ff);t.setAttribute('font-size',fs);
+  t.setAttribute('font-weight',fw);t.setAttribute('fill',fill);
+  if(ls)t.setAttribute('letter-spacing',ls);
+  t.textContent=txt;t.style.pointerEvents='none';
+  return t;
+}
+hubG.appendChild(makeTxt(CX,CY-22,'Y',"'Playfair Display',serif",28,700,'rgba(54,19,82,.7)'));
+const hl1=makeTxt(CX,CY+4,'Branche-',"'JetBrains Mono',monospace",8.5,700,'rgba(124,121,114,.6)','.06em');
+const hl2=makeTxt(CX,CY+16,'overblikket',"'JetBrains Mono',monospace",8.5,700,'rgba(124,121,114,.6)','.06em');
+const hl3=makeTxt(CX,CY+32,'Platformlag',"'JetBrains Mono',monospace",7,500,'rgba(124,121,114,.38)','.12em');
+hubG.appendChild(hl1);hubG.appendChild(hl2);hubG.appendChild(hl3);
+
+hubG.addEventListener('mouseenter',()=>{ if(!pinned){ pauseScan(); showHub(); }});
+hubG.addEventListener('mouseleave',()=>{ if(!pinned){clearTimeout(hideTimer);hideTimer=setTimeout(()=>{if(!pinned){hidePanel();resumeScan();}},220);}});
+hubG.addEventListener('click',()=>{pinned=!pinned&&activeIdx!==-99||(()=>{pinned=true;return false;})();
+  if(activeIdx===-99&&pinned){/* stay */}else{pinned=true;showHub();}});
+svg.appendChild(hubG);
+
+/* === PANEL CONTENT === */
+function pillTags(fmt){
+  return fmt.pillars.map(p=>`<span class="pc-tag ${p}">${{u:'Understand',c:'Challenge',i:'Inspire'}[p]}</span>`).join('');
+}
+
+function showHub(){
+  activeIdx=-99;
+  sliceEls.forEach(({g,lblDiv})=>{g.classList.remove('active','dimmed');g.classList.add('dimmed');lblDiv.classList.remove('active','dimmed');lblDiv.classList.add('dimmed');});
+  dotEls.forEach(d=>{d.classList.remove('active');d.style.setProperty('--dc','#7C7972');});
+  panelCard.style.setProperty('--cc','#7C7972');
+  panelCard.innerHTML=`
+    <button class="pc-close" id="pcClose" aria-label="Luk">×</button>
+    <div class="pc-accent" style="background:#7C7972"></div>
+    <div class="pc-grid">
+      <div class="pc-col left">
+        <div class="pc-num" style="color:#7C7972">00 · PLATFORMLAG</div>
+        <div class="pc-name" style="font-size:36px;color:var(--ink)">Branche-overblikket</div>
+        <div class="pc-func">Orienteringen</div>
+        <div class="pc-tags">
+          <span class="pc-tag paid">Betalt</span>
+          <span class="pc-tag pill">Dagligt / løbende</span>
+          <span class="pc-tag u">Understand</span>
+        </div>
+      </div>
+      <div class="pc-col right">
+        <div class="pc-section" style="animation-delay:.04s">
+          <div class="pc-lbl">Rolle</div>
+          <div class="pc-desc">Ikke et redaktionelt format — platformens personaliserede feed-infrastruktur. Sorterer og leverer branchespecifik information inden du åbner din første mail. Kalibreres efter branche, region, emner og adfærd.</div>
+        </div>
+        <div class="pc-section" style="animation-delay:.1s">
+          <div class="pc-insight" style="border-left-color:#7C7972">Det er ikke et fælles opslagstavleprodukt. Det er din branche filteret igennem dine parametre — fundamentet de fem formater bygger oven på.</div>
+        </div>
+        <div class="pc-section" style="animation-delay:.16s">
+          <div class="pc-sources"><b>Kilder:</b> CVR, Erhvervsstyrelsen, brancheforeninger og lokale erhvervsmedier.</div>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('pcClose').addEventListener('click',()=>{pinned=false;hidePanel();resumeScan();});
+  panelCard.classList.add('visible');
+}
+
+function showPanel(idx){
+  activeIdx=idx;
+  const fmt=F[idx];
+  panelCard.style.setProperty('--cc',fmt.color);
+  sliceEls.forEach(({g,lblDiv},i)=>{
+    g.classList.toggle('active',i===idx);
+    g.classList.toggle('dimmed',i!==idx);
+    lblDiv.classList.toggle('active',i===idx);
+    lblDiv.classList.toggle('dimmed',i!==idx);
+  });
+  dotEls.forEach((d,i)=>{
+    d.classList.toggle('active',i===idx);
+    d.style.setProperty('--dc',F[i].color);
+  });
+
+  let special='';
+  if(fmt.special){
+    if(fmt.special.type==='grid'){
+      const items=fmt.special.items.map(it=>
+        `<div class="pc-gi"><div class="pc-gi-lbl" style="color:${fmt.color}">${it.l}</div><div class="pc-gi-txt">${it.d}</div></div>`).join('');
+      special=`<div class="pc-section" style="animation-delay:.18s">
+        <div class="pc-lbl">Seks typer</div><div class="pc-grid-3">${items}</div></div>`;
+    } else {
+      const cls=fmt.special.type==='proto'?'background:var(--accent-10);border-left-color:var(--accent)':'';
+      const lblColor=fmt.special.type==='proto'?'var(--accent)':fmt.color;
+      special=`<div class="pc-section" style="animation-delay:.18s">
+        <div class="pc-note" style="${cls}">
+          <div class="pc-note-lbl" style="color:${lblColor}">${fmt.special.lbl}</div>
+          <div class="pc-note-txt">${fmt.special.desc}</div>
+        </div></div>`;
+    }
+  }
+
+  panelCard.innerHTML=`
+    <button class="pc-close" id="pcClose" aria-label="Luk">×</button>
+    <div class="pc-accent" style="background:${fmt.color}"></div>
+    <div class="pc-grid">
+      <div class="pc-col left">
+        <div class="pc-num" style="color:${fmt.color}">${fmt.num} · ${fmt.tier==='free'?'GRATIS':'BETALT'}</div>
+        <div class="pc-name" style="font-size:${fmt.name.length>14?'32px':'40px'};color:${fmt.color}">${fmt.name}</div>
+        <div class="pc-func">${fmt.func}</div>
+        <div class="pc-tags">
+          <span class="pc-tag ${fmt.tier}">${fmt.tier==='free'?'Gratis':'Betalt'}</span>
+          <span class="pc-tag pill">${fmt.freq}</span>
+          ${pillTags(fmt)}
+        </div>
+      </div>
+      <div class="pc-col right">
+        <div class="pc-section" style="animation-delay:.04s">
+          <div class="pc-lbl">Spørgsmålet</div>
+          <div class="pc-q">${fmt.q}</div>
+        </div>
+        <div class="pc-section" style="animation-delay:.1s">
+          <div class="pc-lbl">Funktion</div>
+          <div class="pc-desc">${fmt.desc}</div>
+        </div>
+        <div class="pc-section" style="animation-delay:.14s">
+          <div class="pc-insight" style="border-left-color:${fmt.color}">${fmt.insight}</div>
+        </div>
+        ${special}
+        <div class="pc-section" style="animation-delay:.22s">
+          <div class="pc-sources"><b>Kilder:</b> ${fmt.sources}</div>
+        </div>
+      </div>
+    </div>`;
+
+  document.getElementById('pcClose').addEventListener('click',()=>{pinned=false;hidePanel();resumeScan();});
+  panelCard.classList.add('visible');
+}
+
+function hidePanel(){
+  panelCard.classList.remove('visible');
+  sliceEls.forEach(({g,lblDiv})=>{
+    g.classList.remove('active','dimmed');
+    lblDiv.classList.remove('active','dimmed');
+  });
+  dotEls.forEach(d=>d.classList.remove('active'));
+  activeIdx=-1;
+}
+
+panelCard.addEventListener('mouseenter',()=>clearTimeout(hideTimer));
+panelCard.addEventListener('mouseleave',()=>{ if(!pinned){hideTimer=setTimeout(()=>{if(!pinned){hidePanel();resumeScan();}},200);}});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){pinned=false;hidePanel();resumeScan();}});
+
+/* === AUTO SCAN === */
+let scanPaused=false,scanIdx=0;
+function pauseScan(){scanPaused=true;clearTimeout(scanTimer);clearProg();}
+function resumeScan(){if(pinned)return;scanPaused=false;restartProg();}
+function scanNext(){
+  if(scanPaused||pinned)return;
+  scanIdx=(scanIdx+1)%F.length;
+  showPanel(scanIdx);restartProg();
+}
+function clearProg(){
+  progFill.style.transition='none';progFill.style.transform='scaleX(0)';
+  clearTimeout(scanTimer);
+}
+function restartProg(){
+  clearProg();
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    progFill.style.transition=`transform ${SCAN}ms linear`;
+    progFill.style.transform='scaleX(1)';
+    scanTimer=setTimeout(scanNext,SCAN);
+  }));
+}
+setTimeout(()=>{showPanel(0);restartProg();},800);
+</script>
+</body>
+</html>

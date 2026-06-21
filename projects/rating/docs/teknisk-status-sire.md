@@ -20,17 +20,17 @@ Det er ikke en wireframe eller prototype. Det er en kørende applikation med ree
 | Frontend | React + TypeScript, Vite |
 | Hosting | Firebase Hosting (`sndeepdive.web.app`) |
 | Backend | Cloud Run (Node/Express/TypeScript) — europe-west1 |
-| AI | Gemini 2.0 Flash via Google AI SDK |
+| AI | Gemini 2.5 Flash Lite (primær) — fallback: DeepSeek (`deepseek-chat`) |
 | Feeds | 25 RSS-feeds konfigureret og testet |
 
-**Valg af Gemini frem for OpenAI:** bevidst — Google-infrastruktur, lav latens, stærk dansk sprogforståelse.
+**Valg af Gemini 2.5 Flash Lite som primær model:** Hurtig og billig — aktiveres hvis `GEMINI_API_KEY` eller `API_KEY` er sat. Fallback til DeepSeek (`deepseek-chat`) hvis Gemini-nøgle mangler. DeepSeek-model kan overstyres via `DEEPSEEK_MODEL`-miljøvariabel.
 
 ---
 
 ## 2. API-ruter (Cloud Run)
 
 ```
-/api/y-test-lab/rate          ← SIRE-analyse (Gemini 2.0 Flash)
+/api/y-test-lab/rate          ← SIRE-analyse (Gemini 2.5 Flash Lite / DeepSeek fallback)
 /api/y-test-lab/summary       ← Asynkron resumégenerering
 /api/y-test-lab/search        ← Inline kildesøgning
 /api/y-test-lab/feeds         ← Feed-liste (25 kilder)
