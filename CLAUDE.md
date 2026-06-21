@@ -42,6 +42,8 @@ Kald et bundle direkte med `/bundle-navn` for at aktivere alle relevante skills 
 | UI/UX, wireframes, designaudit, komponentimplementering, typografi | `/design-ui` | impeccable, ui-ux-pro-max, design-taste-frontend, accessibility, web-design-guidelines, design-prompt |
 | Præsentationer, slides, PowerPoint, C-suite-dokumenter | `/praesentation` | slidespeak, frontend-slides, document-quality |
 | Kode, arkitektur, debugging, tests, performance, code review | `/tech-kode` | tdd, webapp-testing, improve-codebase-architecture, best-practices, performance, core-web-vitals, diagnose, grill-with-docs |
+| Fullstack app-udvikling: backend, databaser, mobil, DevOps, auth | `/app` | dev-rest-api-designer, dev-nestjs-guide, dev-fastapi-guide, database-postgres-expert, dev-prisma-expert, dev-react-native-guide, expo-horizon, dev-docker-composer, devops-github-actions-expert, dev-oauth2-oidc-advisor, dev-owasp-checker m.fl. |
+| Sessionstyring, prompt-design, skill-søgning, token-effektivitet | `/workflow` | handoff, context-mode, executing-plans, prompt-creator, skill-creator, skill-soeg, research-brief, caveman, caveman-compress, full-output-enforcement |
 
 Bundle-SKILL.md-filer: `.claude/skills/bundles/`
 
@@ -295,6 +297,8 @@ Mønstre i kundesprog → Årsagshypoteser → Prioriterede produktanbefalinger
 | Design & UI | `/design-ui` | Audit, polish, UI-komponenter, frontend-implementering |
 | Præsentation | `/praesentation` | PowerPoint, HTML-slides, C-suite-dokumentkvalitet |
 | Tech & Kode | `/tech-kode` | TDD, tests, arkitektur, performance, code review |
+| App | `/app` | Backend, databaser, mobil, DevOps, auth, sikkerhed |
+| Workflow | `/workflow` | Sessionstyring, prompt-design, skill-søgning, token-effektivitet |
 
 Bundle-filer: `.claude/skills/bundles/`
 
