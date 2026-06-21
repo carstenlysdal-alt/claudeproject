@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y Business — 04 · Formater</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;500;700&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+/* === VIEWPORT BASE === */
+html,body{width:100%;height:100%;margin:0;overflow:hidden;
+  background:#ECEAE4;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.deck-viewport{position:fixed;inset:0;overflow:hidden;background:#ECEAE4}
+.deck-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;
+  overflow:hidden;transform-origin:0 0;background:#FAFAF8}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.1ms!important}}
+
+/* === TOKENS === */
+:root{
+  --ink:#0E0C0A;--ink60:#5A5650;
+  --paper:#F2EFE8;--paper2:#EAE6DC;
+  --line:#D8D4CA;--line2:#E6E2D8;
+  --serif:'Playfair Display',Georgia,serif;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Schibsted Grotesk',system-ui,sans-serif;
+  --ps:'Source Serif 4',Georgia,serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* === HEADER === */
+.hdr{
+  position:absolute;top:0;left:0;right:0;height:64px;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(242,239,232,.97);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(20px);
+}
+.brand{font-family:var(--serif);font-size:20px;font-weight:700;
+  color:#361352;font-style:italic;letter-spacing:-.01em}
+.brand b{font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.2em;color:#8C8880;font-style:normal;margin-left:12px;vertical-align:middle}
+.slide-id{font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;color:#8C8880}
+
+/* === BAND ZONE === */
+.band-zone{
+  position:absolute;top:64px;left:0;right:0;bottom:0;
+  display:flex;flex-direction:column;
+  background:#E4E2DD;
+  gap:1px;
+}
+
+/* === SINGLE BAND === */
+.band{
+  display:flex;align-items:stretch;
+  cursor:pointer;
+  /* flex-ratio: collapsed=1, open=7 */
+  flex:1;
+  overflow:hidden;
+  transition:flex .44s var(--ease);
+  position:relative;
+}
+.band.open{flex:7}
+
+/* === COLLAPSED VIEW === */
+.band-peek{
+  position:absolute;inset:0;
+  display:flex;align-items:center;
+  padding:0;
+  opacity:1;
+  transition:opacity .18s ease;
+  z-index:2;
+}
+.band.open .band-peek{opacity:0;pointer-events:none}
+
+/* Linker farvekolonne */
+.bp-bar{width:10px;height:100%;flex-shrink:0}
+
+/* Nummer boks */
+.bp-num{
+  width:72px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.14em;
+  height:100%;
+}
+
+/* Naam */
+.bp-name{
+  font-family:var(--serif);font-size:19px;font-weight:700;
+  letter-spacing:-.01em;line-height:1;
+  white-space:nowrap;
+  flex-shrink:0;
+  margin-right:20px;
+  min-width:200px;
+}
+
+/* Func */
+.bp-func{
+  font-family:var(--mono);font-size:8px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  flex-shrink:0;margin-right:24px;
+  white-space:nowrap;color:var(--ink60);
+}
+
+/* Seperator */
+.bp-sep{width:1px;height:22px;background:var(--line);flex-shrink:0;margin-right:24px}
+
+/* Spørgsmål (truncated) */
+.bp-q{
+  font-family:var(--ps);font-size:14px;font-style:italic;font-weight:300;
+  color:var(--ink60);line-height:1.3;
+  overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+  flex:1;min-width:0;
+  margin-right:24px;
+}
+
+/* Tier pill */
+.bp-tier{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 10px;border:1px solid;
+  flex-shrink:0;margin-right:20px;
+  white-space:nowrap;
+}
+.bp-tier.free{color:#A75D46;border-color:rgba(167,93,70,.5)}
+.bp-tier.paid{color:inherit;border-color:rgba(0,0,0,.18);opacity:.65}
+
+/* === OPEN VIEW === */
+.band-full{
+  position:absolute;inset:0;
+  display:flex;
+  opacity:0;
+  transition:opacity .22s ease .16s;
+  z-index:1;
+}
+.band.open .band-full{opacity:1}
+
+/* Linker identiteitspaneel (donker, in formatkleur) */
+.bf-left{
+  width:320px;flex-shrink:0;
+  display:flex;flex-direction:column;
+  padding:26px 28px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Lichte rand tussen left en right */
+.bf-divider{width:1px;flex-shrink:0;background:rgba(255,255,255,.12)}
+
+/* Rechter inhoudspaneel */
+.bf-right{
+  flex:1;min-width:0;
+  display:flex;
+  padding:26px 44px 22px 38px;
+  overflow:hidden;
+  gap:36px;
+}
+
+/* Rechter kolommen */
+.bf-col-a{width:580px;flex-shrink:0;display:flex;flex-direction:column}
+.bf-col-b{flex:1;min-width:0;display:flex;flex-direction:column}
+
+/* === LEFT PANEL CONTENT === */
+.bl-eyebrow{
+  font-family:var(--mono);font-size:8.5px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);margin-bottom:14px;
+}
+.bl-name{
+  font-family:var(--serif);font-size:42px;font-weight:700;
+  line-height:.95;letter-spacing:-.02em;
+  color:rgba(255,255,255,.95);
+  margin-bottom:8px;
+  word-break:break-word;
+}
+.bl-func{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+  margin-bottom:auto;
+}
+.bl-meta{margin-top:18px}
+.bl-tier{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 10px;border:1px solid;
+  display:inline-block;margin-bottom:7px;
+}
+.bl-tier.free{color:rgba(255,200,160,.9);border-color:rgba(255,200,160,.4)}
+.bl-tier.paid{color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.2)}
+.bl-freq{
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  color:rgba(255,255,255,.28);letter-spacing:.06em;
+  display:block;margin-top:4px;
+}
+.bl-pillars{display:flex;gap:5px;margin-top:12px;flex-wrap:wrap}
+.bl-pill{
+  font-family:var(--mono);font-size:7px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 8px;border:1px solid;
+}
+.bl-pill.u{color:rgba(134,239,172,.8);border-color:rgba(134,239,172,.3)}
+.bl-pill.c{color:rgba(196,181,253,.8);border-color:rgba(196,181,253,.3)}
+.bl-pill.i{color:rgba(253,224,162,.8);border-color:rgba(253,224,162,.3)}
+
+/* Decoratief getal (achtergrond) */
+.bl-deco{
+  position:absolute;bottom:-16px;right:-10px;
+  font-family:var(--serif);font-weight:900;font-size:160px;
+  line-height:1;letter-spacing:-.04em;
+  color:rgba(255,255,255,.05);
+  pointer-events:none;user-select:none;
+}
+
+/* === RIGHT PANEL CONTENT === */
+.br-q{
+  font-family:var(--ps);font-size:20px;font-style:italic;font-weight:300;
+  line-height:1.45;color:var(--ink);
+  margin-bottom:14px;
+}
+.br-lead{
+  font-family:var(--serif);font-size:15px;font-weight:700;
+  letter-spacing:-.01em;line-height:1.35;
+  margin-bottom:10px;
+}
+.br-desc{
+  font-family:var(--sans);font-size:13.5px;line-height:1.65;
+  color:var(--ink60);margin-bottom:12px;
+}
+.br-insight{
+  padding:9px 14px;
+  font-family:var(--ps);font-size:13px;font-style:italic;font-weight:300;
+  line-height:1.5;
+  margin-bottom:12px;
+}
+.br-sources{
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  letter-spacing:.04em;line-height:1.5;
+  color:var(--ink60);
+  padding-top:10px;border-top:1px solid var(--line2);
+  margin-top:auto;
+}
+.br-sources b{font-weight:700;letter-spacing:.02em}
+
+/* Special content */
+.br-lbl{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink60);margin-bottom:6px;
+}
+/* Grid (Blind Spot, 3×2) */
+.br-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px}
+.br-gi{padding:7px 10px}
+.br-gi-lbl{font-family:var(--mono);font-size:7px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.br-gi-txt{font-family:var(--sans);font-size:10.5px;line-height:1.4;color:var(--ink60)}
+/* Grundregel */
+.br-grund{padding:8px 12px;margin-bottom:10px}
+.br-grund-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.br-grund-txt{font-family:var(--sans);font-size:11px;line-height:1.5}
+
+/* Note */
+.br-note{padding:9px 14px;margin-bottom:10px}
+.br-note-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.br-note-txt{font-family:var(--sans);font-size:12px;line-height:1.45;color:var(--ink60)}
+
+/* Cols (Situationsformater, Klummerne) */
+.br-cols{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.br-col-item{display:flex;align-items:baseline;gap:10px;padding:7px 10px}
+.br-col-n{font-family:var(--mono);font-size:8.5px;font-weight:700;
+  letter-spacing:.08em;flex-shrink:0;min-width:70px}
+.br-col-txt{font-family:var(--sans);font-size:12px;line-height:1.4;color:var(--ink60)}
+
+/* Stat */
+.br-stat{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 12px;display:inline-block;margin-bottom:10px;
+}
+
+/* Proto */
+.br-proto{padding:8px 14px;margin-bottom:10px}
+.br-proto-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.br-proto-txt{font-family:var(--sans);font-size:12px;line-height:1.4;color:var(--ink60)}
+
+/* Klumme quote */
+.br-quote{
+  font-family:var(--ps);font-size:16px;font-style:italic;font-weight:400;
+  line-height:1.45;color:var(--ink);
+  margin-bottom:10px;padding:8px 0;
+}
+.br-navngivet{
+  font-family:var(--mono);font-size:8.5px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:7px;
+  margin-bottom:10px;
+}
+.br-navngivet::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+/* Entry animation */
+@keyframes slideDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.hdr{animation:slideDown .4s var(--ease) both}
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+<div class="deck-stage" id="stage">
+
+<div class="hdr">
+  <div class="brand">Y<b>Business</b></div>
+  <div class="slide-id">04 · Formater</div>
+</div>
+
+<div class="band-zone" id="bandZone"></div>
+
+</div>
+</div>
+<script>
+/* === SCALE === */
+const stageEl=document.getElementById('stage');
+function scaleStage(){
+  const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  stageEl.style.transform=
+    `translate(${(window.innerWidth-1920*s)/2}px,${(window.innerHeight-1080*s)/2}px) scale(${s})`;
+}
+scaleStage(); window.addEventListener('resize',scaleStage);
+
+/* === FORMAT DATA === */
+const F=[
+  {
+    num:'01',eyebrow:'01 · Basislag',nameShort:'Brancheoverblikket',
+    name:'Branche-\noverblikket',
+    func:'Orienteringen',tier:'paid',
+    color:'#5A4A72',darkBg:'#5A4A72',
+    textColor:'rgba(255,255,255,.95)',
+    accentTint:'rgba(90,74,114,',
+    lead:'Det er ikke et fælles opslagstavleprodukt.',
+    q:'"Hvad er sket i min branche siden sidst?"',
+    desc:'Ikke alt behøver en vinkel. Noget behøver bare at blive fundet, sorteret og leveret, inden du åbner din første mail. Brancheoverblikket er personaliseret efter branche, region, emner og adfærd.',
+    insight:null,
+    pillars:['u'],freq:'Dagligt / løbende',
+    sources:'CVR, Erhvervsstyrelsen, brancheforeninger og lokale erhvervsmedier.',
+    special:null,
+  },
+  {
+    num:'02',eyebrow:'02 · Vanen',nameShort:'Morgenbriefet',
+    name:'Morgen-\nbriefet',
+    func:'Vanen',tier:'free',
+    color:'#A75D46',darkBg:'#A75D46',
+    textColor:'rgba(255,255,255,.95)',
+    accentTint:'rgba(167,93,70,',
+    lead:null,
+    q:'"Hvad skal jeg forstå, inden arbejdsdagen begynder?"',
+    desc:'Leveres kl. 06.30 i 5–7 punkter på tekst og lyd — det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel.',
+    insight:'Morgenbriefet er gratis for alle. Det er det daglige adgangspunkt til Y.dk Business — og det format, der rekrutterer til abonnementet. Ingen mur, ingen registrering. Målet er vane, ikke konvertering i første møde.',
+    pillars:['u'],freq:'Dagligt · 06.30',
+    sources:'Ritzau, Børsen, Finans, Danmarks Statistik (DST) og globale erhvervssignaler.',
+    special:{type:'stat',txt:'20 % af indholdet · fri adgang'},
+  },
+  {
+    num:'03',eyebrow:'03 · Nytten',nameShort:'Det betyder det',
+    name:'Det\nbetyder det',
+    func:'Nytten',tier:'paid',
+    color:'#2E5F9A',darkBg:'#2E5F9A',
+    textColor:'rgba(255,255,255,.95)',
+    accentTint:'rgba(46,95,154,',
+    lead:null,
+    q:'"Hvad betyder det her konkret for min virksomhed?"',
+    desc:'Bygget over en fast 6-punkt-struktur, hvor der aldrig drages en konklusion uden en klar konsekvens for din virksomhed. Ugentligt + ad hoc ved lovforslag og EU-regulering.',
+    insight:'Forklaringsformatet der gør dig klogere end dem der kun læste overskriften.',
+    pillars:['u'],freq:'Ugentligt + ad hoc',
+    sources:'Folketingets ODA (lovforslag), EU-direktiver, Erhvervsstyrelsen og høringssvar.',
+    special:null,
+  },
+  {
+    num:'04',eyebrow:'04 · Kanten',nameShort:'Den blinde vinkel',
+    name:'Den blinde\nvinkel',
+    func:'Kanten',tier:'paid',
+    color:'#2F3E4C',darkBg:'#2F3E4C',
+    textColor:'rgba(255,255,255,.95)',
+    accentTint:'rgba(47,62,76,',
+    lead:null,
+    q:'"Hvad overser den dominerende fortælling?"',
+    desc:'Ikke et temperament, men en redaktionel disciplin. Følger vores challenge-protokol og kræver altid en navngivet modkilde.',
+    insight:null,
+    pillars:['c'],freq:'Ugentligt',
+    sources:'Tænketanke (CEPOS, Kraka), fagforeninger (3F, DI), partikilder og akademisk forskning.',
+    special:null,
+  },
+  {
+    num:'05',eyebrow:'05 · Læringen',nameShort:'Casen der virker',
+    name:'Casen der\nvirker',
+    func:'Læringen',tier:'paid',
+    color:'#4A2B6A',darkBg:'#4A2B6A',
+    textColor:'rgba(255,255,255,.95)',
+    accentTint:'rgba(74,43,106,',
+    lead:null,
+    q:'"Hvad kan andre bruge — og hvad kan de ikke kopiere?"',
+    desc:'En konkret virksomhed der har løst det du kæmper med — dokumenteret med tal, beslutninger, friktion og resultat. Viser metode, fejl og kopierbar læring. Cases fortalt i første person af founder, leder eller AI-praktiker.',
+    insight:'Praksis frem for teori. Ingen anonyme eksempler. Altid navngivet afsender.',
+    pillars:['i'],freq:'Ugentligt',
+    sources:'Egne dybdegående SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.',
+    special:{type:'proto',lbl:'Q&A · Protokol',
+      desc:'Faste spørgsmål sendes til kilden inden produktion. Sikrer friktion, fejl og konkret resultat — aldrig kun succeshistorien.'},
+  },
+  {
+    num:'06',eyebrow:'06 · Forspringet',nameShort:'Signalradaren',
+    name:'Signal-\nradaren',
+    func:'Forspringet',tier:'paid',
+    color:'#8C6D28',darkBg:'#8C6D28',
+    textColor:'rgba(255,255,255,.95)',
+    accentTint:'rgba(140,109,40,',
+    lead:null,
+    q:'"Hvad er ved at ske — og hvem ser det ikke endnu?"',
+    desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — markedsbevægelser, reguleringsudkast og teknologimønstre kortlagt med styrke og modtagere.',
+    insight:'Se mønstre 6–18 måneder før dine konkurrenter. Konkurrencefordelen er tidshorisonten.',
+    pillars:['u','c'],freq:'Ugentligt + situationsbestemt',
+    sources:'Eurostat, OECD, World Bank (B-READY), patentdatabaser, Supertrends og medieovervågning.',
+    special:{type:'note',lbl:'Feeds fra · Blind Spot',
+      desc:'Signalradaren opdager bevægelsen. Blind Spot dokumenterer hvad mediebilledet ikke ser — og supplerer radaren med systematisk kildekritik.'},
+  },
+  {
+    num:'07',eyebrow:'07 · Signalmotoren',nameShort:'Blind Spot',
+    name:'Blind\nSpot',
+    func:'Signalmotoren',tier:'paid',
+    color:'#1A3A6A',darkBg:'#1A3A6A',
+    textColor:'rgba(255,255,255,.95)',
+    accentTint:'rgba(59,130,246,',
+    lead:null,
+    q:'"Hvad gør nyhedslogikken svært at se — og hvad er den sandsynlige forklaring?"',
+    desc:'Systemet finder sprækken i ugens nyhedsbillede: det dokumenterede hul, den skæve fortælling, den dominerende ramme, den fraværende kilde. Journalisten triggerer — systemet returnerer et beslutningsklart signal med årsag.',
+    insight:'Ankerformatet. Det format du husker — og grunden til at du kommer tilbage.',
+    pillars:['c'],freq:'Ugentligt + journalisttriggeret',
+    sources:'15 primære erhvervsmedier inkl. Børsen, Finans og InsideBusiness — samt institutionelle signalkilder, CVR og regulatoriske databaser.',
+    special:{type:'blindspot',
+      items:[
+        {l:'Dækningsgab',d:'Et væsentligt emne dækkes slet ikke.'},
+        {l:'Proportionalitet',d:'Dækning eksisterer, men er for tynd.'},
+        {l:'Vinkelblindhed',d:'Kun én fortolkningsramme dominerer.'},
+        {l:'Kildeblindhed',d:'Visse kildetyper dominerer systematisk.'},
+        {l:'Konsekvensgab',d:'Visse konsekvenser beskrives, andre er usynlige.'},
+        {l:'Spektrum',d:'Emnet presses i politisk ramme frem for rigtig forklaring.'},
+      ],
+      grundregel:'Blind spot er ikke bare det, ingen skrev. Det er også det, nyhedslogikken gjorde svært at se.',
+    },
+  },
+  {
+    num:'+3',eyebrow:'+3 · Skalerbare',nameShort:'Situationsformater',
+    name:'Situations-\nformater',
+    func:'Skalerbare',tier:'paid',
+    color:'#7C7972',darkBg:'#7C7972',
+    textColor:'rgba(255,255,255,.95)',
+    accentTint:'rgba(124,121,114,',
+    lead:null,
+    q:'"Journalistikken skifter gear, når situationen kræver det."',
+    desc:null,
+    insight:null,
+    pillars:['c','i'],freq:'Situationsbestemt',
+    sources:'Udbudsdatabaser (TED), konkursstatistikker, erhvervstilladelser og krise-skabeloner.',
+    special:{type:'cols',items:[
+      {n:'Myten om',txt:'Afmonter en udbredt antagelse med data og navngivet modkilde.'},
+      {n:'Før mødet',txt:'Kontekst, tal og modargumenter klar inden beslutningen træffes.'},
+      {n:'Før handlen',txt:'Intelligence om modpart, marked og risiko inden kontrakten skrives.'},
+    ]},
+  },
+  {
+    num:'08',eyebrow:'08 · Stemmen',nameShort:'Klummerne',
+    name:'Klum-\nmerne',
+    func:'Det AI ikke kan',tier:'paid',
+    color:'#3B5949',darkBg:'#3B5949',
+    textColor:'rgba(255,255,255,.95)',
+    accentTint:'rgba(59,89,73,',
+    lead:null,
+    q:'"Den personlige vurdering, erfaringen og ansvaret — med navn under."',
+    desc:'Et menneske med navn under. Faste skribenter med ansvar for vinklen — kredser om hi-tech, AI og erhvervsledelse. Ikke for at spejle redaktionen, men for at udfordre den.',
+    insight:'Det er det format, du husker. Og grunden til, at du kommer tilbage.',
+    pillars:['u','c','i'],freq:'Fast ugentlig',
+    sources:'AI-praktikere, teknologiledere, founders og egne baggrundsanalyser.',
+    special:{type:'klumme',
+      quote:'"AI kan opsummere. Den kan ikke have noget på spil."',
+      note:'Navngivet ophav — aldrig AI',
+      cols:[
+        {n:'I',txt:'Mandag morgen — ledelsessignal og AI-konsekvens'},
+        {n:'II',txt:'Den blinde vinkel — Challenge med navn og holdning'},
+        {n:'III',txt:'Sådan gjorde jeg — case med skribent og friktion'},
+      ],
+    },
+  },
+];
+
+/* === SPECIAL CONTENT BUILDER === */
+function buildSpecial(f,dark){
+  const s=f.special;
+  if(!s) return '';
+  const tc=dark?f.textColor:'var(--ink)';
+  const tc2=dark?'rgba(255,255,255,.45)':'var(--ink60)';
+  const bg=dark?'rgba(255,255,255,.07)':f.accentTint+'0.07)';
+  const topBorder=dark?`border-top:1px solid rgba(255,255,255,.15)`:
+    `border-top:1px solid ${f.accentTint}0.4)`;
+
+  if(s.type==='stat') return `
+    <div class="br-stat" style="background:${f.accentTint}0.1);color:${f.color}">${s.txt}</div>`;
+
+  if(s.type==='proto') return `
+    <div class="br-proto" style="background:${bg}">
+      <div class="br-proto-lbl" style="color:${f.color}">${s.lbl}</div>
+      <div class="br-proto-txt">${s.desc}</div>
+    </div>`;
+
+  if(s.type==='note') return `
+    <div class="br-note" style="background:${bg}">
+      <div class="br-note-lbl" style="color:${dark?f.textColor:f.color}">${s.lbl}</div>
+      <div class="br-note-txt">${s.desc}</div>
+    </div>`;
+
+  if(s.type==='cols') return `
+    <div class="br-lbl">Tre formater</div>
+    <div class="br-cols">
+      ${s.items.map(it=>`<div class="br-col-item" style="background:${bg}">
+        <span class="br-col-n" style="color:${dark?f.textColor:f.color}">${it.n}</span>
+        <span class="br-col-txt">${it.txt}</span>
+      </div>`).join('')}
+    </div>`;
+
+  if(s.type==='blindspot') return `
+    <div class="br-lbl">Seks typer blind spot</div>
+    <div class="br-grid">
+      ${s.items.map(it=>`<div class="br-gi" style="background:${f.accentTint}0.08);border-top:1px solid ${f.accentTint}0.35)">
+        <div class="br-gi-lbl" style="color:${f.color}">${it.l}</div>
+        <div class="br-gi-txt">${it.d}</div>
+      </div>`).join('')}
+    </div>
+    <div class="br-grund" style="background:${f.accentTint}0.07)">
+      <div class="br-grund-lbl" style="color:${f.color}">Grundregel</div>
+      <div class="br-grund-txt">${s.grundregel}</div>
+    </div>`;
+
+  if(s.type==='klumme') return `
+    <div class="br-quote" style="color:${tc}">${s.quote}</div>
+    <div class="br-navngivet" style="color:${dark?f.textColor:f.color}">
+      <span>${s.note}</span>
+    </div>
+    <div class="br-lbl">Tre klummetyper</div>
+    <div class="br-cols">
+      ${s.cols.map(c=>`<div class="br-col-item" style="background:${bg}">
+        <span class="br-col-n" style="color:${dark?f.textColor:f.color}">${c.n}</span>
+        <span class="br-col-txt">${c.txt}</span>
+      </div>`).join('')}
+    </div>`;
+
+  return '';
+}
+
+/* === PILLARS === */
+function pills(f){
+  const map={u:'Understand',c:'Challenge',i:'Inspire'};
+  return f.pillars.map(p=>`<span class="bl-pill ${p}">${map[p]}</span>`).join('');
+}
+
+/* === BUILD BANDS === */
+const zone=document.getElementById('bandZone');
+let openIdx=1; // Morgenbriefet default
+
+F.forEach((f,i)=>{
+  const dark=false; // Venstre panel bruger altid formatfarven, højre er altid lyst papir
+
+  /* Collapsed background: format tint */
+  const peekBg=f.accentTint+'0.1)';
+  const peekBgHover=f.accentTint+'0.16)';
+
+  /* Open left panel bg */
+  const leftBg=f.darkBg;
+
+  /* Right panel: rent papir */
+  const rightBg='#FAFAF8';
+
+  const band=document.createElement('div');
+  band.className='band'+(i===openIdx?' open':'');
+
+  /* --- COLLAPSED --- */
+  const peekHtml=`
+    <div class="band-peek">
+      <div class="bp-bar" style="background:${f.color}"></div>
+      <div class="bp-num" style="color:${f.color};background:${f.accentTint}0.06)">${f.num}</div>
+      <div class="bp-name" style="color:${dark?'#F0ECE3':'var(--ink)'}">${f.nameShort}</div>
+      <div class="bp-func">${f.func}</div>
+      <div class="bp-sep"></div>
+      <div class="bp-q">${f.q}</div>
+      <span class="bp-tier ${f.tier}">${f.tier==='free'?'Gratis':'Betalt'}</span>
+    </div>`;
+
+  /* --- OPEN LEFT --- */
+  const leftHtml=`
+    <div class="bf-left" style="background:${leftBg}">
+      <div class="bl-eyebrow">${f.eyebrow}</div>
+      <div class="bl-name" style="white-space:pre-line">${f.name}</div>
+      <div class="bl-func">${f.func}</div>
+      <div class="bl-meta">
+        <span class="bl-tier ${f.tier}">${f.tier==='free'?'Gratis':'Abonnement'}</span>
+        <span class="bl-freq">${f.freq}</span>
+        <div class="bl-pillars">${pills(f)}</div>
+      </div>
+      <div class="bl-deco">${f.num}</div>
+    </div>
+    <div class="bf-divider" style="background:${f.accentTint}0.3)"></div>`;
+
+  /* --- OPEN RIGHT --- */
+  /* Split: col-a gets q+desc+insight+stat, col-b gets special+sources */
+  const hasSpecial=!!f.special;
+  const colA=`
+    <div class="bf-col-a">
+      ${f.lead?`<div class="br-lead" style="color:${f.color}">${f.lead}</div>`:''}
+      <div class="br-q" style="color:var(--ink)">${f.q}</div>
+      ${f.desc?`<div class="br-desc">${f.desc}</div>`:''}
+      ${f.insight?`<div class="br-insight" style="background:${f.accentTint}0.08);color:var(--ink60)">${f.insight}</div>`:''}
+      ${hasSpecial&&(f.special.type==='stat')?buildSpecial(f,dark):''}
+    </div>`;
+
+  const colBSpecial=hasSpecial&&f.special.type!=='stat'?buildSpecial(f,dark):'';
+  const colB=`
+    <div class="bf-col-b">
+      ${colBSpecial}
+      <div class="br-sources" style="color:var(--ink60);border-top-color:var(--line2)">
+        <b style="color:${f.color}">Kilder ·</b> ${f.sources}
+      </div>
+    </div>`;
+
+  const rightHtml=`
+    <div class="bf-right" style="background:${rightBg}">
+      ${colA}
+      ${colB}
+    </div>`;
+
+  band.innerHTML=peekHtml+`<div class="band-full">${leftHtml}${rightHtml}</div>`;
+
+  /* Background per band */
+  band.style.background=peekBg;
+
+  /* Hover effect via JS (not :hover since we need CSS var) */
+  band.addEventListener('mouseenter',()=>{ if(!band.classList.contains('open')) band.style.background=peekBgHover; });
+  band.addEventListener('mouseleave',()=>{ if(!band.classList.contains('open')) band.style.background=peekBg; });
+
+  band.addEventListener('click',()=>{
+    if(band.classList.contains('open')) return;
+    document.querySelectorAll('.band').forEach((b,j)=>{
+      b.classList.toggle('open',j===i);
+      b.style.background=F[j].accentTint+'0.1)';
+    });
+    band.style.background=peekBg;
+    openIdx=i;
+  });
+
+  zone.appendChild(band);
+});
+</script>
+</body>
+</html>
