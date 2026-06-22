@@ -128,7 +128,6 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 /* === HUB === */
 .hub-body {
   position: absolute; top: 64px; left: 0; right: 0; bottom: 0;
-  display: flex; flex-direction: column;
 }
 .hub-intro {
   padding: 40px 56px 34px;
@@ -199,10 +198,11 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
 /* Stats bar */
 .hub-stats {
+  position: absolute; bottom: 0; left: 0; right: 0;
   display: grid; grid-template-columns: repeat(4, 1fr);
   background: var(--tint);
   border-top: 2px solid var(--line);
-  height: 80px; flex-shrink: 0;
+  height: 64px;
 }
 .stat-cell {
   display: flex; flex-direction: column; justify-content: center;
@@ -786,6 +786,55 @@ body.bm-editing .bm-plot-cell .bm-add {
 .scope-group-label::before { display: none; }
 .scope-group-label:first-child { margin-top: 0; }
 
+/* === BUSINESS CLARITY === */
+.status-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  width: fit-content; padding: 3px 7px; border: 1px solid var(--line);
+  font-family: var(--mono); font-size: 8px; font-weight: 700;
+  letter-spacing: .09em; text-transform: uppercase; white-space: nowrap;
+  color: var(--muted); background: var(--tint);
+}
+.status-chip::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.status-chip.decided { color: var(--green); background: var(--green-s); border-color: rgba(22,163,74,.22); }
+.status-chip.potential { color: var(--accent); background: var(--accent-10); border-color: var(--accent-20); }
+.status-chip.pending { color: var(--amber); background: var(--amber-s); border-color: rgba(180,83,9,.22); }
+.status-chip.later { color: var(--muted); background: var(--tint); }
+.value-driver {
+  display: inline-block; margin-left: 7px; padding: 2px 6px;
+  font-family: var(--mono); font-size: 8px; font-weight: 700;
+  color: var(--accent); letter-spacing: .08em; text-transform: uppercase;
+  background: var(--accent-10); border: 1px solid var(--accent-20); vertical-align: 1px;
+}
+.commercial-thesis {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  margin-bottom: 18px; background: var(--line); border: 1px solid var(--line);
+}
+.thesis-item { background: var(--card); padding: 14px 15px; }
+.thesis-k { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--accent); letter-spacing: .11em; text-transform: uppercase; margin-bottom: 5px; }
+.thesis-v { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.funnel {
+  display: grid; grid-template-columns: repeat(4, 1fr); margin: 10px 0 14px;
+  border: 1px solid var(--line); background: var(--card);
+}
+.funnel-step { position: relative; padding: 13px 12px 12px 17px; border-right: 1px solid var(--line); min-height: 70px; }
+.funnel-step:last-child { border-right: 0; }
+.funnel-step:not(:last-child)::after {
+  content: '›'; position: absolute; right: -7px; top: 22px; z-index: 2;
+  width: 14px; height: 22px; background: var(--card); color: var(--accent);
+  font-family: var(--serif); font-size: 20px; line-height: 20px; text-align: center;
+}
+.funnel-n { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 5px; }
+.funnel-v { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.funnel-d { margin-top: 3px; font-family: var(--sans); font-size: 10.5px; color: var(--muted); line-height: 1.35; }
+.decision-strip {
+  display: grid; grid-template-columns: 104px 1fr auto; gap: 14px; align-items: center;
+  margin-top: 14px; padding: 12px 14px; background: var(--amber-s);
+  border-left: 3px solid var(--amber); border-top: 1px solid rgba(180,83,9,.16); border-bottom: 1px solid rgba(180,83,9,.16);
+}
+.decision-k { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--amber); letter-spacing: .1em; text-transform: uppercase; }
+.decision-v { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--ink70); line-height: 1.4; }
+.decision-meta { font-family: var(--mono); font-size: 8.5px; font-weight: 700; color: var(--amber); white-space: nowrap; }
+
 /* Warning box */
 .risk {
   background: var(--amber-s); border: 1px solid rgba(180,83,9,0.18);
@@ -1049,6 +1098,134 @@ body.bm-editing .bm-plot-cell .bm-add {
 .fb-status.ok { color: var(--green); }
 .fb-status.err { color: var(--red); }
 
+/* === RADIAL HUB === */
+.hub-canvas { position: absolute; top: 0; left: 0; right: 0; bottom: 64px; overflow: hidden; }
+.hub-header-rubrik {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  font-family: var(--serif); font-size: 17px; font-weight: 700; font-style: italic;
+  color: var(--ink); letter-spacing: -0.015em; white-space: nowrap; pointer-events: none;
+}
+.hub-header-rubrik em { color: var(--accent); font-style: italic; }
+.spokes-svg { position: absolute; top: 0; left: 0; width: 1440px; height: 772px; pointer-events: none; }
+.hub-disc {
+  position: absolute; left: 720px; top: 386px; transform: translate(-50%, -50%);
+  width: 164px; height: 164px; border-radius: 50%;
+  background: var(--card); border: 1.5px solid var(--line);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 16px;
+  box-shadow: 0 4px 40px rgba(54,19,82,.12), 0 0 0 10px rgba(54,19,82,.04); z-index: 3;
+}
+.hub-disc-y { font-family: var(--serif); font-size: 44px; font-weight: 700; color: var(--accent); font-style: italic; line-height: 1; margin-bottom: 2px; }
+.hub-disc-sub { font-family: var(--sans); font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+.hub-node {
+  position: absolute; width: 168px; transform: translate(-50%, -50%);
+  background: var(--card); border-top: 3px solid var(--nc);
+  cursor: pointer; padding: 11px 13px 10px;
+  transition: box-shadow .22s ease, transform .15s cubic-bezier(.2,0,0,1); z-index: 2;
+}
+.hub-node::after { content: ''; position: absolute; inset: 0; background: var(--nc); opacity: .04; pointer-events: none; transition: opacity .2s; }
+.hub-node:hover { transform: translate(-50%,-50%) scale(1.09); box-shadow: 0 10px 36px var(--ns), 0 2px 8px rgba(0,0,0,.05); }
+.hub-node:hover::after { opacity: .10; }
+.hub-node:active { transform: translate(-50%,-50%) scale(.97); }
+.node-num { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--nc); opacity: .5; letter-spacing: .1em; margin-bottom: 5px; }
+.node-h { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.25; letter-spacing: -.01em; margin-bottom: 8px; }
+.node-pts { display: flex; flex-direction: column; gap: 4px; margin-bottom: 9px; }
+.node-pt { font-family: var(--sans); font-size: 11.5px; color: var(--muted); display: flex; align-items: flex-start; gap: 5px; line-height: 1.4; }
+.node-pt::before { content: '–'; color: var(--nc); flex-shrink: 0; opacity: .55; font-size: 11px; margin-top: 1px; }
+.node-cta { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--nc); letter-spacing: .12em; text-transform: uppercase; opacity: .65; display: flex; align-items: center; gap: 5px; }
+.node-cta::after { content: '→'; font-size: 11px; }
+
+/* === DARK COLUMN — brugt i s-biz (højre) og s-pos (venstre) === */
+.col.col-dark { background: var(--accent); }
+.col.col-dark .col-label { color: rgba(255,255,255,0.38); border-bottom-color: rgba(255,255,255,0.1); }
+.col.col-dark .col-label-sm { color: rgba(255,255,255,0.38); }
+.col.col-dark .ibox { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.11); }
+.col.col-dark .ibox.accent { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.22); }
+.col.col-dark .ibox.green { background: rgba(22,163,74,0.18); border-color: rgba(22,163,74,0.38); }
+.col.col-dark .ibox-t { color: rgba(255,255,255,0.88); }
+.col.col-dark .ibox.accent .ibox-t { color: #C4B5FD; }
+.col.col-dark .ibox.green .ibox-t { color: #86EFAC; }
+.col.col-dark .ibox-b { color: rgba(255,255,255,0.66); }
+.col.col-dark .ibox-b strong { color: #fff; }
+.col.col-dark .chk li { color: rgba(255,255,255,0.66); }
+.col.col-dark .chk li::before { color: #86EFAC; }
+.col.col-dark .chk li strong { color: #fff; }
+.col.col-dark .cat-box { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.18); }
+.col.col-dark .cat-lbl { color: rgba(255,255,255,0.42); }
+.col.col-dark .cat-txt { color: #fff; }
+.col.col-dark .drv { border-bottom-color: rgba(255,255,255,0.07); }
+.col.col-dark .drv:first-child { border-top-color: rgba(255,255,255,0.07); }
+.col.col-dark .drv-n { color: rgba(255,255,255,0.12); opacity: 1; }
+.col.col-dark .drv-t { color: rgba(255,255,255,0.95); }
+.col.col-dark .drv-d { color: rgba(255,255,255,0.58); }
+.col.col-dark .drv-d em { color: rgba(255,255,255,0.82); font-style: italic; }
+.col.col-dark .tl-row { border-bottom-color: rgba(255,255,255,0.07); }
+.col.col-dark .tl-row:first-child { border-top-color: rgba(255,255,255,0.07); }
+.col.col-dark .tl-d { color: rgba(255,255,255,0.42); }
+.col.col-dark .tl-t { color: rgba(255,255,255,0.62); }
+.col.col-dark .tl-t strong { color: #fff; }
+.col.col-dark .risk { background: rgba(180,83,9,0.18); border-color: rgba(180,83,9,0.38); }
+.col.col-dark .risk-t { color: #FCD34D; }
+.col.col-dark .risk p { color: rgba(255,255,255,0.65); }
+.col.col-dark .risk p strong { color: #fff; }
+
+/* === PRODUCT LAYER CARDS === */
+.layer-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.layer-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-top: 3px solid var(--lc, var(--accent));
+  padding: 14px 15px 12px;
+  transition: box-shadow 0.18s ease;
+}
+.layer-card:hover { box-shadow: 0 2px 18px rgba(54,19,82,0.09); }
+.layer-card-n {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: var(--lc, var(--accent)); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 5px; opacity: 0.7;
+}
+.layer-card-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 5px; line-height: 1.3; }
+.layer-card-d { font-family: var(--sans); font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+.layer-card-d strong { color: var(--ink70); font-weight: 600; }
+.layer-card.wide { grid-column: span 2; }
+
+/* === PARTNER CARDS — GTM === */
+.gtm-hero {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 24px; margin-bottom: 14px;
+  background: var(--accent-10); border: 1px solid var(--accent-20);
+}
+.gtm-hero-num {
+  font-family: var(--serif); font-size: 52px; font-weight: 700;
+  color: var(--accent); font-style: italic; line-height: 1;
+  white-space: nowrap; flex-shrink: 0;
+}
+.gtm-hero-text { display: flex; flex-direction: column; gap: 3px; }
+.gtm-hero-label { font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.gtm-hero-sub { font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
+.partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.partner-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-left: 3px solid var(--pc, #2563EB); padding: 12px 14px;
+}
+.partner-card-badge {
+  display: inline-block; font-family: var(--mono); font-size: 8px; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 6px;
+  margin-bottom: 4px; border-radius: 2px;
+}
+.partner-badge-potential { background: var(--amber-s); color: var(--amber); border: 1px solid rgba(180,83,9,0.2); }
+.partner-badge-active { background: var(--green-s); color: var(--green); border: 1px solid rgba(22,163,74,0.2); }
+.partner-badge-sponsor { background: rgba(124,58,237,0.08); color: #7C3AED; border: 1px solid rgba(124,58,237,0.22); }
+.partner-card-name { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; line-height: 1.2; }
+.partner-card-seg { font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 7px; }
+.partner-card-members { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--pc, #2563EB); font-style: italic; line-height: 1; margin-bottom: 3px; }
+.partner-card-role { font-family: var(--sans); font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+/* Konkurrenttabel — Y Business øverst med mørk accentbaggrund */
+.tbl tr.hl-y td { background: var(--accent); border-bottom: 2px solid rgba(255,255,255,0.15); }
+.tbl tr.hl-y td.str { color: #fff; font-family: var(--serif); font-style: italic; font-size: 14px; font-weight: 700; }
+.tbl tr.hl-y td.hi { color: #C4B5FD; font-size: 15px; }
+.tbl tr.hl-y td { color: rgba(255,255,255,0.78); }
+
 </style>
 </head>
 <body>
@@ -1059,6 +1236,19 @@ body.bm-editing .bm-plot-cell .bm-add {
      HUB
      ====================================================== -->
 <div class="screen active" id="hub">
+<style>
+/* HUB RADIAL ANIMATIONS */
+@keyframes disc-spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+@keyframes spoke-in { from { stroke-dashoffset: 600; } to { stroke-dashoffset: 0; } }
+@keyframes ellipse-orbit { to { stroke-dashoffset: -2200; } }
+@keyframes node-rise { from { opacity: 0; transform: translate(-50%,-50%) scale(.82); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
+.screen.active #hub-disc-ring { animation: disc-spin 9s linear infinite; }
+.screen.active .spokes-svg line { animation: spoke-in .9s cubic-bezier(.4,0,.2,1) both; stroke-dasharray: 600; }
+#hub .hub-node { box-shadow: 0 2px 14px rgba(54,19,82,.08), 0 6px 28px rgba(54,19,82,.06); }
+#hub .hub-node:hover { box-shadow: 0 6px 32px var(--ns), 0 2px 8px rgba(0,0,0,.06); }
+#hub .hub-disc { box-shadow: 0 0 0 10px rgba(54,19,82,.05), 0 0 40px rgba(54,19,82,.12), 0 4px 24px rgba(0,0,0,.07); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
+</style>
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
 
@@ -1067,9 +1257,8 @@ body.bm-editing .bm-plot-cell .bm-add {
       <div class="dash-brand-mark">Y Business</div>
       <div class="dash-divider"></div>
     </div>
+    <div class="hub-header-rubrik">Forretningsmodel, produktværdi og vej til <em>omsætning</em></div>
     <div class="dash-meta">
-      <span class="dash-tag">CEO · Tech Lead · Commercial Lead</span>
-      <span class="dash-tag hi">Intern · Juni 2026</span>
       <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         Feedback
@@ -1078,81 +1267,115 @@ body.bm-editing .bm-plot-cell .bm-add {
   </header>
 
   <div class="hub-body">
-    <div class="hub-intro">
-      <div class="hub-eyebrow">Ledelsespræsentation</div>
-      <div class="hub-h1">Konceptet, modellen og vejen til <em>launch 1. oktober 2026</em></div>
-    </div>
+    <div class="hub-canvas">
 
-    <div class="hub-tiles">
-      <div class="hub-tile" data-target="s-biz">
-        <div>
-          <div class="tile-num">01 / 05</div>
-          <div class="tile-h">Business model<br>& revenue</div>
-          <div class="tile-pts">
-            <div class="tile-pt">Prismodel: 5 tiers — Erhverv · Erhverv+ · Premium · Partner · API</div>
-            <div class="tile-pt">Erhverv 500 kr/md · Erhverv+ 7.500 kr/år · Premium 12.500 kr/år</div>
-            <div class="tile-pt">Kampagne: op til 3 mdr. gratis — deadline 20. november</div>
-            <div class="tile-pt">Partner 25–75.000 kr/år · API op til 250.000 kr/år</div>
-          </div>
-        </div>
-        <div class="tile-cta">Åbn</div>
+      <!-- SVG: elliptisk orbitring + farvede eger -->
+      <svg class="spokes-svg" xmlns="http://www.w3.org/2000/svg" width="1440" height="772" viewBox="0 0 1440 772">
+        <defs>
+          <radialGradient id="glow-1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#361352" stop-opacity=".7"/><stop offset="100%" stop-color="#361352" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glow-2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#16A34A" stop-opacity=".7"/><stop offset="100%" stop-color="#16A34A" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glow-3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#D97706" stop-opacity=".7"/><stop offset="100%" stop-color="#D97706" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glow-4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2563EB" stop-opacity=".7"/><stop offset="100%" stop-color="#2563EB" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glow-5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7C3AED" stop-opacity=".7"/><stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/></radialGradient>
+        </defs>
+        <!-- Base orbit ring -->
+        <ellipse cx="720" cy="386" rx="420" ry="240" stroke="rgba(54,19,82,.1)" stroke-width="1" fill="none"/>
+        <!-- Running light on orbit -->
+        <ellipse cx="720" cy="386" rx="420" ry="240" stroke="rgba(54,19,82,.5)" stroke-width="2" fill="none" stroke-dasharray="40 2160" stroke-linecap="round" style="animation:ellipse-orbit 7s linear infinite"/>
+        <!-- Spokes -->
+        <line x1="720" y1="386" x2="720"  y2="146"  stroke="#361352" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:0s"/>
+        <line x1="720" y1="386" x2="1082" y2="312"  stroke="#16A34A" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.12s"/>
+        <line x1="720" y1="386" x2="944"  y2="600"  stroke="#D97706" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.24s"/>
+        <line x1="720" y1="386" x2="496"  y2="600"  stroke="#2563EB" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.36s"/>
+        <line x1="720" y1="386" x2="358"  y2="312"  stroke="#7C3AED" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.48s"/>
+        <!-- Glow halos -->
+        <circle cx="720" cy="146" r="22" fill="url(#glow-1)" opacity=".6"><animate attributeName="opacity" values=".6;0;.6" dur="3s" begin="0s" repeatCount="indefinite"/><animate attributeName="r" values="14;26;14" dur="3s" begin="0s" repeatCount="indefinite"/></circle>
+        <circle cx="1082" cy="312" r="22" fill="url(#glow-2)" opacity=".6"><animate attributeName="opacity" values=".6;0;.6" dur="3.4s" begin=".5s" repeatCount="indefinite"/><animate attributeName="r" values="14;26;14" dur="3.4s" begin=".5s" repeatCount="indefinite"/></circle>
+        <circle cx="944" cy="600" r="22" fill="url(#glow-3)" opacity=".6"><animate attributeName="opacity" values=".6;0;.6" dur="2.8s" begin="1s" repeatCount="indefinite"/><animate attributeName="r" values="14;26;14" dur="2.8s" begin="1s" repeatCount="indefinite"/></circle>
+        <circle cx="496" cy="600" r="22" fill="url(#glow-4)" opacity=".6"><animate attributeName="opacity" values=".6;0;.6" dur="3.2s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="r" values="14;26;14" dur="3.2s" begin="1.5s" repeatCount="indefinite"/></circle>
+        <circle cx="358" cy="312" r="22" fill="url(#glow-5)" opacity=".6"><animate attributeName="opacity" values=".6;0;.6" dur="3.6s" begin=".8s" repeatCount="indefinite"/><animate attributeName="r" values="14;26;14" dur="3.6s" begin=".8s" repeatCount="indefinite"/></circle>
+        <!-- Solid dot caps -->
+        <circle cx="720"  cy="146" r="4" fill="#361352" opacity=".8"/>
+        <circle cx="1082" cy="312" r="4" fill="#16A34A" opacity=".8"/>
+        <circle cx="944"  cy="600" r="4" fill="#D97706" opacity=".8"/>
+        <circle cx="496"  cy="600" r="4" fill="#2563EB" opacity=".8"/>
+        <circle cx="358"  cy="312" r="4" fill="#7C3AED" opacity=".8"/>
+      </svg>
+
+      <!-- Rotating conic ring around center disc -->
+      <div id="hub-disc-ring" style="position:absolute;left:720px;top:386px;transform:translate(-50%,-50%);width:186px;height:186px;border-radius:50%;background:conic-gradient(from 0deg,rgba(54,19,82,.7) 0%,rgba(54,19,82,.05) 40%,rgba(167,93,70,.55) 72%,rgba(54,19,82,.7) 100%);z-index:2;pointer-events:none">
+        <div style="position:absolute;inset:5px;border-radius:50%;background:#FAFAF8"></div>
       </div>
 
-      <div class="hub-tile" data-target="s-prd">
-        <div>
-          <div class="tile-num">02 / 05</div>
-          <div class="tile-h">Produkt</div>
-          <div class="tile-pts">
-            <div class="tile-pt">6+ produktlag inkl. leadgenerering fra markedssignaler</div>
-            <div class="tile-pt">11+ offentlige API-endpoints (CVR, udbud, regulatory)</div>
-            <div class="tile-pt">Supertrends — aktiv partner, teknisk vurdering i gang</div>
-            <div class="tile-pt">Scope: inkluderet vs. ikke fase 1</div>
-          </div>
-        </div>
-        <div class="tile-cta">Åbn</div>
+      <!-- Centralt disc -->
+      <div class="hub-disc">
+        <div class="hub-disc-y">Y</div>
+        <div class="hub-disc-sub">Business</div>
       </div>
 
-      <div class="hub-tile" data-target="s-pos">
-        <div>
-          <div class="tile-num">03 / 05</div>
-          <div class="tile-h">Markeds&shy;positionering</div>
-          <div class="tile-pts">
-            <div class="tile-pt">SMV-segmentet er overset af eksisterende medier</div>
-            <div class="tile-pt">10 konkurrenter analyseret</div>
-            <div class="tile-pt">Prisanker: under en femtedel af Finans.dk + Retriever-stakken</div>
-            <div class="tile-pt">AI-drevet erhvervsintelligens — ubesat kategori</div>
-          </div>
+      <!-- 01 Business model & revenue — top -->
+      <div class="hub-node" data-target="s-biz" style="left:720px;top:128px;--nc:#361352;--ns:rgba(54,19,82,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .1s both">
+        <div class="node-num">01</div>
+        <div class="node-h">Business model & revenue</div>
+        <div class="node-pts">
+          <div class="node-pt">Pakker, omsætning og opgradering</div>
+          <div class="node-pt">5 tiers — Erhverv til API</div>
+          <div class="node-pt">Revenue-ambition år 1</div>
         </div>
-        <div class="tile-cta">Åbn</div>
+        <div class="node-cta">Åbn</div>
       </div>
 
-      <div class="hub-tile" data-target="s-gtm">
-        <div>
-          <div class="tile-num">04 / 05</div>
-          <div class="tile-h">Go-to-market<br>& roadmap</div>
-          <div class="tile-pts">
-            <div class="tile-pt">6 partnerorganisationer · 70.000+ virksomheder</div>
-            <div class="tile-pt">AI kommunikeres aktivt som styrke</div>
-            <div class="tile-pt">Business-launch: oktober 2026</div>
-            <div class="tile-pt">Roadmap: Y.dk → Business → paywall → Y Rails</div>
-          </div>
+      <!-- 02 Produkt — upper right -->
+      <div class="hub-node" data-target="s-prd" style="left:1082px;top:284px;--nc:#16A34A;--ns:rgba(22,163,74,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .22s both">
+        <div class="node-num">02</div>
+        <div class="node-h">Produkt</div>
+        <div class="node-pts">
+          <div class="node-pt">Det virksomhederne betaler for</div>
+          <div class="node-pt">Vane, overvågning og målbar ROI</div>
+          <div class="node-pt">Launch-scope og afhængigheder</div>
         </div>
-        <div class="tile-cta">Åbn</div>
+        <div class="node-cta">Åbn</div>
       </div>
 
-      <div class="hub-tile" data-target="s-ai" style="background:var(--accent-10); border: 1.5px solid var(--accent-30);">
-        <div>
-          <div class="tile-num" style="opacity:1; color:var(--accent);">05 / 05 · Særlig sektion</div>
-          <div class="tile-h" style="color:var(--accent);">AI & tech<br>for erhverv</div>
-          <div class="tile-pts">
-            <div class="tile-pt">Dansk erhvervsliv i AI-transformation — Y dækker det</div>
-            <div class="tile-pt">Dedikeret Pro-sektion bag adgangsvæg</div>
-            <div class="tile-pt">Sponsormodel med IT-Branchen m.fl.</div>
-            <div class="tile-pt">Kommende USP — kommunikeres aktivt</div>
-          </div>
+      <!-- 03 Positionering — lower right -->
+      <div class="hub-node" data-target="s-pos" style="left:944px;top:572px;--nc:#D97706;--ns:rgba(217,119,6,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .34s both">
+        <div class="node-num">03</div>
+        <div class="node-h">Markedspositionering</div>
+        <div class="node-pts">
+          <div class="node-pt">Hvorfor Y Business kan vinde</div>
+          <div class="node-pt">SMV-segmentet er overset</div>
+          <div class="node-pt">10 alternativer analyseret</div>
         </div>
-        <div class="tile-cta">Åbn</div>
+        <div class="node-cta">Åbn</div>
       </div>
+
+      <!-- 04 Go-to-market — lower left -->
+      <div class="hub-node" data-target="s-gtm" style="left:496px;top:572px;--nc:#2563EB;--ns:rgba(37,99,235,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .46s both">
+        <div class="node-num">04</div>
+        <div class="node-h">Go-to-market & roadmap</div>
+        <div class="node-pts">
+          <div class="node-pt">Sådan erhverves betalende kunder</div>
+          <div class="node-pt">6 partnerkanaler · potentiel reach</div>
+          <div class="node-pt">Launch → paywall → expansion</div>
+        </div>
+        <div class="node-cta">Åbn</div>
+      </div>
+
+      <!-- 05 AI & tech — upper left -->
+      <div class="hub-node" data-target="s-ai" style="left:358px;top:284px;--nc:#7C3AED;--ns:rgba(124,58,237,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .58s both">
+        <div class="node-num" style="display:flex;align-items:center;justify-content:space-between">
+          <span>05</span>
+          <span style="font-family:var(--mono);font-size:7px;font-weight:700;color:#7C3AED;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25);padding:1px 5px;border-radius:2px;letter-spacing:.1em;text-transform:uppercase">Særlig</span>
+        </div>
+        <div class="node-h">AI & tech for erhverv</div>
+        <div class="node-pts">
+          <div class="node-pt">Redaktionel vertikal og Pro-værdi</div>
+          <div class="node-pt">Skalerbar sponsormodel</div>
+          <div class="node-pt">Pipeline og redaktionelle grænser</div>
+        </div>
+        <div class="node-cta">Åbn</div>
+      </div>
+
     </div>
 
     <div class="hub-stats">
@@ -1524,7 +1747,12 @@ body.bm-editing .bm-plot-cell .bm-add {
       <div class="col-label">Kategori & dokumenterede fordele</div>
       <div class="cat-box">
         <div class="cat-lbl">Kategorien vi ejer</div>
-        <div class="cat-txt">AI-drevet erhvervsintelligens til SMV-priser</div>
+        <div class="cat-txt">Redaktionel erhvervsintelligens til SMV-markedet</div>
+      </div>
+      <div class="commercial-thesis">
+        <div class="thesis-item"><div class="thesis-k">Spar tid</div><div class="thesis-v">Prioriteret morgenbrief og personalisering</div></div>
+        <div class="thesis-item"><div class="thesis-k">Reducér risiko</div><div class="thesis-v">Overvågning af marked og regulering</div></div>
+        <div class="thesis-item"><div class="thesis-k">Find muligheder</div><div class="thesis-v">Signaler, briefs og kvalificerede leads</div></div>
       </div>
       <div class="drv-list">
         <div class="drv">
@@ -1537,7 +1765,7 @@ body.bm-editing .bm-plot-cell .bm-add {
         </div>
         <div class="drv">
           <div class="drv-n">3</div>
-          <div><div class="drv-t">Betalingsvillighed er valideret</div><div class="drv-d">Frihedsbrevet: 5.000 abonnenter til break-even, 14,6M DKK bruttoindtægt 2023 — ren abonnementsmodel. Nordisk SaaS-prispræmie: +28% over US-baseline. Y Business er priset konservativt under nordisk gennemsnit.</div></div>
+          <div><div class="drv-t">Markedsbenchmarks understøtter modellen <span class="status-chip potential">Indikation</span></div><div class="drv-d">Frihedsbrevet dokumenterer en dansk abonnementsmodel i skala. Nordiske SaaS-benchmarks viser betalingsvilje for arbejdsredskaber med tydelig forretningsværdi. Y Business' egen betalingsvillighed valideres i beta.</div></div>
         </div>
         <div class="drv">
           <div class="drv-n">4</div>
@@ -1660,36 +1888,36 @@ body.bm-editing .bm-plot-cell .bm-add {
 
   <div class="sec-body">
     <div class="col ani">
-      <div class="col-label">Partnerorganisationer — 70.000+ virksomheder i direkte reach</div>
+      <div class="col-label">Partnerkanaler — 70.000+ virksomheder i potentiel medlemsreach</div>
       <table class="tbl">
-        <thead><tr><th>Organisation</th><th>Segment</th><th>Medl.</th><th>Rolle i udrulning</th></tr></thead>
+        <thead><tr><th>Organisation</th><th>Status</th><th>Medl.</th><th>Rolle i udrulning</th></tr></thead>
         <tbody>
-          <tr><td class="str">SMVdanmark<span class="badge">Potentiel distributionspartner</span></td><td>SMV-ejere</td><td>15.000+</td><td>Tættest match på kernemålgruppen — ingen aftale indgået</td></tr>
-          <tr><td class="str">Dansk Erhverv</td><td>Handel, service</td><td>18.000+</td><td>Beta-rekruttering, partneraftale, distribution</td></tr>
-          <tr><td class="str">Dansk Industri (DI)</td><td>Produktion</td><td>10.000+</td><td>Beta-rekruttering, anbefaling, mediesamarb.</td></tr>
-          <tr><td class="str">IT-Branchen<span class="badge">Potentiel sponsor — AI & tech</span></td><td>Tech, tele</td><td>—</td><td>Tech-segment + potentiel AI & tech-sponsor</td></tr>
-          <tr><td class="str">Landbrug & Fødevarer</td><td>Agri</td><td>—</td><td>Sektorspecifik distribution, regulatory</td></tr>
-          <tr><td class="str">TEKNIQ Arbejdsgiverne</td><td>Byggeri</td><td>—</td><td>Bygge- og installationssektor</td></tr>
+          <tr><td class="str">SMVdanmark</td><td><span class="status-chip potential">Potentiel</span></td><td>15.000+</td><td>Kernemålgruppe · beta og distribution</td></tr>
+          <tr><td class="str">Dansk Erhverv</td><td><span class="status-chip potential">Potentiel</span></td><td>18.000+</td><td>Beta-rekruttering og distribution</td></tr>
+          <tr><td class="str">Dansk Industri</td><td><span class="status-chip potential">Potentiel</span></td><td>10.000+</td><td>Produktion · anbefaling og distribution</td></tr>
+          <tr><td class="str">IT-Branchen</td><td><span class="status-chip potential">Sponsor</span></td><td>—</td><td>Tech-segment og vertikalsponsor</td></tr>
+          <tr><td class="str">Landbrug & Fødevarer</td><td><span class="status-chip potential">Potentiel</span></td><td>—</td><td>Sektordistribution og regulering</td></tr>
+          <tr><td class="str">TEKNIQ Arbejdsgiverne</td><td><span class="status-chip potential">Potentiel</span></td><td>—</td><td>Byggeri og installation</td></tr>
         </tbody>
       </table>
-      <div class="ibox" style="display:flex; align-items:center; justify-content:space-between;">
-        <div style="font-family:var(--serif); font-size:28px; font-weight:700; color:var(--accent); font-style:italic;">70.000+</div>
-        <div style="font-family:var(--sans); font-size:12px; color:var(--ink70); text-align:right; line-height:1.5;">virksomheder i samlet reach<br>uden kold outreach</div>
+      <div class="funnel" aria-label="Kommerciel acquisition-funnel">
+        <div class="funnel-step"><div class="funnel-n">01 · Reach</div><div class="funnel-v">Partnerkanaler + Y.dk</div><div class="funnel-d">Potentielle virksomheder</div></div>
+        <div class="funnel-step"><div class="funnel-n">02 · Beta</div><div class="funnel-v">Inviterede beslutningstagere</div><div class="funnel-d">Aktivering og brug</div></div>
+        <div class="funnel-step"><div class="funnel-n">03 · Paywall</div><div class="funnel-v">Betalende virksomheder</div><div class="funnel-d">Konvertering pr. kanal</div></div>
+        <div class="funnel-step"><div class="funnel-n">04 · Expansion</div><div class="funnel-v">Opgradering + add-ons</div><div class="funnel-d">Højere ARPA</div></div>
       </div>
       <div class="ibox amber">
-        <div class="ibox-t">Acquisition-pool — afventer tal fra Tech Lead</div>
-        <div class="ibox-b">Daglige Y.dk-besøg i september 2026 er ikke bekræftet. Rekrutteringspool suppleres af LinkedIn, PR og partnerkanaler.</div>
+        <div class="ibox-t">Acquisition-pool <span class="status-chip pending">Afventer datagrundlag</span></div>
+        <div class="ibox-b">Y.dk-trafik, partnerkonvertering og acquisition-budget skal sættes ind i funnelen, før virksomhedsmålet kan fordeles på kanaler.</div>
       </div>
     </div>
 
     <div class="col ani">
-      <div class="col-label">AI-kommunikation</div>
-      <div class="ibox accent">
-        <div class="ibox-t">Formlen er enkel — og kommunikeres åbent</div>
-        <div class="ibox-b">
-          <p>Al produktion er baseret på AI, men mennesker styrer processen. AI er en del af Y's identitet og kommunikeres åbent. Formlen: <strong>"AI producerer, mennesker verificerer."</strong></p>
-          <p>AI er en kommende USP. Y sætter nye standarder for brug af AI i medieproduktion og personaliseret distribution.</p>
-        </div>
+      <div class="col-label">Kommerciel aktivering</div>
+      <div class="commercial-thesis">
+        <div class="thesis-item"><div class="thesis-k">Partner</div><div class="thesis-v">Adgang til relevante betaemner</div></div>
+        <div class="thesis-item"><div class="thesis-k">Y.dk</div><div class="thesis-v">Trafik og produktoplevelse før betaling</div></div>
+        <div class="thesis-item"><div class="thesis-k">Direkte</div><div class="thesis-v">LinkedIn, PR og founder-led salg</div></div>
       </div>
 
       <div class="col-label" style="margin-top:22px; margin-bottom:10px;">Roadmap — næste milepæle</div>
@@ -1702,6 +1930,11 @@ body.bm-editing .bm-plot-cell .bm-add {
         <div class="tl-row"><div class="tl-d">Okt. 2026</div><div class="tl-t"><strong>Business-launch</strong></div></div>
         <div class="tl-row"><div class="tl-d">Nov. 2026</div><div class="tl-t"><strong>Paywall live</strong></div></div>
         <div class="tl-row"><div class="tl-d">Dec. 2026</div><div class="tl-t"><strong>Y Rails</strong></div></div>
+      </div>
+      <div class="decision-strip">
+        <div class="decision-k">Beslutning nu</div>
+        <div class="decision-v">Fordel virksomhedsmålet på kanal, konverteringsrate og ansvarlig.</div>
+        <div class="decision-meta">Commercial Lead</div>
       </div>
     </div>
   </div>
@@ -1739,16 +1972,16 @@ body.bm-editing .bm-plot-cell .bm-add {
     <div class="col ani">
       <div class="cat-box" style="margin-bottom:20px;">
         <div class="cat-lbl">Value proposition</div>
-        <div class="cat-txt">Ét abonnement erstatter din videnskoordinator — og hele kludetæppet af separate værktøjer.</div>
+        <div class="cat-txt">Ét arbejdsredskab gør markedssignaler til beslutningsgrundlag.</div>
       </div>
       <div class="layers">
-        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Personaliseret nyhedsfeed + morgenbrief</div><div class="layer-d">Dagens vigtigste erhvervsnyheder kl. 06:00 — skræddersyet til din branche og dit marked. Originalt redaktionelt indhold kombineret med AI-bearbejdede nyheder fra nationale og internationale medier og bureauer. Leveres i <strong>tekst, lyd og video</strong> — formatet tilpasses den enkelte brugers behov og præferencer. Ingen manuel sortering.</div></div></div>
-        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Markedsovervågning</div><div class="layer-d">Automatisk overvågning af konkurrenter, regulering, EU-direktiver og offentlige udbud. Alerts ved nye hits. Du reagerer, inden konkurrenterne ser det.</div></div></div>
-        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Markedstrends</div><div class="layer-d">Ugentlig trendanalyse fra 5.000 kilder. Du forstår din branche ugen før alle andre — uden at have en analytiker.</div></div></div>
-        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Leadgenerering fra markedssignaler</div><div class="layer-d">Reguleringsændringer, ekspansioner og lederskifter identificerer automatisk, hvilke virksomheder der er klar til at handle. Understøttes af CVR-søgning.</div></div></div>
-        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">B2B-briefs på 60 sekunder</div><div class="layer-d">Situationsbrief om en virksomhed, konkurrent eller reguleringsemne — genereret inden mødet. Det du skal vide, samlet på én side.</div></div></div>
-        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">C-level intelligence</div><div class="layer-d">Strategiske analyser, datadrevet research og trendrapporter til topledelsen. National og international dækning fra Reuters, AP, Bloomberg m.fl. Indhold der kræver fordybelse.</div></div></div>
-        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">AI & tech for erhverv</div><div class="layer-d">Dedikeret Pro-sektion: AI og digitalisering som strategisk ledelsesredskab for SMV-ejere og C-level. Ikke tech-journalistik for tech-folk.</div></div></div>
+        <div class="layer"><div class="layer-n">01</div><div><div class="layer-t">Personaliseret feed + morgenbrief <span class="value-driver">Vane & retention</span></div><div class="layer-d">Dagens vigtigste erhvervssignaler kl. 06.00, prioriteret efter branche og marked. Tekst og lyd ved launch.</div></div></div>
+        <div class="layer"><div class="layer-n">02</div><div><div class="layer-t">Markedsovervågning <span class="value-driver">Opgradering</span></div><div class="layer-d">Konkurrenter, regulering, EU-direktiver og offentlige udbud overvåges automatisk. Alerts gør risiko og timing konkret.</div></div></div>
+        <div class="layer"><div class="layer-n">03</div><div><div class="layer-t">Markedstrends <span class="value-driver">Strategisk værdi</span></div><div class="layer-d">Ugentlig syntese fra 5.000 kilder giver brancheoverblik uden en dedikeret analytiker.</div></div></div>
+        <div class="layer"><div class="layer-n">04</div><div><div class="layer-t">Leadgenerering fra signaler <span class="value-driver">Målbar ROI</span></div><div class="layer-d">Regulering, ekspansion og lederskifter omsættes til potentielle salgsmuligheder, understøttet af CVR-data.</div></div></div>
+        <div class="layer"><div class="layer-n">05</div><div><div class="layer-t">B2B-briefs <span class="value-driver">Tidsbesparelse</span></div><div class="layer-d">Et beslutningsklart situationsbrief om virksomhed, konkurrent eller reguleringsemne — samlet på én side.</div></div></div>
+        <div class="layer"><div class="layer-n">06</div><div><div class="layer-t">C-level intelligence <span class="value-driver">Premiumværdi</span></div><div class="layer-d">Strategiske analyser og trendrapporter oversætter national og international udvikling til ledelsesrelevans.</div></div></div>
+        <div class="layer"><div class="layer-n">07</div><div><div class="layer-t">AI & tech for erhverv <span class="value-driver">Pro & sponsor</span></div><div class="layer-d">En dedikeret vertikal om AI som ledelses-, drifts- og organisationsspørgsmål — ikke teknologi for teknologiens skyld.</div></div></div>
       </div>
     </div>
 
@@ -1756,7 +1989,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       <div class="col-label">Scope — fase 1</div>
       <div class="scope-g">
         <div class="scope-box in">
-          <div class="scope-hl">Inkluderet — fase 1</div>
+          <div class="scope-hl">Launch <span class="status-chip decided">Besluttet scope</span></div>
           <ul class="scope-list">
             <li class="scope-group-label">Alle tiers</li>
             <li>Personaliseret nyhedsfeed</li>
@@ -1777,7 +2010,7 @@ body.bm-editing .bm-plot-cell .bm-add {
           </ul>
         </div>
         <div class="scope-box out">
-          <div class="scope-hl">Ikke fase 1</div>
+          <div class="scope-hl">Senere <span class="status-chip later">Efter launch</span></div>
           <ul class="scope-list">
             <li>Video-format</li>
             <li>ML-personalisering</li>
@@ -1791,7 +2024,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div>
 
       <div class="ibox green">
-        <div class="ibox-t" style="color:var(--green)">Supertrends — aktiv partner · møde afholdt 3. juni</div>
+        <div class="ibox-t" style="color:var(--green)">Supertrends <span class="status-chip decided">Aktiv teknologipartner</span></div>
         <div class="ibox-b">
           <p><strong>Hybridmodel:</strong> Platformen kombinerer Supertrends' infrastruktur med Y's egne systemer og dataadgange. Features leveret af Supertrends brandes <strong>"Powered by Supertrends"</strong>. Egne features kører på Y's egne løsninger.</p>
           <p><strong>Jens/Supertrends kortlægger nu konkret</strong>, hvad platformen kan levere til markedsovervågning, trends og briefs for dansk SMV-segment: kildestruktur, motorkonfiguration og afgrænsning mod Y's egne adgange.</p>
@@ -1803,6 +2036,12 @@ body.bm-editing .bm-plot-cell .bm-add {
             <li>Kildekobling til nyheder afklares inden build</li>
           </ul>
         </div>
+      </div>
+
+      <div class="decision-strip">
+        <div class="decision-k">Kritisk afhængighed</div>
+        <div class="decision-v">Kapacitet, leverancegrænse og rammeaftale skal være låst før build.</div>
+        <div class="decision-meta">PM + Tech Lead</div>
       </div>
 
     </div>
@@ -1833,37 +2072,38 @@ body.bm-editing .bm-plot-cell .bm-add {
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
-    <div class="sec-title">AI & tech for erhverv</div>
+    <div class="sec-title">AI & tech · vertikal & sponsormodel</div>
     <div class="sec-num">05 / 05</div>
   </div>
 
   <div class="sec-body">
     <div class="col ani">
       <div class="cat-box" style="margin-bottom:24px;">
-        <div class="cat-lbl">Y's position</div>
-        <div class="cat-txt">Dansk erhvervsliv er midt i en AI-transformation. Y dækker den — med dybde og uafhængig redaktionel vinkel.</div>
+        <div class="cat-lbl">Redaktionel vertikal · Pro-indhold · sponsorpotentiale</div>
+        <div class="cat-txt">AI som ledelses- og driftsdisciplin — ikke teknologi for teknologiens skyld.</div>
       </div>
-      <div class="col-label">Hvad AI & tech for erhverv er</div>
+      <div class="commercial-thesis">
+        <div class="thesis-item"><div class="thesis-k">Målgruppe</div><div class="thesis-v">SMV-ejere og C-level</div></div>
+        <div class="thesis-item"><div class="thesis-k">Betalingsværdi</div><div class="thesis-v">Metode, friktion og implementering</div></div>
+        <div class="thesis-item"><div class="thesis-k">Revenue</div><div class="thesis-v">Pro-adgang og sektorsponsorat</div></div>
+      </div>
+      <div class="col-label">Indholdsløftet</div>
       <div class="drv-list">
         <div class="drv">
           <div class="drv-n">→</div>
-          <div><div class="drv-t">Dedikeret Pro-sektion</div><div class="drv-d">Dybdegående dækning af AI og teknologi med direkte erhvervsrelevans — ikke tech-journalistik for tech-folk, men AI og digitalisering som strategisk ledelsesredskab for SMV-ejere og C-level.</div></div>
+          <div><div class="drv-t">Forudsætningerne</div><div class="drv-d">Organisation, ledelse, processer, kompetencer, governance og medarbejderadoption — det der afgør, om investeringen virker.</div></div>
         </div>
         <div class="drv">
           <div class="drv-n">→</div>
-          <div><div class="drv-t">National og international dækning</div><div class="drv-d">Aggregeret fra nationale og internationale medier og bureauer. AI-bearbejdet, redaktionelt verificeret. Y leverer syntesen — ikke råstoffet.</div></div>
+          <div><div class="drv-t">Stemmerne — oversat til dansk kontekst</div><div class="drv-d">Globale AI-udsagn omsættes til konkrete valg, risici og konsekvenser for danske virksomheder.</div></div>
         </div>
         <div class="drv">
           <div class="drv-n">→</div>
-          <div><div class="drv-t">Al produktion baseret på AI — mennesker styrer processen</div><div class="drv-d">"AI producerer, mennesker verificerer." Y sætter nye standarder for brug af AI i medieproduktion og personaliseret distribution. AI er en kommende USP — ikke skjult, men kommunikeret som styrke.</div></div>
+          <div><div class="drv-t">Casen med friktion</div><div class="drv-d">Ingen glorificering: beslutning, metode, omkostning, fejl, organisatorisk konsekvens og det andre kan kopiere.</div></div>
         </div>
         <div class="drv">
           <div class="drv-n">→</div>
-          <div><div class="drv-t">Stemmerne fra verden — oversat til dansk kontekst</div><div class="drv-d">Hvad siger de globale AI-meningsdannere — fra Silicon Valley, internationalt og nationalt — og hvad betyder det konkret for danske virksomheder? Formatet oversætter altid: ikke "her er hvad ledende stemmer siger" men "her er hvad det betyder for en dansk virksomhed, der overvejer samme skridt." Successerne vises med metode, friktion og begrænsning — aldrig som glorificering.</div></div>
-        </div>
-        <div class="drv">
-          <div class="drv-n">→</div>
-          <div><div class="drv-t">Enablement-gabet</div><div class="drv-d">De fleste virksomheder har investeret i AI. Langt færre høster udbyttet — ikke fordi teknologien svigter, men fordi ledelsen og organisationen ikke er fulgt med. Det er den fortælling erhvervsmedierne endnu ikke fortæller. Y dækker den konsekvent: AI som organisatorisk forandring, ikke som teknologi.</div></div>
+          <div><div class="drv-t">Redaktionel syntese</div><div class="drv-d">AI skaber skala i research og distribution. Redaktionen prioriterer, verificerer og tager ansvar for konklusionen.</div></div>
         </div>
       </div>
     </div>
@@ -1871,28 +2111,33 @@ body.bm-editing .bm-plot-cell .bm-add {
     <div class="col ani">
       <div class="col-label">Kommerciel model — sponsorsamarbejde</div>
       <div class="ibox accent">
-        <div class="ibox-t">Tre organisationer med særlig interesse</div>
+        <div class="ibox-t">Sponsorprodukt <span class="status-chip potential">Potentiel revenue</span></div>
         <div class="ibox-b">
-          <p>Modellen: organisationen sponserer sektionen og får redaktionelt medejerskab — deres medlemmer får dedikeret dækning. Y Business får en supplerende indtægtskilde ud over abonnementsmodellen.</p>
-          <p>Oplagte kandidater: <strong>IT-Branchen</strong> (tech-segmentets stemme), <strong>Dansk Industri</strong> (produktionsvirksomheder i AI-transformation) og <strong>Dansk Erhverv</strong> (handels- og servicevirksomheder). Partner afklares i møderunden.</p>
+          <p>Organisationen finansierer vertikalen og får synlighed, adgang til dialog og mulighed for at bidrage med faglig kontekst. Medlemmerne får relevant dækning; Y Business får supplerende omsætning.</p>
+          <p>Kandidater: <strong>IT-Branchen</strong>, <strong>Dansk Industri</strong> og <strong>Dansk Erhverv</strong>.</p>
         </div>
       </div>
       <div class="ibox">
-        <div class="ibox-t">Hvorfor det virker kommercielt</div>
+        <div class="ibox-t">Den redaktionelle grænse</div>
         <div class="ibox-b">
           <ul class="chk">
-            <li>Organisationen betaler for eksponering mod Y's betalende Pro-abonnenter</li>
-            <li>Medlemmerne oplever sektionen som en fordel ved medlemskabet</li>
-            <li>Y's redaktionelle uafhængighed fastholdes — sponsoren leverer adgang og faglig kontekst, ikke redaktionel kontrol</li>
-            <li>Modellen skalerer til andre vertikaler: Landbrug & Fødevarer, TEKNIQ m.fl.</li>
+            <li>Sponsoren får eksponering, adgang og dialog</li>
+            <li>Sponsoren kan levere data, cases og faglig kontekst</li>
+            <li>Y ejer prioritering, kildevalg, vinkling og publicering</li>
+            <li>Samarbejdet deklareres tydeligt i sektionen</li>
           </ul>
         </div>
       </div>
       <div class="col-label-sm">Status</div>
       <div class="tl">
-        <div class="tl-row"><div class="tl-d" style="color:var(--amber);">Udestående</div><div class="tl-t"><strong style="color:var(--amber);">Sponsorsamtaler — afventer planlægning af møderunde</strong> · IT-Branchen, Dansk Industri og Dansk Erhverv er potentielle kandidater. Samtaler indgår i den overordnede møderunde, der planlægges.</div></div>
+        <div class="tl-row"><div class="tl-d" style="color:var(--amber);">Udestående</div><div class="tl-t"><strong style="color:var(--amber);">Sponsorsamtaler</strong> · Kandidater og model er defineret; møder og kommercielle vilkår er ikke aftalt.</div></div>
         <div class="tl-row"><div class="tl-d">Aug.–sept.</div><div class="tl-t">Sponsormodel konkretiseres parallelt med design & build</div></div>
         <div class="tl-row"><div class="tl-d">Okt. 2026</div><div class="tl-t">AI & tech-sektion lanceres som del af Business-launch</div></div>
+      </div>
+      <div class="decision-strip">
+        <div class="decision-k">Beslutning nu</div>
+        <div class="decision-v">Fastlæg sponsorleverance, deklaration og redaktionelt charter.</div>
+        <div class="decision-meta">Commercial + Redaktion</div>
       </div>
     </div>
   </div>
