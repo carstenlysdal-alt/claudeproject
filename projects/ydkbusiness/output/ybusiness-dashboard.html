@@ -348,6 +348,37 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .ibox-b p { margin: 0; }
 .ibox-b p + p { margin-top: 11px; }
 .col-compact .ibox-b { font-size: 12.5px; line-height: 1.6; }
+.commercial-priority-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-bottom: 18px;
+}
+.ibox.primary-value {
+  position: relative; margin-bottom: 0; padding: 24px 22px 20px;
+  background: var(--card); border: 1px solid var(--accent-20); border-top: 4px solid var(--accent);
+  box-shadow: 0 8px 24px rgba(54,19,82,.08);
+}
+.ibox.primary-value::before {
+  content: 'Primær værdidriver'; display: block; margin-bottom: 10px;
+  font-family: var(--mono); font-size: 8px; font-weight: 700;
+  color: var(--accent); letter-spacing: .12em; text-transform: uppercase;
+}
+.ibox.primary-value .ibox-t {
+  font-family: var(--serif); font-size: 17px; line-height: 1.25;
+  font-style: italic; color: var(--ink); margin-bottom: 12px;
+}
+.ibox.primary-value .ibox-b { font-size: 13px; line-height: 1.58; }
+.commercial-secondary-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-bottom: 14px;
+}
+.ibox.secondary-value {
+  margin-bottom: 0; padding: 14px 16px; background: var(--tint);
+  border-color: var(--line2);
+}
+.ibox.secondary-value .ibox-t { font-size: 12.5px; color: var(--ink70); margin-bottom: 7px; }
+.ibox.secondary-value .ibox-b { font-size: 11.5px; line-height: 1.48; color: var(--muted); }
+.ibox.secondary-value .chk { margin-top: 8px; gap: 5px; }
+.ibox.secondary-value .chk li { font-size: 11px; line-height: 1.35; color: var(--muted); gap: 6px; }
 
 /* Checklist */
 .chk { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
@@ -1622,7 +1653,7 @@ body.bm-editing .bm-plot-cell .bm-add {
           </div>
         </div>
         <div class="bm-addon">
-          <div class="bm-addon-k">ARR opside</div>
+          <div class="bm-addon-k">ARR upside</div>
           <div class="addon-tiers">
             <div class="addon-tier"><span class="addon-tier-l">Opgradering til Erhverv+/Premium</span><span class="addon-tier-v">11–14M DKK</span></div>
           </div>
@@ -1646,7 +1677,25 @@ body.bm-editing .bm-plot-cell .bm-add {
     <div class="col ani col-compact">
       <div class="col-label">Kommercielle mekanikker</div>
 
-      <div class="ibox">
+      <div class="commercial-priority-grid">
+      <div class="ibox primary-value">
+        <div class="ibox-t">Marketing kick-back, inkluderet i Erhverv+ og Premium</div>
+        <div class="ibox-b">
+          <p>Abonnenter modtager annonceringsværdi på platformen: bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel. Stærkt salgsargument til virksomheder der allerede annoncerer eller ønsker PR-eksponering.</p>
+          <p><strong>Erhverv+: 5.000 kr/år · Premium: 7.500 kr/år</strong> annonceringsværdi inkluderet.</p>
+        </div>
+      </div>
+
+      <div class="ibox primary-value">
+        <div class="ibox-t">Artikel-deling og brugsrettigheder</div>
+        <div class="ibox-b">
+          <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>. Desuden brugsret til artikler i egen markedsføring: SoMe, nyhedsbreve og investor-materiale. Gælder Erhverv+ og Premium på hele Y.dk-platformen.</p>
+        </div>
+      </div>
+      </div>
+
+      <div class="commercial-secondary-grid">
+      <div class="ibox secondary-value">
         <div class="ibox-t">Virksomhedsudgift — ikke personalegode</div>
         <div class="ibox-b">
           <p>Alle pakker kommunikeres som <strong>B2B-driftsomkostning, der trækkes fra</strong> — aldrig som personligt medieabonnement.</p>
@@ -1654,7 +1703,7 @@ body.bm-editing .bm-plot-cell .bm-add {
         </div>
       </div>
 
-      <div class="ibox accent">
+      <div class="ibox secondary-value">
         <div class="ibox-t">Fri avis — skattemæssig driver</div>
         <div class="ibox-b">
           <p>Skattestyrelsens bagatelgrænse for personalegoder: <strong>7.600 kr/år i 2026</strong>. Erhverv+ på 7.500 kr/år er inden for grænsen — skattefrit for modtageren, fradragsberettiget for virksomheden.</p>
@@ -1666,20 +1715,6 @@ body.bm-editing .bm-plot-cell .bm-add {
           <li>Ekspliciteres i checkout-flow og salgsmateriale</li>
         </ul>
       </div>
-
-      <div class="ibox">
-        <div class="ibox-t">Marketing kick-back, inkluderet i Erhverv+ og Premium</div>
-        <div class="ibox-b">
-          <p>Abonnenter modtager annonceringsværdi på platformen: bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel. Stærkt salgsargument til virksomheder der allerede annoncerer eller ønsker PR-eksponering.</p>
-          <p><strong>Erhverv+: 5.000 kr/år · Premium: 7.500 kr/år</strong> annonceringsværdi inkluderet.</p>
-        </div>
-      </div>
-
-      <div class="ibox">
-        <div class="ibox-t">Artikel-deling og brugsrettigheder</div>
-        <div class="ibox-b">
-          <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>. Desuden brugsret til artikler i egen markedsføring: SoMe, nyhedsbreve og investor-materiale. Gælder Erhverv+ og Premium på hele Y.dk-platformen.</p>
-        </div>
       </div>
 
       <div class="ibox green">
@@ -1765,7 +1800,7 @@ body.bm-editing .bm-plot-cell .bm-add {
         </div>
         <div class="drv">
           <div class="drv-n">3</div>
-          <div><div class="drv-t">Markedsbenchmarks understøtter modellen <span class="status-chip potential">Indikation</span></div><div class="drv-d">Frihedsbrevet dokumenterer en dansk abonnementsmodel i skala. Nordiske SaaS-benchmarks viser betalingsvilje for arbejdsredskaber med tydelig forretningsværdi. Y Business' egen betalingsvillighed valideres i beta.</div></div>
+          <div><div class="drv-t">Betalingsværdien skal bevises i brug <span class="status-chip potential">Valideres i beta</span></div><div class="drv-d">Y Business skal skabe konkret værdi for virksomheden: mindre tid brugt på informationssøgning, tidligere varsling af risici og et stærkere beslutningsgrundlag. I betaen måler vi, hvilke funktioner der skaber gentagen brug, opgradering og reel betalingsvillighed.</div></div>
         </div>
         <div class="drv">
           <div class="drv-n">4</div>
