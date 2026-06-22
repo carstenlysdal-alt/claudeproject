@@ -1079,6 +1079,21 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 .btn-feedback:hover { background: var(--line2); border-color: var(--accent-30); color: var(--accent); }
 .btn-feedback svg { flex-shrink: 0; }
+.dash-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.external-toggle {
+  min-height: 36px; display: inline-flex; align-items: stretch;
+  border: 1px solid var(--line); background: var(--card); color: var(--muted);
+  font-family: var(--mono); font-size: 0; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.external-toggle::before {
+  content: 'Intern'; display: inline-flex; align-items: center; padding: 0 10px;
+  background: var(--accent); color: #fff; border-right: 1px solid var(--accent); font-size: 8px;
+}
+.external-toggle::after { content: 'Ekstern'; display: inline-flex; align-items: center; padding: 0 10px; font-size: 8px; }
+.external-toggle:hover { border-color: var(--accent-20); color: var(--accent); }
+.external-toggle:hover::after { background: var(--accent-10); }
 
 .fb-overlay {
   position: fixed; inset: 0;
@@ -1290,6 +1305,7 @@ body.bm-editing .bm-plot-cell .bm-add {
     </div>
     <div class="hub-header-rubrik">Forretningsmodel, produktværdi og vej til <em>omsætning</em></div>
     <div class="dash-meta">
+      <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
       <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         Feedback
@@ -1435,10 +1451,13 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
       <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
     </nav>
+    <div class="dash-actions">
+    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
     </button>
+    </div>
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
@@ -1766,10 +1785,13 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
       <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
     </nav>
+    <div class="dash-actions">
+    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
     </button>
+    </div>
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
@@ -1910,10 +1932,13 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item nav-active" data-target="s-gtm">Go-to-market & roadmap</button>
       <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
     </nav>
+    <div class="dash-actions">
+    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
     </button>
+    </div>
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
@@ -1992,10 +2017,13 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
       <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
     </nav>
+    <div class="dash-actions">
+    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
     </button>
+    </div>
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
@@ -2100,10 +2128,13 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
       <button class="dash-nav-item nav-active" data-target="s-ai">AI & tech</button>
     </nav>
+    <div class="dash-actions">
+    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
     </button>
+    </div>
   </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
