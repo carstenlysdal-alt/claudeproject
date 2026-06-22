@@ -142,8 +142,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .node-cta::after{content:'→';font-size:11px}
 
 /* ── S2 PILLARS ── */
-.s2-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;height:100%}
-.pillar-col{padding:28px 32px;border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
+.s2-wrap{display:grid;grid-template-columns:252px 1fr 1fr 1fr;height:100%}
+.s2-why{background:var(--accent);padding:28px 24px;display:flex;flex-direction:column}
+.s2-why-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.32);letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.s2-why-eyebrow::before{content:'';display:block;width:14px;height:1px;background:currentColor}
+.s2-why-title{font-family:var(--serif);font-size:21px;font-weight:700;color:#FAFAF8;line-height:1.15;letter-spacing:-.015em;margin-bottom:16px;font-style:italic}
+.s2-why-q{font-family:var(--serif);font-size:13px;font-weight:700;color:rgba(250,250,248,.88);line-height:1.3;margin-bottom:8px;display:flex;align-items:flex-start;gap:9px}
+.s2-why-q::before{content:'→';font-family:var(--mono);font-size:9px;color:rgba(250,250,248,.28);flex-shrink:0;margin-top:2px}
+.s2-why-divider{height:1px;background:rgba(250,250,248,.1);margin:15px 0}
+.s2-why-body{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.5);line-height:1.65;flex:1}
+.s2-why-rule{padding:12px 13px;background:rgba(250,250,248,.06);border:1px solid rgba(250,250,248,.11);border-radius:3px}
+.s2-why-rule-lbl{font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(250,250,248,.28);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
+.s2-why-rule-txt{font-family:var(--serif);font-size:12.5px;font-weight:700;color:rgba(250,250,248,.82);line-height:1.45;font-style:italic}
+.pillar-col{padding:22px 24px;border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
 .pillar-col:last-child{border-right:none}
 .pillar-col.ch{background:var(--tint)}
 .pillar-tag{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
@@ -151,18 +162,20 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .pt-u{color:var(--green)}
 .pt-c{color:var(--amber)}
 .pt-i{color:var(--accent)}
-.pillar-q{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--ink);line-height:1.25;letter-spacing:-.01em;margin-bottom:14px;font-style:italic}
-.pillar-desc{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.55;margin-bottom:16px}
-.pillar-rule{padding:11px 14px;border-left:3px solid currentColor;margin-bottom:16px}
+.pillar-section-lbl{font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:11px;margin-bottom:4px;opacity:.42}
+.pillar-who{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.5;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.pillar-q{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);line-height:1.25;letter-spacing:-.01em;margin-bottom:10px;font-style:italic}
+.pillar-desc{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.55;margin-bottom:12px}
+.pillar-rule{padding:10px 13px;border-left:3px solid currentColor;margin-bottom:12px}
 .pr-u{color:var(--green);background:var(--green-s)}
 .pr-c{color:var(--amber);background:var(--amber-s)}
 .pr-i{color:var(--accent);background:var(--accent-10)}
 .pillar-rule-lbl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px;opacity:.7}
-.pillar-rule-txt{font-family:var(--sans);font-size:12px;font-weight:700;line-height:1.4;color:inherit}
-.pillar-ex-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:7px}
-.pillar-ex-item{font-family:var(--sans);font-size:11.5px;color:var(--muted);display:flex;align-items:flex-start;gap:6px;line-height:1.4;margin-bottom:4px}
+.pillar-rule-txt{font-family:var(--sans);font-size:11.5px;font-weight:700;line-height:1.4;color:inherit}
+.pillar-ex-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px}
+.pillar-ex-item{font-family:var(--sans);font-size:11px;color:var(--muted);display:flex;align-items:flex-start;gap:6px;line-height:1.4;margin-bottom:4px}
 .pillar-ex-item::before{content:'→';color:var(--accent);flex-shrink:0;opacity:.45;font-size:10px;margin-top:1px}
-.pillar-ai{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.pillar-ai{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px}
 .pillar-ai-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
 .ai-tag{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px}
 .ai-h{color:var(--green);background:var(--green-s)}
@@ -482,17 +495,17 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s8-pc-txt strong{color:rgba(134,239,172,.8);font-weight:600}
 .s8-pc-txt s{color:rgba(248,113,113,.7);text-decoration:line-through;text-decoration-color:rgba(248,113,113,.4)}
 .s8-col{display:flex;flex-direction:column;overflow:hidden}
-.s8-col.blueprint{background:var(--card);padding:24px 22px}
+.s8-col.blueprint{background:var(--card);padding:18px 20px;overflow-y:auto}
 .s8-col.preview{background:var(--paper);padding:22px 30px}
 .s8-col.pers{background:var(--tint);padding:24px 22px}
-.s8-col-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.s8-col-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .s8-col-lbl::before{content:'';display:block;width:14px;height:1px;background:currentColor}
-.s8-bp-item{display:flex;gap:9px;align-items:flex-start;padding-bottom:11px;margin-bottom:11px;border-bottom:1px solid var(--line)}
+.s8-bp-item{display:flex;gap:9px;align-items:flex-start;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--line)}
 .s8-bp-item:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
 .s8-bp-n{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);opacity:.3;flex-shrink:0;width:16px;padding-top:1px}
 .s8-bp-tag{font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px;opacity:.6}
 .s8-bp-txt{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.4}
-.s8-timing{margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.s8-timing{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
 .s8-timing-lbl{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;opacity:.5}
 .s8-timing-row{display:flex;align-items:baseline;gap:8px;margin-bottom:5px}
 .s8-timing-t{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--accent);opacity:.65;width:42px;flex-shrink:0}
@@ -544,6 +557,29 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s8-free-note{margin-top:auto;padding:12px 14px;background:var(--green-s);border:1px solid rgba(22,163,74,.2);border-radius:2px}
 .s8-free-note-lbl{font-family:var(--mono);font-size:8px;font-weight:700;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}
 .s8-free-note-txt{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.45}
+
+/* ── S8 PROMPT POPUP MODAL ── */
+.s8-prompt-modal{position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .22s ease}
+.s8-prompt-modal.open{opacity:1;pointer-events:auto}
+.s8-pm-overlay{position:absolute;inset:0;background:rgba(10,8,8,.72);backdrop-filter:blur(6px)}
+.s8-pm-box{position:relative;width:860px;max-height:740px;background:#0D1117;border:1px solid rgba(250,250,248,.1);border-radius:4px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.5)}
+.s8-pm-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:1px solid rgba(250,250,248,.08);flex-shrink:0}
+.s8-pm-title{font-family:var(--mono);font-size:10px;font-weight:700;color:rgba(250,250,248,.55);letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.s8-pm-badge{font-family:var(--mono);font-size:8px;font-weight:700;padding:2px 8px;border-radius:3px}
+.s8-pm-badge.model{color:rgba(196,181,253,.8);background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.2)}
+.s8-pm-badge.type{color:rgba(134,239,172,.7);background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.15)}
+.s8-pm-close{background:none;border:none;cursor:pointer;color:rgba(250,250,248,.35);font-size:18px;line-height:1;padding:4px 8px;transition:color .15s}
+.s8-pm-close:hover{color:rgba(250,250,248,.8)}
+.s8-pm-pre{font-family:var(--mono);font-size:10.5px;color:rgba(250,250,248,.75);line-height:1.7;overflow-y:auto;padding:24px 28px;flex:1;margin:0;white-space:pre-wrap;word-break:break-word;scrollbar-width:thin;scrollbar-color:rgba(250,250,248,.12) transparent}
+.s8-pm-pre::-webkit-scrollbar{width:4px}
+.s8-pm-pre::-webkit-scrollbar-thumb{background:rgba(250,250,248,.12);border-radius:2px}
+/* Trigger button in blueprint column */
+.s8-bp-prompt{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.s8-bp-prompt-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.s8-bp-prompt-lbl::before{content:'';display:block;width:14px;height:1px;background:currentColor}
+.s8-bp-prompt-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:9px 12px;background:rgba(54,19,82,.08);border:1px solid rgba(54,19,82,.18);border-radius:3px;cursor:pointer;transition:background .15s;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;gap:8px}
+.s8-bp-prompt-btn:hover{background:rgba(54,19,82,.15)}
+.s8-bp-prompt-sub{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.06em;margin-top:6px;opacity:.6}
 </style>
 </head>
 <body>
@@ -872,10 +908,31 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 </div>
 <div class="sec-body">
   <div class="s2-wrap">
+
+    <!-- BIG WHY — venstrepanel -->
+    <div class="s2-why">
+      <div class="s2-why-eyebrow">Redaktionelt fundament</div>
+      <div class="s2-why-title">Tre spørgsmål.<br>Én platform.</div>
+      <div class="s2-why-q">Hvad skal jeg forstå?</div>
+      <div class="s2-why-q">Hvad skal jeg tvivle på?</div>
+      <div class="s2-why-q">Hvad kan jeg gøre?</div>
+      <div class="s2-why-divider"></div>
+      <div class="s2-why-body">Dansk erhvervsliv drukner ikke i for lidt information — men i for meget irrelevant information. Y Business er bygget om de tre spørgsmål, der har stået ubesvaret i dansk erhvervsjournalistik. Hvert indholdsformat peger på ét af dem. Intet publiceres uden et klart svar.</div>
+      <div class="s2-why-rule">
+        <div class="s2-why-rule-lbl">Grundprincip</div>
+        <div class="s2-why-rule-txt">Algoritmen personaliserer relevansen. Redaktionen beskytter horisonten.</div>
+      </div>
+    </div>
+
+    <!-- UNDERSTAND -->
     <div class="pillar-col">
       <div class="pillar-tag pt-u">Understand</div>
+      <div class="pillar-section-lbl">Hvem</div>
+      <div class="pillar-who">SMV-ejer der har mødt en ny regulering, et markedsskifte eller et teknologisk skifte — og har brug for at vide, hvad det konkret kræver af ham.</div>
+      <div class="pillar-section-lbl">Hvad</div>
       <div class="pillar-q">"Hvad sker der — og hvad betyder det for min virksomhed?"</div>
       <p class="pillar-desc">Erhvervsnyhederne fylder. Konsekvenserne mangler. Understand fortæller ikke, hvad der er sket — men hvad det koster, hvad det kræver, og hvornår det rammer virksomheden, du driver.</p>
+      <div class="pillar-section-lbl">Hvordan</div>
       <div class="pillar-rule pr-u">
         <div class="pillar-rule-lbl">Redaktionel regel</div>
         <div class="pillar-rule-txt">Ingen Understand uden konsekvens. Aldrig blot referatet — altid implikationen for en konkret virksomhed eller rolle.</div>
@@ -890,10 +947,16 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <span class="ai-tag ai-h">Høj</span>
       </div>
     </div>
+
+    <!-- CHALLENGE -->
     <div class="pillar-col ch">
       <div class="pillar-tag pt-c">Challenge</div>
+      <div class="pillar-section-lbl">Hvem</div>
+      <div class="pillar-who">C-level og analytiske profiler der ikke nøjes med headlines — og som leder efter de blinde vinkler ingen andre adresserer.</div>
+      <div class="pillar-section-lbl">Hvad</div>
       <div class="pillar-q">"Hvad er den vinkel, du ikke har set?"</div>
       <p class="pillar-desc">Alle fortæller den samme historie. Challenge finder kilden, der siger noget andet. Den skjulte omkostning. Myten, ingen endnu har knækket. Det er ikke kontrarianism — det er journalistisk gravearbejde med et konkret formål.</p>
+      <div class="pillar-section-lbl">Hvordan</div>
       <div class="pillar-rule pr-c">
         <div class="pillar-rule-lbl">Redaktionel regel</div>
         <div class="pillar-rule-txt">Ingen Challenge uden dokumentation. Kanten er ikke en mine — den er et regnskab: hvad mangler, hvem har glemt det, og hvorfor gør det en forskel?</div>
@@ -908,10 +971,16 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <span class="ai-tag ai-l">Lav — navngivet ophav krævet</span>
       </div>
     </div>
+
+    <!-- INSPIRE -->
     <div class="pillar-col">
       <div class="pillar-tag pt-i">Inspire</div>
+      <div class="pillar-section-lbl">Hvem</div>
+      <div class="pillar-who">Iværksættere og SMV-ejere der søger kopierbar læring — og C-level der vil se, hvad det faktisk kostede at lykkes.</div>
+      <div class="pillar-section-lbl">Hvad</div>
       <div class="pillar-q">"Hvad kan vi gøre — og hvad kostede det at komme dertil?"</div>
       <p class="pillar-desc">Succeshistorier uden fejl er reklame med pænere sko. Inspire stiller ét spørgsmål: hvad kostede det at komme dertil? Hvad gik galt, hvad virkede — og hvad kan du faktisk bruge, hvis du ikke er den virksomhed, du netop læste om?</p>
+      <div class="pillar-section-lbl">Hvordan</div>
       <div class="pillar-rule pr-i">
         <div class="pillar-rule-lbl">Redaktionel regel</div>
         <div class="pillar-rule-txt">Ingen Inspire uden friktion. Optimisme er kun troværdig, når den er dokumenteret og har kostet noget.</div>
@@ -926,6 +995,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <span class="ai-tag ai-m">Middel — vurdering kræver menneske</span>
       </div>
     </div>
+
   </div>
 </div>
 </div>
@@ -1036,85 +1106,261 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 <!-- ═══════════ S4 ═══════════ -->
 <div class="screen" id="s4">
 <style>
-/* === S4 FORMATER — A+C redesign: klarhed + format-profiler === */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,300;1,8..60,400&display=swap');
+/* === S4 FORMATER — Spotlight Scanner === */
 
-/* Paywall band — visual proportion fill */
-#s4 .s4-paywall-band{padding:0;height:48px;overflow:hidden}
-#s4 .pwb-sep{display:none}
-#s4 .pwb-side{height:100%;padding:0 20px;display:flex;align-items:center;gap:10px}
-#s4 .pwb-side.free{background:rgba(22,163,74,.07);border-right:2px solid rgba(22,163,74,.2);flex:1}
-#s4 .pwb-side.paid{background:rgba(54,19,82,.04);flex:4}
-#s4 .pwb-pct{font-size:20px}
-#s4 .pwb-pct.free{color:var(--green)}
-#s4 .pwb-pct.paid{color:var(--accent)}
-#s4 .pwb-tag{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;border-radius:2px}
-#s4 .pwb-tag.free{color:var(--green);background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.25)}
-#s4 .pwb-tag.paid{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-20)}
-#s4 .pwb-items{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.03em;opacity:.7}
+/* Scanner fills full sec-body */
+#s4 .s4-scanner{flex:1;display:flex;overflow:hidden;min-height:0}
 
-/* Free zone — Morgenbriefet amber tone */
-#s4 .s4-tier-section.free-zone{background:rgba(167,93,70,.06);border-color:rgba(167,93,70,.22)}
-#s4 .s4-tier-section.free-zone .fmt-card{background:rgba(167,93,70,.08);border-top-color:#A75D46;border-top-width:4px}
-#s4 .s4-tier-section.free-zone .fmt-card:hover{box-shadow:0 6px 24px rgba(167,93,70,.16),0 2px 8px rgba(0,0,0,.04)}
+/* Nav inner items wrapper */
+#s4 #s4Nav{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0}
 
-/* General card improvements */
-#s4 .fmt-card{border-top-width:4px;transition:transform .2s cubic-bezier(.2,0,0,1),box-shadow .2s ease}
-#s4 .fmt-name{font-size:24px}
-#s4 .fmt-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.1),0 2px 8px rgba(0,0,0,.04)}
-#s4 .fmt-pillar .fp-tag{font-size:8.5px;padding:2px 9px}
+/* Proportional søjle — adgangsopdeling i bunden af nav */
+#s4 .s4-nav-split{
+  flex-shrink:0;height:64px;
+  display:flex;
+  border-top:2px solid var(--line);
+  overflow:hidden;
+  position:relative;
+}
+#s4 .s4-ns-free{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:0 14px;
+  background:rgba(22,163,74,.07);
+  border-right:none;
+  position:relative;
+}
+#s4 .s4-ns-paid{
+  flex:4;display:flex;flex-direction:column;justify-content:center;
+  padding:0 16px;
+  background:rgba(54,19,82,.03);
+}
+/* Cut marker — the line that shows the split */
+#s4 .s4-ns-cut{
+  position:absolute;top:0;bottom:0;left:0;width:2px;
+  background:rgba(22,163,74,.5);
+  pointer-events:none;
+}
+#s4 .s4-ns-pct{
+  font-family:var(--serif);font-size:15px;font-weight:700;
+  letter-spacing:-.02em;line-height:1;margin-bottom:3px;
+}
+#s4 .s4-ns-free .s4-ns-pct{color:var(--green)}
+#s4 .s4-ns-paid .s4-ns-pct{color:var(--accent)}
+#s4 .s4-ns-row{display:flex;align-items:center;gap:6px}
+#s4 .s4-ns-tag{
+  font-family:var(--mono);font-size:7px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;padding:1px 6px;border-radius:2px;
+}
+#s4 .s4-ns-free .s4-ns-tag{color:var(--green);background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.3)}
+#s4 .s4-ns-paid .s4-ns-tag{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-20)}
+#s4 .s4-ns-items{
+  font-family:var(--mono);font-size:8px;color:var(--muted);
+  letter-spacing:.02em;opacity:.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  margin-top:1px;
+}
+/* Entry animation */
+@keyframes s4-split-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+#s4.screen.active .s4-nav-split{animation:s4-split-in .4s cubic-bezier(.22,.61,.36,1) .35s both}
+@media(prefers-reduced-motion:reduce){#s4.screen.active .s4-nav-split{animation:none!important}}
 
-/* Per-format color tones */
-#s4 .s4-paid-grid .fmt-card:nth-child(1){background:rgba(45,66,58,.05)}
-#s4 .s4-paid-grid .fmt-card:nth-child(1):hover{box-shadow:0 8px 28px rgba(45,66,58,.15),0 2px 8px rgba(0,0,0,.04)}
-#s4 .s4-paid-grid .fmt-card:nth-child(2){background:rgba(47,62,76,.05)}
-#s4 .s4-paid-grid .fmt-card:nth-child(2):hover{box-shadow:0 8px 28px rgba(47,62,76,.15),0 2px 8px rgba(0,0,0,.04)}
-#s4 .s4-paid-grid .fmt-card:nth-child(3){background:rgba(74,55,78,.05)}
-#s4 .s4-paid-grid .fmt-card:nth-child(3):hover{box-shadow:0 8px 28px rgba(74,55,78,.15),0 2px 8px rgba(0,0,0,.04)}
-#s4 .s4-paid-grid .fmt-card:nth-child(4){background:rgba(158,128,89,.05)}
-#s4 .s4-paid-grid .fmt-card:nth-child(4):hover{box-shadow:0 8px 28px rgba(158,128,89,.15),0 2px 8px rgba(0,0,0,.04)}
+/* Left nav */
+#s4 .s4-nav{
+  width:380px;flex-shrink:0;
+  display:flex;flex-direction:column;
+  border-right:1px solid var(--line);
+  background:var(--paper);
+  overflow:hidden;
+}
+#s4 .s4-fi{
+  flex:1;
+  display:flex;align-items:center;
+  cursor:pointer;
+  border-bottom:1px solid var(--line2);
+  transition:background .15s ease;
+  overflow:hidden;min-height:0;
+}
+#s4 .s4-fi:last-child{border-bottom:none}
+#s4 .s4-fi-bar{
+  width:4px;flex-shrink:0;height:100%;
+  transition:width .25s cubic-bezier(.22,.61,.36,1);
+}
+#s4 .s4-fi.active .s4-fi-bar{width:6px}
+#s4 .s4-fi-body{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 16px;flex:1;min-width:0;gap:2px;
+}
+#s4 .s4-fi-num{
+  font-family:var(--mono);font-size:8px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  transition:color .2s ease;line-height:1;
+}
+#s4 .s4-fi-name{
+  font-family:var(--serif);font-weight:700;
+  letter-spacing:-.02em;line-height:1.0;color:var(--ink);font-size:15px;
+  transition:font-size .3s cubic-bezier(.22,.61,.36,1),letter-spacing .3s ease;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+#s4 .s4-fi.active .s4-fi-name{font-size:26px;letter-spacing:-.03em;white-space:normal}
+#s4 .s4-fi-func{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+  opacity:0;height:0;overflow:hidden;
+  transition:opacity .2s ease .08s,height .28s cubic-bezier(.22,.61,.36,1);
+  line-height:1;
+}
+#s4 .s4-fi.active .s4-fi-func{opacity:.65;height:12px}
+#s4 .s4-fi-tier{
+  font-family:var(--mono);font-size:6.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 7px;border:1px solid;
+  display:inline-block;align-self:flex-start;
+  opacity:0;height:0;overflow:hidden;
+  transition:opacity .2s ease .12s,height .28s cubic-bezier(.22,.61,.36,1);
+}
+#s4 .s4-fi.active .s4-fi-tier{opacity:1;height:17px}
+#s4 .s4-fi-tier.free{color:#A75D46;border-color:rgba(167,93,70,.4)}
+#s4 .s4-fi-tier.paid{opacity:0}
+#s4 .s4-fi.active .s4-fi-tier.paid{opacity:.5}
 
-/* Situationsformater */
-#s4 .s4-paid-grid .fmt-card:nth-child(6){background:rgba(124,121,114,.04)}
-#s4 .s4-paid-grid .fmt-card:nth-child(6):hover{box-shadow:0 8px 28px rgba(124,121,114,.12)}
+/* Right content panel */
+#s4 .s4-content{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;
+  background:var(--paper);
+  position:relative;overflow:hidden;
+}
+#s4 .s4-slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  padding:28px 48px 20px 44px;
+  opacity:0;pointer-events:none;
+  transition:opacity .22s ease;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--line2) transparent;
+}
+#s4 .s4-slide.active{opacity:1;pointer-events:auto}
+/* Scrollbar (webkit) */
+#s4 .s4-slide::-webkit-scrollbar{width:4px}
+#s4 .s4-slide::-webkit-scrollbar-track{background:transparent}
+#s4 .s4-slide::-webkit-scrollbar-thumb{background:var(--line2);border-radius:2px}
 
-/* ═══ BLIND SPOT — dark navy anchor card (nth-child 5) ═══ */
-#s4 .s4-paid-grid .fmt-card:nth-child(5){background:#0C1929;border-top-color:#3B82F6;border-top-width:5px}
-#s4 .s4-paid-grid .fmt-card:nth-child(5):hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(59,130,246,.25),0 4px 12px rgba(0,0,0,.3)}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-num{color:rgba(147,197,253,.45)}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-name{color:#FAFAF8}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-func{color:rgba(147,197,253,.65)}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-q{color:rgba(250,250,248,.6)}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-insight{background:rgba(59,130,246,.12);color:rgba(147,197,253,.9);border-left-color:#3B82F6}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-sources{color:rgba(250,250,248,.45)}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-sources strong{color:rgba(147,197,253,.6)}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-foot{border-top-color:rgba(255,255,255,.1)}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-freq{color:rgba(250,250,248,.3)}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fmt-access-lbl{color:rgba(196,181,253,.75)}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) .fp-tag{opacity:.8}
-/* 6-type grid — target by attribute string (inline styles) */
-#s4 .s4-paid-grid .fmt-card:nth-child(5) [style*="background:rgba(26,46,74,.06)"]{background:rgba(59,130,246,.1)!important;border-top-color:rgba(59,130,246,.45)!important}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) [style*="color:#1A2E4A"]{color:rgba(147,197,253,.75)!important}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) [style*="color:var(--ink70)"]{color:rgba(250,250,248,.58)!important}
-#s4 .s4-paid-grid .fmt-card:nth-child(5) [style*="border-left:1px solid var(--line2)"]{border-color:rgba(255,255,255,.1)!important}
+/* Intern regel */
+#s4 .s4-regel{padding:9px 14px;margin-bottom:10px;flex-shrink:0;max-width:68ch;border-radius:2px}
+#s4 .s4-regel-lbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px}
+#s4 .s4-regel-txt{font-family:var(--serif);font-size:13px;font-weight:700;line-height:1.35;letter-spacing:-.008em}
+
+/* Fast struktur */
+#s4 .s4-struktur{flex-shrink:0;margin-bottom:12px}
+#s4 .s4-struktur-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+#s4 .s4-struktur-list{display:flex;flex-direction:column;gap:2px}
+#s4 .s4-strin{display:flex;align-items:baseline;gap:9px;padding:5px 11px;border-radius:2px}
+#s4 .s4-strin-n{font-family:var(--mono);font-size:9px;font-weight:700;flex-shrink:0;width:16px;opacity:.4;line-height:1.5}
+#s4 .s4-strin-txt{font-family:var(--sans);font-size:12px;line-height:1.42;color:var(--ink70)}
+
+/* Kernegreb */
+#s4 .s4-kernegreb{font-family:'Source Serif 4',Georgia,serif;font-size:13.5px;font-style:italic;font-weight:300;color:var(--muted);line-height:1.5;margin-bottom:8px;flex-shrink:0;padding-left:14px;border-left:2px solid var(--line)}
+
+/* Eksempler */
+#s4 .s4-eks{display:flex;flex-direction:column;gap:3px;margin-bottom:10px;flex-shrink:0}
+#s4 .s4-eks-item{font-family:'Source Serif 4',Georgia,serif;font-size:11.5px;font-style:italic;color:var(--muted);display:flex;align-items:flex-start;gap:7px;line-height:1.4}
+#s4 .s4-eks-item::before{content:'→';font-family:var(--mono);font-size:9px;flex-shrink:0;opacity:.35;margin-top:2px;font-style:normal}
+
+/* Emner */
+#s4 .s4-emner{font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:10px;flex-shrink:0}
+
+/* Segmenter + kanaler */
+#s4 .s4-meta2{display:flex;gap:20px;flex-shrink:0;margin-bottom:8px;padding:7px 0;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+#s4 .s4-m2-item{display:flex;flex-direction:column;gap:2px}
+#s4 .s4-m2-lbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:.5}
+#s4 .s4-m2-val{font-family:var(--sans);font-size:11.5px;color:var(--ink70)}
+#s4 .s4-q{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:22px;font-style:italic;font-weight:300;
+  line-height:1.42;color:var(--ink);
+  margin-bottom:16px;max-width:60ch;flex-shrink:0;
+}
+#s4 .s4-lead{
+  font-family:var(--serif);font-size:15px;font-weight:700;
+  letter-spacing:-.01em;line-height:1.35;margin-bottom:10px;flex-shrink:0;
+}
+#s4 .s4-desc{
+  font-family:var(--sans);font-size:13.5px;line-height:1.65;
+  color:var(--ink70);margin-bottom:12px;max-width:68ch;flex-shrink:0;
+}
+#s4 .s4-insight{
+  padding:10px 14px;
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:13px;font-style:italic;font-weight:300;
+  line-height:1.5;color:var(--ink70);
+  margin-bottom:12px;flex-shrink:0;max-width:68ch;
+}
+#s4 .s4-quote{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:17px;font-style:italic;font-weight:400;
+  line-height:1.45;color:var(--ink);
+  padding:8px 0;margin-bottom:10px;flex-shrink:0;
+}
+#s4 .s4-lbl{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px;flex-shrink:0;
+}
+#s4 .s4-stat{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 12px;display:inline-block;margin-bottom:10px;flex-shrink:0;
+}
+#s4 .s4-note{padding:9px 14px;margin-bottom:10px;flex-shrink:0;max-width:68ch}
+#s4 .s4-note-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+#s4 .s4-note-txt{font-family:var(--sans);font-size:12px;line-height:1.5;color:var(--ink70)}
+#s4 .s4-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px;flex-shrink:0}
+#s4 .s4-gi{padding:8px 10px}
+#s4 .s4-gi-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+#s4 .s4-gi-txt{font-family:var(--sans);font-size:10px;line-height:1.4;color:var(--ink70)}
+#s4 .s4-grund{padding:7px 10px;margin-bottom:8px;flex-shrink:0}
+#s4 .s4-grund-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+#s4 .s4-grund-txt{font-family:var(--sans);font-size:11px;line-height:1.5}
+#s4 .s4-cols{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;flex-shrink:0}
+#s4 .s4-col{display:flex;align-items:baseline;gap:9px;padding:6px 11px}
+#s4 .s4-col-n{font-family:var(--mono);font-size:8px;font-weight:700;
+  letter-spacing:.08em;flex-shrink:0;min-width:76px}
+#s4 .s4-col-txt{font-family:var(--sans);font-size:12px;line-height:1.4;color:var(--ink70)}
+#s4 .s4-navngivet{
+  font-family:var(--mono);font-size:8px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-shrink:0;
+}
+#s4 .s4-navngivet::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;background:currentColor}
+#s4 .s4-sources{
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  color:var(--muted);line-height:1.5;
+  padding-top:10px;border-top:1px solid var(--line2);
+  margin-top:auto;flex-shrink:0;
+}
+#s4 .s4-sources b{font-weight:700}
+#s4 .s4-proto-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 11px;background:#4C1D95;border:none;border-radius:3px;
+  cursor:pointer;font-family:var(--mono);font-size:8px;font-weight:700;
+  color:rgba(196,181,253,.95);letter-spacing:.1em;text-transform:uppercase;
+  transition:background .15s;margin-top:6px;
+}
+#s4 .s4-proto-btn:hover{background:#5B21B6}
 
 /* Entry animations */
-@keyframes s4-rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-#s4.screen.active .s4-tier-section.free-zone{animation:s4-rise .5s ease .05s both}
-#s4.screen.active .s4-paywall-mur{animation:s4-rise .4s ease .12s both}
-#s4.screen.active .s4-paid-grid .fmt-card:nth-child(1){animation:s4-rise .5s ease .1s both}
-#s4.screen.active .s4-paid-grid .fmt-card:nth-child(2){animation:s4-rise .5s ease .2s both}
-#s4.screen.active .s4-paid-grid .fmt-card:nth-child(3){animation:s4-rise .5s ease .3s both}
-#s4.screen.active .s4-paid-grid .fmt-card:nth-child(4){animation:s4-rise .5s ease .4s both}
-#s4.screen.active .s4-paid-grid .fmt-card:nth-child(5){animation:s4-rise .5s ease .5s both}
-#s4.screen.active .s4-paid-grid .fmt-card:nth-child(6){animation:s4-rise .5s ease .6s both}
-#s4.screen.active .s4-feat.base{animation:s4-rise .55s ease .08s both}
-#s4.screen.active .s4-feat.voice{animation:s4-rise .55s ease .18s both}
+@keyframes s4-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+#s4.screen.active .s4-nav{animation:s4-rise .5s ease .05s both}
+#s4.screen.active .s4-content{animation:s4-rise .5s ease .12s both}
 @media(prefers-reduced-motion:reduce){
-  #s4.screen.active .fmt-card,
-  #s4.screen.active .s4-feat,
-  #s4.screen.active .s4-tier-section,
-  #s4.screen.active .s4-paywall-mur{animation:none!important}
+  #s4.screen.active .s4-nav,
+  #s4.screen.active .s4-content{animation:none!important}
 }
+
 </style>
 <div class="bg-grid"></div>
 <header class="dash-header">
@@ -1135,306 +1381,383 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   <button class="back-btn" data-target="hub">Oversigt</button>
   <span class="sec-num">04 / 07</span>
 </div>
-<div class="sec-body" style="display:flex;flex-direction:column">
-  <div class="s4-paywall-band">
-    <div class="pwb-side free">
-      <span class="pwb-pct free">20 %</span>
-      <span class="pwb-tag free">Gratis</span>
-      <span class="pwb-items">Morgenbriefet · Telegram · Bureaustof</span>
-    </div>
-    <div class="pwb-sep"></div>
-    <div class="pwb-side paid">
-      <span class="pwb-pct paid">80 %</span>
-      <span class="pwb-tag paid">Betalt</span>
-      <span class="pwb-items">Signalradaren · Blind Spot · Det betyder det · Den blinde vinkel · Casen der virker · Klummer · Situationsformater</span>
-    </div>
-  </div>
-  <div class="s4-layout">
-
-    <!-- VENSTRE BOOKEND: Brancheoverblikket -->
-    <div class="s4-feat base">
-      <div class="s4-eyebrow">01 · Basislag</div>
-      <div class="s4-feat-name">Brancheoverblikket</div>
-      <div class="s4-feat-lead">Det er ikke et fælles opslagstavleprodukt.</div>
-      <div class="s4-feat-func">Orienteringen</div>
-      <div class="s4-feat-q">"Hvad er sket i min branche siden sidst?"</div>
-      <div class="s4-feat-body">Ikke alt behøver en vinkel. Noget behøver bare at blive fundet, sorteret og leveret, inden du åbner din første mail. Brancheoverblikket er personaliseret efter branche, region, emner og adfærd.</div>
-      <div class="s4-feat-sources" style="margin-top: 14px; font-family: var(--sans); font-size: 11px; color: rgba(250,250,248,.7); line-height: 1.4;">
-        <strong style="font-family: var(--mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: rgba(250,250,248,.5); margin-right: 4px;">Kilder:</strong> CVR, Erhvervsstyrelsen, brancheforeninger og lokale erhvervsmedier.
-      </div>
-      <div class="s4-feat-foot">
-        <div class="fmt-access" style="margin-bottom:2px;display:flex;align-items:center;gap:5px">
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="rgba(250,250,248,.5)" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="rgba(250,250,248,.5)" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="rgba(250,250,248,.5)"/></svg>
-          <span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,248,.45)">Abonnement</span>
+<div class="sec-body" style="display:flex;flex-direction:column;overflow:hidden">
+  <div class="s4-scanner">
+    <div class="s4-nav">
+      <div id="s4Nav"></div>
+      <div class="s4-nav-split">
+        <div class="s4-ns-cut"></div>
+        <div class="s4-ns-free">
+          <span class="s4-ns-pct">20 %</span>
+          <div class="s4-ns-row">
+            <span class="s4-ns-tag">Gratis</span>
+            <span class="s4-ns-items">Morgenbriefet</span>
+          </div>
         </div>
-        <div class="s4-feat-pillars"><span class="fp-tag fp-u" style="background:rgba(22,163,74,.2)">Understand</span></div>
-        <div class="s4-feat-freq">Dagligt / løbende</div>
+        <div class="s4-ns-paid">
+          <span class="s4-ns-pct">80 %</span>
+          <div class="s4-ns-row">
+            <span class="s4-ns-tag">Betalt</span>
+            <span class="s4-ns-items">Signalradaren · Blind Spot · Det betyder det · Klummer</span>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- MIDTERGRID: Kernformater opdelt i Gratis og Abonnement -->
-    <div class="s4-core">
-
-      <!-- GRATIS -->
-      <div class="s4-tier-section free-zone">
-        <div class="s4-tier-hdr s4-tier-free">
-          <span class="s4-tier-dot"></span>
-          <span class="s4-tier-lbl">Gratis</span>
-          <span class="s4-tier-note">Rekrutteringskanal til abonnementet · 1 format</span>
-          <span class="s4-tier-line"></span>
-        </div>
-        <div class="s4-gratis-row">
-          <div class="fmt-card" style="--sc:#A75D46;--sb:rgba(167,93,70,.04);cursor:pointer" data-target="s8">
-            <div class="fmt-num">02</div>
-            <div class="fmt-name">Morgenbriefet</div>
-            <div class="fmt-func">Vanen</div>
-            <div class="fmt-q">"Hvad skal jeg forstå, inden arbejdsdagen begynder?"</div>
-            <div class="fmt-insight">Leveres kl. 06.30 i 5–7 punkter på tekst og lyd — det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel.</div>
-            <div class="fmt-sources"><strong>Kilder:</strong> Ritzau, Børsen, Finans, Danmarks Statistik (DST) og globale erhvervssignaler.</div>
-            <div class="fmt-foot">
-              <div class="fmt-access free">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#16A34A" stroke-width="1.4"/><path d="M4 6.5l1.8 1.8L9 4.5" stroke="#16A34A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span class="fmt-access-lbl">Gratis</span>
-              </div>
-              <div class="fmt-foot-row">
-                <span class="fmt-freq">Dagligt</span>
-                <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="s4-gratis-aside">
-            <div class="s4-gratis-aside-txt">Morgenbriefet er gratis for alle. Det er det daglige adgangspunkt til Y.dk Business — og det format, der rekrutterer til abonnementet. Ingen mur, ingen registrering. Målet er vane, ikke konvertering i første møde.</div>
-            <div class="s4-gratis-aside-stat">20 % af indholdet · fri adgang</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ABONNEMENT -->
-      <div class="s4-tier-section paid-zone">
-        <div class="s4-paywall-mur">
-          <div class="s4-pm-left">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6.5" width="9" height="6" rx="1.4" fill="rgba(196,181,253,.15)" stroke="rgba(196,181,253,.7)" stroke-width="1.3"/><path d="M4.5 6.5V5a2.5 2.5 0 0 1 5 0v1.5" stroke="rgba(196,181,253,.7)" stroke-width="1.3" stroke-linecap="round"/><circle cx="7" cy="9.5" r="1" fill="rgba(196,181,253,.8)"/></svg>
-            <span class="s4-pm-lbl">Abonnement</span>
-            <span class="s4-pm-sep">·</span>
-            <span class="s4-pm-note">7.500 kr./år</span>
-          </div>
-          <div class="s4-pm-right">6 formater</div>
-        </div>
-        <div class="s4-paid-grid">
-          <div class="fmt-card" style="--sc:#2D423A;--sb:rgba(45,66,58,.04)">
-            <div class="fmt-num">03</div>
-            <div class="fmt-name">Det betyder det</div>
-            <div class="fmt-func">Nytten</div>
-            <div class="fmt-q">"Hvad betyder det her konkret for min virksomhed?"</div>
-            <div class="fmt-insight">Bygget over en fast 6-punkt struktur, hvor der aldrig drages en konklusion uden en klar konsekvens for din virksomhed.</div>
-            <div class="fmt-sources"><strong>Kilder:</strong> Folketingets ODA (lovforslag), EU-direktiver, Erhvervsstyrelsen og høringssvar.</div>
-            <div class="fmt-foot">
-              <div class="fmt-access paid">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
-                <span class="fmt-access-lbl">Abonnement</span>
-              </div>
-              <div class="fmt-foot-row">
-                <span class="fmt-freq">Ugentligt eller dagligt + ad hoc</span>
-                <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="fmt-card" style="--sc:#2F3E4C;--sb:rgba(47,62,76,.04)">
-            <div class="fmt-num">04</div>
-            <div class="fmt-name">Den blinde vinkel</div>
-            <div class="fmt-func">Kanten</div>
-            <div class="fmt-q">"Hvad overser den dominerende fortælling?"</div>
-            <div class="fmt-insight">Ikke et temperament, men en redaktionel disciplin. Følger vores challenge-protokol og kræver altid en navngivet modkilde.</div>
-            <div class="fmt-sources"><strong>Kilder:</strong> Tænketanke (CEPOS, Kraka), fagforeninger (3F, DI), partikilder og akademisk forskning.</div>
-            <div class="fmt-foot">
-              <div class="fmt-access paid">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
-                <span class="fmt-access-lbl">Abonnement</span>
-              </div>
-              <div class="fmt-foot-row">
-                <span class="fmt-freq">Ugentligt</span>
-                <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="fmt-card" style="--sc:#4A374E;--sb:rgba(74,55,78,.04)">
-            <div class="fmt-num">05</div>
-            <div class="fmt-name">Casen der virker</div>
-            <div class="fmt-func">Læringen</div>
-            <div class="fmt-q">"Hvad kan andre bruge — og hvad kan de ikke kopiere?"</div>
-            <div class="fmt-insight">Viser metode, friktion, fejl og kopierbar læring. En succeshistorie uden modstand er en pressemeddelelse. Tematisk linje: <em>Sådan gjorde jeg</em> — cases fortalt i første person af founder, leder eller AI-praktiker.</div>
-            <div class="fmt-sources"><strong>Kilder:</strong> Egne dybdegående SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.</div>
-            <div style="margin:8px 0 4px;padding:7px 10px;background:rgba(74,55,78,.07);border-left:2px solid #4A374E;border-radius:2px">
-              <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#4A374E;letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px">Q&A · Protokol</div>
-              <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4;margin-bottom:8px">Faste spørgsmål sendes til kilden inden produktion.</div>
-              <button data-target="s6" style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;background:#4C1D95;border:none;border-radius:3px;cursor:pointer;font-family:var(--mono);font-size:8.5px;font-weight:700;color:rgba(196,181,253,.95);letter-spacing:.1em;text-transform:uppercase;transition:background .15s">
-                Se protokol
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="rgba(196,181,253,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-            <div class="fmt-foot">
-              <div class="fmt-access paid">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
-                <span class="fmt-access-lbl">Abonnement</span>
-              </div>
-              <div class="fmt-foot-row">
-                <span class="fmt-freq">Ugentligt</span>
-                <div class="fmt-pillar"><span class="fp-tag fp-i">Inspire</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="fmt-card" style="--sc:#9E8059;--sb:rgba(158,128,89,.04)">
-            <div class="fmt-num">06</div>
-            <div class="fmt-name">Signalradaren</div>
-            <div class="fmt-func">Forspringet</div>
-            <div class="fmt-q">"Hvad er ved at ske — og hvem ser det ikke endnu?"</div>
-            <div class="fmt-insight">For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj, ved at kortlægge signalets kilde, styrke og modtagere.</div>
-            <div style="margin:8px 0 6px;padding:7px 10px;background:rgba(158,128,89,.09);border-left:2px solid #9E8059">
-              <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#9E8059;letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px">Feeds fra · Blind Spot</div>
-              <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Signalradaren opdager bevægelsen. Blind Spot dokumenterer, hvad mediebilledet ikke ser — og supplerer radaren med systematisk kildekritik.</div>
-            </div>
-            <div class="fmt-sources"><strong>Kilder:</strong> Eurostat, OECD, World Bank (B-READY), patentdatabaser, Supertrends og medieovervågning.</div>
-            <div class="fmt-foot">
-              <div class="fmt-access paid">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
-                <span class="fmt-access-lbl">Abonnement</span>
-              </div>
-              <div class="fmt-foot-row">
-                <span class="fmt-freq">Ugentligt + situationsbestemt</span>
-                <div class="fmt-pillar"><span class="fp-tag fp-u">Understand</span><span class="fp-tag fp-c">Challenge</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="fmt-card" style="--sc:#1A2E4A;--sb:rgba(26,46,74,.04);grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;column-gap:28px">
-            <div style="display:flex;flex-direction:column">
-              <div class="fmt-num">07</div>
-              <div class="fmt-name">Blind Spot</div>
-              <div class="fmt-func">Signalmotoren</div>
-              <div class="fmt-q">"Hvad gør nyhedslogikken svært at se — og hvad er den sandsynlige forklaring?"</div>
-              <div class="fmt-insight">Systemet finder sprækken i ugens nyhedsbillede: det dokumenterede hul, den skæve fortælling, den dominerende ramme, den fraværende kilde. Journalisten triggerer — systemet returnerer et beslutningsklart signal med årsag.</div>
-              <div class="fmt-sources" style="margin-top:auto"><strong>Kilder:</strong> 15 primære erhvervsmedier inkl. Børsen, Finans og InsideBusiness — samt institutionelle signalkilder, CVR og regulatoriske databaser.</div>
-              <div class="fmt-foot">
-                <div class="fmt-access paid">
-                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
-                  <span class="fmt-access-lbl">Abonnement</span>
-                </div>
-                <div class="fmt-foot-row">
-                  <span class="fmt-freq">Ugentligt + journalisttriggeret</span>
-                  <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span></div>
-                </div>
-              </div>
-            </div>
-            <div style="border-left:1px solid var(--line2);padding-left:28px;display:flex;flex-direction:column">
-              <div style="font-family:var(--mono);font-size:8.5px;font-weight:700;color:#1A2E4A;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;opacity:.7">Seks typer blind spot</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;flex:1">
-                <div style="padding:9px 12px;background:rgba(26,46,74,.06);border-top:2px solid #1A2E4A;border-radius:2px">
-                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#1A2E4A;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px">Dækningsgab</div>
-                  <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Et væsentligt emne dækkes slet ikke.</div>
-                </div>
-                <div style="padding:9px 12px;background:rgba(26,46,74,.06);border-top:2px solid #1A2E4A;border-radius:2px">
-                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#1A2E4A;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px">Proportionalitet</div>
-                  <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Dækning eksisterer, men er for tynd.</div>
-                </div>
-                <div style="padding:9px 12px;background:rgba(26,46,74,.06);border-top:2px solid #1A2E4A;border-radius:2px">
-                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#1A2E4A;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px">Vinkelblindhed</div>
-                  <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Kun én fortolkningsramme dominerer.</div>
-                </div>
-                <div style="padding:9px 12px;background:rgba(26,46,74,.06);border-top:2px solid #1A2E4A;border-radius:2px">
-                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#1A2E4A;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px">Kildeblindhed</div>
-                  <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Visse kildetyper dominerer — andre mangler helt.</div>
-                </div>
-                <div style="padding:9px 12px;background:rgba(26,46,74,.06);border-top:2px solid #1A2E4A;border-radius:2px">
-                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#1A2E4A;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px">Konsekvensgab</div>
-                  <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Visse konsekvenser beskrives, andre er usynlige.</div>
-                </div>
-                <div style="padding:9px 12px;background:rgba(26,46,74,.06);border-top:2px solid #1A2E4A;border-radius:2px">
-                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#1A2E4A;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px">Spektrum</div>
-                  <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Emnet presses ind i venstre/højre frem for den rigtige forklaring.</div>
-                </div>
-              </div>
-              <div style="margin-top:10px;padding:8px 12px;background:#0F1E35;border-radius:2px">
-                <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(147,197,253,.7);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px">Grundregel</div>
-                <div style="font-family:var(--sans);font-size:10.5px;color:rgba(147,197,253,.9);line-height:1.5">Blind spot er ikke bare det, ingen skrev. Det er også det, nyhedslogikken gjorde svært at se.</div>
-              </div>
-            </div>
-          </div>
-          <div class="fmt-card" style="--sc:#7C7972;--sb:rgba(124,121,114,.04)">
-            <div class="fmt-identity">
-              <div class="fmt-num">+3</div>
-              <div class="fmt-name">Situationsformater</div>
-              <div class="fmt-func">Skalerbare</div>
-              <div class="fmt-q">"Journalistikken skifter gear, når situationen kræver det."</div>
-              <div class="fmt-foot" style="margin-top:auto">
-                <div class="fmt-access paid">
-                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="#361352" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="#361352" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="#361352"/></svg>
-                  <span class="fmt-access-lbl">Abonnement</span>
-                </div>
-                <div class="fmt-foot-row">
-                  <span class="fmt-freq">Situationsbestemt</span>
-                  <div class="fmt-pillar"><span class="fp-tag fp-c">Challenge</span><span class="fp-tag fp-i">Inspire</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="fmt-detail">
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px">
-                <div style="padding:10px 12px;background:rgba(124,121,114,.06);border-top:2px solid #7C7972;border-radius:2px">
-                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#7C7972;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px">Myten om</div>
-                  <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Afmonter en udbredt antagelse med data og navngivet modkilde.</div>
-                </div>
-                <div style="padding:10px 12px;background:rgba(124,121,114,.06);border-top:2px solid #7C7972;border-radius:2px">
-                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#7C7972;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px">Før mødet</div>
-                  <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Kontekst, tal og modargumenter klar inden beslutningen træffes.</div>
-                </div>
-                <div style="padding:10px 12px;background:rgba(124,121,114,.06);border-top:2px solid #7C7972;border-radius:2px">
-                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#7C7972;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px">Før handlen</div>
-                  <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4">Intelligence om modpart, marked og risiko inden kontrakten skrives.</div>
-                </div>
-              </div>
-              <div class="fmt-sources" style="margin-top:auto"><strong>Kilder:</strong> Udbudsdatabaser (TED), konkursstatistikker, erhvervstilladelser og krise-skabeloner.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- HØJRE BOOKEND: Klummerne -->
-    <div class="s4-feat voice">
-      <div class="s4-eyebrow">07 · Stemmen</div>
-      <div class="s4-feat-name">Klummerne</div>
-      <div class="s4-feat-func">Det AI ikke kan</div>
-      <div class="s4-feat-q">"Den personlige vurdering, erfaringen og ansvaret — med navn under."</div>
-      <div class="s4-feat-body">
-        Et menneske med navn under. Faste skribenter med ansvar for vinklen — kredse om hi-tech, AI og erhvervsledelse. Ikke for at spejle redaktionen, men for at udfordre den.
-        <div class="s4-quote">"AI kan opsummere. Den kan ikke have noget på spil."</div>
-        Det er det format, du husker. Og grunden til, at du kommer tilbage.
-      </div>
-      <div class="s4-feat-cols">
-        <div class="s4-feat-col-item">Mandag morgen — ledelsessignal og AI-konsekvens</div>
-        <div class="s4-feat-col-item">Den blinde vinkel — Challenge</div>
-        <div class="s4-feat-col-item">Sådan gjorde jeg — case med skribent og friktion</div>
-      </div>
-      <div class="s4-feat-sources" style="margin-top: 14px; font-family: var(--sans); font-size: 11px; color: var(--muted); line-height: 1.4;">
-        <strong style="font-family: var(--mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); margin-right: 4px;">Kilder:</strong> AI-praktikere, teknologiledere, founders og egne baggrundsanalyser.
-      </div>
-      <div class="s4-feat-foot">
-        <div class="fmt-access" style="margin-bottom:2px;display:flex;align-items:center;gap:5px">
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2.5" y="6" width="8" height="5.5" rx="1.2" stroke="rgba(250,250,248,.5)" stroke-width="1.4"/><path d="M4.5 6V4.5a2 2 0 0 1 4 0V6" stroke="rgba(250,250,248,.5)" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="8.75" r=".9" fill="rgba(250,250,248,.5)"/></svg>
-          <span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,248,.45)">Abonnement</span>
-        </div>
-        <div class="s4-feat-pillars">
-          <span class="fp-tag fp-u">Understand</span>
-          <span class="fp-tag fp-c">Challenge</span>
-          <span class="fp-tag fp-i">Inspire</span>
-        </div>
-        <div class="s4-feat-freq">Fast ugentlig</div>
-        <div class="s4-never">Navngivet ophav — aldrig AI</div>
-      </div>
-    </div>
-
+    <div class="s4-content" id="s4Content"></div>
   </div>
 </div>
 </div>
+<script>
+(function(){
+  var F=[
+    {
+      num:'01',eyebrow:'01 · Basislag',name:'Brancheoverblikket',
+      func:'Orienteringen',freq:'Dagligt / løbende',tier:'paid',pillars:'Understand',
+      color:'#5A4A72',tint:'rgba(90,74,114,',
+      lead:'Det er ikke et fælles opslagstavleprodukt.',
+      q:'"Hvad er sket i min branche siden sidst?"',
+      desc:'Ikke alt behøver en vinkel. Noget behøver bare at blive fundet, sorteret og leveret, inden du åbner din første mail. Brancheoverblikket er personaliseret efter branche, region, emner og adfærd.',
+      insight:null,
+      regel:null,
+      struktur:null,
+      segmenter:'SMV-ejere · C-level · Medarbejdere',
+      kanaler:'Tekst · Lyd',
+      kernegreb:null,eksempler:null,emner:null,
+      sources:'CVR, Erhvervsstyrelsen, brancheforeninger og lokale erhvervsmedier.',
+      special:null,
+    },
+    {
+      num:'02',eyebrow:'02 · Vanen',name:'Morgenbriefet',
+      func:'Vanen',freq:'Dagligt · 06.30',tier:'free',pillars:'Understand',
+      color:'#A75D46',tint:'rgba(167,93,70,',
+      lead:null,
+      q:'"Hvad skal jeg forstå, inden arbejdsdagen begynder?"',
+      desc:'Leveres kl. 06.30 i 5–7 punkter på tekst og lyd — det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel. Formålet er ikke at opsummere alt. Formålet er at give læseren det vigtigste at forstå, før arbejdsdagen begynder.',
+      insight:'Morgenbriefet er gratis for alle. Det er det daglige adgangspunkt til Y.dk Business — og det format, der rekrutterer til abonnementet. Ingen mur, ingen registrering. Målet er vane, ikke konvertering i første møde.',
+      regel:null,
+      struktur:[
+        'Hvad er vigtigt?',
+        'Hvem rammes?',
+        'Hvorfor betyder det noget?',
+        'Hvad skal du holde øje med?',
+      ],
+      segmenter:'SMV-ejere · C-level · Medarbejdere',
+      kanaler:'Tekst · Lyd',
+      kernegreb:null,eksempler:null,
+      emner:'Redaktionelt topvalg · Personlige branche- og rolleprioriteringer · Regulerings- og risikosignaler · Blind vinkel (når relevant) · Konkret hold-øje-med-note',
+      sources:'Ritzau, Børsen, Finans, Danmarks Statistik (DST) og globale erhvervssignaler.',
+      special:{type:'link',target:'s8',lbl:'Se hvad et Morgenbrief indeholder →'},
+    },
+    {
+      num:'03',eyebrow:'03 · Nytten',name:'Det betyder det',
+      func:'Nytten',freq:'Ugentligt + ad hoc',tier:'paid',pillars:'Understand',
+      color:'#2D423A',tint:'rgba(45,66,58,',
+      lead:null,
+      q:'"Hvad betyder det her konkret for min virksomhed?"',
+      desc:'Bygget over en fast 6-punkt-struktur, hvor der aldrig drages en konklusion uden en klar konsekvens for din virksomhed.',
+      insight:'Forklaringsformatet der gør dig klogere end dem der kun læste overskriften. Ad hoc ved lovforslag og EU-regulering.',
+      regel:null,
+      struktur:[
+        'Hvad er sket?',
+        'Hvem rammes?',
+        'Hvornår?',
+        'Hvad koster det?',
+        'Hvad bør virksomheden overveje?',
+        'Hvad mangler vi stadig at vide?',
+      ],
+      segmenter:'SMV-ejere · C-level · Medarbejdere',
+      kanaler:'Tekst · Kort lyd · Selektiv video',
+      kernegreb:null,eksempler:null,
+      emner:'Nye regler og skat · EU-direktiver · AI-regulering · Arbejdskraft · Rente og energi · Compliance · Data- og rapporteringskrav',
+      sources:'Folketingets ODA (lovforslag), EU-direktiver, Erhvervsstyrelsen og høringssvar.',
+      special:null,
+    },
+    {
+      num:'04',eyebrow:'04 · Kanten',name:'Den blinde vinkel',
+      func:'Kanten',freq:'Ugentligt',tier:'paid',pillars:'Challenge',
+      color:'#2F3E4C',tint:'rgba(47,62,76,',
+      lead:null,
+      q:'"Hvad overser den dominerende fortælling?"',
+      desc:'Finder den manglende kilde, den skjulte omkostning eller den ufortalte konsekvens. Skal altid finde noget, der mangler: en kilde der ikke citeres, en gruppe der ikke høres, en antagelse der ikke holder.',
+      insight:'Ikke et temperament, men en redaktionel disciplin. Følger vores challenge-protokol og kræver altid en navngivet modkilde.',
+      regel:'Bør ikke overlades til uerfaren produktion.',
+      struktur:[
+        'Den dominerende fortælling',
+        'Det, der mangler',
+        'Hvem der ikke er hørt',
+        'Hvad dokumentationen viser',
+        'Hvem der rammes',
+        'Hvorfor det betyder noget',
+      ],
+      segmenter:'C-level · SMV-ejere · Rådgivere · Iværksættere',
+      kanaler:'Analyse · Kommentar · Lydklumme · Kort video',
+      kernegreb:'"Fundingrunden er startupjournalistikkens mest overvurderede nyhed" — "SMV\'erne hyldes i taler og glemmes i systemer" — "AI sparer ikke tid, hvis processen stadig er manuel"',
+      eksempler:null,emner:null,
+      sources:'Tænketanke (CEPOS, Kraka), fagforeninger (3F, DI), partikilder og akademisk forskning.',
+      special:null,
+    },
+    {
+      num:'05',eyebrow:'05 · Læringen',name:'Casen der virker',
+      func:'Læringen',freq:'Ugentligt',tier:'paid',pillars:'Inspire',
+      color:'#4A374E',tint:'rgba(74,55,78,',
+      lead:null,
+      q:'"Hvad kan andre bruge — og hvad kan de ikke kopiere?"',
+      desc:'En konkret virksomhed der har løst det du kæmper med — dokumenteret med tal, beslutninger, friktion og resultat.',
+      insight:'Viser metode, friktion, fejl og kopierbar læring. En succeshistorie uden modstand er en pressemeddelelse. Tematisk linje: Sådan gjorde jeg — cases fortalt i første person af founder, leder eller AI-praktiker.',
+      regel:'Ingen case uden friktion. Ingen case uden navngivet ophav.',
+      struktur:[
+        'Problemet — hvad pressede beslutningen frem?',
+        'Hvad blev gjort?',
+        'Hvad gik galt?',
+        'Hvad virkede?',
+        'Hvad kostede det?',
+        'Hvad kan andre kopiere?',
+        'Hvad kan andre ikke kopiere?',
+      ],
+      segmenter:'SMV-ejere · Kommunikation/marketing · Iværksættere · C-level',
+      kanaler:'Tekst · Lydinterview',
+      kernegreb:'"Hvad besluttede jeg, hvad kostede det, og hvad kan du bruge?"',
+      eksempler:[
+        '"Sådan afskedigede jeg mit manuelle processlag og erstattede det med AI"',
+        '"Vi fejlede tre gange med AI-implementering. Her er, hvad der til sidst virkede"',
+        '"Jeg nåede til tops ved at lade data afgøre, hvad jeg ikke skulle bruge tid på"',
+      ],
+      emner:null,
+      sources:'Egne dybdegående SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.',
+      special:{type:'proto',lbl:'Q&A · Protokol',
+        desc:'Faste spørgsmål sendes til kilden inden produktion. Sikrer friktion, fejl og konkret resultat — aldrig kun succeshistorien.'},
+    },
+    {
+      num:'06',eyebrow:'06 · Forspringet',name:'Signalradaren',
+      func:'Forspringet',freq:'Ugentligt + situationsbestemt',tier:'paid',pillars:'Understand · Challenge',
+      color:'#9E8059',tint:'rgba(158,128,89,',
+      lead:null,
+      q:'"Hvad er ved at ske — og hvem ser det ikke endnu?"',
+      desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — markedsbevægelser, reguleringsudkast og teknologimønstre kortlagt med styrke og modtagere. Signalradaren er både et redaktionelt format og et personaliseringslag.',
+      insight:'For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj, ved at kortlægge signalets kilde, styrke og modtagere.',
+      regel:null,
+      struktur:[
+        'Signalet',
+        'Kilden',
+        'Styrken',
+        'Hvem påvirkes?',
+        'Hvad kan det føre til?',
+        'Hvad bør overvåges?',
+      ],
+      segmenter:'C-level · Rådgivere · Investorer · SMV-ejere',
+      kanaler:'Tekst · Ugentlig lydbrief · Grafisk video ved behov',
+      kernegreb:null,eksempler:null,
+      emner:'Branche · Geografi · Virksomhedstype · Regulering · Konkurrenter · Teknologi · Lederskifter · Udbud · Kapital · Eksport · Kommunikation · AI',
+      sources:'Eurostat, OECD, World Bank (B-READY), patentdatabaser, Supertrends og medieovervågning.',
+      special:{type:'note',lbl:'Feeds fra · Blind Spot',
+        desc:'Signalradaren opdager bevægelsen. Blind Spot dokumenterer hvad mediebilledet ikke ser — og supplerer radaren med systematisk kildekritik.'},
+    },
+    {
+      num:'07',eyebrow:'07 · Signalmotoren',name:'Blind Spot',
+      func:'Signalmotoren',freq:'Ugentligt + journalisttriggeret',tier:'paid',pillars:'Challenge',
+      color:'#1A2E4A',tint:'rgba(26,46,74,',
+      lead:null,
+      q:'"Hvad gør nyhedslogikken svært at se — og hvad er den sandsynlige forklaring?"',
+      desc:'Et triggerbaseret journalistværktøj. Journalisten aktiverer — systemet returnerer et beslutningsklart signal med årsag. Systemet leverer Blind Spot Signal, ikke Blind Spot Artikel.',
+      insight:'Erhvervsmedierne dækker det samme. De citerer de samme kilder og bruger de samme fortolkningsrammer. Blind Spot er ikke mediekritik — det er redaktionel service.',
+      regel:null,
+      struktur:[
+        'Hvad dækker mediebilledet ikke?',
+        'Hvilke medier har fravalgt det?',
+        'Hvad er den institutionelle forklaring?',
+        'Hvem rammes af hullet?',
+      ],
+      segmenter:'Journalist · Redaktør',
+      kanaler:'Journalistværktøj · Redaktionel service',
+      kernegreb:null,eksempler:null,
+      emner:'AI overvåger fast kildeset: Børsen · Berlingske/Finans · DR Nyheder · TV2 Business · Epn.dk · Altinget Erhverv',
+      sources:'15 primære erhvervsmedier inkl. Børsen, Finans og InsideBusiness — samt institutionelle signalkilder, CVR og regulatoriske databaser.',
+      special:{type:'blindspot',
+        items:[
+          {l:'Dækningsgab',d:'Et væsentligt emne dækkes slet ikke.'},
+          {l:'Proportionalitet',d:'Dækning eksisterer, men er for tynd.'},
+          {l:'Vinkelblindhed',d:'Kun én fortolkningsramme dominerer.'},
+          {l:'Kildeblindhed',d:'Visse kildetyper dominerer — andre mangler helt.'},
+          {l:'Konsekvensgab',d:'Visse konsekvenser beskrives, andre er usynlige.'},
+          {l:'Spektrum',d:'Emnet presses ind i venstre/højre frem for den rigtige forklaring.'},
+        ],
+        grundregel:'Blind spot er ikke bare det, ingen skrev. Det er også det, nyhedslogikken gjorde svært at se.',
+      },
+    },
+    {
+      num:'+3',eyebrow:'+3 · Skalerbare',name:'Situationsformater',
+      func:'Skalerbare',freq:'Situationsbestemt',tier:'paid',pillars:'Challenge · Inspire',
+      color:'#7C7972',tint:'rgba(124,121,114,',
+      lead:null,
+      q:'"Journalistikken skifter gear, når situationen kræver det."',
+      desc:'Kører situationsbestemt fra launch. Skaleres, når redaktionen ser, hvilke segmenter der aktiverer dem mest. Kan personaliseres efter mødetype, branche, virksomhed, transaktionstype og rolle.',
+      insight:null,
+      regel:null,struktur:null,segmenter:null,kanaler:null,kernegreb:null,eksempler:null,emner:null,
+      sources:'Udbudsdatabaser (TED), konkursstatistikker, erhvervstilladelser og krise-skabeloner.',
+      special:{type:'cols',items:[
+        {n:'Myten om',txt:'Afmonter en udbredt antagelse med data og navngivet modkilde.',freq:'Hver 14. dag',
+          eks:'"Myten om, at AI automatisk sparer tid" — "Myten om, at funding er lig med succes" — "Myten om, at regulering rammer alle ens"'},
+        {n:'Før mødet',txt:'60-sekunders brief inden beslutning, møde, forhandling eller kundedialog.',freq:'1–2 gange ugentligt',
+          struktur:'Baggrund → Seneste udvikling → Risici → Muligheder → Spørgsmål du bør stille → Næste signal'},
+        {n:'Før handlen',txt:'Signal- og markedsbrief for rådgivere, investorer og C-level. Viser bevægelser inden de bliver til pressemeddelelser.',freq:'2–4 gange månedligt',
+          struktur:'Signalet → Selskaberne → Sektoren → Reguleringen → Kapitalen → Mulig bevægelse → Blind vinkel'},
+      ]},
+    },
+    {
+      num:'08',eyebrow:'08 · Stemmen',name:'Klummerne',
+      func:'Det AI ikke kan',freq:'Fast ugentlig',tier:'paid',pillars:'Understand · Challenge · Inspire',
+      color:'#3B5949',tint:'rgba(59,89,73,',
+      lead:null,
+      q:'"Den personlige vurdering, erfaringen og ansvaret — med navn under."',
+      desc:'Et menneske med navn under. Faste skribenter med ansvar for vinklen — kredser om hi-tech, AI og erhvervsledelse. Ikke for at spejle redaktionen, men for at udfordre den. Det eneste format der ikke kan produceres af AI.',
+      insight:'Det er det format, du husker. Og grunden til, at du kommer tilbage.',
+      regel:null,struktur:null,
+      segmenter:'C-level · SMV-ejere · Rådgivere · Iværksættere',
+      kanaler:'Tekst · Lyd · Eventuelt video',
+      kernegreb:null,eksempler:null,emner:null,
+      sources:'AI-praktikere, teknologiledere, founders og egne baggrundsanalyser.',
+      special:{type:'klumme',
+        quote:'"AI kan opsummere. Den kan ikke have noget på spil."',
+        note:'Navngivet ophav — aldrig AI',
+        cols:[
+          {
+            n:'I · Mandag morgen',
+            txt:'Ledelsessignal og AI-konsekvens. Kernegreb: Hvad bør ligge på ledermødet i dag?',
+            profil:'Tidligere direktør, strategirådgiver eller bestyrelsesprofil med evne til at omsætte ugens signaler til praktisk ledelsesrelevans.',
+            eks:'"Tre signaler, der bør ligge på ledermødet i dag" — "Ugens AI-signal: produktivitetskløften vokser"',
+          },
+          {
+            n:'II · Den blinde vinkel',
+            txt:'Challenge med navn og holdning. Kernegreb: Hvad mangler den dominerende fortælling?',
+            profil:'Erfaren erhvervsjournalist eller analytisk kommentator med kildekritisk tyngde og uafhængighed fra brancheinteresser.',
+            eks:'"Fundingrunden er startupjournalistikkens mest overvurderede nyhed" — "SMV\'erne hyldes i taler og glemmes i systemer"',
+          },
+          {
+            n:'III · Sådan gjorde jeg',
+            txt:'Case med skribent og friktion. Kernegreb: Hvad besluttede jeg, hvad kostede det, og hvad kan du bruge?',
+            profil:'Praktiker med personlig skriverstemme — founder, teknologileder eller AI-implementer. Skribenten er en del af historien.',
+            eks:'"Vi fejlede tre gange med AI-implementering. Her er, hvad der til sidst virkede" — "Jeg nåede til tops ved at lade data afgøre, hvad jeg ikke skulle bruge tid på"',
+          },
+        ],
+      },
+    },
+  ];
+
+
+  function buildSpecial(f){
+    var s=f.special; if(!s) return '';
+    var bg=f.tint+'0.07)';
+    var topB='border-top:1px solid '+f.tint+'0.35)';
+    if(s.type==='stat') return '<div class="s4-stat" style="background:'+f.tint+'0.1);color:'+f.color+'">'+s.txt+'</div>';
+    if(s.type==='link') return '<button data-target="'+s.target+'" style="display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;flex-shrink:0;padding:7px 14px;background:'+f.tint+'0.08);border:1px solid '+f.tint+'0.3);border-radius:2px;cursor:pointer;font-family:var(--mono);font-size:9px;font-weight:700;color:'+f.color+';letter-spacing:.12em;text-transform:uppercase;transition:background .15s">'+s.lbl+'</button>';
+    if(s.type==='proto') return '<div class="s4-note" style="background:'+bg+'">'
+      +'<div class="s4-note-lbl" style="color:'+f.color+'">'+s.lbl+'</div>'
+      +'<div class="s4-note-txt">'+s.desc+'</div>'
+      +'<button class="s4-proto-btn" data-target="s6">Se protokol '
+      +'<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M8 3.5l3 3-3 3" stroke="rgba(196,181,253,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      +'</button></div>';
+    if(s.type==='note') return '<div class="s4-note" style="background:'+bg+'">'
+      +'<div class="s4-note-lbl" style="color:'+f.color+'">'+s.lbl+'</div>'
+      +'<div class="s4-note-txt">'+s.desc+'</div></div>';
+    if(s.type==='cols') return '<div class="s4-lbl">Tre formater</div><div class="s4-cols">'
+      +s.items.map(function(it){return '<div class="s4-col" style="background:'+bg+';flex-direction:column;align-items:flex-start;gap:5px;padding:9px 12px">'
+        +'<span class="s4-col-n" style="color:'+f.color+'">'+it.n+(it.freq?'  <span style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.1em;opacity:.55">'+it.freq+'</span>':'')+'</span>'
+        +'<span class="s4-col-txt">'+it.txt+'</span>'
+        +(it.struktur?'<span style="font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.55;opacity:.7">'+it.struktur+'</span>':'')
+        +(it.eks?'<span style="font-family:\'Source Serif 4\',Georgia,serif;font-size:10.5px;font-style:italic;color:var(--muted);line-height:1.4">'+it.eks+'</span>':'')
+        +'</div>';}).join('')+'</div>';
+    if(s.type==='blindspot') return '<div class="s4-lbl">Seks typer blind spot</div>'
+      +'<div class="s4-grid">'
+      +s.items.map(function(it){return '<div class="s4-gi" style="background:'+bg+';'+topB+'">'
+        +'<div class="s4-gi-lbl" style="color:'+f.color+'">'+it.l+'</div>'
+        +'<div class="s4-gi-txt">'+it.d+'</div></div>';}).join('')
+      +'</div>'
+      +'<div class="s4-grund" style="background:'+f.tint+'0.08)">'
+        +'<div class="s4-grund-lbl" style="color:'+f.color+'">Grundregel</div>'
+        +'<div class="s4-grund-txt">'+s.grundregel+'</div></div>';
+    if(s.type==='klumme') return '<div class="s4-quote">'+s.quote+'</div>'
+      +'<div class="s4-navngivet" style="color:'+f.color+'"><span>'+s.note+'</span></div>'
+      +'<div class="s4-lbl">Tre klummetyper</div><div class="s4-cols">'
+      +s.cols.map(function(c){return '<div class="s4-col" style="background:'+bg+';flex-direction:column;align-items:flex-start;gap:4px;padding:10px 13px">'
+        +'<span class="s4-col-n" style="color:'+f.color+';font-size:8.5px">'+c.n+'</span>'
+        +'<span class="s4-col-txt">'+c.txt+'</span>'
+        +(c.profil?'<span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);line-height:1.45;padding-top:5px;border-top:1px solid rgba(0,0,0,.06)">'+c.profil+'</span>':'')
+        +(c.eks?'<span style="font-family:\'Source Serif 4\',Georgia,serif;font-size:10.5px;font-style:italic;color:var(--muted);line-height:1.4;opacity:.8">'+c.eks+'</span>':'')
+        +'</div>';}).join('')+'</div>';
+    return '';
+  }
+
+  var nav=document.getElementById('s4Nav');
+  var cnt=document.getElementById('s4Content');
+  var activeIdx=1;
+
+  F.forEach(function(f,i){
+    var item=document.createElement('div');
+    item.className='s4-fi'+(i===activeIdx?' active':'');
+    item.style.background=f.tint+'0.05)';
+    item.innerHTML=
+      '<div class="s4-fi-bar" style="background:'+f.color+'"></div>'
+      +'<div class="s4-fi-body">'
+        +'<span class="s4-fi-num" style="color:'+f.color+'">'+f.num+' · '+f.func.toUpperCase()+'</span>'
+        +'<span class="s4-fi-name">'+f.name+'</span>'
+        +'<span class="s4-fi-func">'+f.freq+'</span>'
+        +'<span class="s4-fi-tier '+f.tier+'" style="color:'+(f.tier==='free'?'#A75D46':f.color)+';border-color:'+(f.tier==='free'?'rgba(167,93,70,.4)':f.color+'55')+'">'
+          +(f.tier==='free'?'Gratis':'Abonnement')
+        +'</span>'
+      +'</div>';
+    item.addEventListener('click',function(){goTo(i);});
+    nav.appendChild(item);
+
+    var slide=document.createElement('div');
+    slide.className='s4-slide'+(i===activeIdx?' active':'');
+    slide.innerHTML=
+      (f.lead?'<div class="s4-lead" style="color:'+f.color+'">'+f.lead+'</div>':'')
+      +'<div class="s4-q">'+f.q+'</div>'
+      +(f.desc?'<div class="s4-desc">'+f.desc+'</div>':'')
+      +(f.insight?'<div class="s4-insight" style="background:'+f.tint+'0.08)">'+f.insight+'</div>':'')
+      +(f.emner?'<div class="s4-emner"><span style="font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:.6;margin-right:7px">'+(f.num==='+3'||f.num==='07'?'Personalisering':'Typiske emner')+'</span>'+f.emner+'</div>':'')
+      +(f.regel?'<div class="s4-regel" style="background:'+f.tint+'0.07);border-left:3px solid '+f.color+'"><div class="s4-regel-lbl" style="color:'+f.color+'">Intern regel</div><div class="s4-regel-txt">'+f.regel+'</div></div>':'')
+      +(f.struktur?'<div class="s4-struktur"><div class="s4-struktur-lbl">Fast struktur</div><div class="s4-struktur-list">'
+        +f.struktur.map(function(s,i){return '<div class="s4-strin" style="background:'+f.tint+'0.04)"><span class="s4-strin-n" style="color:'+f.color+'">'+(i+1)+'</span><span class="s4-strin-txt">'+s+'</span></div>';}).join('')
+      +'</div></div>':'')
+      +(f.kernegreb?'<div class="s4-kernegreb">Kernegreb: '+f.kernegreb+'</div>':'')
+      +(f.eksempler?'<div class="s4-lbl" style="margin-top:2px">Eksempler</div><div class="s4-eks">'
+        +f.eksempler.map(function(e){return '<div class="s4-eks-item">'+e+'</div>';}).join('')
+      +'</div>':'')
+      +buildSpecial(f)
+      +'<div class="s4-meta2">'
+        +'<div class="s4-m2-item"><div class="s4-m2-lbl">Frekvens</div><div class="s4-m2-val">'+f.freq+'</div></div>'
+        +'<div class="s4-m2-item"><div class="s4-m2-lbl">Pillar</div><div class="s4-m2-val">'+f.pillars+'</div></div>'
+        +(f.segmenter?'<div class="s4-m2-item"><div class="s4-m2-lbl">Segmenter</div><div class="s4-m2-val">'+f.segmenter+'</div></div>':'')
+        +(f.kanaler?'<div class="s4-m2-item"><div class="s4-m2-lbl">Kanaler</div><div class="s4-m2-val">'+f.kanaler+'</div></div>':'')
+      +'</div>'
+      +'<div class="s4-sources"><b style="color:'+f.color+'">Kilder ·</b> '+f.sources+'</div>';
+    cnt.appendChild(slide);
+  });
+
+  function goTo(idx){
+    var items=nav.querySelectorAll('.s4-fi');
+    var slides=cnt.querySelectorAll('.s4-slide');
+    items[activeIdx].classList.remove('active');
+    slides[activeIdx].classList.remove('active');
+    activeIdx=idx;
+    items[activeIdx].classList.add('active');
+    slides[activeIdx].classList.add('active');
+  }
+
+  document.addEventListener('keydown',function(e){
+    var s4el=document.getElementById('s4');
+    if(!s4el||!s4el.classList.contains('active'))return;
+    if(e.key==='ArrowDown'){e.preventDefault();goTo((activeIdx+1)%F.length);}
+    if(e.key==='ArrowUp'){e.preventDefault();goTo((activeIdx-1+F.length)%F.length);}
+  });
+
+}());
+
+function togglePromptModal(){
+  document.getElementById('s8PromptModal').classList.toggle('open');
+}
+</script>
 
 <!-- ═══════════ S5 ═══════════ -->
 <div class="screen" id="s5">
@@ -2054,6 +2377,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
           <div class="s8-bp-txt">Ét fremadrettet signal. Hvad bør du have i baghovedet inden næste møde eller beslutning.</div>
         </div>
       </div>
+      <div class="s8-bp-prompt">
+        <div class="s8-bp-prompt-lbl">Prompt</div>
+        <button class="s8-bp-prompt-btn" onclick="togglePromptModal()">
+          Se AI system prompt
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="s8-bp-prompt-sub">Claude &middot; Sonnet &middot; System prompt &middot; Produktion</div>
+      </div>
       <div class="s8-timing">
         <div class="s8-timing-lbl">Produktionsrytme</div>
         <div class="s8-timing-row"><div class="s8-timing-t">03.00</div><div class="s8-timing-d">AI scanner og sorterer kilder</div></div>
@@ -2117,7 +2448,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
           <div class="mb-sec">
             <div class="mb-sec-tag tag-blind">Blind vinkel</div>
             <div class="mb-signal-block">
-              <div class="mb-signal blind">Blind vinkel</div>
               <div class="mb-signal-txt" style="font-size:11px;font-weight:400">Mediefortællingen om grøn omstilling fokuserer på store selskaber.</div>
               <div class="mb-signal-sub">SMV'ernes implementeringsomkostninger dækkes ikke — selv om de udgør 67 % af det samlede lovgivningssubjekt.</div>
             </div>
@@ -2216,6 +2546,132 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       </div>
     </div>
 
+  </div>
+
+  <!-- MORGENBRIEF PROMPT MODAL -->
+  <div class="s8-prompt-modal" id="s8PromptModal">
+    <div class="s8-pm-overlay" onclick="togglePromptModal()"></div>
+    <div class="s8-pm-box">
+      <div class="s8-pm-hdr">
+        <div class="s8-pm-title">
+          AI System Prompt &middot; Morgenbriefet
+          <span class="s8-pm-badge model">Claude &middot; Sonnet</span>
+          <span class="s8-pm-badge type">System prompt</span>
+        </div>
+        <button class="s8-pm-close" onclick="togglePromptModal()">&#10005;</button>
+      </div>
+      <pre class="s8-pm-pre">Du er Y Business&#39; redaktionelle AI-assistent med ansvar for at producere det daglige Morgenbriefet.
+
+&lt;persona&gt;
+- Rolle: Redaktionel assistent med journalistisk d&#248;mmekraft og erhvervsfaglig forst&#229;else
+- Tone: Pr&#230;cis, direkte og konkret &#8212; aldrig akademisk eller bureaukratisk
+- Sprog: Dansk. Korteste pr&#230;cise ord. Aktiv stemme. Ingen un&#248;dige anglicismer.
+- Pillar: Understand &#8212; du forklarer og prioriterer, du refererer ikke
+&lt;/persona&gt;
+
+&lt;context&gt;
+Y Business er en AI-drevet erhvervsplatform for SMV-ejere og C-level i Danmark.
+Morgenbriefet leveres kl. 06.30 og er produktets daglige adgangspunkt &#8212; gratis for
+alle, designet til at skabe vane og rekruttere til abonnementet.
+
+Form&#229;let er ikke at opsummere alt. Form&#229;let er at give l&#230;seren det vigtigste at
+forst&#229;, inden arbejdsdagen begynder. Kalenderen tager resten af dagen som gidsel &#8212;
+Morgenbriefet f&#229;r det, der ellers ikke ville n&#229; frem.
+
+Prim&#230;r l&#230;ser: SMV-ejer med 5&#8211;50 ansatte eller C-level leder. Beslutningsorienteret.
+Trav l. &#216;nsker konsekvens, ikke referat.
+&lt;/context&gt;
+
+&lt;editorial_rules&gt;
+ALDRIG:
+- Publicer r&#229; pressemeddelelse uden redaktionel vurdering
+- Drag en konklusion uden en klar konsekvens for l&#230;serens virksomhed
+- Brug &#8220;mange eksperter mener&#8221; eller andre vage tilskrivninger
+- Skriv en nyhed uden at besvare: hvem rammes konkret?
+- Medtag et item uden verificerbar kilde
+
+ALTID:
+- Verificerbar kilde per item
+- Konsekvenss&#230;tning: hvad betyder dette for en dansk SMV eller leder?
+- Redaktionel vurdering af relevans &#8212; ikke algoritmisk volumen
+- Klar usikkerhedsmarkering hvis noget end nu ikke er afklaret
+&lt;/editorial_rules&gt;
+
+&lt;format_instructions&gt;
+Morgenbriefet har pr&#230;cis fem sektioner i fast r&#230;kkef&#248;lge:
+
+1. TOPVALG &#8212; Det redaktionelt vigtigste item. Skrives som: nyhed (1 s&#230;tning),
+   konsekvens (1 s&#230;tning), hvad skal du holde &#248;je med (1 s&#230;tning).
+
+2. BRANCHE &amp; ROLLE &#8212; 2&#8211;3 personaliserede signaler. Sorteret efter: regulering
+   og lovgivning &#8594; marked og &#248;konomi &#8594; konkurrenter og branche.
+   Format per item: [EMNE] tekst &#8212; [kilde]
+
+3. REGULERING &amp; RISIKO &#8212; &#201;t signal om regulatorisk eller juridisk bev&#230;gelse
+   der rammer SMV&#39;er eller erhvervsliv inden for 30&#8211;90 dage.
+   Format: Signal &#183; Hvorn&#229;r &#183; Hvad b&#248;r virksomheden overveje nu?
+
+4. BLIND VINKEL &#8212; &#201;t sp&#248;rgsm&#229;l den dominerende fort&#230;lling ikke stiller.
+   Format: &#8220;Hvad ingen skriver: [tese]&#8221; + &#233;n s&#230;tning begrundelse + kilde der mangler.
+   Kr&#230;ver dokumentation. Ingen spekulationer.
+
+5. HOLD &#216;JE MED &#8212; &#201;t konkret signal at overv&#229;ge de n&#230;ste 7&#8211;14 dage.
+   Format: Signal + dato eller tidshorisont + hvorfor det er relevant.
+&lt;/format_instructions&gt;
+
+&lt;sources&gt;
+Prioriterede kilder &#8212; brug dem i denne r&#230;kkef&#248;lge:
+Prim&#230;r: Ritzau, B&#248;rsen, Finans, Danmarks Statistik (DST)
+Sekund&#230;r: DR Nyheder/Business, TV2 Business, Altinget Erhverv, Epn.dk
+Signal: EU-kommissionen (EUR-Lex), Erhvervsstyrelsen, Retsinformation
+International: Reuters, FT, Bloomberg &#8212; overs&#230;ttes ALTID til dansk virksomhedskontekst
+
+Undg&#229; som enkeltkilder: LinkedIn-virale fort&#230;llinger, PR-cases uden friktion,
+brancheorganisationer uden modkilde, generiske AI-rapporter.
+&lt;/sources&gt;
+
+&lt;output_format&gt;
+Returner KUN selve Morgenbriefet. Ingen indledning, ingen forklaring.
+
+Struktur:
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+Y BUSINESS &#183; MORGENBRIEFET &#183; [DATO]
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+
+&#9656; TOPVALG
+[nyhed] [konsekvens] [hvad holde &#248;je med]
+Kilde: [kilde]
+
+&#9656; BRANCHE &amp; ROLLE
+[item 1] &#8212; [kilde]
+[item 2] &#8212; [kilde]
+
+&#9656; REGULERING &amp; RISIKO
+[signal] &#183; [hvorn&#229;r] &#183; [hvad b&#248;r virksomheden g&#248;re nu]
+
+&#9656; BLIND VINKEL
+Hvad ingen skriver: [tese]
+[begrundelse + manglende kilde]
+
+&#9656; HOLD &#216;JE MED
+[signal] &#183; [tidshorisont]
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+Kilder: [komplet kildeliste]
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+
+Maksimal l&#230;ngde: 280 ord. Kortere er bedre.
+Tone: En skarp red&#230;kt&#248;r der respekterer l&#230;serens tid.
+&lt;/output_format&gt;
+
+&lt;input_instructions&gt;
+Du modtager enten:
+a) En liste af r&#229;t nyhedsmateriale (overskrifter + links + evt. uddrag)
+b) Et s&#230;t f&#230;rdige nyheder fra dagens morgenrunde
+
+Udv&#230;lg, prioriter og skriv Morgenbriefet ud fra dette materiale.
+Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
+&lt;/input_instructions&gt;</pre>
+    </div>
   </div>
 
   <!-- PROMPT SEKTION -->

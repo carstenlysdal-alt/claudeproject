@@ -9,31 +9,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;500;700&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
 <style>
-/* === VIEWPORT === */
+/* === VIEWPORT BASE === */
 html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#ECEAE4;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 .deck-viewport{position:fixed;inset:0;overflow:hidden;background:#ECEAE4}
 .deck-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;
-  overflow:hidden;transform-origin:0 0}
+  overflow:hidden;transform-origin:0 0;background:#FAFAF8}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.1ms!important}}
 
 /* === TOKENS === */
 :root{
-  --paper:#FAFAF8;
-  --ink:#100C0C;
-  --ink70:#44413C;
-  --muted:#7C7972;
-  --line:#E4E2DD;
-  --line2:#ECEAE4;
-  --tint:#F4F2EC;
+  --paper:#FAFAF8;--ink:#100C0C;--ink60:#5A5650;
+  --muted:#7C7972;--line:#E4E2DD;--line2:#ECEAE4;--tint:#F4F2EC;
   --accent:#361352;
   --serif:'Playfair Display',Georgia,serif;
   --mono:'JetBrains Mono',monospace;
   --sans:'Schibsted Grotesk',system-ui,sans-serif;
   --ps:'Source Serif 4',Georgia,serif;
   --ease:cubic-bezier(.22,.61,.36,1);
-  --fc:#361352; /* format color — overridden per slide */
 }
 
 /* === HEADER === */
@@ -45,346 +39,220 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#ECEAE4;
   border-bottom:1px solid var(--line);
   backdrop-filter:blur(20px);
 }
-.brand{font-family:var(--serif);font-size:21px;font-weight:700;color:var(--accent);font-style:italic}
-.brand b{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;
-  color:var(--muted);font-style:normal;margin-left:14px;vertical-align:middle}
+.brand{font-family:var(--serif);font-size:21px;font-weight:700;
+  color:var(--accent);font-style:italic}
+.brand b{font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.2em;color:var(--muted);font-style:normal;
+  margin-left:14px;vertical-align:middle}
 .slide-id{font-family:var(--mono);font-size:10px;font-weight:700;
   letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 
-/* === SLIDE LAYER === */
-.slide{
-  position:absolute;top:64px;left:0;right:0;bottom:52px;
+/* === MAIN LAYOUT === */
+.layout{
+  position:absolute;top:64px;left:0;right:0;bottom:0;
   display:flex;
-  background:var(--paper);
-  /* Atmosfærisk format-farvetone som baggrund */
-  background-color:var(--paper);
-  opacity:0;pointer-events:none;
-  transition:opacity .28s var(--ease);
-  will-change:opacity;
 }
-.slide.active{opacity:1;pointer-events:auto}
 
-/* Mørk variant for Blind Spot */
-.slide.dark{background:#0C1929}
-
-/* Farvetone overlay */
-.slide::before{
-  content:'';position:absolute;inset:0;
-  background:var(--fc);
-  opacity:.045;
-  pointer-events:none;
-}
-.slide.dark::before{opacity:.12}
-
-/* === VENSTRE IDENTITET === */
-.s-left{
-  width:540px;flex-shrink:0;
+/* ===========================
+   VENSTRE: FORMAT LISTE
+   =========================== */
+.fmt-nav{
+  width:480px;flex-shrink:0;
   display:flex;flex-direction:column;
-  padding:52px 0 44px 52px;
-  position:relative;z-index:1;
+  border-right:1px solid var(--line);
+  background:var(--paper);
 }
-/* Vertikal divider */
-.s-left::after{
-  content:'';position:absolute;right:0;top:44px;bottom:44px;
-  width:1px;background:var(--line);
-}
-.slide.dark .s-left::after{background:rgba(255,255,255,.08)}
 
-.s-eyebrow{
-  font-family:var(--mono);font-size:9px;font-weight:700;
-  letter-spacing:.22em;text-transform:uppercase;
-  color:var(--fc);margin-bottom:20px;
-  opacity:.9;
+/* Hvert format-item — alle samme flex-vægt, ingen accordion */
+.fmt-item{
+  flex:1;
+  display:flex;align-items:center;
+  overflow:hidden;
+  cursor:pointer;
+  border-bottom:1px solid var(--line2);
+  transition:background .15s ease;
 }
-.slide.dark .s-eyebrow{color:rgba(147,197,253,.7)}
+.fmt-item:last-child{border-bottom:none}
 
-.s-name{
-  font-family:var(--serif);font-weight:700;
-  line-height:1.0;letter-spacing:-.02em;
-  color:var(--ink);
-  margin-bottom:16px;
-  flex-shrink:0;
+/* Farvet linker streng */
+.fi-bar{
+  width:4px;flex-shrink:0;height:100%;
+  transition:width .25s var(--ease);
 }
-.slide.dark .s-name{color:#F0ECE3}
+.fmt-item.active .fi-bar{width:7px}
 
-.s-func{
-  font-family:var(--mono);font-size:11px;font-weight:700;
+/* Indhold — ét layout, typografi skalerer */
+.fi-body{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 18px;flex:1;min-width:0;gap:3px;
+}
+
+.fi-num{
+  font-family:var(--mono);font-size:8.5px;font-weight:700;
   letter-spacing:.18em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:0;
+  transition:color .2s ease;
+  line-height:1;
 }
-.slide.dark .s-func{color:rgba(255,255,255,.35)}
 
-/* Spacer fills remaining space */
-.s-spacer{flex:1}
+/* Rubrikken — det centrale element der skalerer */
+.fi-name{
+  font-family:var(--serif);font-weight:700;
+  letter-spacing:-.02em;line-height:1.0;
+  color:var(--ink);
+  font-size:16px;
+  transition:font-size .32s var(--ease), color .2s ease, letter-spacing .32s ease;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.fmt-item.active .fi-name{
+  font-size:30px;
+  letter-spacing:-.03em;
+  white-space:normal;
+}
 
-/* Tier + freq */
-.s-meta{margin-bottom:18px}
-.s-tier{
+.fi-func{
   font-family:var(--mono);font-size:8px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;
-  display:inline-flex;align-items:center;gap:5px;
-  padding:3px 10px;border:1px solid;margin-bottom:8px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);
+  opacity:0;height:0;overflow:hidden;
+  transition:opacity .2s ease .1s, height .3s var(--ease);
+  line-height:1;
 }
-.s-tier.free{color:#A75D46;border-color:rgba(167,93,70,.4)}
-.s-tier.paid{color:var(--fc);border-color:rgba(var(--fc-rgb),.3)}
-.slide.dark .s-tier.paid{color:rgba(147,197,253,.8);border-color:rgba(147,197,253,.3)}
+.fmt-item.active .fi-func{opacity:.7;height:13px}
 
-.s-freq{
-  font-family:var(--mono);font-size:9px;font-weight:500;
-  letter-spacing:.1em;color:var(--muted);
-  display:block;
+.fi-tier{
+  font-family:var(--mono);font-size:7px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 8px;border:1px solid;
+  display:inline-block;align-self:flex-start;
+  opacity:0;height:0;overflow:hidden;
+  transition:opacity .2s ease .15s, height .3s var(--ease);
 }
-.slide.dark .s-freq{color:rgba(255,255,255,.3)}
+.fmt-item.active .fi-tier{opacity:1;height:18px}
+.fi-tier.free{color:#A75D46;border-color:rgba(167,93,70,.4)}
+.fi-tier.paid{color:inherit;border-color:currentColor;opacity:0}
+.fmt-item.active .fi-tier.paid{opacity:.55}
 
-/* Pillar tags */
-.s-pillars{display:flex;gap:5px;flex-wrap:wrap}
-.s-pill{
-  font-family:var(--mono);font-size:7.5px;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;
-  padding:3px 9px;border:1px solid;
-}
-.s-pill.u{color:#16A34A;border-color:rgba(22,163,74,.35)}
-.s-pill.c{color:var(--accent);border-color:rgba(54,19,82,.28)}
-.s-pill.i{color:#9E8059;border-color:rgba(158,128,89,.38)}
-.slide.dark .s-pill.c{color:rgba(147,197,253,.9);border-color:rgba(147,197,253,.35)}
-
-/* === HØJRE INDHOLD === */
-.s-right{
+/* ===========================
+   HØJRE: INDHOLDSZONE
+   =========================== */
+.fmt-content{
   flex:1;min-width:0;
   display:flex;flex-direction:column;
-  padding:52px 80px 44px 64px;
+  background:var(--paper);
+  position:relative;overflow:hidden;
+}
+
+/* Slideshow af indholdsflader */
+.content-slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  padding:40px 60px 36px 52px;
+  opacity:0;pointer-events:none;
+  transition:opacity .26s ease;
   overflow:hidden;
-  position:relative;z-index:1;
+}
+.content-slide.active{opacity:1;pointer-events:auto}
+
+/* Øverst: stor spørgsmål-linje */
+.cs-q{
+  font-family:var(--ps);font-size:26px;font-style:italic;font-weight:300;
+  line-height:1.42;color:var(--ink);
+  margin-bottom:20px;
+  max-width:62ch;flex-shrink:0;
 }
 
-/* Spørgsmålet — det store editorielle statement */
-.s-q{
-  font-family:var(--ps);font-size:28px;font-style:italic;font-weight:300;
-  line-height:1.45;
-  color:var(--ink);
-  margin-bottom:28px;
-  max-width:68ch;
-  flex-shrink:0;
+/* Lead */
+.cs-lead{
+  font-family:var(--serif);font-size:16px;font-weight:700;
+  letter-spacing:-.01em;line-height:1.35;
+  margin-bottom:11px;flex-shrink:0;
 }
-.slide.dark .s-q{color:#E8E0D4}
-
-/* Lead / intro */
-.s-lead{
-  font-family:var(--serif);font-size:17px;font-weight:700;
-  letter-spacing:-.01em;line-height:1.4;
-  color:var(--fc);
-  margin-bottom:14px;
-  flex-shrink:0;
-}
-.slide.dark .s-lead{color:rgba(147,197,253,.9)}
 
 /* Beskrivelse */
-.s-desc{
-  font-family:var(--sans);font-size:17px;font-weight:400;
-  line-height:1.7;color:var(--ink70);
-  max-width:72ch;
-  margin-bottom:20px;
-  flex-shrink:0;
+.cs-desc{
+  font-family:var(--sans);font-size:15px;line-height:1.68;
+  color:var(--ink60);margin-bottom:14px;
+  max-width:70ch;flex-shrink:0;
 }
-.slide.dark .s-desc{color:rgba(232,224,212,.75)}
 
-/* Indsigt — baggrundstint, ingen border-left */
-.s-insight{
-  background:rgba(var(--fc-rgb),.08);
-  padding:13px 18px;
-  font-family:var(--ps);font-size:15px;font-style:italic;font-weight:300;
-  color:var(--ink70);line-height:1.55;
-  margin-bottom:18px;
-  flex-shrink:0;
-  max-width:72ch;
+/* Indsigt */
+.cs-insight{
+  padding:11px 16px;
+  font-family:var(--ps);font-size:14px;font-style:italic;font-weight:300;
+  line-height:1.55;color:var(--ink60);
+  margin-bottom:14px;flex-shrink:0;max-width:70ch;
 }
-.slide.dark .s-insight{background:rgba(147,197,253,.09);color:rgba(232,224,212,.8)}
 
 /* Citat (Klummerne) */
-.s-quote{
-  font-family:var(--ps);font-size:20px;font-style:italic;font-weight:400;
-  line-height:1.45;
-  color:var(--ink);
-  margin-bottom:18px;
-  padding:14px 0;
-  flex-shrink:0;
+.cs-quote{
+  font-family:var(--ps);font-size:18px;font-style:italic;font-weight:400;
+  line-height:1.45;color:var(--ink);
+  padding:10px 0;margin-bottom:12px;flex-shrink:0;
 }
-.slide.dark .s-quote{color:#E8E0D4}
 
-/* Special note (ingen border-left) */
-.s-note{
-  background:rgba(var(--fc-rgb),.06);
-  padding:10px 16px;
-  margin-bottom:16px;
-  max-width:72ch;
-  flex-shrink:0;
+/* Special-label */
+.cs-lbl{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:7px;flex-shrink:0;
 }
-.s-note-lbl{font-family:var(--mono);font-size:8px;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--fc);margin-bottom:4px}
-.s-note-txt{font-family:var(--sans);font-size:13px;color:var(--ink70);line-height:1.5}
-.slide.dark .s-note{background:rgba(59,130,246,.1)}
-.slide.dark .s-note-lbl{color:rgba(147,197,253,.8)}
-.slide.dark .s-note-txt{color:rgba(232,224,212,.7)}
 
-/* Stat badge (Morgenbriefet) */
-.s-stat{
-  font-family:var(--mono);font-size:10px;font-weight:700;
+/* Stat badge */
+.cs-stat{
+  font-family:var(--mono);font-size:9.5px;font-weight:700;
   letter-spacing:.12em;text-transform:uppercase;
-  color:var(--fc);
-  margin-bottom:16px;
-  flex-shrink:0;
+  padding:4px 12px;display:inline-block;
+  margin-bottom:12px;flex-shrink:0;
 }
 
-/* Grid 3×2 (Blind Spot) */
-.s-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
-  margin-bottom:14px;max-width:900px;flex-shrink:0;
-}
-.s-gi{
-  padding:10px 13px;
-  background:rgba(59,130,246,.08);
-  border-top:1px solid rgba(59,130,246,.4);
-}
-.s-gi-lbl{font-family:var(--mono);font-size:8px;font-weight:700;
+/* Note / proto (ingen border-left) */
+.cs-note{padding:10px 16px;margin-bottom:12px;flex-shrink:0;max-width:70ch}
+.cs-note-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.cs-note-txt{font-family:var(--sans);font-size:12.5px;line-height:1.5;color:var(--ink60)}
+
+/* Blind Spot grid (3×2) */
+.cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;
+  margin-bottom:10px;flex-shrink:0}
+.cs-gi{padding:8px 11px}
+.cs-gi-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.cs-gi-txt{font-family:var(--sans);font-size:10.5px;line-height:1.4;color:var(--ink60)}
+.cs-grund{padding:8px 12px;margin-bottom:10px;flex-shrink:0}
+.cs-grund-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.cs-grund-txt{font-family:var(--sans);font-size:11.5px;line-height:1.5}
+
+/* Situationsformater / klummekolonner */
+.cs-cols{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;flex-shrink:0}
+.cs-col{display:flex;align-items:baseline;gap:10px;padding:7px 12px}
+.cs-col-n{font-family:var(--mono);font-size:8.5px;font-weight:700;
+  letter-spacing:.08em;flex-shrink:0;min-width:80px}
+.cs-col-txt{font-family:var(--sans);font-size:12.5px;line-height:1.4;color:var(--ink60)}
+
+/* Navngivet badge (Klummerne) */
+.cs-navngivet{
+  font-family:var(--mono);font-size:8.5px;font-weight:700;
   letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(147,197,253,.85);margin-bottom:4px}
-.s-gi-txt{font-family:var(--sans);font-size:11px;
-  color:rgba(232,224,212,.75);line-height:1.45}
-
-/* Grundregel (Blind Spot) */
-.s-grundregel{
-  background:#0F1E35;
-  padding:11px 16px;
-  margin-bottom:14px;
-  max-width:900px;flex-shrink:0;
+  display:flex;align-items:center;gap:7px;
+  margin-bottom:10px;flex-shrink:0;
 }
-.s-grundregel-lbl{font-family:var(--mono);font-size:8px;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(147,197,253,.65);margin-bottom:4px}
-.s-grundregel-txt{font-family:var(--sans);font-size:12px;
-  color:rgba(147,197,253,.9);line-height:1.55}
-
-/* Situationsformater kolumner */
-.s-cols{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
-  margin-bottom:16px;max-width:900px;flex-shrink:0;
-}
-.s-col{
-  padding:14px 16px;
-  background:rgba(var(--fc-rgb),.06);
-  border-top:1px solid rgba(var(--fc-rgb),.3);
-}
-.s-col-n{font-family:var(--mono);font-size:9px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--fc);margin-bottom:6px}
-.s-col-txt{font-family:var(--sans);font-size:13px;color:var(--ink70);line-height:1.5}
-
-/* Klumme-kolumner (roman tal) */
-.s-klumme-cols{
-  display:flex;flex-direction:column;gap:6px;
-  margin-bottom:16px;max-width:620px;flex-shrink:0;
-}
-.s-klumme-col{
-  display:flex;align-items:baseline;gap:12px;
-  padding:9px 14px;
-  background:rgba(59,89,73,.07);
-}
-.s-klumme-n{font-family:var(--mono);font-size:9px;font-weight:700;
-  color:rgba(59,89,73,.75);letter-spacing:.06em;flex-shrink:0;min-width:22px}
-.s-klumme-txt{font-family:var(--sans);font-size:13px;color:var(--ink70);line-height:1.4}
-
-/* Q&A protokol */
-.s-proto{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:8px 16px;
-  background:rgba(74,55,78,.08);
-  margin-bottom:16px;flex-shrink:0;
-}
-.s-proto-lbl{font-family:var(--mono);font-size:9px;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-.s-proto-txt{font-family:var(--sans);font-size:12px;color:var(--ink70)}
-
-/* Ingen navngivet badge (Klummerne) */
-.s-navngivet{
-  font-family:var(--mono);font-size:9px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(59,89,73,.8);margin-bottom:12px;flex-shrink:0;
-  display:flex;align-items:center;gap:6px;
-}
-.s-navngivet::before{content:'';width:6px;height:6px;border-radius:50%;
-  background:rgba(59,89,73,.7);flex-shrink:0}
+.cs-navngivet::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
 
 /* Kilder */
-.s-sources{
-  font-family:var(--mono);font-size:10px;font-weight:500;
+.cs-sources{
+  font-family:var(--mono);font-size:9.5px;font-weight:500;
   color:var(--muted);line-height:1.5;
-  margin-top:auto;padding-top:12px;
-  border-top:1px solid var(--line2);
-  flex-shrink:0;
+  padding-top:12px;border-top:1px solid var(--line2);
+  margin-top:auto;flex-shrink:0;
 }
-.slide.dark .s-sources{color:rgba(255,255,255,.28);border-top-color:rgba(255,255,255,.07)}
-.s-sources b{font-weight:700;color:var(--fc);margin-right:3px}
-.slide.dark .s-sources b{color:rgba(147,197,253,.6)}
+.cs-sources b{font-weight:700}
 
-/* === BOTTOM NAVIGATION === */
-.bot{
-  position:absolute;bottom:0;left:0;right:0;height:52px;z-index:60;
-  display:flex;align-items:center;
-  padding:0 52px;gap:0;
-  background:rgba(250,250,248,.97);
-  border-top:1px solid var(--line);
-  backdrop-filter:blur(20px);
-}
-
-/* Pil */
-.bot-arrow{
-  font-family:var(--mono);font-size:12px;color:var(--muted);
-  cursor:pointer;padding:4px 10px;
-  background:none;border:none;
-  transition:color .15s ease;
-  flex-shrink:0;
-}
-.bot-arrow:hover{color:var(--ink)}
-
-/* Format-numre */
-.bot-nav{
-  display:flex;align-items:center;gap:2px;
-  flex:1;justify-content:center;
-}
-.bot-item{
-  font-family:var(--mono);font-size:8.5px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;
-  padding:5px 10px;cursor:pointer;
-  color:var(--muted);
-  border:1px solid transparent;
-  transition:color .15s ease, border-color .15s ease, background .15s ease;
-  white-space:nowrap;
-}
-.bot-item:hover{color:var(--ink70)}
-.bot-item.active{
-  color:var(--fc-active,var(--accent));
-  border-color:rgba(var(--fc-rgb-active,54,19,82),.3);
-  background:rgba(var(--fc-rgb-active,54,19,82),.05);
-}
-
-/* Counter */
-.bot-count{
-  font-family:var(--mono);font-size:9px;font-weight:500;
-  letter-spacing:.14em;color:var(--muted);
-  opacity:.55;flex-shrink:0;
-  padding-left:14px;
-}
-
-/* === ENTRY === */
+/* Entry */
 @keyframes slideDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
-@keyframes contentUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .hdr{animation:slideDown .4s var(--ease) both}
-.bot{animation:slideDown .38s var(--ease) .05s both}
-.slide.active .s-eyebrow{animation:contentUp .4s var(--ease) .05s both}
-.slide.active .s-name{animation:contentUp .45s var(--ease) .08s both}
-.slide.active .s-func{animation:contentUp .4s var(--ease) .11s both}
-.slide.active .s-q{animation:contentUp .5s var(--ease) .1s both}
-.slide.active .s-lead{animation:contentUp .42s var(--ease) .13s both}
-.slide.active .s-desc{animation:contentUp .44s var(--ease) .16s both}
+.layout{animation:fadeUp .45s var(--ease) .1s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
@@ -396,13 +264,9 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#ECEAE4;
   <div class="slide-id">04 · Formater</div>
 </div>
 
-<div id="slides"></div>
-
-<div class="bot">
-  <button class="bot-arrow" id="prev" aria-label="Forrige">←</button>
-  <div class="bot-nav" id="botNav"></div>
-  <span class="bot-count" id="botCount"></span>
-  <button class="bot-arrow" id="next" aria-label="Næste">→</button>
+<div class="layout">
+  <div class="fmt-nav" id="fmtNav"></div>
+  <div class="fmt-content" id="fmtContent"></div>
 </div>
 
 </div>
@@ -417,26 +281,23 @@ function scaleStage(){
 }
 scaleStage(); window.addEventListener('resize',scaleStage);
 
-/* === FORMAT DATA — merged fra s4-spotlight-scanner.html + yredaktion-dashboard S4 === */
+/* === DATA === */
 const F=[
   {
-    num:'01',eyebrow:'01 · Basislag',
-    name:'Branche-\noverblikket',nameDisplay:'Brancheoverblikket',
+    num:'01',eyebrow:'01 · Basislag',name:'Brancheoverblikket',
     func:'Orienteringen',tier:'paid',
-    color:'#5A4A72',colorRgb:'90,74,114',dark:false,
+    color:'#5A4A72',tint:'rgba(90,74,114,',
     lead:'Det er ikke et fælles opslagstavleprodukt.',
     q:'"Hvad er sket i min branche siden sidst?"',
     desc:'Ikke alt behøver en vinkel. Noget behøver bare at blive fundet, sorteret og leveret, inden du åbner din første mail. Brancheoverblikket er personaliseret efter branche, region, emner og adfærd.',
-    insight:null,
-    pillars:['u'],freq:'Dagligt / løbende',
+    insight:null,pillars:['u'],freq:'Dagligt / løbende',
     sources:'CVR, Erhvervsstyrelsen, brancheforeninger og lokale erhvervsmedier.',
     special:null,
   },
   {
-    num:'02',eyebrow:'02 · Vanen',
-    name:'Morgen-\nbriefet',nameDisplay:'Morgenbriefet',
+    num:'02',eyebrow:'02 · Vanen',name:'Morgenbriefet',
     func:'Vanen',tier:'free',
-    color:'#A75D46',colorRgb:'167,93,70',dark:false,
+    color:'#A75D46',tint:'rgba(167,93,70,',
     lead:null,
     q:'"Hvad skal jeg forstå, inden arbejdsdagen begynder?"',
     desc:'Leveres kl. 06.30 i 5–7 punkter på tekst og lyd — det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel.',
@@ -446,10 +307,9 @@ const F=[
     special:{type:'stat',txt:'20 % af indholdet · fri adgang'},
   },
   {
-    num:'03',eyebrow:'03 · Nytten',
-    name:'Det\nbetyder det',nameDisplay:'Det betyder det',
+    num:'03',eyebrow:'03 · Nytten',name:'Det betyder det',
     func:'Nytten',tier:'paid',
-    color:'#2E5F9A',colorRgb:'46,95,154',dark:false,
+    color:'#2E5F9A',tint:'rgba(46,95,154,',
     lead:null,
     q:'"Hvad betyder det her konkret for min virksomhed?"',
     desc:'Bygget over en fast 6-punkt-struktur, hvor der aldrig drages en konklusion uden en klar konsekvens for din virksomhed. Ugentligt + ad hoc ved lovforslag og EU-regulering.',
@@ -459,26 +319,23 @@ const F=[
     special:null,
   },
   {
-    num:'04',eyebrow:'04 · Kanten',
-    name:'Den blinde\nvinkel',nameDisplay:'Den blinde vinkel',
+    num:'04',eyebrow:'04 · Kanten',name:'Den blinde vinkel',
     func:'Kanten',tier:'paid',
-    color:'#2F3E4C',colorRgb:'47,62,76',dark:false,
+    color:'#2F3E4C',tint:'rgba(47,62,76,',
     lead:null,
     q:'"Hvad overser den dominerende fortælling?"',
     desc:'Ikke et temperament, men en redaktionel disciplin. Følger vores challenge-protokol og kræver altid en navngivet modkilde.',
-    insight:null,
-    pillars:['c'],freq:'Ugentligt',
+    insight:null,pillars:['c'],freq:'Ugentligt',
     sources:'Tænketanke (CEPOS, Kraka), fagforeninger (3F, DI), partikilder og akademisk forskning.',
     special:null,
   },
   {
-    num:'05',eyebrow:'05 · Læringen',
-    name:'Casen der\nvirker',nameDisplay:'Casen der virker',
+    num:'05',eyebrow:'05 · Læringen',name:'Casen der virker',
     func:'Læringen',tier:'paid',
-    color:'#4A2B6A',colorRgb:'74,43,106',dark:false,
+    color:'#4A2B6A',tint:'rgba(74,43,106,',
     lead:null,
     q:'"Hvad kan andre bruge — og hvad kan de ikke kopiere?"',
-    desc:'En konkret virksomhed der har løst det du kæmper med — dokumenteret med tal, beslutninger, friktion og resultat. Viser metode, friktion, fejl og kopierbar læring — cases fortalt i første person af founder, leder eller AI-praktiker.',
+    desc:'En konkret virksomhed der har løst det du kæmper med — dokumenteret med tal, beslutninger, friktion og resultat. Viser metode, fejl og kopierbar læring. Cases fortalt i første person af founder, leder eller AI-praktiker.',
     insight:'Praksis frem for teori. Ingen anonyme eksempler. Altid navngivet afsender.',
     pillars:['i'],freq:'Ugentligt',
     sources:'Egne dybdegående SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.',
@@ -486,10 +343,9 @@ const F=[
       desc:'Faste spørgsmål sendes til kilden inden produktion. Sikrer friktion, fejl og konkret resultat — aldrig kun succeshistorien.'},
   },
   {
-    num:'06',eyebrow:'06 · Forspringet',
-    name:'Signal-\nradaren',nameDisplay:'Signalradaren',
+    num:'06',eyebrow:'06 · Forspringet',name:'Signalradaren',
     func:'Forspringet',tier:'paid',
-    color:'#8C6D28',colorRgb:'140,109,40',dark:false,
+    color:'#8C6D28',tint:'rgba(140,109,40,',
     lead:null,
     q:'"Hvad er ved at ske — og hvem ser det ikke endnu?"',
     desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — markedsbevægelser, reguleringsudkast og teknologimønstre kortlagt med styrke og modtagere.',
@@ -500,10 +356,9 @@ const F=[
       desc:'Signalradaren opdager bevægelsen. Blind Spot dokumenterer hvad mediebilledet ikke ser — og supplerer radaren med systematisk kildekritik.'},
   },
   {
-    num:'07',eyebrow:'07 · Signalmotoren',
-    name:'Blind\nSpot',nameDisplay:'Blind Spot',
+    num:'07',eyebrow:'07 · Signalmotoren',name:'Blind Spot',
     func:'Signalmotoren',tier:'paid',
-    color:'#3B82F6',colorRgb:'59,130,246',dark:true,
+    color:'#1A3A6A',tint:'rgba(26,58,106,',
     lead:null,
     q:'"Hvad gør nyhedslogikken svært at se — og hvad er den sandsynlige forklaring?"',
     desc:'Systemet finder sprækken i ugens nyhedsbillede: det dokumenterede hul, den skæve fortælling, den dominerende ramme, den fraværende kilde. Journalisten triggerer — systemet returnerer et beslutningsklart signal med årsag.',
@@ -523,14 +378,12 @@ const F=[
     },
   },
   {
-    num:'+3',eyebrow:'+3 · Skalerbare',
-    name:'Situations-\nformater',nameDisplay:'Situationsformater',
+    num:'+3',eyebrow:'+3 · Skalerbare',name:'Situationsformater',
     func:'Skalerbare',tier:'paid',
-    color:'#7C7972',colorRgb:'124,121,114',dark:false,
+    color:'#7C7972',tint:'rgba(124,121,114,',
     lead:null,
     q:'"Journalistikken skifter gear, når situationen kræver det."',
-    desc:null,
-    insight:null,
+    desc:null,insight:null,
     pillars:['c','i'],freq:'Situationsbestemt',
     sources:'Udbudsdatabaser (TED), konkursstatistikker, erhvervstilladelser og krise-skabeloner.',
     special:{type:'cols',items:[
@@ -540,10 +393,9 @@ const F=[
     ]},
   },
   {
-    num:'08',eyebrow:'08 · Stemmen',
-    name:'Klum-\nmerne',nameDisplay:'Klummerne',
+    num:'08',eyebrow:'08 · Stemmen',name:'Klummerne',
     func:'Det AI ikke kan',tier:'paid',
-    color:'#3B5949',colorRgb:'59,89,73',dark:false,
+    color:'#3B5949',tint:'rgba(59,89,73,',
     lead:null,
     q:'"Den personlige vurdering, erfaringen og ansvaret — med navn under."',
     desc:'Et menneske med navn under. Faste skribenter med ansvar for vinklen — kredser om hi-tech, AI og erhvervsledelse. Ikke for at spejle redaktionen, men for at udfordre den.',
@@ -562,139 +414,124 @@ const F=[
   },
 ];
 
-/* Navnestørrelse baseret på displaynavn-længde */
-function nameSize(name){
-  const l=name.length;
-  if(l<=9) return '88px';
-  if(l<=13) return '78px';
-  if(l<=16) return '70px';
-  return '62px';
+/* === HELPERS === */
+function pills(f){
+  const m={u:'Understand',c:'Challenge',i:'Inspire'};
+  return f.pillars.map(p=>`<span class="fo-pill ${p}">${m[p]}</span>`).join('');
 }
 
-/* Pillar tags HTML */
-function pillars(fmt,dark){
-  const map={u:'Understand',c:'Challenge',i:'Inspire'};
-  return fmt.pillars.map(p=>`<span class="s-pill ${p}">${map[p]}</span>`).join('');
-}
+function buildSpecial(f){
+  const s=f.special; if(!s) return '';
+  const bg=f.tint+'0.07)';
+  const topB=`border-top:1px solid ${f.tint}0.35)`;
 
-/* Special indhold */
-function special(fmt){
-  if(!fmt.special) return '';
-  const s=fmt.special;
-  if(s.type==='stat') return `<div class="s-stat">${s.txt}</div>`;
-  if(s.type==='proto') return `<div class="s-proto">
-    <span class="s-proto-lbl">${s.lbl}</span>
-    <span class="s-proto-txt">${s.desc}</span>
-  </div>`;
-  if(s.type==='note') return `<div class="s-note">
-    <div class="s-note-lbl">${s.lbl}</div>
-    <div class="s-note-txt">${s.desc}</div>
-  </div>`;
-  if(s.type==='cols') return `<div class="s-cols">
-    ${s.items.map(it=>`<div class="s-col">
-      <div class="s-col-n">${it.n}</div>
-      <div class="s-col-txt">${it.txt}</div>
-    </div>`).join('')}
-  </div>`;
+  if(s.type==='stat') return `
+    <div class="cs-stat" style="background:${f.tint}0.1);color:${f.color}">${s.txt}</div>`;
+
+  if(s.type==='proto') return `
+    <div class="cs-note" style="background:${bg}">
+      <div class="cs-note-lbl" style="color:${f.color}">${s.lbl}</div>
+      <div class="cs-note-txt">${s.desc}</div>
+    </div>`;
+
+  if(s.type==='note') return `
+    <div class="cs-note" style="background:${bg}">
+      <div class="cs-note-lbl" style="color:${f.color}">${s.lbl}</div>
+      <div class="cs-note-txt">${s.desc}</div>
+    </div>`;
+
+  if(s.type==='cols') return `
+    <div class="cs-lbl">Tre formater</div>
+    <div class="cs-cols">
+      ${s.items.map(it=>`<div class="cs-col" style="background:${bg}">
+        <span class="cs-col-n" style="color:${f.color}">${it.n}</span>
+        <span class="cs-col-txt">${it.txt}</span>
+      </div>`).join('')}
+    </div>`;
+
   if(s.type==='blindspot') return `
-    <div class="s-grid">
-      ${s.items.map(it=>`<div class="s-gi">
-        <div class="s-gi-lbl">${it.l}</div>
-        <div class="s-gi-txt">${it.d}</div>
+    <div class="cs-lbl">Seks typer blind spot</div>
+    <div class="cs-grid">
+      ${s.items.map(it=>`<div class="cs-gi" style="background:${bg};${topB}">
+        <div class="cs-gi-lbl" style="color:${f.color}">${it.l}</div>
+        <div class="cs-gi-txt">${it.d}</div>
       </div>`).join('')}
     </div>
-    <div class="s-grundregel">
-      <div class="s-grundregel-lbl">Grundregel</div>
-      <div class="s-grundregel-txt">${s.grundregel}</div>
+    <div class="cs-grund" style="background:${f.tint}0.08)">
+      <div class="cs-grund-lbl" style="color:${f.color}">Grundregel</div>
+      <div class="cs-grund-txt">${s.grundregel}</div>
     </div>`;
+
   if(s.type==='klumme') return `
-    <div class="s-quote">${s.quote}</div>
-    <div class="s-navngivet">${s.note}</div>
-    <div class="s-klumme-cols">
-      ${s.cols.map(c=>`<div class="s-klumme-col">
-        <span class="s-klumme-n">${c.n}</span>
-        <span class="s-klumme-txt">${c.txt}</span>
+    <div class="cs-quote">${s.quote}</div>
+    <div class="cs-navngivet" style="color:${f.color}">
+      <span>${s.note}</span>
+    </div>
+    <div class="cs-lbl">Tre klummetyper</div>
+    <div class="cs-cols">
+      ${s.cols.map(c=>`<div class="cs-col" style="background:${bg}">
+        <span class="cs-col-n" style="color:${f.color}">${c.n}</span>
+        <span class="cs-col-txt">${c.txt}</span>
       </div>`).join('')}
     </div>`;
+
   return '';
 }
 
-/* === BYGG SLIDES === */
-const slidesEl=document.getElementById('slides');
-const botNav=document.getElementById('botNav');
+/* === BUILD DOM === */
+const nav=document.getElementById('fmtNav');
+const content=document.getElementById('fmtContent');
+let activeIdx=1; // Morgenbriefet default
 
-F.forEach((fmt,i)=>{
-  /* Slide */
-  const slide=document.createElement('div');
-  slide.className='slide'+(fmt.dark?' dark':'');
-  slide.style.setProperty('--fc',fmt.color);
-  slide.style.setProperty('--fc-rgb',fmt.colorRgb);
-  slide.innerHTML=`
-    <div class="s-left">
-      <div class="s-eyebrow">${fmt.eyebrow}</div>
-      <div class="s-name" style="font-size:${nameSize(fmt.nameDisplay)};white-space:pre-line">${fmt.name}</div>
-      <div class="s-func">${fmt.func}</div>
-      <div class="s-spacer"></div>
-      <div class="s-meta">
-        <span class="s-tier ${fmt.tier}">${fmt.tier==='free'?'Gratis':'Abonnement'}</span>
-        <span class="s-freq">${fmt.freq}</span>
-      </div>
-      <div class="s-pillars">${pillars(fmt)}</div>
-    </div>
-    <div class="s-right">
-      <div class="s-q">${fmt.q}</div>
-      ${fmt.lead?`<div class="s-lead">${fmt.lead}</div>`:''}
-      ${fmt.desc?`<div class="s-desc">${fmt.desc}</div>`:''}
-      ${fmt.insight?`<div class="s-insight">${fmt.insight}</div>`:''}
-      ${special(fmt)}
-      <div class="s-sources"><b>Kilder ·</b> ${fmt.sources}</div>
+F.forEach((f,i)=>{
+  /* --- FORMAT ITEM (venstre) --- */
+  const item=document.createElement('div');
+  item.className='fmt-item'+(i===activeIdx?' active':'');
+  item.style.background=f.tint+'0.06)';
+
+  item.innerHTML=`
+    <div class="fi-bar" style="background:${f.color}"></div>
+    <div class="fi-body">
+      <span class="fi-num" style="color:${f.color}">${f.num} · ${f.func.toUpperCase()}</span>
+      <span class="fi-name">${f.name}</span>
+      <span class="fi-func">${f.freq}</span>
+      <span class="fi-tier ${f.tier}" style="color:${f.tier==='free'?'#A75D46':f.color};border-color:${f.tier==='free'?'rgba(167,93,70,.4)':f.color+'55'}">${f.tier==='free'?'Gratis':'Abonnement'}</span>
     </div>`;
-  slidesEl.appendChild(slide);
 
-  /* Nav item */
-  const btn=document.createElement('button');
-  btn.className='bot-item';
-  btn.textContent=fmt.num;
-  btn.style.setProperty('--fc-active',fmt.color);
-  btn.style.setProperty('--fc-rgb-active',fmt.colorRgb);
-  btn.addEventListener('click',()=>goTo(i));
-  botNav.appendChild(btn);
+  item.style.setProperty('--fc',f.color);
+  item.addEventListener('click',()=>goTo(i));
+  nav.appendChild(item);
+
+  /* --- INDHOLDSFLADER (højre) --- */
+  const slide=document.createElement('div');
+  slide.className='content-slide'+(i===activeIdx?' active':'');
+
+  slide.innerHTML=`
+    ${f.lead?`<div class="cs-lead" style="color:${f.color}">${f.lead}</div>`:''}
+    <div class="cs-q">${f.q}</div>
+    ${f.desc?`<div class="cs-desc">${f.desc}</div>`:''}
+    ${f.insight?`<div class="cs-insight" style="background:${f.tint}0.08)">${f.insight}</div>`:''}
+    ${buildSpecial(f)}
+    <div class="cs-sources"><b style="color:${f.color}">Kilder ·</b> ${f.sources}</div>`;
+
+  content.appendChild(slide);
 });
 
 /* === NAVIGATION === */
-let current=0;
-const slides=()=>document.querySelectorAll('.slide');
-const navItems=()=>document.querySelectorAll('.bot-item');
-const counter=document.getElementById('botCount');
-
 function goTo(idx){
-  const sl=slides(); const ni=navItems();
-  sl[current].classList.remove('active');
-  ni[current].classList.remove('active');
-  current=((idx%F.length)+F.length)%F.length;
-  sl[current].classList.add('active');
-  ni[current].classList.add('active');
-  counter.textContent=`${current+1} / ${F.length}`;
-  /* Synk header bg med dark slides */
-  document.querySelector('.hdr').style.background=
-    F[current].dark?'rgba(12,25,41,.97)':'rgba(250,250,248,.97)';
-  document.querySelector('.hdr .brand').style.color=
-    F[current].dark?F[current].color:'#361352';
-  document.querySelector('.slide-id').style.color=
-    F[current].dark?'rgba(255,255,255,.3)':'#7C7972';
-  document.querySelector('.bot').style.background=
-    F[current].dark?'rgba(12,25,41,.97)':'rgba(250,250,248,.97)';
+  const items=document.querySelectorAll('.fmt-item');
+  const slides=document.querySelectorAll('.content-slide');
+  items[activeIdx].classList.remove('active');
+  slides[activeIdx].classList.remove('active');
+  activeIdx=idx;
+  items[activeIdx].classList.add('active');
+  slides[activeIdx].classList.add('active');
 }
 
-document.getElementById('prev').addEventListener('click',()=>goTo(current-1));
-document.getElementById('next').addEventListener('click',()=>goTo(current+1));
 document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key==='ArrowDown') goTo(current+1);
-  if(e.key==='ArrowLeft'||e.key==='ArrowUp') goTo(current-1);
+  if(e.key==='ArrowDown') goTo((activeIdx+1)%F.length);
+  if(e.key==='ArrowUp') goTo((activeIdx-1+F.length)%F.length);
 });
-
-/* Start */
-goTo(0);
 </script>
 </body>
 </html>
