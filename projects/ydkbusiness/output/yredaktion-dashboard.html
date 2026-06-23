@@ -1026,7 +1026,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 </div>
 <div class="sec-body">
   <div class="s3-wrap">
-    <div class="s3-intro"><p>To læsere er vores kerne: SMV'er og lederen i den mellemstore virksomhed. De øvrige er velkomne på de samme redaktionelle præmisser. Hvem du er bestemmer, hvad vi viser dig — og hvornår.</p></div>
+    <div class="s3-intro" style="display:flex;align-items:center;justify-content:space-between;gap:24px"><p>To læsere er vores kerne: SMV'er og lederen i den mellemstore virksomhed. De øvrige er velkomne på de samme redaktionelle præmisser. Hvem du er bestemmer, hvad vi viser dig — og hvornår.</p><button class="s3-branche-btn" onclick="openEdResearchModal()">Syv brancher med potentiale · Segmentanalyse 2026 ↗</button></div>
     <div class="s3-primary-grid">
       <div class="s3-primary-card" style="--pc:#7C3AED;--pb:rgba(124,58,237,.05)">
         <div class="s3p-label">01 · Primær</div>
@@ -2796,6 +2796,8 @@ Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
     if(e.target&&['INPUT','TEXTAREA'].includes(e.target.tagName))return;
     if(e.key==='Escape'||e.key==='Backspace'){
       e.preventDefault();
+      var ero=document.getElementById('ed-research-overlay');
+      if(ero&&!ero.classList.contains('hidden')){ero.classList.add('hidden');return;}
       if(current!=='hub')navigate('hub');
     }
     var cur=screens.indexOf(current);
@@ -2803,6 +2805,13 @@ Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
     if(e.key==='ArrowLeft'&&cur>0)navigate(screens[cur-1]);
   });
 }());
+
+function openEdResearchModal(){document.getElementById('ed-research-overlay').classList.remove('hidden');}
+function closeEdResearchModal(){document.getElementById('ed-research-overlay').classList.add('hidden');}
+document.addEventListener('DOMContentLoaded',function(){
+  var ov=document.getElementById('ed-research-overlay');
+  if(ov)ov.addEventListener('click',function(e){if(e.target===this)closeEdResearchModal();});
+});
 
 /* === S8 MORGENBRIEFET INTERACTIVE PLAYER === */
 function switchMbTab(tab, btn) {
@@ -2892,5 +2901,259 @@ function animateWave(on) {
   tick();
 }
 </script>
+
+<style>
+/* === BRANCHE-TRIGGER === */
+.s3-branche-btn {
+  flex-shrink: 0;
+  font-family: var(--mono); font-size: 9.5px; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-10);
+  border: 1px solid var(--accent-30); border-radius: 4px;
+  padding: 5px 11px; cursor: pointer; white-space: nowrap;
+  transition: background .15s, border-color .15s;
+}
+.s3-branche-btn:hover { background: var(--accent-20); border-color: var(--accent); }
+
+/* === ED RESEARCH MODAL === */
+.ed-research-overlay {
+  position: fixed; inset: 0;
+  background: rgba(16,12,12,.55); z-index: 9998;
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px 24px;
+}
+.ed-research-overlay.hidden { display: none; }
+.ed-rm-panel {
+  background: var(--card); border-radius: 10px;
+  border: 1px solid var(--line); width: 100%; max-width: 940px;
+  max-height: calc(100vh - 64px);
+  display: flex; flex-direction: column;
+  box-shadow: 0 28px 80px rgba(0,0,0,.24);
+  overflow: hidden;
+}
+.ed-rm-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 22px; border-bottom: 2px solid var(--line);
+  flex-shrink: 0;
+}
+.ed-rm-hed-left { display: flex; flex-direction: column; gap: 2px; }
+.ed-rm-kicker {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--accent); opacity: .7;
+}
+.ed-rm-title {
+  font-family: var(--serif); font-size: 17px; font-weight: 700;
+  color: var(--ink); letter-spacing: -.015em; font-style: italic;
+}
+.ed-rm-close {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--sans); font-size: 16px; color: var(--muted);
+  padding: 3px 8px; border-radius: 4px; line-height: 1; transition: background .12s;
+}
+.ed-rm-close:hover { background: var(--tint); color: var(--ink); }
+.ed-rm-body {
+  overflow-y: auto; padding: 22px 22px 18px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+
+/* Beachhead note */
+.ed-rm-lede {
+  font-family: var(--sans); font-size: 12px; color: var(--muted);
+  line-height: 1.55; padding-bottom: 14px; border-bottom: 1px solid var(--line);
+}
+.ed-rm-lede strong { color: var(--ink); font-weight: 600; }
+
+/* Segment grid */
+.ed-rm-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.ed-seg-card {
+  border: 1px solid var(--line); border-radius: 7px;
+  padding: 16px 18px; display: flex; flex-direction: column; gap: 8px;
+  background: var(--card); transition: border-color .15s;
+}
+.ed-seg-card.bh {
+  border-color: var(--accent-30); border-left: 3px solid var(--accent);
+  background: rgba(54,19,82,.025);
+}
+.ed-seg-card:hover { border-color: var(--accent-30); }
+.ed-seg-eyebrow {
+  font-family: var(--mono); font-size: 8.5px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted); opacity: .55;
+  display: flex; align-items: center; gap: 6px;
+}
+.ed-bh-pill {
+  background: var(--accent); color: #fff;
+  padding: 1px 6px; border-radius: 3px; font-size: 8px; opacity: 1;
+}
+.ed-seg-name {
+  font-family: var(--serif); font-size: 18px; font-weight: 700;
+  color: var(--ink); line-height: 1.1; letter-spacing: -.015em;
+}
+.ed-seg-scene {
+  font-family: var(--sans); font-size: 12px; color: var(--ink70);
+  line-height: 1.6; flex: 1;
+}
+.ed-seg-meta {
+  display: flex; align-items: center; gap: 10px;
+  padding-top: 10px; border-top: 1px solid var(--line2); flex-wrap: wrap;
+}
+.ed-seg-vol {
+  font-family: var(--mono); font-size: 10px; color: var(--muted);
+  letter-spacing: .04em;
+}
+.ed-seg-stak {
+  font-family: var(--mono); font-size: 10px; color: var(--red);
+}
+.ed-seg-wil {
+  margin-left: auto; font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px;
+  border-radius: 3px;
+}
+.ed-wil-ext { color: var(--accent); background: var(--accent-10); }
+.ed-wil-high { color: var(--green); background: var(--green-s); }
+.ed-wil-med { color: var(--amber); background: var(--amber-s); }
+
+/* Footer stats */
+.ed-rm-footer {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--line);
+  border-top: 2px solid var(--line); flex-shrink: 0;
+}
+.ed-rm-stat {
+  background: var(--tint); padding: 12px 16px; text-align: center;
+}
+.ed-rm-stat-v {
+  font-family: var(--mono); font-size: 16px; font-weight: 700;
+  color: var(--accent); letter-spacing: -.01em;
+}
+.ed-rm-stat-l {
+  font-family: var(--sans); font-size: 10px; color: var(--muted);
+  line-height: 1.3; margin-top: 2px;
+}
+</style>
+
+<!-- SEGMENTANALYSE MODAL -->
+<div class="ed-research-overlay hidden" id="ed-research-overlay">
+  <div class="ed-rm-panel">
+
+    <div class="ed-rm-head">
+      <div class="ed-rm-hed-left">
+        <div class="ed-rm-kicker">Segmentanalyse · DST-data · Juni 2026</div>
+        <div class="ed-rm-title">Syv brancher der har brug for det, vi laver</div>
+      </div>
+      <button class="ed-rm-close" onclick="closeEdResearchModal()">✕</button>
+    </div>
+
+    <div class="ed-rm-body">
+
+      <div class="ed-rm-lede">
+        Dansk erhvervsjournalistik skrives stadig til C25 og pressemeddelelsen. De 420.000 aktive virksomheder herunder betaler reelt <strong>60.000–223.000 kr. om året</strong> for et stykkeværk af tjenester, der aldrig taler med hinanden. To brancher er beachhead. Resten er fase 2.
+      </div>
+
+      <div class="ed-rm-grid">
+
+        <div class="ed-seg-card bh">
+          <div class="ed-seg-eyebrow"><span class="ed-bh-pill">★ Beachhead 1</span> Erhvervsservice & Rådgivning</div>
+          <div class="ed-seg-name">Advokaten ved ikke hvornår</div>
+          <div class="ed-seg-scene">Rådgivningsbranchen lever af at vide, hvad klienten endnu ikke ved. Den forretningsmodel holder — så længe informationen er frisk. I dag drukner mange huse i det samme kludetæppe. CVR-data fortæller, hvem en virksomhed er. Ikke hvornår den er klar til at handle. Den forskel koster ordrer.</div>
+          <div class="ed-seg-meta">
+            <span class="ed-seg-vol">62.398 virksomheder</span>
+            <span class="ed-seg-stak">60.000–140.000 kr./år i stak</span>
+            <span class="ed-seg-wil ed-wil-ext">Særdeles høj</span>
+          </div>
+        </div>
+
+        <div class="ed-seg-card bh">
+          <div class="ed-seg-eyebrow"><span class="ed-bh-pill">★ Beachhead 2</span> IT, Software & SaaS</div>
+          <div class="ed-seg-name">Produktet er ulovligt om seks måneder</div>
+          <div class="ed-seg-scene">CTO'en ved ikke, at det produkt hun sætter i drift til foråret, strider mod et EU-direktiv der træder i kraft i maj. Ingen overvåger det i Bruxelles. Udviklerne siger, de nok selv kan bygge noget. Det kan de godt — men det tager fire måneder og koster mere end abonnementet.</div>
+          <div class="ed-seg-meta">
+            <span class="ed-seg-vol">20.514 virksomheder</span>
+            <span class="ed-seg-stak">105.000–130.000 kr./år i stak</span>
+            <span class="ed-seg-wil ed-wil-high">Høj</span>
+          </div>
+        </div>
+
+        <div class="ed-seg-card">
+          <div class="ed-seg-eyebrow">Finansiering & Forsikring</div>
+          <div class="ed-seg-name">Fem minutter er en forretningsmodel</div>
+          <div class="ed-seg-scene">Markedet inddiskonterer nyheder, inden de er offentliggjort. Det er ikke en metafor — det er mekanikken. Forvalteren der kendte EU's næste ESG-krav tidligt nok, solgte ud af shipping inden frokost. Alle andre absorberede tabet.</div>
+          <div class="ed-seg-meta">
+            <span class="ed-seg-vol">86.936 virksomheder</span>
+            <span class="ed-seg-stak">20.000–50.000 kr./år i stak</span>
+            <span class="ed-seg-wil ed-wil-ext">Ekstremt høj</span>
+          </div>
+        </div>
+
+        <div class="ed-seg-card">
+          <div class="ed-seg-eyebrow">Industri & Cleantech</div>
+          <div class="ed-seg-name">Vestas afkræver det allerede</div>
+          <div class="ed-seg-scene">Underleverandøren i Ikast rapporterer nu CO2 på stål — på vegne af Vestas. CSRD skubber byrden nedad i kæden til de virksomheder, der aldrig fik en bæredygtighedsafdeling. Det er ikke fremtid. Det er allerede lovgivning.</div>
+          <div class="ed-seg-meta">
+            <span class="ed-seg-vol">20.545 virksomheder</span>
+            <span class="ed-seg-stak">30.000–50.000 kr./år i stak</span>
+            <span class="ed-seg-wil ed-wil-med">Middel–høj</span>
+          </div>
+        </div>
+
+        <div class="ed-seg-card">
+          <div class="ed-seg-eyebrow">Bygge & Anlæg</div>
+          <div class="ed-seg-name">Licitationen vindes ugen inden</div>
+          <div class="ed-seg-scene">Afgørelsen falder ved bordet. Men den der vidste at stålpriserne steg næste kvartal, bød rigtigt. Den anden arbejder nu på minus og forstår ikke hvorfor. Tidlig varsling er ikke en fordel i byggeriet — det er prisen for at overleve.</div>
+          <div class="ed-seg-meta">
+            <span class="ed-seg-vol">36.826 virksomheder</span>
+            <span class="ed-seg-stak">10.000–50.000 kr./år i stak</span>
+            <span class="ed-seg-wil ed-wil-med">Middel</span>
+          </div>
+        </div>
+
+        <div class="ed-seg-card">
+          <div class="ed-seg-eyebrow">Handel & Logistik</div>
+          <div class="ed-seg-name">Tre uger var 40.000 kroner</div>
+          <div class="ed-seg-scene">Engrosvirksomheden bestilte containerne tre uger for tidligt og sparte 40.000 kr. i fragttillæg. Konkurrenten læste det samme signal en uge for sent og betalte den fulde pris. Tidlig varsling er ikke logistik — det er et regnskabsspørgsmål.</div>
+          <div class="ed-seg-meta">
+            <span class="ed-seg-vol">68.303 virksomheder</span>
+            <span class="ed-seg-stak">30.000–50.000 kr./år i stak</span>
+            <span class="ed-seg-wil ed-wil-med">Middel–høj</span>
+          </div>
+        </div>
+
+        <div class="ed-seg-card">
+          <div class="ed-seg-eyebrow">Ejendom & Udlejning</div>
+          <div class="ed-seg-name">Alle vidste det — undtagen dem der havde skrevet under</div>
+          <div class="ed-seg-scene">Store kontorlejemål er ude. Det ved alle. Undtagen dem der allerede har skrevet under. Dem der opfangede signalet om hybridarbejdets fremmarch i tide, ombyggede til co-working. De har fuld belægning. De andre har tomgang og fem år tilbage på kontrakten.</div>
+          <div class="ed-seg-meta">
+            <span class="ed-seg-vol">38.535 virksomheder</span>
+            <span class="ed-seg-stak">20.000–50.000 kr./år i stak</span>
+            <span class="ed-seg-wil ed-wil-ext">Særdeles høj</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="ed-rm-footer">
+      <div class="ed-rm-stat">
+        <div class="ed-rm-stat-v">420.000</div>
+        <div class="ed-rm-stat-l">Aktive virksomheder i Danmark</div>
+      </div>
+      <div class="ed-rm-stat">
+        <div class="ed-rm-stat-v">82.912</div>
+        <div class="ed-rm-stat-l">Virksomheder i beachhead fase 1</div>
+      </div>
+      <div class="ed-rm-stat">
+        <div class="ed-rm-stat-v">10%</div>
+        <div class="ed-rm-stat-l">Trygge ved AI-journalistik i DK · Reuters 2025</div>
+      </div>
+      <div class="ed-rm-stat">
+        <div class="ed-rm-stat-v">16,5 mia.</div>
+        <div class="ed-rm-stat-l">DKK/år i SMV-sektorens compliance-byrde</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>

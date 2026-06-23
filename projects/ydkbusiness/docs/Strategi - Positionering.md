@@ -9,7 +9,11 @@ For SMV-ejere og erhvervsledere i Danmark, der bruger tid og penge på at sy et 
 ## Workshop-output (Geoffrey Moore)
 
 **Q1 — Målgruppe**
-SMV-ejere (5-50 ansatte), ledere i mellemstore virksomheder (50-250 ansatte), iværksættere under 5 år — i hele Danmark. Fase 2: internationale erhvervslæsere.
+**Beachhead fase 1:** Ledere og partnere i Erhvervsservice & Rådgivning (advokatfirmaer, konsulenthuse, revision — 62.398 aktive virksomheder) og IT, Software & SaaS (tech-scale-ups og softwarevirksomheder — 20.514 aktive virksomheder). Begge segmenter 5-250 ansatte. Begge lever af asymmetrisk viden og konverterer intelligence direkte til omsætning eller compliance.
+
+**Bredere målgruppe fase 2:** SMV-ejere og ledere i Industri & Cleantech, Handel & Logistik, Bygge & Anlæg, Finansiering og Ejendom — 5-250 ansatte i hele Danmark.
+
+**Fase 3:** Internationale erhvervslæsere.
 
 **Q2 — Primært behov**
 Handlingsorienteret erhvervsinformation plus de perspektiver og nuancer der går tabt i mainstream-medierne. Modpolen og kilden der mangler.
@@ -22,6 +26,8 @@ Erhvervsnyheder og business intelligence i ét produkt til 5.000 kr./år — mod
 
 **Q5 — Bevis**
 Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikke et løfte — det er fungerende teknologi bag produktet fra dag ét. SMV-segmentets compliance-byrde er dokumenteret: statsrelateret papirarbejde koster segmentet 16,5 mia. DKK/år. Regulatory overvågning er ikke en feature — det er målbar ROI fra abonnement 1.
+
+AI-skepsis er den primære adoptionsbarriere i begge beachhead-segmenter: kun 10% af danske nyhedsbrugere er trygge ved AI-genereret journalistik (mod 44% globalt, Reuters Institute 2025). Y Business imødegår dette med et eksplicit menneskeligt verifikationslag — "AI producerer, mennesker verificerer" — som kommunikeres aktivt i onboarding og salgsmateriale. I rådgivningsbranchen er dette eksistenskritisk: en faktuel fejl kan udløse erstatningssag. I IT-segmentet er det afgørende for at overvinde build-vs-buy-modstanden fra interne udviklere.
 
 ---
 
@@ -49,6 +55,24 @@ Supertrends-platformen er i drift i dag og crawler 5.000 kilder 24/7. Det er ikk
 **Y.dk Business: 5.000 kr./år** — nyheder, overvågning, trends, briefs og leadgenerering i ét abonnement. Billigere end Finans.dk alene — og med fem ekstra lag. Ingen silo. Ingen videnskoordinator. Ingen Frankenstein-stack.
 
 *Note: Omkostningstal for virksomheder med 50+ ansatte der skalerer per bruger (120.000–180.000 kr./år) er ikke relevant sammenligning — Y Business er ét virksomhedsabonnement uanset medarbejderantal.*
+
+---
+
+## Beachhead-segmenter og primær JTBD
+
+Forskning (DST-data, juin 2026) identificerer 7 potentielle brancher. GTM-eksekveringen koncentreres om to beachhead-segmenter med den højeste informationsintensitet, SaaS-parathed og betalingsvillighed.
+
+| Segment | Virksomheder | Frankenstein-stak (50-150 ans.) | Primær JTBD | Kritisk barriere |
+|---|---|---|---|---|
+| Erhvervsservice & Rådgivning | 62.398 | 180.000–223.000 kr./år | Identificér hvornår kunden er klar til at handle — ikke hvem de er, men hvornår | AI-fejl i tillidserhverv → eksplicit verifikationsmodel |
+| IT, Software & SaaS | 20.514 | 105.000–130.000+ kr./år | Overvåg EU-regulering (AI Act, DORA, GDPR) der rammer produktroadmap direkte | Build-vs-buy: udviklere vil bygge det selv → redaktionel kuratering er USP'en |
+
+**Fase 2-segmenter** (konservative, aktiveres efter Proof of Concept):
+Industri & Cleantech (20.545), Bygge & Anlæg (36.826), Handel & Logistik (68.303), Finansiering (86.936), Ejendom (38.535).
+
+**Positionering per segment er ikke ens.** Rådgiveren søger lead-signaler og klientintelligens. CTO'en søger regulatorisk tidlig varsling og roadmap-input. Onboarding-flow og messaging forgrener sig fra dag 1.
+
+**SaaS-imperativet:** Kun 11-12% af ledere (35-54 år) betaler for nyheder som privatpersoner. Produktet MÅ sælges som B2B-driftsværktøj og fradragsberettiget virksomhedsabonnement — aldrig som personligt nyhedsmedie.
 
 ---
 
