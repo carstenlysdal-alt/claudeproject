@@ -27,19 +27,26 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 *{box-sizing:border-box;margin:0;padding:0}
 
 /* HEADER — matcher ybusiness-dashboard præcist */
-.dash-header{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(250,250,248,.97);border-bottom:2px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.dash-header{position:absolute;top:0;left:0;right:0;height:68px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 52px;background:rgba(250,250,248,.97);border-bottom:2px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10;box-shadow:0 2px 12px rgba(0,0,0,.04)}
 .dash-brand{display:flex;align-items:center;gap:16px}
 .dash-brand-mark{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--accent);font-style:italic;letter-spacing:-.01em}
 .dash-divider{width:1px;height:18px;background:var(--line)}
 .dash-brand-sub{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.01em}
-.dash-meta{display:flex;align-items:center;gap:20px}
+.dash-meta{display:flex;align-items:center;gap:20px;justify-self:end}
+.vt-group{display:inline-flex;align-items:stretch;border:1px solid var(--line);background:var(--card);min-height:36px;overflow:hidden}
+.vt-btn{display:inline-flex;align-items:center;padding:0 10px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-right:1px solid var(--line);transition:background .15s ease,color .15s ease}
+.vt-btn:last-child{border-right:none}
+.vt-btn:hover{background:var(--accent-10);color:var(--accent)}
+.vt-btn.vt-active{background:var(--accent);color:#fff;border-right-color:var(--accent)}
+.vt-fixed{position:fixed;top:0;right:0;height:68px;z-index:9999;display:flex;align-items:center;padding-right:52px;pointer-events:none}
+.vt-fixed .vt-group{pointer-events:auto}
 .dash-tag{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
 .dash-tag.hi{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-30);padding:2px 7px;border-radius:3px;font-weight:700;font-size:8px}
 .accent-bar{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent)}
 .bg-grid{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(54,19,82,.04) 1px,transparent 1px);background-size:36px 36px}
 
 /* HUB */
-.hub-body{position:absolute;top:64px;left:0;right:0;bottom:0}
+.hub-body{position:absolute;top:68px;left:0;right:0;bottom:0}
 
 .hub-intro{padding:28px 56px 22px;background:var(--card);border-bottom:1px solid var(--line);flex-shrink:0}
 .hub-eyebrow{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
@@ -67,16 +74,16 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .stat-l{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.09em;text-transform:uppercase}
 
 /* SECTION CHROME — matcher ybusiness-dashboard */
-.sec-hdr{position:absolute;top:64px;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:var(--card);border-bottom:1px solid var(--line)}
+.sec-hdr{position:absolute;top:68px;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:var(--card);border-bottom:1px solid var(--line)}
 .back-btn{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;background:none;border:none;min-height:40px;padding:8px 16px 8px 0;transition:opacity .18s ease,transform .1s cubic-bezier(.2,0,0,1);opacity:.7}
 .back-btn::before{content:'←';font-size:13px}
 .back-btn:hover{opacity:1}
 .back-btn:active{transform:scale(.96)}
 .sec-num{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.08em}
-.sec-body{position:absolute;top:132px;left:0;right:0;bottom:0;overflow-y:auto}
+.sec-body{position:absolute;top:136px;left:0;right:0;bottom:0;overflow-y:auto}
 
 /* SEKTIONSNAVIGATION — i headeren per screen, ybusiness-mønster */
-.dash-nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:stretch;height:64px;gap:0}
+.dash-nav{display:flex;align-items:stretch;height:68px;gap:0;justify-self:center}
 .dash-nav-item{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:0 16px;display:flex;align-items:center;cursor:pointer;position:relative;white-space:nowrap;border:none;background:none;transition:color .15s}
 .dash-nav-item::after{content:'';position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:center;transition:transform .22s cubic-bezier(.22,.61,.36,1)}
 .dash-nav-item:hover{color:var(--ink70)}
@@ -121,7 +128,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s1-col.dark .s1-sol-sub{color:rgba(250,250,248,.52)}
 
 /* ── HUB RADIAL ── */
-.hub-header-rubrik{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:var(--ink);letter-spacing:-.015em;white-space:nowrap;pointer-events:none}
+.hub-header-rubrik{justify-self:center;font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:var(--ink);letter-spacing:-.015em;white-space:nowrap;pointer-events:none}
 .hub-header-rubrik em{color:var(--accent);font-style:italic}
 .hub-canvas{position:absolute;top:0;left:0;right:0;bottom:64px;overflow:hidden}
 .spokes-svg{position:absolute;top:0;left:0;width:1440px;height:772px;pointer-events:none}
@@ -613,10 +620,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <span class="dash-brand-sub">Redaktionelt Appendix</span>
   </div>
   <div class="hub-header-rubrik">Erhvervsjournalistik for dem, der ikke har <em>tid til at fare vild</em></div>
-  <div class="dash-meta">
-    <span class="dash-tag">Juni 2026</span>
-    <span class="dash-tag hi">Redaktionel metode</span>
-  </div>
 </header>
 <div class="hub-body">
   <div class="hub-canvas">
@@ -2743,6 +2746,13 @@ Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
 </div>
 
 </div>
+</div>
+<div class="vt-fixed">
+  <div class="vt-group">
+    <a class="vt-btn" href="ybusiness-dashboard.html">Intern</a>
+    <a class="vt-btn" href="ybusiness-ekstern.html">Ekstern</a>
+    <a class="vt-btn vt-active" href="yredaktion-dashboard.html">Redaktionelt koncept</a>
+  </div>
 </div>
 <script>
 (function(){

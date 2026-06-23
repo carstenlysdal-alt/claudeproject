@@ -75,8 +75,8 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
 /* === HEADER — Y Rating editorial style === */
 .dash-header {
-  position: absolute; top: 0; left: 0; right: 0; height: 64px;
-  display: flex; align-items: center; justify-content: space-between;
+  position: absolute; top: 0; left: 0; right: 0; height: 68px;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
   padding: 0 52px;
   background: rgba(250, 250, 248, 0.97);
   border-bottom: 2px solid var(--line);
@@ -102,7 +102,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   color: var(--muted); letter-spacing: 0.01em;
 }
 
-.dash-meta { display: flex; align-items: center; gap: 20px; }
+.dash-meta { display: flex; align-items: center; gap: 20px; justify-self: end; }
 .dash-tag {
   font-family: var(--mono); font-size: 10px; font-weight: 500;
   color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
@@ -127,7 +127,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
 /* === HUB === */
 .hub-body {
-  position: absolute; top: 64px; left: 0; right: 0; bottom: 0;
+  position: absolute; top: 68px; left: 0; right: 0; bottom: 0;
 }
 .hub-intro {
   padding: 40px 56px 34px;
@@ -220,7 +220,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
 /* === SECTION CHROME === */
 .sec-hdr {
-  position: absolute; top: 64px; left: 0; right: 0; height: 68px;
+  position: absolute; top: 68px; left: 0; right: 0; height: 68px;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 52px;
   background: var(--card);
@@ -248,9 +248,12 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 }
 
 .sec-body {
-  position: absolute; top: 132px; left: 0; right: 0; bottom: 0;
+  position: absolute; top: 136px; left: 0; right: 0; bottom: 0;
+}
+.sec-cols {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1px; background: var(--line);
+  height: 100%;
 }
 .col { background: var(--card); padding: 40px 48px; overflow-y: auto; position: relative; }
 .col::-webkit-scrollbar { width: 4px; }
@@ -474,7 +477,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .bm-action-btn { text-decoration: none; }
 .bm-plot-head {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
   background: var(--ink);
   color: #fff;
   border-bottom: 1px solid var(--line);
@@ -545,7 +548,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .bm-plot-rows { display: grid; }
 .bm-plot-row {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
   min-height: 50px;
   border-bottom: 1px solid var(--line2);
 }
@@ -886,8 +889,8 @@ body.bm-editing .bm-plot-cell .bm-add {
 
 /* === SECTION NAV === */
 .dash-nav {
-  position: absolute; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: stretch; height: 64px; gap: 0;
+  display: flex; align-items: stretch; height: 68px; gap: 0;
+  justify-self: center;
 }
 .dash-nav-item {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
@@ -1079,21 +1082,29 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 .btn-feedback:hover { background: var(--line2); border-color: var(--accent-30); color: var(--accent); }
 .btn-feedback svg { flex-shrink: 0; }
-.dash-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-.external-toggle {
-  min-height: 36px; display: inline-flex; align-items: stretch;
-  border: 1px solid var(--line); background: var(--card); color: var(--muted);
-  font-family: var(--mono); font-size: 0; font-weight: 700;
-  letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
-  transition: background .15s ease, border-color .15s ease, color .15s ease;
+.dash-actions { display: flex; align-items: center; gap: 8px; justify-self: end; }
+.vt-fixed {
+  position: fixed; top: 0; right: 0; height: 68px; z-index: 9999;
+  display: flex; align-items: center; padding-right: 52px;
+  pointer-events: none;
 }
-.external-toggle::before {
-  content: 'Intern'; display: inline-flex; align-items: center; padding: 0 10px;
-  background: var(--accent); color: #fff; border-right: 1px solid var(--accent); font-size: 8px;
+.vt-fixed .vt-group { pointer-events: auto; }
+.vt-group {
+  display: inline-flex; align-items: stretch;
+  border: 1px solid var(--line); background: var(--card);
+  min-height: 36px; overflow: hidden;
 }
-.external-toggle::after { content: 'Ekstern'; display: inline-flex; align-items: center; padding: 0 10px; font-size: 8px; }
-.external-toggle:hover { border-color: var(--accent-20); color: var(--accent); }
-.external-toggle:hover::after { background: var(--accent-10); }
+.vt-btn {
+  display: inline-flex; align-items: center; padding: 0 10px;
+  font-family: var(--mono); font-size: 8px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  border-right: 1px solid var(--line);
+  transition: background .15s ease, color .15s ease;
+}
+.vt-btn:last-child { border-right: none; }
+.vt-btn:hover { background: var(--accent-10); color: var(--accent); }
+.vt-btn.vt-active { background: var(--accent); color: #fff; border-right-color: var(--accent); }
 
 .fb-overlay {
   position: fixed; inset: 0;
@@ -1147,7 +1158,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 /* === RADIAL HUB === */
 .hub-canvas { position: absolute; top: 0; left: 0; right: 0; bottom: 64px; overflow: hidden; }
 .hub-header-rubrik {
-  position: absolute; left: 50%; transform: translateX(-50%);
+  justify-self: center;
   font-family: var(--serif); font-size: 17px; font-weight: 700; font-style: italic;
   color: var(--ink); letter-spacing: -0.015em; white-space: nowrap; pointer-events: none;
 }
@@ -1305,7 +1316,6 @@ body.bm-editing .bm-plot-cell .bm-add {
     </div>
     <div class="hub-header-rubrik">Forretningsmodel, produktværdi og vej til <em>omsætning</em></div>
     <div class="dash-meta">
-      <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
       <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         Feedback
@@ -1452,7 +1462,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
     </nav>
     <div class="dash-actions">
-    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
@@ -1466,6 +1475,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   </div>
 
   <div class="sec-body">
+    <div class="sec-cols">
     <div class="col ani" style="overflow:hidden; padding-bottom:0;">
       <div class="biz-col-inner">
       <div class="col-label" style="flex-shrink:0;">Prismodel — 5 tiers fra Erhverv til API</div>
@@ -1766,6 +1776,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div>
     </div>
   </div>
+  </div>
   <div class="pnum">Business model & revenue · 01/05</div>
 </div>
 
@@ -1786,7 +1797,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
     </nav>
     <div class="dash-actions">
-    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
@@ -1800,6 +1810,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   </div>
 
   <div class="sec-body">
+    <div class="sec-cols">
     <div class="col ani">
       <div class="col-label">Kategori & dokumenterede fordele</div>
       <div class="cat-box">
@@ -1913,6 +1924,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div>
     </div>
   </div>
+  </div>
   <div class="pnum">Markedspositionering · 03/05</div>
 </div>
 
@@ -1933,7 +1945,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
     </nav>
     <div class="dash-actions">
-    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
@@ -1947,6 +1958,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   </div>
 
   <div class="sec-body">
+    <div class="sec-cols">
     <div class="col ani">
       <div class="col-label">Partnerkanaler — 70.000+ virksomheder i potentiel medlemsreach</div>
       <table class="tbl">
@@ -1998,6 +2010,7 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div>
     </div>
   </div>
+  </div>
   <div class="pnum">Go-to-market & roadmap · 04/05</div>
 </div>
 
@@ -2018,7 +2031,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
     </nav>
     <div class="dash-actions">
-    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
@@ -2032,6 +2044,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   </div>
 
   <div class="sec-body">
+    <div class="sec-cols">
     <div class="col ani">
       <div class="cat-box" style="margin-bottom:20px;">
         <div class="cat-lbl">Value proposition</div>
@@ -2109,6 +2122,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 
     </div>
   </div>
+  </div>
   <div class="pnum">Produkt · 02/05</div>
 </div>
 
@@ -2129,7 +2143,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item nav-active" data-target="s-ai">AI & tech</button>
     </nav>
     <div class="dash-actions">
-    <a class="external-toggle" href="ybusiness-ekstern.html">Ekstern præsentation</a>
     <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Feedback
@@ -2143,6 +2156,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   </div>
 
   <div class="sec-body">
+    <div class="sec-cols">
     <div class="col ani">
       <div class="cat-box" style="margin-bottom:24px;">
         <div class="cat-lbl">Redaktionel vertikal · Pro-indhold · sponsorpotentiale</div>
@@ -2207,11 +2221,19 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div>
     </div>
   </div>
+  </div>
   <div class="pnum">AI & tech for erhverv · 05/05</div>
 </div>
 
 </div><!-- /.deck-stage -->
 </div><!-- /.deck-viewport -->
+<div class="vt-fixed">
+  <div class="vt-group">
+    <a class="vt-btn vt-active" href="ybusiness-dashboard.html">Intern</a>
+    <a class="vt-btn" href="ybusiness-ekstern.html">Ekstern</a>
+    <a class="vt-btn" href="yredaktion-dashboard.html">Redaktionelt koncept</a>
+  </div>
+</div>
 
 <!-- ======================================================
      FEEDBACK MODAL
