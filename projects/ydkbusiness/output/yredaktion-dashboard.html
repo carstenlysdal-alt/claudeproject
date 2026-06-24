@@ -38,8 +38,9 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .vt-btn:last-child{border-right:none}
 .vt-btn:hover{background:var(--accent-10);color:var(--accent)}
 .vt-btn.vt-active{background:var(--accent);color:#fff;border-right-color:var(--accent)}
-.vt-fixed{position:fixed;top:0;right:0;height:68px;z-index:9999;display:flex;align-items:center;padding-right:52px;pointer-events:none}
+.vt-fixed{position:fixed;z-index:9999;display:flex;align-items:center;height:68px;padding-right:52px;pointer-events:none}
 .vt-fixed .vt-group{pointer-events:auto}
+#page-veil{position:fixed;inset:0;z-index:9999999;background:#FAFAF8;pointer-events:none;opacity:1;transition:opacity .2s ease}
 .dash-tag{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
 .dash-tag.hi{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-30);padding:2px 7px;border-radius:3px;font-weight:700;font-size:8px}
 .accent-bar{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent)}
@@ -84,8 +85,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
 /* SEKTIONSNAVIGATION — i headeren per screen, ybusiness-mønster */
 .dash-nav{display:flex;align-items:stretch;height:68px;gap:0;justify-self:center}
-.dash-nav-item{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:0 16px;display:flex;align-items:center;cursor:pointer;position:relative;white-space:nowrap;border:none;background:none;transition:color .15s}
-.dash-nav-item::after{content:'';position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:center;transition:transform .22s cubic-bezier(.22,.61,.36,1)}
+.dash-nav-item{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:0 10px;display:flex;align-items:center;cursor:pointer;position:relative;white-space:nowrap;border:none;background:none;transition:color .15s}
+.dash-nav-item::after{content:'';position:absolute;bottom:0;left:10px;right:10px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:center;transition:transform .22s cubic-bezier(.22,.61,.36,1)}
 .dash-nav-item:hover{color:var(--ink70)}
 .dash-nav-item:active{transform:scale(.96)}
 .dash-nav-item.nav-active{color:var(--accent)}
@@ -787,13 +788,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   <div class="dash-brand"><span class="dash-brand-mark">Y</span></div>
   <nav class="dash-nav">
     <button class="dash-nav-item nav-active" data-target="s1">01 · Problem</button>
-    <button class="dash-nav-item" data-target="s2">02 · Læserbehov</button>
-    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
-    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
-    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
-    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s2">02 · Læser</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segment</button>
+    <button class="dash-nav-item" data-target="s4">04 · Format</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempel</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokol</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
-    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgen</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">01 / 07</span></div>
 </header>
@@ -895,13 +896,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   <div class="dash-brand"><span class="dash-brand-mark">Y</span></div>
   <nav class="dash-nav">
     <button class="dash-nav-item" data-target="s1">01 · Problem</button>
-    <button class="dash-nav-item nav-active" data-target="s2">02 · Læserbehov</button>
-    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
-    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
-    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
-    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item nav-active" data-target="s2">02 · Læser</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segment</button>
+    <button class="dash-nav-item" data-target="s4">04 · Format</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempel</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokol</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
-    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgen</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">02 / 07</span></div>
 </header>
@@ -1010,13 +1011,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   <div class="dash-brand"><span class="dash-brand-mark">Y</span></div>
   <nav class="dash-nav">
     <button class="dash-nav-item" data-target="s1">01 · Problem</button>
-    <button class="dash-nav-item" data-target="s2">02 · Læserbehov</button>
-    <button class="dash-nav-item nav-active" data-target="s3">03 · Segmenter</button>
-    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
-    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
-    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s2">02 · Læser</button>
+    <button class="dash-nav-item nav-active" data-target="s3">03 · Segment</button>
+    <button class="dash-nav-item" data-target="s4">04 · Format</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempel</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokol</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
-    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgen</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">03 / 07</span></div>
 </header>
@@ -1370,13 +1371,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   <div class="dash-brand"><span class="dash-brand-mark">Y</span></div>
   <nav class="dash-nav">
     <button class="dash-nav-item" data-target="s1">01 · Problem</button>
-    <button class="dash-nav-item" data-target="s2">02 · Læserbehov</button>
-    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
-    <button class="dash-nav-item nav-active" data-target="s4">04 · Formater</button>
-    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
-    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s2">02 · Læser</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segment</button>
+    <button class="dash-nav-item nav-active" data-target="s4">04 · Format</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempel</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokol</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
-    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgen</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">04 / 07</span></div>
 </header>
@@ -1769,13 +1770,13 @@ function togglePromptModal(){
   <div class="dash-brand"><span class="dash-brand-mark">Y</span></div>
   <nav class="dash-nav">
     <button class="dash-nav-item" data-target="s1">01 · Problem</button>
-    <button class="dash-nav-item" data-target="s2">02 · Læserbehov</button>
-    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
-    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
-    <button class="dash-nav-item nav-active" data-target="s5">05 · Eksempler</button>
-    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s2">02 · Læser</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segment</button>
+    <button class="dash-nav-item" data-target="s4">04 · Format</button>
+    <button class="dash-nav-item nav-active" data-target="s5">05 · Eksempel</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokol</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
-    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgen</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">05 / 07</span></div>
 </header>
@@ -2001,13 +2002,13 @@ function togglePromptModal(){
   <div class="dash-brand"><span class="dash-brand-mark">Y</span></div>
   <nav class="dash-nav">
     <button class="dash-nav-item" data-target="s1">01 · Problem</button>
-    <button class="dash-nav-item" data-target="s2">02 · Læserbehov</button>
-    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
-    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
-    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
-    <button class="dash-nav-item nav-active" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s2">02 · Læser</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segment</button>
+    <button class="dash-nav-item" data-target="s4">04 · Format</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempel</button>
+    <button class="dash-nav-item nav-active" data-target="s6">06 · Protokol</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
-    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgen</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">06 / 07</span></div>
 </header>
@@ -2146,13 +2147,13 @@ function togglePromptModal(){
   <div class="dash-brand"><span class="dash-brand-mark">Y</span></div>
   <nav class="dash-nav">
     <button class="dash-nav-item" data-target="s1">01 · Problem</button>
-    <button class="dash-nav-item" data-target="s2">02 · Læserbehov</button>
-    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
-    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
-    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
-    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s2">02 · Læser</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segment</button>
+    <button class="dash-nav-item" data-target="s4">04 · Format</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempel</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokol</button>
     <button class="dash-nav-item nav-active" data-target="s7">07 · AI</button>
-    <button class="dash-nav-item" data-target="s8">08 · Morgenbrief</button>
+    <button class="dash-nav-item" data-target="s8">08 · Morgen</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">07 / 08</span></div>
 </header>
@@ -2325,13 +2326,13 @@ function togglePromptModal(){
   <div class="dash-brand"><span class="dash-brand-mark">Y</span></div>
   <nav class="dash-nav">
     <button class="dash-nav-item" data-target="s1">01 · Problem</button>
-    <button class="dash-nav-item" data-target="s2">02 · Læserbehov</button>
-    <button class="dash-nav-item" data-target="s3">03 · Segmenter</button>
-    <button class="dash-nav-item" data-target="s4">04 · Formater</button>
-    <button class="dash-nav-item" data-target="s5">05 · Eksempler</button>
-    <button class="dash-nav-item" data-target="s6">06 · Protokoller</button>
+    <button class="dash-nav-item" data-target="s2">02 · Læser</button>
+    <button class="dash-nav-item" data-target="s3">03 · Segment</button>
+    <button class="dash-nav-item" data-target="s4">04 · Format</button>
+    <button class="dash-nav-item" data-target="s5">05 · Eksempel</button>
+    <button class="dash-nav-item" data-target="s6">06 · Protokol</button>
     <button class="dash-nav-item" data-target="s7">07 · AI</button>
-    <button class="dash-nav-item nav-active" data-target="s8">08 · Morgenbrief</button>
+    <button class="dash-nav-item nav-active" data-target="s8">08 · Morgen</button>
   </nav>
   <div class="dash-meta"><span class="dash-tag">08 / 08</span></div>
 </header>
@@ -2747,13 +2748,12 @@ Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
 
 </div>
 </div>
-<div class="vt-fixed">
-  <div class="vt-group">
-    <a class="vt-btn" href="ybusiness-dashboard.html">Intern</a>
-    <a class="vt-btn" href="ybusiness-ekstern.html">Ekstern</a>
-    <a class="vt-btn vt-active" href="yredaktion-dashboard.html">Redaktionelt koncept</a>
-  </div>
-</div>
+<div class="vt-fixed" id="vt-fixed"><div class="vt-group">
+  <a class="vt-btn" href="ybusiness-dashboard.html">Intern</a>
+  <a class="vt-btn" href="ybusiness-ekstern.html">Ekstern</a>
+  <a class="vt-btn vt-active" href="yredaktion-dashboard.html">Redaktionelt koncept</a>
+</div></div>
+<div id="page-veil"></div>
 <script>
 (function(){
   var current='hub';
@@ -2762,9 +2762,12 @@ Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
   function scale(){
     var vw=window.innerWidth,vh=window.innerHeight;
     var s=Math.min(vw/1440,vh/900);
+    var left=(vw-1440*s)/2, top=(vh-900*s)/2;
     stage.style.transform='scale('+s+')';
-    stage.style.left=((vw-1440*s)/2)+'px';
-    stage.style.top=((vh-900*s)/2)+'px';
+    stage.style.left=left+'px';
+    stage.style.top=top+'px';
+    var vt=document.getElementById('vt-fixed');
+    if(vt){vt.style.top=Math.max(0,top)+'px';vt.style.right=Math.max(0,left)+'px';}
   }
   scale();
   window.addEventListener('resize',scale);
@@ -3155,5 +3158,18 @@ function animateWave(on) {
   </div>
 </div>
 
+<script>
+(function(){
+  var veil=document.getElementById('page-veil');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){veil.style.opacity='0';});});
+  document.querySelectorAll('.vt-btn:not(.vt-active)').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();var href=this.href;
+      veil.style.opacity='1';
+      setTimeout(function(){window.location.href=href;},220);
+    });
+  });
+}());
+</script>
 </body>
 </html>

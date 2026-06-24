@@ -511,5 +511,22 @@ p { margin:0; text-wrap:pretty; }
   });
 }());
 </script>
+<style>
+#page-veil{position:fixed;inset:0;z-index:9999999;background:#FAFAF8;pointer-events:none;opacity:1;transition:opacity .2s ease}
+</style>
+<div id="page-veil"></div>
+<script>
+(function(){
+  var veil=document.getElementById('page-veil');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){veil.style.opacity='0';});});
+  document.querySelectorAll('.vt-btn:not(.vt-active)').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();var href=this.href;
+      veil.style.opacity='1';
+      setTimeout(function(){window.location.href=href;},220);
+    });
+  });
+}());
+</script>
 </body>
 </html>

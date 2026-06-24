@@ -1084,11 +1084,16 @@ body.bm-editing .bm-plot-cell .bm-add {
 .btn-feedback svg { flex-shrink: 0; }
 .dash-actions { display: flex; align-items: center; gap: 8px; justify-self: end; }
 .vt-fixed {
-  position: fixed; top: 0; right: 0; height: 68px; z-index: 9999;
-  display: flex; align-items: center; padding-right: 52px;
-  pointer-events: none;
+  position: fixed; z-index: 9999;
+  display: flex; align-items: center; height: 68px;
+  padding-right: 52px; pointer-events: none;
 }
 .vt-fixed .vt-group { pointer-events: auto; }
+#page-veil {
+  position: fixed; inset: 0; z-index: 9999999;
+  background: #FAFAF8; pointer-events: none;
+  opacity: 1; transition: opacity 0.2s ease;
+}
 .vt-group {
   display: inline-flex; align-items: stretch;
   border: 1px solid var(--line); background: var(--card);
@@ -2369,13 +2374,12 @@ body.bm-editing .bm-plot-cell .bm-add {
 
 </div><!-- /.deck-stage -->
 </div><!-- /.deck-viewport -->
-<div class="vt-fixed">
-  <div class="vt-group">
-    <a class="vt-btn vt-active" href="ybusiness-dashboard.html">Intern</a>
-    <a class="vt-btn" href="ybusiness-ekstern.html">Ekstern</a>
-    <a class="vt-btn" href="yredaktion-dashboard.html">Redaktionelt koncept</a>
-  </div>
-</div>
+<div class="vt-fixed" id="vt-fixed"><div class="vt-group">
+  <a class="vt-btn vt-active" href="ybusiness-dashboard.html">Intern</a>
+  <a class="vt-btn" href="ybusiness-ekstern.html">Ekstern</a>
+  <a class="vt-btn" href="yredaktion-dashboard.html">Redaktionelt koncept</a>
+</div></div>
+<div id="page-veil"></div>
 
 <!-- ======================================================
      FEEDBACK MODAL
@@ -2406,11 +2410,12 @@ body.bm-editing .bm-plot-cell .bm-add {
 (function () {
   var stage = document.getElementById('stage');
   function scale() {
-    var vpad = 160;
-    var r = Math.min(window.innerWidth / 1440, (window.innerHeight - vpad) / 900);
+    var r = Math.min(window.innerWidth / 1440, window.innerHeight / 900);
     var x = (window.innerWidth  - 1440 * r) / 2;
     var y = (window.innerHeight - 900 * r) / 2;
     stage.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
+    var vt = document.getElementById('vt-fixed');
+    if (vt) { vt.style.top = Math.max(0, y) + 'px'; vt.style.right = Math.max(0, x) + 'px'; }
   }
   scale();
   window.addEventListener('resize', scale);
@@ -2577,12 +2582,13 @@ body.bm-editing .bm-plot-cell .bm-add {
   function rescaleStage() {
     var s = document.getElementById('stage');
     var offset = isDirty ? 52 : 0;
-    var vpad = 160;
-    var availH = window.innerHeight - offset - vpad;
+    var availH = window.innerHeight - offset;
     var r = Math.min(window.innerWidth / 1440, availH / 900);
     var x = (window.innerWidth  - 1440 * r) / 2;
-    var y = offset + (window.innerHeight - offset - 900 * r) / 2;
+    var y = offset + (availH - 900 * r) / 2;
     s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
+    var vt = document.getElementById('vt-fixed');
+    if (vt) { vt.style.top = Math.max(0, y) + 'px'; vt.style.right = Math.max(0, x) + 'px'; }
   }
 
   /* MutationObserver — opdager alle tekst-ændringer */
@@ -3094,5 +3100,18 @@ document.getElementById('research-overlay').addEventListener('click', function(e
   </div>
 </div>
 
+<script>
+(function(){
+  var veil=document.getElementById('page-veil');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){veil.style.opacity='0';});});
+  document.querySelectorAll('.vt-btn:not(.vt-active)').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();var href=this.href;
+      veil.style.opacity='1';
+      setTimeout(function(){window.location.href=href;},220);
+    });
+  });
+}());
+</script>
 </body>
 </html>
