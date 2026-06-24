@@ -46,14 +46,11 @@ Det er Y Business' redaktionelle og kommercielle kerne.
 
 ## 2. Målgruppehierarki
 
-Y Business skriver ikke til "erhvervslivet" som én samlet masse.
+Y Business skriver til mennesker i det private erhvervsliv, der tager beslutninger om forandring — i virksomheder, brancher og organisationer der allerede er midt i et skifte, eller som ved, at det er på vej. Det er ejere, ledere, strateger og praktikere, der ikke nøjes med at registrere, at noget sker. De vil vide, hvad det kræver af dem.
 
-Platformen skriver til konkrete roller med konkrete beslutninger.
+Fælles for dem: de er ikke primært interesserede i kapitalmarkedet. De er interesserede i AI, teknologi, regulering og forretningsudvikling, fordi det påvirker det de har ansvaret for. Det kan være en SMV-ejer med 12 ansatte eller en direktør i en mellemstor virksomhed. Det kan også være en leder i en stor privat virksomhed eller i C25, der har et strategisk øje på AI og forandring frem for på aktiekursen.
 
-Segmenterne er ikke kun målgruppebeskrivelser. De er produktlogik.
-
-De styrer, hvordan indhold prioriteres, versioneres og præsenteres i
-brugerens feed, brief og anbefalinger.
+Platformen skriver til konkrete roller med konkrete beslutninger. Segmenterne er ikke kun målgruppebeskrivelser — de er produktlogik. De styrer, hvordan indhold prioriteres, versioneres og præsenteres i brugerens feed, brief og anbefalinger.
 
 ---
 
@@ -83,10 +80,13 @@ Casen der virker, Signalradaren, Før mødet
 
 ---
 
-#### 2. C-level-ledere i mellemstore virksomheder
+#### 2. C-level-ledere i mellemstore og store virksomheder
 
 De har brug for syntese, strategisk overblik, blind spots, tidlige signaler
-og ledelsesrelevant kontekst.
+og ledelsesrelevant kontekst. Segmentet dækker ledere i mellemstore virksomheder
+(50–250 ansatte), men rækker også til direktions- og bestyrelsesprofiler i større
+private virksomheder og C25 — særligt i Business AI-sporet, hvor konsekvenserne
+for ledelse og organisation er det primære stof.
 
 **Job to be done:**
 Når markedet skifter, vil jeg forstå, hvilke beslutninger jeg bør tage op
@@ -330,20 +330,108 @@ Hver publicering skal have én primær funktion.
 
 ---
 
-## 6. AI & tech for erhverv — redaktionel profil
+## 6. Business AI — redaktionel linje
 
-AI & tech er et dedikeret redaktionelt spor, men må aldrig blive
-teknologistof for teknologiens skyld.
+Y Business skal være det stærkeste medie i Danmark på business AI.
+
+Ikke forstået som AI-teknologi for teknologiens skyld — men som AI's konkrete
+konsekvenser for virksomheder, brancher, ledelse, arbejdsgange og forretningsmodeller.
+Det er et emne, ingen dansk erhvervstitel ejer i dag. DI og Dansk Erhverv producerer
+AI-indhold, men det er organisationernes perspektiv, ikke erhvervslivets. Finansmedier
+dækker AI som børshistorie. Y Business dækker AI som ledelses-, organisations- og
+driftsspørgsmål — med cases, friktion og konkret oversættelse til dansk virkelighed.
 
 Den dominerende AI-dækning handler om modeller, benchmarks, værktøjer
 og globale udmeldinger.
 
-Y Business skal eje et andet spørgsmål:
+Y Business ejer et andet spørgsmål:
 
 **Hvad kræver det af organisationen, ledelsen og processerne?**
 
-AI-implementering er ofte et ledelses- og driftsproblem, før det er
-et teknologiproblem.
+AI-implementering er et ledelses- og driftsproblem, før det er et teknologiproblem.
+
+### Det redaktionelle filter
+
+En Business AI-historie er kun relevant for Y Business, når den skærer igennem
+alle tre lag:
+
+1. **Teknologisk kapabilitet** — hvad muliggør teknologien ifølge dokumentation?
+2. **Økonomisk incitament** — hvem sparer ressourcer, og hvis omsætning trues?
+3. **Organisatorisk friktion** — hvad forhindrer implementeringen i praksis?
+
+En nyhed der kun rammer lag 1 er tech-dækning. Først når alle tre lag aktiveres,
+er det Y Business.
+
+### De tre spørgsmål ingen har besvaret
+
+Dansk erhvervsjournalistik har ikke taget ejerskab over følgende strategiske
+spørgsmål. De er Y Business'.
+
+**Ansvar i det agentiske system.** Når en AI-agent med beføjelse til at foretage
+indkøb eller rådgive kunder begår en fejl eller forårsager et databrud — hvem
+bærer det juridiske og omdømmemæssige ansvar? Virksomheder mangler svar.
+
+**Den digitale underleverandørfælde.** Mellemstore danske industri- og
+produktionsvirksomheder risikerer at blive reduceret til rene underleverandører,
+når globale tech-giganter leverer infrastrukturen og høster de aggregerede data.
+Ingen dansk erhvervsmedia dækker dette systematisk.
+
+**Talentpipelinens kollaps.** Juniorarbejde — research, dataindsamling, første
+udkast — er historisk set indgangsbilletten til vidensprofessioner. Når AI
+overtager det, mangler virksomheder en model for, hvordan fremtidens erfarne
+specialister overhovedet opbygges.
+
+### Myter der skal udfordres løbende
+
+Business AI er præget af sejlivede misforståelser, der systematisk spænder ben
+for implementering. Y Business udfordrer dem systematisk med dokumentation.
+
+**"AI tager vores jobs."** Realiteten: AI tager ikke jobs — men virksomheder
+og medarbejdere der integrerer AI, udkonkurrerer dem der tøver.
+
+**"AI er et IT-projekt."** Realiteten: Størstedelen af AI-initiativer fejler
+af organisatoriske, ikke tekniske årsager. Forandringsledelse er forudsætningen,
+ikke infrastrukturen.
+
+**"Mere data giver bedre AI."** Realiteten: Datakvalitet og konsistens er
+vigtigere end volumen. Massive dataprojekter strander, fordi dette overses.
+
+### Prioriterede undertemaer
+
+Redaktionen arbejder løbende med disse undertemaer. De styrer emnevalg,
+kildesøgning og vinkelprioritering.
+
+**Tidsbundne (høj aktualitet de næste 6–18 måneder):**
+
+- *Den timebaserede forretningsmodels erosion* — AI's effektivitetsgevinster
+  udhuler omsætningen i konsulent- og rådgiverbranchen, medmindre de skifter
+  til værdibaseret prissætning.
+- *Agentic Commerce* — Indkøb og salg flyttes fra manuelle webshopmøder til
+  AI-agenter, der søger og forhandler autonomt. Kræver total omlægning af
+  B2B-salg og digital markedsføring.
+- *Fra pyramide til obelisk* — Afskaffelsen af brede juniorlag ændrer
+  organisationsstrukturen og tvinger virksomheder til at opfinde nye
+  karrierestiger.
+- *Compliance som konkurrenceparameter* — EU's AI Act stiller krav til
+  data-lineage, menneskelig oversight og dokumentation. Evnen til at leve op
+  til kravene bliver en forudsætning for at drive forretning.
+- *Dual-use og forsvarsteknologi* — Kapital strømmer til danske AI-startups
+  inden for autonom forsvars- og logistikteknologi, drevet af geopolitisk
+  usikkerhed.
+
+**Evergreen (altid relevante):**
+
+- *Talentudvikling og juniorlagets forsvinden* — Virksomheder mangler akutte
+  svar på, hvordan fremtidens seniorer uddannes, når grundarbejdet automatiseres.
+- *Shadow AI* — Medarbejderes hemmelige brug af uautoriserede AI-værktøjer
+  skaber compliance-risici, men totalt forbud dræber nødvendig innovation.
+- *Ledelse af den kognitive revolution* — At lede AI-processer kræver
+  psykologisk tryghed og en kultur der tillader fejl. Ledere mangler værktøjer.
+- *Det strategiske mindset-gab* — AI-modeller er ikke neutrale; de besidder
+  indbyggede biases der kan konflikte med virksomhedens reelle strategi.
+- *IT-demokratisering via naturligt sprog* — Evnen til at programmere og bygge
+  via dialog med AI forskyder magten over produktudvikling ud til designere og
+  forretningsudviklere.
 
 ### Spor 1: Forudsætningerne
 
@@ -353,7 +441,7 @@ Dæk: organisation, ledelse, proces, kompetencer, kultur, ansvar,
 arbejdsgange, måling, governance, medarbejderadoption, juridiske
 og etiske rammer.
 
-**Intern regel: Ingen AI-case uden metode, friktion og organisatorisk konsekvens.**
+**Intern regel: Ingen AI-dækning uden organisatorisk eller forretningsmæssig konsekvens.**
 
 ### Spor 2: Stemmerne
 
@@ -368,6 +456,32 @@ Men: *Her er hvad det betyder for en dansk virksomhed, der overvejer
 samme skridt.*
 
 Succeserne vises med metode, friktion og begrænsning — aldrig som glorificering.
+
+### Spor 3: Hullet i konkurrenternes dækning
+
+Konkurrentanalyse identificerer tre huller ingen eksisterende dansk erhvervsmedia
+ejer. Det er Y Business' territorium.
+
+**"Friction First" — implementeringens barske virkelighed.** DI og Dansk Erhverv
+publicerer polerede succeshistorier. Børsen skriver om topledernes holdninger. Ingen
+ejer fortællingen om friktionen: beskidte datasæt, fejlslagne proofs-of-concept,
+urealistiske leverandørforventninger og medarbejdernes berettigede modstand. Y Business
+insisterer på at dække hvad der gik galt — og hvad organisationerne lærte af det.
+
+**Middle management i SMV'er.** HBR og McKinsey skriver til multinationale
+koncerner. Børsen skriver til direktionen. Men det er i mellemledelsen i virksomheder
+med 50–500 ansatte, at de hårde beslutninger om AI skal eksekveres. Ingen dækker
+dette lag konsekvent.
+
+**Agentic Commerce og den lukkede digitale økonomi.** Ingen danske erhvervsmedier
+dækker systematisk transformationen fra søgemaskinebaseret webhandel til
+agentbaseret handel, og hvad det kræver af virksomheders datastrukturer og
+B2B-tilgang.
+
+Redaktionen kortlægger løbende, hvad der allerede dækkes af DI, Dansk Erhverv,
+Børsen, Finans.dk, Bloomberg, FT og Wired Business — og hvad der konsekvent
+underprioriteres. Det er ikke et konkurrenceanalyseformat. Det er den redaktionelle
+kompassætning: vi dækker det, ingen andre dækker — og vi kan dokumentere hullet.
 
 ---
 
@@ -438,6 +552,24 @@ inden for:
 - Skrives ind i Y Business' pillars
 - Ingen skjult rådgivning eller selvpromovering
 - Redigeres efter samme standard som øvrigt indhold
+
+### Potentielle skribenter — Business AI-sporet
+
+Research identificerer følgende navne som stærke kandidater til Business AI-dækning.
+Alle har dokumenteret formidlingsevne og troværdighed i krydsfeltet mellem AI,
+organisation og forretning.
+
+| Navn | Baggrund | Redaktionel styrke |
+|---|---|---|
+| **Henrik Fabrin** | Head of AI, DI — tidl. CEO, AI-startup | Brobygger startup/corporate; makrodata for dansk AI-modenhed |
+| **Anna Katrine Strandhave** | Partner, Vertica | Agentic Commerce og B2B-salgets transformation |
+| **Thomas Telving** | Forfatter, analytiker, foredragsholder | Etisk og filosofisk modvægt; udfordrer tech-hypen |
+| **Kasper Junge** | Lead AI Engineer, Dinero | Konkrete workflows; AI i praksis uden teknisk bullshit |
+| **Jan Damsgaard** | Professor, CBS | Makroøkonomiske konsekvenser af digital transformation |
+| **Morten Saxnæs** | Strategy consultant, tidl. AKQA | Forretningsmodellernes erosion; "The AI Doom Loop" |
+| **Tey Bannerman** | AI-rådgiver, tidl. McKinsey | Vidensarbejderes hverdagsværktøjer; CEER-model |
+| **Line Clemmensen** | Professor, DTU — CSO, Interhuman AI | Sikker og ansvarlig AI; bias og social intelligens |
+| **Christian Bech Nørhave** | AI-rådgiver, tidl. Dansk Erhverv | Ledelsesgange; fjerner teknisk bullshit for mellemledere |
 
 ---
 

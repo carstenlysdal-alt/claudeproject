@@ -41,6 +41,31 @@ som læseren ikke kan få andre steder, og som konkret påvirker beslutninger.
 
 Y Business lancerer ikke med et fast antal ligeværdige formater.
 
+Der er to typer indhold: **produktfeatures** og **redaktionelle formater**. De har
+forskellig produktionslogik og forskellig rolle i brugerens oplevelse.
+
+**Produktfeatures** er leveringsmekanismer — de skaber vanen og den daglige
+nytteværdi. De er altid til stede, uanset hvad redaktionen producerer den dag.
+
+**Redaktionelle formater** er det journalistiske indhold, der skaber kant, dybde
+og betalingsvilje. De kræver redaktionel dom og navngivet ansvar.
+
+---
+
+### Overblik: features og formater
+
+| Type | Format | Frekvens | Pillar | Primære segmenter |
+|---|---|---|---|---|
+| **Feature** | Morgenbriefet | Dagligt kl. 06:00 | Understand | Alle |
+| **Feature** | Markedsovervågning | Løbende — alerts + ugentlig digest | — | SMV-ejere, C-level, rådgivere |
+| **Primært format** | Overblik *(Det betyder det for din virksomhed)* | 2-3x ugentligt | Understand | SMV-ejere, C-level, medarbejdere |
+| **Primært format** | Signaler *(Signalradaren inkl. Blind Spot)* | Ugentligt | Understand / Challenge | C-level, rådgivere, SMV-ejere |
+| **Primært format** | Cases *(Casen der virker / Sådan gjorde jeg)* | Ugentligt | Inspire | SMV-ejere, iværksættere, C-level |
+| **Situationsbestemt** | Den blinde vinkel (standalone) | Ad hoc | Challenge | C-level, rådgivere, iværksættere |
+| **Situationsbestemt** | Myten om, Før mødet, Før handlen | Ad hoc | Challenge / Understand | Varierer |
+
+---
+
 Frekvensmodellen er enten daglig eller ugentlig — ikke 2-3 gange om ugen som
 mellemvej. Ad hoc-formater aktiveres situationsbestemt. Det skaber klarere
 rytme for læseren og klarere produktionsansvar for redaktionen.

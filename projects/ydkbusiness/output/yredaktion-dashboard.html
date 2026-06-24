@@ -194,6 +194,21 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s3-wrap{height:100%;display:flex;flex-direction:column}
 .s3-intro{padding:14px 52px;border-bottom:1px solid var(--line);background:var(--card);flex-shrink:0}
 .s3-intro p{font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:1.5}
+
+/* S3 — FOUNDATION CARD */
+.s3-foundation{flex-shrink:0;display:grid;grid-template-columns:1fr 1fr;background:var(--accent);border-bottom:2px solid rgba(250,250,248,.08);height:204px;overflow:hidden;position:relative}
+.s3-foundation::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,rgba(196,181,253,.3),rgba(196,181,253,.05))}
+.s3-fnd-left{padding:26px 36px 22px;display:flex;flex-direction:column;border-right:1px solid rgba(250,250,248,.08)}
+.s3-fnd-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.3);letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.s3-fnd-eyebrow::before{content:'';display:block;width:16px;height:1px;background:currentColor}
+.s3-fnd-desc{font-family:var(--sans);font-size:13px;color:rgba(250,250,248,.82);line-height:1.65;flex:1}
+.s3-fnd-bai{margin-top:14px;padding:9px 13px;background:rgba(250,250,248,.06);border-left:2px solid rgba(196,181,253,.45);font-family:var(--sans);font-size:11.5px;color:rgba(196,181,253,.85);line-height:1.5}
+.s3-fnd-right{padding:26px 40px 22px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.s3-fnd-q-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.3);letter-spacing:.18em;text-transform:uppercase}
+.s3-fnd-q{font-family:var(--serif);font-size:23px;font-weight:700;color:#FAFAF8;line-height:1.22;letter-spacing:-.018em;font-style:italic}
+.s3-fnd-rule{font-family:var(--sans);font-size:12px;color:rgba(250,250,248,.48);line-height:1.55;padding-top:12px;border-top:1px solid rgba(250,250,248,.1)}
+.s3-fnd-link{margin-top:auto;font-family:var(--mono);font-size:8.5px;font-weight:700;color:rgba(196,181,253,.45);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;background:none;border:none;padding:0;text-align:left;transition:color .15s}
+.s3-fnd-link:hover{color:rgba(196,181,253,.75)}
 .s3-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
 .seg-card{background:var(--sb,var(--card));padding:22px 26px 18px;display:flex;flex-direction:column;transition:filter .2s}
 .seg-card:hover{filter:brightness(.95)}
@@ -212,7 +227,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .sp-i{color:var(--sc,var(--accent))}
 
 /* ── S3 PRIMARY / SECONDARY ── */
-.s3-primary-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);min-height:0}
+.s3-primary-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);min-height:0;overflow:hidden}
 .s3-primary-card{background:var(--pb,var(--card));padding:40px 52px;display:flex;flex-direction:column}
 .s3p-label{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--pc);letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px;opacity:.7;display:flex;align-items:center;gap:10px}
 .s3p-label::before{content:'';display:block;width:16px;height:1px;background:currentColor}
@@ -415,7 +430,41 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .proto-col.ai-dark .proto-no{color:#FCA5A5;opacity:1}
 
 /* ── S7 AI OG REDAKTION ── */
-.s7-wrap{display:grid;grid-template-columns:1fr 1fr 0.75fr;height:100%}
+.s7-wrap{display:grid;grid-template-columns:1.15fr 0.9fr 0.9fr 0.7fr;height:100%}
+.s7-bai{padding:28px 32px;border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;background:var(--card)}
+.s7-bai-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.22em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.s7-bai-eyebrow::before{content:'';display:block;width:16px;height:1px;background:currentColor}
+.s7-bai-hed{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-.015em;margin-bottom:5px}
+.s7-bai-sub{font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:18px}
+.s7-bai-section{margin-bottom:16px}
+.s7-bai-lbl{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:7px;opacity:.7}
+.s7-bai-filter{display:flex;flex-direction:column;gap:4px;margin-bottom:4px}
+.s7-bai-filter-step{display:flex;align-items:flex-start;gap:8px}
+.s7-bai-step-n{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);opacity:.4;flex-shrink:0;width:14px;padding-top:2px}
+.s7-bai-step-t{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4}
+.s7-bai-step-t strong{font-weight:700;color:var(--ink)}
+.s7-bai-filter-rule{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.04em;margin-top:5px;padding-left:22px;opacity:.6}
+.s7-bai-q{display:flex;gap:8px;align-items:flex-start;margin-bottom:6px}
+.s7-bai-q-dot{width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;opacity:.5}
+.s7-bai-q-t{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4}
+.s7-bai-gap{padding:8px 12px;background:var(--tint);border-left:2px solid var(--accent);margin-bottom:5px;border-radius:0 2px 2px 0}
+.s7-bai-gap-name{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.s7-bai-gap-t{font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.4}
+.s7-bai-positioning{display:flex;flex-direction:column;gap:12px;flex:1;overflow:hidden}
+.s7-bai-positioning p{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.6}
+.s7-bai-contrast{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.s7-bai-contrast-row{display:flex;align-items:stretch;border-bottom:1px solid var(--line)}
+.s7-bai-contrast-row:last-child{border-bottom:none}
+.s7-bai-contrast-who{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.06em;padding:6px 10px;width:130px;flex-shrink:0;border-right:1px solid var(--line);display:flex;align-items:center}
+.s7-bai-contrast-what{font-family:var(--sans);font-size:11px;color:var(--muted);padding:6px 12px;display:flex;align-items:center;line-height:1.35}
+.s7-bai-contrast-us .s7-bai-contrast-who{color:var(--accent);background:var(--accent-10)}
+.s7-bai-contrast-us .s7-bai-contrast-what{color:var(--ink);font-weight:500;background:var(--accent-10)}
+.s7-bai-dominant{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.55;font-style:italic}
+.s7-bai-own-q{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;opacity:.6}
+.s7-bai-keyq{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--accent);line-height:1.2;letter-spacing:-.015em;font-style:italic}
+.s7-bai-rule-line{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.5;padding-top:10px;border-top:1px solid var(--line)}
+.s7-bai-themes{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.s7-bai-theme{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.07em;padding:3px 8px;border-radius:3px;color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-20)}
 .s7-left{padding:32px 48px;border-right:1px solid var(--line);display:flex;flex-direction:column;background:var(--card)}
 .s7-right{padding:32px 48px;background:var(--accent);display:flex;flex-direction:column}
 .s7-protocol{padding:26px 28px;background:#2D1369;display:flex;flex-direction:column;overflow:hidden;border-left:1px solid rgba(255,255,255,.06)}
@@ -702,10 +751,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <!-- 03 — højre -->
     <div class="hub-node" data-target="s3" style="left:980px;top:388px;--nc:#D97706;--ns:rgba(217,119,6,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .34s both">
       <div class="node-num">03</div>
-      <div class="node-h">To primære segmenter</div>
+      <div class="node-h">Primære segmenter</div>
       <div class="node-pts">
-        <div class="node-pt">SMV'er — drift, regulering, branche</div>
-        <div class="node-pt">C-level — Business, AI/Tech, beslutning</div>
+        <div class="node-pt">SMV-ejere — drift, regulering, branche</div>
+        <div class="node-pt">C-level — Business AI, forandring, beslutning</div>
         <div class="node-pt">Fire øvrige i periferien</div>
       </div>
     </div>
@@ -746,11 +795,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <!-- 07 — øverst til venstre -->
     <div class="hub-node" data-target="s7" style="left:460px;top:388px;--nc:#C43A49;--ns:rgba(196,58,73,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .82s both">
       <div class="node-num">07</div>
-      <div class="node-h">AI og redaktion</div>
+      <div class="node-h">Business AI · AI og redaktion</div>
       <div class="node-pts">
+        <div class="node-pt">Redaktionel linje: filter, spørgsmål, huller</div>
         <div class="node-pt">Tillidsdata: Reuters Institute 2025</div>
-        <div class="node-pt">Hvad AI må gøre</div>
-        <div class="node-pt">Hvad journalisten afgør</div>
+        <div class="node-pt">Hvad AI må — hvad journalisten afgør</div>
       </div>
     </div>
 
@@ -837,8 +886,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
         <div class="s1-sol">
           <div class="s1-sol-arr">→</div>
-          <div class="s1-sol-txt">Y Business er bygget til SMV'er og lederen i den mellemstore virksomhed.</div>
-          <div class="s1-sol-sub">To primære segmenter: SMV'er (5–50 ansatte) og C-level (50–250 ansatte). Indholdet kalibreres efter dem.</div>
+          <div class="s1-sol-txt">Y Business er bygget til mennesker i det private erhvervsliv, der tager beslutninger om forandring.</div>
+          <div class="s1-sol-sub">To primære segmenter: SMV-ejere og C-level i private virksomheder. Business AI er det redaktionelle kernesignal der binder dem sammen.</div>
         </div>
 
         <div class="s1-sol">
@@ -1027,7 +1076,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 </div>
 <div class="sec-body">
   <div class="s3-wrap">
-    <div class="s3-intro" style="display:flex;align-items:center;justify-content:space-between;gap:24px"><p>To læsere er vores kerne: SMV'er og lederen i den mellemstore virksomhed. De øvrige er velkomne på de samme redaktionelle præmisser. Hvem du er bestemmer, hvad vi viser dig — og hvornår.</p><button class="s3-branche-btn" onclick="openEdResearchModal()">Syv brancher med potentiale · Segmentanalyse 2026 ↗</button></div>
+    <div class="s3-foundation">
+      <div class="s3-fnd-left">
+        <div class="s3-fnd-eyebrow">00 · Redaktionel identitet</div>
+        <p class="s3-fnd-desc">Vi skriver til ejeren med 40 ansatte, der mangler nogen til at oversætte forandringen. Til direktøren i bestyrelseslokalet med et spørgsmål, ingen endnu har svaret på. Til mellemlederen der skal eksekvere — og har ingen at spørge. De kan ikke vente. Vi er lavet til dem.</p>
+        <div class="s3-fnd-bai">Ni ud af ti AI-projekter fejler ikke på teknologien. De fejler på organisationen. Vi dækker den del — ikke benchmarks og modeller, men hvad det faktisk kræver.</div>
+      </div>
+      <div class="s3-fnd-right">
+        <div class="s3-fnd-q-lbl">Det centrale redaktionelle spørgsmål</div>
+        <div class="s3-fnd-q">Hvad kræver det af organisationen, ledelsen og processerne?</div>
+        <div class="s3-fnd-rule">DI skriver om potentialet. Finansmedierne skriver om aktierne. Vi ejer spørgsmålet ingen af dem besvarer.</div>
+        <button class="s3-fnd-link" onclick="openEdResearchModal()">Syv brancher med potentiale · Segmentanalyse 2026 ↗</button>
+      </div>
+    </div>
     <div class="s3-primary-grid">
       <div class="s3-primary-card" style="--pc:#7C3AED;--pb:rgba(124,58,237,.05)">
         <div class="s3p-label">01 · Primær</div>
@@ -1054,7 +1115,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="s3-primary-card" style="--pc:#16A34A;--pb:rgba(22,163,74,.05)">
         <div class="s3p-label">02 · Primær</div>
         <div class="s3p-name">C-level</div>
-        <div class="s3p-scope">50–250 ansatte · Business &amp; AI/Tech</div>
+        <div class="s3p-scope">50 ansatte og opefter · Business AI</div>
         <div class="s3p-divider"></div>
         <div class="s3p-section-lbl">Primært behov</div>
         <div class="s3p-need">Hvad ændrer beslutningsrummet? Hvad kræver AI-skiftet af min organisation? Hvad er vinklen, Børsen ikke tager?</div>
@@ -2163,6 +2224,36 @@ function togglePromptModal(){
 </div>
 <div class="sec-body">
   <div class="s7-wrap">
+
+    <!-- ── BUSINESS AI — REDAKTIONEL LINJE ── -->
+    <div class="s7-bai">
+      <div class="s7-bai-eyebrow">Business AI · Redaktionel linje</div>
+      <div class="s7-bai-hed">Y Business skal være det stærkeste medie i Danmark på business AI.</div>
+
+      <div class="s7-bai-positioning">
+        <p>Ikke forstået som AI-teknologi for teknologiens skyld — men som AI's konkrete konsekvenser for virksomheder, brancher, ledelse, arbejdsgange og forretningsmodeller. Det er et emne, ingen dansk erhvervstitel ejer i dag.</p>
+        <div class="s7-bai-contrast">
+          <div class="s7-bai-contrast-row"><span class="s7-bai-contrast-who">DI og Dansk Erhverv</span><span class="s7-bai-contrast-what">organisationernes perspektiv</span></div>
+          <div class="s7-bai-contrast-row"><span class="s7-bai-contrast-who">Finansmedier</span><span class="s7-bai-contrast-what">AI som børshistorie</span></div>
+          <div class="s7-bai-contrast-row s7-bai-contrast-us"><span class="s7-bai-contrast-who">Y Business</span><span class="s7-bai-contrast-what">AI som ledelses-, organisations- og driftsspørgsmål</span></div>
+        </div>
+        <div class="s7-bai-dominant">Den dominerende AI-dækning handler om modeller, benchmarks, værktøjer og globale udmeldinger.</div>
+        <div class="s7-bai-own-q">Y Business ejer et andet spørgsmål:</div>
+        <div class="s7-bai-keyq">Hvad kræver det af organisationen, ledelsen og processerne?</div>
+        <div class="s7-bai-rule-line">AI-implementering er et ledelses- og driftsproblem, før det er et teknologiproblem.</div>
+      </div>
+
+      <div class="s7-bai-themes">
+        <span class="s7-bai-theme">Den timebaserede models erosion</span>
+        <span class="s7-bai-theme">Talentpipelinens kollaps</span>
+        <span class="s7-bai-theme">Shadow AI</span>
+        <span class="s7-bai-theme">EU AI Act · compliance</span>
+        <span class="s7-bai-theme">Fra pyramide til obelisk</span>
+        <span class="s7-bai-theme">Agentic Commerce</span>
+        <span class="s7-bai-theme">Ledelse af den kognitive revolution</span>
+      </div>
+    </div>
+
     <div class="s7-left">
       <div class="s7-lbl">Tillidsdata</div>
       <div class="s7-hed">Publikum er skeptisk — og det er udgangspunktet</div>
