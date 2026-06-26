@@ -160,11 +160,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s2-wrap{display:grid;grid-template-columns:252px 1fr 1fr 1fr;grid-template-rows:1fr auto;height:100%}
 /* ── S2 FOUNDATIONS BAR ── */
 .s2-foundations{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--accent);border-top:1px solid rgba(250,250,248,.08)}
-.s2-found-cell{padding:22px 32px;border-right:1px solid rgba(250,250,248,.08);display:flex;flex-direction:column;gap:5px}
+.s2-found-cell{padding:18px 32px;border-right:1px solid rgba(250,250,248,.08);display:flex;flex-direction:column;gap:5px}
 .s2-found-cell:last-child{border-right:none}
 .s2-found-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.3);letter-spacing:.22em;text-transform:uppercase}
-.s2-found-q{font-family:var(--serif);font-size:20px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.2;letter-spacing:-.015em}
-.s2-found-stmt{font-family:var(--sans);font-size:14px;font-weight:600;color:rgba(250,250,248,.88);line-height:1.5}
+.s2-found-q{font-family:var(--serif);font-size:18px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.18;letter-spacing:-.015em}
+.s2-found-stmt{font-family:var(--sans);font-size:13px;font-weight:600;color:rgba(250,250,248,.88);line-height:1.42}
 .s2-found-body{font-family:var(--sans);font-size:11.5px;color:rgba(250,250,248,.5);line-height:1.55;margin-top:1px}
 .s2-why{background:var(--accent);padding:28px 24px;display:flex;flex-direction:column}
 .s2-why-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.32);letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px}
@@ -173,7 +173,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s2-why-q{font-family:var(--serif);font-size:13px;font-weight:700;color:rgba(250,250,248,.88);line-height:1.3;margin-bottom:8px;display:flex;align-items:flex-start;gap:9px}
 .s2-why-q::before{content:'→';font-family:var(--mono);font-size:9px;color:rgba(250,250,248,.28);flex-shrink:0;margin-top:2px}
 .s2-why-divider{height:1px;background:rgba(250,250,248,.1);margin:15px 0}
-.s2-why-body{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.5);line-height:1.65;flex:1}
+.s2-why-body{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.5);line-height:1.58;flex:0}
 .s2-why-rule{padding:12px 13px;background:rgba(250,250,248,.06);border:1px solid rgba(250,250,248,.11);border-radius:3px}
 .s2-why-rule-lbl{font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(250,250,248,.28);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
 .s2-why-rule-txt{font-family:var(--serif);font-size:12.5px;font-weight:700;color:rgba(250,250,248,.82);line-height:1.45;font-style:italic}
@@ -181,7 +181,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s2-why-bai-lbl{font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
 .s2-why-bai-q{font-family:var(--serif);font-size:13px;font-weight:700;color:#FAFAF8;line-height:1.35;font-style:italic;margin-bottom:6px}
 .s2-why-bai-txt{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.6);line-height:1.6}
-.pillar-col{padding:28px 28px 16px;border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;background:var(--card)}
+.pillar-col{padding:28px 28px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;background:var(--card)}
 .pillar-col:last-child{border-right:none}
 .pillar-col.ch{background:var(--card)}
 .s2-wrap>.pillar-col:nth-child(2){border-top:3px solid var(--green)}
@@ -193,17 +193,17 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .pt-c{color:var(--amber)}
 .pt-i{color:var(--accent)}
 .pillar-section-lbl{display:none}
-.pillar-who{font-family:var(--sans);font-size:12px;font-style:italic;color:var(--muted);line-height:1.5;margin-bottom:16px}
+.pillar-who{font-family:var(--sans);font-size:12px;font-style:italic;color:var(--muted);line-height:1.42;margin-bottom:14px}
 .pillar-q{font-family:var(--serif);font-size:21px;font-weight:700;color:var(--ink);line-height:1.18;letter-spacing:-.015em;margin-bottom:14px;font-style:italic}
-.pillar-desc{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.6;margin-bottom:16px}
+.pillar-desc{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.5;margin-bottom:14px}
 .pillar-rule{margin-bottom:14px;background:transparent;border:none;border-radius:0;padding:0}
 .pr-u{color:var(--green);background:transparent}
 .pr-c{color:var(--amber);background:transparent}
 .pr-i{color:var(--accent);background:transparent}
 .pillar-rule-lbl{display:none}
-.pillar-rule-txt{font-family:var(--sans);font-size:12px;font-weight:700;line-height:1.5;color:inherit}
+.pillar-rule-txt{font-family:var(--sans);font-size:12px;font-weight:700;line-height:1.42;color:inherit}
 .pillar-ex-lbl{display:none}
-.pillar-ex-item{font-family:var(--sans);font-size:11.5px;color:var(--muted);display:block;line-height:1.45;padding:7px 0;border-bottom:1px solid var(--line2)}
+.pillar-ex-item{font-family:var(--sans);font-size:11.5px;color:var(--muted);display:block;line-height:1.38;padding:6px 0;border-bottom:1px solid var(--line2)}
 .pillar-ex-item:last-of-type{border-bottom:none}
 .pillar-ex-item::before{display:none}
 .pillar-ai{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px}
@@ -635,7 +635,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s8-timing-t{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--accent);opacity:.65;width:42px;flex-shrink:0}
 .s8-timing-d{font-family:var(--sans);font-size:10.5px;color:var(--muted);line-height:1.3}
 .mb-frame{background:#FAFAF8;border:1px solid rgba(0,0,0,.1);flex:1;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 8px 36px rgba(0,0,0,.1);border-radius:3px}
-.mb-hd{background:#100C0C;padding:16px 22px 14px;display:flex;align-items:flex-end;justify-content:space-between;flex-shrink:0;border-bottom:3px solid #A75D46}
+.mb-hd{background:#100C0C;padding:16px 22px 14px;display:flex;align-items:flex-end;justify-content:space-between;flex-shrink:0;border-bottom:3px solid #2563EB}
 .mb-hd-brand{font-family:var(--serif);font-size:19px;font-weight:700;color:#FAFAF8;font-style:italic;letter-spacing:-.02em;line-height:1}
 .mb-hd-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
 .mb-hd-date{font-family:var(--mono);font-size:8px;color:rgba(250,250,248,.4);letter-spacing:.06em}
@@ -643,10 +643,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .mb-body{padding:0;flex:1;overflow:hidden;display:flex;flex-direction:column}
 .mb-sec{padding:14px 22px;border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0}
 .mb-sec:last-child{border-bottom:none}
-.mb-sec.topvalg{background:rgba(167,93,70,.07);padding:16px 22px}
+.mb-sec.topvalg{background:rgba(54,19,82,.07);padding:16px 22px}
 .mb-sec.reg-sec{background:rgba(217,119,6,.05);border:none;border-top:1px solid rgba(217,119,6,.15);border-bottom:1px solid rgba(217,119,6,.15)}
 .mb-sec-tag{display:inline-flex;align-items:center;font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:7px}
-.mb-sec-tag.tag-top{color:#A75D46;background:rgba(167,93,70,.12)}
+.mb-sec-tag.tag-top{color:#361352;background:rgba(54,19,82,.12)}
 .mb-sec-tag.tag-branch{color:#1a6b3a;background:rgba(22,163,74,.1)}
 .mb-sec-tag.tag-reg{color:#92400e;background:rgba(217,119,6,.14)}
 .mb-sec-tag.tag-blind{color:var(--accent);background:var(--accent-10)}
@@ -658,7 +658,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .mb-consequence{font-family:var(--sans);font-size:12.5px;color:rgba(16,12,12,.7);line-height:1.58;font-style:italic}
 .mb-items{display:flex;flex-direction:column;gap:5px}
 .mb-item{font-family:var(--sans);font-size:11px;color:rgba(16,12,12,.68);display:flex;align-items:flex-start;gap:7px;line-height:1.45}
-.mb-item::before{content:'→';font-family:var(--mono);font-size:9px;color:#A75D46;flex-shrink:0;opacity:.6;margin-top:1px}
+.mb-item::before{content:'→';font-family:var(--mono);font-size:9px;color:#2563EB;flex-shrink:0;opacity:.6;margin-top:1px}
 .mb-src{font-family:var(--mono);font-size:7.5px;color:var(--muted);opacity:.55;flex-shrink:0;margin-left:auto;padding-left:8px}
 .mb-signal-block{display:flex;flex-direction:column;gap:4px}
 .mb-signal{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:5px;width:fit-content}
@@ -1037,11 +1037,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="s2-why-q">Hvad skal brugeren holde øje med eller tvivle på?</div>
       <div class="s2-why-q">Hvad kan brugeren gøre, undersøge eller tage med videre?</div>
       <div class="s2-why-divider"></div>
-      <div class="s2-why-body">Hver publicering skal kunne svare på mindst ét af de tre spørgsmål. Kan den ikke det, er den ikke stærk nok til Y Business. Det er ikke en ambition — det er et redaktionelt krav der sætter standarden for alt, vi publicerer.</div>
-      <div class="s2-why-bai">
-        <div class="s2-why-bai-lbl">02 · Vi finder signalerne tidligt</div>
-        <div class="s2-why-bai-q">Hvad ændrer sig — og hvad betyder det for min virksomhed, min branche og mit næste træk?</div>
-        <div class="s2-why-bai-txt">Vi leder efter mønstre, ændringer og svage signaler, før de bliver åbenlyse for alle — og oversætter dem til konsekvens: hvem bliver ramt, hvad overser andre, og hvad kan læseren gøre nu?</div>
+      <div class="s2-why-body">Kan et stykke indhold ikke svare på mindst ét af spørgsmålene, er det ikke stærkt nok til Y Business.</div>
+      <div class="s2-why-rule">
+        <div class="s2-why-rule-lbl">Redaktionel test</div>
+        <div class="s2-why-rule-txt">Forstå. Tvivl. Handle. Alt andet er støj.</div>
       </div>
     </div>
 
@@ -1049,20 +1048,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <div class="pillar-col">
       <div class="pillar-tag pt-u">Understand</div>
       <div class="pillar-section-lbl">Hvem</div>
-      <div class="pillar-who">SMV-ejer der har mødt en ny regulering, et markedsskifte eller et teknologisk skifte — og har brug for at vide, hvad det konkret kræver af ham.</div>
+      <div class="pillar-who">SMV-ejer eller leder der skal forstå, hvad en udvikling konkret kræver.</div>
       <div class="pillar-section-lbl">Hvad</div>
       <div class="pillar-q">"Hvad sker der — og hvad betyder det for min virksomhed?"</div>
-      <p class="pillar-desc">Erhvervsnyhederne fylder. Konsekvenserne mangler. Understand fortæller ikke, hvad der er sket — men hvad det koster, hvad det kræver, og hvornår det rammer virksomheden, du driver. "Det betyder det for din virksomhed" er en metode i alt Understand-stof — ikke et selvstændigt format.</p>
+      <p class="pillar-desc">Understand stopper ikke ved begivenheden. Det oversætter nyheden til krav, timing og konsekvens for virksomheden.</p>
       <div class="pillar-section-lbl">Hvordan</div>
       <div class="pillar-rule pr-u">
         <div class="pillar-rule-lbl">Redaktionelt løfte</div>
-        <div class="pillar-rule-txt">Vi gør det vigtige forståeligt. Vi stopper ikke ved, hvad der er sket — vi forklarer, hvem det rammer, hvorfor det betyder noget, og hvad læseren bør holde øje med.</div>
+        <div class="pillar-rule-txt">Hvem rammes, hvornår, hvad kræver det?</div>
       </div>
       <div class="pillar-ex-lbl">Typisk stof</div>
       <div class="pillar-ex-item">Ny regulering med deadline og konkrete krav</div>
       <div class="pillar-ex-item">AI-adoption oversat til drifts- og organisationskonsekvens</div>
       <div class="pillar-ex-item">Makroøkonomisk indikator med sektorkonsekvens</div>
-      <div class="pillar-ex-item">Offentlige udbud og regulatoriske ændringer</div>
       <div class="pillar-ai">
         <span class="pillar-ai-lbl">AI-produktion</span>
         <span class="ai-tag ai-h">Høj</span>
@@ -1073,18 +1071,17 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <div class="pillar-col ch">
       <div class="pillar-tag pt-c">Challenge</div>
       <div class="pillar-section-lbl">Hvem</div>
-      <div class="pillar-who">C-level og analytiske profiler der ikke nøjes med headlines — og som leder efter de blinde vinkler ingen andre adresserer.</div>
+      <div class="pillar-who">Beslutningstagere der vil se det, konsensus og headlines skjuler.</div>
       <div class="pillar-section-lbl">Hvad</div>
       <div class="pillar-q">"Hvad er den vinkel, du ikke har set?"</div>
-      <p class="pillar-desc">Alle fortæller den samme historie. Challenge finder kilden, der siger noget andet. Den skjulte omkostning. Myten, ingen endnu har knækket. Det er ikke kontrarianism — det er journalistisk gravearbejde med et konkret formål.</p>
+      <p class="pillar-desc">Challenge finder den manglende kilde, den skjulte omkostning eller den fortælling, der er blevet for bekvem.</p>
       <div class="pillar-section-lbl">Hvordan</div>
       <div class="pillar-rule pr-c">
         <div class="pillar-rule-lbl">Redaktionelt løfte</div>
-        <div class="pillar-rule-txt">Vi udfordrer de nemme fortællinger. Vi spørger, hvad der mangler, hvem der ikke bliver hørt, og hvilke blinde vinkler der kan føre til dårlige beslutninger.</div>
+        <div class="pillar-rule-txt">Ingen modfortælling uden dokumentation.</div>
       </div>
       <div class="pillar-ex-lbl">Typisk stof</div>
       <div class="pillar-ex-item">Eksperten der siger noget andet — med belæg</div>
-      <div class="pillar-ex-item">Trenden der har nået toppen uden nogen opdagede det</div>
       <div class="pillar-ex-item">Myteknusning om funding, AI, skalering eller regulering</div>
       <div class="pillar-ex-item">Strategiske blinde vinkler for dansk ledelse</div>
       <div class="pillar-ai">
@@ -1097,18 +1094,17 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <div class="pillar-col">
       <div class="pillar-tag pt-i">Inspire</div>
       <div class="pillar-section-lbl">Hvem</div>
-      <div class="pillar-who">Iværksættere og SMV-ejere der søger kopierbar læring — og C-level der vil se, hvad det faktisk kostede at lykkes.</div>
+      <div class="pillar-who">Folk der vil lære af andre uden at købe en poleret succeshistorie.</div>
       <div class="pillar-section-lbl">Hvad</div>
       <div class="pillar-q">"Hvad kan vi gøre — og hvad kostede det at komme dertil?"</div>
-      <p class="pillar-desc">Succeshistorier uden fejl er reklame med pænere sko. Inspire stiller ét spørgsmål: hvad kostede det at komme dertil? Hvad gik galt, hvad virkede — og hvad kan du faktisk bruge, hvis du ikke er den virksomhed, du netop læste om?</p>
+      <p class="pillar-desc">Inspire viser metoden, friktionen og den kopierbare læring. Ikke glansbilledet.</p>
       <div class="pillar-section-lbl">Hvordan</div>
       <div class="pillar-rule pr-i">
         <div class="pillar-rule-lbl">Redaktionelt løfte</div>
-        <div class="pillar-rule-txt">Vi viser, hvad der virker. Vi bringer cases og erfaringer med metode, friktion og læring — ikke glansbilleder og PR-fortællinger.</div>
+        <div class="pillar-rule-txt">Ingen case uden friktion. Ingen læring uden pris.</div>
       </div>
       <div class="pillar-ex-lbl">Typisk stof</div>
       <div class="pillar-ex-item">Casestory med problem, metode og konkret resultat</div>
-      <div class="pillar-ex-item">Krisekommunikation obduceret — hvad virkede, hvad ikke</div>
       <div class="pillar-ex-item">AI-implementering med organisation og friktion</div>
       <div class="pillar-ex-item">Generationsskifte som journalistisk serie</div>
       <div class="pillar-ai">
@@ -1120,17 +1116,16 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <!-- ── FOUNDATIONS BAR ── -->
     <div class="s2-foundations">
       <div class="s2-found-cell">
-        <div class="s2-found-lbl">Business AI · Redaktionelt kernesignal</div>
-        <div class="s2-found-q">Hvad kræver det af organisationen, ledelsen og processerne?</div>
-        <div class="s2-found-body">Vi ejer det spørgsmål ingen andre stiller. Ni ud af ti AI-projekter fejler ikke på teknologien — de fejler på organisationen.</div>
+        <div class="s2-found-lbl">Tidlighed</div>
+        <div class="s2-found-q">Find signalet før det bliver konsensus.</div>
       </div>
       <div class="s2-found-cell">
         <div class="s2-found-lbl">Måleprincip</div>
-        <div class="s2-found-stmt">Y Business skal ikke måles på, hvor meget vi publicerer — men på, om vi gør læseren klogere, tidligere og bedre i stand til at handle.</div>
+        <div class="s2-found-stmt">Vi måles på, om læseren bliver klogere, tidligere og bedre i stand til at handle.</div>
       </div>
       <div class="s2-found-cell">
-        <div class="s2-found-lbl">Grundprincip</div>
-        <div class="s2-found-stmt">Vi prioriterer efter brugerens rolle, branche, geografi, interesser og behov. Men redaktionen sikrer, at vigtige signaler, risici og blinde vinkler stadig bryder igennem.</div>
+        <div class="s2-found-lbl">Redaktionel sortering</div>
+        <div class="s2-found-stmt">Personalisering må aldrig skjule vigtige risici, signaler eller blinde vinkler.</div>
       </div>
     </div>
 
@@ -1448,10 +1443,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s4-promise-step{position:relative;min-height:50px;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px 10px;background:rgba(255,255,255,.84);font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1.35}
 .s4-promise-step::after{content:'→';position:absolute;right:-8px;top:50%;transform:translateY(-50%);z-index:2;font-size:12px;opacity:.6}
 .s4-promise-step:last-child::after{display:none}
-.s4-format-job{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:760px;margin-bottom:12px;flex-shrink:0}
-.s4-job-card{padding:10px 12px;border-radius:4px;background:rgba(255,255,255,.84);border-top:2px solid currentColor;box-shadow:0 1px 8px rgba(54,19,82,.05)}
-.s4-job-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px;opacity:.72}
-.s4-job-txt{font-family:var(--sans);font-size:11.2px;color:var(--ink70);line-height:1.42}
+.s4-format-job{position:relative;display:flex;flex-direction:column;gap:7px;max-width:760px;margin:0 0 12px 0;padding-left:22px;flex-shrink:0}
+.s4-format-job::before{content:'';position:absolute;left:6px;top:9px;bottom:8px;width:1px;background:rgba(54,19,82,.16)}
+.s4-job-card{position:relative;padding:7px 0 7px 0;border-top:1px solid rgba(54,19,82,.12);color:var(--ink)}
+.s4-job-card::before{content:'';position:absolute;left:-22px;top:11px;width:13px;height:13px;border-radius:50%;background:#FAFAF8;border:2px solid currentColor}
+.s4-job-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px;opacity:.78}
+.s4-job-txt{font-family:var(--sans);font-size:11.2px;color:var(--ink70);line-height:1.4}
 #s4 .s4-content{background:linear-gradient(135deg,#F5F0FF 0%,#FAFAF8 48%,#EEF7F1 100%)}
 #s4 .s4-slide{padding:30px 50px 22px 48px}
 #s4 .s4-q{font-size:24px;line-height:1.32;margin-bottom:12px;max-width:760px}
@@ -2431,16 +2428,43 @@ function togglePromptModal(){
 <div class="screen" id="s8">
 <style>
 /* === S8 MORGENBRIEFET INTERACTIVE ENHANCEMENTS === */
+#s8 .sec-body{background:linear-gradient(135deg,#F5F0FF 0%,#FAFAF8 45%,#EEF7F1 100%)}
+#s8 .s8-wrap{height:100%;min-height:0;grid-template-columns:292px minmax(0,1fr) 292px;gap:12px;background:transparent;padding:24px 28px 26px;box-sizing:border-box}
+#s8 .s8-col{min-height:0;border-radius:6px;box-shadow:0 2px 12px rgba(54,19,82,.08),0 10px 38px rgba(54,19,82,.08)}
+#s8 .s8-col.blueprint{background:#F5F0FF;border-top:3px solid #361352;padding:22px 22px 20px;overflow:hidden}
+#s8 .s8-col.preview{background:#FAFAF8;border-top:3px solid #2563EB}
+#s8 .s8-col.pers{background:#EEF7F1;border-top:3px solid #16A34A;padding:24px 22px 22px}
+#s8 .s8-col-lbl{font-size:9.5px;color:#361352;margin-bottom:14px}
+#s8 .s8-col.pers .s8-col-lbl{color:#16A34A}
+.s8-vp{padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid rgba(54,19,82,.13)}
+.s8-vp-kicker{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(54,19,82,.55);margin-bottom:8px}
+.s8-vp-hed{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1.04;letter-spacing:-.025em;color:#361352;margin-bottom:9px}
+.s8-vp-body{font-family:var(--sans);font-size:12.4px;color:var(--ink70);line-height:1.48}
+.s8-flow{display:grid;grid-template-columns:1fr;gap:1px;margin:0 0 12px;background:rgba(54,19,82,.18);border:1px solid rgba(54,19,82,.16)}
+.s8-flow-step{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:center;background:rgba(255,255,255,.76);padding:8px 10px}
+.s8-flow-time{font-family:var(--mono);font-size:12px;font-weight:700;color:#361352;letter-spacing:.03em}
+.s8-flow-txt{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.35}
+.s8-rule-strip{padding:12px 14px;background:#361352;border-radius:4px;color:#FAFAF8}
+.s8-rule-lbl{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,181,253,.7);margin-bottom:6px}
+.s8-rule-txt{font-family:var(--serif);font-size:14px;font-weight:700;font-style:italic;line-height:1.24;color:#FAFAF8}
+.s8-pers-logic{padding:13px 14px;background:rgba(255,255,255,.72);border-left:3px solid #16A34A;border-radius:4px;margin-bottom:14px}
+.s8-pers-logic-lbl{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#16A34A;margin-bottom:6px}
+.s8-pers-logic-txt{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.45}
+.s8-output-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.s8-output-card{padding:10px 11px;background:rgba(255,255,255,.72);border-top:2px solid currentColor;border-radius:4px}
+.s8-output-card.purple{color:#361352}.s8-output-card.blue{color:#2563EB}.s8-output-card.green{color:#16A34A}.s8-output-card.dark{color:#100C0C}
+.s8-output-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px;opacity:.72}
+.s8-output-txt{font-family:var(--sans);font-size:11px;line-height:1.35;color:var(--ink70)}
 /* Tab bar */
 .mb-tab-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px 0;background:var(--card);flex-shrink:0;border-bottom:1px solid var(--line)}
 .mb-tabs{display:flex;gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;flex-shrink:0;height:28px}
 .mb-tab-btn{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:0 14px;border:none;background:none;cursor:pointer;color:var(--muted);transition:background .15s,color .15s;display:flex;align-items:center;gap:5px}
-.mb-tab-btn.active{background:var(--accent);color:#FAFAF8}
-.mb-tab-colbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.mb-tab-btn.active{background:#361352;color:#FAFAF8}
+.mb-tab-colbl{font-family:var(--mono);font-size:9px;font-weight:700;color:#2563EB;letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 .mb-tab-colbl::before{content:'';display:block;width:14px;height:1px;background:currentColor}
 /* Reading progress bar */
-.mb-progress{height:2px;background:rgba(167,93,70,.15);flex-shrink:0}
-.mb-progress-fill{height:100%;background:linear-gradient(to right,#A75D46,#C43A49);width:0;transition:width .2s}
+.mb-progress{height:2px;background:rgba(37,99,235,.12);flex-shrink:0}
+.mb-progress-fill{height:100%;background:linear-gradient(to right,#361352,#2563EB,#16A34A);width:0;transition:width .2s}
 .screen.active .mb-progress-fill{animation:mb-prog-fill 50s linear .5s both}
 @keyframes mb-prog-fill{to{width:100%}}
 /* Section entry animation */
@@ -2453,7 +2477,7 @@ function togglePromptModal(){
 /* Audio player view */
 .mb-audio-view{flex:1;display:none;flex-direction:column;background:#100C0C;overflow:hidden}
 .mb-audio-view.active{display:flex}
-.mb-audio-hd{background:#100C0C;padding:16px 22px 14px;border-bottom:3px solid #A75D46;flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between}
+.mb-audio-hd{background:#100C0C;padding:16px 22px 14px;border-bottom:3px solid #2563EB;flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between}
 .mb-audio-hd-brand{font-family:var(--serif);font-size:19px;font-weight:700;color:#FAFAF8;font-style:italic;letter-spacing:-.02em}
 .mb-audio-hd-meta{font-family:var(--mono);font-size:8px;color:rgba(250,250,248,.4);letter-spacing:.06em}
 .mb-audio-player{padding:28px 28px 20px;display:flex;flex-direction:column;flex:1}
@@ -2518,41 +2542,55 @@ function togglePromptModal(){
 
     <!-- VENSTRE: Blueprint -->
     <div class="s8-col blueprint">
-      <div class="s8-col-lbl">Feature · Blueprint</div>
+      <div class="s8-col-lbl">Dagligt indgangspunkt</div>
+      <div class="s8-vp">
+        <div class="s8-vp-kicker">Morgenbriefet · Value proposition</div>
+        <div class="s8-vp-hed">Det vigtigste, før kalenderen tager dagen.</div>
+        <div class="s8-vp-body">Morgenbriefet er ikke et mini-nyhedsbrev. Det er Y Business' daglige vaneprodukt: AI skaber overblik og tempo, mens formatet tvinger hvert item gennem konsekvens, relevans og handling.</div>
+      </div>
+      <div class="s8-flow">
+        <div class="s8-flow-step"><div class="s8-flow-time">03.00</div><div class="s8-flow-txt">AI scanner kilder, markedsbevægelser, regulering og svage signaler.</div></div>
+        <div class="s8-flow-step"><div class="s8-flow-time">05.30</div><div class="s8-flow-txt">Briefet er struktureret: topvalg, personalisering, risiko, blind vinkel og næste signal.</div></div>
+        <div class="s8-flow-step"><div class="s8-flow-time">06.30</div><div class="s8-flow-txt">Læseren får én prioriteret start på dagen i tekst og lyd.</div></div>
+      </div>
       <div class="s8-bp-item">
         <div class="s8-bp-n">1</div>
         <div>
           <div class="s8-bp-tag">Topvalg</div>
-          <div class="s8-bp-txt">Redaktørens ét valgte nyhed med konsekvens — AI producerer og leverer automatisk.</div>
+          <div class="s8-bp-txt">Én prioriteret nyhed med konsekvens. Ikke dagens største klik — dagens vigtigste beslutningssignal.</div>
         </div>
       </div>
       <div class="s8-bp-item">
         <div class="s8-bp-n">2</div>
         <div>
           <div class="s8-bp-tag">Branche og region</div>
-          <div class="s8-bp-txt">Personaliseret feed: 3–4 items sorteret efter branche, region og adfærd.</div>
+          <div class="s8-bp-txt">3–4 korte signaler sorteret efter læserens rolle, branche, geografi og adfærd.</div>
         </div>
       </div>
       <div class="s8-bp-item">
         <div class="s8-bp-n">3</div>
         <div>
           <div class="s8-bp-tag">Regulering og risiko</div>
-          <div class="s8-bp-txt">Lovstof og compliance — altid med, når relevant. Deadline og konsekvens angivet.</div>
+          <div class="s8-bp-txt">Lovstof og compliance med hvem, hvornår og hvad virksomheden bør gøre nu.</div>
         </div>
       </div>
       <div class="s8-bp-item">
         <div class="s8-bp-n">4</div>
         <div>
           <div class="s8-bp-tag">Blind vinkel · Situationsbestemt</div>
-          <div class="s8-bp-txt">Aktiveres kun, når Blind Spot-modulet identificerer et dokumenteret hul i mediebilledet.</div>
+          <div class="s8-bp-txt">Kun når Blind Spot finder et dokumenteret hul i den dominerende erhvervsfortælling.</div>
         </div>
       </div>
       <div class="s8-bp-item">
         <div class="s8-bp-n">5</div>
         <div>
           <div class="s8-bp-tag">Hold øje med</div>
-          <div class="s8-bp-txt">Ét fremadrettet signal. Hvad bør du have i baghovedet inden næste møde eller beslutning.</div>
+          <div class="s8-bp-txt">Ét fremadrettet signal til næste møde, investering, ansættelse eller leverandørvalg.</div>
         </div>
+      </div>
+      <div class="s8-rule-strip">
+        <div class="s8-rule-lbl">Grundregel</div>
+        <div class="s8-rule-txt">Ingen morgenbrief uden et klart svar på: hvad betyder det for min arbejdsdag?</div>
       </div>
       <div class="s8-bp-prompt">
         <div class="s8-bp-prompt-lbl">Prompt</div>
@@ -2561,12 +2599,6 @@ function togglePromptModal(){
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="s8-bp-prompt-sub">Claude &middot; Sonnet &middot; System prompt &middot; Produktion</div>
-      </div>
-      <div class="s8-timing">
-        <div class="s8-timing-lbl">Produktionsrytme</div>
-        <div class="s8-timing-row"><div class="s8-timing-t">03.00</div><div class="s8-timing-d">AI scanner og sorterer kilder</div></div>
-        <div class="s8-timing-row"><div class="s8-timing-t">05.30</div><div class="s8-timing-d">Brief klar — levering planlagt</div></div>
-        <div class="s8-timing-row"><div class="s8-timing-t">06.30</div><div class="s8-timing-d">Levering — tekstversion og versioneret lydformat til afspilning</div></div>
       </div>
     </div>
 
@@ -2690,36 +2722,46 @@ function togglePromptModal(){
     <!-- HØJRE: Personalisering -->
     <div class="s8-col pers">
       <div class="s8-col-lbl">Personalisering</div>
+      <div class="s8-pers-logic">
+        <div class="s8-pers-logic-lbl">Produktlogik</div>
+        <div class="s8-pers-logic-txt">Identiteten er først: mennesker der skal handle. Segmenteringen afgør derefter, hvilke signaler der får plads, rækkefølge og vægt.</div>
+      </div>
       <div class="s8-pers-seg">
         <div class="s8-pers-name">SMV'er</div>
-        <div class="s8-pers-priority">Prioritering</div>
+        <div class="s8-pers-priority">Hvad briefet løfter op</div>
         <div class="s8-pers-items">
-          <div class="s8-pers-item">Regulering og compliance øverst</div>
-          <div class="s8-pers-item">Branche- og regionssignaler</div>
-          <div class="s8-pers-item">AI i praksis — ikke benchmarks</div>
+          <div class="s8-pers-item">Regulering, likviditet og lokale markedsvilkår</div>
+          <div class="s8-pers-item">Konkrete konsekvenser for drift, kunder og ansatte</div>
+          <div class="s8-pers-item">Business AI som arbejdsgang — ikke modelnyhed</div>
         </div>
       </div>
       <div class="s8-pers-seg">
         <div class="s8-pers-name">C-level</div>
-        <div class="s8-pers-priority">Prioritering</div>
+        <div class="s8-pers-priority">Hvad briefet skærper</div>
         <div class="s8-pers-items">
-          <div class="s8-pers-item">Blind vinkler og AI-signaler øverst</div>
+          <div class="s8-pers-item">Blinde vinkler og AI-signaler øverst</div>
           <div class="s8-pers-item">Geopolitik og markedsbevægelser</div>
-          <div class="s8-pers-item">Ledelsesbeslutninger med konsekvens</div>
+          <div class="s8-pers-item">Ledelsesbeslutninger med ansvar, risiko og timing</div>
         </div>
       </div>
       <div class="s8-pers-seg">
-        <div class="s8-pers-name">Format</div>
-        <div class="s8-pers-priority">Valg</div>
+        <div class="s8-pers-name">Konvertering</div>
+        <div class="s8-pers-priority">Hvorfor gratis?</div>
         <div class="s8-pers-items">
-          <div class="s8-pers-item">Tekst: 280 ord · 3 min læsetid</div>
-          <div class="s8-pers-item">Lyd: 4 min · versioneret lydformat · TTS med redaktørstemme</div>
-          <div class="s8-pers-item">Kanal: Email, app og web</div>
+          <div class="s8-pers-item">Registrering giver personalisering og vane</div>
+          <div class="s8-pers-item">Briefet viser værdien af Signalradaren og Cases</div>
+          <div class="s8-pers-item">Anonymt flow kan smage — login gør det relevant</div>
         </div>
+      </div>
+      <div class="s8-output-grid">
+        <div class="s8-output-card purple"><div class="s8-output-lbl">Tekst</div><div class="s8-output-txt">280 ord · 3 min læsetid</div></div>
+        <div class="s8-output-card blue"><div class="s8-output-lbl">Lyd</div><div class="s8-output-txt">4 min · versioneret format</div></div>
+        <div class="s8-output-card green"><div class="s8-output-lbl">Kanal</div><div class="s8-output-txt">Email · app · web</div></div>
+        <div class="s8-output-card dark"><div class="s8-output-lbl">Adgang</div><div class="s8-output-txt">Gratis med registrering</div></div>
       </div>
       <div class="s8-free-note">
         <div class="s8-free-note-lbl">Registreret · Gratis</div>
-        <div class="s8-free-note-txt">Morgenbriefet er gratis, men kræver registrering — registreringen aktiverer personalisering og er rekrutteringskanal til abonnementet. Anonymt flow: udvalgt indhold tilgængeligt uden login. Fuldt indhold: abonnement.</div>
+        <div class="s8-free-note-txt">Morgenbriefet er gratis, fordi det skal skabe daglig relation. Abonnementet begynder dér, hvor læseren vil have flere signaler, cases, dybde og dokumenteret forspring.</div>
       </div>
     </div>
 
