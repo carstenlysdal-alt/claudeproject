@@ -766,11 +766,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <!-- 04 — nederst til højre -->
     <div class="hub-node" data-target="s4" style="left:904px;top:572px;--nc:#2563EB;--ns:rgba(37,99,235,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .46s both">
       <div class="node-num">04</div>
-      <div class="node-h">Formater</div>
+      <div class="node-h">Tre kerneformater</div>
       <div class="node-pts">
+        <div class="node-pt">Signalradaren · Cases der virker · Klummer</div>
+        <div class="node-pt">Morgenbriefet og Overblikket er features</div>
         <div class="node-pt">Business AI som redaktionelt tyngdepunkt</div>
-        <div class="node-pt">Features · Primære formater · Situationsbestemt</div>
-        <div class="node-pt">Navngivne klummeskribenter — praksis og kant</div>
       </div>
     </div>
 
@@ -1492,69 +1492,32 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 (function(){
   var F=[
     {
-      num:'01',eyebrow:'01 · Basislag',name:'Brancheoverblikket',
-      func:'Orienteringen',freq:'Dagligt / løbende',tier:'paid',pillars:'Understand',
-      color:'#5A4A72',tint:'rgba(90,74,114,',
-      lead:'Det er ikke et fælles opslagstavleprodukt.',
-      q:'"Hvad er sket i min branche siden sidst?"',
-      desc:'Ikke alt behøver en vinkel. Noget behøver bare at blive fundet, sorteret og leveret, inden du åbner din første mail. Brancheoverblikket er personaliseret efter branche, region, emner og adfærd.',
-      insight:null,
-      regel:null,
-      struktur:null,
-      segmenter:'SMV-ejere · C-level · Medarbejdere',
-      kanaler:'Tekst · Lyd',
-      kernegreb:null,eksempler:null,emner:null,
-      sources:'CVR, Erhvervsstyrelsen, brancheforeninger og lokale erhvervsmedier.',
-      special:null,
-    },
-    {
-      num:'02',eyebrow:'02 · Vanen',name:'Morgenbriefet',
-      func:'Vanen',freq:'Dagligt · 06.30',tier:'free',pillars:'Understand',
-      color:'#A75D46',tint:'rgba(167,93,70,',
+      num:'01',eyebrow:'01 · Signaler',name:'Signalradaren',
+      func:'Forspringet',freq:'Ugentligt + situationsbestemt',tier:'paid',pillars:'Understand · Challenge',
+      color:'#9E8059',tint:'rgba(158,128,89,',
       lead:null,
-      q:'"Hvad skal jeg forstå, inden arbejdsdagen begynder?"',
-      desc:'Leveres kl. 06.30 i 5–7 punkter på tekst og lyd — det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel. Formålet er ikke at opsummere alt. Formålet er at give læseren det vigtigste at forstå, før arbejdsdagen begynder.',
-      insight:'Morgenbriefet er en feature, ikke et journalistisk format. Det er produktets daglige adgangspunkt — gratis, men kræver registrering. Registreringen aktiverer personalisering og er den primære rekrutteringskanal til abonnementet. Målet er vane og relation, ikke konvertering ved første møde.',
-      regel:null,
+      q:'"Hvad er ved at ske — og hvem ser det ikke endnu?"',
+      desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — markedsbevægelser, reguleringsudkast og teknologimønstre kortlagt med styrke og modtagere. Journalisten fortolker signalet og trækker konsekvensen. Brugeren ser den bearbejdede artikel, ikke råsignalet. Konsekvensen af signalet er altid eksplicit: hvad betyder det her konkret for din virksomhed?',
+      insight:'For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj. Blind Spot-disciplinen er infrastruktur bag formatet: systemet registrerer løbende hvad mediebilledet ikke dækker og hvad nyhedslogikken gør svært at se — og fodrer journalistens vinkelvalg uden at brugeren ser det.',
+      regel:'Redaktionel disciplin: find altid den manglende kilde, den skjulte omkostning eller den ufortalte konsekvens. Kræver navngivet modkilde.',
       struktur:[
-        'Hvad er vigtigt?',
-        'Hvem rammes?',
-        'Hvorfor betyder det noget?',
-        'Hvad skal du holde øje med?',
+        'Signalet — hvad er ved at ske?',
+        'Kilden og styrken',
+        'Hvem påvirkes?',
+        'Hvad mangler mediebilledet? (Blind Spot-lag)',
+        'Hvad betyder det konkret for din virksomhed?',
+        'Hvad bør du holde øje med?',
       ],
-      segmenter:'SMV-ejere · C-level · Medarbejdere',
-      kanaler:'Tekst · Lyd',
+      segmenter:'C-level · Rådgivere · Investorer · SMV-ejere',
+      kanaler:'Tekst · Ugentlig lydbrief · Grafisk video ved behov',
       kernegreb:null,eksempler:null,
-      emner:'Redaktionelt topvalg · Personlige branche- og rolleprioriteringer · Regulerings- og risikosignaler · Blind vinkel (når relevant) · Konkret hold-øje-med-note',
-      sources:'Ritzau, Børsen, Finans, Danmarks Statistik (DST) og globale erhvervssignaler.',
-      special:{type:'link',target:'s8',lbl:'Se hvad et Morgenbrief indeholder →'},
+      emner:'Business AI-adoption · Organisatorisk transformation · Lederskifter · Regulering og EU AI Act · Branche · Geografi · Virksomhedstype · Konkurrenter · Teknologi · Udbud · Kapital · Eksport · Kommunikation',
+      sources:'Eurostat, OECD, World Bank (B-READY), patentdatabaser, Supertrends, medieovervågning og 15 primære erhvervsmedier.',
+      special:{type:'note',lbl:'Situationsbestemte vinkler',
+        desc:'Myten om — afmonterer en udbredt antagelse med data og navngivet modkilde, hver 14. dag. Før mødet — 60-sekunders brief inden beslutning, møde eller forhandling. Før handlen — signal- og markedsbrief for rådgivere og C-level, viser bevægelser inden de bliver til pressemeddelelser. Alle tre er Signaler aktiveret af en specifik situation.'},
     },
     {
-      num:'03',eyebrow:'03 · Nytten',name:'Det betyder det',
-      func:'Nytten',freq:'Ugentligt + ad hoc',tier:'paid',pillars:'Understand',
-      color:'#2D423A',tint:'rgba(45,66,58,',
-      lead:null,
-      q:'"Hvad betyder det her konkret for min virksomhed?"',
-      desc:'Bygget over en fast 6-punkt-struktur, hvor der aldrig drages en konklusion uden en klar konsekvens for din virksomhed.',
-      insight:'Forklaringsformatet der gør dig klogere end dem der kun læste overskriften. Ad hoc ved lovforslag og EU-regulering.',
-      regel:null,
-      struktur:[
-        'Hvad er sket?',
-        'Hvem rammes?',
-        'Hvornår?',
-        'Hvad koster det?',
-        'Hvad bør virksomheden overveje?',
-        'Hvad mangler vi stadig at vide?',
-      ],
-      segmenter:'SMV-ejere · C-level · Medarbejdere',
-      kanaler:'Tekst · Kort lyd · Selektiv video',
-      kernegreb:null,eksempler:null,
-      emner:'Nye regler og skat · EU-direktiver · AI-regulering · Arbejdskraft · Rente og energi · Compliance · Data- og rapporteringskrav',
-      sources:'Folketingets ODA (lovforslag), EU-direktiver, Erhvervsstyrelsen og høringssvar.',
-      special:null,
-    },
-    {
-      num:'05',eyebrow:'05 · Læringen',name:'Casen der virker',
+      num:'02',eyebrow:'02 · Læringen',name:'Casen der virker',
       func:'Læringen',freq:'Ugentligt',tier:'paid',pillars:'Inspire',
       color:'#4A374E',tint:'rgba(74,55,78,',
       lead:null,
@@ -1585,32 +1548,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         desc:'Faste spørgsmål sendes til kilden inden produktion. Sikrer friktion, fejl og konkret resultat — aldrig kun succeshistorien. Variant: Workflow Deconstructed — dekonstruerer én specifik jobfunktion i én branche og viser præcis hvilke AI-workflows der ændrer den, med navngivne tal og dokumenterede implementeringserfaringer. Aktiveres situationsbestemt.'},
     },
     {
-      num:'04',eyebrow:'04 · Forspringet',name:'Signalradaren',
-      func:'Forspringet',freq:'Ugentligt + situationsbestemt',tier:'paid',pillars:'Understand · Challenge',
-      color:'#9E8059',tint:'rgba(158,128,89,',
-      lead:null,
-      q:'"Hvad er ved at ske — og hvem ser det ikke endnu?"',
-      desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — markedsbevægelser, reguleringsudkast og teknologimønstre kortlagt med styrke og modtagere. Journalisten fortolker signalet og trækker konsekvensen. Brugeren ser den bearbejdede artikel, ikke råsignalet.',
-      insight:'For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj. Blind Spot-disciplinen er infrastruktur bag formatet: systemet registrerer løbende hvad mediebilledet ikke dækker og hvad nyhedslogikken gør svært at se — og fodrer journalistens vinkelvalg uden at brugeren ser det.',
-      regel:'Redaktionel disciplin: find altid den manglende kilde, den skjulte omkostning eller den ufortalte konsekvens. Kræver navngivet modkilde.',
-      struktur:[
-        'Signalet — hvad er ved at ske?',
-        'Kilden og styrken',
-        'Hvem påvirkes?',
-        'Hvad mangler mediebilledet? (Blind Spot-lag)',
-        'Hvad kan det føre til?',
-        'Hvad bør du holde øje med?',
-      ],
-      segmenter:'C-level · Rådgivere · Investorer · SMV-ejere',
-      kanaler:'Tekst · Ugentlig lydbrief · Grafisk video ved behov',
-      kernegreb:null,eksempler:null,
-      emner:'Business AI-adoption · Organisatorisk transformation · Lederskifter · Regulering og EU AI Act · Branche · Geografi · Virksomhedstype · Konkurrenter · Teknologi · Udbud · Kapital · Eksport · Kommunikation',
-      sources:'Eurostat, OECD, World Bank (B-READY), patentdatabaser, Supertrends, medieovervågning og 15 primære erhvervsmedier.',
-      special:{type:'note',lbl:'Situationsbestemte vinkler',
-        desc:'Myten om — afmonterer en udbredt antagelse med data og navngivet modkilde, hver 14. dag. Før mødet — 60-sekunders brief inden beslutning, møde eller forhandling. Før handlen — signal- og markedsbrief for rådgivere og C-level, viser bevægelser inden de bliver til pressemeddelelser. Alle tre er Signaler aktiveret af en specifik situation.'},
-    },
-    {
-      num:'05',eyebrow:'05 · Stemmen',name:'Klummerne',
+      num:'03',eyebrow:'03 · Stemmen',name:'Klummerne',
       func:'Det AI ikke kan',freq:'Løbende — 2–4 gange månedligt',tier:'paid',pillars:'Understand · Challenge · Inspire',
       color:'#3B5949',tint:'rgba(59,89,73,',
       lead:null,
@@ -1695,7 +1633,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
   var nav=document.getElementById('s4Nav');
   var cnt=document.getElementById('s4Content');
-  var activeIdx=1;
+  var activeIdx=0;
 
   F.forEach(function(f,i){
     var item=document.createElement('div');
