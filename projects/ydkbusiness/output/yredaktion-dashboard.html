@@ -203,9 +203,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .pillar-rule-lbl{display:none}
 .pillar-rule-txt{font-family:var(--sans);font-size:12px;font-weight:700;line-height:1.42;color:inherit}
 .pillar-ex-lbl{display:none}
-.pillar-ex-item{font-family:var(--sans);font-size:11.5px;color:var(--muted);display:block;line-height:1.38;padding:6px 0;border-bottom:1px solid var(--line2)}
-.pillar-ex-item:last-of-type{border-bottom:none}
-.pillar-ex-item::before{display:none}
+.pillar-ex-item{display:none}
+/* Labeled Thread List */
+.ltl-list{position:relative;display:flex;flex-direction:column;gap:0;padding-left:20px;margin-bottom:14px}
+.ltl-list::before{content:'';position:absolute;left:5px;top:6px;bottom:8px;width:1px;background:var(--line)}
+.ltl-item{position:relative;padding:10px 0;border-top:1px solid var(--line2)}
+.ltl-item:first-child{border-top:none;padding-top:4px}
+.ltl-item::before{content:'';position:absolute;left:-20px;top:14px;width:11px;height:11px;border-radius:50%;background:var(--card);border:2px solid var(--ltl-color,var(--accent))}
+.ltl-lbl{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ltl-color,var(--accent));margin-bottom:3px}
+.ltl-txt{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4}
+.s3-primary-card .ltl-lbl{font-size:7.5px}
+.s3-primary-card .ltl-txt{font-size:10px;line-height:1.35}
+.s3-primary-card .ltl-item{padding:7px 0}
+.s3-primary-card .ltl-item::before{top:11px}
 .pillar-ai{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px}
 .pillar-ai-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
 .ai-tag{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px}
@@ -258,7 +268,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s3-primary-card:nth-child(3){grid-row:2}
 .s3p-label{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--pc);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;opacity:.75;display:flex;align-items:center;gap:10px}
 .s3p-label::before{content:'';display:block;width:16px;height:1px;background:currentColor}
-.s3p-name{font-family:var(--serif);font-size:52px;font-weight:700;color:var(--ink);line-height:.92;letter-spacing:-.03em;margin-bottom:8px}
+.s3p-name{font-family:var(--serif);font-size:38px;font-weight:700;color:var(--ink);line-height:.92;letter-spacing:-.03em;margin-bottom:8px}
 .s3p-scope{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.06em;margin-bottom:18px}
 .s3p-divider{height:1px;background:var(--line);margin-bottom:14px;flex-shrink:0}
 .s3p-section-lbl{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px;opacity:.55}
@@ -1057,10 +1067,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="pillar-rule-lbl">Redaktionelt løfte</div>
         <div class="pillar-rule-txt">Hvem rammes, hvornår, hvad kræver det?</div>
       </div>
-      <div class="pillar-ex-lbl">Typisk stof</div>
-      <div class="pillar-ex-item">Ny regulering med deadline og konkrete krav</div>
-      <div class="pillar-ex-item">AI-adoption oversat til drifts- og organisationskonsekvens</div>
-      <div class="pillar-ex-item">Makroøkonomisk indikator med sektorkonsekvens</div>
+      <div class="ltl-list" style="--ltl-color:var(--green)">
+        <div class="ltl-item"><div class="ltl-lbl">Regulering</div><div class="ltl-txt">Ny regulering med deadline og konkrete krav</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">AI</div><div class="ltl-txt">AI-adoption oversat til drifts- og organisationskonsekvens</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Makro</div><div class="ltl-txt">Makroøkonomisk indikator med sektorkonsekvens</div></div>
+      </div>
       <div class="pillar-ai">
         <span class="pillar-ai-lbl">AI-produktion</span>
         <span class="ai-tag ai-h">Høj</span>
@@ -1080,10 +1091,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="pillar-rule-lbl">Redaktionelt løfte</div>
         <div class="pillar-rule-txt">Ingen modfortælling uden dokumentation.</div>
       </div>
-      <div class="pillar-ex-lbl">Typisk stof</div>
-      <div class="pillar-ex-item">Eksperten der siger noget andet — med belæg</div>
-      <div class="pillar-ex-item">Myteknusning om funding, AI, skalering eller regulering</div>
-      <div class="pillar-ex-item">Strategiske blinde vinkler for dansk ledelse</div>
+      <div class="ltl-list" style="--ltl-color:var(--amber)">
+        <div class="ltl-item"><div class="ltl-lbl">Kilde</div><div class="ltl-txt">Eksperten der siger noget andet — med belæg</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Myte</div><div class="ltl-txt">Myteknusning om funding, AI, skalering eller regulering</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Vinkel</div><div class="ltl-txt">Strategiske blinde vinkler for dansk ledelse</div></div>
+      </div>
       <div class="pillar-ai">
         <span class="pillar-ai-lbl">AI-produktion</span>
         <span class="ai-tag ai-l">Lav — navngivet ophav krævet</span>
@@ -1103,10 +1115,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="pillar-rule-lbl">Redaktionelt løfte</div>
         <div class="pillar-rule-txt">Ingen case uden friktion. Ingen læring uden pris.</div>
       </div>
-      <div class="pillar-ex-lbl">Typisk stof</div>
-      <div class="pillar-ex-item">Casestory med problem, metode og konkret resultat</div>
-      <div class="pillar-ex-item">AI-implementering med organisation og friktion</div>
-      <div class="pillar-ex-item">Generationsskifte som journalistisk serie</div>
+      <div class="ltl-list" style="--ltl-color:var(--accent)">
+        <div class="ltl-item"><div class="ltl-lbl">Case</div><div class="ltl-txt">Casestory med problem, metode og konkret resultat</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">AI</div><div class="ltl-txt">AI-implementering med organisation og friktion</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Serie</div><div class="ltl-txt">Generationsskifte som journalistisk serie</div></div>
+      </div>
       <div class="pillar-ai">
         <span class="pillar-ai-lbl">AI-produktion</span>
         <span class="ai-tag ai-m">Middel — vurdering kræver menneske</span>
@@ -1182,11 +1195,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         </div>
         <div class="s3p-divider"></div>
         <div class="s3p-need">Hvad rammer min drift? Hvad kræver den nye regulering? Hvad sker der i min branche og region?</div>
-        <div class="s3p-covers-lbl">Vi dækker</div>
-        <div class="s3p-cover-item">Regulering oversat til konkret drift: hvem rammes, hvornår, hvad koster det</div>
-        <div class="s3p-cover-item">Udbud, branchesignaler og lokale markedsmuligheder uden for C25</div>
-        <div class="s3p-cover-item">AI i praksis: arbejdsgange, ansvar og leverandørvalg</div>
-        <div class="s3p-cover-item">Cases med metode, friktion og kopierbar læring</div>
+        <div class="ltl-list" style="--ltl-color:var(--pc)">
+          <div class="ltl-item"><div class="ltl-lbl">Regulering</div><div class="ltl-txt">Oversat til konkret drift: hvem rammes, hvornår, hvad koster det</div></div>
+          <div class="ltl-item"><div class="ltl-lbl">Marked</div><div class="ltl-txt">Udbud, branchesignaler og lokale markedsmuligheder uden for C25</div></div>
+          <div class="ltl-item"><div class="ltl-lbl">AI</div><div class="ltl-txt">Arbejdsgange, ansvar og leverandørvalg i praksis</div></div>
+          <div class="ltl-item"><div class="ltl-lbl">Cases</div><div class="ltl-txt">Metode, friktion og kopierbar læring</div></div>
+        </div>
     </div>
     <div class="s3-primary-card" style="--pc:#16A34A;--pb:rgba(22,163,74,.05)">
         <div class="s3p-label">03 · Præcist segment</div>
@@ -1201,11 +1215,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         </div>
         <div class="s3p-divider"></div>
         <div class="s3p-need">Hvad ændrer beslutningsrummet? Hvad kræver AI-skiftet af min organisation? Hvad er vinklen, Børsen ikke tager?</div>
-        <div class="s3p-covers-lbl">Vi dækker</div>
-        <div class="s3p-cover-item">AI som ledelses-, organisations- og forretningsmodelspørgsmål</div>
-        <div class="s3p-cover-item">Operationel geopolitik og regulering oversat til dansk mid-market</div>
-        <div class="s3p-cover-item">Blind spots i de fortællinger, alle andre gentager</div>
-        <div class="s3p-cover-item">Signaler fra markedet, inden de er en trend</div>
+        <div class="ltl-list" style="--ltl-color:var(--pc)">
+          <div class="ltl-item"><div class="ltl-lbl">AI</div><div class="ltl-txt">Ledelses-, organisations- og forretningsmodelspørgsmål</div></div>
+          <div class="ltl-item"><div class="ltl-lbl">Geopolitik</div><div class="ltl-txt">Operationel geopolitik og regulering oversat til dansk mid-market</div></div>
+          <div class="ltl-item"><div class="ltl-lbl">Blind spot</div><div class="ltl-txt">I de fortællinger, alle andre gentager</div></div>
+          <div class="ltl-item"><div class="ltl-lbl">Signal</div><div class="ltl-txt">Fra markedet, inden de er en trend</div></div>
+        </div>
     </div>
     <div class="s3-secondary-strip">
       <div class="s3-sec-lbl">Øvrige præciseringer</div>
