@@ -459,24 +459,31 @@ Succeserne vises med metode, friktion og begrænsning — aldrig som glorificeri
 
 ### Spor 3: Hullet i konkurrenternes dækning
 
-Konkurrentanalyse identificerer tre huller ingen eksisterende dansk erhvervsmedia
-ejer. Det er Y Business' territorium.
+Konkurrentanalysen dokumenterer en strukturel polarisering i det danske B2B-medielandskab:
+på den ene side interesseorganisationerne, på den anden de traditionelle erhvervsmedier.
+Midt imellem er der ingenting. Det er Y Business' territorium.
 
-**"Friction First" — implementeringens barske virkelighed.** DI og Dansk Erhverv
-publicerer polerede succeshistorier. Børsen skriver om topledernes holdninger. Ingen
-ejer fortællingen om friktionen: beskidte datasæt, fejlslagne proofs-of-concept,
-urealistiske leverandørforventninger og medarbejdernes berettigede modstand. Y Business
-insisterer på at dække hvad der gik galt — og hvad organisationerne lærte af det.
+**DI og Dansk Erhverv er rådgivning — ikke journalistik.** De producerer operationelt,
+brugbart materiale, men deres primære opgave er interessevaretagelse. De publicerer aldrig
+en "autopsi" af et AI-projekt der gik galt, anmelder aldrig specifikke leverandører og
+bedriver aldrig undersøgende journalistik om fejlslagne IT-investeringer i
+medlemsvirksomheder. Det er ikke en svaghed — det er ikke deres job. Men det efterlader
+et direkte tomt rum Y Business kan fylde.
 
-**Middle management i SMV'er.** HBR og McKinsey skriver til multinationale
-koncerner. Børsen skriver til direktionen. Men det er i mellemledelsen i virksomheder
-med 50–500 ansatte, at de hårde beslutninger om AI skal eksekveres. Ingen dækker
-dette lag konsekvent.
+**Børsen og Finans er makroøkonomi og investorperspektiv.** De dækker AI for den der
+handler på aktier og følger C25-direktioners holdninger. Den CIO der skal implementere
+en AI-agent til kundeservice finder ingen hjælp der.
 
-**Agentic Commerce og den lukkede digitale økonomi.** Ingen danske erhvervsmedier
-dækker systematisk transformationen fra søgemaskinebaseret webhandel til
-agentbaseret handel, og hvad det kræver af virksomheders datastrukturer og
-B2B-tilgang.
+**Dagens Industri (Sverige) har overladt den operationelle dækning til leverandørerne.**
+Et systemisk problem der illustrerer fristelsen og konsekvensen: IBM og Accenture
+betaler for spalteplads om HR-agenter og AI-modenhedsrapporter, formidlet i
+journalistisk layout. Læserne betjenes med salgsmateriale forklædt som analyse.
+Det koster troværdighed på lang sigt — og skaber et hul en uafhængig redaktion
+kan udnytte fra dag ét.
+
+**Hullet der er til at tage:** Uafhængig, kritisk implementeringsjournalistik om Business
+AI. Hvad gik galt. Hvad det faktisk kostede. Hvad der virker — med metode, friktion og
+dokumenterede tal. Ingen dansk erhvervsmedia ejer det i 2026.
 
 Redaktionen kortlægger løbende, hvad der allerede dækkes af DI, Dansk Erhverv,
 Børsen, Finans.dk, Bloomberg, FT og Wired Business — og hvad der konsekvent
@@ -686,6 +693,8 @@ Y Business skriver ikke:
 - LinkedIn-debatter uden verificerbar substans
 - brancheorganisationers udmeldinger uden modkilde eller datagrundlag
 - konsulentrapporter uden metode
+- leverandør- og vendorindhold uden fuld redaktionel armslængde — ikke som reklame, ikke som native, ikke som co-branded indhold der udgiver sig for journalistik
+- interesseorganisationers AI-guides og best-practice-skabeloner som enkeltkilde — de repræsenterer altid et interessesynspunkt, aldrig en uafhængig vurdering
 - video uden forklaringsbehov
 - personaliseret anbefaling uden redaktionel relevans
 

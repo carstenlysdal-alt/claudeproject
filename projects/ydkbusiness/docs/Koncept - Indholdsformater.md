@@ -62,7 +62,7 @@ og betalingsvilje. De kræver redaktionel dom og navngivet ansvar.
 | **Primært format** | Signaler *(Signalradaren inkl. Blind Spot)* | Ugentligt | Understand / Challenge | C-level, rådgivere, SMV-ejere |
 | **Primært format** | Cases *(Casen der virker / Sådan gjorde jeg)* | Ugentligt | Inspire | SMV-ejere, iværksættere, C-level |
 | **Situationsbestemt** | Den blinde vinkel (standalone) | Ad hoc | Challenge | C-level, rådgivere, iværksættere |
-| **Situationsbestemt** | Myten om, Før mødet, Før handlen | Ad hoc | Challenge / Understand | Varierer |
+| **Situationsbestemt** | Myten om, Før mødet, Før handlen, Workflow Deconstructed | Ad hoc | Challenge / Understand / Inspire | Varierer |
 
 ---
 
@@ -293,6 +293,38 @@ sektorrotation, reguleringsvinduer, opkøbsmønstre.
 
 **Fast struktur:** signalet → selskaberne → sektoren → reguleringen
 → kapitalen → mulig bevægelse → blind vinkel
+
+---
+
+### Workflow Deconstructed
+
+Dekonstruerer én specifik jobfunktion i én specifik branche — og viser
+præcis, hvilke AI-workflows der ændrer den fra grunden.
+
+**Pillar:** Inspire / Understand
+**Funktion:** Anvise og lære
+**Primære segmenter:** Mellemledere, SMV-ejere, C-level
+**Kanaler:** Tekst, selektivt lyd
+**Frekvens:** Situationsbestemt — 1-2 gange månedligt
+
+Ingen eksisterende dansk erhvervsmedia ejer dette format. DI og Dansk
+Erhverv leverer generiske best-practice guides. Børsen og Finans dækker
+AI på direktionsniveau. Hullet er det granulære, jobrolle-specifikke niveau:
+præcis hvad gør en *pricing manager i en engrosvirksomhed* anderledes med AI?
+Hvad trykker en *compliance officer i pharma* på?
+
+Formatet tager én funktion ad gangen og besvarer:
+- Hvilken konkret opgave tager AI over — og hvad kræver det af datagrundlaget?
+- Hvad er den faktiske tidsbesparelse og de reelle implementeringsomkostninger?
+- Hvilke fejl laves oftest i denne funktion?
+- Hvad kan andre kopiere direkte?
+
+**Intern regel:** Ingen Workflow Deconstructed uden navngivne tal og
+dokumenteret implementeringserfaringer. Generiske råd om "effektivisering"
+er ikke dette format.
+
+**AI's rolle:** AI kan bruges til at trække og strukturere data om
+jobrollen. Selve implementeringsanalysen og kilderne er menneskelige.
 
 ---
 
