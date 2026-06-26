@@ -157,7 +157,15 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .node-cta::after{content:'→';font-size:11px}
 
 /* ── S2 PILLARS ── */
-.s2-wrap{display:grid;grid-template-columns:252px 1fr 1fr 1fr;height:100%}
+.s2-wrap{display:grid;grid-template-columns:252px 1fr 1fr 1fr;grid-template-rows:1fr auto;height:100%}
+/* ── S2 FOUNDATIONS BAR ── */
+.s2-foundations{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--accent);border-top:1px solid rgba(250,250,248,.08)}
+.s2-found-cell{padding:22px 32px;border-right:1px solid rgba(250,250,248,.08);display:flex;flex-direction:column;gap:5px}
+.s2-found-cell:last-child{border-right:none}
+.s2-found-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.3);letter-spacing:.22em;text-transform:uppercase}
+.s2-found-q{font-family:var(--serif);font-size:20px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.2;letter-spacing:-.015em}
+.s2-found-stmt{font-family:var(--sans);font-size:14px;font-weight:600;color:rgba(250,250,248,.88);line-height:1.5}
+.s2-found-body{font-family:var(--sans);font-size:11.5px;color:rgba(250,250,248,.5);line-height:1.55;margin-top:1px}
 .s2-why{background:var(--accent);padding:28px 24px;display:flex;flex-direction:column}
 .s2-why-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.32);letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px}
 .s2-why-eyebrow::before{content:'';display:block;width:14px;height:1px;background:currentColor}
@@ -987,19 +995,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="s2-why-bai-q">Hvad ændrer sig — før det bliver åbenlyst for alle?</div>
         <div class="s2-why-bai-txt">Vi leder efter mønstre, ændringer og svage signaler i medier, markeder, myndigheder, virksomheder, brancher og internationale kilder. Det er tværgående — det gennemstrømmer alle tre pillars.</div>
       </div>
-      <div class="s2-why-bai" style="margin-top:0">
-        <div class="s2-why-bai-lbl">Business AI · Redaktionelt kernesignal</div>
-        <div class="s2-why-bai-q">Hvad kræver det af organisationen, ledelsen og processerne?</div>
-        <div class="s2-why-bai-txt">Vi ejer det spørgsmål ingen andre stiller. Ni ud af ti AI-projekter fejler ikke på teknologien — de fejler på organisationen.</div>
-      </div>
-      <div class="s2-why-rule">
-        <div class="s2-why-rule-lbl">Måleprincip</div>
-        <div class="s2-why-rule-txt">Y Business skal ikke måles på, hvor meget vi publicerer — men på, om vi gør læseren klogere, tidligere og bedre i stand til at handle.</div>
-      </div>
-      <div class="s2-why-rule" style="margin-top:8px">
-        <div class="s2-why-rule-lbl">Grundprincip</div>
-        <div class="s2-why-rule-txt">Vi prioriterer efter brugerens rolle, branche, geografi, interesser og behov. Men redaktionen sikrer, at vigtige signaler, risici og blinde vinkler stadig bryder igennem.</div>
-      </div>
     </div>
 
     <!-- UNDERSTAND -->
@@ -1071,6 +1066,23 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       <div class="pillar-ai">
         <span class="pillar-ai-lbl">AI-produktion</span>
         <span class="ai-tag ai-m">Middel — vurdering kræver menneske</span>
+      </div>
+    </div>
+
+    <!-- ── FOUNDATIONS BAR ── -->
+    <div class="s2-foundations">
+      <div class="s2-found-cell">
+        <div class="s2-found-lbl">Business AI · Redaktionelt kernesignal</div>
+        <div class="s2-found-q">Hvad kræver det af organisationen, ledelsen og processerne?</div>
+        <div class="s2-found-body">Vi ejer det spørgsmål ingen andre stiller. Ni ud af ti AI-projekter fejler ikke på teknologien — de fejler på organisationen.</div>
+      </div>
+      <div class="s2-found-cell">
+        <div class="s2-found-lbl">Måleprincip</div>
+        <div class="s2-found-stmt">Y Business skal ikke måles på, hvor meget vi publicerer — men på, om vi gør læseren klogere, tidligere og bedre i stand til at handle.</div>
+      </div>
+      <div class="s2-found-cell">
+        <div class="s2-found-lbl">Grundprincip</div>
+        <div class="s2-found-stmt">Vi prioriterer efter brugerens rolle, branche, geografi, interesser og behov. Men redaktionen sikrer, at vigtige signaler, risici og blinde vinkler stadig bryder igennem.</div>
       </div>
     </div>
 
