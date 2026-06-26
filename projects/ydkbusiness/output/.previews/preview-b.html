@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<title>Forslag B — Avisforside</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@500;700&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#ECEAE4;-webkit-font-smoothing:antialiased}
+.stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;
+  background:#FAFAF8;display:flex;flex-direction:column}
+
+.hdr{height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;border-bottom:2px solid #E4E2DD;flex-shrink:0;
+  background:rgba(250,250,248,.97)}
+.brand{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;
+  color:#361352;font-style:italic}
+.brand b{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+  letter-spacing:.2em;color:#7C7972;font-style:normal;margin-left:14px}
+.slide-id{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:#7C7972}
+
+/* Grid */
+.grid{flex:1;display:grid;
+  grid-template-columns:400px 420px 1fr 1fr;
+  grid-template-rows:100px 1fr 1fr;
+  gap:1px;background:#E4E2DD;overflow:hidden}
+
+.cell{background:#FAFAF8;padding:22px 24px;overflow:hidden;cursor:default;
+  transition:background .15s ease;position:relative}
+.cell:hover{background:#F4F2EC}
+
+/* Top strip: Morgenbriefet — gratis, full width */
+.cell-morgen{
+  grid-column:1/-1;
+  background:#A75D46;
+  padding:0 36px;
+  display:flex;align-items:center;gap:32px;
+}
+.cell-morgen .cn{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.cell-morgen .cname{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;
+  color:#fff;font-style:italic;letter-spacing:-.01em}
+.cell-morgen .cfunc{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.cell-morgen .cq{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;
+  color:rgba(255,255,255,.8);line-height:1.4;flex:1}
+.cell-morgen .ctag{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;
+  border:1px solid rgba(255,255,255,.4);color:rgba(255,255,255,.8)}
+
+/* Blind Spot — dark anchor, left tall */
+.cell-blind{
+  grid-row:2/4;
+  background:#0C1929;
+  padding:28px 28px;
+}
+
+/* Standard cell */
+.c-num{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
+.c-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;
+  line-height:1;letter-spacing:-.02em;color:#100C0C;margin-bottom:6px}
+.c-func{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:#7C7972;margin-bottom:10px}
+.c-q{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;
+  color:#44413C;line-height:1.45;margin-bottom:8px}
+.c-desc{font-family:'Schibsted Grotesk',sans-serif;font-size:11.5px;
+  color:#7C7972;line-height:1.55}
+.c-accent{position:absolute;top:0;left:0;right:0;height:3px}
+
+/* Dark cell overrides */
+.cell-blind .c-num{color:rgba(147,197,253,.6)}
+.cell-blind .c-name{color:#F0ECE3;font-size:36px}
+.cell-blind .c-func{color:rgba(147,197,253,.45)}
+.cell-blind .c-q{color:rgba(240,236,227,.75);font-size:15px}
+.cell-blind .c-desc{color:rgba(240,236,227,.5)}
+
+/* Klummerne — dark green */
+.cell-klumme{background:#2A3E33}
+.cell-klumme .c-num{color:rgba(120,180,140,.7)}
+.cell-klumme .c-name{color:#F0ECE3}
+.cell-klumme .c-func{color:rgba(150,200,160,.5)}
+.cell-klumme .c-q{color:rgba(240,236,227,.7)}
+.cell-klumme .c-desc{color:rgba(240,236,227,.45)}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="hdr">
+    <div class="brand">Y<b>Business</b></div>
+    <div class="slide-id">04 · Formater</div>
+  </div>
+  <div class="grid">
+    <!-- Top: Morgenbriefet full width -->
+    <div class="cell cell-morgen">
+      <span class="cn">02 · GRATIS</span>
+      <span class="cname">Morgenbriefet</span>
+      <span class="cfunc">Vanen</span>
+      <span class="cq">"Hvad skal jeg forstå, inden arbejdsdagen begynder?"</span>
+      <span class="ctag">Dagligt · 06.30</span>
+      <span class="ctag">20 % fri adgang</span>
+    </div>
+    <!-- Col 1: Blind Spot (dark, tall) -->
+    <div class="cell cell-blind">
+      <div class="c-num">07 · SIGNALMOTOREN</div>
+      <div class="c-name">Blind Spot</div>
+      <div class="c-func">Signalmotoren</div>
+      <div class="c-q">"Hvad gør nyhedslogikken svært at se — og hvad er den sandsynlige forklaring?"</div>
+      <div class="c-desc" style="margin-top:12px">Systemet finder sprækken i ugens nyhedsbillede: det dokumenterede hul, den skæve fortælling, den dominerende ramme, den fraværende kilde.</div>
+      <div style="margin-top:16px;padding:10px 12px;background:rgba(59,130,246,.1)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(147,197,253,.7);margin-bottom:4px">Ankerformatet</div>
+        <div style="font-family:'Schibsted Grotesk',sans-serif;font-size:11px;color:rgba(240,236,227,.6);line-height:1.5">Det format du husker — og grunden til at du kommer tilbage.</div>
+      </div>
+    </div>
+    <!-- Row 2, cols 2-4 -->
+    <div class="cell" style="border-top:3px solid #2E5F9A">
+      <div class="c-accent" style="background:#2E5F9A"></div>
+      <div class="c-num" style="color:#2E5F9A">03 · BETALT</div>
+      <div class="c-name">Det betyder det</div>
+      <div class="c-func">Nytten</div>
+      <div class="c-q">"Hvad betyder det her konkret for min virksomhed?"</div>
+      <div class="c-desc">Bygget over en fast 6-punkt-struktur. Forklaringsformatet der gør dig klogere end dem der kun læste overskriften.</div>
+    </div>
+    <div class="cell" style="border-top:3px solid #2F3E4C">
+      <div class="c-num" style="color:#2F3E4C">04 · BETALT</div>
+      <div class="c-name">Den blinde vinkel</div>
+      <div class="c-func">Kanten</div>
+      <div class="c-q">"Hvad overser den dominerende fortælling?"</div>
+      <div class="c-desc">Ikke et temperament, men en redaktionel disciplin. Kræver altid en navngivet modkilde.</div>
+    </div>
+    <div class="cell" style="border-top:3px solid #5A4A72">
+      <div class="c-num" style="color:#5A4A72">01 · BETALT</div>
+      <div class="c-name">Brancheoverblikket</div>
+      <div class="c-func">Orienteringen</div>
+      <div class="c-q">"Hvad er sket i min branche siden sidst?"</div>
+      <div class="c-desc">Personaliseret efter branche, region, emner og adfærd. Ikke et fælles opslagstavleprodukt.</div>
+    </div>
+    <!-- Row 3, cols 2-4 -->
+    <div class="cell" style="border-top:3px solid #4A2B6A">
+      <div class="c-num" style="color:#4A2B6A">05 · BETALT</div>
+      <div class="c-name">Casen der virker</div>
+      <div class="c-func">Læringen</div>
+      <div class="c-q">"Hvad kan andre bruge — og hvad kan de ikke kopiere?"</div>
+      <div class="c-desc">Praksis frem for teori. Ingen anonyme eksempler. Altid navngivet afsender.</div>
+    </div>
+    <div class="cell" style="border-top:3px solid #8C6D28">
+      <div class="c-num" style="color:#8C6D28">06 · BETALT</div>
+      <div class="c-name">Signalradaren</div>
+      <div class="c-func">Forspringet</div>
+      <div class="c-q">"Hvad er ved at ske — og hvem ser det ikke endnu?"</div>
+      <div class="c-desc">Se mønstre 6–18 måneder før dine konkurrenter. Konkurrencefordelen er tidshorisonten.</div>
+    </div>
+    <div class="cell cell-klumme" style="display:grid;grid-template-rows:1fr 1fr;gap:1px;padding:0;background:#E4E2DD">
+      <div style="background:#2A3E33;padding:18px 20px">
+        <div class="c-num" style="color:rgba(120,180,140,.7);font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase">08 · STEMMEN</div>
+        <div class="c-name" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#F0ECE3;line-height:1">Klummerne</div>
+        <div style="font-family:'Playfair Display',serif;font-size:12px;font-style:italic;color:rgba(240,236,227,.65);margin-top:6px;line-height:1.4">"AI kan opsummere. Den kan ikke have noget på spil."</div>
+      </div>
+      <div style="background:#F4F2EC;padding:18px 20px">
+        <div class="c-num" style="color:#7C7972;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase">+3 · SKALERBARE</div>
+        <div class="c-name" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#100C0C;line-height:1">Situations-formater</div>
+        <div style="font-family:'Schibsted Grotesk',sans-serif;font-size:11px;color:#7C7972;margin-top:6px">Myten om · Før mødet · Før handlen</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+const st=document.getElementById('stage');
+st.style.transform=`translate(${(window.innerWidth-1920*s)/2}px,${(window.innerHeight-1080*s)/2}px) scale(${s})`;
+</script>
+</body>
+</html>

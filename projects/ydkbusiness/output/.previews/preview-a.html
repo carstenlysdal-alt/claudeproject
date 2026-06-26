@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<title>Forslag A — Kolonne-accordion</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@500;700&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#ECEAE4;
+  -webkit-font-smoothing:antialiased}
+.stage{position:absolute;left:0;top:0;width:1920px;height:1080px;
+  transform-origin:0 0;background:#FAFAF8;display:flex;flex-direction:column}
+
+.hdr{height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;border-bottom:1px solid #E4E2DD;background:rgba(250,250,248,.97);
+  flex-shrink:0}
+.brand{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;
+  color:#361352;font-style:italic}
+.brand b{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+  letter-spacing:.2em;color:#7C7972;font-style:normal;margin-left:14px}
+.slide-id{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:#7C7972}
+
+/* Kolonne-rækken */
+.cols{flex:1;display:flex;overflow:hidden}
+
+.col{
+  display:flex;flex-direction:column;
+  border-right:1px solid #E4E2DD;
+  cursor:pointer;
+  transition:flex-basis .42s cubic-bezier(.22,.61,.36,1), background .2s ease;
+  position:relative;overflow:hidden;
+  flex-basis:120px;flex-shrink:0;
+}
+.col:last-child{border-right:none}
+.col.open{flex-basis:1040px}
+
+/* Kolonne-baggrund farvetone */
+.col::before{content:'';position:absolute;inset:0;opacity:.05;transition:opacity .2s}
+.col:hover::before,.col.open::before{opacity:.08}
+
+/* Collapsed indhold */
+.col-id{
+  position:absolute;bottom:44px;left:0;right:0;
+  display:flex;flex-direction:column;align-items:center;
+  gap:12px;
+  opacity:1;transition:opacity .25s ease;
+}
+.col.open .col-id{opacity:0;pointer-events:none}
+
+.col-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-align:center}
+.col-name-vert{
+  font-family:'Playfair Display',serif;font-size:16px;font-weight:700;
+  writing-mode:vertical-rl;text-orientation:mixed;
+  transform:rotate(180deg);
+  line-height:1;letter-spacing:.02em;color:#100C0C;
+  white-space:nowrap;
+}
+
+/* Color accent bar at top of each col */
+.col-accent{height:3px;width:100%;flex-shrink:0}
+
+/* Open state: left identity + right content */
+.col-inner{
+  display:flex;flex:1;overflow:hidden;
+  opacity:0;transition:opacity .2s ease .15s;
+}
+.col.open .col-inner{opacity:1}
+
+.col-left{
+  width:220px;flex-shrink:0;
+  display:flex;flex-direction:column;
+  padding:40px 0 40px 36px;
+  border-right:1px solid #E4E2DD;
+}
+.open-num{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px}
+.open-name{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;
+  line-height:1;letter-spacing:-.02em;color:#100C0C;margin-bottom:10px;
+  word-break:break-word}
+.open-func{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:#7C7972;margin-bottom:auto}
+.open-tier{font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border:1px solid;
+  display:inline-block;margin-top:20px}
+.open-tier.free{color:#A75D46;border-color:rgba(167,93,70,.4)}
+.open-tier.paid{color:#361352;border-color:rgba(54,19,82,.25)}
+
+.col-right{
+  flex:1;min-width:0;
+  padding:40px 52px 40px 40px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.open-q{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;
+  font-weight:700;line-height:1.4;color:#100C0C;margin-bottom:20px;max-width:55ch}
+.open-desc{font-family:'Schibsted Grotesk',sans-serif;font-size:15px;
+  line-height:1.65;color:#44413C;margin-bottom:16px;max-width:62ch}
+.open-insight{background:rgba(196,148,78,.09);padding:10px 15px;
+  font-family:'Playfair Display',serif;font-size:14px;font-style:italic;
+  color:#44413C;line-height:1.5;max-width:62ch;margin-top:auto}
+.open-sources{font-family:'JetBrains Mono',monospace;font-size:9px;color:#7C7972;
+  margin-top:16px;line-height:1.5}
+.open-sources b{color:#C4944E;font-weight:700}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="hdr">
+    <div class="brand">Y<b>Business</b></div>
+    <div class="slide-id">04 · Formater</div>
+  </div>
+  <div class="cols" id="cols"></div>
+</div>
+<script>
+const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+const st=document.getElementById('stage');
+st.style.transform=`translate(${(window.innerWidth-1920*s)/2}px,${(window.innerHeight-1080*s)/2}px) scale(${s})`;
+
+const F=[
+  {num:'01',name:'Brancheoverblikket',func:'Orienteringen',tier:'paid',color:'#5A4A72',
+   q:'"Hvad er sket i min branche siden sidst?"',
+   desc:'Ikke alt behøver en vinkel. Noget behøver bare at blive fundet, sorteret og leveret.',
+   insight:'Det er ikke et fælles opslagstavleprodukt.',
+   sources:'CVR, Erhvervsstyrelsen, brancheforeninger og lokale erhvervsmedier.'},
+  {num:'02',name:'Morgenbriefet',func:'Vanen',tier:'free',color:'#A75D46',
+   q:'"Hvad skal jeg forstå, inden arbejdsdagen begynder?"',
+   desc:'Leveres kl. 06.30 i 5–7 punkter på tekst og lyd — det, der fortjener plads i hovedet.',
+   insight:'Rekrutteringskanal til abonnementet. Ingen mur, ingen registrering.',
+   sources:'Ritzau, Børsen, Finans, Danmarks Statistik (DST).'},
+  {num:'03',name:'Det betyder det',func:'Nytten',tier:'paid',color:'#2E5F9A',
+   q:'"Hvad betyder det her konkret for min virksomhed?"',
+   desc:'Bygget over en fast 6-punkt-struktur, hvor der aldrig drages en konklusion uden en klar konsekvens.',
+   insight:'Forklaringsformatet der gør dig klogere end dem der kun læste overskriften.',
+   sources:'Folketingets ODA, EU-direktiver, Erhvervsstyrelsen.'},
+  {num:'04',name:'Den blinde vinkel',func:'Kanten',tier:'paid',color:'#2F3E4C',
+   q:'"Hvad overser den dominerende fortælling?"',
+   desc:'Ikke et temperament, men en redaktionel disciplin. Kræver altid en navngivet modkilde.',
+   insight:null,
+   sources:'Tænketanke (CEPOS, Kraka), fagforeninger (3F, DI), partikilder.'},
+  {num:'05',name:'Casen der virker',func:'Læringen',tier:'paid',color:'#4A2B6A',
+   q:'"Hvad kan andre bruge — og hvad kan de ikke kopiere?"',
+   desc:'En konkret virksomhed der har løst det du kæmper med — med friktion, fejl og resultat.',
+   insight:'Praksis frem for teori. Ingen anonyme eksempler. Altid navngivet afsender.',
+   sources:'SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.'},
+  {num:'06',name:'Signalradaren',func:'Forspringet',tier:'paid',color:'#8C6D28',
+   q:'"Hvad er ved at ske — og hvem ser det ikke endnu?"',
+   desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder.',
+   insight:'Se mønstre 6–18 måneder før dine konkurrenter.',
+   sources:'Eurostat, OECD, World Bank, patentdatabaser, Supertrends.'},
+  {num:'07',name:'Blind Spot',func:'Signalmotoren',tier:'paid',color:'#1A3A6A',
+   q:'"Hvad gør nyhedslogikken svært at se?"',
+   desc:'Systemet finder sprækken: det dokumenterede hul, den skæve fortælling, den fraværende kilde.',
+   insight:'Ankerformatet. Det format du husker — og grunden til at du kommer tilbage.',
+   sources:'15 primære erhvervsmedier, institutionelle signalkilder, CVR.'},
+  {num:'+3',name:'Situationsformater',func:'Skalerbare',tier:'paid',color:'#7C7972',
+   q:'"Journalistikken skifter gear, når situationen kræver det."',
+   desc:'Myten om · Før mødet · Før handlen — tre situationsudløste formater på bestilling.',
+   insight:null,
+   sources:'Udbudsdatabaser (TED), konkursstatistikker, krise-skabeloner.'},
+  {num:'08',name:'Klummerne',func:'Stemmen',tier:'paid',color:'#3B5949',
+   q:'"Den personlige vurdering, erfaringen og ansvaret — med navn under."',
+   desc:'Et menneske med navn under. Faste skribenter om hi-tech, AI og erhvervsledelse.',
+   insight:'AI kan opsummere. Den kan ikke have noget på spil.',
+   sources:'AI-praktikere, teknologiledere, founders.'},
+];
+
+let open=1; // Morgenbriefet åben som default
+const cols=document.getElementById('cols');
+
+F.forEach((f,i)=>{
+  const col=document.createElement('div');
+  col.className='col'+(i===open?' open':'');
+  col.innerHTML=`
+    <div class="col-accent" style="background:${f.color}"></div>
+    <!-- Collapsed -->
+    <div class="col-id">
+      <span class="col-num" style="color:${f.color}">${f.num}</span>
+      <span class="col-name-vert">${f.name}</span>
+    </div>
+    <!-- Open -->
+    <div class="col-inner">
+      <div class="col-left">
+        <div class="open-num" style="color:${f.color}">${f.num} · ${f.tier==='free'?'GRATIS':'BETALT'}</div>
+        <div class="open-name">${f.name}</div>
+        <div class="open-func">${f.func}</div>
+        <span class="open-tier ${f.tier}">${f.tier==='free'?'Gratis':'Abonnement'}</span>
+      </div>
+      <div class="col-right">
+        <div class="open-q">${f.q}</div>
+        <div class="open-desc">${f.desc}</div>
+        ${f.insight?`<div class="open-insight">${f.insight}</div>`:''}
+        <div class="open-sources"><b>Kilder ·</b> ${f.sources}</div>
+      </div>
+    </div>`;
+  col.style.setProperty('--fc',f.color);
+  col.querySelector('.col::before');
+  col.style.background=`color-mix(in srgb, ${f.color} 5%, #FAFAF8)`;
+  col.addEventListener('click',()=>{
+    document.querySelectorAll('.col').forEach((c,j)=>c.classList.toggle('open',j===i));
+    open=i;
+  });
+  cols.appendChild(col);
+});
+</script>
+</body>
+</html>

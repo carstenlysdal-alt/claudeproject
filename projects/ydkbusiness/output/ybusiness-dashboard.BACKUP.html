@@ -1,0 +1,2460 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y Business — Forretningsmodel 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* === VIEWPORT BASE === */
+html, body {
+  width: 100%; height: 100%; margin: 0; overflow: hidden;
+  background: #FAFAF8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #FAFAF8; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; overflow: hidden; transform-origin: 0 0; }
+img, video, canvas, svg { max-width: 100%; max-height: 100%; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
+
+/* === SCREENS === */
+.screen {
+  position: absolute; inset: 0;
+  width: 1440px; height: 900px;
+  overflow: hidden; display: block;
+  visibility: hidden; opacity: 0;
+  pointer-events: none;
+  background: #FAFAF8;
+  transition: opacity 0.3s ease;
+}
+.screen.active { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
+
+/* === Y RATING DESIGN TOKENS === */
+:root {
+  /* Y Rating palette — sampled fra DESIGN.md */
+  --paper:     #FAFAF8;
+  --card:      #FFFFFF;
+  --ink:       #100C0C;
+  --ink70:     #44413C;
+  --muted:     #7C7972;
+  --faint:     #9C998F;
+  --line:      #E4E2DD;
+  --line2:     #ECEAE4;
+  --tint:      #F4F2EC;
+  --track:     #E7E5DF;
+
+  /* Primær accent — aubergine fra Y Rating */
+  --accent:    #361352;
+  --accent-10: rgba(54,19,82,0.08);
+  --accent-20: rgba(54,19,82,0.15);
+  --accent-30: rgba(54,19,82,0.25);
+
+  /* Semantik */
+  --green:     #16A34A;
+  --green-s:   rgba(22,163,74,0.08);
+  --amber:     #B45309;
+  --amber-s:   rgba(180,83,9,0.08);
+  --red:       #C43A49;
+  --red-s:     rgba(196,58,73,0.07);
+
+  /* Typografi */
+  --sans:      'Schibsted Grotesk', system-ui, sans-serif;
+  --serif:     'Playfair Display', Georgia, serif;
+  --mono:      'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+h1, h2, h3, .hub-h1, .tile-h, .sec-title, .ibox-t, .risk-t, .cat-txt { text-wrap: balance; }
+p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
+.stat-v, .rev-row, .tl-d, .tbl td.hi, .layer-n, .drv-n { font-variant-numeric: tabular-nums; }
+
+/* === HEADER — Y Rating editorial style === */
+.dash-header {
+  position: absolute; top: 0; left: 0; right: 0; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 52px;
+  background: rgba(250, 250, 248, 0.97);
+  border-bottom: 2px solid var(--line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.dash-brand { display: flex; align-items: center; gap: 16px; }
+
+.dash-brand-mark {
+  font-family: var(--serif); font-size: 20px; font-weight: 700;
+  color: var(--accent); font-style: italic; letter-spacing: -0.01em;
+}
+
+.dash-divider {
+  width: 1px; height: 18px; background: var(--line);
+}
+
+.dash-brand-sub {
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.01em;
+}
+
+.dash-meta { display: flex; align-items: center; gap: 20px; }
+.dash-tag {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.dash-tag.hi {
+  color: var(--accent);
+  background: var(--accent-10);
+  border: 1px solid var(--accent-30);
+  padding: 3px 10px; border-radius: 4px;
+  font-weight: 700;
+}
+
+/* Aubergine accent bar — left edge */
+.accent-bar { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); }
+
+/* Dot grid — very subtle */
+.bg-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(54,19,82,0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* === HUB === */
+.hub-body {
+  position: absolute; top: 64px; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column;
+}
+.hub-intro {
+  padding: 40px 56px 34px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.hub-eyebrow {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.hub-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+.hub-h1 {
+  font-family: var(--serif); font-size: 44px; font-weight: 700;
+  color: var(--ink); line-height: 1.08; letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.hub-h1 em { font-style: italic; color: var(--accent); font-weight: 600; }
+.hub-sub {
+  font-family: var(--sans); font-size: 14px; font-weight: 400;
+  color: var(--muted); line-height: 1.5;
+}
+
+/* 4 tiles */
+.hub-tiles {
+  flex: 1;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1px; background: var(--line);
+}
+.hub-tile {
+  background: var(--card); padding: 40px 44px;
+  cursor: pointer; display: flex; flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.18s ease, transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+  position: relative; overflow-y: auto;
+}
+.hub-tile::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.22s ease;
+}
+.hub-tile:hover { background: var(--tint); }
+.hub-tile:hover::after { transform: scaleX(1); }
+.hub-tile:active { transform: scale(0.96); background: #EDE8F4; }
+
+.tile-num {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--accent); opacity: 0.45; letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+.tile-h {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--ink); line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.01em;
+}
+.tile-pts { flex: 1; display: flex; flex-direction: column; gap: 11px; margin-bottom: 24px; }
+.tile-pt {
+  font-family: var(--sans); font-size: 13px; font-weight: 400;
+  color: var(--muted); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45;
+}
+.tile-pt::before { content: '–'; color: var(--accent); flex-shrink: 0; opacity: 0.6; }
+.tile-cta {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px; opacity: 0.7;
+}
+.tile-cta::after { content: '→'; font-size: 12px; opacity: 1; }
+
+/* Stats bar */
+.hub-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: var(--tint);
+  border-top: 2px solid var(--line);
+  height: 80px; flex-shrink: 0;
+}
+.stat-cell {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 44px; border-right: 1px solid var(--line); gap: 2px;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-v {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--accent); line-height: 1; letter-spacing: -0.01em;
+}
+.stat-l {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.09em; text-transform: uppercase;
+}
+
+/* === SECTION CHROME === */
+.sec-hdr {
+  position: absolute; top: 64px; left: 0; right: 0; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 52px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+.back-btn {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer; display: flex; align-items: center; gap: 8px;
+  background: none; border: none;
+  min-height: 40px; padding: 8px 16px 8px 0;
+  transition: opacity 0.18s ease, transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+  opacity: 0.7;
+}
+.back-btn::before { content: '←'; font-size: 13px; }
+.back-btn:hover { opacity: 1; }
+.back-btn:active { transform: scale(0.96); }
+.sec-title {
+  font-family: var(--serif); font-size: 18px; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.01em; font-style: italic;
+}
+.sec-num {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.08em;
+}
+
+.sec-body {
+  position: absolute; top: 132px; left: 0; right: 0; bottom: 0;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--line);
+}
+.col { background: var(--card); padding: 40px 48px; overflow-y: auto; position: relative; }
+.col::-webkit-scrollbar { width: 4px; }
+.col::-webkit-scrollbar-track { background: transparent; }
+.col::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+.col::-webkit-scrollbar-thumb:hover { background: var(--accent-30); }
+
+/* === ANNOTATION BOXES === */
+.annotation-box {
+  position: absolute;
+  background: #FFFBEA;
+  border: 1.5px solid rgba(180,140,20,0.35);
+  border-radius: 4px;
+  padding: 6px 28px 6px 6px;
+  min-height: 40px;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06);
+  cursor: default;
+}
+.annotation-box:focus-within {
+  outline: 2px solid rgba(180,140,20,0.45);
+  outline-offset: 1px;
+}
+/* textarea inde i boksen — altid skrivbar, uanset forældrens contenteditable */
+.annotation-textarea {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  font-family: 'Schibsted Grotesk', sans-serif;
+  font-size: 13px;
+  color: #44413C;
+  line-height: 1.55;
+  cursor: text;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.annotation-textarea::placeholder {
+  color: rgba(124,121,114,0.5);
+  font-style: italic;
+}
+.annotation-close {
+  position: absolute;
+  top: 4px; right: 6px;
+  background: none; border: none;
+  font-size: 14px; line-height: 1;
+  color: rgba(124,121,114,0.5);
+  cursor: pointer; padding: 1px 3px;
+  transition: color 0.15s;
+  z-index: 51;
+}
+.annotation-close:hover { color: #C43A49; }
+/* Drag preview ghost */
+.annotation-preview {
+  position: absolute;
+  border: 2px dashed rgba(54,19,82,0.35);
+  background: rgba(54,19,82,0.04);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* === COMPONENTS === */
+.col-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--line2);
+}
+.col-label-sm {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px;
+}
+
+/* Info boxes */
+.ibox {
+  background: var(--tint); border: 1px solid var(--line);
+  padding: 18px 20px; margin-bottom: 14px;
+}
+.ibox.green { background: var(--green-s); border-color: rgba(22,163,74,0.18); }
+.ibox.amber { background: var(--amber-s); border-color: rgba(180,83,9,0.15); }
+.ibox.accent { background: var(--accent-10); border-color: var(--accent-20); }
+.ibox-t {
+  font-family: var(--sans); font-size: 14px; font-weight: 700;
+  color: var(--accent); margin-bottom: 12px;
+}
+.ibox.green .ibox-t { color: var(--green); }
+.ibox.amber .ibox-t { color: var(--amber); }
+.ibox-b { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.65; }
+.ibox-b strong { color: var(--ink); font-weight: 600; }
+.ibox-b p { margin: 0; }
+.ibox-b p + p { margin-top: 11px; }
+.col-compact .ibox-b { font-size: 12.5px; line-height: 1.6; }
+
+/* Checklist */
+.chk { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+.chk li {
+  font-family: var(--sans); font-size: 14px; font-weight: 400;
+  color: var(--ink70); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45;
+}
+.chk li::before { content: '✓'; color: var(--green); flex-shrink: 0; font-weight: 700; }
+.chk li strong { color: var(--ink); font-weight: 600; }
+
+/* Tables */
+.tbl { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
+.tbl th {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 9px 12px; text-align: left;
+  background: var(--tint);
+  border-bottom: 2px solid var(--line);
+}
+.tbl td {
+  padding: 10px 12px; font-family: var(--sans); font-size: 13px; font-weight: 400;
+  color: var(--ink70); border-bottom: 1px solid var(--line2);
+  vertical-align: top; line-height: 1.4;
+}
+.tbl td.hi {
+  color: var(--accent); font-family: var(--serif); font-size: 15px;
+  font-weight: 700; white-space: nowrap; font-style: italic;
+}
+.tbl td.str { color: var(--ink); font-weight: 600; font-size: 13px; }
+.tbl tr.hl td { background: var(--accent-10); color: var(--ink); font-weight: 600; border-color: var(--line); }
+.tbl tr.hl td.hi { color: var(--accent); }
+.tbl td .badge {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-top: 2px;
+}
+
+/* Revenue box */
+.rev-box {
+  background: var(--accent-10); border: 1px solid var(--accent-30);
+  padding: 20px 24px; margin-top: 16px;
+}
+.rev-box-t {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 12px;
+}
+.rev-row {
+  font-family: var(--sans); font-size: 14px; font-weight: 400;
+  color: var(--ink70); line-height: 1.9; display: flex; justify-content: space-between;
+}
+.rev-row.tot {
+  color: var(--accent); font-weight: 700; font-size: 17px;
+  margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--accent-30);
+  font-family: var(--serif); font-style: italic;
+}
+
+/* Business model feature plot */
+.bm-plot {
+  margin: 34px 0 18px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  position: relative;
+}
+.bm-toolline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin: 28px 0 8px;
+}
+.bm-toolline .col-label-sm { margin-bottom: 0; }
+.bm-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.bm-action-btn {
+  border: 1px solid var(--accent-30);
+  background: var(--card);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.bm-action-btn:hover { background: var(--accent-10); }
+.bm-action-btn:active { transform: scale(0.96); }
+.bm-action-btn { text-decoration: none; }
+.bm-plot-head {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
+  background: var(--ink);
+  color: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.bm-plot-title {
+  padding: 15px 18px;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  align-self: center;
+}
+.bm-plot-tier {
+  position: relative;
+  min-height: 74px;
+  padding: 12px 8px 10px;
+  border-left: 1px solid rgba(255,255,255,0.22);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.bm-plot-tier.featured::before {
+  content: 'Intropris';
+  position: absolute;
+  top: -29px;
+  left: 8px;
+  right: 8px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.bm-plot-price {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+.bm-plot-period {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.86;
+  margin-top: 5px;
+}
+.bm-plot-normal {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.62);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+.bm-plot-rows { display: grid; }
+.bm-plot-row {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) repeat(3, 116px);
+  min-height: 50px;
+  border-bottom: 1px solid var(--line2);
+}
+.bm-plot-row:last-child { border-bottom: none; }
+.bm-plot-feature {
+  padding: 10px 18px;
+  border-right: 1px solid var(--line2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bm-plot-feature strong {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.bm-plot-feature span {
+  margin-top: 3px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.bm-plot-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--line2);
+  background:
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(54,19,82,0.05) 50%, transparent calc(50% + 0.5px));
+}
+.bm-plot-cell:last-child { border-right: none; }
+body.bm-editing .bm-plot-cell {
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+body.bm-editing .bm-plot-cell:hover {
+  background: var(--accent-10);
+  box-shadow: inset 0 0 0 1px var(--accent-30);
+}
+body.bm-editing .bm-plot-cell .bm-mini,
+body.bm-editing .bm-plot-cell .bm-add {
+  cursor: text;
+}
+.bm-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-10);
+}
+.bm-dot.soft {
+  width: 10px;
+  height: 10px;
+  background: var(--green);
+  box-shadow: 0 0 0 5px var(--green-s);
+}
+.bm-add {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--amber-s);
+  border: 1px solid rgba(180,83,9,0.2);
+  padding: 3px 6px;
+}
+.bm-mini {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.bm-mini.muted { color: var(--muted); }
+.bm-empty {
+  width: 18px;
+  height: 1px;
+  background: var(--line);
+}
+.bm-plot-note {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 18px;
+  background: var(--tint);
+  border-top: 1px solid var(--line);
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.bm-plot-note strong { color: var(--accent); font-weight: 700; }
+.bm-plot-b2b {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  background: var(--card);
+}
+.bm-plot-b2b-item {
+  padding: 12px 18px;
+  border-right: 1px solid var(--line2);
+}
+.bm-plot-b2b-item:last-child { border-right: none; }
+.bm-plot-b2b-k {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.bm-plot-b2b-v {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.15;
+  font-style: italic;
+}
+.bm-plot-b2b-d {
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.bm-addons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line2);
+  border-top: 1px solid var(--line);
+}
+.bm-addon {
+  background: var(--tint);
+  padding: 12px 16px;
+}
+.bm-addon-k {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.bm-addon-v {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink70);
+  line-height: 1.45;
+}
+.bm-addon-v strong { color: var(--accent); font-weight: 700; }
+
+/* Category statement */
+.cat-box {
+  background: var(--accent-10); border: 1px solid var(--accent-30);
+  padding: 24px 28px; margin-bottom: 24px;
+}
+.cat-lbl {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px;
+}
+.cat-txt {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.01em; line-height: 1.25; font-style: italic;
+}
+
+/* Driver list */
+.drv-list { display: flex; flex-direction: column; }
+.drv {
+  padding: 20px 0; border-bottom: 1px solid var(--line2);
+  display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: flex-start;
+}
+.drv:first-child { border-top: 1px solid var(--line2); }
+.drv-n {
+  font-family: var(--serif); font-size: 22px; font-weight: 600;
+  color: var(--accent); opacity: 0.2; line-height: 1; font-style: italic;
+}
+.drv-t { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
+.drv-d { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
+
+/* AI options */
+.ai-opt {
+  padding: 16px 18px; border: 1px solid var(--line);
+  margin-bottom: 10px; display: flex; gap: 14px; align-items: flex-start;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.ai-opt:hover { background: var(--tint); }
+.ai-opt.rec { border-color: var(--accent-30); background: var(--accent-10); }
+.ai-letter {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--accent); font-style: italic; flex-shrink: 0; line-height: 1; opacity: 0.2;
+}
+.ai-opt.rec .ai-letter { opacity: 1; }
+.ai-t {
+  font-family: var(--sans); font-size: 13px; font-weight: 700;
+  color: var(--muted); margin-bottom: 6px;
+}
+.ai-opt.rec .ai-t { color: var(--ink); }
+.ai-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.55; }
+.ai-d strong { color: var(--accent); font-weight: 600; }
+.rec-badge {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--card); border: 1px solid var(--accent-30);
+  padding: 2px 7px; display: inline-block; margin-bottom: 4px;
+}
+
+/* Timeline */
+.tl { display: flex; flex-direction: column; }
+.tl-row {
+  display: grid; grid-template-columns: 108px 1fr; gap: 14px;
+  padding: 15px 0; border-bottom: 1px solid var(--line2); align-items: flex-start;
+}
+.tl-row:first-child { border-top: 1px solid var(--line2); }
+.tl-d {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.06em; padding-top: 1px;
+}
+.tl-t { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.5; }
+.tl-t strong { color: var(--ink); font-weight: 700; }
+
+/* Product layers */
+.layers { display: flex; flex-direction: column; }
+.layer {
+  padding: 18px 0; border-bottom: 1px solid var(--line2);
+  display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: flex-start;
+}
+.layer:first-child { border-top: 1px solid var(--line2); }
+.layer-n {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--accent); opacity: 0.45; padding-top: 2px;
+}
+.layer-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+.layer-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.55; }
+
+/* Scope grid */
+.scope-g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+.scope-box { padding: 16px 18px; }
+.scope-box.in { background: var(--green-s); border: 1px solid rgba(22,163,74,0.18); }
+.scope-box.out { background: var(--red-s); border: 1px solid rgba(196,58,73,0.13); }
+.scope-hl {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 9px;
+}
+.scope-box.in .scope-hl { color: var(--green); }
+.scope-box.out .scope-hl { color: var(--red); }
+.scope-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.scope-list li {
+  font-family: var(--sans); font-size: 13px; font-weight: 400;
+  color: var(--ink70); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
+}
+.scope-box.in  .scope-list li::before { content: '✓'; color: var(--green); font-weight: 700; }
+.scope-box.out .scope-list li::before { content: '–'; color: var(--red); opacity: 0.6; }
+.scope-group-label {
+  font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--green);
+  letter-spacing: 0.1em; text-transform: uppercase; list-style: none;
+  margin-top: 10px; margin-bottom: 0; padding: 0;
+}
+.scope-group-label::before { display: none; }
+.scope-group-label:first-child { margin-top: 0; }
+
+/* Warning box */
+.risk {
+  background: var(--amber-s); border: 1px solid rgba(180,83,9,0.18);
+  padding: 18px 22px; margin-bottom: 16px;
+}
+.risk-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 7px; }
+.risk p { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
+.risk p strong { color: var(--ink); font-weight: 600; }
+
+/* Page number */
+.pnum {
+  position: absolute; bottom: 16px; right: 22px;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--line); letter-spacing: 0.1em; z-index: 10;
+}
+/* Skjul pnum på hub-skærmen */
+#hub .pnum { display: none; }
+
+/* === SECTION NAV === */
+.dash-nav {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: stretch; height: 64px; gap: 0;
+}
+.dash-nav-item {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0 20px; display: flex; align-items: center;
+  cursor: pointer; position: relative; white-space: nowrap;
+  border: none; background: none;
+  transition: color 0.15s ease;
+}
+.dash-nav-item::after {
+  content: ''; position: absolute; bottom: 0; left: 20px; right: 20px;
+  height: 2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: center;
+  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.dash-nav-item:hover { color: var(--ink70); }
+.dash-nav-item:active { transform: scale(0.96); }
+.dash-nav-item.nav-active { color: var(--accent); }
+.dash-nav-item.nav-active::after { transform: scaleX(1); }
+
+/* === ANIMATIONS === */
+.screen.active .ani { animation: riseIn 0.5s cubic-bezier(0.22,0.61,0.36,1) both; }
+.screen.active .ani:nth-child(1) { animation-delay: 0.06s; }
+.screen.active .ani:nth-child(2) { animation-delay: 0.14s; }
+
+.screen.active .hub-intro  { animation: riseIn 0.45s cubic-bezier(0.22,0.61,0.36,1) 0.02s both; }
+.screen.active .hub-tile   { animation: riseIn 0.55s cubic-bezier(0.22,0.61,0.36,1) both; }
+.screen.active .hub-tile:nth-child(1) { animation-delay: 0.08s; }
+.screen.active .hub-tile:nth-child(2) { animation-delay: 0.16s; }
+.screen.active .hub-tile:nth-child(3) { animation-delay: 0.24s; }
+.screen.active .hub-tile:nth-child(4) { animation-delay: 0.32s; }
+.screen.active .hub-stats  { animation: riseIn 0.45s cubic-bezier(0.22,0.61,0.36,1) 0.38s both; }
+
+@keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* === ADDON DEFINITION ROWS === */
+.bm-addons {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+.addon-group-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--faint);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 10px 18px 6px;
+  background: var(--tint);
+  border-bottom: 1px solid var(--line2);
+}
+.bm-addon {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+  align-items: start;
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--line2);
+  background: var(--card);
+}
+.bm-addon.pending { background: var(--tint); }
+.bm-addon-k {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0;
+  text-transform: none;
+  padding-top: 1px;
+}
+.bm-addon-v {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink70);
+  line-height: 1.45;
+}
+.addon-tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.addon-tier {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.addon-tier-l {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.addon-tier-v {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink70);
+}
+.addon-mini-tbl {
+  width: 100%;
+  border-collapse: collapse;
+}
+.addon-mini-tbl th {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 0 4px;
+  text-align: right;
+  border-bottom: 1px solid var(--line2);
+}
+.addon-mini-tbl th:first-child { text-align: left; }
+.addon-mini-tbl td {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink70);
+  padding: 4px 0;
+  text-align: right;
+  border-bottom: 1px solid var(--line2);
+}
+.addon-mini-tbl tr:last-child td { border-bottom: none; }
+.addon-mini-tbl td:first-child {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--muted);
+  text-align: left;
+}
+
+/* === BIZ SECTION TABS === */
+.biz-tabs-nav {
+  display: flex;
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 24px;
+  margin-top: 6px;
+  flex-shrink: 0;
+  gap: 0;
+}
+.biz-tab-btn {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  padding: 12px 22px 12px 0;
+  margin-right: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+.biz-tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.biz-tab-btn:hover { color: var(--ink); }
+.biz-tab-btn.biz-tab-active { color: var(--accent); font-weight: 700; }
+.biz-tab-btn.biz-tab-active::after { transform: scaleX(1); }
+.biz-tab-panel { display: none; flex: 1; overflow-y: auto; }
+.biz-tab-panel.biz-tab-active { display: block; }
+.biz-col-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* === FEEDBACK === */
+.btn-feedback {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 11px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--tint);
+  color: var(--ink70); font-family: var(--sans); font-size: 11px;
+  font-weight: 500; cursor: pointer; letter-spacing: 0.01em;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn-feedback:hover { background: var(--line2); border-color: var(--accent-30); color: var(--accent); }
+.btn-feedback svg { flex-shrink: 0; }
+
+.fb-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45); z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.fb-overlay.hidden { display: none; }
+.fb-modal {
+  background: var(--card); border-radius: 8px;
+  border: 1px solid var(--line); width: 100%; max-width: 560px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+.fb-modal-head {
+  padding: 14px 16px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fb-modal-title { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); }
+.fb-modal-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 16px; padding: 2px 6px;
+  line-height: 1; border-radius: 4px; font-family: var(--sans);
+}
+.fb-modal-close:hover { background: var(--tint); color: var(--ink); }
+.fb-modal-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.fb-label {
+  display: block; font-family: var(--mono); font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 5px;
+}
+.fb-input, .fb-textarea {
+  width: 100%; padding: 7px 10px;
+  border: 1px solid var(--line); border-radius: 5px;
+  font-family: var(--sans); font-size: 12.5px; color: var(--ink);
+  background: var(--tint); outline: none; transition: border-color 0.15s;
+}
+.fb-input:focus, .fb-textarea:focus { border-color: var(--accent-30); background: #fff; }
+.fb-textarea { resize: vertical; line-height: 1.6; }
+.fb-actions { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.fb-save-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; background: var(--accent); color: #fff;
+  border: none; border-radius: 6px; font-family: var(--sans);
+  font-size: 12.5px; font-weight: 600; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.fb-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.fb-status { font-family: var(--sans); font-size: 12px; }
+.fb-status.ok { color: var(--green); }
+.fb-status.err { color: var(--red); }
+
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+<div class="deck-stage" id="stage">
+
+<!-- ======================================================
+     HUB
+     ====================================================== -->
+<div class="screen active" id="hub">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+
+  <header class="dash-header">
+    <div class="dash-brand">
+      <div class="dash-brand-mark">Y Business</div>
+      <div class="dash-divider"></div>
+    </div>
+    <div class="dash-meta">
+      <span class="dash-tag">CEO · Tech Lead · Commercial Lead</span>
+      <span class="dash-tag hi">Intern · Juni 2026</span>
+      <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Feedback
+      </button>
+    </div>
+  </header>
+
+  <div class="hub-body">
+    <div class="hub-intro">
+      <div class="hub-eyebrow">Ledelsespræsentation</div>
+      <div class="hub-h1">Konceptet, modellen og vejen til <em>launch 1. oktober 2026</em></div>
+    </div>
+
+    <div class="hub-tiles">
+      <div class="hub-tile" data-target="s-biz">
+        <div>
+          <div class="tile-num">01 / 05</div>
+          <div class="tile-h">Business model<br>& revenue</div>
+          <div class="tile-pts">
+            <div class="tile-pt">Prismodel: 5 tiers — Erhverv · Erhverv+ · Premium · Partner · API</div>
+            <div class="tile-pt">Erhverv 500 kr/md · Erhverv+ 7.500 kr/år · Premium 12.500 kr/år</div>
+            <div class="tile-pt">Kampagne: op til 3 mdr. gratis — deadline 20. november</div>
+            <div class="tile-pt">Partner 25–75.000 kr/år · API op til 250.000 kr/år</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+
+      <div class="hub-tile" data-target="s-prd">
+        <div>
+          <div class="tile-num">02 / 05</div>
+          <div class="tile-h">Produkt</div>
+          <div class="tile-pts">
+            <div class="tile-pt">6+ produktlag inkl. leadgenerering fra markedssignaler</div>
+            <div class="tile-pt">11+ offentlige API-endpoints (CVR, udbud, regulatory)</div>
+            <div class="tile-pt">Supertrends — aktiv partner, teknisk vurdering i gang</div>
+            <div class="tile-pt">Scope: inkluderet vs. ikke fase 1</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+
+      <div class="hub-tile" data-target="s-pos">
+        <div>
+          <div class="tile-num">03 / 05</div>
+          <div class="tile-h">Markeds&shy;positionering</div>
+          <div class="tile-pts">
+            <div class="tile-pt">SMV-segmentet er overset af eksisterende medier</div>
+            <div class="tile-pt">10 konkurrenter analyseret</div>
+            <div class="tile-pt">Prisanker: under en femtedel af Finans.dk + Retriever-stakken</div>
+            <div class="tile-pt">AI-drevet erhvervsintelligens — ubesat kategori</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+
+      <div class="hub-tile" data-target="s-gtm">
+        <div>
+          <div class="tile-num">04 / 05</div>
+          <div class="tile-h">Go-to-market<br>& roadmap</div>
+          <div class="tile-pts">
+            <div class="tile-pt">6 partnerorganisationer · 70.000+ virksomheder</div>
+            <div class="tile-pt">AI kommunikeres aktivt som styrke</div>
+            <div class="tile-pt">Business-launch: oktober 2026</div>
+            <div class="tile-pt">Roadmap: Y.dk → Business → paywall → Y Rails</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+
+      <div class="hub-tile" data-target="s-ai" style="background:var(--accent-10); border: 1.5px solid var(--accent-30);">
+        <div>
+          <div class="tile-num" style="opacity:1; color:var(--accent);">05 / 05 · Særlig sektion</div>
+          <div class="tile-h" style="color:var(--accent);">AI & tech<br>for erhverv</div>
+          <div class="tile-pts">
+            <div class="tile-pt">Dansk erhvervsliv i AI-transformation — Y dækker det</div>
+            <div class="tile-pt">Dedikeret Pro-sektion bag adgangsvæg</div>
+            <div class="tile-pt">Sponsormodel med IT-Branchen m.fl.</div>
+            <div class="tile-pt">Kommende USP — kommunikeres aktivt</div>
+          </div>
+        </div>
+        <div class="tile-cta">Åbn</div>
+      </div>
+    </div>
+
+    <div class="hub-stats">
+      <div class="stat-cell"><div class="stat-v">Fra 500 kr</div><div class="stat-l">Erhverv — indgangspris/md</div></div>
+      <div class="stat-cell"><div class="stat-v">1.500</div><div class="stat-l">Virksomhedsmål år 1</div></div>
+      <div class="stat-cell"><div class="stat-v">Okt. 2026</div><div class="stat-l">Business-launch</div></div>
+      <div class="stat-cell"><div class="stat-v">Nov. 2026</div><div class="stat-l">Paywall live</div></div>
+    </div>
+  </div>
+  <div class="pnum">Y Business · Intern · Deployed {{DEPLOY_TIME}}</div>
+</div>
+
+
+<!-- ======================================================
+     01 BUSINESS MODEL
+     ====================================================== -->
+<div class="screen" id="s-biz">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item nav-active" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Feedback
+    </button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Business model & revenue</div>
+    <div class="sec-num">01 / 05</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani" style="overflow:hidden; padding-bottom:0;">
+      <div class="biz-col-inner">
+      <div class="col-label" style="flex-shrink:0;">Prismodel — 5 tiers fra Erhverv til API</div>
+
+      <nav class="biz-tabs-nav" aria-label="Business model sektioner">
+        <button class="biz-tab-btn biz-tab-active" data-biz-tab="biz-pakke">Pakkelogik</button>
+        <button class="biz-tab-btn" data-biz-tab="biz-priser">Priser & kampagne</button>
+        <button class="biz-tab-btn" data-biz-tab="biz-revenue">Revenue & add-ons</button>
+      </nav>
+
+      <!-- TAB 1: PRISER & KAMPAGNE -->
+      <div class="biz-tab-panel" id="biz-priser" style="padding-bottom:24px;">
+      <table class="tbl" style="font-size:12px;">
+        <thead><tr><th>Tier</th><th>Normalpris</th><th>Kampagnepris</th><th>Logik</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="str">Erhverv</td>
+            <td class="hi" style="font-size:13px;">500 kr/md</td>
+            <td style="color:var(--green); font-weight:600; font-size:12px;">3 mdr. gratis</td>
+            <td>Læseadgang + markedsovervågning — én bruger</td>
+          </tr>
+          <tr>
+            <td class="str">Erhverv+</td>
+            <td class="hi" style="font-size:13px;">7.500 kr/år</td>
+            <td style="color:var(--green); font-weight:600; font-size:12px;">5.000 kr/år</td>
+            <td>Team + overvågning: artikel-deling, kick-back, 5 brands</td>
+          </tr>
+          <tr>
+            <td class="str">Premium</td>
+            <td class="hi" style="font-size:13px;">12.500 kr/år</td>
+            <td style="color:var(--green); font-weight:600; font-size:12px;">9.500 kr/år</td>
+            <td>Reklamefri + finansielle analyser + indhold på valgfrit sprog</td>
+          </tr>
+          <tr>
+            <td class="str">Partner</td>
+            <td style="font-family:var(--mono); font-size:11px; color:var(--ink70);">25–75.000 kr/år</td>
+            <td style="color:var(--muted); font-size:11px;">—</td>
+            <td>Sponsor/relation: events, brancheindblik, synlighed</td>
+          </tr>
+          <tr>
+            <td class="str">API</td>
+            <td style="font-family:var(--mono); font-size:11px; color:var(--ink70);">100–250.000 kr/år</td>
+            <td style="color:var(--muted); font-size:11px;">—</td>
+            <td>Enterprise: nyhedsfeeds, alerts, data til CRM/intranet</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ibox accent">
+        <div class="ibox-t">Kampagne — deadline 20. november 2026</div>
+        <div class="ibox-b">Erhverv: <strong>3 måneder gratis</strong> ved tegning senest 20. november.<br>Erhverv+: <strong>5.000 kr i stedet for 7.500 kr</strong> første år.<br>Premium: <strong>9.500 kr i stedet for 12.500 kr</strong> første år.</div>
+      </div>
+      </div>
+
+      <!-- TAB 2: PAKKELOGIK -->
+      <div class="biz-tab-panel biz-tab-active" id="biz-pakke" style="padding-bottom:24px;">
+      <div class="bm-toolline" style="margin-top:0;">
+        <div class="col-label-sm">Pakkelogik</div>
+        <div class="bm-actions">
+          <a class="bm-action-btn" href="Y-Business-pakkelogik.xlsx" download>Hent som Excel</a>
+        </div>
+      </div>
+
+      <div class="bm-plot" id="bm-package-logic" aria-label="Feature-plot for prismodellen">
+        <div class="bm-plot-head">
+          <div class="bm-plot-title">Pakkelogik</div>
+          <div class="bm-plot-tier">
+            <div class="bm-plot-price" data-xlsx-key="tier_erhverv_price">500 kr</div>
+            <div class="bm-plot-period" data-xlsx-key="tier_erhverv_period">Erhverv · md</div>
+          </div>
+          <div class="bm-plot-tier featured">
+            <div class="bm-plot-price" data-xlsx-key="tier_plus_price">5.000 kr</div>
+            <div class="bm-plot-period" data-xlsx-key="tier_plus_period">Erhverv+ · år 1</div>
+            <div class="bm-plot-normal" data-xlsx-key="tier_plus_normal">Normalpris 7.500 kr/år</div>
+          </div>
+          <div class="bm-plot-tier">
+            <div class="bm-plot-price" data-xlsx-key="tier_premium_price">9.500 kr</div>
+            <div class="bm-plot-period" data-xlsx-key="tier_premium_period">Premium · år 1</div>
+            <div class="bm-plot-normal" data-xlsx-key="tier_premium_normal">Normalpris 12.500 kr/år</div>
+          </div>
+        </div>
+        <div class="bm-plot-rows">
+          <div class="bm-plot-row" data-xlsx-row="content_access">
+            <div class="bm-plot-feature"><strong data-xlsx-key="content_access_label">Fri adgang til alt business-indhold</strong><span data-xlsx-key="content_access_description">Artikler, podcast, video og morgenbriefs.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="content_access_erhverv"><span class="bm-dot soft"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="content_access_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="content_access_premium"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row" data-xlsx-row="market_monitoring">
+            <div class="bm-plot-feature"><strong data-xlsx-key="market_monitoring_label">Markedsovervågning</strong><span data-xlsx-key="market_monitoring_description">Op til 5 brands/personer med CVR-signaler og realtidsnotifikationer.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="market_monitoring_erhverv"><span class="bm-dot soft"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="market_monitoring_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="market_monitoring_premium"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row" data-xlsx-row="extra_users">
+            <div class="bm-plot-feature"><strong data-xlsx-key="extra_users_label">5 ekstra brugere</strong><span data-xlsx-key="extra_users_description">Teamadgang som opgraderingsdriver.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="extra_users_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="extra_users_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="extra_users_premium"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row" data-xlsx-row="ad_free">
+            <div class="bm-plot-feature"><strong data-xlsx-key="ad_free_label">Reklamefri adgang</strong><span data-xlsx-key="ad_free_description">Ingen annoncer — inkl. pre-roll, mid-roll og out-stream.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="ad_free_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="ad_free_plus"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="ad_free_premium"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row" data-xlsx-row="article_sharing">
+            <div class="bm-plot-feature"><strong data-xlsx-key="article_sharing_label">Artikel-deling</strong><span data-xlsx-key="article_sharing_description">Videresend indhold bag betalingsmuren via tokeniserede links.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_sharing_erhverv"><span class="bm-mini muted">5/md</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_sharing_plus"><span class="bm-mini">10/md</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_sharing_premium"><span class="bm-mini">50/md</span></div>
+          </div>
+          <div class="bm-plot-row" data-xlsx-row="article_rights">
+            <div class="bm-plot-feature"><strong data-xlsx-key="article_rights_label">Brug artikler i egen markedsføring</strong><span data-xlsx-key="article_rights_description">Sociale medier, nyhedsbreve, PR og social proof.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_rights_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_rights_plus"><span class="bm-add">Begrænset</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_rights_premium"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row" data-xlsx-row="financial_analysis">
+            <div class="bm-plot-feature"><strong data-xlsx-key="financial_analysis_label">Finansielle analyser</strong><span data-xlsx-key="financial_analysis_description">Regnskabsanalyser når danske virksomheders tal offentliggøres.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="financial_analysis_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="financial_analysis_plus"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="financial_analysis_premium"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row" data-xlsx-row="international_access">
+            <div class="bm-plot-feature"><strong data-xlsx-key="international_access_label">Indhold på valgfrit sprog</strong><span data-xlsx-key="international_access_description">Modtag alt indhold på dit foretrukne sprog — ikke begrænset til dansk.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="international_access_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="international_access_plus"><span class="bm-add">Add-on</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="international_access_premium"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-row" data-xlsx-row="marketing_kickback">
+            <div class="bm-plot-feature"><strong data-xlsx-key="marketing_kickback_label">Marketing kick-back</strong><span data-xlsx-key="marketing_kickback_description">Eksponering via bannerannoncer, nyhedsbrev eller sponsoreret artikel.</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_plus"><span class="bm-mini">5.000 kr</span></div>
+            <div class="bm-plot-cell" data-xlsx-key="marketing_kickback_premium"><span class="bm-mini">7.500 kr</span></div>
+          </div>
+        </div>
+        <div class="bm-plot-note">
+          <span>Erhverv: indhold og overvågning. Erhverv+: teamadgang og kick-back. Premium: reklamefri, finansielle analyser og valgfrit sprog. Medieovervågning er tilkøb.</span>
+        </div>
+        <div class="bm-addons" aria-label="Add-ons og vilkår">
+          <div class="addon-group-label">Tilkøb</div>
+          <div class="bm-addon">
+            <div class="bm-addon-k" data-xlsx-key="extra_user_label">Ekstra bruger</div>
+            <div class="addon-tiers">
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv</span><span class="addon-tier-v">350 kr/år</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv+</span><span class="addon-tier-v">250 kr/år</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">Premium</span><span class="addon-tier-v">250 kr/år</span></div>
+            </div>
+          </div>
+          <div class="bm-addon">
+            <div class="bm-addon-k" data-xlsx-key="extra_brand_label">Ekstra brand/person</div>
+            <table class="addon-mini-tbl">
+              <thead><tr><th></th><th>/md</th><th>/år</th><th>/år rabat</th></tr></thead>
+              <tbody>
+                <tr><td>Medie</td><td>250 kr</td><td>1.500 kr</td><td>1.000 kr</td></tr>
+                <tr><td>CVR</td><td>300 kr</td><td>2.000 kr</td><td>1.250 kr</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="bm-addon">
+            <div class="bm-addon-k" data-xlsx-key="international_addon_label">Ekstra sprogbruger</div>
+            <div class="addon-tiers">
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv+ / md</span><span class="addon-tier-v">99 kr</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv+ / år</span><span class="addon-tier-v">1.000 kr</span></div>
+              <div class="addon-tier"><span class="addon-tier-l">Erhverv+ / år rabat</span><span class="addon-tier-v">750 kr</span></div>
+            </div>
+          </div>
+          <div class="addon-group-label">Afventer afklaring</div>
+          <div class="bm-addon pending">
+            <div class="bm-addon-k">Medieovervågning</div>
+            <div class="bm-addon-v">Op til 5 brands/personnavne i 50.000+ kilder. <strong style="color:var(--amber);">Pris afklares</strong></div>
+          </div>
+          <div class="bm-addon pending">
+            <div class="bm-addon-k">Micropayment</div>
+            <div class="bm-addon-v">Pay-per-view på enkeltartikler, audio og video. <strong style="color:var(--amber);">Pris og model afklares</strong></div>
+          </div>
+        </div>
+      </div>
+      </div><!-- /biz-pakke -->
+
+      <!-- TAB 3: REVENUE & ADD-ONS -->
+      <div class="biz-tab-panel" id="biz-revenue" style="padding-bottom:24px;">
+      <div class="bm-addons" style="margin-bottom:16px;">
+        <div class="addon-group-label">Revenue ambition — mål år 1</div>
+        <div class="bm-addon">
+          <div class="bm-addon-k">Business subscribers ved paywall</div>
+          <div class="addon-tiers">
+            <div class="addon-tier"><span class="addon-tier-l">Mål</span><span class="addon-tier-v">1.500</span></div>
+            <div class="addon-tier"><span class="addon-tier-l">Deadline</span><span class="addon-tier-v">20. nov. 2026</span></div>
+          </div>
+        </div>
+        <div class="bm-addon">
+          <div class="bm-addon-k">Private subscribers ved paywall</div>
+          <div class="addon-tiers">
+            <div class="addon-tier"><span class="addon-tier-l">Mål</span><span class="addon-tier-v">1.500</span></div>
+            <div class="addon-tier"><span class="addon-tier-l">Pris</span><span class="addon-tier-v">50 DKK/md</span></div>
+          </div>
+        </div>
+        <div class="bm-addon">
+          <div class="bm-addon-k">ARR baseline</div>
+          <div class="addon-tiers">
+            <div class="addon-tier"><span class="addon-tier-l">1.500 × Erhverv run-rate</span><span class="addon-tier-v">9M DKK</span></div>
+          </div>
+        </div>
+        <div class="bm-addon">
+          <div class="bm-addon-k">ARR opside</div>
+          <div class="addon-tiers">
+            <div class="addon-tier"><span class="addon-tier-l">Opgradering til Erhverv+/Premium</span><span class="addon-tier-v">11–14M DKK</span></div>
+          </div>
+        </div>
+        <div class="addon-group-label" style="color:var(--muted); font-weight:400; text-transform:none; letter-spacing:0; font-size:11px;">Partner og API ikke inkluderet i basisestimatet</div>
+      </div>
+
+      <div class="ibox">
+        <div class="ibox-b">Business genererer <strong>10× mere revenue per abonnent</strong> end Private (500 kr/md vs. 50 kr/md). Private er platform-driver der konverterer daglig trafik til Business-abonnenter. Feature-allokering per tier afklares i features spec v1.0.</div>
+      </div>
+
+      <div class="ibox amber">
+        <div class="ibox-t">Seat-model afventer afklaring</div>
+        <div class="ibox-b">Antal inkluderede brugere per tier er ikke fastlagt. Seat-model afklares som del af features spec v1.0. Ingen commitments inden da.</div>
+      </div>
+      </div><!-- /biz-revenue -->
+
+      </div><!-- /biz-col-inner -->
+    </div>
+
+    <div class="col ani col-compact">
+      <div class="col-label">Kommercielle mekanikker</div>
+
+      <div class="ibox">
+        <div class="ibox-t">Virksomhedsudgift — ikke personalegode</div>
+        <div class="ibox-b">
+          <p>Alle pakker kommunikeres som <strong>B2B-driftsomkostning, der trækkes fra</strong> — aldrig som personligt medieabonnement.</p>
+          <p>Beslutningen placeres i HR/økonomiafdelingen, ikke hos den individuelle leder.</p>
+        </div>
+      </div>
+
+      <div class="ibox accent">
+        <div class="ibox-t">Fri avis — skattemæssig driver</div>
+        <div class="ibox-b">
+          <p>Skattestyrelsens bagatelgrænse for personalegoder: <strong>7.600 kr/år i 2026</strong>. Erhverv+ på 7.500 kr/år er inden for grænsen — skattefrit for modtageren, fradragsberettiget for virksomheden.</p>
+          <p>Dette fjerner betalingsvilligheds-barrieren på individniveau og gør Erhverv+ til en HR-beslutning frem for en personlig udgift.</p>
+        </div>
+        <ul class="chk">
+          <li>Erhverv+ 7.500 kr/år ≤ bagatelgrænse 7.600 kr/år</li>
+          <li>Skattefrit for medarbejderen, fradrag for virksomheden</li>
+          <li>Ekspliciteres i checkout-flow og salgsmateriale</li>
+        </ul>
+      </div>
+
+      <div class="ibox">
+        <div class="ibox-t">Marketing kick-back, inkluderet i Erhverv+ og Premium</div>
+        <div class="ibox-b">
+          <p>Abonnenter modtager annonceringsværdi på platformen: bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel. Stærkt salgsargument til virksomheder der allerede annoncerer eller ønsker PR-eksponering.</p>
+          <p><strong>Erhverv+: 5.000 kr/år · Premium: 7.500 kr/år</strong> annonceringsværdi inkluderet.</p>
+        </div>
+      </div>
+
+      <div class="ibox">
+        <div class="ibox-t">Artikel-deling og brugsrettigheder</div>
+        <div class="ibox-b">
+          <p>Abonnenter kan videresende artikler bag paywall via <strong>tokeniserede links</strong>. Desuden brugsret til artikler i egen markedsføring: SoMe, nyhedsbreve og investor-materiale. Gælder Erhverv+ og Premium på hele Y.dk-platformen.</p>
+        </div>
+      </div>
+
+      <div class="ibox green">
+        <div class="ibox-t">Prisankeret holder: Erhverv+ mod konkurrenter</div>
+        <div class="ibox-b">
+          <p>Erhverv+ til 7.500 kr/år inkluderer overvågning, team-adgang, artikel-deling og marketing kick-back.</p>
+          <p>Retriever (overvågning alene): 15.000–50.000+ kr/år · Meltwater: 50.000–140.000+ kr/år · LassoX: 40.000–82.000 kr/år</p>
+          <p><strong>Erhverv+ erstatter 2–3 separate tjenester til en femtedel af prisen.</strong></p>
+        </div>
+      </div>
+
+      <div class="col-label" style="margin-top:22px; margin-bottom:10px;">Kommerciel funnel</div>
+      <div class="tl">
+        <div class="tl-row">
+          <div class="tl-d" style="color:var(--green);">Aug. 2026</div>
+          <div class="tl-t"><strong>Y.dk-launch</strong> · fri trafik og læsere bygges op</div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-d">Okt. 2026</div>
+          <div class="tl-t"><strong>Business-launch</strong> · betalende abonnenter fra dag ét</div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-d" style="color:var(--accent);">Nov. 2026</div>
+          <div class="tl-t"><strong>Paywall live</strong> · kampagnefrist udløber · ARR-måling starter</div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-d">2027+</div>
+          <div class="tl-t"><strong>Y Rails</strong> · opgradering og tilkøb driver ARR mod 11–14M DKK</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">Business model & revenue · 01/05</div>
+</div>
+
+
+<!-- ======================================================
+     02 POSITIONERING
+     ====================================================== -->
+<div class="screen" id="s-pos">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item nav-active" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Feedback
+    </button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Markedspositionering</div>
+    <div class="sec-num">03 / 05</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Kategori & dokumenterede fordele</div>
+      <div class="cat-box">
+        <div class="cat-lbl">Kategorien vi ejer</div>
+        <div class="cat-txt">AI-drevet erhvervsintelligens til SMV-priser</div>
+      </div>
+      <div class="drv-list">
+        <div class="drv">
+          <div class="drv-n">1</div>
+          <div><div class="drv-t">Massivt og overset segment</div><div class="drv-d">99% af alle kommercielle selskaber i Danmark er SMV'er. De tegner sig for 50% af erhvervslivets samlede årsresultat og 39% af nettoinvesteringerne — og ingen eksisterende platform er bygget til dem.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">2</div>
+          <div><div class="drv-t">Smerten er konkret og målbar</div><div class="drv-d">SMV-ledere bruger 3,5 timer/uge på statsrelateret papirarbejde — 16,5 mia. DKK/år for segmentet. 35% finder nyhedsudbud overvældende. Fuld dækning via separate værktøjer koster 20.000+ kr/år.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">3</div>
+          <div><div class="drv-t">Betalingsvillighed er valideret</div><div class="drv-d">Frihedsbrevet: 5.000 abonnenter til break-even, 14,6M DKK bruttoindtægt 2023 — ren abonnementsmodel. Nordisk SaaS-prispræmie: +28% over US-baseline. Y Business er priset konservativt under nordisk gennemsnit.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">4</div>
+          <div><div class="drv-t">Partnerne er supplement — ikke konkurrenter</div><div class="drv-d">DI, Dansk Erhverv og SMVdanmark leverer compliance og lobbyisme. De leverer ikke markedsintelligens og konkurrentovervågning. Pitch: <em>"Jeres medlemmer bruger jer til compliance — Y Business giver dem det, I ikke kan."</em></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col ani">
+      <div class="col-label">Konkurrentlandskab</div>
+      <table class="tbl" style="font-size:13px;">
+        <thead><tr><th>Platform</th><th>Pris/år</th><th>Hvad det er</th><th>Hvad det mangler</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="str" style="font-size:13px;">Finans.dk</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">4.500–5.500 DKK</td>
+            <td style="font-size:13px;">Erhvervsnyheder — digitalt fokus</td>
+            <td style="font-size:13px;">Overvågning, SMV-fokus, intelligence</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Børsen</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">~7.200 DKK</td>
+            <td style="font-size:13px;">Erhvervsnyheder skrevet til C25 og kapitalmarkedet</td>
+            <td style="font-size:13px;">SMV-relevans, overvågning</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Retriever</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">15.000–50.000+ DKK</td>
+            <td style="font-size:13px;">Medieovervågning, nordisk dækning</td>
+            <td style="font-size:13px;">Nyheder, redaktionel analyse</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Meltwater</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">50.000–140.000+ DKK</td>
+            <td style="font-size:13px;">Global medieovervågning til enterprise</td>
+            <td style="font-size:13px;">SMV-prissætning, nyheder, community</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Infomedia</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">10.000–50.000+ DKK</td>
+            <td style="font-size:13px;">Dansk/nordisk mediarkiv og brandtracking</td>
+            <td style="font-size:13px;">Min. 20 licenser — ingen nyheder eller intelligence</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Karnov Online</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">10.000–40.000+ DKK</td>
+            <td style="font-size:13px;">Dansk lovgivning og retspraksis</td>
+            <td style="font-size:13px;">Kun regulatorisk — bygget til jurister</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">LassoX</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">40.000–82.000 DKK</td>
+            <td style="font-size:13px;">Salgstriggers og leadkort på CVR-data</td>
+            <td style="font-size:13px;">Intelligence, branchetendenser, nyheder</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Watch Medier</td>
+            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">2.500–6.500 DKK/medie</td>
+            <td style="font-size:13px;">Niche-branchenyheder — én titel per abonnement</td>
+            <td style="font-size:13px;">Separat abonnement per branche — fragmenteret</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">LinkedIn-feed</td>
+            <td style="color:var(--muted); font-family:var(--mono); font-size:10px;">0</td>
+            <td style="font-size:13px;">Netværk og algoritmisk nyhedsstrøm</td>
+            <td style="font-size:13px;">Ufiltreret, tidskrævende, ingen syntese</td>
+          </tr>
+          <tr>
+            <td class="str" style="font-size:13px;">Ingen struktureret løsning</td>
+            <td style="color:var(--muted); font-family:var(--mono); font-size:10px;">0</td>
+            <td style="font-size:13px;">Ad hoc-søgninger, nyhedsbreve, RSS</td>
+            <td style="font-size:13px;">Størst segment — ubesat kategori</td>
+          </tr>
+          <tr class="hl">
+            <td class="str" style="color:var(--accent); font-style:italic; font-family:var(--serif); font-size:13px;">Y Business</td>
+            <td class="hi">5.000 DKK</td>
+            <td style="font-size:13px;">Nyheder + overvågning + trends + briefs + leads — samlet</td>
+            <td style="color:var(--line);">—</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ibox" style="margin-top:8px;">
+        <div class="ibox-t">Problemet vi løser</div>
+        <div class="ibox-b">
+          <p>En SMV-ejer bruger i dag tid og penge på: et erhvervsmedie, der skriver til andre, et medieovervågningsværktøj prissat til enterprise, en algoritmisk LinkedIn-feed og ad hoc-søgninger uden systematisk overblik.</p>
+          <p><strong>Veldrevne SMV'er løser fragmenteringen ved at udpege en "videnskoordinator" — Y Business automatiserer det job.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">Markedspositionering · 03/05</div>
+</div>
+
+
+<!-- ======================================================
+     03 GO-TO-MARKET
+     ====================================================== -->
+<div class="screen" id="s-gtm">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item nav-active" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Feedback
+    </button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Go-to-market & roadmap</div>
+    <div class="sec-num">04 / 05</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="col-label">Partnerorganisationer — 70.000+ virksomheder i direkte reach</div>
+      <table class="tbl">
+        <thead><tr><th>Organisation</th><th>Segment</th><th>Medl.</th><th>Rolle i udrulning</th></tr></thead>
+        <tbody>
+          <tr><td class="str">SMVdanmark<span class="badge">Potentiel distributionspartner</span></td><td>SMV-ejere</td><td>15.000+</td><td>Tættest match på kernemålgruppen — ingen aftale indgået</td></tr>
+          <tr><td class="str">Dansk Erhverv</td><td>Handel, service</td><td>18.000+</td><td>Beta-rekruttering, partneraftale, distribution</td></tr>
+          <tr><td class="str">Dansk Industri (DI)</td><td>Produktion</td><td>10.000+</td><td>Beta-rekruttering, anbefaling, mediesamarb.</td></tr>
+          <tr><td class="str">IT-Branchen<span class="badge">Potentiel sponsor — AI & tech</span></td><td>Tech, tele</td><td>—</td><td>Tech-segment + potentiel AI & tech-sponsor</td></tr>
+          <tr><td class="str">Landbrug & Fødevarer</td><td>Agri</td><td>—</td><td>Sektorspecifik distribution, regulatory</td></tr>
+          <tr><td class="str">TEKNIQ Arbejdsgiverne</td><td>Byggeri</td><td>—</td><td>Bygge- og installationssektor</td></tr>
+        </tbody>
+      </table>
+      <div class="ibox" style="display:flex; align-items:center; justify-content:space-between;">
+        <div style="font-family:var(--serif); font-size:28px; font-weight:700; color:var(--accent); font-style:italic;">70.000+</div>
+        <div style="font-family:var(--sans); font-size:12px; color:var(--ink70); text-align:right; line-height:1.5;">virksomheder i samlet reach<br>uden kold outreach</div>
+      </div>
+      <div class="ibox amber">
+        <div class="ibox-t">Acquisition-pool — afventer tal fra Tech Lead</div>
+        <div class="ibox-b">Daglige Y.dk-besøg i september 2026 er ikke bekræftet. Rekrutteringspool suppleres af LinkedIn, PR og partnerkanaler.</div>
+      </div>
+    </div>
+
+    <div class="col ani">
+      <div class="col-label">AI-kommunikation</div>
+      <div class="ibox accent">
+        <div class="ibox-t">Formlen er enkel — og kommunikeres åbent</div>
+        <div class="ibox-b">
+          <p>Al produktion er baseret på AI, men mennesker styrer processen. AI er en del af Y's identitet og kommunikeres åbent. Formlen: <strong>"AI producerer, mennesker verificerer."</strong></p>
+          <p>AI er en kommende USP. Y sætter nye standarder for brug af AI i medieproduktion og personaliseret distribution.</p>
+        </div>
+      </div>
+
+      <div class="col-label" style="margin-top:22px; margin-bottom:10px;">Roadmap — næste milepæle</div>
+      <div class="tl">
+        <div class="tl-row"><div class="tl-d" style="color:var(--green);">Juni 2026</div><div class="tl-t"><strong style="color:var(--green);">Redaktionelt koncept — afsluttet</strong> · Forudsætning for features spec v1.0 og tech-konfiguration.</div></div>
+        <div class="tl-row"><div class="tl-d" style="color:var(--green);">Juni 2026</div><div class="tl-t"><strong style="color:var(--green);">Behovsafdækning hos partnere</strong> · SMVdanmark, Dansk Erhverv, DI, IT-Branchen, L&F og TEKNIQ — validere behov og identificere beta-kandidater.</div></div>
+        <div class="tl-row"><div class="tl-d" style="color:var(--green);">Juni 2026</div><div class="tl-t"><strong style="color:var(--green);">Supertrends teknisk vurdering</strong> · Jens/Supertrends kortlægger kildestruktur og motorkonfiguration for dansk SMV-segment.</div></div>
+        <div class="tl-row"><div class="tl-d">30. juni</div><div class="tl-t"><strong>Features spec v1.0 klar</strong> · PM + Tech Lead · Under udarbejdelse</div></div>
+        <div class="tl-row"><div class="tl-d">Aug.–sept.</div><div class="tl-t"><strong>Design & build</strong> · Frontend og design løses internt</div></div>
+        <div class="tl-row"><div class="tl-d">Okt. 2026</div><div class="tl-t"><strong>Business-launch</strong></div></div>
+        <div class="tl-row"><div class="tl-d">Nov. 2026</div><div class="tl-t"><strong>Paywall live</strong></div></div>
+        <div class="tl-row"><div class="tl-d">Dec. 2026</div><div class="tl-t"><strong>Y Rails</strong></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">Go-to-market & roadmap · 04/05</div>
+</div>
+
+
+<!-- ======================================================
+     04 PRODUKT & ROADMAP
+     ====================================================== -->
+<div class="screen" id="s-prd">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item nav-active" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item" data-target="s-ai">AI & tech</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Feedback
+    </button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">Produkt</div>
+    <div class="sec-num">02 / 05</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="cat-box" style="margin-bottom:20px;">
+        <div class="cat-lbl">Value proposition</div>
+        <div class="cat-txt">Ét abonnement erstatter din videnskoordinator — og hele kludetæppet af separate værktøjer.</div>
+      </div>
+      <div class="layers">
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Personaliseret nyhedsfeed + morgenbrief</div><div class="layer-d">Dagens vigtigste erhvervsnyheder kl. 06:00 — skræddersyet til din branche og dit marked. Originalt redaktionelt indhold kombineret med AI-bearbejdede nyheder fra nationale og internationale medier og bureauer. Leveres i <strong>tekst, lyd og video</strong> — formatet tilpasses den enkelte brugers behov og præferencer. Ingen manuel sortering.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Markedsovervågning</div><div class="layer-d">Automatisk overvågning af konkurrenter, regulering, EU-direktiver og offentlige udbud. Alerts ved nye hits. Du reagerer, inden konkurrenterne ser det.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Markedstrends</div><div class="layer-d">Ugentlig trendanalyse fra 5.000 kilder. Du forstår din branche ugen før alle andre — uden at have en analytiker.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">Leadgenerering fra markedssignaler</div><div class="layer-d">Reguleringsændringer, ekspansioner og lederskifter identificerer automatisk, hvilke virksomheder der er klar til at handle. Understøttes af CVR-søgning.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">B2B-briefs på 60 sekunder</div><div class="layer-d">Situationsbrief om en virksomhed, konkurrent eller reguleringsemne — genereret inden mødet. Det du skal vide, samlet på én side.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">C-level intelligence</div><div class="layer-d">Strategiske analyser, datadrevet research og trendrapporter til topledelsen. National og international dækning fra Reuters, AP, Bloomberg m.fl. Indhold der kræver fordybelse.</div></div></div>
+        <div class="layer"><div class="layer-n">→</div><div><div class="layer-t">AI & tech for erhverv</div><div class="layer-d">Dedikeret Pro-sektion: AI og digitalisering som strategisk ledelsesredskab for SMV-ejere og C-level. Ikke tech-journalistik for tech-folk.</div></div></div>
+      </div>
+    </div>
+
+    <div class="col ani">
+      <div class="col-label">Scope — fase 1</div>
+      <div class="scope-g">
+        <div class="scope-box in">
+          <div class="scope-hl">Inkluderet — fase 1</div>
+          <ul class="scope-list">
+            <li class="scope-group-label">Alle tiers</li>
+            <li>Personaliseret nyhedsfeed</li>
+            <li>Morgenbrief tekst + lyd kl. 06:00</li>
+            <li>Markedsovervågning (begrænset profil)</li>
+            <li>Branchetrends (udvalgte sektorer)</li>
+            <li>B2B-briefs (template-format)</li>
+            <li>Web og mobil</li>
+            <li class="scope-group-label">Erhverv+ og Premium</li>
+            <li>Medieovervågning — brands og personer</li>
+            <li>Artikel-deling — tokeniserede links</li>
+            <li>Marketing kick-back</li>
+            <li>Lukket abonnentfællesskab</li>
+            <li class="scope-group-label">Premium</li>
+            <li>CVR- og konkurrentovervågning</li>
+            <li>Reklamefri adgang</li>
+            <li>Leadgenerering — signal-baseret + CVR-søgning</li>
+          </ul>
+        </div>
+        <div class="scope-box out">
+          <div class="scope-hl">Ikke fase 1</div>
+          <ul class="scope-list">
+            <li>Video-format</li>
+            <li>ML-personalisering</li>
+            <li>API-integration (enterprise) — fase 2</li>
+            <li>Internationale versioner — development track, ikke vedtaget</li>
+            <li>Karrierekanon / jobspor — fase 2</li>
+            <li>Community markedsplads — fase 2+</li>
+            <li>Pay-per-view / micropayment — fase 2+</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ibox green">
+        <div class="ibox-t" style="color:var(--green)">Supertrends — aktiv partner · møde afholdt 3. juni</div>
+        <div class="ibox-b">
+          <p><strong>Hybridmodel:</strong> Platformen kombinerer Supertrends' infrastruktur med Y's egne systemer og dataadgange. Features leveret af Supertrends brandes <strong>"Powered by Supertrends"</strong>. Egne features kører på Y's egne løsninger.</p>
+          <p><strong>Jens/Supertrends kortlægger nu konkret</strong>, hvad platformen kan levere til markedsovervågning, trends og briefs for dansk SMV-segment: kildestruktur, motorkonfiguration og afgrænsning mod Y's egne adgange.</p>
+          <p><strong>Udeståender:</strong></p>
+          <ul class="chk">
+            <li>Teknisk kapacitetsvurdering fra Supertrends afventes</li>
+            <li>Afgrænsning: hvad leveres af Supertrends vs. Y's egne systemer</li>
+            <li>Rammeaftale prissættes efter kildestruktur er fastlagt</li>
+            <li>Kildekobling til nyheder afklares inden build</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="pnum">Produkt · 02/05</div>
+</div>
+
+
+<!-- ======================================================
+     05 AI & TECH FOR ERHVERV
+     ====================================================== -->
+<div class="screen" id="s-ai">
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <header class="dash-header">
+    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
+    <nav class="dash-nav">
+      <button class="dash-nav-item" data-target="s-biz">Business model</button>
+      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
+      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
+      <button class="dash-nav-item" data-target="s-gtm">Go-to-market & roadmap</button>
+      <button class="dash-nav-item nav-active" data-target="s-ai">AI & tech</button>
+    </nav>
+    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Feedback
+    </button>
+  </header>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub">Oversigt</button>
+    <div class="sec-title">AI & tech for erhverv</div>
+    <div class="sec-num">05 / 05</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="col ani">
+      <div class="cat-box" style="margin-bottom:24px;">
+        <div class="cat-lbl">Y's position</div>
+        <div class="cat-txt">Dansk erhvervsliv er midt i en AI-transformation. Y dækker den — med dybde og uafhængig redaktionel vinkel.</div>
+      </div>
+      <div class="col-label">Hvad AI & tech for erhverv er</div>
+      <div class="drv-list">
+        <div class="drv">
+          <div class="drv-n">→</div>
+          <div><div class="drv-t">Dedikeret Pro-sektion</div><div class="drv-d">Dybdegående dækning af AI og teknologi med direkte erhvervsrelevans — ikke tech-journalistik for tech-folk, men AI og digitalisering som strategisk ledelsesredskab for SMV-ejere og C-level.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">→</div>
+          <div><div class="drv-t">National og international dækning</div><div class="drv-d">Aggregeret fra nationale og internationale medier og bureauer. AI-bearbejdet, redaktionelt verificeret. Y leverer syntesen — ikke råstoffet.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">→</div>
+          <div><div class="drv-t">Al produktion baseret på AI — mennesker styrer processen</div><div class="drv-d">"AI producerer, mennesker verificerer." Y sætter nye standarder for brug af AI i medieproduktion og personaliseret distribution. AI er en kommende USP — ikke skjult, men kommunikeret som styrke.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">→</div>
+          <div><div class="drv-t">Stemmerne fra verden — oversat til dansk kontekst</div><div class="drv-d">Hvad siger de globale AI-meningsdannere — fra Silicon Valley, internationalt og nationalt — og hvad betyder det konkret for danske virksomheder? Formatet oversætter altid: ikke "her er hvad ledende stemmer siger" men "her er hvad det betyder for en dansk virksomhed, der overvejer samme skridt." Successerne vises med metode, friktion og begrænsning — aldrig som glorificering.</div></div>
+        </div>
+        <div class="drv">
+          <div class="drv-n">→</div>
+          <div><div class="drv-t">Enablement-gabet</div><div class="drv-d">De fleste virksomheder har investeret i AI. Langt færre høster udbyttet — ikke fordi teknologien svigter, men fordi ledelsen og organisationen ikke er fulgt med. Det er den fortælling erhvervsmedierne endnu ikke fortæller. Y dækker den konsekvent: AI som organisatorisk forandring, ikke som teknologi.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col ani">
+      <div class="col-label">Kommerciel model — sponsorsamarbejde</div>
+      <div class="ibox accent">
+        <div class="ibox-t">Tre organisationer med særlig interesse</div>
+        <div class="ibox-b">
+          <p>Modellen: organisationen sponserer sektionen og får redaktionelt medejerskab — deres medlemmer får dedikeret dækning. Y Business får en supplerende indtægtskilde ud over abonnementsmodellen.</p>
+          <p>Oplagte kandidater: <strong>IT-Branchen</strong> (tech-segmentets stemme), <strong>Dansk Industri</strong> (produktionsvirksomheder i AI-transformation) og <strong>Dansk Erhverv</strong> (handels- og servicevirksomheder). Partner afklares i møderunden.</p>
+        </div>
+      </div>
+      <div class="ibox">
+        <div class="ibox-t">Hvorfor det virker kommercielt</div>
+        <div class="ibox-b">
+          <ul class="chk">
+            <li>Organisationen betaler for eksponering mod Y's betalende Pro-abonnenter</li>
+            <li>Medlemmerne oplever sektionen som en fordel ved medlemskabet</li>
+            <li>Y's redaktionelle uafhængighed fastholdes — sponsoren leverer adgang og faglig kontekst, ikke redaktionel kontrol</li>
+            <li>Modellen skalerer til andre vertikaler: Landbrug & Fødevarer, TEKNIQ m.fl.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-label-sm">Status</div>
+      <div class="tl">
+        <div class="tl-row"><div class="tl-d" style="color:var(--amber);">Udestående</div><div class="tl-t"><strong style="color:var(--amber);">Sponsorsamtaler — afventer planlægning af møderunde</strong> · IT-Branchen, Dansk Industri og Dansk Erhverv er potentielle kandidater. Samtaler indgår i den overordnede møderunde, der planlægges.</div></div>
+        <div class="tl-row"><div class="tl-d">Aug.–sept.</div><div class="tl-t">Sponsormodel konkretiseres parallelt med design & build</div></div>
+        <div class="tl-row"><div class="tl-d">Okt. 2026</div><div class="tl-t">AI & tech-sektion lanceres som del af Business-launch</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">AI & tech for erhverv · 05/05</div>
+</div>
+
+</div><!-- /.deck-stage -->
+</div><!-- /.deck-viewport -->
+
+<!-- ======================================================
+     FEEDBACK MODAL
+     ====================================================== -->
+<div class="fb-overlay hidden" id="fb-overlay">
+  <div class="fb-modal">
+    <div class="fb-modal-head">
+      <span class="fb-modal-title">Feedback — bemærkninger og ideer</span>
+      <button class="fb-modal-close" onclick="window.closeFeedback()">✕</button>
+    </div>
+    <div class="fb-modal-body">
+      <div>
+        <span class="fb-label">Ny bemærkning</span>
+        <input class="fb-input" id="fb-author" type="text" placeholder="Dit navn (valgfrit)">
+      </div>
+      <div>
+        <textarea class="fb-textarea" id="fb-text" rows="5" placeholder="Skriv din bemærkning, idé eller fejlbeskrivelse her…"></textarea>
+      </div>
+      <div class="fb-actions">
+        <button class="fb-save-btn" id="fb-save-btn" onclick="window.saveFeedback()">Gem i feedback</button>
+        <span class="fb-status" id="fb-status"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  function scale() {
+    var vpad = 160;
+    var r = Math.min(window.innerWidth / 1440, (window.innerHeight - vpad) / 900);
+    var x = (window.innerWidth  - 1440 * r) / 2;
+    var y = (window.innerHeight - 900 * r) / 2;
+    stage.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
+  }
+  scale();
+  window.addEventListener('resize', scale);
+}());
+
+(function () {
+  var current = 'hub';
+  function navigate(id) {
+    if (!id || id === current) return;
+    document.getElementById(current).classList.remove('active');
+    var to = document.getElementById(id);
+    if (!to) return;
+    to.classList.add('active');
+    if (id !== 'hub') {
+      to.querySelectorAll('.ani').forEach(function (el) {
+        el.style.animation = 'none';
+        void el.offsetHeight;
+        el.style.animation = '';
+      });
+    }
+    /* Opdater aktiv navmarkering på tværs af alle sektionsnavs */
+    document.querySelectorAll('.dash-nav-item').forEach(function (item) {
+      item.classList.toggle('nav-active', item.getAttribute('data-target') === id);
+    });
+    current = id;
+    /* Aktiver contenteditable på ny slide hvis redigering er aktiv */
+    if (isEditing) {
+      document.querySelectorAll(EDITABLE_SEL).forEach(function(el) {
+        el.setAttribute('contenteditable', 'true');
+        el.style.outline = '1.5px dashed rgba(54,19,82,0.25)';
+        el.style.outlineOffset = '3px';
+        el.style.cursor = 'text';
+      });
+    }
+  }
+  document.querySelectorAll('[data-target]').forEach(function (el) {
+    el.addEventListener('click', function () { navigate(this.getAttribute('data-target')); });
+  });
+
+  /* Header brand click → always back to hub */
+  document.querySelectorAll('.dash-brand').forEach(function (el) {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', function () { navigate('hub'); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.target && e.target.getAttribute('contenteditable')) return;
+    if (e.target && ['INPUT','TEXTAREA'].includes(e.target.tagName)) return;
+    if (e.key === 'Escape' || e.key === 'Backspace') {
+      e.preventDefault();
+      if (current !== 'hub') navigate('hub');
+    }
+    else if (e.key === '1') navigate('s-biz');
+    else if (e.key === '2') navigate('s-prd');
+    else if (e.key === '3') navigate('s-pos');
+    else if (e.key === '4') navigate('s-gtm');
+    else if (e.key === '5') navigate('s-ai');
+  });
+}());
+
+/* === BIZ SECTION TABS === */
+(function () {
+  document.querySelectorAll('.biz-tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var tabId = btn.getAttribute('data-biz-tab');
+      document.querySelectorAll('.biz-tab-btn').forEach(function (b) {
+        b.classList.remove('biz-tab-active');
+      });
+      document.querySelectorAll('.biz-tab-panel').forEach(function (p) {
+        p.classList.remove('biz-tab-active');
+      });
+      btn.classList.add('biz-tab-active');
+      var panel = document.getElementById(tabId);
+      if (panel) panel.classList.add('biz-tab-active');
+    });
+  });
+}());
+
+/* === INLINE EDITING & GEM TIL DISK === */
+(function () {
+  var isEditing = false;
+  var isDirty   = false;
+  var fileHandle = null;
+
+  var EDITABLE_SEL = [
+    '.col', '.hub-intro', '.stat-cell',
+    '.hub-tile > div:first-child'
+  ].join(', ');
+
+  /* ── Save-bjælke (vises ved ændringer) ── */
+  var saveBar = document.createElement('div');
+  saveBar.style.cssText = [
+    'position:fixed', 'top:0', 'left:0', 'right:0', 'height:52px',
+    'background:rgba(54,19,82,0.97)',
+    'display:flex', 'align-items:center', 'justify-content:space-between',
+    'padding:0 24px', 'z-index:99999',
+    'opacity:0', 'pointer-events:none',
+    'transition:opacity 0.2s ease',
+    'box-shadow:0 2px 16px rgba(54,19,82,0.35)'
+  ].join(';');
+
+  var saveBarLabel = document.createElement('span');
+  saveBarLabel.style.cssText = 'font-family:Schibsted Grotesk,sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);';
+  saveBarLabel.textContent = 'Ændringer registreret — gem samlet når du er klar';
+
+  var saveBarRight = document.createElement('div');
+  saveBarRight.style.cssText = 'display:flex;gap:10px;align-items:center;';
+
+  var discardBtn = document.createElement('button');
+  discardBtn.textContent = 'Kassér';
+  discardBtn.style.cssText = 'padding:7px 18px;border-radius:5px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);font-family:Schibsted Grotesk,sans-serif;font-size:12px;font-weight:600;cursor:pointer;';
+
+  var saveBtn = document.createElement('button');
+  saveBtn.textContent = 'Gem til fil';
+  saveBtn.style.cssText = 'padding:7px 20px;border-radius:5px;background:#fff;border:none;color:#361352;font-family:Schibsted Grotesk,sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:-0.01em;transition:transform 0.1s ease;';
+  saveBtn.addEventListener('mousedown', function() { this.style.transform = 'scale(0.96)'; });
+  saveBtn.addEventListener('mouseup',   function() { this.style.transform = ''; });
+
+  saveBarRight.appendChild(saveBtn);
+  saveBar.appendChild(saveBarLabel);
+  saveBar.appendChild(saveBarRight);
+  document.body.appendChild(saveBar);
+
+  /* ── Edit-knap — altid synlig i nederste højre hjørne ── */
+  var editToggle = document.createElement('button');
+  editToggle.title = 'Redigeringstilstand (E)';
+  editToggle.innerHTML = '✏&nbsp;Rediger';
+  editToggle.style.cssText = [
+    'position:fixed', 'bottom:20px', 'right:20px', 'z-index:99998',
+    'padding:9px 18px', 'border-radius:8px',
+    'background:rgba(54,19,82,0.9)', 'border:none',
+    'color:#fff', 'font-family:Schibsted Grotesk,sans-serif',
+    'font-size:13px', 'font-weight:700', 'cursor:pointer',
+    'box-shadow:0 4px 16px rgba(54,19,82,0.3)',
+    'transition:transform 0.1s ease, background 0.15s',
+    'display:flex', 'align-items:center', 'gap:6px'
+  ].join(';');
+  editToggle.addEventListener('mouseenter', function() { this.style.background = '#4a1a6e'; });
+  editToggle.addEventListener('mouseleave', function() { this.style.background = isEditing ? '#22a06b' : 'rgba(54,19,82,0.9)'; });
+  editToggle.addEventListener('mousedown', function() { this.style.transform = 'scale(0.96)'; });
+  editToggle.addEventListener('mouseup',   function() { this.style.transform = ''; });
+  document.body.appendChild(editToggle);
+
+  /* ── Markér dirty ── */
+  function markDirty() {
+    if (isDirty) return;
+    isDirty = true;
+    saveBar.style.opacity = '1';
+    saveBar.style.pointerEvents = 'auto';
+    /* Skub stage ned så save-bar ikke dækker header */
+    document.getElementById('stage').style.top = '52px';
+    rescaleStage();
+  }
+
+  function clearDirty() {
+    isDirty = false;
+    saveBar.style.opacity = '0';
+    saveBar.style.pointerEvents = 'none';
+    document.getElementById('stage').style.top = '0';
+    rescaleStage();
+  }
+
+  function rescaleStage() {
+    var s = document.getElementById('stage');
+    var offset = isDirty ? 52 : 0;
+    var vpad = 160;
+    var availH = window.innerHeight - offset - vpad;
+    var r = Math.min(window.innerWidth / 1440, availH / 900);
+    var x = (window.innerWidth  - 1440 * r) / 2;
+    var y = offset + (window.innerHeight - offset - 900 * r) / 2;
+    s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
+  }
+
+  /* MutationObserver — opdager alle tekst-ændringer */
+  var observer = new MutationObserver(function(mutations) {
+    if (!isEditing) return;
+    for (var i = 0; i < mutations.length; i++) {
+      markDirty();
+      break;
+    }
+  });
+
+  function setPackageDot(cell, enabled) {
+    var isEntryTier = /_erhverv$/.test(cell.getAttribute('data-xlsx-key') || '');
+    cell.innerHTML = enabled
+      ? '<span class="bm-dot' + (isEntryTier ? ' soft' : '') + '"></span>'
+      : '<span class="bm-empty"></span>';
+  }
+
+  function isPackageTextCell(cell) {
+    return !!cell.querySelector('.bm-mini, .bm-add');
+  }
+
+  var packageLogic = document.getElementById('bm-package-logic');
+  if (packageLogic) {
+    packageLogic.addEventListener('click', function(e) {
+      if (!isEditing) return;
+
+      var cell = e.target.closest('.bm-plot-cell');
+      if (!cell || !packageLogic.contains(cell) || isPackageTextCell(cell)) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      setPackageDot(cell, !cell.querySelector('.bm-dot'));
+      markDirty();
+    });
+  }
+
+  /* ── Aktiver / deaktiver redigering ── */
+  function enableEditing() {
+    isEditing = true;
+    document.body.classList.add('bm-editing');
+    editToggle.innerHTML = '✓&nbsp;Færdig';
+    editToggle.style.background = '#22a06b';
+
+    document.querySelectorAll(EDITABLE_SEL).forEach(function(el) {
+      el.setAttribute('contenteditable', 'true');
+      el.style.outline = '1.5px dashed rgba(54,19,82,0.25)';
+      el.style.outlineOffset = '3px';
+      el.style.cursor = 'text';
+    });
+
+    document.querySelectorAll('#bm-package-logic .bm-plot-cell').forEach(function(cell) {
+      cell.title = isPackageTextCell(cell)
+        ? 'Ret teksten direkte'
+        : 'Klik for at slå prik til/fra';
+    });
+
+    /* Annotation-textarea'er behøver ingen genaktivering — de er altid skrivbare */
+
+    observer.observe(document.getElementById('stage'), {
+      childList: true, subtree: true, characterData: true
+    });
+  }
+
+  function disableEditing() {
+    if (!isEditing) return;
+    isEditing = false;
+    observer.disconnect();
+    document.body.classList.remove('bm-editing');
+    editToggle.innerHTML = '✏&nbsp;Rediger';
+    editToggle.style.background = 'rgba(54,19,82,0.9)';
+
+    document.querySelectorAll('[contenteditable]').forEach(function(el) {
+      el.removeAttribute('contenteditable');
+      el.style.outline = '';
+      el.style.outlineOffset = '';
+      el.style.cursor = '';
+    });
+
+    document.querySelectorAll('#bm-package-logic .bm-plot-cell').forEach(function(cell) {
+      cell.removeAttribute('title');
+    });
+  }
+
+  editToggle.addEventListener('click', function() {
+    isEditing ? disableEditing() : enableEditing();
+  });
+
+  /* ── Drag-to-annotate ─────────────────────────────────────────
+     Kun aktiv i redigeringstilstand.
+     Registrerer mousedown på .col baggrund (ikke på tekst/annotation).
+     Koordinater omregnes fra viewport til element-lokal CSS-space
+     via scale-faktoren fra stage-transformationen.
+  ──────────────────────────────────────────────────────────────── */
+
+  function getStageScale() {
+    var m = new DOMMatrix(window.getComputedStyle(document.getElementById('stage')).transform);
+    return m.a; // uniform scale
+  }
+
+  function toLocalCoords(clientX, clientY, el) {
+    var rect = el.getBoundingClientRect();
+    var s = getStageScale();
+    return {
+      x: (clientX - rect.left) / s,
+      y: (clientY - rect.top)  / s
+    };
+  }
+
+  var dragState = null;
+
+  document.getElementById('stage').addEventListener('mousedown', function(e) {
+    if (!isEditing) return;
+
+    /* Find nærmeste .col (ikke hub-tile — de er allerede contenteditable) */
+    var col = e.target.closest('.col');
+    if (!col) return;
+
+    /* Ignorer klik inde i eksisterende tekst eller annotation */
+    if (e.target.closest('.annotation-box')) return;
+    if (e.target.closest('[contenteditable]') && e.target !== col) return;
+
+    var start = toLocalCoords(e.clientX, e.clientY, col);
+
+    /* Preview-boks */
+    var preview = document.createElement('div');
+    preview.className = 'annotation-preview';
+    col.appendChild(preview);
+
+    dragState = { col: col, start: start, preview: preview };
+    e.preventDefault(); // undgå tekstmarkering under drag
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!dragState) return;
+    var cur = toLocalCoords(e.clientX, e.clientY, dragState.col);
+    var x = Math.min(dragState.start.x, cur.x);
+    var y = Math.min(dragState.start.y, cur.y);
+    var w = Math.abs(cur.x - dragState.start.x);
+    var h = Math.abs(cur.y - dragState.start.y);
+    var p = dragState.preview;
+    p.style.left   = x + 'px';
+    p.style.top    = y + 'px';
+    p.style.width  = w + 'px';
+    p.style.height = h + 'px';
+  });
+
+  document.addEventListener('mouseup', function(e) {
+    if (!dragState) return;
+    var ds = dragState;
+    dragState = null;
+    ds.col.removeChild(ds.preview);
+
+    var end = toLocalCoords(e.clientX, e.clientY, ds.col);
+    var x = Math.min(ds.start.x, end.x);
+    var y = Math.min(ds.start.y, end.y);
+    var w = Math.abs(end.x - ds.start.x);
+    var h = Math.abs(end.y - ds.start.y);
+
+    if (w < 30 || h < 20) return; /* for lille — ignorer */
+
+    /* Opret annotation-boks med <textarea> — løser nested-contenteditable-problemet */
+    var note = document.createElement('div');
+    note.className = 'annotation-box';
+    note.style.left      = x + 'px';
+    note.style.top       = y + 'px';
+    note.style.width     = w + 'px';
+    note.style.minHeight = h + 'px';
+
+    /* textarea — altid skrivbar uanset forældrens contenteditable-tilstand */
+    var ta = document.createElement('textarea');
+    ta.className = 'annotation-textarea';
+    ta.placeholder = 'Skriv bemærkning…';
+    ta.style.height = Math.max(28, h - 12) + 'px';
+
+    /* Auto-resize textarea med indholdet */
+    ta.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+      markDirty();
+    });
+
+    /* × Luk-knap */
+    var close = document.createElement('button');
+    close.className = 'annotation-close';
+    close.innerHTML = '×';
+    close.addEventListener('mousedown', function(ev) { ev.stopPropagation(); });
+    close.addEventListener('click', function(ev) {
+      ev.stopPropagation();
+      note.remove();
+      markDirty();
+    });
+
+    note.appendChild(ta);
+    note.appendChild(close);
+
+    ds.col.style.overflow = 'visible';
+    ds.col.appendChild(note);
+
+    /* Fokusér textarea direkte */
+    ta.focus();
+
+    markDirty();
+  });
+
+  /* ── Gem til disk ── */
+  async function saveToFile() {
+    /* Midlertidigt fjern contenteditable fra redigerbare felter inden serialisering */
+    var edited = Array.from(document.querySelectorAll('[contenteditable]'));
+    edited.forEach(function(el) {
+      el.removeAttribute('contenteditable');
+      el.style.outline = '';
+      el.style.outlineOffset = '';
+    });
+
+    /* Fjern save-bar offset inden serialisering */
+    var stage = document.getElementById('stage');
+    var origTop = stage.style.top;
+    stage.style.top = '0';
+
+    var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    /* Gendan */
+    stage.style.top = origTop;
+    if (isEditing) {
+      edited.forEach(function(el) {
+        el.setAttribute('contenteditable', 'true');
+        el.style.outline = '1.5px dashed rgba(54,19,82,0.18)';
+        el.style.outlineOffset = '3px';
+      });
+    }
+
+    if (window.showSaveFilePicker) {
+      try {
+        if (!fileHandle) {
+          fileHandle = await window.showSaveFilePicker({
+            suggestedName: 'ybusiness-dashboard.html',
+            types: [{ description: 'HTML-fil', accept: { 'text/html': ['.html'] } }]
+          });
+        }
+        var writable = await fileHandle.createWritable();
+        await writable.write(html);
+        await writable.close();
+        clearDirty();
+        var orig = saveBtn.textContent;
+        saveBtn.textContent = 'Gemt ✓';
+        setTimeout(function() { saveBtn.textContent = orig; }, 2000);
+      } catch (err) {
+        if (err.name !== 'AbortError') downloadFallback(html);
+      }
+    } else {
+      downloadFallback(html);
+    }
+  }
+
+  function downloadFallback(html) {
+    var blob = new Blob([html], { type: 'text/html' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ybusiness-dashboard.html';
+    a.click();
+    clearDirty();
+  }
+
+  saveBtn.addEventListener('click', saveToFile);
+
+  discardBtn.addEventListener('click', function() {
+    if (confirm('Kassér alle uregemte ændringer og genindlæs?')) {
+      location.reload();
+    }
+  });
+
+  /* Ctrl/Cmd+S */
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+      e.preventDefault();
+      if (isDirty) saveToFile();
+    }
+    /* E-tast toggle — ikke når feedback-modal er åben eller fokus er i input/textarea */
+    if ((e.key === 'e' || e.key === 'E')
+        && !e.target.getAttribute('contenteditable')
+        && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)
+        && document.getElementById('fb-overlay').classList.contains('hidden')) {
+      isEditing ? disableEditing() : enableEditing();
+    }
+  });
+
+  /* Resize — gentilpas med evt. save-bar offset */
+  window.addEventListener('resize', rescaleStage);
+}());
+</script>
+<script>
+(function () {
+  window.openFeedback = function () {
+    document.getElementById('fb-overlay').classList.remove('hidden');
+    setTimeout(function () { document.getElementById('fb-text').focus(); }, 80);
+  };
+
+  window.closeFeedback = function () {
+    document.getElementById('fb-overlay').classList.add('hidden');
+    var s = document.getElementById('fb-status');
+    s.textContent = '';
+    s.className = 'fb-status';
+  };
+
+  window.saveFeedback = async function () {
+    var textEl  = document.getElementById('fb-text');
+    var authorEl = document.getElementById('fb-author');
+    var btn    = document.getElementById('fb-save-btn');
+    var status = document.getElementById('fb-status');
+    var text   = textEl.value.trim();
+    var author = authorEl.value.trim() || 'Anonym';
+
+    if (!text) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Gemmer…';
+    status.textContent = '';
+
+    try {
+      var res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text, author: author }),
+      });
+      if (!res.ok) throw new Error();
+      status.textContent = '✓ Tak for din feedback';
+      status.className = 'fb-status ok';
+      textEl.value = '';
+      authorEl.value = '';
+      btn.textContent = 'Gem i feedback';
+      btn.disabled = false;
+      setTimeout(window.closeFeedback, 3000);
+    } catch {
+      status.textContent = 'Kunne ikke gemme — server nede?';
+      status.className = 'fb-status err';
+      btn.textContent = 'Gem i feedback';
+      btn.disabled = false;
+    }
+  };
+
+  document.getElementById('fb-overlay').addEventListener('click', function (e) {
+    if (e.target === this) window.closeFeedback();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') window.closeFeedback();
+  });
+}());
+</script>
+</body>
+</html>
