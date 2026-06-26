@@ -1444,6 +1444,29 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   line-height:1.45;color:var(--ink);
   padding:8px 0;margin-bottom:10px;flex-shrink:0;
 }
+.s4-promise-chain{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;max-width:760px;margin:0 0 12px;background:rgba(54,19,82,.2);border:1px solid rgba(54,19,82,.18);flex-shrink:0}
+.s4-promise-step{position:relative;min-height:50px;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px 10px;background:rgba(255,255,255,.84);font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1.35}
+.s4-promise-step::after{content:'→';position:absolute;right:-8px;top:50%;transform:translateY(-50%);z-index:2;font-size:12px;opacity:.6}
+.s4-promise-step:last-child::after{display:none}
+.s4-format-job{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:760px;margin-bottom:12px;flex-shrink:0}
+.s4-job-card{padding:10px 12px;border-radius:4px;background:rgba(255,255,255,.84);border-top:2px solid currentColor;box-shadow:0 1px 8px rgba(54,19,82,.05)}
+.s4-job-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px;opacity:.72}
+.s4-job-txt{font-family:var(--sans);font-size:11.2px;color:var(--ink70);line-height:1.42}
+#s4 .s4-content{background:linear-gradient(135deg,#F5F0FF 0%,#FAFAF8 48%,#EEF7F1 100%)}
+#s4 .s4-slide{padding:30px 50px 22px 48px}
+#s4 .s4-q{font-size:24px;line-height:1.32;margin-bottom:12px;max-width:760px}
+#s4 .s4-desc{font-size:14px;line-height:1.58;max-width:760px;margin-bottom:10px}
+#s4 .s4-insight{max-width:760px;border-left:3px solid currentColor;border-radius:3px;background:rgba(255,255,255,.54)}
+#s4 .s4-fi.active .s4-fi-name{font-size:28px}
+.s4-promise-step{font-size:9px}
+.s4-job-lbl{font-size:8px}
+.s4-job-txt{font-size:12px}
+#s4 .s4-strin-txt{font-size:12.7px}
+#s4 .s4-kernegreb{font-size:14.2px}
+#s4 .s4-note-txt{font-size:12.8px}
+#s4 .s4-col-txt{font-size:12.6px}
+#s4 .s4-m2-val{font-size:12.2px}
+#s4 .s4-sources{font-size:9.5px}
 #s4 .s4-lbl{
   font-family:var(--mono);font-size:7.5px;font-weight:700;
   letter-spacing:.2em;text-transform:uppercase;
@@ -1562,11 +1585,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     {
       num:'00',eyebrow:'00 · Platformen',name:'Overblikket',
       func:'Knudepunktet',freq:'Kontinuerligt · AI-drevet',tier:'free',pillars:'Understand',
-      color:'#2C3E50',tint:'rgba(44,62,80,',
+      color:'#361352',tint:'rgba(54,19,82,',
       lead:'Alt flyder igennem her.',
-      q:'"Hvad sker der — og hvad ser ingen andre endnu?"',
-      desc:'Det AI-genererede, personaliserede nyhedsflow der samler Y Business\' egen journalistik med et synligt kurateringslag: hvad de vigtigste erhvervsmedier skriver om din branche, dine markeder og dine emner. Brugeren leder ikke — flowet er allerede sorteret og leveret.',
+      q:'"Hvad betyder udviklingen for min virksomhed, min branche og mit næste træk?"',
+      desc:'Det AI-genererede, personaliserede nyhedsflow der samler Y Business\' egen journalistik med et synligt kurateringslag. Overblikket er stedet, hvor løftet bliver produkt: rolle, branche, geografi og behov afgør prioriteringen — men redaktionen sikrer, at vigtige signaler og blinde vinkler stadig bryder igennem.',
       insight:'Overblikket er ikke redaktionens produkt. Det er platformens løfte. Det er det, der adskiller Y Business fra et traditionelt erhvervsmedie: journalistikken fodrer flowet, flowet finder læseren. Blind Spot-infrastrukturen kører kontinuerligt i baggrunden — den identificerer hvad mediebilledet ikke ser, og skærper vinkelvalget i Signalradaren og Cases.',
+      promise:['Sortér støjen','Prioritér efter rolle','Bryd vigtige signaler ind','Gør næste træk tydeligt'],
+      job:{a:'Forstå',b:'Hvad er vigtigt lige nu?',c:'Holde øje',d:'Hvilket signal må ikke drukne?',e:'Handle',f:'Hvad bør læseren tage videre?'},
       regel:null,
       struktur:[
         'Y Business\' egne formater — Signalradaren, Cases, Klummer',
@@ -1585,11 +1610,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     {
       num:'01',eyebrow:'01 · Signaler',name:'Signalradaren',
       func:'Forspringet',freq:'Ugentligt + situationsbestemt',tier:'paid',pillars:'Understand · Challenge',
-      color:'#9E8059',tint:'rgba(158,128,89,',
+      color:'#2563EB',tint:'rgba(37,99,235,',
       lead:null,
-      q:'"Hvad er ved at ske — og hvem ser det ikke endnu?"',
-      desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — markedsbevægelser, reguleringsudkast og teknologimønstre kortlagt med styrke og modtagere. Journalisten fortolker signalet og trækker konsekvensen. Brugeren ser den bearbejdede artikel, ikke råsignalet. Konsekvensen af signalet er altid eksplicit: hvad betyder det her konkret for din virksomhed?',
+      q:'"Hvad er ved at ændre vilkårene — før det bliver åbenlyst for alle?"',
+      desc:'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder: markedsbevægelser, reguleringsudkast, udbud, lederskifter og teknologimønstre. Journalisten fortolker signalet, finder hullet i dækningen og trækker konsekvensen for den virksomhed, branche eller beslutning, læseren står med.',
       insight:'For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj. Blind Spot-disciplinen er infrastruktur bag formatet: systemet registrerer løbende hvad mediebilledet ikke dækker og hvad nyhedslogikken gør svært at se — og fodrer journalistens vinkelvalg uden at brugeren ser det.',
+      promise:['Find signalet','Test modfortællingen','Navngiv hvem rammes','Oversæt til beslutning'],
+      job:{a:'Forstå',b:'Hvad er ved at ske?',c:'Tvivle',d:'Hvad overser fortællingen?',e:'Handle',f:'Hvad bør vi holde øje med?'},
       regel:'Redaktionel disciplin: find altid den manglende kilde, den skjulte omkostning eller den ufortalte konsekvens. Kræver navngivet modkilde.',
       struktur:[
         'Signalet — hvad er ved at ske?',
@@ -1610,11 +1637,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     {
       num:'02',eyebrow:'02 · Læringen',name:'Casen der virker',
       func:'Læringen',freq:'Ugentligt',tier:'paid',pillars:'Inspire',
-      color:'#4A374E',tint:'rgba(74,55,78,',
+      color:'#16A34A',tint:'rgba(22,163,74,',
       lead:null,
       q:'"Hvad kan andre bruge — og hvad kan de ikke kopiere?"',
-      desc:'En konkret virksomhed der har løst det du kæmper med — dokumenteret med tal, beslutninger, friktion og resultat. Tyngdepunktet er Business AI: hvordan virksomheder konkret implementerer, hvad der gik galt undervejs, og hvad det faktisk kostede.',
+      desc:'En konkret virksomhed der har løst noget, andre står med — dokumenteret med tal, beslutninger, friktion og resultat. Tyngdepunktet er Business AI og forandring i praksis: hvad virksomheden gjorde, hvad der gik galt, hvad det kostede, og hvad andre faktisk kan bruge.',
       insight:'Viser metode, friktion, fejl og kopierbar læring. En succeshistorie uden modstand er en pressemeddelelse. Tematisk linje: Sådan gjorde jeg — cases fortalt i første person af founder, leder eller AI-praktiker. Det ingen andre dækker: implementeringens barske virkelighed frem for polerede succeshistorier.',
+      promise:['Start med problemet','Vis friktionen','Dokumentér prisen','Udled kopierbar læring'],
+      job:{a:'Forstå',b:'Hvad var det reelle problem?',c:'Tvivle',d:'Hvad skjuler succeshistorien?',e:'Handle',f:'Hvad kan kopieres i morgen?'},
       regel:'Ingen case uden friktion. Ingen case uden navngivet ophav.',
       struktur:[
         'Problemet — hvad pressede beslutningen frem?',
@@ -1641,11 +1670,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     {
       num:'03',eyebrow:'03 · Stemmen',name:'Klummerne',
       func:'Det AI ikke kan',freq:'Løbende — 2–4 gange månedligt',tier:'paid',pillars:'Understand · Challenge · Inspire',
-      color:'#3B5949',tint:'rgba(59,89,73,',
+      color:'#7C3AED',tint:'rgba(124,58,237,',
       lead:null,
       q:'"Den personlige vurdering, erfaringen og ansvaret — med navn under."',
-      desc:'Et menneske med navn under. Faste skribenter med ansvar for vinklen — kredser om Business AI, forandring og erhvervsledelse. Ikke for at spejle redaktionen, men for at udfordre den. Det eneste format der ikke kan produceres af AI.',
+      desc:'Et menneske med navn under. Faste skribenter med ansvar for vinklen — om Business AI, forandring og erhvervsledelse. Klummerne skal ikke spejle redaktionen, men udfordre den: erfaring, dømmekraft og noget på spil.',
       insight:'Det er det format, du husker. Og grunden til, at du kommer tilbage. Skribentprofilen er afgørende: praktikere og analytikere med troværdighed i krydsfeltet mellem AI, organisation og forretning — ikke tech-evangelister uden jordforbindelse.',
+      promise:['Sæt navn på vurderingen','Udfordr den nemme fortælling','Brug erfaring som belæg','Gør konsekvensen personlig'],
+      job:{a:'Forstå',b:'Hvad bør ligge på ledermødet?',c:'Tvivle',d:'Hvad mangler i konsensus?',e:'Handle',f:'Hvad ville en erfaren praktiker gøre?'},
       regel:null,struktur:null,
       segmenter:'C-level · SMV-ejere · Rådgivere · Iværksættere',
       kanaler:'Tekst · Lyd · Eventuelt video',
@@ -1749,7 +1780,15 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       (f.lead?'<div class="s4-lead" style="color:'+f.color+'">'+f.lead+'</div>':'')
       +'<div class="s4-q">'+f.q+'</div>'
       +(f.desc?'<div class="s4-desc">'+f.desc+'</div>':'')
+      +(f.promise?'<div class="s4-promise-chain">'
+        +f.promise.map(function(p){return '<div class="s4-promise-step" style="color:'+f.color+'">'+p+'</div>';}).join('')
+      +'</div>':'')
       +(f.insight?'<div class="s4-insight" style="background:'+f.tint+'0.08)">'+f.insight+'</div>':'')
+      +(f.job?'<div class="s4-format-job">'
+        +'<div class="s4-job-card" style="color:'+f.color+'"><div class="s4-job-lbl">'+f.job.a+'</div><div class="s4-job-txt">'+f.job.b+'</div></div>'
+        +'<div class="s4-job-card" style="color:'+f.color+'"><div class="s4-job-lbl">'+f.job.c+'</div><div class="s4-job-txt">'+f.job.d+'</div></div>'
+        +'<div class="s4-job-card" style="color:'+f.color+'"><div class="s4-job-lbl">'+f.job.e+'</div><div class="s4-job-txt">'+f.job.f+'</div></div>'
+      +'</div>':'')
       +(f.emner?'<div class="s4-emner"><span style="font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:.6;margin-right:7px">'+(f.num==='+3'||f.num==='07'?'Personalisering':'Typiske emner')+'</span>'+f.emner+'</div>':'')
       +(f.regel?'<div class="s4-regel" style="background:'+f.tint+'0.06);border:1px solid '+f.color+';border-radius:3px"><div class="s4-regel-lbl" style="color:'+f.color+'">Intern regel</div><div class="s4-regel-txt">'+f.regel+'</div></div>':'')
       +(f.struktur?'<div class="s4-struktur"><div class="s4-struktur-lbl">Fast struktur</div><div class="s4-struktur-list">'
