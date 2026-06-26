@@ -214,23 +214,23 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .ai-l{color:var(--red);background:var(--red-s)}
 
 /* ── S3 SEGMENTER ── */
-.s3-wrap{height:100%;display:flex;flex-direction:column}
+.s3-wrap{height:100%;display:grid;grid-template-columns:290px 1fr;grid-template-rows:1fr 1fr auto}
 .s3-intro{padding:14px 52px;border-bottom:1px solid var(--line);background:var(--card);flex-shrink:0}
 .s3-intro p{font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:1.5}
 
 /* S3 — FOUNDATION CARD */
-.s3-foundation{flex-shrink:0;display:grid;grid-template-columns:38fr 62fr;background:var(--accent);border-bottom:2px solid rgba(250,250,248,.08);height:260px;overflow:hidden;position:relative}
-.s3-foundation::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,rgba(196,181,253,.3),rgba(196,181,253,.05))}
-.s3-fnd-left{padding:28px 36px 24px;display:flex;flex-direction:column;border-right:1px solid rgba(250,250,248,.08)}
+.s3-foundation{grid-column:1;grid-row:1/3;display:flex;flex-direction:column;background:var(--accent);border-right:2px solid rgba(250,250,248,.07);overflow:hidden;position:relative}
+.s3-foundation::after{content:'';position:absolute;right:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,rgba(196,181,253,.3),rgba(196,181,253,.05))}
+.s3-fnd-left{padding:26px 24px 20px;display:flex;flex-direction:column;border-right:none;border-bottom:1px solid rgba(250,250,248,.1);flex-shrink:0}
 .s3-fnd-eyebrow{font-family:var(--mono);font-size:10px;font-weight:700;color:rgba(250,250,248,.38);letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .s3-fnd-eyebrow::before{content:'';display:block;width:16px;height:1px;background:currentColor}
 .s3-fnd-desc{font-family:var(--serif);font-size:16px;font-weight:600;font-style:normal;color:rgba(250,250,248,.92);line-height:1.58;flex:1}
 .s3-fnd-bai{margin-top:12px;padding:10px 14px;background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.22);border-radius:3px;font-family:var(--sans);font-size:14px;color:rgba(196,181,253,.9);line-height:1.55}
 .s3-fnd-right{padding:26px 40px 22px;display:flex;flex-direction:column;justify-content:center;gap:14px}
 .s3-fnd-q-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.3);letter-spacing:.18em;text-transform:uppercase}
-.s3-fnd-q{font-family:var(--serif);font-size:40px;font-weight:700;color:#FAFAF8;line-height:1.12;letter-spacing:-.025em;font-style:italic}
-.s3-fnd-rule{font-family:var(--sans);font-size:13px;color:rgba(250,250,248,.5);line-height:1.55;margin-top:14px}
-.s3-fnd-right{padding:28px 48px 24px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.s3-fnd-q{font-family:var(--serif);font-size:21px;font-weight:700;color:#FAFAF8;line-height:1.22;letter-spacing:-.018em;font-style:italic}
+.s3-fnd-rule{font-family:var(--sans);font-size:12px;color:rgba(250,250,248,.48);line-height:1.55;margin-top:10px}
+.s3-fnd-right{padding:20px 24px 24px;display:flex;flex-direction:column;justify-content:flex-start;gap:10px;flex:1}
 .s3-fnd-link{margin-top:auto;font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(196,181,253,.45);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;background:none;border:none;padding:0;text-align:left;transition:color .15s}
 .s3-fnd-link:hover{color:rgba(196,181,253,.75)}
 .s3-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
@@ -251,8 +251,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .sp-i{color:var(--sc,var(--accent))}
 
 /* ── S3 PRIMARY / SECONDARY ── */
-.s3-primary-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);min-height:0;overflow:hidden}
-.s3-primary-card{background:var(--pb,var(--card));padding:26px 36px;display:flex;flex-direction:column;overflow:hidden}
+.s3-primary-grid{display:none}
+.s3-primary-card{background:var(--pb,var(--card));padding:28px 40px;display:flex;flex-direction:column;overflow:hidden;grid-column:2}
+.s3-primary-card:nth-child(2){grid-row:1;border-bottom:1px solid var(--line)}
+.s3-primary-card:nth-child(3){grid-row:2}
 .s3p-label{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--pc);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;opacity:.75;display:flex;align-items:center;gap:10px}
 .s3p-label::before{content:'';display:block;width:16px;height:1px;background:currentColor}
 .s3p-name{font-family:var(--serif);font-size:52px;font-weight:700;color:var(--ink);line-height:.92;letter-spacing:-.03em;margin-bottom:8px}
@@ -270,7 +272,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s3p-promise-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;opacity:.55;color:var(--muted)}
 .s3p-promise-txt{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--pc);line-height:1.32;font-style:italic;letter-spacing:-.01em}
 .s3p-pillars{margin-top:12px;display:flex;gap:6px}
-.s3-secondary-strip{flex-shrink:0;background:var(--tint);border-top:2px solid var(--line);display:flex;height:200px}
+.s3-secondary-strip{grid-column:1/-1;grid-row:3;background:var(--tint);border-top:2px solid var(--line);display:flex;height:200px}
 .s3-sec-lbl{display:none}
 .s3-sec-items{display:grid;grid-template-columns:repeat(4,1fr);flex:1}
 .s3-sec-item{padding:24px 28px;border-right:1px solid var(--line);display:flex;flex-direction:column}
@@ -1131,8 +1133,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <button class="s3-fnd-link" onclick="openEdResearchModal()">Syv brancher med potentiale · Segmentanalyse 2026 ↗</button>
       </div>
     </div>
-    <div class="s3-primary-grid">
-      <div class="s3-primary-card" style="--pc:#7C3AED;--pb:rgba(124,58,237,.05)">
+    <div class="s3-primary-card" style="--pc:#7C3AED;--pb:rgba(124,58,237,.05)">
         <div class="s3p-label">01 · Primær</div>
         <div class="s3p-name">SMV'er</div>
         <div class="s3p-scope">5–50 ansatte</div>
@@ -1150,8 +1151,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="s3p-cover-item">Udbud og branchesignaler</div>
         <div class="s3p-cover-item">AI: organisation, ansvar og arbejdsgange</div>
         <div class="s3p-cover-item">Cases med friktion og læring</div>
-      </div>
-      <div class="s3-primary-card" style="--pc:#16A34A;--pb:rgba(22,163,74,.05)">
+    </div>
+    <div class="s3-primary-card" style="--pc:#16A34A;--pb:rgba(22,163,74,.05)">
         <div class="s3p-label">02 · Primær</div>
         <div class="s3p-name">C-level</div>
         <div class="s3p-scope">50 ansatte og opefter · Business AI</div>
@@ -1169,7 +1170,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="s3p-cover-item">Regulering oversat til dansk mid-market</div>
         <div class="s3p-cover-item">Blind spots i de fortællinger, alle andre gentager</div>
         <div class="s3p-cover-item">Signaler fra markedet, inden de er en trend</div>
-      </div>
     </div>
     <div class="s3-secondary-strip">
       <div class="s3-sec-lbl">Øvrige segmenter</div>
