@@ -219,18 +219,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s3-intro p{font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:1.5}
 
 /* S3 — FOUNDATION CARD */
-.s3-foundation{flex-shrink:0;display:grid;grid-template-columns:1fr 1fr;background:var(--accent);border-bottom:2px solid rgba(250,250,248,.08);height:232px;overflow:hidden;position:relative}
+.s3-foundation{flex-shrink:0;display:grid;grid-template-columns:38fr 62fr;background:var(--accent);border-bottom:2px solid rgba(250,250,248,.08);height:260px;overflow:hidden;position:relative}
 .s3-foundation::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,rgba(196,181,253,.3),rgba(196,181,253,.05))}
-.s3-fnd-left{padding:26px 36px 22px;display:flex;flex-direction:column;border-right:1px solid rgba(250,250,248,.08)}
+.s3-fnd-left{padding:28px 36px 24px;display:flex;flex-direction:column;border-right:1px solid rgba(250,250,248,.08)}
 .s3-fnd-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.3);letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .s3-fnd-eyebrow::before{content:'';display:block;width:16px;height:1px;background:currentColor}
 .s3-fnd-desc{font-family:var(--sans);font-size:14px;color:rgba(250,250,248,.85);line-height:1.6;flex:1}
 .s3-fnd-bai{margin-top:12px;padding:10px 14px;background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.22);border-radius:3px;font-family:var(--sans);font-size:13px;color:rgba(196,181,253,.88);line-height:1.55}
 .s3-fnd-right{padding:26px 40px 22px;display:flex;flex-direction:column;justify-content:center;gap:14px}
 .s3-fnd-q-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(250,250,248,.3);letter-spacing:.18em;text-transform:uppercase}
-.s3-fnd-q{font-family:var(--serif);font-size:28px;font-weight:700;color:#FAFAF8;line-height:1.18;letter-spacing:-.02em;font-style:italic}
-.s3-fnd-rule{font-family:var(--sans);font-size:13px;color:rgba(250,250,248,.5);line-height:1.55;padding-top:12px;border-top:1px solid rgba(250,250,248,.1)}
-.s3-fnd-link{margin-top:auto;font-family:var(--mono);font-size:8.5px;font-weight:700;color:rgba(196,181,253,.45);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;background:none;border:none;padding:0;text-align:left;transition:color .15s}
+.s3-fnd-q{font-family:var(--serif);font-size:40px;font-weight:700;color:#FAFAF8;line-height:1.12;letter-spacing:-.025em;font-style:italic}
+.s3-fnd-rule{font-family:var(--sans);font-size:13px;color:rgba(250,250,248,.5);line-height:1.55;margin-top:14px}
+.s3-fnd-right{padding:28px 48px 24px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.s3-fnd-link{margin-top:auto;font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(196,181,253,.45);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;background:none;border:none;padding:0;text-align:left;transition:color .15s}
 .s3-fnd-link:hover{color:rgba(196,181,253,.75)}
 .s3-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
 .seg-card{background:var(--sb,var(--card));padding:22px 26px 18px;display:flex;flex-direction:column;transition:filter .2s}
@@ -269,8 +270,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s3p-promise-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;opacity:.55;color:var(--muted)}
 .s3p-promise-txt{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--pc);line-height:1.32;font-style:italic;letter-spacing:-.01em}
 .s3p-pillars{margin-top:12px;display:flex;gap:6px}
-.s3-secondary-strip{flex-shrink:0;background:var(--tint);border-top:2px solid var(--line);display:flex;height:188px}
-.s3-sec-lbl{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;padding:0 28px;opacity:.42;display:flex;align-items:center;border-right:1px solid var(--line);white-space:nowrap;flex-shrink:0}
+.s3-secondary-strip{flex-shrink:0;background:var(--tint);border-top:2px solid var(--line);display:flex;height:200px}
+.s3-sec-lbl{display:none}
 .s3-sec-items{display:grid;grid-template-columns:repeat(4,1fr);flex:1}
 .s3-sec-item{padding:24px 28px;border-right:1px solid var(--line);display:flex;flex-direction:column}
 .s3-sec-item:last-child{border-right:none}
@@ -1135,45 +1136,39 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         <div class="s3p-label">01 · Primær</div>
         <div class="s3p-name">SMV'er</div>
         <div class="s3p-scope">5–50 ansatte</div>
+        <div class="s3p-promise-block" style="margin-top:4px;padding-top:0;border-top:none;margin-bottom:16px">
+          <div class="s3p-promise-txt">Vi fortæller dig, hvad der rammer din drift — før det rammer dig.</div>
+          <div class="s3p-pillars" style="margin-top:8px">
+            <span class="sp-tag" style="color:#7C3AED;background:rgba(124,58,237,.1)">Understand</span>
+            <span class="sp-tag" style="color:#7C3AED;background:rgba(124,58,237,.1)">Inspire</span>
+          </div>
+        </div>
         <div class="s3p-divider"></div>
-        <div class="s3p-section-lbl">Primært behov</div>
         <div class="s3p-need">Hvad rammer min drift? Hvad kræver den nye regulering? Hvad sker der i min branche og region?</div>
-        <div class="s3p-why">Dansk erhvervsjournalistik er for ofte skrevet fra direktionsgangen og pressemeddelelsen. Sjældent fra driften og den beslutning, ejerlederen faktisk står med.</div>
         <div class="s3p-covers-lbl">Vi dækker</div>
         <div class="s3p-cover-item">Regulering oversat til konkret drift — hvem rammes, hvornår, hvad koster det</div>
         <div class="s3p-cover-item">Udbud, branchesignaler og lokale markedsmuligheder</div>
         <div class="s3p-cover-item">AI i praksis: organisation, arbejdsgange og ansvar — ikke benchmarks</div>
         <div class="s3p-cover-item">Cases med metode, friktion og kopierbar læring</div>
-        <div class="s3p-promise-block">
-          <div class="s3p-promise-lbl">Redaktionelt løfte</div>
-          <div class="s3p-promise-txt">Vi fortæller dig, hvad der rammer din drift — før det rammer dig.</div>
-          <div class="s3p-pillars">
-            <span class="sp-tag" style="color:#7C3AED;background:rgba(124,58,237,.1)">Understand</span>
-            <span class="sp-tag" style="color:#7C3AED;background:rgba(124,58,237,.1)">Inspire</span>
-          </div>
-        </div>
       </div>
       <div class="s3-primary-card" style="--pc:#16A34A;--pb:rgba(22,163,74,.05)">
         <div class="s3p-label">02 · Primær</div>
         <div class="s3p-name">C-level</div>
         <div class="s3p-scope">50 ansatte og opefter · Business AI</div>
+        <div class="s3p-promise-block" style="margin-top:4px;padding-top:0;border-top:none;margin-bottom:16px">
+          <div class="s3p-promise-txt">Vi viser dig det, der ændrer beslutningsrummet.</div>
+          <div class="s3p-pillars" style="margin-top:8px">
+            <span class="sp-tag" style="color:#16A34A;background:rgba(22,163,74,.1)">Challenge</span>
+            <span class="sp-tag" style="color:#16A34A;background:rgba(22,163,74,.1)">Understand</span>
+          </div>
+        </div>
         <div class="s3p-divider"></div>
-        <div class="s3p-section-lbl">Primært behov</div>
         <div class="s3p-need">Hvad ændrer beslutningsrummet? Hvad kræver AI-skiftet af min organisation? Hvad er vinklen, Børsen ikke tager?</div>
-        <div class="s3p-why">C-level-læseren har ikke brug for flere overskrifter. Hun har brug for bedre syntese og journalistik, der stiller spørgsmål ved de fortællinger, alle andre gentager.</div>
         <div class="s3p-covers-lbl">Vi dækker</div>
         <div class="s3p-cover-item">AI som strategisk og organisatorisk spørgsmål — ikke et IT-spørgsmål</div>
         <div class="s3p-cover-item">Geopolitik og regulering oversat til dansk mid-market</div>
         <div class="s3p-cover-item">Blind spots i de fortællinger, alle andre gentager</div>
         <div class="s3p-cover-item">Signaler fra markedet, inden de bliver en trend</div>
-        <div class="s3p-promise-block">
-          <div class="s3p-promise-lbl">Redaktionelt løfte</div>
-          <div class="s3p-promise-txt">Vi viser dig det, der ændrer beslutningsrummet.</div>
-          <div class="s3p-pillars">
-            <span class="sp-tag" style="color:#16A34A;background:rgba(22,163,74,.1)">Challenge</span>
-            <span class="sp-tag" style="color:#16A34A;background:rgba(22,163,74,.1)">Understand</span>
-          </div>
-        </div>
       </div>
     </div>
     <div class="s3-secondary-strip">
