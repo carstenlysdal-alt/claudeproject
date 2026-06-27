@@ -1275,14 +1275,21 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   position:relative;
 }
 #s4 .s4-ns-free{
-  flex:1;display:flex;flex-direction:column;justify-content:center;
-  padding:0 14px;
+  flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;
+  padding:0 12px;
   background:rgba(22,163,74,.07);
-  border-right:none;
+  border-right:1px solid rgba(22,163,74,.2);
+  position:relative;
+}
+#s4 .s4-ns-reg{
+  flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;
+  padding:0 12px;
+  background:rgba(3,105,161,.06);
+  border-right:1px solid rgba(3,105,161,.18);
   position:relative;
 }
 #s4 .s4-ns-paid{
-  flex:4;display:flex;flex-direction:column;justify-content:center;
+  flex:4;min-width:0;display:flex;flex-direction:column;justify-content:center;
   padding:0 16px;
   background:rgba(54,19,82,.03);
 }
@@ -1297,18 +1304,20 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   letter-spacing:-.02em;line-height:1;margin-bottom:3px;
 }
 #s4 .s4-ns-free .s4-ns-pct{color:var(--green)}
+#s4 .s4-ns-reg .s4-ns-pct{color:#0369A1}
 #s4 .s4-ns-paid .s4-ns-pct{color:var(--accent)}
-#s4 .s4-ns-row{display:flex;align-items:center;gap:6px}
+#s4 .s4-ns-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 #s4 .s4-ns-tag{
   font-family:var(--mono);font-size:7px;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;padding:1px 6px;border-radius:2px;
+  letter-spacing:.14em;text-transform:uppercase;padding:1px 6px;border-radius:2px;flex-shrink:0;
 }
 #s4 .s4-ns-free .s4-ns-tag{color:var(--green);background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.3)}
+#s4 .s4-ns-reg .s4-ns-tag{color:#0369A1;background:rgba(3,105,161,.1);border:1px solid rgba(3,105,161,.28)}
 #s4 .s4-ns-paid .s4-ns-tag{color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-20)}
 #s4 .s4-ns-items{
   font-family:var(--mono);font-size:8px;color:var(--muted);
-  letter-spacing:.02em;opacity:.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  margin-top:1px;
+  letter-spacing:.02em;opacity:.6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  margin-top:1px;min-width:0;max-width:100%;
 }
 /* Entry animation */
 @keyframes s4-split-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -1512,6 +1521,15 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-shrink:0;
 }
 #s4 .s4-navngivet::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;background:currentColor}
+#s4 .s4-slide-top{display:flex;gap:24px;align-items:flex-start;margin-bottom:0;flex-shrink:0}
+#s4 .s4-slide-top-main{flex:1;min-width:0;display:flex;flex-direction:column}
+#s4 .s4-candidates{flex-shrink:0;width:210px;border:1px solid rgba(124,58,237,.2);border-radius:4px;padding:12px 14px;background:rgba(124,58,237,.03)}
+#s4 .s4-cand-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7C3AED;margin-bottom:10px;opacity:.8}
+#s4 .s4-cand-item{margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid rgba(124,58,237,.08)}
+#s4 .s4-cand-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+#s4 .s4-cand-name{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:1px}
+#s4 .s4-cand-role{font-family:var(--mono);font-size:8.5px;color:var(--muted);opacity:.6;line-height:1.3}
+#s4 .s4-cand-type{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:2px;opacity:.55}
 #s4 .s4-sources{
   font-family:var(--mono);font-size:9px;font-weight:500;
   color:var(--muted);line-height:1.5;
@@ -1570,11 +1588,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
             <span class="s4-ns-items">Udvalgt indhold i feedet</span>
           </div>
         </div>
-        <div class="s4-ns-free" style="opacity:.85">
+        <div class="s4-ns-reg">
           <span class="s4-ns-pct">Registreret</span>
           <div class="s4-ns-row">
             <span class="s4-ns-tag">Gratis</span>
-            <span class="s4-ns-items">Morgenbriefet personaliseret · Udvidet feed</span>
+            <span class="s4-ns-items">Personaliseret</span>
           </div>
         </div>
         <div class="s4-ns-paid">
@@ -1693,6 +1711,17 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       kanaler:'Tekst · Lyd · Eventuelt video',
       kernegreb:null,eksempler:null,emner:null,
       sources:'AI-praktikere, teknologiledere, founders og egne baggrundsanalyser.',
+      candidates:[
+        {name:'Henrik Fabrin',role:'Head of AI, DI',type:'I'},
+        {name:'Jan Damsgaard',role:'Professor, CBS',type:'I'},
+        {name:'Morten Saxnæs',role:'Strategy consultant',type:'I'},
+        {name:'Christian Bech Nørhave',role:'AI-rådgiver',type:'I'},
+        {name:'Thomas Telving',role:'Forfatter, analytiker',type:'II'},
+        {name:'Line Clemmensen',role:'Professor, DTU',type:'II'},
+        {name:'Kasper Junge',role:'Lead AI Engineer, Dinero',type:'III'},
+        {name:'Anna Katrine Strandhave',role:'Partner, Vertica',type:'III'},
+        {name:'Tey Bannerman',role:'AI-rådgiver, ex-McKinsey',type:'III'},
+      ],
       special:{type:'klumme',
         quote:'"AI kan opsummere. Den kan ikke have noget på spil."',
         note:'Navngivet ophav — aldrig AI',
@@ -1787,10 +1816,23 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
     var slide=document.createElement('div');
     slide.className='s4-slide'+(i===activeIdx?' active':'');
+    var candidatesHtml=f.candidates?'<div class="s4-candidates">'
+      +'<div class="s4-cand-lbl">Potentielle skribenter</div>'
+      +f.candidates.map(function(c){
+        var typeColor=c.type==='I'?'#7C3AED':c.type==='II'?'#D97706':'#0369A1';
+        return '<div class="s4-cand-item">'
+          +'<div class="s4-cand-name">'+c.name+'</div>'
+          +'<div class="s4-cand-role">'+c.role+'</div>'
+          +'<div class="s4-cand-type" style="color:'+typeColor+'">Klumme '+c.type+'</div>'
+          +'</div>';}).join('')
+      +'</div>':'';
     slide.innerHTML=
       (f.lead?'<div class="s4-lead" style="color:'+f.color+'">'+f.lead+'</div>':'')
-      +'<div class="s4-q">'+f.q+'</div>'
-      +(f.desc?'<div class="s4-desc">'+f.desc+'</div>':'')
+      +(f.candidates
+        ?'<div class="s4-slide-top"><div class="s4-slide-top-main"><div class="s4-q">'+f.q+'</div>'
+          +(f.desc?'<div class="s4-desc">'+f.desc+'</div>':'')
+          +'</div>'+candidatesHtml+'</div>'
+        :'<div class="s4-q">'+f.q+'</div>'+(f.desc?'<div class="s4-desc">'+f.desc+'</div>':''))
       +(f.promise?'<div class="s4-promise-chain">'
         +f.promise.map(function(p){return '<div class="s4-promise-step" style="color:'+f.color+'">'+p+'</div>';}).join('')
       +'</div>':'')
@@ -2563,9 +2605,9 @@ function togglePromptModal(){
         <div class="s8-vp-body">Morgenbriefet er ikke et mini-nyhedsbrev. Det er Y Business' daglige vaneprodukt: AI skaber overblik og tempo, mens formatet tvinger hvert item gennem konsekvens, relevans og handling.</div>
       </div>
       <div class="s8-flow">
-        <div class="s8-flow-step"><div class="s8-flow-time">03.00</div><div class="s8-flow-txt">AI scanner kilder, markedsbevægelser, regulering og svage signaler.</div></div>
-        <div class="s8-flow-step"><div class="s8-flow-time">05.30</div><div class="s8-flow-txt">Briefet er struktureret: topvalg, personalisering, risiko, blind vinkel og næste signal.</div></div>
-        <div class="s8-flow-step"><div class="s8-flow-time">06.30</div><div class="s8-flow-txt">Læseren får én prioriteret start på dagen i tekst og lyd.</div></div>
+        <div class="s8-flow-step"><div class="s8-flow-time">Motor</div><div class="s8-flow-txt">AI overvåger løbende kilder, markedsbevægelser, regulering og svage signaler i realtid.</div></div>
+        <div class="s8-flow-step"><div class="s8-flow-time">Profil</div><div class="s8-flow-txt">Indholdet prioriteres og struktureres til din rolle, branche og det tidspunkt, du åbner.</div></div>
+        <div class="s8-flow-step"><div class="s8-flow-time">Levering</div><div class="s8-flow-txt">Du får det vigtigste nu — relevant for det, du har foran dig — i tekst og lyd.</div></div>
       </div>
       <div class="s8-bp-item">
         <div class="s8-bp-n">1</div>
