@@ -181,7 +181,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s2-why-bai-lbl{font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
 .s2-why-bai-q{font-family:var(--serif);font-size:13px;font-weight:700;color:#FAFAF8;line-height:1.35;font-style:italic;margin-bottom:6px}
 .s2-why-bai-txt{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.6);line-height:1.6}
-.pillar-col{padding:28px 28px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;background:var(--card)}
+.pillar-col{padding:28px 28px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;background:var(--card);scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+.pillar-col::-webkit-scrollbar{width:3px}
+.pillar-col::-webkit-scrollbar-track{background:transparent}
+.pillar-col::-webkit-scrollbar-thumb{background:var(--line2);border-radius:2px}
 .pillar-col:last-child{border-right:none}
 .pillar-col.ch{background:var(--card)}
 .s2-wrap>.pillar-col:nth-child(2){border-top:3px solid var(--green)}
@@ -1041,36 +1044,37 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
     <!-- BIG WHY — venstrepanel -->
     <div class="s2-why">
-      <div class="s2-why-eyebrow">Raison d'être</div>
-      <div class="s2-why-title">Erhvervslivet mangler ikke information.<br>Det mangler overblik.</div>
-      <div class="s2-why-q">Hvad skal brugeren forstå?</div>
-      <div class="s2-why-q">Hvad skal brugeren holde øje med eller tvivle på?</div>
-      <div class="s2-why-q">Hvad kan brugeren gøre, undersøge eller tage med videre?</div>
+      <div class="s2-why-eyebrow">Fra nyhedsfeed til beslutningsværdi</div>
+      <div class="s2-why-title">Overblik uden<br>dømmekraft er støj.</div>
+      <div class="s2-why-q">Hvad sker der i min branche?</div>
+      <div class="s2-why-q">Hvad rammer min rolle?</div>
+      <div class="s2-why-q">Hvad skriver de andre?</div>
+      <div class="s2-why-q">Hvad bør jeg holde øje med?</div>
+      <div class="s2-why-q">Hvad er bare støj?</div>
       <div class="s2-why-divider"></div>
-      <div class="s2-why-body">Y Business samler det vigtigste fra erhvervslivet, markedet, reguleringen og AI-udviklingen — og gør det brugbart for den rolle, branche og virkelighed, læseren står i. Ikke som endnu et feed. Men som et redaktionelt beslutningsværktøj til bedre beslutninger.</div>
+      <div class="s2-why-body">Feedet viser, hvad der sker. Overvågningen viser, hvad der bevæger sig. Redaktionen afgør, hvad der betyder noget.</div>
       <div class="s2-why-rule">
-        <div class="s2-why-rule-lbl">Redaktionelt løfte</div>
-        <div class="s2-why-rule-txt">Det tæller ikke, hvad vi udgiver. Det tæller, om læseren kan handle bedre bagefter.</div>
+        <div class="s2-why-rule-lbl">Tre redaktionelle greb</div>
+        <div class="s2-why-rule-txt">Understand · Challenge · Inspire</div>
       </div>
     </div>
 
     <!-- UNDERSTAND -->
     <div class="pillar-col">
       <div class="pillar-tag pt-u">Understand</div>
-      <div class="pillar-section-lbl">Hvem</div>
-      <div class="pillar-who">SMV-ejer eller leder der skal forstå, hvad en udvikling konkret kræver.</div>
-      <div class="pillar-section-lbl">Hvad</div>
-      <div class="pillar-q">"Hvad sker der — og hvad betyder det for min virksomhed?"</div>
-      <p class="pillar-desc">Understand stopper ikke ved begivenheden. Det oversætter nyheden til krav, timing og konsekvens for virksomheden.</p>
-      <div class="pillar-section-lbl">Hvordan</div>
-      <div class="pillar-rule pr-u">
-        <div class="pillar-rule-lbl">Redaktionelt løfte</div>
-        <div class="pillar-rule-txt">Hvem rammes, hvornår, hvad kræver det?</div>
-      </div>
+      <div class="pillar-q">"Vi forklarer, hvad der sker — og hvad det betyder for virksomheden."</div>
+      <p class="pillar-desc">Understand er vores konsekvensjournalistik. Her tager vi det, der sker i markedet, reguleringen, teknologien eller erhvervslivet — og oversætter det til konkret betydning.</p>
+      <p class="pillar-desc">En ny regel er ikke interessant, fordi den er ny. Den er interessant, hvis den rammer driften, økonomien, kunderne, dokumentationen eller ledelsen.</p>
+      <p class="pillar-desc">En AI-nyhed er ikke interessant, fordi der er kommet en ny model. Den er interessant, hvis den ændrer en arbejdsgang, en omkostning, et ansvar eller en konkurrencesituation.</p>
       <div class="ltl-list" style="--ltl-color:var(--green)">
-        <div class="ltl-item"><div class="ltl-lbl">Regulering</div><div class="ltl-txt">Ny regulering med deadline og konkrete krav</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">AI</div><div class="ltl-txt">AI-adoption oversat til drifts- og organisationskonsekvens</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Makro</div><div class="ltl-txt">Makroøkonomisk indikator med sektorkonsekvens</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Hvad</div><div class="ltl-txt">Hvad er sket?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Hvem</div><div class="ltl-txt">Hvem rammes?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Hvornår</div><div class="ltl-txt">Hvornår skal der handles?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Krav</div><div class="ltl-txt">Hvad kræver det?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Nu</div><div class="ltl-txt">Hvad skal jeg være opmærksom på nu?</div></div>
+      </div>
+      <div class="pillar-rule pr-u" style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
+        <div class="pillar-rule-txt">Ingen Understand uden konsekvens.</div>
       </div>
       <div class="pillar-ai">
         <span class="pillar-ai-lbl">AI-produktion</span>
@@ -1081,20 +1085,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <!-- CHALLENGE -->
     <div class="pillar-col ch">
       <div class="pillar-tag pt-c">Challenge</div>
-      <div class="pillar-section-lbl">Hvem</div>
-      <div class="pillar-who">Beslutningstagere der vil se det, konsensus og headlines skjuler.</div>
-      <div class="pillar-section-lbl">Hvad</div>
-      <div class="pillar-q">"Hvad er den vinkel, du ikke har set?"</div>
-      <p class="pillar-desc">Challenge finder den manglende kilde, den skjulte omkostning eller den fortælling, der er blevet for bekvem.</p>
-      <div class="pillar-section-lbl">Hvordan</div>
-      <div class="pillar-rule pr-c">
-        <div class="pillar-rule-lbl">Redaktionelt løfte</div>
-        <div class="pillar-rule-txt">Ingen modfortælling uden dokumentation.</div>
-      </div>
+      <div class="pillar-q">"Vi viser det, den nemme fortælling overser."</div>
+      <p class="pillar-desc">Challenge er ikke at mene det modsatte for sportens skyld. Det er at stoppe op dér, hvor alle andre løber i samme retning.</p>
+      <p class="pillar-desc">Her leder vi efter den manglende kilde, den skjulte omkostning, den ubekvemme konsekvens, den oversete gruppe eller den antagelse, som erhvervslivet er ved at gøre til sandhed uden at have testet den.</p>
+      <p class="pillar-desc">Challenge kan begynde i overvågningen: en historie fylder usædvanligt meget, en kildegruppe går igen, et perspektiv mangler, et markedssignal bliver overset, en AI-fortælling lyder lidt for glat.</p>
       <div class="ltl-list" style="--ltl-color:var(--amber)">
-        <div class="ltl-item"><div class="ltl-lbl">Kilde</div><div class="ltl-txt">Eksperten der siger noget andet — med belæg</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Myte</div><div class="ltl-txt">Myteknusning om funding, AI, skalering eller regulering</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Vinkel</div><div class="ltl-txt">Strategiske blinde vinkler for dansk ledelse</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Mangel</div><div class="ltl-txt">Hvad mangler i billedet?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Kilde</div><div class="ltl-txt">Hvem er ikke blevet hørt?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Pris</div><div class="ltl-txt">Hvad koster det egentlig?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Test</div><div class="ltl-txt">Hvilken antagelse bør testes?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Risiko</div><div class="ltl-txt">Hvad risikerer virksomheder at tage fejl af?</div></div>
+      </div>
+      <div class="pillar-rule pr-c" style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
+        <div class="pillar-rule-txt">Ingen modfortælling uden dokumentation.</div>
       </div>
       <div class="pillar-ai">
         <span class="pillar-ai-lbl">AI-produktion</span>
@@ -1105,20 +1108,20 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <!-- INSPIRE -->
     <div class="pillar-col">
       <div class="pillar-tag pt-i">Inspire</div>
-      <div class="pillar-section-lbl">Hvem</div>
-      <div class="pillar-who">Folk der vil lære af andre uden at købe en poleret succeshistorie.</div>
-      <div class="pillar-section-lbl">Hvad</div>
-      <div class="pillar-q">"Hvad kan vi gøre — og hvad kostede det at komme dertil?"</div>
-      <p class="pillar-desc">Inspire viser metoden, friktionen og den kopierbare læring. Ikke glansbilledet.</p>
-      <div class="pillar-section-lbl">Hvordan</div>
-      <div class="pillar-rule pr-i">
-        <div class="pillar-rule-lbl">Redaktionelt løfte</div>
-        <div class="pillar-rule-txt">Ingen case uden friktion. Ingen læring uden pris.</div>
-      </div>
+      <div class="pillar-q">"Vi viser, hvad der virker — og hvad det kostede at få det til at virke."</div>
+      <p class="pillar-desc">Inspire er ikke feelgood. Det er praksisjournalistik.</p>
+      <p class="pillar-desc">Det handler om virksomheder, ledere og specialister, der har prøvet noget i virkeligheden. Ikke polerede succesfortællinger. Ikke leverandørcases med lak på. Men erfaringer med metode, friktion, fejl og læring.</p>
+      <p class="pillar-desc">En god Inspire-historie giver læseren noget at tage med videre. Ikke nødvendigvis en opskrift. Men en måde at tænke på. Et greb. En advarsel. En erfaring, der kan bruges.</p>
       <div class="ltl-list" style="--ltl-color:var(--accent)">
-        <div class="ltl-item"><div class="ltl-lbl">Case</div><div class="ltl-txt">Casestory med problem, metode og konkret resultat</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">AI</div><div class="ltl-txt">AI-implementering med organisation og friktion</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Serie</div><div class="ltl-txt">Generationsskifte som journalistisk serie</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Problem</div><div class="ltl-txt">Hvad var problemet?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Metode</div><div class="ltl-txt">Hvad gjorde de?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Friktion</div><div class="ltl-txt">Hvad gik galt?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Resultat</div><div class="ltl-txt">Hvad virkede?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Læring</div><div class="ltl-txt">Hvad kan andre kopiere?</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Grænse</div><div class="ltl-txt">Hvad kan de ikke kopiere?</div></div>
+      </div>
+      <div class="pillar-rule pr-i" style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
+        <div class="pillar-rule-txt">Ingen case uden friktion. Ingen læring uden pris.</div>
       </div>
       <div class="pillar-ai">
         <span class="pillar-ai-lbl">AI-produktion</span>
@@ -1129,16 +1132,17 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
     <!-- ── FOUNDATIONS BAR ── -->
     <div class="s2-foundations">
       <div class="s2-found-cell">
-        <div class="s2-found-lbl">Tidlighed</div>
-        <div class="s2-found-q">Find signalet før det bliver konsensus.</div>
+        <div class="s2-found-lbl">Den samlede test</div>
+        <div class="s2-found-q">Gør den læseren klogere på en konkret konsekvens?</div>
       </div>
       <div class="s2-found-cell">
-        <div class="s2-found-lbl">Måleprincip</div>
-        <div class="s2-found-stmt">Vi måles på, om læseren bliver klogere, tidligere og bedre i stand til at handle.</div>
+        <div class="s2-found-lbl">Den samlede test</div>
+        <div class="s2-found-q">Viser den noget vigtigt, andre overser?</div>
       </div>
       <div class="s2-found-cell">
-        <div class="s2-found-lbl">Redaktionel sortering</div>
-        <div class="s2-found-stmt">Personalisering må aldrig skjule vigtige risici, signaler eller blinde vinkler.</div>
+        <div class="s2-found-lbl">Den samlede test</div>
+        <div class="s2-found-q">Giver den en erfaring, metode eller læring, læseren kan bruge?</div>
+        <div class="s2-found-body">Hvis svaret er nej, er den ikke stærk nok til Y Business.</div>
       </div>
     </div>
 
