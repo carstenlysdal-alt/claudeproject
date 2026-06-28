@@ -2285,6 +2285,40 @@ body.bm-editing .bm-plot-cell .bm-add {
      02 POSITIONERING
      ====================================================== -->
 <div class="screen" id="s-pos">
+<style>
+/* === S-POS === */
+#s-pos .sec-body{display:flex;flex-direction:column;overflow:hidden}
+#s-pos .sec-cols{flex:1;min-height:0;overflow:hidden}
+.pos-map{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--line);margin-bottom:22px}
+.pos-cell{padding:13px 15px;background:var(--tint);min-height:76px;display:flex;flex-direction:column}
+.pos-cell.yb{background:var(--accent)}
+.pos-cell-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+.pos-cell.yb .pos-cell-lbl{color:rgba(196,181,253,.6)}
+.pos-cell-actors{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.45}
+.pos-cell.yb .pos-cell-actors{color:#FAFAF8;font-weight:600;font-size:14px}
+.pos-cell-note{font-family:var(--serif);font-size:11px;font-style:italic;color:rgba(255,255,255,.6);line-height:1.3;margin-top:auto;padding-top:8px}
+.partner-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-bottom:20px}
+.partner-col{padding:13px 14px}
+.partner-col.can{background:var(--tint)}
+.partner-col.own{background:var(--ink)}
+.partner-col-hdr{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:9px}
+.partner-col.can .partner-col-hdr{color:var(--muted)}
+.partner-col.own .partner-col-hdr{color:rgba(196,181,253,.6)}
+.partner-item{font-family:var(--sans);font-size:11.5px;line-height:1.35;padding:3px 0;border-bottom:1px solid}
+.partner-item:last-child{border-bottom:none}
+.partner-col.can .partner-item{color:var(--ink70);border-bottom-color:var(--line2)}
+.partner-col.own .partner-item{color:rgba(255,255,255,.78);border-bottom-color:rgba(255,255,255,.1)}
+.ai-spots{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-bottom:20px}
+.ai-spot{background:var(--tint);padding:13px 14px}
+.ai-spot-k{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.ai-spot-v{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:5px;letter-spacing:-.01em}
+.ai-spot-d{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4}
+.pos-foundations{flex-shrink:0;height:64px;display:grid;grid-template-columns:repeat(6,1fr);background:var(--accent);border-top:2px solid rgba(255,255,255,.07)}
+.pos-found-cell{padding:0 18px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(255,255,255,.08);gap:3px}
+.pos-found-cell:last-child{border-right:none}
+.pos-found-lbl{font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.45);letter-spacing:.18em;text-transform:uppercase}
+.pos-found-v{font-family:var(--serif);font-size:11.5px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.18;letter-spacing:-.01em}
+</style>
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
   <header class="dash-header">
@@ -2312,119 +2346,156 @@ body.bm-editing .bm-plot-cell .bm-add {
 
   <div class="sec-body">
     <div class="sec-cols">
-    <div class="col ani">
-      <div class="col-label">Kategori & dokumenterede fordele</div>
+
+    <!-- VENSTRE KOLONNE -->
+    <div class="col ani" style="overflow-y:auto; min-height:0; padding-bottom:40px;">
+      <div class="col-label">Positionen vi ejer</div>
       <div class="cat-box">
         <div class="cat-lbl">Kategorien vi ejer</div>
-        <div class="cat-txt">Redaktionel erhvervsintelligens til SMV-markedet</div>
+        <div class="cat-txt">Redaktionel erhvervsintelligens for det private erhvervsliv</div>
       </div>
-      <div class="commercial-thesis">
-        <div class="thesis-item"><div class="thesis-k">Spar tid</div><div class="thesis-v">Prioriteret morgenbrief og personalisering</div></div>
-        <div class="thesis-item"><div class="thesis-k">Reducér risiko</div><div class="thesis-v">Overvågning af marked og regulering</div></div>
-        <div class="thesis-item"><div class="thesis-k">Find muligheder</div><div class="thesis-v">Signaler, briefs og kvalificerede leads</div></div>
+      <div style="padding:16px 18px; background:var(--ink); margin-bottom:18px;">
+        <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">SMV-markedet</div>
+        <div style="font-family:var(--serif);font-size:42px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.04em;margin-bottom:6px;">99%</div>
+        <div style="font-family:var(--sans);font-size:12px;color:rgba(255,255,255,.62);line-height:1.5;margin-bottom:14px;">af alle kommercielle selskaber i Danmark er SMV'er — uden egne analyseafdelinger, compliance-teams eller business intelligence-enheder.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div style="padding:9px 11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);">
+            <div style="font-family:var(--serif);font-size:22px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.02em;">62.398</div>
+            <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.1em;text-transform:uppercase;margin-top:5px;">Erhvervsservice &amp; Rådgivning</div>
+          </div>
+          <div style="padding:9px 11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);">
+            <div style="font-family:var(--serif);font-size:22px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.02em;">20.514</div>
+            <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.1em;text-transform:uppercase;margin-top:5px;">IT/SaaS</div>
+          </div>
+        </div>
       </div>
-      <div class="drv-list">
-        <div class="drv drv-trigger" onclick="openResearchModal();" title="Åbn segmentanalyse">
-          <div class="drv-n">1</div>
-          <div><div class="drv-t">Massivt og overset segment — med to skarpe beachheads <span style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.06em;">↗ SE ANALYSE</span></div><div class="drv-d">99% af alle kommercielle selskaber i Danmark er SMV'er. GTM fase 1 koncentreres om de to mest informationsintensive segmenter: Erhvervsservice & Rådgivning (62.398 virksomheder) og IT/SaaS (20.514 virksomheder). Begge lever af asymmetrisk viden og konverterer intelligence direkte til omsætning.</div></div>
+      <div class="col-label-sm" style="margin-bottom:10px;">Positioneringskort</div>
+      <div class="pos-map">
+        <div class="pos-cell">
+          <div class="pos-cell-lbl">Makro + uafhængig redaktion</div>
+          <div class="pos-cell-actors">Børsen · Finans.dk · Erhvervsmedier</div>
         </div>
-        <div class="drv">
-          <div class="drv-n">2</div>
-          <div><div class="drv-t">Smerten er konkret og målbar</div><div class="drv-d">SMV-ledere bruger 3,5 timer/uge på statsrelateret papirarbejde — 16,5 mia. DKK/år for segmentet. 35% finder nyhedsudbud overvældende. Fuld dækning via separate værktøjer koster 20.000+ kr/år.</div></div>
+        <div class="pos-cell yb">
+          <div class="pos-cell-lbl">Operationel + uafhængig redaktion</div>
+          <div class="pos-cell-actors">★ Y Business</div>
+          <div class="pos-cell-note">Overvågning, Business AI og beslutningsværdi — ubesat felt.</div>
         </div>
-        <div class="drv">
-          <div class="drv-n">3</div>
-          <div><div class="drv-t">Betalingsværdien skal bevises i brug <span class="status-chip potential">Valideres i beta</span></div><div class="drv-d">Y Business skal skabe konkret værdi for virksomheden: mindre tid brugt på informationssøgning, tidligere varsling af risici og et stærkere beslutningsgrundlag. I betaen måler vi, hvilke funktioner der skaber gentagen brug, opgradering og reel betalingsvillighed.</div></div>
+        <div class="pos-cell">
+          <div class="pos-cell-lbl">Makro + rådgivning</div>
+          <div class="pos-cell-actors">DI · Dansk Erhverv · SMVdanmark · Konsulenthuse</div>
         </div>
-        <div class="drv">
-          <div class="drv-n">4</div>
-          <div><div class="drv-t">Partnerne er supplement — ikke konkurrenter</div><div class="drv-d">DI, Dansk Erhverv og SMVdanmark leverer compliance og lobbyisme. De leverer ikke markedsintelligens og konkurrentovervågning. Pitch: <em>"Jeres medlemmer bruger jer til compliance — Y Business giver dem det, I ikke kan."</em></div></div>
+        <div class="pos-cell">
+          <div class="pos-cell-lbl">Data + overvågning</div>
+          <div class="pos-cell-actors">Meltwater · Retriever · Infomedia · Branchemedier</div>
+        </div>
+      </div>
+      <div class="col-label-sm" style="margin-bottom:10px;">Partnerlaget</div>
+      <div class="partner-split">
+        <div class="partner-col can">
+          <div class="partner-col-hdr">Partnere kan bidrage med</div>
+          <div class="partner-item">Distribution til medlemsvirksomheder</div>
+          <div class="partner-item">Events og netværk</div>
+          <div class="partner-item">Data og brancheindsigter</div>
+          <div class="partner-item">Cases og kildegrundlag</div>
+          <div class="partner-item">Beta-brugere og feedback</div>
+          <div class="partner-item">Sponsorater om afgrænsede temaer</div>
+        </div>
+        <div class="partner-col own">
+          <div class="partner-col-hdr">Y Business ejer altid</div>
+          <div class="partner-item">Redaktionel prioritering</div>
+          <div class="partner-item">Kildekritik og vinkling</div>
+          <div class="partner-item">Vendor-audits</div>
+          <div class="partner-item">Implementeringsjournalistik</div>
+          <div class="partner-item">Challenge-indhold</div>
+          <div class="partner-item">Publicering</div>
         </div>
       </div>
     </div>
 
-    <div class="col ani">
-      <div class="col-label">Konkurrentlandskab</div>
-      <table class="tbl" style="font-size:13px;">
-        <thead><tr><th>Platform</th><th>Pris/år</th><th>Hvad det er</th><th>Hvad det mangler</th></tr></thead>
+    <!-- HØJRE KOLONNE -->
+    <div class="col ani" style="overflow-y:auto; min-height:0; padding-bottom:40px;">
+      <div class="col-label">Den fragmenterede stack</div>
+      <div style="font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.6;margin-bottom:14px;">Virksomheder betaler allerede for erhvervsviden — men spredt. Y Business samler det vigtigste i ét redaktionelt beslutningslag.</div>
+      <table class="tbl" style="font-size:12px;">
+        <thead><tr><th>Kategori</th><th>Prisniveau</th><th>Hvad det løser</th><th>Y Business' forskel</th></tr></thead>
         <tbody>
           <tr>
-            <td class="str" style="font-size:13px;">Finans.dk</td>
-            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">4.500–5.500 DKK</td>
-            <td style="font-size:13px;">Erhvervsnyheder — digitalt fokus</td>
-            <td style="font-size:13px;">Overvågning, SMV-fokus, intelligence</td>
+            <td class="str" style="font-size:12px;">Erhvervsmedier<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Børsen, Finans, Watch</div></td>
+            <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">4.500–7.200 kr./år</td>
+            <td style="font-size:12px;">Nyheder og aktualitet</td>
+            <td style="font-size:12px;">+ overvågning, Business AI, konsekvens</td>
           </tr>
           <tr>
-            <td class="str" style="font-size:13px;">Børsen</td>
-            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">~7.200 DKK</td>
-            <td style="font-size:13px;">Erhvervsnyheder skrevet til C25 og kapitalmarkedet</td>
-            <td style="font-size:13px;">SMV-relevans, overvågning</td>
+            <td class="str" style="font-size:12px;">Medieovervågning<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Meltwater, Retriever, Infomedia</div></td>
+            <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">10.000–150.000+ kr./år</td>
+            <td style="font-size:12px;">Alerts, omtale, arkiv</td>
+            <td style="font-size:12px;">+ redaktionel syntese og kontekst</td>
           </tr>
           <tr>
-            <td class="str" style="font-size:13px;">Retriever</td>
-            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">15.000–50.000+ DKK</td>
-            <td style="font-size:13px;">Medieovervågning, nordisk dækning</td>
-            <td style="font-size:13px;">Nyheder, redaktionel analyse</td>
+            <td class="str" style="font-size:12px;">Regulatorisk overvågning<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Karnov, EUR-Lex, Retsinformation</div></td>
+            <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">Gratis–100.000+ kr./år</td>
+            <td style="font-size:12px;">Lovgivning og compliance</td>
+            <td style="font-size:12px;">+ konsekvensforklaring for virksomheden</td>
           </tr>
           <tr>
-            <td class="str" style="font-size:13px;">Meltwater</td>
-            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">50.000–140.000+ DKK</td>
-            <td style="font-size:13px;">Global medieovervågning til enterprise</td>
-            <td style="font-size:13px;">SMV-prissætning, nyheder, community</td>
+            <td class="str" style="font-size:12px;">Strategisk intelligence<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Gartner, Statista, McKinsey</div></td>
+            <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">25.000–200.000+ kr./år</td>
+            <td style="font-size:12px;">Markedsdata og rapporter</td>
+            <td style="font-size:12px;">+ løbende, dansk og til SMV-pris</td>
           </tr>
           <tr>
-            <td class="str" style="font-size:13px;">Infomedia</td>
-            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">10.000–50.000+ DKK</td>
-            <td style="font-size:13px;">Dansk/nordisk mediarkiv og brandtracking</td>
-            <td style="font-size:13px;">Min. 20 licenser — ingen nyheder eller intelligence</td>
+            <td class="str" style="font-size:12px;">Salgsintelligens<div style="font-weight:400;color:var(--muted);font-size:10.5px;">LassoX, LinkedIn Sales Nav.</div></td>
+            <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">8.500–100.000+ kr./år</td>
+            <td style="font-size:12px;">Prospektering og leads</td>
+            <td style="font-size:12px;">+ markedssignaler og beslutningsværdi</td>
           </tr>
           <tr>
-            <td class="str" style="font-size:13px;">Karnov Online</td>
-            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">10.000–40.000+ DKK</td>
-            <td style="font-size:13px;">Dansk lovgivning og retspraksis</td>
-            <td style="font-size:13px;">Kun regulatorisk — bygget til jurister</td>
+            <td class="str" style="font-size:12px;">Brancheorganisationer<div style="font-weight:400;color:var(--muted);font-size:10.5px;">DI, Dansk Erhverv, SMVdanmark</div></td>
+            <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">Kontingent/netværk</td>
+            <td style="font-size:12px;">Rådgivning og netværk</td>
+            <td style="font-size:12px;">+ uafhængig redaktion og kritisk dækning</td>
           </tr>
           <tr>
-            <td class="str" style="font-size:13px;">LassoX</td>
-            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">40.000–82.000 DKK</td>
-            <td style="font-size:13px;">Salgstriggers og leadkort på CVR-data</td>
-            <td style="font-size:13px;">Intelligence, branchetendenser, nyheder</td>
+            <td class="str" style="font-size:12px;">Konsulenter<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Big Four, McKinsey, Implement</div></td>
+            <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">Projektbaseret</td>
+            <td style="font-size:12px;">Strategi og analyse</td>
+            <td style="font-size:12px;">+ daglig platform til tilgængelig pris</td>
           </tr>
           <tr>
-            <td class="str" style="font-size:13px;">Watch Medier</td>
-            <td style="color:var(--red); font-family:var(--mono); font-size:10px; white-space:nowrap;">2.500–6.500 DKK/medie</td>
-            <td style="font-size:13px;">Niche-branchenyheder — én titel per abonnement</td>
-            <td style="font-size:13px;">Separat abonnement per branche — fragmenteret</td>
+            <td class="str" style="font-size:12px;">Nichemedier og nyhedsbreve<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Watch, Substack, faglige communities</div></td>
+            <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">500–6.500 kr./år pr. titel</td>
+            <td style="font-size:12px;">Brancheviden og inspiration</td>
+            <td style="font-size:12px;">+ samlet, prioriteret og personaliseret</td>
           </tr>
           <tr>
-            <td class="str" style="font-size:13px;">LinkedIn-feed</td>
-            <td style="color:var(--muted); font-family:var(--mono); font-size:10px;">0</td>
-            <td style="font-size:13px;">Netværk og algoritmisk nyhedsstrøm</td>
-            <td style="font-size:13px;">Ufiltreret, tidskrævende, ingen syntese</td>
-          </tr>
-          <tr>
-            <td class="str" style="font-size:13px;">Ingen struktureret løsning</td>
-            <td style="color:var(--muted); font-family:var(--mono); font-size:10px;">0</td>
-            <td style="font-size:13px;">Ad hoc-søgninger, nyhedsbreve, RSS</td>
-            <td style="font-size:13px;">Størst segment — ubesat kategori</td>
+            <td class="str" style="font-size:12px;">Intern research<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Manuel koordinering, Google, RSS</div></td>
+            <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--muted);">Skjult tidsforbrug</td>
+            <td style="font-size:12px;">Forsøg på samlet overblik</td>
+            <td style="font-size:12px;">+ automatiseret beslutningslag</td>
           </tr>
           <tr class="hl">
-            <td class="str" style="color:var(--accent); font-style:italic; font-family:var(--serif); font-size:13px;">Y Business</td>
-            <td class="hi">5.000 DKK</td>
-            <td style="font-size:13px;">Nyheder + overvågning + trends + briefs + leads — samlet</td>
+            <td class="str" style="color:var(--accent);font-style:italic;font-family:var(--serif);font-size:12px;">Y Business</td>
+            <td class="hi" style="font-size:12px;">5.000 kr./år</td>
+            <td style="font-size:12px;">Nyheder + overvågning + trends + Business AI — samlet</td>
             <td style="color:var(--line);">—</td>
           </tr>
         </tbody>
       </table>
       <div class="ibox" style="margin-top:8px;">
-        <div class="ibox-t">Problemet vi løser</div>
-        <div class="ibox-b">
-          <p>En SMV-ejer bruger i dag tid og penge på: et erhvervsmedie, der skriver til andre, et medieovervågningsværktøj prissat til enterprise, en algoritmisk LinkedIn-feed og ad hoc-søgninger uden systematisk overblik.</p>
-          <p><strong>Veldrevne SMV'er løser fragmenteringen ved at udpege en "videnskoordinator" — Y Business automatiserer det job.</strong></p>
-        </div>
+        <div class="ibox-t">Konkurrenterne løser delopgaver</div>
+        <div class="ibox-b"><strong>Y Business samler beslutningslaget.</strong> Veldrevne SMV'er løser fragmenteringen ved at udpege en "videnskoordinator" — Y Business automatiserer det job.</div>
       </div>
     </div>
+
   </div>
+  </div>
+  <div class="pos-foundations">
+    <div class="pos-found-cell"><div class="pos-found-lbl">Danmark</div><div class="pos-found-v">er et SMV-land</div></div>
+    <div class="pos-found-cell"><div class="pos-found-lbl">Informationsmarkedet</div><div class="pos-found-v">er fragmenteret</div></div>
+    <div class="pos-found-cell"><div class="pos-found-lbl">Organisationerne</div><div class="pos-found-v">har virksomhederne</div></div>
+    <div class="pos-found-cell"><div class="pos-found-lbl">Medierne</div><div class="pos-found-v">har journalistikken</div></div>
+    <div class="pos-found-cell"><div class="pos-found-lbl">Værktøjerne</div><div class="pos-found-v">har data</div></div>
+    <div class="pos-found-cell"><div class="pos-found-lbl">Y Business</div><div class="pos-found-v">samler beslutningslaget</div></div>
   </div>
   <div class="pnum">Markedspositionering · 03/05</div>
 </div>
@@ -2524,7 +2595,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 <style>
 /* === S-PRD: Aktiv lag-navigation === */
 #s-prd .sec-body { display:flex; flex-direction:column; overflow:hidden; }
-#s-prd .sec-cols { flex:1; min-height:0; overflow:hidden; }
+#s-prd .sec-cols { flex:1; min-height:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr 0.85fr; }
 .prd-nav-wrap { height:100%; display:flex; flex-direction:column; overflow:hidden; padding:0; }
 .prd-nav-hdr { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.18em; text-transform:uppercase; padding:22px 28px 14px; border-bottom:2px solid var(--line); flex-shrink:0; }
 .prd-layer-nav { flex:1; overflow-y:auto; display:flex; flex-direction:column; scrollbar-width:thin; scrollbar-color:var(--line2) transparent; }
@@ -2543,8 +2614,19 @@ body.bm-editing .bm-plot-cell .bm-add {
 .prd-layer-item.active .prd-layer-driver { max-height:16px; opacity:1; }
 .prd-layer-desc { font-family:var(--sans); font-size:11.5px; color:var(--muted); line-height:1.45; margin-top:7px; max-height:0; overflow:hidden; opacity:0; transition:max-height .32s cubic-bezier(.22,.61,.36,1) .04s, opacity .22s ease .07s; }
 .prd-layer-item.active .prd-layer-desc { max-height:80px; opacity:1; }
-.prd-layer-ltl { max-height:0; overflow:hidden; opacity:0; transition:max-height .38s cubic-bezier(.22,.61,.36,1) .06s, opacity .25s ease .1s; padding-left:0; margin-top:0; }
-.prd-layer-item.active .prd-layer-ltl { max-height:220px; opacity:1; margin-top:8px; }
+.prd-layer-ltl { max-height:0; overflow:hidden; opacity:0; transition:max-height .42s cubic-bezier(.22,.61,.36,1) .06s, opacity .25s ease .1s; padding-left:0; margin-top:0; }
+.prd-layer-item.active .prd-layer-ltl { max-height:280px; opacity:1; margin-top:8px; }
+/* Formatlag */
+.prd-fmt-wrap { height:100%; display:flex; flex-direction:column; overflow:hidden; border-left:1px solid var(--line); }
+.prd-fmt-hdr { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.18em; text-transform:uppercase; padding:22px 24px 14px; border-bottom:2px solid var(--line); flex-shrink:0; }
+.prd-fmt-nav { flex:1; overflow-y:auto; display:flex; flex-direction:column; scrollbar-width:thin; scrollbar-color:var(--line2) transparent; }
+.prd-fmt-nav::-webkit-scrollbar { width:3px; }
+.prd-fmt-nav::-webkit-scrollbar-thumb { background:var(--line2); border-radius:2px; }
+.prd-fmt-item { padding:12px 16px 12px 22px; border-bottom:1px solid var(--line2); }
+.prd-fmt-name { font-family:var(--serif); font-size:14px; font-weight:700; color:var(--ink); letter-spacing:-.015em; line-height:1.2; margin-bottom:3px; }
+.prd-fmt-func { font-family:var(--sans); font-size:11.5px; color:var(--muted); line-height:1.4; margin-bottom:7px; }
+.prd-fmt-tags { display:flex; flex-wrap:wrap; gap:4px; }
+.prd-fmt-tag { font-family:var(--mono); font-size:7.5px; font-weight:700; letter-spacing:.08em; padding:2px 7px; border:1px solid var(--line); color:var(--muted); text-transform:uppercase; background:var(--tint); }
 /* Foundations bar */
 .prd-foundations { flex-shrink:0; height:64px; display:grid; grid-template-columns:repeat(3,1fr); background:var(--accent); border-top:2px solid rgba(255,255,255,.07); }
 .prd-found-cell { padding:0 28px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(255,255,255,.08); gap:3px; }
@@ -2592,8 +2674,8 @@ body.bm-editing .bm-plot-cell .bm-add {
               <div class="prd-layer-driver">Besluttet · kerne</div>
               <div class="prd-layer-desc">Skaber daglig vane og indgang til platformen. Personaliseret erhvervsfeed og morgenbrief i tekst og lyd — redaktionel prioritering af dagens vigtigste signaler.</div>
               <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:var(--amber); margin-bottom:6px;">
-                  <div class="ltl-item"><div class="ltl-lbl">Afventer</div><div class="ltl-txt">Feedlogik · personalisering · morgenbrief-flow · kildegrundlag fra Supertrends · TTS/lyd</div></div>
+                <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:6px;">
+                  <div class="ltl-item"><div class="ltl-lbl">Formater</div><div class="ltl-txt">Overblikket · Morgenbriefet · Det betyder det for din virksomhed</div></div>
                 </div>
               </div>
             </div>
@@ -2604,11 +2686,11 @@ body.bm-editing .bm-plot-cell .bm-add {
             <div class="prd-layer-inner">
               <div class="prd-layer-num">02</div>
               <div class="prd-layer-name">Markedsovervågning</div>
-              <div class="prd-layer-driver">Launch-kritisk · under teknisk afklaring</div>
+              <div class="prd-layer-driver">Launch-kritisk · afventer Supertrends</div>
               <div class="prd-layer-desc">Platformen arbejder for brugeren. Overvågning af virksomheder, brancher, konkurrenter, regulering, udbud og CVR-signaler — med alerts, der gør risiko og timing konkret.</div>
               <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:6px;">
-                  <div class="ltl-item"><div class="ltl-lbl">Supertrends</div><div class="ltl-txt">Source-liste · kanalstruktur · datalag · API · CVR/XBRL · alertlogik · brugerdefineret overvågning · tier-grænser</div></div>
+                <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:6px;">
+                  <div class="ltl-item"><div class="ltl-lbl">Formater</div><div class="ltl-txt">Signalet · Signalradaren · Den blinde vinkel</div></div>
                 </div>
               </div>
             </div>
@@ -2622,8 +2704,8 @@ body.bm-editing .bm-plot-cell .bm-add {
               <div class="prd-layer-driver">Konceptuelt besluttet · teknisk afklares</div>
               <div class="prd-layer-desc">Ugentlig syntese: hvor bevæger markedet sig, og hvad kræver det af brugeren? Redaktionel vurdering af signalstyrke og konsekvens.</div>
               <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:var(--amber); margin-bottom:6px;">
-                  <div class="ltl-item"><div class="ltl-lbl">Afventer</div><div class="ltl-txt">Branchestruktur · taksonomi · kildekategorier · trendlogik · signalstyrke · visualisering · redaktionel godkendelsesmodel</div></div>
+                <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:6px;">
+                  <div class="ltl-item"><div class="ltl-lbl">Formater</div><div class="ltl-txt">Signalradaren · Det betyder det for din virksomhed · Den blinde vinkel</div></div>
                 </div>
               </div>
             </div>
@@ -2637,8 +2719,8 @@ body.bm-editing .bm-plot-cell .bm-add {
               <div class="prd-layer-driver">Redaktionelt næsten klar · spydspids</div>
               <div class="prd-layer-desc">AI som forretning, drift, ledelse og risiko — ikke teknologihype. Produktregel: ingen Business AI-historie uden forretningskonsekvens.</div>
               <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:var(--amber); margin-bottom:6px;">
-                  <div class="ltl-item"><div class="ltl-lbl">Afventer</div><div class="ltl-txt">Kildepakke · AI-source clusters i Supertrends · overvågning af regulering, leverandører, cases, jobopslag og investeringer</div></div>
+                <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:6px;">
+                  <div class="ltl-item"><div class="ltl-lbl">Formater</div><div class="ltl-txt">Det betyder det for din virksomhed · Den blinde vinkel · Casen der virker</div></div>
                 </div>
               </div>
             </div>
@@ -2652,14 +2734,14 @@ body.bm-editing .bm-plot-cell .bm-add {
               <div class="prd-layer-driver">Konceptuelt besluttet · teknisk afventer</div>
               <div class="prd-layer-desc">Beslutningsklart situationsbrief til brug før mødet, handlen, bestyrelsesmødet eller kundedialogen — samlet på én side.</div>
               <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:var(--amber); margin-bottom:6px;">
-                  <div class="ltl-item"><div class="ltl-lbl">Afventer</div><div class="ltl-txt">Om Supertrends kan levere on-demand briefs · evt. separat LLM-lag · datakilder · kildevisning · redaktionel godkendelse · latency</div></div>
+                <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:6px;">
+                  <div class="ltl-item"><div class="ltl-lbl">Formater</div><div class="ltl-txt">Det betyder det for din virksomhed · Casen der virker</div></div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="prd-layer-item" style="--lc:#374151">
+          <div class="prd-layer-item" style="--lc:var(--accent)">
             <div class="prd-layer-bar"></div>
             <div class="prd-layer-inner">
               <div class="prd-layer-num">06</div>
@@ -2667,23 +2749,8 @@ body.bm-editing .bm-plot-cell .bm-add {
               <div class="prd-layer-driver">Premium · under afklaring</div>
               <div class="prd-layer-desc">Strategisk overblik over Business AI, regulering, markedssignaler, geopolitik og blinde vinkler — målrettet ledere og beslutningstagere.</div>
               <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:var(--muted); margin-bottom:6px;">
-                  <div class="ltl-item"><div class="ltl-lbl">Afventer</div><div class="ltl-txt">Omfang · frekvens · format · kildegrundlag · redaktionel kapacitet · placering i Erhverv+ eller Premium</div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="prd-layer-item" style="--lc:var(--muted)">
-            <div class="prd-layer-bar"></div>
-            <div class="prd-layer-inner">
-              <div class="prd-layer-num">07</div>
-              <div class="prd-layer-name">Premiumsignaler</div>
-              <div class="prd-layer-driver">Fase 2</div>
-              <div class="prd-layer-desc">Overvågningssignaler omsættes til mulige forretningsåbninger: reguleringsændringer, udbud, lederskifter, kapitalændringer og ekspansion.</div>
-              <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:var(--muted); margin-bottom:6px;">
-                  <div class="ltl-item"><div class="ltl-lbl">Afventer</div><div class="ltl-txt">CVR-data · triggerlogik · signal-til-lead-model · GDPR · juridisk vurdering · tier-placering · kommerciel afgrænsning</div></div>
+                <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:6px;">
+                  <div class="ltl-item"><div class="ltl-lbl">Formater</div><div class="ltl-txt">Signalradaren · Den blinde vinkel · Overblikket</div></div>
                 </div>
               </div>
             </div>
@@ -2693,13 +2760,65 @@ body.bm-editing .bm-plot-cell .bm-add {
       </div><!-- /prd-nav-wrap -->
     </div>
 
-    <div class="col ani" style="overflow-y:auto; padding-bottom:80px; min-height:0;">
+    <div class="col ani" style="padding:0; overflow:hidden;">
+      <div class="prd-fmt-wrap">
+        <div class="prd-fmt-hdr">Formatlag — det redaktionelle interface</div>
+        <div class="prd-fmt-nav">
+
+          <div class="prd-fmt-item">
+            <div class="prd-fmt-name">Overblikket</div>
+            <div class="prd-fmt-func">Indgangen til produktet.</div>
+            <div class="prd-fmt-tags"><span class="prd-fmt-tag">Feed</span><span class="prd-fmt-tag">Morgenbrief</span><span class="prd-fmt-tag">Personalisering</span></div>
+          </div>
+
+          <div class="prd-fmt-item">
+            <div class="prd-fmt-name">Signalet</div>
+            <div class="prd-fmt-func">Giver brugeren forspring.</div>
+            <div class="prd-fmt-tags"><span class="prd-fmt-tag">Overvågning</span><span class="prd-fmt-tag">Alerts</span><span class="prd-fmt-tag">Branchetrends</span><span class="prd-fmt-tag">Regulering</span></div>
+          </div>
+
+          <div class="prd-fmt-item">
+            <div class="prd-fmt-name">Den blinde vinkel</div>
+            <div class="prd-fmt-func">Udfordrer den dominerende fortælling.</div>
+            <div class="prd-fmt-tags"><span class="prd-fmt-tag">Business AI</span><span class="prd-fmt-tag">Kritisk journalistik</span><span class="prd-fmt-tag">Signalradar</span></div>
+          </div>
+
+          <div class="prd-fmt-item">
+            <div class="prd-fmt-name">Casen der virker</div>
+            <div class="prd-fmt-func">Gør stoffet anvendeligt.</div>
+            <div class="prd-fmt-tags"><span class="prd-fmt-tag">Business AI</span><span class="prd-fmt-tag">Workflow</span><span class="prd-fmt-tag">Implementering</span><span class="prd-fmt-tag">Briefs</span></div>
+          </div>
+
+          <div class="prd-fmt-item">
+            <div class="prd-fmt-name">Morgenbriefet</div>
+            <div class="prd-fmt-func">Skaber daglig rytme og vane.</div>
+            <div class="prd-fmt-tags"><span class="prd-fmt-tag">Feed</span><span class="prd-fmt-tag">Overblik</span><span class="prd-fmt-tag">Personalisering</span><span class="prd-fmt-tag">Regulering</span></div>
+          </div>
+
+          <div class="prd-fmt-item">
+            <div class="prd-fmt-name">Det betyder det for din virksomhed</div>
+            <div class="prd-fmt-func">Oversætter udvikling til konkret betydning.</div>
+            <div class="prd-fmt-tags"><span class="prd-fmt-tag">Nyheder</span><span class="prd-fmt-tag">Regulering</span><span class="prd-fmt-tag">AI</span><span class="prd-fmt-tag">Markedssignaler</span></div>
+          </div>
+
+          <div class="prd-fmt-item">
+            <div class="prd-fmt-name">Signalradaren</div>
+            <div class="prd-fmt-func">Viser hvad brugeren bør holde øje med.</div>
+            <div class="prd-fmt-tags"><span class="prd-fmt-tag">Overvågning</span><span class="prd-fmt-tag">Datalag</span><span class="prd-fmt-tag">Alerts</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col ani" style="overflow-y:auto; padding-bottom:80px; min-height:0; border-left:1px solid var(--line);">
       <div class="col-label">Implementeringsstatus</div>
 
       <div class="col-label-sm" style="margin-bottom:10px;">Besluttet</div>
       <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:22px;">
         <div class="ltl-item"><div class="ltl-lbl">Koncept</div><div class="ltl-txt">Y Business som intelligent erhvervsplatform</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Redaktion</div><div class="ltl-txt">Understand / Challenge / Inspire — næsten klar</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Redaktion</div><div class="ltl-txt">Understand / Challenge / Inspire</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Formater</div><div class="ltl-txt">Overblikket · Signalet · Den blinde vinkel · Casen der virker som centrale leverancer</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Kerne</div><div class="ltl-txt">Feed + morgenbrief · markedsovervågning · Business AI som spydspids</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Differentiering</div><div class="ltl-txt">Redaktionel dømmekraft kombineret med AI-orkestrering</div></div>
       </div>
@@ -2712,7 +2831,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 
       <div class="col-label-sm" style="margin-bottom:10px;">Afventer Supertrends</div>
       <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:22px;">
-        <div class="ltl-item"><div class="ltl-lbl">Jesper/Jens</div><div class="ltl-txt">Endelig source-liste · hvilke kilder indgår fra launch · licens/API-krav · latency · datakvalitet · pris/fee-struktur</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Jesper/Jens</div><div class="ltl-txt">Source-liste · kildestruktur · datalag · API-adgang · licenskrav · latency · datakvalitet · pris/fee-struktur</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Kapabilitet</div><div class="ltl-txt">Automatiserede briefs · alerts · trendanalyse · hvad kræver særskilt teknisk udvikling</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Afgrænsning</div><div class="ltl-txt">Hvad leveres af Supertrends vs. Y's egne systemer — og hvad brandes "Powered by Supertrends"</div></div>
       </div>
@@ -2735,28 +2854,28 @@ body.bm-editing .bm-plot-cell .bm-add {
   <!-- FOUNDATIONS BAR -->
   <div class="prd-foundations" style="grid-template-columns:repeat(6,1fr);">
     <div class="prd-found-cell" style="padding:0 18px;">
-      <div class="prd-found-lbl">Feed</div>
-      <div class="prd-found-q" style="font-size:11.5px;">skaber vanen</div>
+      <div class="prd-found-lbl">Kilderne</div>
+      <div class="prd-found-q" style="font-size:11.5px;">giver råmaterialet</div>
     </div>
     <div class="prd-found-cell" style="padding:0 18px;">
-      <div class="prd-found-lbl">Overvågning</div>
-      <div class="prd-found-q" style="font-size:11.5px;">skaber relevansen</div>
+      <div class="prd-found-lbl">Overvågningen</div>
+      <div class="prd-found-q" style="font-size:11.5px;">finder signalerne</div>
     </div>
     <div class="prd-found-cell" style="padding:0 18px;">
-      <div class="prd-found-lbl">Datalaget</div>
-      <div class="prd-found-q" style="font-size:11.5px;">skaber synligheden</div>
+      <div class="prd-found-lbl">Personaliseringen</div>
+      <div class="prd-found-q" style="font-size:11.5px;">gør dem relevante</div>
     </div>
     <div class="prd-found-cell" style="padding:0 18px;">
-      <div class="prd-found-lbl">Business AI</div>
-      <div class="prd-found-q" style="font-size:11.5px;">skaber aktualiteten</div>
+      <div class="prd-found-lbl">Formaterne</div>
+      <div class="prd-found-q" style="font-size:11.5px;">gør dem forståelige</div>
     </div>
     <div class="prd-found-cell" style="padding:0 18px;">
       <div class="prd-found-lbl">Briefs</div>
-      <div class="prd-found-q" style="font-size:11.5px;">skaber anvendelsen</div>
+      <div class="prd-found-q" style="font-size:11.5px;">gør dem anvendelige</div>
     </div>
     <div class="prd-found-cell" style="padding:0 18px;">
       <div class="prd-found-lbl">Redaktionen</div>
-      <div class="prd-found-q" style="font-size:11.5px;">skaber værdien</div>
+      <div class="prd-found-q" style="font-size:11.5px;">gør dem værdifulde</div>
     </div>
   </div>
 
