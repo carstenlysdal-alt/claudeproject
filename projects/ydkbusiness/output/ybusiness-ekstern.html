@@ -205,6 +205,35 @@ p { margin:0; text-wrap:pretty; }
   html { scroll-behavior:auto; }
   *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
 }
+/* ── GRAFISKE HOLDEPUNKTER ── */
+.section-eyebrow {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: var(--s5); display: flex; align-items: center; gap: 12px;
+}
+.section-eyebrow::before {
+  content: ''; display: block; width: 22px; height: 1px; background: var(--accent); flex-shrink: 0;
+}
+.section-eyebrow.inv { color: rgba(196,181,253,.65); }
+.section-eyebrow.inv::before { background: rgba(196,181,253,.5); }
+.section-head-wrap { position: relative; overflow: visible; }
+.section-bg-num {
+  position: absolute; top: -28px; right: -16px;
+  font-family: var(--serif); font-size: clamp(110px, 12vw, 180px);
+  font-weight: 700; font-style: italic; color: var(--accent);
+  opacity: .035; line-height: 1; letter-spacing: -.04em;
+  pointer-events: none; user-select: none; white-space: nowrap; z-index: 0;
+}
+.section-head-wrap h2,
+.section-head-wrap .section-intro { position: relative; z-index: 1; }
+/* Pakke — featured ── */
+.package.featured { background: var(--accent10); border-top: 3px solid var(--accent); }
+.package-badge {
+  display: inline-block; margin-bottom: var(--s4);
+  font-family: var(--mono); font-size: 8px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent20); padding: 3px 8px;
+}
 @media print {
   .site-header, .lens-bar, .hero-actions, .footer-links, .scroll-nav { display:none !important; }
   .snap-section { min-height:auto; }
@@ -290,7 +319,9 @@ p { margin:0; text-wrap:pretty; }
       </div>
     </section>
     <section class="section" id="produktet">
-      <div class="section-head">
+      <div class="section-head section-head-wrap">
+        <div aria-hidden="true" class="section-bg-num">01</div>
+        <div class="section-eyebrow">Produktet</div>
         <h2>Det virksomhederne får</h2>
         <p class="section-intro">Produktet møder beslutningstageren i de situationer, hvor overblik, timing og konsekvens betyder mest.</p>
       </div>
@@ -351,9 +382,11 @@ p { margin:0; text-wrap:pretty; }
   </section>
 
   <!-- ══ S3 · PAKKER ══ -->
-  <section class="snap-section" id="s3">
+  <section class="snap-section" id="s3" style="background:var(--tint);">
     <section class="section" id="pakker">
-      <div class="section-head">
+      <div class="section-head section-head-wrap">
+        <div aria-hidden="true" class="section-bg-num">02</div>
+        <div class="section-eyebrow">Pakker</div>
         <h2>Pakker bygget til forskellig brug</h2>
         <p class="section-intro">Fra individuel adgang til et arbejdsredskab for teams, overvågning og udvidet anvendelse.</p>
       </div>
@@ -364,6 +397,7 @@ p { margin:0; text-wrap:pretty; }
           <ul><li>Alt Business-indhold</li><li>Morgenbrief og personaliseret feed</li><li>Grundlæggende markedsovervågning</li></ul>
         </article>
         <article class="package featured">
+          <div class="package-badge">Mest valgt</div>
           <h3 class="package-name">Erhverv+</h3>
           <div class="package-price">7.500 kr. <small>pr. år</small></div>
           <ul><li>Teamadgang og udvidet overvågning</li><li>Artikel-deling og brugsrettigheder</li><li>Inkluderet annonceringsværdi</li></ul>
@@ -390,6 +424,7 @@ p { margin:0; text-wrap:pretty; }
     <section class="section" id="tillid">
       <div class="trust-layout">
         <div class="trust-copy">
+          <div class="section-eyebrow">Tillid og metode</div>
           <h2>AI skaber skala. Redaktionen tager ansvaret.</h2>
           <p>Y Business kombinerer automatiseret overvågning med journalistisk prioritering, dokumentation og tydelige redaktionelle grænser.</p>
           <div class="principles">
@@ -420,6 +455,7 @@ p { margin:0; text-wrap:pretty; }
   <section class="snap-section" id="s5">
     <section class="opportunities" id="partnerskab">
       <div class="opportunities-inner">
+        <div class="section-eyebrow inv">Partnerskab</div>
         <h2>Flere måder at være med</h2>
         <p class="opportunities-intro">Y Business kan skabe værdi direkte for virksomheder, gennem medlemsorganisationer og sammen med støtter, der vil bidrage til et stærkere dansk erhvervsprodukt.</p>
         <div class="opportunity-layout">
@@ -448,6 +484,37 @@ p { margin:0; text-wrap:pretty; }
 </main>
 
 <script>
+(function () {
+  /* ── Scroll-snap navigation ── */
+  var sections = ['s1','s2','s3','s4','s5'];
+  var current = 0;
+  var locked = false;
+
+  function goTo(i) {
+    if (i < 0 || i >= sections.length || locked) return;
+    locked = true;
+    current = i;
+    document.getElementById(sections[i]).scrollIntoView({ behavior: 'smooth' });
+    setTimeout(function() { locked = false; }, 950);
+  }
+
+  window.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    if (locked) return;
+    goTo(current + (e.deltaY > 0 ? 1 : -1));
+  }, { passive: false });
+
+  var touchStartY = 0;
+  window.addEventListener('touchstart', function(e) {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  window.addEventListener('touchend', function(e) {
+    var dy = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(dy) < 40 || locked) return;
+    goTo(current + (dy > 0 ? 1 : -1));
+  }, { passive: true });
+}());
+
 (function () {
   var content = {
     company: {
