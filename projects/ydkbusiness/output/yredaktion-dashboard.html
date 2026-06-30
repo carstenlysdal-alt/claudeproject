@@ -1491,6 +1491,25 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 #s4 .s4-col-txt{font-size:12.6px}
 #s4 .s4-m2-val{font-size:12.2px}
 #s4 .s4-sources{font-size:9.5px}
+#s4 .s4-overvag-btn{display:inline-flex;align-items:center;gap:4px;margin-top:10px;cursor:pointer;background:none;border:none;padding:0;font-family:var(--mono);font-size:8px;font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px dashed rgba(54,19,82,.3);padding-bottom:1px;transition:color .15s,border-color .15s;}
+#s4 .s4-overvag-btn:hover{border-bottom-color:var(--accent);}
+/* Sources modal */
+.rd-src-overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:999999;display:flex;align-items:center;justify-content:center;padding:32px 24px;}
+.rd-src-overlay.hidden{display:none;}
+.rd-src-modal{background:var(--card);border-radius:10px;border:1px solid var(--line);width:100%;max-width:940px;max-height:calc(100vh - 64px);display:flex;flex-direction:column;box-shadow:0 24px 72px rgba(0,0,0,.22);overflow:hidden;}
+.rd-src-head{padding:14px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.rd-src-head-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(37,99,235,.07);border:1px solid rgba(37,99,235,.2);padding:3px 8px;}
+.rd-src-head-title{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);}
+.rd-src-head-close{background:none;border:none;cursor:pointer;font-size:16px;color:var(--muted);padding:4px 8px;}
+.rd-src-body{overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:20px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent;}
+.rd-src-sec-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.rd-src-stack{display:flex;flex-wrap:wrap;gap:5px;}
+.rd-src-chip{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:3px 8px;border:1px solid var(--line2);color:var(--ink70);letter-spacing:.04em;}
+.rd-src-chip.active{color:#137D3A;border-color:rgba(19,125,58,.3);background:rgba(19,125,58,.06);}
+.rd-src-cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.rd-src-cat{border:1px solid var(--line);padding:12px 14px;}
+.rd-src-cat-name{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#2563EB;margin-bottom:8px;}
+.rd-src-sub{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;}
 #s4 .s4-lbl{
   font-family:var(--mono);font-size:7.5px;font-weight:700;
   letter-spacing:.2em;text-transform:uppercase;
@@ -1888,7 +1907,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         +(f.segmenter?'<div class="s4-m2-item"><div class="s4-m2-lbl">Segmenter</div><div class="s4-m2-val">'+f.segmenter+'</div></div>':'')
         +(f.kanaler?'<div class="s4-m2-item"><div class="s4-m2-lbl">Kanaler</div><div class="s4-m2-val">'+f.kanaler+'</div></div>':'')
       +'</div>'
-      +'<div class="s4-sources"><b style="color:'+f.color+'">Kilder ·</b> '+f.sources+'</div>';
+      +'<div class="s4-sources"><b style="color:'+f.color+'">Kilder ·</b> '+f.sources+'</div>'
+      +(f.num==='01'?'<button class="s4-overvag-btn" onclick="openRdSourcesModal()">Det overvåger vi ↗</button>':'');
     cnt.appendChild(slide);
   });
 
@@ -3480,5 +3500,133 @@ function animateWave(on) {
   });
 }());
 </script>
+
+<script>
+function openRdSourcesModal() { document.getElementById('rd-sources-overlay').classList.remove('hidden'); }
+function closeRdSourcesModal() { document.getElementById('rd-sources-overlay').classList.add('hidden'); }
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('rd-sources-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeRdSourcesModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeRdSourcesModal();
+  });
+});
+</script>
+
+<!-- SOURCES MODAL — REDAKTION -->
+<div class="rd-src-overlay hidden" id="rd-sources-overlay">
+  <div class="rd-src-modal">
+    <div class="rd-src-head">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="rd-src-head-tag">Signalradaren · Datakilder</div>
+        <div class="rd-src-head-title">Det overvåger vi</div>
+      </div>
+      <button class="rd-src-head-close" onclick="closeRdSourcesModal()">✕</button>
+    </div>
+    <div class="rd-src-body">
+
+      <!-- Nuværende stak -->
+      <div>
+        <div class="rd-src-sec-lbl">Nuværende stak — i drift</div>
+        <div class="rd-src-stack">
+          <span class="rd-src-chip active">Supertrends API</span>
+          <span class="rd-src-chip active">CVR ElasticSearch</span>
+          <span class="rd-src-chip active">XBRL / årsrapporter</span>
+          <span class="rd-src-chip active">retsinformation.dk</span>
+          <span class="rd-src-chip active">EUR-Lex (Cellar REST)</span>
+          <span class="rd-src-chip active">udbud.dk</span>
+          <span class="rd-src-chip active">Folketing ODA</span>
+          <span class="rd-src-chip active">Danmarks Statistik API</span>
+          <span class="rd-src-chip active">datafordeler.dk</span>
+          <span class="rd-src-chip active">Tinglysning</span>
+        </div>
+      </div>
+
+      <!-- Brancheorg og pengeinstitutter -->
+      <div class="rd-src-cat-grid">
+        <div class="rd-src-cat">
+          <div class="rd-src-cat-name">Brancheorganisationer</div>
+          <div class="ltl-list" style="--ltl-color:#2563EB;margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">SMVdanmark</div><div class="ltl-txt">15.000+ SMV'er — stærkt match til primærsegmentet. Statistik og branchenyt.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Dansk Byggeri</div><div class="ltl-txt">Byggeri og anlæg — licitations-, materialepriser og regulering.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">IT-Branchen</div><div class="ltl-txt">Tech, digitalisering og AI — politisk og branchespecifik dækning.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Dansk Transport og Logistik</div><div class="ltl-txt">DTL — fragt, logistik og supply chain-signaler.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Wind Denmark</div><div class="ltl-txt">Vindenergi og grøn omstilling.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Medicoindustrien</div><div class="ltl-txt">Medtech og pharma — regulering og markedsadgang.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Dansk Mode & Tekstil</div><div class="ltl-txt">Bæredygtighed, ESG-krav og forbrugertendenser.</div></div>
+          </div>
+        </div>
+        <div class="rd-src-cat">
+          <div class="rd-src-cat-name">Pengeinstitutter og finansanalyse</div>
+          <div class="ltl-list" style="--ltl-color:#2563EB;margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Nordea Research</div><div class="ltl-txt">Nordisk makro, renter og erhvervsanalyser.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Danske Bank Research</div><div class="ltl-txt">Makro, valuta og erhvervsperspektiver.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Jyske Markets</div><div class="ltl-txt">Rente-, valuta- og råvareanalyser med dansk erhvervsfokus.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Nykredit Markets</div><div class="ltl-txt">Bolig, obligationer og erhvervsejendomme.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Sydbank Markets</div><div class="ltl-txt">Regional erhvervsanalyse og markedskommentarer.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">SEB Research</div><div class="ltl-txt">Nordisk og europæisk makro.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Øvrige kategorier -->
+      <div class="rd-src-cat-grid">
+        <div class="rd-src-cat">
+          <div class="rd-src-cat-name">Erhvervsnyheder og fagmedier</div>
+          <div class="ltl-list" style="--ltl-color:#2563EB;margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Via Ritzau</div><div class="ltl-txt">Pressemeddelelser, selskabssignaler og myndighedsnyt.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Watch Medier</div><div class="ltl-txt">FinansWatch, ShippingWatch, EnergyWatch, AgriWatch.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Finans Danmark / DI / Dansk Erhverv</div><div class="ltl-txt">Statistik og branchenyheder.</div></div>
+          </div>
+        </div>
+        <div class="rd-src-cat">
+          <div class="rd-src-cat-name">EU-regulering og lovgivning</div>
+          <div class="ltl-list" style="--ltl-color:#2563EB;margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Finanstilsynet</div><div class="ltl-txt">Virksomhedsregister og OAM — tilsynshændelser.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Press Corner / CURIA / KFST</div><div class="ltl-txt">EU-forslag, domme og konkurrenceregulering.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">TED API · EFTA · VIES · TARIC · DUPLA</div><div class="ltl-txt">Udbud, EØS-compliance, moms og toldkompliance.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Plandata.dk</div><div class="ltl-txt">Byggetilladelser og arealsignaler.</div></div>
+          </div>
+        </div>
+        <div class="rd-src-cat">
+          <div class="rd-src-cat-name">Makroøkonomi</div>
+          <div class="ltl-list" style="--ltl-color:#2563EB;margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Nationalbanken</div><div class="ltl-txt">Valutakurser, renter og Statistikbanken.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">DBnomics</div><div class="ltl-txt">Aggregerer ECB, IMF, OECD og Eurostat.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Trading Economics</div><div class="ltl-txt">Nær-realtidsindikatorer og økonomisk kalender.</div></div>
+          </div>
+        </div>
+        <div class="rd-src-cat">
+          <div class="rd-src-cat-name">Virksomhedssignaler</div>
+          <div class="ltl-list" style="--ltl-color:#2563EB;margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Jobnet</div><div class="ltl-txt">Rekruttering som vækst- og teknologisignal.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Statstidende</div><div class="ltl-txt">Konkurser, likvidationer og juridiske hændelser.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">DKPTO / EPO OPS</div><div class="ltl-txt">Patentaktivitet — innovationssignaler.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Creditsafe / D&amp;B / Dealroom</div><div class="ltl-txt">Kredit, koncern og funding-signaler.</div></div>
+          </div>
+        </div>
+        <div class="rd-src-cat">
+          <div class="rd-src-cat-name">Branche, energi og handel</div>
+          <div class="ltl-list" style="--ltl-color:#2563EB;margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Energi Data Service</div><div class="ltl-txt">El, gas, CO₂ og markedsdata.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Nord Pool · Baltic Exchange · Freightos</div><div class="ltl-txt">Energi-, fragt- og containerprisersignaler.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">UN Comtrade · EIFO</div><div class="ltl-txt">Eksport/import-data og ekspansionssignaler.</div></div>
+          </div>
+        </div>
+        <div class="rd-src-cat">
+          <div class="rd-src-cat-name">ESG og internationale medier</div>
+          <div class="ltl-list" style="--ltl-color:#2563EB;margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">SBTi · GRI · EFRAG ESRS · ESAP</div><div class="ltl-txt">Klimamål, ESG-rapportering og CSRD-struktur.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Reuters · Bloomberg · FT · Dow Jones</div><div class="ltl-txt">Internationale bureauer og erhvervsmedier. Enterprise.</div></div>
+            <div class="ltl-item"><div class="ltl-lbl">EURACTIV · EUobserver · Handelsblatt</div><div class="ltl-txt">EU-politik, geopolitik og europæisk erhvervsdækning.</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
