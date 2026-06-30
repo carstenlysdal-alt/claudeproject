@@ -2120,7 +2120,7 @@ function switchStemmeTab(i){
   panels.forEach(function(p,idx){p.classList.toggle('sv-panel-active',idx===i);});
 }
 
-(function buildStemmeModal(){
+document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
   var tabsEl=document.getElementById('svTabs');
   var bodyEl=document.getElementById('svBody');
   if(!tabsEl||!bodyEl) return;
@@ -2159,7 +2159,7 @@ function switchStemmeTab(i){
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape') closeStemmeModal();
   });
-}());
+});
 
 </script>
 
