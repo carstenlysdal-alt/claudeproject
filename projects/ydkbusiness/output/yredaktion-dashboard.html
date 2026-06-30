@@ -2630,7 +2630,7 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
   <style>
     /* ── S6 PROTOKOLLER — korte redaktionelle beslutningsspørgsmål ── */
     #s6 .sec-body::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.022) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
-    #s6 .s6-wrap-v3{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;gap:12px;padding:22px 32px 26px;box-sizing:border-box;position:relative}
+    #s6 .s6-wrap-v3{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:12px;padding:22px 32px 26px;box-sizing:border-box;position:relative}
     #s6 .s6-proto-head{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:end;padding:0 4px 2px}
     #s6 .s6-kicker{font-family:var(--mono);font-size:10px;font-weight:700;color:rgba(196,181,253,.58);letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
     #s6 .s6-kicker::before{content:'';width:18px;height:1px;background:rgba(196,181,253,.42)}
@@ -2765,24 +2765,6 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
       <div class="s6-case-mini-rule">Grundregel: Ingen case uden friktion. Ingen case uden navngivet ophav.</div>
     </div>
 
-    <div class="s6-ai-rule">
-      <div>
-        <div class="s6-ai-title">AI-regel for alle protokoller</div>
-        <p>AI kan finde materialet. Mennesker kvalificerer det. Redaktionen afgør betydningen.</p>
-      </div>
-      <div>
-        <div class="s6-ai-title">AI må hjælpe med</div>
-        <ul><li>overvågning</li><li>sortering</li><li>kildesøgning</li><li>mønstergenkendelse</li><li>idéudvikling</li><li>spørgsmål</li><li>udkast</li><li>kildekort</li></ul>
-      </div>
-      <div>
-        <div class="s6-ai-title">AI må ikke</div>
-        <ul><li>afgøre vinklen alene</li><li>erstatte kildekritik</li><li>konkludere uden dokumentation</li><li>publicere uden redaktionel vurdering</li><li>forveksle popularitet med sandhed</li><li>gøre leverandørpåstande til fakta</li></ul>
-      </div>
-      <div>
-        <div class="s6-ai-title">Redaktionen ejer</div>
-        <p class="s6-ai-final">Prioritering, vinkling, dokumentation, kildekritik, konklusion, publicering, etik og ansvar.</p>
-      </div>
-    </div>
   </div>
 </div>
 </div>
