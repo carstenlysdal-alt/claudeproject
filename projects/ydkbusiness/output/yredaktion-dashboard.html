@@ -2636,54 +2636,54 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
     #s6 .s6-proto-head strong{color:#FAFAF8;font-weight:700}
     #s6 .s6-proto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;min-height:0}
 
-    /* ── Flashcard shell ── */
-    #s6 .proto-col{border-radius:8px;border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.32),0 14px 44px rgba(0,0,0,.44)}
-    #s6 .proto-col:nth-child(1){background:rgba(22,163,74,.10);border-color:rgba(22,163,74,.22)}
-    #s6 .proto-col:nth-child(2){background:rgba(217,119,6,.10);border-color:rgba(217,119,6,.22)}
-    #s6 .proto-col:nth-child(3){background:rgba(37,99,235,.10);border-color:rgba(37,99,235,.22)}
-    #s6 .proto-col.blind{background:#0D1B30;border-color:rgba(59,130,246,.18)}
+    /* ── Flashcard A — mørke kort, pillarfarve som accent ── */
+    #s6 .proto-col{border-radius:8px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.45),0 16px 48px rgba(0,0,0,.55)}
+    #s6 .proto-col:nth-child(1){background:#0C1E12;border:1px solid rgba(34,197,94,.18);border-top:3px solid #22C55E}
+    #s6 .proto-col:nth-child(2){background:#1D1100;border:1px solid rgba(245,158,11,.18);border-top:3px solid #F59E0B}
+    #s6 .proto-col:nth-child(3){background:#091524;border:1px solid rgba(96,165,250,.18);border-top:3px solid #60A5FA}
+    #s6 .proto-col.blind{background:#0D1B30;border:1px solid rgba(147,197,253,.18);border-top:3px solid #93C5FD}
 
-    /* ── Flashcard header zone ── */
+    /* ── Header zone ── */
     #s6 .proto-head{padding:22px 22px 18px;flex-shrink:0}
-    #s6 .proto-col:nth-child(1) .proto-head{background:rgba(22,163,74,.24);border-bottom:1px solid rgba(22,163,74,.2)}
-    #s6 .proto-col:nth-child(2) .proto-head{background:rgba(217,119,6,.24);border-bottom:1px solid rgba(217,119,6,.2)}
-    #s6 .proto-col:nth-child(3) .proto-head{background:rgba(37,99,235,.24);border-bottom:1px solid rgba(37,99,235,.2)}
-    #s6 .proto-col.blind .proto-head{background:rgba(15,30,65,.55);border-bottom:1px solid rgba(59,130,246,.12)}
+    #s6 .proto-col:nth-child(1) .proto-head{background:rgba(34,197,94,.07);border-bottom:1px solid rgba(34,197,94,.14)}
+    #s6 .proto-col:nth-child(2) .proto-head{background:rgba(245,158,11,.07);border-bottom:1px solid rgba(245,158,11,.14)}
+    #s6 .proto-col:nth-child(3) .proto-head{background:rgba(96,165,250,.07);border-bottom:1px solid rgba(96,165,250,.14)}
+    #s6 .proto-col.blind .proto-head{background:rgba(147,197,253,.05);border-bottom:1px solid rgba(147,197,253,.1)}
 
     /* ── Pillar label ── */
     #s6 .proto-tag{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
     #s6 .proto-tag::before{content:'';width:12px;height:1px;background:currentColor;opacity:.7;flex-shrink:0}
-    #s6 .proto-tag.u{color:#4ADE80}
-    #s6 .proto-tag.c{color:#FCD34D}
-    #s6 .proto-tag.i{color:#93C5FD}
-    #s6 .proto-col.blind .proto-tag{color:rgba(147,197,253,.65)}
+    #s6 .proto-tag.u{color:#22C55E}
+    #s6 .proto-tag.c{color:#F59E0B}
+    #s6 .proto-tag.i{color:#60A5FA}
+    #s6 .proto-col.blind .proto-tag{color:#93C5FD}
 
-    /* ── Card title — the flashcard face ── */
-    #s6 .proto-title{font-family:var(--serif);font-size:24px;font-weight:700;color:#FAFAF8;line-height:1.1;margin-bottom:10px;letter-spacing:-.015em}
+    /* ── Card title ── */
+    #s6 .proto-title{font-family:var(--serif);font-size:26px;font-weight:700;color:#FAFAF8;line-height:1.08;margin-bottom:10px;letter-spacing:-.018em}
 
     /* ── Subtitle ── */
-    #s6 .proto-sub{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.52);line-height:1.5;margin:0}
-    #s6 .proto-col.blind .proto-sub{color:rgba(147,197,253,.5)}
+    #s6 .proto-sub{font-family:var(--sans);font-size:11.5px;color:rgba(250,250,248,.58);line-height:1.5;margin:0}
 
     /* ── Card body zone ── */
     #s6 .proto-body{flex:1;display:flex;flex-direction:column;padding:14px 22px 16px;min-height:0}
     #s6 .proto-list{flex:1;display:flex;flex-direction:column;gap:0;min-height:0}
-    #s6 .proto-item{display:flex;gap:11px;align-items:flex-start;padding:8px 0;border-top:1px solid rgba(255,255,255,.065)}
+    #s6 .proto-item{display:flex;gap:11px;align-items:flex-start;padding:8px 0;border-top:1px solid rgba(255,255,255,.07)}
     #s6 .proto-item:first-child{border-top:none;padding-top:2px}
     #s6 .proto-n{font-family:var(--mono);font-size:8.5px;font-weight:700;flex-shrink:0;width:14px;padding-top:3px;line-height:1.4}
-    #s6 .proto-col:nth-child(1) .proto-n{color:rgba(74,222,128,.5)}
-    #s6 .proto-col:nth-child(2) .proto-n{color:rgba(252,211,77,.5)}
-    #s6 .proto-col:nth-child(3) .proto-n{color:rgba(147,197,253,.5)}
-    #s6 .proto-col.blind .proto-n{color:rgba(147,197,253,.4)}
-    #s6 .proto-t{font-family:var(--sans);font-size:11.5px;color:rgba(250,250,248,.76);line-height:1.4}
-    #s6 .proto-t strong{display:block;font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,181,253,.72);margin-bottom:2px}
-    #s6 .proto-col.blind .proto-t{color:rgba(250,250,248,.72)}
-    #s6 .proto-col.blind .proto-t strong{color:rgba(147,197,253,.72)}
+    #s6 .proto-col:nth-child(1) .proto-n{color:rgba(34,197,94,.6)}
+    #s6 .proto-col:nth-child(2) .proto-n{color:rgba(245,158,11,.6)}
+    #s6 .proto-col:nth-child(3) .proto-n{color:rgba(96,165,250,.6)}
+    #s6 .proto-col.blind .proto-n{color:rgba(147,197,253,.55)}
+    #s6 .proto-t{font-family:var(--sans);font-size:12px;color:rgba(250,250,248,.82);line-height:1.42}
+    #s6 .proto-t strong{display:block;font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px}
+    #s6 .proto-col:nth-child(1) .proto-t strong{color:rgba(34,197,94,.7)}
+    #s6 .proto-col:nth-child(2) .proto-t strong{color:rgba(245,158,11,.7)}
+    #s6 .proto-col:nth-child(3) .proto-t strong{color:rgba(96,165,250,.7)}
+    #s6 .proto-col.blind .proto-t strong{color:rgba(147,197,253,.7)}
 
-    /* ── Grundregel — pinned bottom ── */
-    #s6 .proto-rule{margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);flex-shrink:0}
-    #s6 .proto-rule p{font-family:var(--sans);font-size:10px;line-height:1.4;color:rgba(250,250,248,.38);font-style:italic}
-    #s6 .proto-col.blind .proto-rule p{color:rgba(147,197,253,.4)}
+    /* ── Grundregel ── */
+    #s6 .proto-rule{margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,.07);flex-shrink:0}
+    #s6 .proto-rule p{font-family:var(--sans);font-size:10px;line-height:1.4;color:rgba(250,250,248,.32);font-style:italic}
   </style>
   <div class="s6-wrap-v3">
     <div class="s6-proto-head">
