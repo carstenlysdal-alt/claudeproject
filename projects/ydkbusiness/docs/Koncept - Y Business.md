@@ -13,7 +13,7 @@ Y Business er ikke endnu et erhvervsmedie.
 Y Business er en AI-drevet erhvervsintelligensplatform for danske virksomheder
 med 5-250 ansatte. Platformen kombinerer originalt redaktionelt indhold,
 AI-drevet markedsovervågning, branchetrends, on-demand briefs og
-signal-baseret leadgenerering i ét abonnement til 5.000 kr./år.
+signal-baseret leadgenerering i ét abonnement til 7.500 kr./år.
 
 Y Business erstatter det kludetæppe af separate tjenester — Finans.dk,
 Retriever, LinkedIn-overvågning, branchenyhedsbreve, konsulentrapporter —
@@ -24,6 +24,24 @@ journalistik, overvågning, AI og kildekritik samlet i ét arbejdsredskab.
 
 **Y Business skal være den videnskoordinator, danske virksomheder ikke har
 råd til at ansætte — og den redaktør, algoritmen aldrig bliver.**
+
+Første spydspids er Business AI: ikke som modelnavne og hype, men som
+konkret forandring i virksomheder. Nye arbejdsgange, nye beslutninger,
+nye risici, nye kompetencekrav og nye magtforhold mellem ledelse,
+medarbejdere, kunder og leverandører.
+
+### Value proposition
+
+For SMV-ejere og erhvervsledere i Danmark, der bruger tid og penge på at sy
+et kludetæppe af separate tjenester sammen, er Y Business en AI-drevet
+erhvervsintelligensplatform, der leverer nyheder, markedsovervågning, trends,
+B2B-briefs og leadgenerering i ét abonnement til 7.500 kr./år.
+
+I modsætning til Finans.dk og Retriever/Meltwater kombineret (20.000–55.000+ kr./år)
+leverer Y Business AI-produceret, redaktionelt verificeret intelligence fra
+5.000 kilder — samlet på én platform til under en femtedel af prisen.
+
+Konkurrenterne løser delopgaver. Y Business samler beslutningslaget.
 
 Platformen skal hver dag hjælpe læseren med tre ting:
 
@@ -166,15 +184,22 @@ SMV-ejere, C-level i mellemstore virksomheder, iværksættere,
 kommunikations- og marketingfolk, investorer og rådgivere,
 medarbejdere i større virksomheder.
 
-**Fem bærende formater** giver platformen rytme og genkendelse:
-Morgenbriefet, Det betyder det for din virksomhed, Den blinde vinkel,
-Casen der virker, Signalradaren.
+**Syv bærende formater** giver platformen rytme og genkendelse:
 
-**Tre skalerbare specialformater** kører situationsbestemt fra launch:
+Morgenbriefet · Det betyder det for din virksomhed · Den blinde vinkel ·
+Casen der virker · Signalradaren · Klummerne · B2B-Briefs.
+
+Tre situationsbestemte specialformater kører fra launch:
 Myten om, Før mødet, Før handlen.
 
-Tre faste klummer bærer stemme og autoritet — det eneste format
-der ikke kan produceres af AI.
+**Fem klummegenrer** bærer stemme og autoritet — det eneste format
+AI ikke kan producere:
+
+I · Udefra og ind (geopolitik og EU oversat til dansk erhvervsliv) ·
+II · AI i maskinrummet (adoption, governance, implementering) ·
+III · Markedets maskinrum (kapital, makro, investorperspektiv) ·
+IV · Modspørgsmålet (den kvalificerede uenighed) ·
+V · Det lærte vi (founders, praktikere, maskinrumserfaring).
 
 Intern dogme: AI overvåger markedet. Journalisterne afgør,
 hvad der betyder noget.
@@ -186,27 +211,36 @@ Formater, klummer og kildemodel: *Koncept — Indholdsformater.md*
 
 ## 6. Den kommercielle model
 
-### Abonnementspris og målsætning år 1
+### Abonnementspris og revenue-scenarier
 
-| Metrik | Mål |
-|---|---|
-| Abonnementspris | 5.000 DKK/år (500 DKK/md) |
-| Abonnentmål år 1 | 1.500 Business + 1.500 Private |
-| ARR ved Business-målopfyldelse | 7,5M DKK |
+| Scenario | Forudsætning | ARR |
+|---|---|---|
+| Konceptmodel | 1.500 Business × 5.000 kr./år (årsmodel) | 7,5M DKK |
+| Baseline | 1.500 Business × 500 kr./md run-rate | 9M DKK |
+| Upside | Opgradering til Erhverv+ og Premium + tilkøb | 11–14M DKK |
+
+Baseline er det primære styringsmål år 1. Upside forudsætter valideret
+seat-model og aftales ikke inden features spec v1.0.
 
 ### Tier-struktur
 
 | Tier | Indhold | Pris |
 |---|---|---|
-| Erhverv | Nyhedsfeed + morgenbrief (tekst) | 50 DKK/md |
-| Erhverv+ | Alle seks lag inkl. lyd, community og leadgenerering | 500 DKK/md / 5.000 DKK/år |
-| Premium | Erhverv+ inkl. reklamefri adgang, udvidet artikel-deling og marketingværdi | Afklares |
+| Erhverv | Nyhedsfeed + morgenbrief (tekst) | 500 DKK/md |
+| Erhverv+ | Alle lag inkl. lyd, teamadgang og leadgenerering | 7.500 DKK/år (intro: 5.000 kr. år 1) |
+| Premium | Erhverv+ inkl. reklamefri adgang, udvidet deling og marketingværdi | 12.500 DKK/år (intro: 9.500 kr. år 1) |
 
-Abonnementet er inden for bagatelgrænsen (7.600 DKK/år) og dermed
-et skattefrit personalegode for modtageren — fradragsberettiget for
-virksomheden. Årsabonnenter får 5.000 DKK i platformsannoncering
-inkluderet: abonnementet er reelt omkostningsneutralt for virksomheder
-der ønsker eksponering mod Y's erhvervslæsere.
+Erhverv+-abonnementet (7.500 kr./år) er under bagatelgrænsen (7.600 DKK/år)
+og dermed skattefrit personalegode for modtageren — fradragsberettiget for
+virksomheden.
+
+Kampagne ved launch (deadline 20. november 2026): Erhverv 3 måneder gratis
+ved tegning. Erhverv+ og Premium til intropriser første år.
+
+### Sekundære indtægtsstrømme
+
+- Partner: 25–75.000 kr./år — events, brancheindblik, synlighed
+- API: 100–250.000 kr./år — enterprise nyhedsfeeds, alerts, CRM-integration
 
 ### Konkurrentpositionering
 
@@ -217,17 +251,13 @@ der ønsker eksponering mod Y's erhvervslæsere.
 | Retriever | 15.000–50.000+ | Overvågning uden redaktionel dækning |
 | Meltwater | 50.000–140.000+ | Enterprise-prissat, ingen nyheder |
 | Finans.dk + Retriever kombineret | 20.000–55.000+ | To siloer, ingen syntese |
-| **Y Business** | **5.000** | **Nyheder + overvågning + trends + briefs + leads i ét** |
+| **Y Business** | **7.500** | **Nyheder + overvågning + trends + briefs + leads i ét** |
 
 Y Business konkurrerer ikke primært med andre erhvervsmedier.
 Produktet ejer en kategori der i dag er ubesat for SMV-segmentet.
 
-### Sekundære indtægtsstrømme
-
-- Sektorsponsorat: dedikerede Erhverv+-sektioner (AI & tech, C-level intelligence)
-  med potentiale for brancheorganisationer som redaktionelle medejere
-- Platformsannoncering inkluderet i årsabonnement
-- B2B-salg mod mellemstore virksomheder fra Q1 2027
+Business genererer 10× mere revenue per abonnent end Private.
+Private er platform-driveren — Business er omsætningen.
 
 ---
 
@@ -292,12 +322,13 @@ Fuldt roadmap: *Produkt — Roadmap.md*
 
 Morgenbriefet skaber vanen.
 Det betyder det for din virksomhed skaber nytten.
+Signalradaren skaber forspringet.
 Den blinde vinkel skaber kanten.
 Casen der virker skaber handlekraften.
-Signalradaren skaber forspringet.
-Hyperpersonalisering skaber relevansen.
+B2B-Briefet skaber beslutningsgrundlaget.
 Klummerne skaber stemmen.
-Kommentatorerne skaber autoriteten.
+Business AI er spydspidsen.
+Hyperpersonalisering skaber relevansen.
 Kilderne skaber troværdigheden.
 AI skaber skalaen.
 Redaktionen skaber dømmekraften.
