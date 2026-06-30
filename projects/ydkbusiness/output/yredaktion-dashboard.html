@@ -1888,9 +1888,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       +'<div class="s4-grund" style="background:'+f.tint+'0.08)">'
         +'<div class="s4-grund-lbl" style="color:'+f.color+'">Grundregel</div>'
         +'<div class="s4-grund-txt">'+s.grundregel+'</div></div>';
-    if(s.type==='klumme') return '<div class="s4-quote">'+s.quote+'</div>'
-      +'<div class="s4-navngivet" style="color:'+f.color+'"><span>'+s.note+'</span></div>'
-      +'<div class="s4-lbl">Fem klummegenrer</div>'
+    if(s.type==='klumme') return '<div class="s4-lbl">Fem klummegenrer</div>'
       +'<div class="sv-genre-grid">'
       +s.cols.map(function(c,i){return '<div class="sv-genre-card" onclick="openStemmeModal('+i+')">'
         +'<div class="sv-genre-top">'
