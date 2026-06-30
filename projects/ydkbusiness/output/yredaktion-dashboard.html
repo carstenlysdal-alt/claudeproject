@@ -591,31 +591,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .s7-ai-box-row{position:relative;font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.78);line-height:1.35;margin-bottom:5px;padding-left:12px}
 .s7-ai-box-row::before{content:'';position:absolute;left:0;top:.58em;width:5px;height:1px;background:rgba(196,181,253,.42)}
 
-/* ── S7 NY OPERATIONEL MODEL ── */
-.s7-spor-grid{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.12);margin-bottom:18px;flex-shrink:0}
-.s7-spor{background:rgba(255,255,255,.04);display:flex;flex-direction:column}
-.s7-spor-top{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:5px 12px}
-.s7-spor-body{padding:8px 12px 10px;display:flex;flex-direction:column;gap:3px}
-.s7-spor-q{font-family:var(--sans);font-size:10.5px;font-weight:600;color:rgba(250,250,248,.9);line-height:1.3}
-.s7-spor-tags{font-family:var(--mono);font-size:8px;color:rgba(196,181,253,.4);letter-spacing:.03em}
-.s7-spor-eks{font-family:var(--serif);font-size:10px;font-style:italic;color:rgba(250,250,248,.45);line-height:1.4;margin-top:2px}
-.s7-wf-chain{display:flex;flex-direction:column;gap:0;margin-bottom:14px;position:relative}
-.s7-wf-chain::before{content:'';position:absolute;left:15px;top:18px;bottom:18px;width:1px;background:var(--line)}
-.s7-wf-step{display:flex;gap:12px;align-items:flex-start;padding:7px 0;position:relative}
-.s7-wf-step:not(:last-child){border-bottom:1px solid var(--line2)}
-.s7-wf-n{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);opacity:.5;width:30px;flex-shrink:0;padding-top:2px;text-align:center;background:var(--card);z-index:1}
-.s7-wf-content{flex:1;min-width:0}
-.s7-wf-title{font-family:var(--sans);font-size:11.5px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:2px}
-.s7-wf-desc{font-family:var(--sans);font-size:10.5px;color:var(--muted);line-height:1.45}
-.s7-wf-out{font-family:var(--mono);font-size:8px;color:var(--accent);opacity:.65;letter-spacing:.04em;margin-top:3px}
-.s7-req-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);margin-bottom:0}
-.s7-req-item{background:var(--card);padding:6px 10px;font-family:var(--sans);font-size:10.5px;color:var(--ink70);line-height:1.35}
-.s7-req-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-right:6px}
-.s7-score-grid{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.1);margin-bottom:16px}
-.s7-score-row{background:rgba(255,255,255,.04);display:grid;grid-template-columns:36px 1fr;gap:8px;align-items:baseline;padding:7px 10px;border-left:3px solid transparent}
-.s7-score-n{font-family:var(--mono);font-size:10px;font-weight:700;white-space:nowrap}
-.s7-score-txt{font-family:var(--sans);font-size:10.5px;color:rgba(250,250,248,.65);line-height:1.4}
-
 /* ── S4 PAYWALL BAND ── */
 .s4-paywall-band{display:flex;align-items:center;padding:0 14px;height:40px;background:var(--paper);flex-shrink:0;gap:0}
 .pwb-side{display:flex;align-items:center;gap:10px}
@@ -2766,152 +2741,86 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
 <div class="sec-body">
   <div class="s7-wrap">
 
-    <!-- ── VENSTRE: Definition + Tre spor ── -->
     <div class="s7-bai">
-      <div class="s7-bai-eyebrow">Business AI · Y Business' første spidskompetence</div>
-      <div class="s7-bai-hed">AI finder materialet. Mennesker kvalificerer det. Redaktionen afgør betydningen.</div>
-      <p class="s7-bai-sub">Vi dækker AI, når teknologien ændrer drift, ledelse, ansvar, arbejdsgange, kompetencer og konkurrencekraft. Ikke modelnavne, benchmarks eller leverandørprosa.</p>
-      <div class="s7-bai-lbl">Tre faste produktionsspor</div>
-      <div class="s7-spor-grid">
-        <div class="s7-spor">
-          <div class="s7-spor-top" style="background:#DC2626">Når AI går galt</div>
-          <div class="s7-spor-body">
-            <div class="s7-spor-q">Hvad skal jeg undgå?</div>
-            <div class="s7-spor-tags">fejl · friktion · skjulte omkostninger · manglende adoption · dårlige data</div>
-            <div class="s7-spor-eks">"Copilot sparede ikke tid — fordi ingen ændrede arbejdsgangen."</div>
-          </div>
-        </div>
-        <div class="s7-spor">
-          <div class="s7-spor-top" style="background:#16A34A">Hvad virker faktisk?</div>
-          <div class="s7-spor-body">
-            <div class="s7-spor-q">Hvad kan jeg kopiere?</div>
-            <div class="s7-spor-tags">dokumenteret effekt · smalle use cases · ROI · friktion · før/efter-data</div>
-            <div class="s7-spor-eks">"AI virker bedst, når opgaven er smal, gentagelig og målbar."</div>
-          </div>
-        </div>
-        <div class="s7-spor">
-          <div class="s7-spor-top" style="background:#2563EB">Sådan ændrer AI arbejdet</div>
-          <div class="s7-spor-body">
-            <div class="s7-spor-q">Hvad betyder det for mit team?</div>
-            <div class="s7-spor-tags">nye roller · ændret ansvar · junioropgaver · mellemledere · kompetencer</div>
-            <div class="s7-spor-eks">"Junior-krisen: Hvem lærer faget, når AI tager rutineopgaverne?"</div>
-          </div>
-        </div>
+      <div class="s7-bai-eyebrow">Business AI · Redaktionel linje</div>
+      <div class="s7-bai-hed">Y Business skal være stærk på Business AI.</div>
+      <p class="s7-bai-sub">Ikke AI som modelnavne, hype og teknologinyheder for deres egen skyld. Men AI som konkret forandring i virksomheder: nye arbejdsgange, nye beslutninger, nye risici, nye kompetencekrav og nye magtforhold mellem ledelse, medarbejdere, kunder og leverandører.</p>
+      <p class="s7-bai-sub">Vi bruger kun modelopdateringer, benchmarks og internationale udmeldinger, når de kan oversættes til dansk erhvervsvirkelighed.</p>
+      <div class="s7-bai-chain" aria-hidden="true">
+        <div class="s7-chain-step">Teknologi</div>
+        <div class="s7-chain-step">Arbejde</div>
+        <div class="s7-chain-step">Ansvar</div>
+        <div class="s7-chain-step">Risiko</div>
+        <div class="s7-chain-step">Beslutning</div>
+      </div>
+      <div class="s7-bai-questions">
+        <div class="s7-bai-question">Hvad ændrer det i en virksomhed?</div>
+        <div class="s7-bai-question">Hvem får et nyt ansvar?</div>
+        <div class="s7-bai-question">Hvilken risiko opstår?</div>
+        <div class="s7-bai-question">Hvilken beslutning bør en leder, ejer eller specialist tage alvorligt?</div>
       </div>
       <div class="s7-bai-keyq">Vi dækker ikke kun, hvad AI kan. Vi dækker, hvad AI kræver.</div>
     </div>
 
-    <!-- ── MIDTEN: Workflow + Minimumskrav ── -->
     <div class="s7-right">
-      <div class="s7-hed-r">Arbejdsmodellen — 6 trin</div>
-      <div class="s7-wf-chain">
-        <div class="s7-wf-step">
-          <div class="s7-wf-n">1</div>
-          <div class="s7-wf-content">
-            <div class="s7-wf-title">Overvåg</div>
-            <div class="s7-wf-desc">AI scanner: medier, LinkedIn, X, Substack, konsulenthuse, DI, forskningsmiljøer, EU-regulering, jobopslag, konferencer, leverandørlanceringer</div>
-            <div class="s7-wf-out">Output: 10–20 mulige signaler</div>
-          </div>
+      <div class="s7-hed-r">Metoden er journalistisk. Ikke teknologisk.</div>
+      <p class="s7-vp-body">Business AI-historier skal skrives med samme krav som alt andet Y Business-stof: konsekvens, kildekritik, dokumentation og konkret relevans. AI bliver hurtigt et spørgsmål om ledelse, drift, organisation, ansvar, data, kultur, compliance og forretningsmodel.</p>
+      <div class="s7-vp-list">
+        <div class="s7-vp-item">
+          <div class="s7-vp-lbl">Friktion</div>
+          <div class="s7-vp-txt"><strong>Hvor møder AI virkeligheden?</strong> Hvad går galt i implementeringen, og hvilke arbejdsgange, data eller beslutninger står i vejen?</div>
         </div>
-        <div class="s7-wf-step">
-          <div class="s7-wf-n">2</div>
-          <div class="s7-wf-content">
-            <div class="s7-wf-title">Sortér</div>
-            <div class="s7-wf-desc">Forretningskonsekvens? Dokumentation? Konkret arbejdsgang? Nogen der har prøvet det? Relevant for danske virksomheder?</div>
-            <div class="s7-wf-out">Output: 3–5 prioriterede spor</div>
-          </div>
+        <div class="s7-vp-item">
+          <div class="s7-vp-lbl">Ansvar</div>
+          <div class="s7-vp-txt"><strong>Hvem ejer beslutningen?</strong> Når AI bruges i drift, rådgivning, kundekontakt eller compliance, hvem hæfter så, når systemet tager fejl?</div>
         </div>
-        <div class="s7-wf-step">
-          <div class="s7-wf-n">3</div>
-          <div class="s7-wf-content">
-            <div class="s7-wf-title">Find menneskerne</div>
-            <div class="s7-wf-desc">Ikke kun eksperter — også praktikere: founders, jurister, HR-folk, SMV-ledere, kritikere, folk med konkret erfaring. Centralt: Hvem kan hjælpe os med at bedømme historien?</div>
-            <div class="s7-wf-out">Output: Et kildekort</div>
-          </div>
-        </div>
-        <div class="s7-wf-step">
-          <div class="s7-wf-n">4</div>
-          <div class="s7-wf-content">
-            <div class="s7-wf-title">Lav redaktionsoplæg</div>
-            <div class="s7-wf-desc">AI laver første oplæg: signal, baggrund, mulige kilder, modspørgsmål, cases, tre vinkler, forslag til rubrikker. AI afgør ikke historien.</div>
-            <div class="s7-wf-out">Output: Redaktionsoplæg på én side</div>
-          </div>
-        </div>
-        <div class="s7-wf-step">
-          <div class="s7-wf-n">5</div>
-          <div class="s7-wf-content">
-            <div class="s7-wf-title">Vurdér</div>
-            <div class="s7-wf-desc">Vigtigt? Sandt nok? Dokumenteret? Relevant for målgruppen? Hvad skal brugeren forstå, tvivle på eller gøre?</div>
-            <div class="s7-wf-out">Output: Publicér · Parkér · Kassér</div>
-          </div>
-        </div>
-        <div class="s7-wf-step">
-          <div class="s7-wf-n">6</div>
-          <div class="s7-wf-content">
-            <div class="s7-wf-title">Publicér</div>
-            <div class="s7-wf-desc">I ét af de tre faste spor. Historien svarer på: Hvad skal jeg forstå? Hvad skal jeg tvivle på? Hvad kan jeg gøre?</div>
-            <div class="s7-wf-out">Output: Publiceret Business AI-stof</div>
-          </div>
+        <div class="s7-vp-item">
+          <div class="s7-vp-lbl">Læring</div>
+          <div class="s7-vp-txt"><strong>Hvad kan andre bruge?</strong> Hvad kan kopieres, hvad kan ikke, og hvilke forudsætninger skal være på plads, før en løsning virker?</div>
         </div>
       </div>
-      <div class="s7-bai-lbl" style="color:var(--accent)">Minimumskrav — fire af fem skal bestås</div>
-      <div class="s7-req-grid">
-        <div class="s7-req-item"><span class="s7-req-lbl">Konsekvens</span>Hvad betyder det for en virksomhed?</div>
-        <div class="s7-req-item"><span class="s7-req-lbl">Dokumentation</span>Hvad bygger vi det på?</div>
-        <div class="s7-req-item"><span class="s7-req-lbl">Arbejdsgang</span>Hvilken proces, rolle eller funktion ændres?</div>
-        <div class="s7-req-item"><span class="s7-req-lbl">Kilde</span>Hvem kan kvalificere vurderingen?</div>
-        <div class="s7-req-item"><span class="s7-req-lbl">Handling</span>Hvad kan brugeren gøre med indsigten?</div>
-      </div>
+      <div class="s7-vp-myth"><strong>Fortællinger vi tester</strong> At AI automatisk sparer tid. At flere værktøjer giver mere værdi. At problemet primært ligger i teknologien. At uautoriseret medarbejderbrug kan løses med et forbud.</div>
     </div>
 
-    <!-- ── HØJRE: Scoring + AI må/ikke + Morgenbrief ── -->
     <div class="s7-protocol">
-      <div class="s7-proto-lbl">Scoring af Business AI-idéer</div>
-      <div class="s7-score-grid">
-        <div class="s7-score-row" style="border-left-color:#DC2626">
-          <div class="s7-score-n" style="color:#DC2626">0–2</div>
-          <div class="s7-score-txt">Drop. AI-nyhed uden konsekvens. Leverandørprosa. Modelnyhed uden virksomhedsværdi.</div>
-        </div>
-        <div class="s7-score-row" style="border-left-color:#D97706">
-          <div class="s7-score-n" style="color:#D97706">3–5</div>
-          <div class="s7-score-txt">Mulig kort nyhed. Relevans, men ikke nok dokumentation eller case.</div>
-        </div>
-        <div class="s7-score-row" style="border-left-color:#2563EB">
-          <div class="s7-score-n" style="color:#2563EB">6–8</div>
-          <div class="s7-score-txt">Stærk Business AI-historie. Konsekvens, kilde, arbejdsgang og læring.</div>
-        </div>
-        <div class="s7-score-row" style="border-left-color:#16A34A">
-          <div class="s7-score-n" style="color:#16A34A">9–10</div>
-          <div class="s7-score-txt">Topprioritet. Dokumenteret, konkret, handlingsskabende. Morgenbrief + case + ekspert.</div>
-        </div>
+      <div class="s7-proto-lbl">Redaktionel arbejdsmodel</div>
+      <div class="s7-proto-hed">AI giver skala. Redaktionen giver dømmekraft.</div>
+      <p class="s7-proto-sub">AI er vores radar og strukturmotor. Redaktionen afgør, hvad der betyder noget, hvad der kan dokumenteres, og hvad der er værd at publicere.</p>
+      <div class="s7-proto-item">
+        <div class="s7-proto-t"><strong>Ikke</strong> Ny AI-model lover hurtigere og billigere kundedialog.</div>
       </div>
-      <div class="s7-proto-lbl">AI må · AI må ikke</div>
-      <div class="s7-ai-box-grid" style="margin-bottom:14px">
-        <div>
-          <div class="s7-ai-box-lbl">AI må</div>
-          <div class="s7-ai-box-row">Overvåge og sortere signaler</div>
-          <div class="s7-ai-box-row">Foreslå vinkler og kildesæt</div>
-          <div class="s7-ai-box-row">Finde og kortlægge kilder</div>
-          <div class="s7-ai-box-row">Strukturere redaktionsoplæg</div>
-          <div class="s7-ai-box-row">Opsummere og foreslå spørgsmål</div>
-        </div>
-        <div>
-          <div class="s7-ai-box-lbl" style="color:#FCA5A5">AI må ikke</div>
-          <div class="s7-ai-box-row">Afgøre vinklen alene</div>
-          <div class="s7-ai-box-row">Erstatte kildekritik</div>
-          <div class="s7-ai-box-row">Publicere uden redaktion</div>
-          <div class="s7-ai-box-row">Konkludere uden dokumentation</div>
-          <div class="s7-ai-box-row">Kalde modstemme blind spot uden data</div>
-        </div>
+      <div class="s7-proto-item">
+        <div class="s7-proto-t"><strong>Men</strong> Når kundeservice automatiseres, flytter fejl, dokumentation og klageansvar tættere på ledelsen — og ændrer kravene til data, træning og kontrol.</div>
       </div>
-      <div class="s7-ai-box-lbl">Redaktionen ejer</div>
-      <div style="font-family:var(--mono);font-size:8.5px;color:rgba(250,250,248,.45);line-height:1.9;letter-spacing:.02em;margin-bottom:14px">prioritering · vinkling · kildekritik<br>dokumentation · konklusion · publicering · etik · ansvar</div>
+      <div class="s7-proto-item">
+        <div class="s7-proto-t"><strong>Ikke</strong> Copilot kan øge produktiviteten i danske virksomheder.</div>
+      </div>
+      <div class="s7-proto-item">
+        <div class="s7-proto-t"><strong>Men</strong> Gevinsten kommer først, når virksomheden ændrer mødekultur, adgangsstyring, kvalitetskontrol og hvem der har ansvar for outputtet.</div>
+      </div>
       <div class="s7-proto-rule">
-        <div class="s7-ai-box-lbl" style="margin-bottom:8px">Business AI i Morgenbriefet</div>
-        <div class="s7-proto-t"><strong>Signal</strong> Hvad sker der?</div>
-        <div class="s7-proto-t" style="margin-top:5px"><strong>Konsekvens</strong> Hvorfor betyder det noget?</div>
-        <div class="s7-proto-t" style="margin-top:5px"><strong>Spørgsmål</strong> Hvad bør virksomheden undersøge?</div>
-        <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(196,181,253,.15);font-family:var(--serif);font-size:10.5px;font-style:italic;color:rgba(196,181,253,.5);line-height:1.5">"AI-gevinsten kommer først, når arbejdet ændres — ikke kun softwaren."</div>
+        <p><strong>Grundregel:</strong> Ingen Business AI-historie uden forretningskonsekvens.</p>
+      </div>
+      <div class="s7-ai-box">
+        <div class="s7-ai-box-title">Hvad AI kan for os</div>
+        <div class="s7-ai-box-grid">
+          <div>
+            <div class="s7-ai-box-lbl">AI må</div>
+            <div class="s7-ai-box-row">Overvåge 5.000 kilder i realtid</div>
+            <div class="s7-ai-box-row">Finde mønstre og svage signaler</div>
+            <div class="s7-ai-box-row">Foreslå vinkler og kildesæt</div>
+            <div class="s7-ai-box-row">Strukturere udkast og briefs</div>
+            <div class="s7-ai-box-row">Personalisere efter branche, rolle og adfærd</div>
+          </div>
+          <div>
+            <div class="s7-ai-box-lbl">Redaktionen afgør</div>
+            <div class="s7-ai-box-row">Vinkel og prioritering</div>
+            <div class="s7-ai-box-row">Kildekritik og verificering</div>
+            <div class="s7-ai-box-row">Challenge-konklusionen</div>
+            <div class="s7-ai-box-row">Inspire med navngivne kilder</div>
+            <div class="s7-ai-box-row">Publicering og ansvar</div>
+          </div>
+        </div>
       </div>
     </div>
 
