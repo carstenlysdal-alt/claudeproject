@@ -1578,6 +1578,93 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
   #s4.screen.active .s4-content{animation:none!important}
 }
 
+/* STEMMELAG — Genre grid + stemme-katalog modal */
+.sv-genre-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);margin-bottom:14px;flex-shrink:0}
+.sv-genre-card{background:var(--card);display:flex;flex-direction:column;cursor:pointer;transition:background .16s ease;min-height:0}
+.sv-genre-card:hover{background:var(--tint)}
+.sv-genre-top{padding:11px 15px 9px;display:flex;flex-direction:column;gap:3px}
+.sv-genre-num{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.sv-genre-name{font-family:var(--serif);font-size:12px;font-weight:700;color:var(--ink);line-height:1.25;letter-spacing:-.01em}
+.sv-genre-sep{height:1px;background:var(--line)}
+.sv-genre-body{padding:8px 15px 11px;flex:1;display:flex;flex-direction:column;gap:5px}
+.sv-genre-func{font-family:var(--sans);font-size:10.5px;line-height:1.45;color:var(--ink70);flex:1}
+.sv-genre-footer{display:flex;align-items:center;justify-content:space-between;padding-top:6px;margin-top:auto}
+.sv-genre-count{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.sv-genre-arrow{font-size:12px;opacity:.55}
+.sv-open-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 15px;background:rgba(124,58,237,.07);
+  border:1px solid rgba(124,58,237,.22);border-radius:2px;
+  font-family:var(--mono);font-size:8px;font-weight:700;
+  color:#7C3AED;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;transition:background .15s;margin-bottom:14px;flex-shrink:0;
+}
+.sv-open-btn:hover{background:rgba(124,58,237,.13)}
+.sv-regel-box{
+  padding:10px 16px;background:rgba(124,58,237,.04);
+  border:1px solid rgba(124,58,237,.13);border-radius:2px;
+  flex-shrink:0;max-width:760px;margin-top:auto;
+}
+.sv-regel-lbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7C3AED;margin-bottom:3px;opacity:.75}
+.sv-regel-txt{font-family:var(--sans);font-size:11px;line-height:1.55;color:var(--ink70)}
+
+/* Stemme-katalog overlay */
+.sv-overlay{
+  position:fixed;inset:0;z-index:999999;
+  background:rgba(16,12,12,.6);
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.sv-overlay.sv-hidden{display:none}
+.sv-modal{
+  width:1120px;max-width:calc(100vw - 48px);height:82vh;
+  background:var(--card);display:flex;flex-direction:column;
+  box-shadow:0 24px 80px rgba(0,0,0,.22);
+  overflow:hidden;
+}
+.sv-head{background:var(--paper);border-bottom:1px solid var(--line);flex-shrink:0}
+.sv-head-top{display:flex;align-items:flex-start;justify-content:space-between;padding:18px 28px 10px}
+.sv-head-text{}
+.sv-head-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.015em;font-style:italic}
+.sv-head-sub{font-family:var(--mono);font-size:8.5px;font-weight:500;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.sv-head-close{
+  font-family:var(--mono);font-size:11px;cursor:pointer;
+  color:var(--muted);background:none;border:1px solid var(--line);
+  width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+  transition:color .15s;flex-shrink:0;
+}
+.sv-head-close:hover{color:var(--ink)}
+.sv-tabs{display:flex;gap:0;padding:0 20px;border-top:1px solid var(--line2)}
+.sv-tab{
+  font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:9px 14px;cursor:pointer;border:none;background:none;color:var(--muted);
+  position:relative;border-bottom:2px solid transparent;transition:color .15s;
+}
+.sv-tab.sv-tab-active{color:var(--ink)}
+.sv-tab::after{
+  content:'';position:absolute;bottom:-1px;left:14px;right:14px;
+  height:2px;transform:scaleX(0);transition:transform .2s ease;
+}
+.sv-tab.sv-tab-active::after{transform:scaleX(1)}
+.sv-body{flex:1;overflow-y:auto;padding:24px 28px 28px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+.sv-body::-webkit-scrollbar{width:4px}
+.sv-body::-webkit-scrollbar-track{background:transparent}
+.sv-body::-webkit-scrollbar-thumb{background:var(--line2);border-radius:2px}
+.sv-panel{display:none}
+.sv-panel.sv-panel-active{display:block}
+.sv-panel-head{margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.sv-panel-name{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em}
+.sv-panel-func{font-family:var(--sans);font-size:12px;line-height:1.5;color:var(--ink70);margin-bottom:5px}
+.sv-panel-bruges{font-family:var(--mono);font-size:8.5px;color:var(--muted);line-height:1.55;letter-spacing:.01em}
+.sv-cand-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line)}
+.sv-cand-item{background:var(--card);padding:13px 18px;display:flex;flex-direction:column;gap:2px}
+.sv-cand-name{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.2}
+.sv-cand-role{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.03em;margin-bottom:3px;line-height:1.35}
+.sv-cand-rel{font-family:var(--sans);font-size:10.5px;line-height:1.5;color:var(--ink70)}
+.sv-foot{flex-shrink:0;padding:13px 28px;background:var(--tint);border-top:1px solid var(--line)}
+.sv-foot-lbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7C3AED;margin-bottom:3px;opacity:.75}
+.sv-foot-txt{font-family:var(--sans);font-size:10.5px;line-height:1.5;color:var(--ink70);max-width:820px}
+
 </style>
 <div class="bg-grid"></div>
 <header class="dash-header">
@@ -1727,71 +1814,42 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
       q:'"Den personlige vurdering, erfaringen og ansvaret — med navn under."',
       desc:'Et menneske med navn under. Faste skribenter med ansvar for vinklen — om Business AI, forandring og erhvervsledelse. Klummerne skal ikke spejle redaktionen, men udfordre den: erfaring, dømmekraft og noget på spil.',
       insight:'Det er det format, du husker. Og grunden til, at du kommer tilbage. Skribentprofilen er afgørende: praktikere og analytikere med troværdighed i krydsfeltet mellem AI, organisation og forretning — ikke tech-evangelister uden jordforbindelse.',
-      promise:['Sæt navn på vurderingen','Udfordr den nemme fortælling','Brug erfaring som belæg','Gør konsekvensen personlig'],
+      promise:null,
       job:{a:'Forstå',b:'Hvad bør ligge på ledermødet?',c:'Tvivle',d:'Hvad mangler i konsensus?',e:'Handle',f:'Hvad ville en erfaren praktiker gøre?'},
       regel:null,struktur:null,
       segmenter:'C-level · SMV-ejere · Rådgivere · Iværksættere',
       kanaler:'Tekst · Lyd · Eventuelt video',
       kernegreb:null,eksempler:null,emner:null,
-      sources:'AI-praktikere, teknologiledere, founders og egne baggrundsanalyser.',
-      candidates:[
-        {name:'Elisabeth Braw',role:'Sikkerheds- og resilience-analytiker',type:'I'},
-        {name:'Rasmus Sinding Søndergaard',role:'Udenrigs- og USA-analytiker',type:'I'},
-        {name:'Ulrike Franke',role:'Europæisk sikkerhedsanalytiker',type:'I'},
-        {name:'Nanna Inie',role:'AI-forsker, menneskecentrisk AI',type:'II'},
-        {name:'Pernille Tranberg',role:'Dataetik og digital selvbestemmelse',type:'II'},
-        {name:'Christiane Vejlø',role:'Teknologi, digital kultur og AI',type:'II'},
-        {name:'Thomas Bolander',role:'Professor, DTU — AI og samfund',type:'II'},
-        {name:'Henrik Fabrin',role:'Head of AI, DI',type:'II'},
-        {name:'Line Clemmensen',role:'Professor, DTU — AI og sprog',type:'II'},
-        {name:'Andreas Steno Larsen',role:'Makro og markedsfortolkning',type:'III'},
-        {name:'Per Hansen',role:'Nordnet, investeringsformidling',type:'III'},
-        {name:'Jan Damsgaard',role:'Professor, CBS — digitale markeder',type:'III'},
-        {name:'Morten Saxnæs',role:'Strategy consultant',type:'III'},
-        {name:'Astrid Haug',role:'Digital kommunikation og AI',type:'IV'},
-        {name:'Jonas Herby',role:'Regulering, frihed og data',type:'IV'},
-        {name:'Christian Bjørnskov',role:'Økonom, institutioner og tillid',type:'IV'},
-        {name:'Thomas Telving',role:'Forfatter og analytiker',type:'IV'},
-        {name:'Mads Lundby Hansen',role:'Skat, velfærd og regulering',type:'IV'},
-        {name:'Camilla Ley Valentin',role:'Queue-it-founder, dansk SaaS',type:'V'},
-        {name:'Kasper Junge',role:'Lead AI Engineer, Dinero',type:'V'},
-        {name:'Anna Katrine Strandhave',role:'Partner, Vertica',type:'V'},
-        {name:'Rasmus Rothe',role:'Applied AI, europæisk AI-startup',type:'V'},
-        {name:'Tey Bannerman',role:'AI-rådgiver, ex-McKinsey',type:'V'},
-      ],
+      sources:'Praktikere, founders, analytikere og specialister med dokumenteret erfaring i krydsfeltet mellem AI, forretning og erhvervsliv.',
+      candidates:null,
       special:{type:'klumme',
         quote:'"AI kan opsummere. Den kan ikke have noget på spil."',
         note:'Navngivet ophav — aldrig AI',
         cols:[
           {
-            n:'I · Udefra og ind',
-            txt:'Globale signaler, EU og geopolitik oversat til dansk erhvervsliv — forsyningskæder, sikkerhed, energi, tech-regulering.',
-            profil:'Sikkerheds- og udenrigspolitisk analytiker med erhvervsforankring. Kandidater: Elisabeth Braw, Ulrike Franke, Rasmus Sinding Søndergaard.',
+            n:'I',name:'Udefra og ind',color:'#0369A1',count:12,
+            func:'Globale signaler oversat til dansk erhvervsliv.',
             eks:'"Forsyningskæden er geopolitik nu" — "Hvad AI Act faktisk koster din virksomhed"',
           },
           {
-            n:'II · AI i maskinrummet',
-            txt:'AI, når det møder rigtige arbejdsgange — governance, adoption, HR, jura og implementering. Hvad virker faktisk?',
-            profil:'AI-forsker, dataetiker eller faglig formidler med praktisk jordforbindelse. Kandidater: Nanna Inie, Pernille Tranberg, Christiane Vejlø, Thomas Bolander, Henrik Fabrin.',
+            n:'II',name:'AI i maskinrummet',color:'#7C3AED',count:15,
+            func:'AI, når det møder rigtige arbejdsgange.',
             eks:'"Tillid er et teknisk problem" — "Hvem ejer AI-output i din kontrakt?"',
           },
           {
-            n:'III · Markedets maskinrum',
-            txt:'Kapital, kunder og regulering bag markedets bevægelser — hvad investorerne ser, inden virksomhederne gør det.',
-            profil:'Makroøkonom, markedsanalytiker eller kapitalformidler med dansk erhvervsrelevans. Kandidater: Andreas Steno Larsen, Per Hansen, Jan Damsgaard.',
-            eks:'"Renten ændrer ikke markedet. Den ændrer din kreditvurdering" — "Her er fundingvinduet åbent nu"',
+            n:'III',name:'Markedets maskinrum',color:'#D97706',count:15,
+            func:'Kapital, kunder og regulering bag markedets bevægelser.',
+            eks:'"Renten ændrer ikke markedet. Den ændrer din kreditvurdering"',
           },
           {
-            n:'IV · Modspørgsmålet',
-            txt:'Den kvalificerede uenighed — ikke polemik, men det spørgsmål der afslører en blind vinkel.',
-            profil:'Uafhængig økonom, analytiker eller journalist med kildekritisk tyngde. Kandidater: Astrid Haug, Jonas Herby, Christian Bjørnskov, Thomas Telving, Mads Lundby Hansen.',
-            eks:'"AI sparer tid — men hvem betaler koordineringsomkostningerne?" — "Regulering skaber tryghed. Hvem får byrden?"',
+            n:'IV',name:'Modspørgsmålet',color:'#DC2626',count:14,
+            func:'Den kvalificerede uenighed — det spørgsmål der afslører en blind vinkel.',
+            eks:'"AI sparer tid — men hvem betaler koordineringsomkostningerne?"',
           },
           {
-            n:'V · Det lærte vi',
-            txt:'Case med skribent og friktion — hvad besluttede jeg, hvad kostede det, og hvad kan du bruge?',
-            profil:'Praktiker med personlig skriverstemme — founder, teknologileder eller AI-implementer. Kandidater: Camilla Ley Valentin, Kasper Junge, Anna Katrine Strandhave, Rasmus Rothe, Tey Bannerman.',
-            eks:'"Vi fejlede tre gange med AI. Her er, hvad der til sidst virkede" — "Jeg solgte internationalt. Her er, hvad der overraskede mig"',
+            n:'V',name:'Det lærte vi',color:'#16A34A',count:20,
+            func:'Praktikere med erfaring, friktion og noget på spil.',
+            eks:'"Vi fejlede tre gange med AI. Her er, hvad der til sidst virkede"',
           },
         ],
       },
@@ -1832,13 +1890,29 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
         +'<div class="s4-grund-txt">'+s.grundregel+'</div></div>';
     if(s.type==='klumme') return '<div class="s4-quote">'+s.quote+'</div>'
       +'<div class="s4-navngivet" style="color:'+f.color+'"><span>'+s.note+'</span></div>'
-      +'<div class="s4-lbl">Fem klummegenrer</div><div class="s4-cols">'
-      +s.cols.map(function(c){return '<div class="s4-col" style="background:'+bg+';flex-direction:column;align-items:flex-start;gap:4px;padding:10px 13px">'
-        +'<span class="s4-col-n" style="color:'+f.color+';font-size:8.5px">'+c.n+'</span>'
-        +'<span class="s4-col-txt">'+c.txt+'</span>'
-        +(c.profil?'<span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);line-height:1.45;padding-top:5px;border-top:1px solid rgba(0,0,0,.06)">'+c.profil+'</span>':'')
-        +(c.eks?'<span style="font-family:var(--serif);font-size:10.5px;font-style:italic;color:var(--muted);line-height:1.4;opacity:.8">'+c.eks+'</span>':'')
-        +'</div>';}).join('')+'</div>';
+      +'<div class="s4-lbl">Fem klummegenrer</div>'
+      +'<div class="sv-genre-grid">'
+      +s.cols.map(function(c,i){return '<div class="sv-genre-card" onclick="openStemmeModal('+i+')">'
+        +'<div class="sv-genre-top">'
+          +'<div class="sv-genre-num" style="color:'+c.color+'">'+c.n+'</div>'
+          +'<div class="sv-genre-name">'+c.name+'</div>'
+        +'</div>'
+        +'<div class="sv-genre-sep"></div>'
+        +'<div class="sv-genre-body">'
+          +'<div class="sv-genre-func">'+c.func+'</div>'
+          +(c.eks?'<div style="font-family:var(--serif);font-size:9.5px;font-style:italic;color:var(--muted);line-height:1.4;flex:1">'+c.eks+'</div>':'')
+          +'<div class="sv-genre-footer">'
+            +'<span class="sv-genre-count" style="color:'+c.color+'">'+c.count+' stemmer</span>'
+            +'<span class="sv-genre-arrow" style="color:'+c.color+'">↗</span>'
+          +'</div>'
+        +'</div>'
+        +'</div>';}).join('')
+      +'</div>'
+      +'<button class="sv-open-btn" onclick="openStemmeModal(0)">Se stemmekataloget ↗</button>'
+      +'<div class="sv-regel-box">'
+        +'<div class="sv-regel-lbl">Redaktionel regel</div>'
+        +'<div class="sv-regel-txt">Ingen stemme uden funktion. En stemme skal ikke med, fordi personen er kendt — men fordi personen kan hjælpe Y Business med at forklare, teste, udfordre eller konkretisere en udvikling, som betyder noget for virksomheder.</div>'
+      +'</div>';
     return '';
   }
 
@@ -1865,23 +1939,9 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
     var slide=document.createElement('div');
     slide.className='s4-slide'+(i===activeIdx?' active':'');
-    var candidatesHtml=f.candidates?'<div class="s4-candidates">'
-      +'<div class="s4-cand-lbl">Potentielle skribenter</div>'
-      +f.candidates.map(function(c){
-        var typeColor=c.type==='I'?'#0369A1':c.type==='II'?'#7C3AED':c.type==='III'?'#D97706':c.type==='IV'?'#DC2626':'#16A34A';
-        return '<div class="s4-cand-item">'
-          +'<div class="s4-cand-name">'+c.name+'</div>'
-          +'<div class="s4-cand-role">'+c.role+'</div>'
-          +'<div class="s4-cand-type" style="color:'+typeColor+'">Genre '+c.type+'</div>'
-          +'</div>';}).join('')
-      +'</div>':'';
     slide.innerHTML=
       (f.lead?'<div class="s4-lead" style="color:'+f.color+'">'+f.lead+'</div>':'')
-      +(f.candidates
-        ?'<div class="s4-slide-top"><div class="s4-slide-top-main"><div class="s4-q">'+f.q+'</div>'
-          +(f.desc?'<div class="s4-desc">'+f.desc+'</div>':'')
-          +'</div>'+candidatesHtml+'</div>'
-        :'<div class="s4-q">'+f.q+'</div>'+(f.desc?'<div class="s4-desc">'+f.desc+'</div>':''))
+      +'<div class="s4-q">'+f.q+'</div>'+(f.desc?'<div class="s4-desc">'+f.desc+'</div>':'')
       +(f.promise?'<div class="s4-promise-chain">'
         +f.promise.map(function(p){return '<div class="s4-promise-step" style="color:'+f.color+'">'+p+'</div>';}).join('')
       +'</div>':'')
@@ -1934,6 +1994,173 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 function togglePromptModal(){
   document.getElementById('s8PromptModal').classList.toggle('open');
 }
+
+// ── STEMME-KATALOG ─────────────────────────────────────────
+var stemmeKatalog=[
+  {id:'I',name:'Udefra og ind',color:'#0369A1',
+   funktion:'Globale signaler oversat til dansk erhvervsliv.',
+   brugesTil:'Geopolitik, EU, forsyningskæder, sikkerhed, energi, tech-regulering, Kina/USA, europæisk konkurrenceevne og global markedsrisiko.',
+   kandidater:[
+    {name:'Elisabeth Braw',rolle:'Sikkerheds- og resilience-analytiker',relevant:'Hybridtrusler, totalforsvar, forsyningskæder og virksomheders sårbarhed i en mere usikker verden.'},
+    {name:'Ulrike Franke',rolle:'Europæisk sikkerhedsanalytiker',relevant:'Droner, AI, forsvar og teknologi — bro mellem geopolitik og europæisk konkurrenceevne.'},
+    {name:'Velina Tchakarova',rolle:'Geopolitisk strateg og international risikoanalytiker',relevant:'Rusland, Kina, energisikkerhed og systemisk geopolitisk risiko.'},
+    {name:'Marietje Schaake',rolle:'Teknologipolitisk ekspert og tidligere EU-parlamentariker',relevant:'AI-governance, EU-regulering, Big Tech-magt og digitalt demokrati.'},
+    {name:'Luuk van Middelaar',rolle:'EU-politisk tænker og forfatter',relevant:'Europas strategiske handlekraft, institutioner og kriser.'},
+    {name:'Agathe Demarais',rolle:'Geoeconomics- og sanktionsanalytiker',relevant:'Økonomisk krigsførelse, handel, sanktioner og global markedsrisiko.'},
+    {name:'Sophia Besch',rolle:'Europæisk sikkerheds- og forsvarsanalytiker',relevant:'Forsvarsindustri, strategisk autonomi og Europas sikkerhedspolitiske omstilling.'},
+    {name:'Louise van Schaik',rolle:'Ekspert i EU, klima, sikkerhed og global governance',relevant:'Krydsfeltet mellem klima, energi, sikkerhed og regulering.'},
+    {name:'Kristine Berzina',rolle:'Nordisk/baltisk sikkerheds- og transatlantisk analytiker',relevant:'Østersøen, NATO, europæisk strategi og nordisk sikkerhed.'},
+    {name:'Jacob Funk Kirkegaard',rolle:'Dansk økonom med international profil',relevant:'Makroøkonomi, transatlantiske relationer og Europas konkurrenceevne.'},
+    {name:'Rasmus Sinding Søndergaard',rolle:'Dansk USA- og udenrigspolitisk analytiker',relevant:'Amerikansk politik, handel, sikkerhed og konsekvenser for danske virksomheder.'},
+    {name:'Flemming Splidsboel Hansen',rolle:'Seniorforsker og Rusland-/sikkerhedsekspert',relevant:'Rusland, sikkerhedspolitik og geopolitisk risiko.'},
+  ]},
+  {id:'II',name:'AI i maskinrummet',color:'#7C3AED',
+   funktion:'AI, når det møder rigtige arbejdsgange.',
+   brugesTil:'AI i arbejdet, AI Act, governance, workflow, ledelse, produktivitet, HR, økonomi, jura, compliance og implementering.',
+   kandidater:[
+    {name:'Nanna Inie',rolle:'AI-forsker, menneskecentrisk og participatory AI',relevant:'AI i arbejdet, adoption, kreativitet og menneskers rolle i teknologiforandring.'},
+    {name:'Isabelle Augenstein',rolle:'Professor i Natural Language Processing, KU',relevant:'Sprogmodeller, bias, fact-checking, troværdighed og AI-kvalitet.'},
+    {name:'Thomas Bolander',rolle:'Professor i kunstig intelligens, DTU',relevant:'AI-forståelse, samfundseffekter, etik og governance.'},
+    {name:'Pernille Tranberg',rolle:'Dataetiker og ekspert i ansvarlig teknologi',relevant:'Dataansvar, compliance, digital selvbestemmelse og tillid i virksomheder.'},
+    {name:'Christiane Vejlø',rolle:'Teknologiformidler og digital trendanalytiker',relevant:'AI, digital kultur, ledelse, samfund og forandring.'},
+    {name:'Sofie Hvitved',rolle:'Fremtidsforsker — teknologi og fremtidens arbejde',relevant:'AI-adoption, arbejdsliv, kompetencer og ledelsesforandring.'},
+    {name:'Morten Goodwin',rolle:'Norsk AI-professor og -formidler',relevant:'Praktisk AI-forståelse, anvendelse og samfundseffekt.'},
+    {name:'Inga Strümke',rolle:'Norsk AI-forsker og formidler',relevant:"AI's samfundsmæssige betydning, teknologiens muligheder og begrænsninger."},
+    {name:'Rumman Chowdhury',rolle:'International ekspert i responsible AI og governance',relevant:'Ansvarlig AI, risikostyring og teknologisk kontrol.'},
+    {name:'Karen Hao',rolle:'Undersøgende AI-journalist',relevant:"AI's magtstrukturer, data, arbejdskraft og skjulte omkostninger."},
+    {name:'Jim Stolze',rolle:'Hollandsk tech-entreprenør og AI-formidler',relevant:'AI, ledelse, innovation og praktisk teknologiadoption.'},
+    {name:'Dominik Máté Kovács',rolle:'CEO og founder af Colossyan',relevant:'Generativ AI, corporate training, video og AI i virksomhedsprocesser.'},
+    {name:'Rasmus Rothe',rolle:'Dansk AI-founder og applied AI-profil',relevant:'AI-produkter, startups, enterprise-løsninger og europæisk AI-udvikling.'},
+    {name:'Bianca Bruhn',rolle:'Country Manager, Google Danmark',relevant:'AI-adoption, ledelse, produktivitet og techøkosystemer.'},
+    {name:'Morten Middelfart',rolle:'BI-/AI-entreprenør og dataekspert',relevant:'Data, analytics, enterprise AI og beslutningssystemer.'},
+  ]},
+  {id:'III',name:'Markedets maskinrum',color:'#D97706',
+   funktion:'Kapital, kunder og regulering bag markedets bevægelser.',
+   brugesTil:'Renter, kapital, investeringer, brancheskift, AI, regulering, supply chain, efterspørgsel og konkurrence.',
+   kandidater:[
+    {name:'Andreas Steno Larsen',rolle:'Makroanalytiker, markedsformidler og podcastprofil',relevant:'Renter, geopolitik, makroøkonomi og finansielle signaler.'},
+    {name:'Jens Nordvig',rolle:'Dansk global makroøkonom og markedsanalytiker',relevant:'Valuta, makrodata, global økonomi og AI-baseret markedsforståelse.'},
+    {name:'Marc Rubinstein',rolle:'Finansanalytiker og forfatter af Net Interest',relevant:'Banker, kapital, finansielle forretningsmodeller og markedsstruktur.'},
+    {name:'Byrne Hobart',rolle:'Finans- og techanalytiker bag The Diff',relevant:'Krydsfeltet mellem finans, teknologi, startups og strategi.'},
+    {name:'Packy McCormick',rolle:'Tech- og startupanalytiker bag Not Boring',relevant:'Teknologiselskaber, optimisme, vækst og komplekse forretningsmodeller.'},
+    {name:'Peter Garnry',rolle:'Aktiestrateg og markedsanalytiker',relevant:'Aktier, sektorer, investering og markedsbevægelser.'},
+    {name:'Per Hansen',rolle:'Investeringsøkonom og markedsformidler',relevant:'Danske investorer, aktiemarkedet og markedsadfærd.'},
+    {name:'Lars Christensen',rolle:'Makroøkonom og pengepolitisk kommentator',relevant:'Renter, inflation, pengepolitik og økonomisk frihed.'},
+    {name:'Helge J. Pedersen',rolle:'Cheføkonom og makroøkonomisk analytiker',relevant:'Konjunkturer, dansk økonomi og global vækst.'},
+    {name:'Las Olsen',rolle:'Dansk økonom og konjunkturanalytiker',relevant:'Dansk økonomi, forbrug, renteudvikling og virksomhedernes vilkår.'},
+    {name:'Sofie Holme Andersen',rolle:'Cheføkonom i Dansk Industri',relevant:'Danske virksomheders økonomiske vilkår, konkurrenceevne og regulering.'},
+    {name:'Nicolaj Højer Nielsen',rolle:'Iværksætter, investor og startup-rådgiver',relevant:'Funding, vækst, early-stage virksomheder og kommercialisering.'},
+    {name:'Tommy Andersen',rolle:'Ventureinvestor og nordisk startup-profil',relevant:'Kapital, founders, venturemarked og skalering.'},
+    {name:'Anne Stampe Olesen',rolle:'Investor og nordisk startup-stemme',relevant:'Venture, vækstvirksomheder, founders og teknologisk forandring.'},
+    {name:'Mikkel Svane',rolle:'Founder af Zendesk',relevant:'SaaS, kundeservice, global skalering og nordisk tech.'},
+  ]},
+  {id:'IV',name:'Modspørgsmålet',color:'#DC2626',
+   funktion:'Den kvalificerede uenighed — det spørgsmål der afslører en blind vinkel.',
+   brugesTil:'AI-hype, grøn vækst, regulering, produktivitet, arbejdsliv, ledelse, innovation, EU, ESG og erhvervspolitik.',
+   kandidater:[
+    {name:'Noah Smith',rolle:'Økonom og Substack-kommentator',relevant:'International modstemme på økonomi, teknologi, industri og politiske fortællinger.'},
+    {name:'Tyler Cowen',rolle:'Økonom, forfatter og kulturkommentator',relevant:'Økonomi, innovation, produktivitet og samfundsforandring.'},
+    {name:'Byrne Hobart',rolle:'Finans- og techanalytiker',relevant:'Strukturer og incitamenter under den dominerende fortælling.'},
+    {name:'Dan Davies',rolle:'Finansskribent og systemanalytiker',relevant:'Organisationer, svindel, incitamenter og systemfejl.'},
+    {name:'Matt Stoller',rolle:'Kommentator og analytiker på monopol og platformsmagt',relevant:'Big Tech, markedsmagt og regulering.'},
+    {name:'Diane Coyle',rolle:'Økonom med fokus på produktivitet og digital økonomi',relevant:'Hvordan teknologi faktisk skaber — eller ikke skaber — økonomisk værdi.'},
+    {name:'Christian Bjørnskov',rolle:'Dansk økonom og professor',relevant:'Vækst, regulering, frihed og politisk økonomi.'},
+    {name:'Emma Holten',rolle:'Forfatter og debattør',relevant:'Alternative værdiforståelser, arbejdsliv og økonomiske magtforhold.'},
+    {name:'Rune Lykkeberg',rolle:'Chefredaktør, forfatter og samfundskommentator',relevant:'Teknologi, kultur, magt og samfundsforandring.'},
+    {name:'Rasmus Brygger',rolle:'Tech- og policyprofil',relevant:'Teknologi, politik og erhvervslivets rammevilkår.'},
+    {name:'Astrid Haug',rolle:'Digital rådgiver og ekspert i sociale medier og AI',relevant:'Platforme, kommunikation, AI-adoption og digital adfærd.'},
+    {name:'Pernille Tranberg',rolle:'Dataetiker og ekspert i ansvarlig teknologi',relevant:'Data, overvågning, AI-governance og digital selvbestemmelse.'},
+    {name:'Jonas Herby',rolle:'Økonom og reguleringsanalytiker',relevant:'Datadrevet modstemme på regulering, frihed og konsekvenser for virksomheder.'},
+    {name:'Otto Brøns-Petersen',rolle:'Økonom med fokus på skat og samfundsøkonomi',relevant:'Økonomiske konsekvenser, skattepolitik og reguleringsbyrde.'},
+  ]},
+  {id:'V',name:'Det lærte vi',color:'#16A34A',
+   funktion:'Praktikere med erfaring, friktion og noget på spil.',
+   brugesTil:'Implementeringsfejl, salgsforandringer, AI-adoption, compliance, internationalisering, SaaS, kapital, kultur og ledelse.',
+   kandidater:[
+    {name:'Camilla Ley Valentin',rolle:'Founder af Queue-it',relevant:'Dansk SaaS, international skalering, produkt, kunder og praktisk foundererfaring.'},
+    {name:'Mette Lykke',rolle:'CEO i Too Good To Go',relevant:'Skalering, ledelse, mission, forbrugerforretning og international vækst.'},
+    {name:'Heini Zachariassen',rolle:'Founder af Vivino',relevant:'Forbrugerdata, community, global skalering og digital forretningsudvikling.'},
+    {name:'Jeppe Rindom',rolle:'Founder af Pleo',relevant:'Fintech, B2B SaaS, økonomifunktioner, skalering og organisationsopbygning.'},
+    {name:'Mikkel Svane',rolle:'Founder af Zendesk',relevant:'SaaS, kundeservice, global startuprejse og international produktudvikling.'},
+    {name:'Morten Primdahl',rolle:'Co-founder af Zendesk',relevant:'Produkt- og teknologinær stemme på SaaS, organisation og global skalering.'},
+    {name:'David Heinemeier Hansson',rolle:'Co-founder af Basecamp/HEY',relevant:'Software, produkt, ledelse, remote work og teknologisk modkultur.'},
+    {name:'Rasmus Rothe',rolle:'Dansk AI-founder og applied AI-profil',relevant:'AI i praksis, startups, produktudvikling og europæisk AI.'},
+    {name:'Dominik Máté Kovács',rolle:'CEO og founder af Colossyan',relevant:'Generativ AI i corporate training, læring og virksomhedsprocesser.'},
+    {name:'Nicolaj Højer Nielsen',rolle:'Iværksætter, investor og startup-rådgiver',relevant:'Funding, founder-erfaring, vækst og praktisk startupviden.'},
+    {name:'Anne Stampe Olesen',rolle:'Investor og nordisk startup-profil',relevant:'Venture, vækst, founders og nordiske teknologivirksomheder.'},
+    {name:'Natasha Friis Saxberg',rolle:'Direktør i IT-Branchen',relevant:'Digitalisering, techpolitik, brancheudvikling og danske techvirksomheders vilkår.'},
+    {name:'Bianca Bruhn',rolle:'Country Manager, Google Danmark',relevant:'AI-adoption, ledelse, teknologi og produktivitet.'},
+    {name:'Nicolaj Reffstrup',rolle:'Founder af GANNI',relevant:'Brand, bæredygtighed, internationalisering og forbrugerforretning.'},
+    {name:'Christian Arno',rolle:'Scaleup- og marketingprofil',relevant:'Vækst, salg, marketing og AI i kommercielle processer.'},
+    {name:'Kristoffer Lawson',rolle:'Nordisk tech-founder og produktprofil',relevant:'Produkt, organisation, remote work og teknologisk skalering.'},
+    {name:'Ilkka Paananen',rolle:'Founder og CEO i Supercell',relevant:'Kultur, produktkvalitet, teams og ledelse i global tech.'},
+    {name:'Sebastian Siemiatkowski',rolle:'Founder og CEO i Klarna',relevant:'AI i drift, marketing, organisation og fintech.'},
+    {name:'Ryan Petersen',rolle:'Founder og CEO i Flexport',relevant:'Supply chain, geopolitik, logistik og operator-perspektiv.'},
+    {name:'Tobi Lütke',rolle:'Founder og CEO i Shopify',relevant:'AI som organisatorisk norm, platforme, commerce og produktledelse.'},
+  ]},
+];
+
+var svActiveTab=0;
+
+function openStemmeModal(genreIdx){
+  var overlay=document.getElementById('sv-overlay');
+  overlay.classList.remove('sv-hidden');
+  switchStemmeTab(genreIdx||0);
+}
+
+function closeStemmeModal(){
+  document.getElementById('sv-overlay').classList.add('sv-hidden');
+}
+
+function switchStemmeTab(i){
+  svActiveTab=i;
+  var tabs=document.querySelectorAll('.sv-tab');
+  var panels=document.querySelectorAll('.sv-panel');
+  tabs.forEach(function(t,idx){t.classList.toggle('sv-tab-active',idx===i);});
+  panels.forEach(function(p,idx){p.classList.toggle('sv-panel-active',idx===i);});
+}
+
+(function buildStemmeModal(){
+  var tabsEl=document.getElementById('svTabs');
+  var bodyEl=document.getElementById('svBody');
+  if(!tabsEl||!bodyEl) return;
+  stemmeKatalog.forEach(function(g,i){
+    var tab=document.createElement('button');
+    tab.className='sv-tab'+(i===0?' sv-tab-active':'');
+    tab.style.setProperty('--tc',g.color);
+    tab.innerHTML='<span style="color:'+g.color+';margin-right:5px">'+g.id+'</span>'+g.name;
+    tab.addEventListener('click',function(){switchStemmeTab(i);});
+    tab.style.setProperty('--tab-color',g.color);
+    tabsEl.appendChild(tab);
+
+    var panel=document.createElement('div');
+    panel.className='sv-panel'+(i===0?' sv-panel-active':'');
+    panel.innerHTML=
+      '<div class="sv-panel-head">'
+        +'<div class="sv-panel-name" style="color:'+g.color+'">'+g.id+' · '+g.name+'</div>'
+        +'<div class="sv-panel-func">'+g.funktion+'</div>'
+        +'<div class="sv-panel-bruges">'+g.brugesTil+'</div>'
+      +'</div>'
+      +'<div class="sv-cand-grid">'
+      +g.kandidater.map(function(k){
+        return '<div class="sv-cand-item">'
+          +'<div class="sv-cand-name">'+k.name+'</div>'
+          +'<div class="sv-cand-role">'+k.rolle+'</div>'
+          +'<div class="sv-cand-rel">'+k.relevant+'</div>'
+          +'</div>';
+      }).join('')
+      +'</div>';
+    bodyEl.appendChild(panel);
+  });
+
+  document.getElementById('sv-overlay').addEventListener('click',function(e){
+    if(e.target===this) closeStemmeModal();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') closeStemmeModal();
+  });
+}());
+
 </script>
 
 <!-- ═══════════ S5 ═══════════ -->
@@ -3513,6 +3740,27 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+<!-- STEMME-KATALOG MODAL -->
+<div class="sv-overlay sv-hidden" id="sv-overlay">
+  <div class="sv-modal">
+    <div class="sv-head">
+      <div class="sv-head-top">
+        <div class="sv-head-text">
+          <div class="sv-head-title">Stemmekataloget</div>
+          <div class="sv-head-sub">76 potentielle stemmer · 5 genrer · Redaktionelt udvalg</div>
+        </div>
+        <button class="sv-head-close" onclick="closeStemmeModal()">✕</button>
+      </div>
+      <div class="sv-tabs" id="svTabs"></div>
+    </div>
+    <div class="sv-body" id="svBody"></div>
+    <div class="sv-foot">
+      <div class="sv-foot-lbl">Redaktionel regel</div>
+      <div class="sv-foot-txt">Ingen stemme uden funktion. En stemme skal ikke med, fordi personen er kendt — men fordi personen kan hjælpe Y Business med at forklare, teste, udfordre eller konkretisere en udvikling, som betyder noget for virksomheder.</div>
+    </div>
+  </div>
+</div>
 
 <!-- SOURCES MODAL — REDAKTION -->
 <div class="rd-src-overlay hidden" id="rd-sources-overlay">
