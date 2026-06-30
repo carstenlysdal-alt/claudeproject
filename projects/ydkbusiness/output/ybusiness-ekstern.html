@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Y Business samler erhvervsnyheder, markedsovervågning, trends og beslutningsbriefs i ét arbejdsredskab for danske virksomheder.">
+<meta name="description" content="Y Business overvåger erhvervslivet for din virksomhed. Redaktionel erhvervsintelligens for det private erhvervsliv.">
 <meta name="robots" content="noindex, nofollow">
 <title>Y Business | Ekstern præsentation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@ p { margin:0; text-wrap:pretty; }
 .header-inner { width:100%; height:100%; padding:0 52px; display:flex; align-items:center; justify-content:space-between; gap:var(--s5); }
 .brand { font-family:var(--serif); font-size:22px; font-weight:700; font-style:italic; color:var(--accent); text-decoration:none; white-space:nowrap; }
 .primary-nav { display:flex; align-items:stretch; height:100%; }
-.primary-nav a { display:flex; align-items:center; padding:0 15px; font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; color:var(--muted); }
+.primary-nav a { display:flex; align-items:center; padding:0 10px; font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; color:var(--muted); }
 .primary-nav a:hover { color:var(--accent); }
 .header-actions { display:flex; align-items:center; gap:var(--s3); }
 .vt-group { display:inline-flex; align-items:stretch; border:1px solid var(--line); background:var(--card); min-height:36px; overflow:hidden; }
@@ -121,6 +121,40 @@ p { margin:0; text-wrap:pretty; }
 .value-copy h3 { font-size:17px; }
 .value-copy p { margin-top:6px; color:var(--muted); font-size:14px; line-height:1.55; }
 
+.why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:var(--s7); }
+.why-card { background:var(--card); padding:var(--s6); min-height:230px; display:flex; flex-direction:column; }
+.why-number { font-family:var(--serif); font-size:clamp(42px,4vw,64px); font-weight:700; font-style:italic; line-height:.95; color:var(--accent); letter-spacing:-.03em; }
+.why-card h3 { margin-top:var(--s4); font-size:17px; line-height:1.25; }
+.why-card p { margin-top:var(--s3); color:var(--ink70); font-size:14px; line-height:1.58; }
+
+.layer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+.layer-card { background:var(--card); padding:var(--s6); min-height:260px; }
+.layer-card.featured { background:var(--accent); color:#fff; }
+.layer-kicker { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+.layer-card.featured .layer-kicker { color:rgba(255,255,255,.58); }
+.layer-card h3 { margin-top:var(--s4); font-family:var(--serif); font-size:25px; line-height:1.14; font-style:italic; }
+.layer-card p { margin-top:var(--s3); color:var(--muted); font-size:14px; line-height:1.58; }
+.layer-card.featured p { color:rgba(255,255,255,.72); }
+.triad-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:var(--s7); }
+.triad-card { background:var(--card); padding:var(--s5); }
+.triad-card strong { display:block; font-family:var(--serif); font-size:22px; font-style:italic; color:var(--accent); }
+.triad-card p { margin-top:var(--s2); color:var(--ink70); font-size:14px; line-height:1.55; }
+
+.ai-track-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.15); margin-top:var(--s7); }
+.ai-track { padding:var(--s6); background:var(--accent); }
+.ai-track-label { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(196,181,253,.6); margin-bottom:var(--s4); }
+.ai-track p { font-family:var(--serif); font-size:20px; font-style:italic; color:#FAFAF8; line-height:1.25; }
+
+.voice-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:var(--s7); }
+.voice-card { padding:var(--s5) var(--s4); background:var(--card); }
+.voice-card.featured { background:var(--accent); }
+.voice-num { font-family:var(--mono); font-size:8px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:var(--s3); }
+.voice-card.featured .voice-num { color:rgba(196,181,253,.6); }
+.voice-title { font-family:var(--serif); font-size:15px; font-weight:700; font-style:italic; color:var(--ink); line-height:1.25; }
+.voice-card.featured .voice-title { color:#FAFAF8; }
+.voice-card p { margin-top:6px; font-size:12px; color:var(--muted); line-height:1.5; }
+.voice-card.featured p { color:rgba(255,255,255,.62); }
+
 .packages { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); background:var(--line); gap:1px; }
 .package { background:var(--card); padding:var(--s6); }
 .package.featured { background:var(--accent10); }
@@ -170,14 +204,15 @@ p { margin:0; text-wrap:pretty; }
 .s5-nav .scroll-btn { border-color:rgba(255,255,255,.25); color:rgba(255,255,255,.55); }
 .s5-nav .scroll-btn:hover { border-color:#fff; color:#fff; }
 
-@media (max-width:1040px) {
+@media (max-width:1180px) {
   .primary-nav { display:none; }
   .hero { grid-template-columns:1fr; }
   .signal-figure { min-height:300px; }
   .proof-layout { grid-template-columns:1fr; grid-template-areas:'brief' 'alert' 'meeting'; }
   .value-layout, .trust-layout { grid-template-columns:1fr; }
   .value-statement { position:static; }
-  .packages, .opportunity-layout { grid-template-columns:1fr; }
+  .packages, .opportunity-layout, .why-grid, .layer-grid, .triad-grid, .ai-track-grid { grid-template-columns:1fr; }
+  .voice-grid { grid-template-columns:1fr 1fr; }
 }
 @media (max-width:720px) {
   :root { --page:min(100% - 32px,1320px); }
@@ -197,6 +232,7 @@ p { margin:0; text-wrap:pretty; }
   .section h2, .value-statement h2, .trust-copy h2, .opportunities h2 { font-size:40px; }
   .meeting-grid, .process { grid-template-columns:1fr; }
   .value-row { grid-template-columns:1fr; gap:var(--s2); }
+  .voice-grid { grid-template-columns:1fr; }
   .footer-inner { align-items:flex-start; flex-direction:column; }
   .footer-links { flex-wrap:wrap; }
   .snap-section { min-height:auto; }
@@ -250,10 +286,14 @@ p { margin:0; text-wrap:pretty; }
     <a class="brand" href="#s1" aria-label="Y Business, gå til toppen">Y Business</a>
     <nav class="primary-nav" aria-label="Primær navigation">
       <a href="#s1">Overblik</a>
-      <a href="#s2">Produktet</a>
+      <a href="#s2">Hvorfor nu</a>
+      <a href="#s2b">Produktet</a>
+      <a href="#s2c">Beslutningslag</a>
+      <a href="#s2e">Business AI</a>
+      <a href="#s2f">Stemmer</a>
       <a href="#s3">Pakker</a>
       <a href="#s4">Tillid</a>
-      <a href="#s5">Partnerskab</a>
+      <a href="#s5">Vær med</a>
     </nav>
     <div class="header-actions">
       <div class="vt-group">
@@ -271,13 +311,13 @@ p { margin:0; text-wrap:pretty; }
   <section class="snap-section" id="s1">
     <section class="hero" id="overblik">
       <div class="hero-copy">
-        <div class="context-line">Y Business · Beta lanceres oktober 2026</div>
-        <h1>Den videnskoordinator din virksomhed ikke har råd til at ansætte.</h1>
-        <p class="hero-lead">Y Business er redaktionel erhvervsintelligens for danske virksomheder: erhvervsnyheder, markedsovervågning, reguleringsalerts, Business AI og beslutningsbriefs samlet i ét abonnement.</p>
-        <p class="hero-lead" style="margin-top:14px;font-size:16px;color:var(--muted);">Bygget til virksomheder, der i dag lapper viden sammen fra nyhedsmedier, overvågningsværktøjer, nyhedsbreve, LinkedIn, rapporter og intern research.</p>
+        <div class="context-line">Redaktionel erhvervsintelligens for det private erhvervsliv</div>
+        <h1>Y Business overvåger erhvervslivet for din virksomhed.</h1>
+        <p class="hero-lead">Nyheder, markedstrends, regulering, konkurrenter og Business AI samlet i ét personligt overblik — med redaktionel dømmekraft ovenpå.</p>
+        <p class="hero-lead" style="margin-top:14px;font-size:16px;color:var(--muted);">Ét abonnement. Ét beslutningslag. Ikke bare mere information, men et bedre grundlag for at forstå, tvivle og handle.</p>
         <div class="hero-actions">
-          <a class="action-primary" href="#s2">Se produktet</a>
-          <a class="action-secondary" href="#s5">Se samarbejdsmuligheder</a>
+          <a class="action-primary" href="#s2b">Se produktet</a>
+          <a class="action-secondary" href="#s5">Drøft beta eller samarbejde</a>
         </div>
       </div>
       <figure class="signal-figure" aria-label="Flere markedssignaler samles til én præcis beslutning">
@@ -306,36 +346,62 @@ p { margin:0; text-wrap:pretty; }
     </nav>
   </section>
 
-  <!-- ══ S2 · PRODUKTET ══ -->
+  <!-- ══ S2 · HVORFOR NU ══ -->
   <section class="snap-section" id="s2">
-    <section class="lens-bar" aria-label="Vælg perspektiv">
-      <div class="lens-inner">
-        <div class="lens-controls" role="group" aria-label="Præsentationsperspektiv">
-          <span class="lens-label">Vælg perspektiv</span>
-          <button class="lens-btn active" type="button" data-lens="company" aria-pressed="true">Virksomhed</button>
-          <button class="lens-btn" type="button" data-lens="partner" aria-pressed="false">Partner</button>
-          <button class="lens-btn" type="button" data-lens="support" aria-pressed="false">Støtte</button>
-        </div>
-        <p class="lens-description" id="lens-description" aria-live="polite">Se, hvordan Y Business skaber overblik, reducerer risiko og styrker virksomhedens beslutningsgrundlag.</p>
-      </div>
-    </section>
-    <section class="section" id="produktet">
+    <section class="section" id="hvorfor-nu">
       <div class="section-head section-head-wrap">
         <div aria-hidden="true" class="section-bg-num">01</div>
-        <div class="section-eyebrow">Produktet</div>
-        <h2>Det virksomhederne får</h2>
-        <p class="section-intro">Produktet møder beslutningstageren i de situationer, hvor overblik, timing og konsekvens betyder mest. Første spydspids er Business AI — ikke som modelnavne og hype, men som konkret forandring i arbejdsgange, beslutninger og risikostyring.</p>
+        <div class="section-eyebrow">Hvorfor nu</div>
+        <h2>Virksomheder mangler ikke information. De mangler prioritering.</h2>
+        <p class="section-intro">Det private erhvervsliv møder flere kilder, hurtigere regulering, svagere signaler og mere AI-støj end før. Y Business er bygget til virksomheder uden egen analyse-, overvågnings- eller compliancefunktion.</p>
+      </div>
+      <div class="why-grid">
+        <article class="why-card">
+          <div class="why-number">99%</div>
+          <h3>af danske virksomheder er SMV’er.</h3>
+          <p>Y Business er bygget til dem — ikke til C25 og de børsnoterede selskaber, der allerede har analyseafdelinger.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-number">Regulering</div>
+          <h3>har konsekvenser, før den bliver en sag.</h3>
+          <p>Y Business holder øje med, hvad der ændrer sig, hvem det rammer, og hvad det kræver af virksomheder uden tung compliancekapacitet.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-number">2–5</div>
+          <h3>timer om ugen bruges på at sortere.</h3>
+          <p>Nyheder, overvågning og research samles og prioriteres, så lederen bruger tiden på at handle — ikke på at lede.</p>
+        </article>
+      </div>
+    </section>
+    <nav class="scroll-nav" aria-label="Naviger sektioner">
+      <a class="scroll-btn scroll-btn-up" href="#s1" aria-label="Forrige sektion">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </a>
+      <a class="scroll-btn scroll-btn-down" href="#s2b" aria-label="Næste sektion">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </nav>
+  </section>
+
+  <!-- ══ S2B · PRODUKTET ══ -->
+  <section class="snap-section" id="s2b">
+    <section class="section" id="produktet">
+      <div class="section-head section-head-wrap">
+        <div aria-hidden="true" class="section-bg-num">02</div>
+        <div class="section-eyebrow">Hvad virksomheden får</div>
+        <h2>Produktet viser sig i de situationer, hvor beslutningen skal tages.</h2>
+        <p class="section-intro">Feed skaber vanen. Overvågning skaber relevansen. Redaktion skaber værdien. Brugeren får et beslutningsgrundlag — ikke bare en nyhedsstrøm.</p>
       </div>
       <div class="proof-layout">
         <article class="proof proof-brief">
           <div class="proof-meta"><span>Y Business · Morgenbrief</span><span>Kl. 06.00</span></div>
           <div>
             <h3>Det vigtigste før arbejdsdagen begynder</h3>
-            <p>Et prioriteret brief tilpasset virksomhedens branche, marked og interesser.</p>
+            <p>Et redaktionelt prioriteret morgenoverblik tilpasset virksomhedens branche, marked og interesser.</p>
             <div class="brief-items">
-              <div class="brief-item"><span>1</span><div><strong>Nye emballagekrav rammer først virksomheder uden compliancefunktion</strong><small>Regulering · Frist og konsekvens forklaret</small></div></div>
+              <div class="brief-item"><span>1</span><div><strong>Nye emballagekrav rammer virksomheder uden compliancefunktion</strong><small>Regulering · Frist, ansvar og konsekvens forklaret</small></div></div>
               <div class="brief-item"><span>2</span><div><strong>Tre signaler ændrer efterspørgslen i byggeriet</strong><small>Marked · Hvad virksomheden skal holde øje med</small></div></div>
-              <div class="brief-item"><span>3</span><div><strong>AI-gevinsten kommer først, når arbejdsgangen ændres</strong><small>Ledelse · Metode, friktion og læring</small></div></div>
+              <div class="brief-item"><span>3</span><div><strong>AI-gevinsten kommer først, når arbejdet ændres</strong><small>Business AI · Hvad virker faktisk i praksis?</small></div></div>
             </div>
           </div>
           <div class="proof-result">Mindre søgetid. Mere relevant handling.</div>
@@ -357,22 +423,34 @@ p { margin:0; text-wrap:pretty; }
       </div>
     </section>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s1" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s2" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
-      <a class="scroll-btn scroll-btn-down" href="#s2b" aria-label="Næste sektion">
+      <a class="scroll-btn scroll-btn-down" href="#s2c" aria-label="Næste sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </nav>
   </section>
 
-  <!-- ══ S2B · VÆRDIER ══ -->
-  <section class="snap-section" id="s2b">
+  <!-- ══ S2C · BESLUTNINGSLAG ══ -->
+  <section class="snap-section" id="s2c">
+    <section class="lens-bar" aria-label="Vælg perspektiv">
+      <div class="lens-inner">
+        <div class="lens-controls" role="group" aria-label="Præsentationsperspektiv">
+          <span class="lens-label">Vælg perspektiv</span>
+          <button class="lens-btn active" type="button" data-lens="company" aria-pressed="true">Virksomhed</button>
+          <button class="lens-btn" type="button" data-lens="partner" aria-pressed="false">Organisation</button>
+          <button class="lens-btn" type="button" data-lens="support" aria-pressed="false">Udvikling</button>
+        </div>
+        <p class="lens-description" id="lens-description" aria-live="polite">Se, hvordan Y Business skaber overblik, reducerer risiko og styrker virksomhedens beslutningsgrundlag.</p>
+      </div>
+    </section>
     <section class="value-section" style="flex:1;display:flex;flex-direction:column;justify-content:center;">
       <div class="value-inner">
         <div class="value-layout">
           <div class="value-statement">
-            <h2 id="lens-heading">Et arbejdsredskab for virksomheden</h2>
+            <div class="section-eyebrow">Beslutningslaget</div>
+            <h2 id="lens-heading">Et beslutningslag for virksomheden</h2>
             <p id="lens-copy">Y Business reducerer tiden brugt på informationssøgning og gør det lettere at reagere på ændringer i marked, regulering og teknologi.</p>
           </div>
           <div class="value-list" id="lens-values">
@@ -385,39 +463,6 @@ p { margin:0; text-wrap:pretty; }
       </div>
     </section>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s2" aria-label="Forrige sektion">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-      </a>
-      <a class="scroll-btn scroll-btn-down" href="#s2c" aria-label="Næste sektion">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </a>
-    </nav>
-  </section>
-
-  <!-- ══ S2C · BUSINESS AI ══ -->
-  <section class="snap-section" id="s2c" style="background:var(--accent);color:#fff;">
-    <div style="flex:1;display:flex;align-items:center;">
-      <div style="width:var(--page);margin:0 auto;padding:clamp(56px,10vh,120px) 0;">
-        <div class="section-eyebrow inv">Business AI i praksis</div>
-        <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,58px);font-style:italic;line-height:1.05;color:#FAFAF8;max-width:760px;">Y Business dækker ikke AI som hype.</h2>
-        <p style="margin-top:var(--s5);font-size:18px;line-height:1.65;color:rgba(255,255,255,.72);max-width:680px;">Vi dækker AI, når teknologien ændrer drift, ledelse, ansvar, arbejdsgange og forretningsmodeller.</p>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.15);margin-top:var(--s7);">
-          <div style="padding:var(--s6);background:var(--accent);">
-            <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(196,181,253,.6);margin-bottom:var(--s4);">Når det går galt</div>
-            <p style="font-family:var(--serif);font-size:20px;font-style:italic;color:#FAFAF8;line-height:1.25;">Hvem har ansvaret, hvad koster det, og hvad kunne have været anderledes?</p>
-          </div>
-          <div style="padding:var(--s6);background:var(--accent);">
-            <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(196,181,253,.6);margin-bottom:var(--s4);">Hvad virker faktisk?</div>
-            <p style="font-family:var(--serif);font-size:20px;font-style:italic;color:#FAFAF8;line-height:1.25;">Ikke lovende pilotprojekter. Men dokumenterede implementeringer med tal og friktion.</p>
-          </div>
-          <div style="padding:var(--s6);background:var(--accent);">
-            <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(196,181,253,.6);margin-bottom:var(--s4);">Sådan ændrer AI arbejdet</div>
-            <p style="font-family:var(--serif);font-size:20px;font-style:italic;color:#FAFAF8;line-height:1.25;">Nye kompetencekrav, nye magtforhold, nye beslutningsgange — konkret og navngivet.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <nav class="scroll-nav s5-nav" aria-label="Naviger sektioner">
       <a class="scroll-btn scroll-btn-up" href="#s2b" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
@@ -427,44 +472,108 @@ p { margin:0; text-wrap:pretty; }
     </nav>
   </section>
 
-  <!-- ══ S2D · STEMMER ══ -->
+  <!-- ══ S2D · MEKANIK ══ -->
   <section class="snap-section" id="s2d">
+    <section class="section">
+      <div class="section-head section-head-wrap">
+        <div aria-hidden="true" class="section-bg-num">03</div>
+        <div class="section-eyebrow">Sådan virker det</div>
+        <h2>Medie, overvågning og beslutningslag i samme produkt.</h2>
+        <p class="section-intro">Y Business er ikke bare et erhvervsmedie og ikke bare et overvågningsværktøj. Det er et redaktionelt lag oven på markedets signaler.</p>
+      </div>
+      <div class="layer-grid">
+        <article class="layer-card"><div class="layer-kicker">Medie</div><h3>Redaktionel dømmekraft og journalistisk standard.</h3><p>Indholdet skal forklare, hvem udviklingen betyder noget for — og hvorfor.</p></article>
+        <article class="layer-card"><div class="layer-kicker">Overvågning</div><h3>Kilder, brancher, konkurrenter, regulering og udbud.</h3><p>AI overvåger, sorterer og finder mønstre i svage og stærke markedssignaler.</p></article>
+        <article class="layer-card featured"><div class="layer-kicker">Beslutningslag</div><h3>Fra signal til relevans for rolle, branche og virksomhed.</h3><p>Redaktionen prioriterer, verificerer og forklarer, så brugeren kan forstå, tvivle og handle.</p></article>
+      </div>
+      <div class="triad-grid">
+        <article class="triad-card"><strong>Feed</strong><p>viser, hvad der sker.</p></article>
+        <article class="triad-card"><strong>Overvågning</strong><p>viser, hvad der bevæger sig.</p></article>
+        <article class="triad-card"><strong>Redaktion</strong><p>afgør, hvad der betyder noget.</p></article>
+      </div>
+    </section>
+    <nav class="scroll-nav" aria-label="Naviger sektioner">
+      <a class="scroll-btn scroll-btn-up" href="#s2c" aria-label="Forrige sektion">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </a>
+      <a class="scroll-btn scroll-btn-down" href="#s2e" aria-label="Næste sektion">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </nav>
+  </section>
+
+  <!-- ══ S2E · BUSINESS AI ══ -->
+  <section class="snap-section" id="s2e" style="background:var(--accent);color:#fff;">
+    <div style="flex:1;display:flex;align-items:center;">
+      <div style="width:var(--page);margin:0 auto;padding:clamp(56px,10vh,120px) 0;">
+        <div class="section-eyebrow inv">Business AI i praksis</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,58px);font-style:italic;line-height:1.05;color:#FAFAF8;max-width:760px;">Y Business dækker ikke AI som hype.</h2>
+        <p style="margin-top:var(--s5);font-size:18px;line-height:1.65;color:rgba(255,255,255,.72);max-width:680px;">Vi dækker AI, når teknologien ændrer drift, ledelse, ansvar, arbejdsgange og forretningsmodeller.</p>
+        <p style="margin-top:var(--s3);font-size:18px;line-height:1.65;color:#FAFAF8;max-width:680px;font-family:var(--serif);font-style:italic;">Vi dækker ikke kun, hvad AI kan. Vi dækker, hvad AI kræver.</p>
+        <div class="ai-track-grid">
+          <div class="ai-track">
+            <div class="ai-track-label">Når AI går galt</div>
+            <p>Fejl, friktion, skjulte omkostninger og projekter, der ikke skalerer.</p>
+          </div>
+          <div class="ai-track">
+            <div class="ai-track-label">Hvad virker faktisk?</div>
+            <p>Værktøjer, leverandørløfter og ROI vurderet i praksis.</p>
+          </div>
+          <div class="ai-track">
+            <div class="ai-track-label">Sådan ændrer AI arbejdet</div>
+            <p>Salg, økonomi, HR, compliance, kundeservice, marketing og ledelse.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="scroll-nav s5-nav" aria-label="Naviger sektioner">
+      <a class="scroll-btn scroll-btn-up" href="#s2d" aria-label="Forrige sektion">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </a>
+      <a class="scroll-btn scroll-btn-down" href="#s2f" aria-label="Næste sektion">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </nav>
+  </section>
+
+  <!-- ══ S2F · STEMMER ══ -->
+  <section class="snap-section" id="s2f">
     <div style="flex:1;display:flex;align-items:center;background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
       <div style="width:var(--page);margin:0 auto;padding:clamp(56px,10vh,120px) 0;">
         <div class="section-eyebrow">Stærke stemmer</div>
         <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,58px);font-style:italic;line-height:1.05;max-width:760px;">Stemmer man vil læse, når markedet flytter sig.</h2>
         <p style="margin-top:var(--s5);font-size:17px;line-height:1.65;color:var(--ink70);max-width:640px;">Ikke generiske ekspertcitater. Ikke pæne statusopdateringer. Perspektiver med kant, dokumentation og konsekvens.</p>
-        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--s7);">
-          <div style="padding:var(--s5) var(--s4);background:var(--card);">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s3);">I</div>
-            <div style="font-family:var(--serif);font-size:15px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.25;">Udefra og ind</div>
-            <p style="margin-top:6px;font-size:12px;color:var(--muted);line-height:1.5;">Geopolitik, EU og regulering oversat til dansk erhvervsliv.</p>
+        <div class="voice-grid">
+          <div class="voice-card">
+            <div class="voice-num">I</div>
+            <div class="voice-title">Udefra og ind</div>
+            <p>Globale signaler oversat til dansk erhvervsliv.</p>
           </div>
-          <div style="padding:var(--s5) var(--s4);background:var(--card);">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s3);">II</div>
-            <div style="font-family:var(--serif);font-size:15px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.25;">AI i maskinrummet</div>
-            <p style="margin-top:6px;font-size:12px;color:var(--muted);line-height:1.5;">Adoption, governance og implementering — fra dem der har prøvet det.</p>
+          <div class="voice-card">
+            <div class="voice-num">II</div>
+            <div class="voice-title">AI i maskinrummet</div>
+            <p>AI, når det møder rigtige arbejdsgange.</p>
           </div>
-          <div style="padding:var(--s5) var(--s4);background:var(--accent);">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(196,181,253,.6);margin-bottom:var(--s3);">III</div>
-            <div style="font-family:var(--serif);font-size:15px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.25;">Markedets maskinrum</div>
-            <p style="margin-top:6px;font-size:12px;color:rgba(255,255,255,.62);line-height:1.5;">Kapital, makro og investorperspektiv — hvad ser de, inden virksomhederne gør det?</p>
+          <div class="voice-card featured">
+            <div class="voice-num">III</div>
+            <div class="voice-title">Markedets maskinrum</div>
+            <p>Kapital, regulering, kunder og teknologi bag markedets bevægelser.</p>
           </div>
-          <div style="padding:var(--s5) var(--s4);background:var(--card);">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s3);">IV</div>
-            <div style="font-family:var(--serif);font-size:15px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.25;">Modspørgsmålet</div>
-            <p style="margin-top:6px;font-size:12px;color:var(--muted);line-height:1.5;">Den kvalificerede uenighed. Det spørgsmål der afslører en blind vinkel.</p>
+          <div class="voice-card">
+            <div class="voice-num">IV</div>
+            <div class="voice-title">Modspørgsmålet</div>
+            <p>Den kvalificerede uenighed mod ugens dominerende fortælling.</p>
           </div>
-          <div style="padding:var(--s5) var(--s4);background:var(--card);">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s3);">V</div>
-            <div style="font-family:var(--serif);font-size:15px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.25;">Det lærte vi</div>
-            <p style="margin-top:6px;font-size:12px;color:var(--muted);line-height:1.5;">Founders, praktikere og specialister med noget på spil og en personlig skriverstemme.</p>
+          <div class="voice-card">
+            <div class="voice-num">V</div>
+            <div class="voice-title">Det lærte vi</div>
+            <p>Erfaringer fra founders, praktikere og virksomhedernes maskinrum.</p>
           </div>
         </div>
       </div>
     </div>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s2c" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s2e" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
       <a class="scroll-btn scroll-btn-down" href="#s3" aria-label="Næste sektion">
@@ -477,52 +586,47 @@ p { margin:0; text-wrap:pretty; }
   <section class="snap-section" id="s3" style="background:var(--tint);">
     <section class="section" id="pakker">
       <div class="section-head section-head-wrap">
-        <div aria-hidden="true" class="section-bg-num">02</div>
+        <div aria-hidden="true" class="section-bg-num">04</div>
         <div class="section-eyebrow">Pakker</div>
         <h2>Pakker bygget til forskellig brug</h2>
-        <p class="section-intro">Fra individuel adgang til et arbejdsredskab for hele teamet. Årsabonnementet er prissat med henblik på enkel virksomhedsbetaling og mulig anvendelse som personalegode, afhængigt af virksomhedens konkrete skatteforhold.</p>
+        <p class="section-intro">Fra individuel adgang til udvidet team- og overvågningsværdi. Pakkerne er formuleret som eksterne hovedspor; enkelte rettigheder, tilvalg og partnerfordele afklares i beta og fase 2.</p>
       </div>
       <div class="packages">
         <article class="package">
           <h3 class="package-name">Erhverv</h3>
           <div class="package-price">500 kr. <small>pr. måned</small></div>
           <ul>
-            <li>Alt Business-indhold og Business AI</li>
-            <li>Morgenbrief kl. 06.00 (tekst)</li>
-            <li>Personaliseret feed og markedsovervågning</li>
-            <li>5 artikel-delinger pr. måned</li>
+            <li>Alt Business-indhold</li>
+            <li>Morgenbrief og personaliseret feed</li>
+            <li>Grundlæggende markedsovervågning</li>
           </ul>
-          <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:9px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;">3 måneder gratis ved tegning inden 20. nov.</div>
         </article>
         <article class="package featured">
           <div class="package-badge">Anbefalet</div>
           <h3 class="package-name">Erhverv+</h3>
           <div class="package-price">7.500 kr. <small>pr. år</small></div>
-          <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-top:4px;">Intro: 5.000 kr. første år</div>
           <ul>
-            <li>Alt i Erhverv inkl. lyd-morgenbrief</li>
-            <li>5 ekstra brugere — teamadgang</li>
-            <li>10 artikel-delinger pr. måned</li>
-            <li>Leadgenerering og CVR-signaler (under udvikling)</li>
-            <li>5.000 kr. platformsannoncering inkluderet</li>
+            <li>Teamadgang og udvidet overvågning</li>
+            <li>Artikel-deling og brugsrettigheder</li>
+            <li>Mulighed for synligheds- og partnerfordele</li>
+            <li>Udvidede signaler som mulig fase 2-udvidelse</li>
           </ul>
         </article>
         <article class="package">
           <h3 class="package-name">Premium</h3>
           <div class="package-price">12.500 kr. <small>pr. år</small></div>
-          <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.08em;margin-top:4px;">Intro: 9.500 kr. første år</div>
           <ul>
-            <li>Alt i Erhverv+ uden reklamer</li>
-            <li>Premium-briefs, særlige analyser og udvidede tilvalg</li>
-            <li>50 artikel-delinger pr. måned</li>
-            <li>Udvidet annonceringsværdi</li>
+            <li>Udvidet team- og overvågningsværdi</li>
+            <li>Premium-briefs og særlige analyser</li>
+            <li>Udvidede rettigheder og tilvalg</li>
+            <li>Partnerfordele og integrationsmuligheder efter aftale</li>
           </ul>
         </article>
       </div>
-      <p style="margin-top:24px;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em;">Alternativt: Finans.dk + Retriever kombineret koster 20.000–55.000 kr./år — uden Business AI, beslutningsbriefs eller leadgenerering.</p>
+      <p style="margin-top:24px;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em;">Alle pakker kan justeres i beta efter behov, rettigheder og teknisk afklaring.</p>
     </section>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s2d" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s2f" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
       <a class="scroll-btn scroll-btn-down" href="#s4" aria-label="Næste sektion">
@@ -540,7 +644,7 @@ p { margin:0; text-wrap:pretty; }
           <h2>AI skaber skala. Redaktionen tager ansvaret.</h2>
           <p>Y Business kombinerer automatiseret overvågning med journalistisk prioritering, dokumentation og tydelige redaktionelle grænser.</p>
           <div class="principles">
-            <div class="principle"><span>✓</span><div><strong>Ingen nyhed uden konsekvens</strong><p>Indholdet skal forklare, hvem udviklingen betyder noget for.</p></div></div>
+            <div class="principle"><span>✓</span><div><strong>Ingen historie uden forretningskonsekvens</strong><p>Indholdet skal forklare, hvem udviklingen betyder noget for — og hvorfor.</p></div></div>
             <div class="principle"><span>✓</span><div><strong>Ingen udfordring uden dokumentation</strong><p>Alternative vinkler skal bæres af kilder, data og modprøvning.</p></div></div>
             <div class="principle"><span>✓</span><div><strong>Ingen personalisering uden redaktionel horisont</strong><p>Vigtige signaler bryder igennem, også når brugeren ikke selv har efterspurgt dem.</p></div></div>
           </div>
@@ -569,11 +673,11 @@ p { margin:0; text-wrap:pretty; }
       <div class="opportunities-inner">
         <div class="section-eyebrow inv">Partnerskab</div>
         <h2>Flere måder at være med</h2>
-        <p class="opportunities-intro">Y Business kan skabe værdi direkte for virksomheder, gennem medlemsorganisationer og sammen med støtter, der vil bidrage til et stærkere dansk erhvervsprodukt.</p>
+        <p class="opportunities-intro">Y Business kan skabe værdi direkte for virksomheder, gennem medlemsorganisationer og sammen med udviklingspartnere, teknologipartnere og kommercielle samarbejdspartnere.</p>
         <div class="opportunity-layout">
-          <article class="opportunity"><h3>For virksomheder</h3><p>Brug Y Business som dagligt beslutningsredskab. Beta åbner 1. oktober 2026 — deltagere er med til at forme de funktioner, der skaber mest værdi, og tegner til intropriser.</p><strong>Dialog: betaadgang fra oktober 2026</strong></article>
-          <article class="opportunity"><h3>For organisationer og partnere</h3><p>Giv medlemmer adgang til branchetilpasset erhvervsintelligens, deltag i distributionen eller drøft en faglig vertikal. Partnere kan bidrage med adgang, cases, data, events og faglig kontekst. Y Business ejer altid redaktionel prioritering, vinkling, kildekritik og publicering. Kommerciel ramme: 25.000–75.000 kr./år.</p><strong>Dialog: distribution og samarbejde</strong></article>
-          <article class="opportunity"><h3>For API-kunder</h3><p>Enterprise-adgang til nyhedsfeeds, reguleringsalerts og markedssignaler til CRM, intranet og egne platforme. Leveres via direkte API-integration. Kommerciel ramme: 100.000–250.000 kr./år.</p><strong>Dialog: enterprise og integration</strong></article>
+          <article class="opportunity"><h3>For virksomheder</h3><p>Brug Y Business som dagligt informations- og beslutningsredskab. Deltag i betaen og vær med til at forme de funktioner, der skaber mest værdi.</p><strong>Dialog: produkt og beta</strong></article>
+          <article class="opportunity"><h3>For organisationer og partnere</h3><p>Giv medlemmer adgang til branchetilpasset erhvervsintelligens, deltag i distributionen eller drøft en faglig vertikal. Partnere kan bidrage med adgang, cases, data, events og faglig kontekst. Y Business ejer altid redaktionel prioritering, vinkling, kildekritik og publicering.</p><strong>Dialog: medlemmer og distribution</strong></article>
+          <article class="opportunity"><h3>For udviklingspartnere</h3><p>Bidrag til teknologi, rækkevidde eller udvikling af et nyt erhvervsintelligensprodukt for virksomheder uden egen analyse- og overvågningsfunktion — med klare redaktionelle grænser.</p><strong>Dialog: teknologi, rækkevidde og skalering</strong></article>
         </div>
       </div>
     </section>
@@ -598,9 +702,28 @@ p { margin:0; text-wrap:pretty; }
 <script>
 (function () {
   /* ── Scroll-snap navigation ── */
-  var sections = ['s1','s2','s2b','s2c','s2d','s3','s4','s5'];
+  var sections = ['s1','s2','s2b','s2c','s2d','s2e','s2f','s3','s4','s5'];
   var current = 0;
   var locked = false;
+
+  function getCurrentIndex() {
+    var viewportCenter = window.innerHeight / 2;
+    var closest = current;
+    var closestDistance = Infinity;
+
+    sections.forEach(function(id, index) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var rect = el.getBoundingClientRect();
+      var distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
+      if (distance < closestDistance) {
+        closest = index;
+        closestDistance = distance;
+      }
+    });
+
+    return closest;
+  }
 
   function goTo(i) {
     if (i < 0 || i >= sections.length || locked) return;
@@ -613,8 +736,22 @@ p { margin:0; text-wrap:pretty; }
   window.addEventListener('wheel', function(e) {
     e.preventDefault();
     if (locked) return;
+    current = getCurrentIndex();
     goTo(current + (e.deltaY > 0 ? 1 : -1));
   }, { passive: false });
+
+  window.addEventListener('keydown', function(e) {
+    if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+
+    var nextKeys = ['ArrowDown', 'ArrowRight', 'PageDown', ' '];
+    var prevKeys = ['ArrowUp', 'ArrowLeft', 'PageUp'];
+    var direction = nextKeys.indexOf(e.key) !== -1 ? 1 : prevKeys.indexOf(e.key) !== -1 ? -1 : 0;
+
+    if (!direction || locked) return;
+    e.preventDefault();
+    current = getCurrentIndex();
+    goTo(current + direction);
+  });
 
   var touchStartY = 0;
   window.addEventListener('touchstart', function(e) {
@@ -623,6 +760,7 @@ p { margin:0; text-wrap:pretty; }
   window.addEventListener('touchend', function(e) {
     var dy = touchStartY - e.changedTouches[0].clientY;
     if (Math.abs(dy) < 40 || locked) return;
+    current = getCurrentIndex();
     goTo(current + (dy > 0 ? 1 : -1));
   }, { passive: true });
 }());
@@ -631,8 +769,8 @@ p { margin:0; text-wrap:pretty; }
   var content = {
     company: {
       description: 'Se, hvordan Y Business skaber overblik, reducerer risiko og styrker virksomhedens beslutningsgrundlag.',
-      heading: 'Et arbejdsredskab for virksomheden',
-      copy: 'Y Business reducerer tiden brugt på informationssøgning og gør det lettere at reagere på ændringer i marked, regulering og teknologi.',
+      heading: 'Et beslutningslag for virksomheden',
+      copy: 'Y Business overvåger markedet, sorterer signalerne og gør det lettere at reagere på ændringer i marked, regulering og teknologi.',
       values: [
         ['Overblik','Det relevante bliver synligt','Nyheder, signaler og ændringer prioriteres efter virksomhedens branche og behov.'],
         ['Konsekvens','Information oversættes til betydning','Hvem rammes, hvornår gælder det, og hvad bør virksomheden undersøge eller gøre?'],
@@ -642,8 +780,8 @@ p { margin:0; text-wrap:pretty; }
     },
     partner: {
       description: 'Se, hvordan Y Business kan skabe medlemsværdi, distribution og faglige samarbejder uden redaktionel kontrol.',
-      heading: 'Et supplement til partnerens medlemsværdi',
-      copy: 'Y Business kan give medlemmerne et arbejdsredskab, som kombinerer journalistik, overvågning og praktisk virksomhedskonsekvens.',
+      heading: 'Branchetilpasset erhvervsintelligens for medlemmer',
+      copy: 'Y Business kan give medlemmer adgang til redaktionelt prioriterede briefs, signaler og overvågning med klare grænser for publicering og ansvar.',
       values: [
         ['Medlemsværdi','Relevant viden bliver en konkret fordel','Medlemmer får adgang til branchetilpassede briefs, signaler og overvågning.'],
         ['Distribution','Partneren kan åbne en kvalificeret kanal','Betaadgang og introduktion kan målrettes medlemmer med et dokumenteret behov.'],
@@ -652,13 +790,13 @@ p { margin:0; text-wrap:pretty; }
       ]
     },
     support: {
-      description: 'Se den strategiske mulighed: eksisterende teknologi, et overset marked og en model med flere indtægtsstrømme.',
-      heading: 'En platform med redaktionel og teknologisk løftestang',
-      copy: 'Y Business bygger videre på en eksisterende nyhedsmotor og kombinerer abonnement, udvidet anvendelse og partnerskaber i én model.',
+      description: 'Se udviklingsmuligheden: teknologi, rækkevidde og et marked af virksomheder uden egen overvågningsfunktion.',
+      heading: 'Et erhvervsintelligensprodukt med redaktionelle grænser',
+      copy: 'Y Business kombinerer overvågning, personalisering og redaktionel prioritering i en model, der kan skaleres gennem teknologi og partnerskaber.',
       values: [
         ['Marked','Virksomheder uden egen analysefunktion','Produktet er bygget til beslutningstagere, der i dag samler deres viden fra flere adskilte tjenester.'],
-        ['Infrastruktur','Teknologien er allerede i drift','Supertrends leverer overvågning og datastruktur, mens Y bygger brugeroplevelse og redaktionelt lag.'],
-        ['Indtjening','Flere sammenhængende indtægtsstrømme','Abonnementer suppleres af add-ons, partnerprodukter og senere integrationer.'],
+        ['Infrastruktur','Overvågning bliver til anvendelig relevans','Teknologi finder signaler, mens Y bygger brugeroplevelse, prioritering og redaktionelt lag.'],
+        ['Indtjening','Flere mulige kommercielle spor','Abonnementer kan suppleres af tilvalg, partnerprodukter og senere integrationer.'],
         ['Forsvar','Kombinationen bliver sværere at kopiere','Kilder, redaktionelle protokoller, personalisering, brugerdata og distribution forstærker hinanden.']
       ]
     }

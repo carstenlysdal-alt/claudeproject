@@ -1,0 +1,347 @@
+# Koncentrat: Manglende datakilder til Y Business
+
+Y Business har allerede en stærk grundstak med Supertrends API, CVR ElasticSearch, XBRL/årsrapporter, retsinformation.dk, EUR-Lex, udbud.dk, Folketing ODA, Danmarks Statistik API, datafordeler.dk og Tinglysning. Det næste spring ligger derfor ikke i flere generiske nyheder, men i datakilder, der kan give **tidlige signaler**: vækst, risiko, regulering, energi- og fragtpriser, ESG-krav, jobopslag, konkurser, patentaktivitet og branchebevægelser.
+
+Den strategiske pointe er klar: Y Business skal ikke blot fortælle SMV’er, hvad der er sket. Platformen skal hjælpe dem med at opdage, hvad der er ved at ske.
+
+## 1. Danske erhvervsnyheder og fagmedier
+
+Det danske erhvervsmediemarked er fragmenteret, men rummer flere kilder med høj signalværdi. **Via Ritzau** er den mest robuste kilde til pressemeddelelser, selskabsmeddelelser, myndighedsnyt og tidlige virksomhedssignaler. **Børsen Investor-feed**, **Euroinvestor RSS** og **Watch Medier** — herunder **FinansWatch**, **ShippingWatch**, **EnergyWatch** og **AgriWatch** — er stærke erhvervs- og sektorfeeds, men kræver juridisk/licensmæssig afklaring ved produktionsbrug.
+
+Til branchespecifik overvågning bør Y Business også indtage **Søfart**, **Maritime Danmark**, **LandbrugsAvisen**, **Effektivt Landbrug**, **Ingeniøren**, **Landbrug & Fødevarer**, **Finans Danmark**, **TEKNIQ**, **DI** og **Dansk Erhverv**. Disse kilder er ikke nødvendigvis perfekte API-kilder, men de er værdifulde som tekst- og signalkilder for maritime virksomheder, landbrug, fødevarer, teknologi, byggeri, installation, finans, e-handel og industri.
+
+## 2. EU-regulering og dansk lovgivning
+
+Y Business bør supplere eksisterende lov- og EU-data med kilder, der fanger regulering tidligere i processen. **Europa-Kommissionens Press Corner** giver tidlige signaler om forslag, håndhævelse, statsstøtte, konkurrence, handel og sektorregulering. **CURIA** giver RSS-adgang til EU-Domstolens domme, generaladvokatforslag og pressemeddelelser. **TED API** udvider udbudsovervågningen til hele EU og er et oplagt supplement til udbud.dk.
+
+Derudover bør platformen indtage **data.europa.eu**, **EFTA Surveillance Authority**, **Finanstilsynets virksomhedsregister**, **Finanstilsynets OAM**, **Skattestyrelsen/Skatteforvaltningen**, **Skatteforvaltningens DUPLA-platform**, **Toldtariffen/TARIC DK**, **Erhvervsstyrelsens Plandata.dk**, **Konkurrence- og Forbrugerstyrelsens afgørelsesdatabase**, **VIES** og det kommende **ESAP**.
+
+Især kombinationen af Press Corner, CURIA, TED, Finanstilsynet, KFST, Plandata og Skatteforvaltningen kan gøre Y Business til et hurtigt compliance- og reguleringssystem for danske virksomheder.
+
+## 3. Makroøkonomi og finansielle markedsdata
+
+Et brugbart Bloomberg-light-lag kan bygges med åbne og billige kilder. **Danmarks Nationalbank** bør indgå med valutakurser, historiske valutakurser, officielle renter og Statistikbanken. **ECB Data Portal**, **IMF Data Services**, **OECD API**, **Eurostat API**, **FRED**, **Verdensbanken**, **Trading Economics**, **Alpha Vantage** og **DBnomics** giver adgang til globale og europæiske tidsserier, renter, inflation, valuta, arbejdsmarked, produktivitet, industri, kredit og økonomiske indikatorer.
+
+Den mest interessante accelerator er **DBnomics**, fordi den samler data fra blandt andet Eurostat, ECB, IMF, OECD og Verdensbanken i én API-struktur. **Trading Economics** kan fungere som kommercielt speed layer, især hvis Y Business vil tilbyde økonomisk kalender, markedsvarsler og nær-realtidsindikatorer.
+
+## 4. Branche- og sektordata
+
+Branchedata er centralt, hvis Y Business skal være mere end et nyhedsprodukt. **Energi Data Service** er en af de stærkeste åbne danske kilder og giver adgang til el, gas, CO₂, markedsdata, produktion og metadata. **Nord Pool Market Data API** tilføjer kommerciel energimarkedsdata. Sammen kan de bruges til cost alerts, energioptimering og prisanalyser for energiintensive SMV’er.
+
+**UN Comtrade** er en stærk kilde til eksport-, import- og handelsdata på HS-koder og markeder. **Landbrug & Fødevarer**, **Finans Danmark**, **TEKNIQ**, **Dansk Erhverv**, **DI** og **Danmarks Eksport- og Investeringsfond / EIFO** giver sektorspecifikke indikatorer, analyser og finansieringssignaler. EIFO er særlig interessant som indikator for virksomheder, der er på vej mod eksport, grøn omstilling eller international vækst.
+
+## 5. Virksomhedssignaler og leaddata
+
+Dette er den vigtigste kategori for leadgenerering og prædiktiv intelligens. **Jobnet JobannonceService**, **Jobnet API**, **DFDG** og STAR’s jobdata kan bruges til at opdage vækst, teknologiskift, nye funktioner, geografisk ekspansion og ændret kompetencebehov i virksomheder. **EURES** kan supplere med europæiske rekrutteringssignaler.
+
+**Statstidende API** er en nøglekilde til konkurser, rekonstruktioner, proklamaer, likvidationer, tvangsopløsninger og juridiske hændelser. **EPO OPS**, **Patent- og Varemærkestyrelsen / DKPTO**, **EUIPO** og patent-/varemærkedata giver tidlige innovationssignaler, ofte længe før produkter lanceres kommercielt.
+
+De kommercielle datakilder **Creditsafe Connect API**, **D&B Direct+**, **Dealroom API**, **fDi Markets** og **LinkedIn Talent Solutions / Company Intelligence** kan supplere med kreditdata, koncernrelationer, funding-events, scaleup-signaler, international ekspansion og account-based lead intelligence. Her bør Y Business især afklare pris, redistributionsret og API-vilkår.
+
+## 6. ESG, bæredygtighed og compliance
+
+ESG bør bygges som tre lag: registre, disclosure-data og maskinlæsbare taksonomier. **SBTi Target Dashboard** og **SBTi Data Dashboard/API** giver adgang til virksomheders klimamål, commitments og temperature scoring. **CDP** leverer dybe klima- og miljødata, men med kommercielle adgangslag. **GRI Sustainability Disclosure Database** og **GRI Sustainability Taxonomy** giver adgang til rapporteringshistorik og digital ESG-struktur.
+
+**EFRAG ESRS XBRL Taxonomy** og **EFRAG Article 8 XBRL Taxonomy** er strategisk vigtige, fordi de definerer det digitale sprog for CSRD-, ESRS- og EU-taksonomidata. **ESAP** bliver den centrale fremtidige distributionskanal for finansielle og bæredygtighedsrelaterede EU-data. **Nasdaq Nordic Market Notices & News Releases**, **Nasdaq Matter ESG Metrics / Metrio** og **Klimarådets publikationer og data** kan supplere med henholdsvis selskabsmeddelelser, premium ESG-data og dansk klimaregulering.
+
+Det mest differentierende ESG-spor er kombinationen af SBTi, GRI, CDP, EFRAG XBRL og ESAP. Det kan gøre Y Business i stand til at hjælpe SMV’er med Scope 3, leverandørkrav, klimarisiko og dokumentation over for større kunder.
+
+## 7. Internationale erhvervskilder med dansk relevans
+
+For internationale nyheder er **Reuters Connect** den stærkeste bureaukilde, mens **AP Media API** og **AFP API** er relevante alternativer eller supplementer. Hvis budgettet er begrænset, bør Y Business ikke nødvendigvis købe alle tre. En mere rationel strategi er Reuters alene — eller AP/AFP kombineret med stærke nichekilder.
+
+De vigtigste europæiske åbne og semiåbne kilder er **EURACTIV** og **EUobserver**, især til EU-politik, regulering, erhverv, energi, geopolitik og industripolitik. Til realøkonomiske signaler er **Baltic Exchange Market Data API**, **Baltic Exchange Data Feed** og **Freightos/FBX** meget stærke, fordi fragtrater direkte påvirker danske eksport- og importvirksomheder. **Labiotech** og **EMA Union Product Database** er relevante for life science, biotech, pharma, medtech og sundhedsrelaterede SMV’er.
+
+## Samlet strategisk vurdering
+
+De mest differentierende kilder er ikke nødvendigvis de mest kendte. Det største potentiale ligger i kombinationer:
+
+**Jobnet + Statstidende + Finanstilsynet + Creditsafe/D&B** kan skabe et dansk early warning-system for vækst, kreditrisiko, juridisk stress, finansiel status og corporate events.
+
+**Energi Data Service + Nord Pool + Baltic Exchange + Freightos** kan skabe et realøkonomisk prissignallag, hvor Y Business varsler virksomheder om ændringer i energi-, fragt- og forsyningskædeomkostninger.
+
+**TED API + Europa-Kommissionens Press Corner + CURIA + EFTA + KFST** kan skabe et hurtigt regulerings- og udbudslag, som især er stærkt for virksomheder i regulerede sektorer eller med offentlig efterspørgsel.
+
+**SBTi + CDP + GRI + EFRAG XBRL + ESAP + Klimarådet** kan give Y Business en position i ESG/compliance, hvor platformen ikke blot forklarer kravene, men hjælper SMV’er med at handle på dem.
+
+**Plandata.dk + Jobnet + Patentdata + Statstidende + DUPLA** kan blive et prædiktivt vækst- og risikolag, hvor Y Business opdager byggeprojekter, rekrutteringsskift, innovationsaktivitet, likviditetssignaler og konkursrisiko før de klassiske regnskabs- og nyhedskilder.
+
+## Anbefalet første integrationsbølge
+
+Første bølge bør være **Jobnet, Statstidende, Finanstilsynet og Energi Data Service**, fordi de kombinerer høj relevans, relativt lav adgangsbarriere og klar produktværdi. Anden bølge bør være **TED, Press Corner, CURIA, Plandata.dk og SBTi**. Tredje bølge bør være kommercielle datakilder som **Creditsafe, D&B, Reuters, Nord Pool, Baltic Exchange, Freightos, Dealroom og CDP**, hvor værdien er høj, men hvor pris, licens og redistributionsret skal afklares.
+
+Konklusionen er, at Y Business allerede har et solidt fundament. Det næste afgørende skridt er at lukke hullerne omkring signaler, monitorering, sektorpriser, ESG og lead intelligence. Det er dér, platformen kan blive mere end et AI-drevet erhvervsmedie: et operationelt beslutningssystem for danske SMV’er.
+
+
+# Kortlægning af manglende datakilder til Y Business
+
+Denne research fokuserer på datakilder, som **ikke** allerede indgår i jeres nuværende stak: Supertrends API, CVR ElasticSearch, XBRL/årsrapporter, retsinformation.dk, EUR-Lex via Cellar REST, udbud.dk, Folketing ODA, Danmarks Statistik API, datafordeler.dk og Tinglysning. Jeg har prioriteret kilder, der er maskinelt tilgængelige som RSS/Atom, XML, REST-API, SOAP, dataportaler eller dokumenterede eksportflader, og jeg har i alle tilfælde forsøgt at verificere, at kilden enten er aktiv i 2025-2026 eller dokumenteret som en aktiv service i den periode. Når pris ikke er offentligt oplyst, er den angivet som **tilbud/enterprise**. Kilder med **★** er dem, jeg vurderer som de mest værdifulde på kort sigt for Y Business’ profil.
+
+Et vigtigt tværgående fund er, at de **største mangler** ikke nødvendigvis ligger i “flere artikler”, men i bedre adgang til **signaler**: regulatoriske hændelser, jobopslag, konkurser, tilsynsregistre, energi- og fragtpriser, samt kommercielle virksomhedsmonitorerings-API’er. Det er de lag, der bedst kan omdannes til alarmsystemer, lead scoring og differentierende indsigt for danske SMV’er. citeturn12search0turn24search0turn27search0turn31search1turn34search0
+
+## Danske erhvervsnyheder og fagmedier
+
+Det danske marked er mere fragmenteret end det internationale: flere store erhvervsmedier publicerer aktivt i 2026, men kun nogle få eksponerer åbne eller nogenlunde dokumenterede maskinlæsbare feeds. Her er de højst anvendelige fund med rimelig verifikation.
+
+| Kilde | Type | Endpoint/URL | Opdatering | Auth | Pris | Relevans for Y Business |
+|---|---|---|---|---|---|---|
+| ★ Via Ritzau | Pressemeddelelsesplatform / newsroom-feed-økosystem | `https://via.ritzau.dk/` | Løbende; platformen er aktiv med presse- og selskabsmeddelelser i 2025-2026 | Ingen til læsning; udsendelse kræver kunde | Kommerciel | Meget høj som direkte kilde til virksomhedsmeddelelser, PR-signaler, myndighedsmeddelelser og børsmeddelelser, som ofte rammer før klassisk nyhedsdækning. citeturn45search5turn45search8turn46search1 |
+| ★ Børsen Investor-feed | RSS | `https://borsen.dk/rss/investor` | Aktiv feed-distribution er indirekte verificeret; tredjeparts feed-reader viste opdateringer i 2026 | Ingen | Ukendt/licensafhænger af brug | Høj værdi for dansk erhvervs- og markedsstof; men feed’et er **ikke officielt dokumenteret** på et let tilgængeligt Børsen-udviklersite, så redistributionsvilkår bør afklares juridisk. citeturn49search1turn49search3 |
+| Euroinvestor RSS | RSS | `https://www.euroinvestor.dk/content/rss` | Feed’et er operationelt refereret i supportdiskussion og kategoriseret som aktivt feed | Ingen | Typisk gratis læsning; brugsvilkår bør afklares | Relevant som gratis supplement til investerings- og markedsnyheder med dansk vinkel. Verifikationen er indirekte, ikke via officiel produktdokumentation. citeturn49search1 |
+| ★ Watch Medier niche-feed | RSS API-lignende feed-endpoint | `https://rss-feed-api.aws.jyllands-posten.dk/ctwatch.dk/Affald` | Aktivt anvendt på LOOP-forum-siden; refererer Watch Medier-indhold | Ingen | Ukendt/licensafhænger | Interessant, fordi det antyder et genbrugeligt feed-mønster for vertikale Watch Medier-nicher. Særligt stærkt til brancheovervågning, men kræver licensmæssig afklaring før produktionsbrug. citeturn49search0 |
+| Landbrug & Fødevarer | Statistik- og analyseportal | `https://lf.dk/tal-og-analyser/` | Aktiv i 2026; løbende statistik, markedstendenser og eksporttal | Ingen | Gratis | Høj relevans for fødevare-, agro- og eksport-SMV’er; mindre et feed end en struktureret domain-kilde. citeturn23search3turn23search8 |
+| Finans Danmark | Data- og Excel-downloads | `https://finansdanmark.dk/tal-og-data/` | Aktiv i 2026; opdaterede statistikker og bank/boligdata | Ingen | Gratis | God som fagmedie-lignende sektorkilde til finans, bolig og forbrugerøkonomi. Særligt værdifuld som “explainer data layer” ved siden af nyheder. citeturn21search0turn21search3turn21search6 |
+| TEKNIQ | Analyse- og brancheportal | `https://www.tekniq.dk/politik-analyse/analyser/nyeste-analyser/` | Aktiv i 2026 | Ingen; noget medlemsindhold kan være lukket | Delvist gratis / medlemslag | Relevant for installation, industri, byggeri og tekniske fag som niche-SMV-stof. Ikke et dokumenteret åbent feed, men en aktiv og datatung branchekilde. citeturn21search1turn21search10turn21search4 |
+
+Den praktiske konklusion for denne kategori er, at **Via Ritzau** er den mest robuste nye kilde, mens **Børsen**, **Euroinvestor** og mulige **Watch Medier-feedmønstre** er attraktive, men kræver en ekstra juridisk/licensmæssig kontrol, fordi den offentlige udviklerdokumentation er tynd. Til gengæld er brancheorganisationernes egne analyse- og statistikportaler meget anvendelige som højtroværdige nichekilder til SMV-segmenter. citeturn45search5turn49search3turn21search0turn23search3
+
+## Regulering og lovgivning
+
+Her er de vigtigste huller ud over de kilder, I allerede har. Det drejer sig især om **EU-presse og domme**, **tilsynsregistre**, **selskabsmeddelelser**, **skatte-/tolddata** og det kommende **ESAP**-lag.
+
+| Kilde | Type | Endpoint/URL | Opdatering | Auth | Pris | Relevans for Y Business |
+|---|---|---|---|---|---|---|
+| ★ Europa-Kommissionens Press Corner | RSS/filtrerede pressefeeds | `https://ec.europa.eu/commission/presscorner/home/en` | Dagligt; siden viser aktuelle releases i 2025-2026 og UI med “RSS Link” | Ingen | Gratis | Meget høj værdi til tidlig overvågning af forslag, håndhævelse, statsstøtte, konkurrence, handel og sektorregulering, før de konsolideres i lovdatabaser. citeturn10search3turn10search13turn10search19turn10search24 |
+| ★ CURIA | RSS for domme, generaladvokatforslag og pressemeddelelser | `https://curia.europa.eu/site/jcms/qua1_6621/en/rss` | Løbende; officielle press releases er aktive i 2026 | Ingen | Gratis | Høj værdi til tidlig detektion af domme, der påvirker dansk erhvervsliv, udbud, sanktioner, konkurrenceret og skatteret. citeturn18search0turn18search2turn18search6turn18search9 |
+| ★ TED API | REST-API, XML-bulk og RSS | `https://docs.ted.europa.eu/api/latest/index.html` | Løbende | Typisk uden betaling; nogle funktioner kan kræve konto | Gratis | Strategisk stærk udvidelse til EU-udbud uden for Danmark. Giver adgang til notifikationer, XML-notices, kalender og søgning. citeturn16search0turn16search2turn16search16 |
+| data.europa.eu | Open data-portal / API-økosystem | `https://data.europa.eu/` | Løbende | Ingen | Gratis | Relevant som meta-kilde til EU-datasæt, inklusive reguleringsnære datasæt og guider til nationale single points. Særligt nyttig som opdagelseslag. citeturn37search6 |
+| ★ Finanstilsynets virksomhedsregister | Webregister med eksportfunktion | `https://virksomhedsregister.finanstilsynet.dk/` | Aktivt, senest opdateret 2024; eksportside eksisterer og sitet er aktivt i 2026 | Ingen til opslag | Gratis | Meget høj værdi til identifikation af finansielle virksomheder, tilladelser og statusændringer, som ikke findes rent i CVR. citeturn12search1turn12search7turn12search14 |
+| ★ Finanstilsynets OAM | Selskabsmeddelelsesdatabase | `https://www.finanstilsynet.dk/finansielle-temaer/kapitalmarked/indberetninger-til-finanstilsynet-via-oam-systemet/` | Løbende | Ingen til offentlig læsning | Gratis | Høj værdi til børs- og complianceovervågning, inkl. selskabsmeddelelser og insidersignaler, med særlig relevans for større SMV’er og vækstvirksomheder. citeturn12search0turn11search3 |
+| Skattestyrelsen / Skatteforvaltningen | Webservices / Open API til indberetnings- og enkelte dataflows | `https://info.skat.dk/` | Aktivt i 2024-2026 | Rolle- og rettighedsstyring | Gratis at tilgå som offentlig dokumentation; integration kræver opsætning | Relevant mindre som nyhedsfeed og mere som compliance-/processignal. Kan bruges til overvågning af ændringer i indberetningskrav og webserviceflader. citeturn14search0turn14search8turn14search10 |
+| Toldtariffen / TARIC DK | Portal med told, valutakurser og eksportfunktioner | `https://tarif.skat.dk/` | Løbende | Ingen | Gratis | Meget nyttig for import-/eksportintensive SMV’er; mindre et klassisk API, men et vigtigt kommercielt compliance-lag. citeturn14search2turn14search6 |
+| ★ ESAP | Kommende EU-portal for finansielle og bæredygtighedsoplysninger | `https://www.esma.europa.eu/esmas-activities/data/european-single-access-point-esap` | **Indsamling starter juli 2026, offentliggørelse senest juli 2027** | Ingen forventet for offentlig adgang | Gratis forventeligt | Ikke en operativ datakilde for 2026-produktion endnu, men strategisk ekstremt vigtig for kommende EU-finans- og ESG-data. Bør være på jeres roadmap nu. citeturn37search0turn37search1turn37search3turn37search8 |
+
+Det vigtigste her er, at I mangler et **hurtigt reguleringslag**, ikke blot et historisk lovlag: Kommissionens Press Corner, CURIA og TED bør kobles sammen med retsinformation.dk, Folketing ODA og jeres EUR-Lex-adgang. Særligt **Finanstilsynets OAM og virksomhedsregister** er oplagte højværdi-kilder til danske selskabs- og complianceændringer. citeturn10search3turn18search0turn16search0turn12search1turn12search0
+
+## Makroøkonomi og finansielle markedsdata
+
+Denne kategori er relativt ligetil: der findes et stærkt sæt offentlige API’er, som samlet set kan dække størstedelen af et Bloomberg/Reuters-lignende makrolag for SMV-formål, hvis man accepterer lidt mere integration og mindre “one-stop UI”.
+
+| Kilde | Type | Endpoint/URL | Opdatering | Auth | Pris | Relevans for Y Business |
+|---|---|---|---|---|---|---|
+| ★ Danmarks Nationalbank valutakurser | XML-feed | `https://www.nationalbanken.dk/api/currencyratesxml?lang=da` | Dagligt | Ingen | Gratis | Basiskilde til danske valutakurser og valutarelateret markedsmonitorering. Bør indgå som first-party makrolag. citeturn20search0turn20search2turn20search4 |
+| Danmarks Nationalbank historiske valutakurser | XML-feed / historik | `https://www.nationalbanken.dk/api/currencyratesxmlhistory?lang=da` | Historik opdateres løbende | Ingen | Gratis | Relevans til trendgrafer, backtesting og benchmarking. citeturn20search0turn20search3turn20search5 |
+| ★ Danmarks Nationalbank officielle renter | XML + Statbank | Se rentesiden; XML-links udstilles på siden | Ved renteændringer | Ingen | Gratis | Kritisk for danske virksomheder, især finansieringstunge SMV’er. citeturn20search1turn20search6 |
+| ★ ECB Data Portal | API / dataportal | `https://data.ecb.europa.eu/` | Løbende | Ingen | Gratis | Høj værdi for euroområdets renter, inflation, bankdata og monetære indikatorer. citeturn8search1 |
+| ★ IMF Data Services | SDMX API | `https://data.imf.org/` / SDMX services | Løbende | Ingen | Gratis | God til globale makroserier, betalingsbalance, geopolitiske exposures og internationale benchmarks. citeturn8search2 |
+| ★ OECD API | API / SDMX-JSON | `https://sdmx.oecd.org/` og OECD API-dokumentation | Løbende | Ingen | Gratis | Særlig værdi til komparative erhvervs-, produktivitets- og industridata. citeturn8search3 |
+| ★ Eurostat API | API | `https://ec.europa.eu/eurostat/web/main/data/web-services` | Løbende | Ingen | Gratis | Meget stærk kilde til EU-harmoniserede erhvervs-, pris-, arbejdsmarkeds- og produktionsdata. citeturn8search4 |
+| ★ FRED | REST-API | `https://fred.stlouisfed.org/docs/api/fred/` | Løbende | API-nøgle | Gratis | Et af de bedste gratis alternativer til makroaggregatorer: enorm bredde, versionshistorik via ALFRED og simple calls i XML/JSON. citeturn19search0turn19search4turn19search7turn19search13 |
+| Verdensbanken | Indicators API / Data Catalog API | `https://api.worldbank.org/` og `https://datahelpdesk.worldbank.org/` | Løbende | Ingen | Gratis | God til globale strukturdata og udviklingsmarkeder; mindre stærk til realtid, men stærk til baggrundsindikatorer. citeturn19search8turn19search14turn19search20turn19search23 |
+| Trading Economics | REST-API | `https://api.tradingeconomics.com/` | Nær-realtid for mange serier | API-nøgle | Freemium/kommerciel | Praktisk “poor man’s Bloomberg/Reuters” til indikatorer, kalender og markeder. God som accelerationslag oven på de offentlige kilder. citeturn19search2turn19search9turn19search21 |
+| Alpha Vantage | REST-API | `https://www.alphavantage.co/documentation/` | Løbende | API-nøgle | Freemium | Mere velegnet til markedsdata end klassisk makro, men nyttig til letvægts equity/FX-lag. citeturn19search3 |
+
+Det afgørende her er, at I kan bygge et **fuldt brugbart makrolag uden Bloomberg/Reuters** ved at kombinere Nationalbanken, ECB, IMF, OECD, Eurostat og FRED. Den kommercielle “speed booster” er Trading Economics, især hvis Y Business vil vise en “økonomisk kalender” eller nær-realtidsindikatorer i produktet. citeturn20search0turn8search1turn8search2turn8search4turn19search0turn19search2
+
+## Branche- og sektordata
+
+Her er potentialet størst, hvis Y Business vil være mere end et nyhedsprodukt. Mange af disse kilder er ikke klassiske “breaking news feeds”, men de er stærke som **sektorspecifikke signalmotorer**.
+
+| Kilde | Type | Endpoint/URL | Opdatering | Auth | Pris | Relevans for Y Business |
+|---|---|---|---|---|---|---|
+| ★ Energi Data Service | REST-API + metadata-API + nyheds-API | `https://api.energidataservice.dk/` | Fra 5-minutters niveau og op, afhængigt af datasæt | Ingen | Gratis | En af de stærkeste åbne danske kilder overhovedet: el, gas, CO2, markedsdata, produktionsdata og metadata. Kan bruges direkte i prisanalyse, cost alerts og sektortrends. citeturn24search0turn24search2turn24search4turn24search10turn24search13 |
+| ★ Nord Pool Market Data API | Kommerciel markedsdata-API | `https://www.nordpoolgroup.com/en/trading/api/` | Løbende / markedsnært | Konto/API-aftale | Kommerciel | Meget stærk for elpris- og energimarkedsmonitorering i Norden. Vigtig for energiintensive SMV’er og som konkurrencefordel i Danmark. citeturn23search16turn23search1turn23search11 |
+| ★ UN Comtrade | Handelsdata-API | `https://comtradeplus.un.org/` og developer-portal | Løbende; månedlige og årlige releases | Gratis API-nøgle; premium for højere volumen | Gratis + premium | Meget høj værdi til eksport-/importovervågning, HS-koder, markedsmuligheder og benchmark mod handelspartnere. citeturn25search0turn25search4turn25search9turn25search24 |
+| Landbrug & Fødevarer | Statistikportal / årsstatistikker | `https://agricultureandfood.dk/statistics/annual-statistics/` og `https://lf.dk/tal-og-analyser/statistik-og-noteringer/` | Årligt, kvartalsvist og løbende afhængigt af område | Ingen | Gratis | Høj værdi til agro-, mejeri-, kød- og eksportklynger, især for nichesignaler til fødevare-SMV’er. citeturn23search2turn23search7turn23search8turn23search12 |
+| Finans Danmark | Statistikker i Excel / bolig- og institutdata | `https://finansdanmark.dk/tal-og-data/` | Månedligt/kvartalsvist afhængigt af statistik | Ingen | Gratis | God kilde til sektorindikatorer for bank, svindel, bolig og investeringsfonde. Brugbar som “branchestatistik”-lag. citeturn21search0turn21search3turn21search9 |
+| TEKNIQ | Brancheanalyser og benchmark-lag | `https://www.tekniq.dk/politik-analyse/analyser/nyeste-analyser/` | Løbende | Delvist medlemslag | Delvist gratis | Relevans til installations- og teknikbranchen; især værdifuld som nichekonjunktur- og konkursindikator. citeturn21search1turn21search10turn21search7 |
+| Dansk Erhverv | Analyse- og e-handelsmateriale | `https://www.danskerhverv.dk/branche/digital-handel/` | Løbende | Noget indhold åbent | Delvist gratis / medlemslag | Relevant for detail, service, turisme, health og e-handel. Ikke et klassisk API, men en vigtig nichekilde. citeturn21search17turn21search11 |
+
+Den reelle guldåre i denne kategori er **Energi Data Service** og **Nord Pool**. De giver et operationelt billede af inputpriser og energisystemet, som få danske erhvervsmedier kan matche. **UN Comtrade** er den anden store mulighed, fordi den løfter eksport- og handelsindsigt langt ud over, hvad et rent dansk statistiklag kan levere. citeturn24search0turn23search16turn25search0
+
+## Virksomhedssignaler og leaddata
+
+Dette er efter min vurdering den vigtigste kategori for produktdifferentiering, fordi den kan omsættes direkte til **leadgenerering, intent-signaler og salgsalarmer**.
+
+| Kilde | Type | Endpoint/URL | Opdatering | Auth | Pris | Relevans for Y Business |
+|---|---|---|---|---|---|---|
+| ★ Jobnet JobannonceService | Webservice til import/eksport af jobannoncer | STAR-dokumentation for Jobnet webservice | Nær-realtid / event-driven | Aftale og teknisk tilslutning | Gratis at bruge; egne integrationsomkostninger | En af de mest oplagte danske vækstindikatorer: ændringer i hiring-intensitet, nye funktioner, lokationer og fagprofiler. citeturn27search0turn27search1turn27search2 |
+| EURES | Europæisk jobportal | `https://europa.eu/eures/portal/` | Løbende | Ingen til portalbrug | Gratis | God som EU-supplerende hiring-signal og til international rekrutteringsaktivitet hos danske virksomheder. citeturn28search1turn28search4turn28search7 |
+| ★ Statstidende API | API for kundgørelser | `https://api.statstidende.dk/` | Løbende | Ukendt detaljeret auth-model; API findes | Gratis/offentlig myndighedsservice | Meget stærk til konkurser, likvidationer, tvangsopløsninger og andre juridiske hændelser. En oplagt signalmotor sammen med CVR og tinglysning. citeturn31search1turn33search0turn33search1 |
+| ★ EPO OPS | REST/XML patent-API | `https://www.epo.org/en/searching-for-patents/data/web-services/ops` | Løbende; patentdata opdateres løbende, Espacenet dagligt | OAuth / registrering | Gratis op til 4 GB/uge; derefter abonnement | Meget høj værdi til innovations-, IP- og teknologisignaler, også for danske ansøgere via landekoder og juridisk status. citeturn26search0turn26search1turn26search3turn26search8 |
+| ★ Creditsafe Connect API | Kommerciel virksomheds- og monitorerings-API | Creditsafe Connect / Global Monitoring docs | Realtid / event alerts | OAuth/API | Kommerciel | Meget stærk til lead scoring, monitorering af kunders/leverandørers ændringer, kreditrisiko og hændelsesalarmer. citeturn34search0turn34search4turn34search8turn34search20 |
+| D&B Direct+ / D&B Direct | Kommerciel virksomhedsdata-API | `https://developer.dnb.com/` / `https://docs.dnb.com/` | Løbende | OAuth/client credentials | Kommerciel, metered | Særlig stærk til global parent-child-struktur, virksomhedsberigelse og overvågning i B2B-salg. citeturn34search1turn34search5turn34search9turn34search17turn34search25 |
+| Dealroom API | Kommerciel API | `https://dealroom.co/products/dealroom-api/` | Løbende | API-aftale | Kommerciel | Meget relevant til scaleups, funding-events, founder- og talent-signaler, især hvis Y Business vil eje vækst- og venturelaget i Norden. citeturn34search3turn34search7turn34search15turn34search23 |
+| fDi Markets | Kommerciel database / monitor | `https://www.fdimarkets.com/` | Realtidslignende editorial monitoring | Login | Kommerciel | Vigtig, hvis I vil opdage udlandsetableringer og investeringsovervejelser tidligt. Særligt stærk til “investor signals”. citeturn35search0turn35search3turn35search6 |
+| LinkedIn Talent Solutions / Company Intelligence | Private API’er | LinkedIn docs | Løbende | Godkendelse + OAuth | Kommerciel / partnerprogram | Relevant til account-based lead scoring og erhvervssegmentering, men **ikke** en åben jobs-API til bred scraping. Bruges bedst som partner-/marketinglag, ikke som primær dansk jobkilde. citeturn29search0turn29search2turn29search7turn29search12turn29search15 |
+
+I denne kategori er kombinationen af **Jobnet + Statstidende + EPO OPS + Creditsafe/D&B** særlig stærk. Samlet kan de give en signalmodel, hvor Y Business kan opdage, at en virksomhed **hyrer**, **søger ny teknologi**, **har juridisk stress** eller **bliver kommercielt mere attraktiv**. Det er væsentligt mere handlingsrettet end klassisk nyhedsaggregering. citeturn27search0turn31search1turn26search0turn34search0turn34search17
+
+En vigtig begrænsning er, at jeg **ikke har kunnet verificere en åben, officielt dokumenteret Jobindex-API** i denne scan. Hvis Jobindex er strategisk vigtig for jer, bør den afklares kommercielt direkte med Jobindex i et næste due-diligence-spor. Samtidig viser LinkedIns dokumentation, at deres relevante indsigt typisk ligger bag partnergodkendelse og ikke som en fri jobs-feed. citeturn29search2turn29search12
+
+## ESG, bæredygtighed og compliance
+
+Her er markedet i overgang: de nuværende kilder er fragmenterede, men de næste to år vil området ændre sig markant. Det gør denne kategori ekstra vigtig at designe rigtigt nu.
+
+| Kilde | Type | Endpoint/URL | Opdatering | Auth | Pris | Relevans for Y Business |
+|---|---|---|---|---|---|---|
+| ★ SBTi Target Dashboard | Dashboard + åbne datasæt | `https://sciencebasedtargets.org/target-dashboard` | Ugentligt og løbende | Ingen | Gratis | Meget stærk kilde til validerede klimaambitioner, commitments og target-status. God til ESG-profiler på virksomheder. citeturn36search0turn36search12turn36search16 |
+| CDP | API og datatilgang | `https://www.cdp.net/en/disclosure-2026` og `https://data.cdp.net/` | Årlig disclosure-cyklus + adgangslag | Medlemskab/partneraftale afhængigt af brug | Delvist gratis / kommerciel | Relevant, men mere kompleks. CDP dokumenterer API-adgang og større kommercielle datamængder; meget værdifuld for klima- og leverandørkædesignalering. citeturn36search1turn36search5turn36search13 |
+| GRI Sustainability Disclosure Database | Database / rapportregistry | `http://database.globalreporting.org` | Løbende | Ingen til søgning | Gratis | Nyttig som global registry over sustainability reports, men mindre API-moden end SBTi og CDP. God til at finde rapporterende virksomheder og historik. citeturn36search10turn36search14turn36search2 |
+| ★ EFRAG ESRS XBRL Taxonomy | XBRL-taksonomi | `https://www.efrag.org/en/sustainability-reporting/esrs-workstreams/digital-reporting-with-xbrl` | Taksonomier offentliggjort 2024; fortsat aktivt arbejde | Ingen | Gratis | Høj strategisk værdi, fordi det er det digitale sprog for fremtidig CSRD/ESRS-aflæsning. Ikke i sig selv en rapportkilde, men et must-have for parsing. citeturn36search3turn36search7turn36search11turn36search19 |
+| EFRAG Article 8 XBRL Taxonomy | XBRL-taksonomi | `https://www.efrag.org/en/projects/article-8-xbrl-taxonomy/concluded` | Aktiv reference i 2024-2026 | Ingen | Gratis | Relevant, hvis I vil udlede EU-taksonomi-tilknyttede grønne KPI’er. citeturn36search15 |
+| ★ ESAP | Fremtidig EU-distributionskanal | `https://www.esma.europa.eu/esmas-activities/data/european-single-access-point-esap` | Samme tidslinje: dataindsamling fra juli 2026, publicering senest juli 2027 | Ingen forventet | Gratis forventeligt | Den vigtigste fremtidige kilde til standardiseret, centraliseret finans- og ESG-information om EU-virksomheder, inklusive mange SMV’er over tid. citeturn37search0turn37search3turn37search17 |
+| Nasdaq Nordic Market Notices & News Releases | RSS-abonnementsmulighed | `https://www.nasdaqomxnordic.com/news/marketnotices` | Løbende | Ingen til visning; abonnementsopsætning mulig | Gratis til feed-visning / licens afhænger af brug | Praktisk nutidskilde til børsnoterede nordiske selskabers meddelelser, herunder årsrapporter og potentielt sustainability reports. citeturn38search0 |
+| Nasdaq Matter ESG Metrics / Metrio | Kommercielle ESG-datasæt og software | `https://data.nasdaq.com/databases/ESGM` og `https://www.nasdaq.com/solutions/sustainability/metrio` | Løbende | API/aftale | Kommerciel | Relevant som premium-lag, hvis I vil levere ESG-scoring eller indsigt uden at bygge alt selv. citeturn38search2turn38search4 |
+
+Den vigtigste pointe er, at ESG ikke bør modelleres som én kilde. I praksis bør I tænke i tre lag: **registry** (GRI, SBTi), **disclosure data** (CDP, nuværende selskabsmeddelelser, senere ESAP) og **digital parsing-standarder** (EFRAG XBRL). Det er sådan, I bygger et ESG-lag, der faktisk kan bruges operationelt. citeturn36search0turn36search10turn36search1turn36search3turn37search0
+
+## Internationale erhvervsnyheder med dansk relevans
+
+Her er fokus ikke blot på “mere internationalt stof”, men på kilder, der **reelt forbedrer dansk erhvervsovervågning**: globale bureauer, EU-politik, shipping, energi og life science.
+
+| Kilde | Type | Endpoint/URL | Opdatering | Auth | Pris | Relevans for Y Business |
+|---|---|---|---|---|---|---|
+| ★ Reuters Connect | API + feedplatform | `https://reutersagency.com/content-delivery-platforms/reuters-connect/` | Realtid | Konto/API-aftale | Kommerciel; fleksible/modulære modeller | Den stærkeste internationale bureaukilde til breaking business, geopolitik, energi, makro og virksomheder. Meget relevant, men dyrere end åbne alternativer. citeturn39search0turn39search10turn39search15turn39search20 |
+| ★ AP Media API | API + continuous feed | `https://developer.ap.org/ap-media-api/` | Realtid/continuous feed | API-aftale | Kommerciel | God bred bureaukilde, især hvis I vil balancere eller alternativt supplere Reuters på breaking international business. citeturn39search1turn39search6turn39search11turn39search16 |
+| ★ AFP API | API | `https://www.afp.com/en/our-offer/afp-api` | Realtid | API-aftale | Kommerciel | Stærk til international og europæisk virksomhedsdækning, især hvis I ønsker bredere flersproget europæisk signalering. citeturn39search2turn39search12turn39search22 |
+| ★ EURACTIV | RSS-økosystem / presserum / agenda | Se Euractivs RSS- og PR-sider | Dagligt og ugentligt | Ingen til feeds | Gratis + Pro-produkter | Særlig høj relevans for dansk erhverv, fordi en stor del af kommende regulerings- og industristof lander her med mere forretningsvinkel end i generelle nyhedsbureauer. citeturn41search0turn41search1turn41search2turn40search10turn40search21 |
+| EUobserver | RSS-feeds på forfatter-/sektionniveau | EUobserver-site og forfattersider | Løbende | Delvist abonnementslag | Delvist gratis | God EU-økonomi- og geopolitik-kilde; ikke lige så feed-klart som Euractiv, men dokumenteret med RSS på flere sider. citeturn40search1turn40search4turn40search7turn40search9turn40search11 |
+| ★ Baltic Exchange Market Data API | Kommerciel maritime market data API | `https://api.balticexchange.com` / docs PDF | Markedsnært | API key/licens | Kommerciel | Meget høj relevans for shipping, råvarer og eksportøkonomi. Ekstra vigtigt: Baltic dekommissionerede XML-feeds 30. juni 2026 og flytter til API. citeturn42search0turn42search5turn42search8 |
+| ★ Freightos / FBX | API / developer portal | `https://developers.freightos.com/` | Dagligt og markedsnært | API-aftale | Kommerciel | Stærk container- og fragtindikator med direkte betydning for importerende og eksporterende SMV’er. citeturn39search3turn39search8turn39search13 |
+| Labiotech | RSS/nyhedssite | `https://www.labiotech.eu/trends-news/` | Aktiv i 2026; siden angiver RSS-tilstedeværelse | Ingen | Gratis | God specialiseret life-science-kilde med europæisk fokus, relevant for dansk biotech, pharma og deep-tech helse. citeturn43search0turn39search9turn39search19 |
+
+Hvis budgettet er begrænset, ville jeg ikke starte med alle tre bureauer. Den rationelle prioritering er enten **Reuters alene** eller **AP/AFP + stærke nichekilder**. Til gengæld vil jeg klart anbefale **Baltic Exchange/Freightos** som mere differentierende end endnu et generisk internationalt nyhedsfeed, fordi de giver markedsprissignaler, som danske virksomheder faktisk kan handle på. citeturn39search0turn39search1turn39search2turn42search5turn39search8
+
+## Samlet vurdering
+
+Hvis målet er at skabe en dansk AI-drevet erhvervsintelligensplatform med reel forskel i markedet, er det **ikke** nyhedsbredden alene, der bliver jeres fordel. Det bliver evnen til at kombinere **hændelsessignaler**, **prissignaler**, **compliance-signaler** og **branchedata** i ét dansk arbejdsflow. På den baggrund vurderer jeg, at følgende kilder har størst potentiale som differentierende fordele:
+
+| Prioritet | Kildekombination | Hvorfor den differentierer |
+|---|---|---|
+| ★ | **Jobnet + Statstidende API + Finanstilsynets registre/OAM** | Tilsammen giver de et dansk “early warning system” for hiring, juridisk stress, finansiel status og corporate events. Det kan omsættes direkte til lead scoring, risikomonitorering og salgs-signaler. citeturn27search0turn31search1turn12search1turn12search0 |
+| ★ | **Energi Data Service + Nord Pool + Baltic Exchange/Freightos** | Dette er et usædvanligt stærkt realøkonomisk lag: energi- og fragtpriser påvirker bundlinjen direkte i mange SMV’er. Her kan Y Business levere operationel indsigt, ikke bare omtale. citeturn24search0turn23search16turn42search5turn39search8 |
+| ★ | **TED API + Kommissionens Press Corner + CURIA** | Giver en næsten end-to-end overvågning af EU-udbud, regulatoriske initiativer og retspraksis. Det er meget stærkt til sektorer med offentlig efterspørgsel eller tung regulering. citeturn16search0turn10search3turn18search0 |
+| ★ | **SBTi + CDP + GRI + EFRAG XBRL + ESAP-roadmap** | Dette er det rigtige fundament, hvis Y Business vil eje ESG/compliance-laget i SMB-segmentet. Ikke kun rapportarkiv, men også maskinlæsbar og fremtidssikret struktur. citeturn36search0turn36search1turn36search10turn36search3turn37search0 |
+| ★ | **Creditsafe/D&B + Dealroom + fDi Markets** | Det stærkeste kommercielle “go-to-market intelligence”-spor: kredit, monitorering, vækst, funding og udenlandsk ekspansion i ét lead-lag. citeturn34search0turn34search17turn34search7turn35search0 |
+
+### Hvad jeg ville gøre først
+
+Hvis jeg skulle prioritere integrationsrækkefølgen for Y Business, ville jeg starte med fire spor. Først **Jobnet + Statstidende + Finanstilsynet**, fordi de hurtigt kan løfte lead- og alert-produkter. Dernæst **Energi Data Service**, fordi værdien er høj og adgangsbarrieren lav. Tredje spor ville være **TED + Press Corner + CURIA**, fordi det giver markant bedre regulerings- og udbudsovervågning end de fleste danske SMB-produkter i dag. Fjerde spor ville være **en kommerciel virksomhedsmonitorerings-API** som Creditsafe eller D&B, afhængigt af pris og redistributionsvilkår. citeturn27search0turn31search1turn24search0turn16search0turn10search3turn18search0turn34search0turn34search17 |
+
+### Åbne spørgsmål og begrænsninger
+
+Der er tre områder, hvor verifikationen er mere usikker end i resten af rapporten. For det første de **store danske betalingsmediers RSS-feeds**, især Børsen og Euroinvestor, hvor feed-eksistensen er verificeret indirekte gennem operationelle referencer og feed-aggregatorer snarere end gennem officiel udviklerdokumentation. For det andet **Watch Medier**, hvor jeg har verificeret et feed-mønster via et aktivt eksternt site, men ikke en fuld officiel feedoversigt. For det tredje **ESAP**, som er en strategisk nøglekilde, men endnu ikke en offentlig produktionskilde i 2026, fordi publiceringen først skal starte senest i juli 2027. citeturn49search1turn49search3turn49search0turn37search0turn37search3 |
+
+Samlet set er min vurdering, at Y Business står med en usædvanligt god grundstak allerede. Det mest oplagte næste skridt er ikke flere generiske nyheder, men at lukke hullerne omkring **signaler, monitorering og sektorpriser**. Det er der, I kan skabe en platform, som danske SMV’er ikke blot læser, men aktivt bruger til at handle på. citeturn27search0turn31search1turn24search0turn34search0turn36search0
+
+For at en AI-drevet erhvervsintelligensplatform kan levere asymmetriske informationsfordele og prædiktive analyser til små og mellemstore virksomheder (SMV'er), kræves et datagrundlag, der rækker ud over statiske historiske regnskabstal. Nærværende analyse identificerer, evaluerer og strukturerer eksterne datakilder på tværs af syv strategiske domæner, der kan integreres i Y Business. Fokus er rettet mod dynamiske, højfrekvente datasæt, der kan indgå direkte i maskinlæringspipelines via REST API, GraphQL, RSS, Atom eller standardiserede datafeeds, og som dermed danner grundlag for automatiseret hændelsesdetektion (Event Detection), sentimentanalyse og grafbaseret netværksanalyse.
+Rapporten udelader bevidst grunddataregistre, der allerede er fuldt integreret (såsom CVR ElasticSearch, datafordeler.dk og Danmarks Statistik API), og koncentrerer sig om at afdække uudnyttede datastrømme, der leverer operationel værdi, tidlige vækstsignaler og overvågning af forsyningskæderisi. De ti kilder, der vurderes at rumme det absolut største strategiske og differentierende potentiale for platformens algoritmer, er fremhævet med en stjerne (★).
+1. Erhvervsnyheder og fagmedier
+For at fodre platformens Natural Language Processing (NLP) modeller med rettidig viden om ledelsesskift, markedsbevægelser og branchespecifikke risici er ustrukturerede tekstdata fra specialiserede fagmedier fundamentale. Mens generelle dagblade opfanger makrotendenser, er det nichemedierne, der først rapporterer om de SMV'er, der opererer i forsyningskædernes dybere led.
+Watch Medier (FinansWatch, ShippingWatch, EnergyWatch, AgriWatch) ★ — Type (RSS / Web Scraping) — Endpoint eller dokumentations-URL: rss.app/rss-feed/shippingwatch-rss-feed samt de respektive domæners sektionssider — Opdateringsfrekvens: Realtidsnært / Dagligt — Autentificering: Nej (til overskrifter/RSS), Ja (til fuldtekst via erhvervsabonnement) — Pris: Gratis for RSS, Kommerciel for fuldtekst-API — Kort vurdering af relevans for Y Business: Watch Medier udgør den mest specialiserede klynge af erhvervsjournalistik i Norden1. For Y Business er integration af disse RSS-feeds kritisk for at fange nyheder om eksempelvis rederiers strategiske kursskifter, kapitalforvalteres ESG-strategier eller energiselskabers Power-to-X investeringer før de når mainstreammedierne5. Selv hvis adgangen begrænses til RSS-overskrifter og resuméer (snippets), leverer kilden et uovertruffent tekstkorpus til AI-baseret Named Entity Recognition (NER), der kan koble virksomhedsnavne sammen med sentimentindikatorer og trigger-hændelser8.
+Søfart og Maritime Danmark — Type (RSS / XML) — Endpoint eller dokumentations-URL: soefart.dk/rss og maritimedanmark.dk/rss — Opdateringsfrekvens: Daglige opdateringer — Autentificering: Nej — Pris: Gratis — Kort vurdering af relevans for Y Business: Det Blå Danmark udgør en massiv andel af dansk eksport og består af et komplekst økosystem af leverandør-SMV'er. Medier som Søfart og Maritime Danmark dækker alt fra store skibsbygningskontrakter til nicheaktørers økonomiske resultater10. Ved at overvåge disse kilder kan platformen analysere tendenser inden for grøn brændstofomstilling og flådeudvidelser, hvilket genererer præcise salgssignaler for underleverandører til den maritime industri14.
+LandbrugsAvisen og Effektivt Landbrug — Type (RSS / Atom) — Endpoint eller dokumentations-URL: landbrugsavisen.dk og effektivtlandbrug.landbrugnet.dk — Opdateringsfrekvens: Dagligt — Autentificering: Nej for overskrifter — Pris: Gratis (standard RSS), Kommerciel for fuld adgang — Kort vurdering af relevans for Y Business: Agro-industrien undergår i disse år en teknologisk og klimamæssig transformation. Disse fagmedier rapporterer dagligt om afgrødepriser, nye maskininvesteringer, lovgivningskrav og ejerskifter17. For B2B-virksomheder med landbruget som målgruppe fungerer disse feeds som indikatorer for investeringsparathed, særligt når de kombineres med viden om ESG-regulering17. NLP-modellering af disse tekster kan identificere, hvilke geografiske regioner eller landbrugstyper der investerer i ny teknologi.
+Ingeniøren (Teknologiens Mediehus) — Type (RSS) — Endpoint eller dokumentations-URL: ing.dk/rss/nyheder — Opdateringsfrekvens: Dagligt — Autentificering: Nej — Pris: Gratis (Overskrifter) — Kort vurdering af relevans for Y Business: Dette feed fokuserer tungt på teknologiske gennembrud, store infrastrukturprojekter, IT-sikkerhed og patenter22. Selvom RSS-feedet ofte kun udstiller få linjers resuméer23, indeholder overskrifterne tæt pakket information, som kan bruges til at kortlægge teknologitrends og identificere teknologiorienterede SMV'er i vækst.
+Fagmedie
+Primært Domæne
+Format
+Opdateringsfrekvens
+Relevans for SMV-signaler
+FinansWatch
+Finans og kapitalforvaltning
+RSS
+Realtid
+Høj (kapitalrejsning, M&A)
+ShippingWatch
+Rederier og logistik
+RSS
+Realtid
+Høj (forsyningskæder, rater)
+LandbrugsAvisen
+Agro-industri, fødevarer
+RSS/App
+Dagligt
+Medium (investeringsklima)
+Ingeniøren
+Tech, IT, Byggeri, Klima
+RSS
+Dagligt
+Høj (teknologiske skift)
+
+2. EU-regulering og dansk lovgivning
+Regulativ kompleksitet og compliance-krav udgør asymmetriske risici for SMV'er, der ofte mangler dedikerede juridiske afdelinger. Automatiseret overvågning af regulering, der rækker ud over standard lovtekster, kan positionere Y Business som et uundværligt compliance-værktøj.
+Skatteforvaltningens DUPLA (Dataudvekslingsplatform) REST API ★ — Type (REST API) — Endpoint eller dokumentations-URL: ufst.dk/it-i-skatteforvaltningen/data-og-integrationsportalen — Opdateringsfrekvens: Realtid / Hændelsesbaseret — Autentificering: Ja (OCES certifikater for maskin-til-maskin, MitID for brugersamtykke) — Pris: Gratis (kræver lovhjemmel eller udtrykkeligt samtykke) — Kort vurdering af relevans for Y Business: DUPLA er Skatteforvaltningens moderne integrationsplatform, der udstiller massive mængder finansiel data, herunder momsregistreringer, årsopgørelser og eKapital-data via OpenAPI-specifikationer26. Mens direkte adgang til tredjepartsdata er stærkt reguleret (GDPR-compliant, dataminimering), muliggør platformen, at Y Business kan bygge et "opt-in" flow, hvor en SMV giver platformen adgang til egne skattedata. Dette muliggør generering af ultra-præcise likviditetsprognoser og kreditvurderinger, hvilket er et af de stærkeste værktøjer for en B2B-kreditor at have adgang til28.
+Finanstilsynets API for Virksomhedsregister og OAM ★ — Type (REST API / Open Data) — Endpoint eller dokumentations-URL: finanstilsynet.dk/tilsyn/virksomhedsregistret og api-dokumentation via OAM (Officielt Udnævnte Mekanisme) — Opdateringsfrekvens: Dagligt — Autentificering: Nej for opslag — Pris: Gratis — Kort vurdering af relevans for Y Business: Finanstilsynet udstiller maskinlæsbare registre over alle enheder med finansielle tilladelser samt prospekter, sanktioner og hvidvaskpåbud30. Samkøring af disse data med CVR gør det muligt for Y Business at advare brugere, hvis en samarbejdspartner eller kunde mister sin licens eller modtager et påbud34. Endvidere muliggør adgang til disse data identifikation af nye markedsaktører inden for fintech og alternative investeringsfonde30.
+Erhvervsstyrelsens Plandata.dk (WFS/WMS/REST) — Type (REST API / WFS / WMS) — Endpoint eller dokumentations-URL: plandata.dk/webservices — Opdateringsfrekvens: Løbende/Dagligt — Autentificering: Nej (Åbne data) / Ja (for indberetning via JWT) — Pris: Gratis — Kort vurdering af relevans for Y Business: Plandata.dk indeholder al gældende og foreslået lokal- og kommuneplanlægning i Danmark i Geografisk Markup Language (GML) via WFS-tjenester37. For ejendomsudviklere, byggevirksomheder og logistikaktører er dette en guldgrube. Maskinlæringsmodeller kan analysere lokalplanforslag37 for at identificere fremtidige erhvervsområder eller byggeprojekter længe før de sendes i offentligt udbud, hvilket giver tidlige salgssignaler til byggebranchens SMV'er40.
+Konkurrence- og Forbrugerstyrelsens Afgørelsesdatabase — Type (RSS / API / Web Scraping) — Endpoint eller dokumentations-URL: kfst.dk/konkurrenceforhold/afgoerelser — Opdateringsfrekvens: Løbende — Autentificering: Nej — Pris: Gratis — Kort vurdering af relevans for Y Business: Databasen indeholder afgørelser fra Konkurrencerådet, bødevedtagelser og vejledende udtalelser om fusionskontrol og karteller42. Selvom datamængden er mindre, er hændelserne ekstremt indgribende. At kende til fusionsgodkendelser, markedsundersøgelser (fx tech-gatekeepere som Meta) eller bøder for konkurrenceforvridende adfærd giver SMV'er kritisk viden om asymmetrier i deres leverandørnetværk44.
+European Commission Press Corner & EFTA Surveillance Authority (ESA) — Type (RSS / REST API / JSON) — Endpoint eller dokumentations-URL: ec.europa.eu/commission/presscorner/home/en og eftasurv.int/newsroom — Opdateringsfrekvens: Dagligt / Realtid — Autentificering: Nej — Pris: Gratis — Kort vurdering af relevans for Y Business: Direkte maskinlæsbar adgang til pressemeddelelser, "Action Plans" og "Directives" før de ratificeres fuldt ud i lovgivning48. Særligt EFTA Surveillance Authority (ESA) leverer indsigter i statsstøtte og overtrædelser af det indre markeds regler for EØS-lande (inkl. Norge og Island)52. En integration her giver Y Business evnen til proaktivt at informere eksport-SMV'er om regulatoriske ændringer i nabolande55.
+3. Makroøkonomi og finansielle indikatorer
+Makroøkonomiske tidsrækker definerer de cykliske betingelser for SMV'ers rentabilitet. Råvarepriser, inflation, forbrugertillid og styringsrenter er alle variabler, som påvirker investeringsbeslutninger. For at levere analyser på niveau med Bloomberg eller Refinitiv, uden at pådrage sig licensomkostningerne, bør platformen basere sig på open-source aggregering.
+DBnomics Web API ★ — Type: (REST API / Open Data) — Endpoint eller dokumentations-URL: api.db.nomics.world — Opdateringsfrekvens: Dagligt (automatiseret data-pipeline) — Autentificering: Nej — Pris: Gratis (open-source, understøttet af det franske økonomiministerium m.fl.) — Kort vurdering af relevans for Y Business: DBnomics er en revolutionerende aggregator for makroøkonomiske data. Tjenesten konsoliderer hundredvis af millioner af tidsserier fra mere end 80 institutioner (herunder Eurostat, ECB, IMF, Verdensbanken, OECD og nationale banker) i en enkelt, samlet REST API-arkitektur57. I stedet for at Y Business skal udvikle og vedligeholde særskilte API-klienter til SDMX- eller JSON-formater hos hver enkelt institution, kan al global makrodata tilgås herigennem via simple Python- eller R-biblioteker60. Et unikt kendetegn er systemets arkivering af historiske revisioner, hvilket tillader dataforskere at bygge sandfærdige "backtests" af prædiktive modeller uden look-ahead bias57.
+Danmarks Nationalbank (Statistikbanken & Valutakurser) — Type (REST API / SDMX / XML) — Endpoint eller dokumentations-URL: nationalbanken.statistikbank.dk / nationalbanken.dk/da/valutakurser — Opdateringsfrekvens: Dagligt kl. 14:10 (Valuta), Månedligt/Kvartalsvist (Makro) — Autentificering: Nej — Pris: Gratis — Kort vurdering af relevans for Y Business: Udstiller de officielle, daglige valutakurser fastsat i samarbejde med ECB62, som er kritiske for enhver import/eksport-virksomhed. Desuden indeholder Statistikbanken SDMX-baserede data vedrørende den konsoliderede MFI-sektor (Monetære Finansielle Institutter), herunder statistikker for udlån til erhverv, indlånsrenter og obligationsudstedelser64. Ved at overvåge bankernes udlånsappetit kan Y Business modellere de generelle kreditbetingelser for danske SMV'er64.
+Kilde
+Datatype
+API-format
+Forsinkelse
+Strategisk Værdi
+DBnomics
+Global Makro (IMF, WB, ECB)
+REST (JSON)
+Lav (daglig pipeline)
+Ultrahøj (Aggregator)
+Nationalbanken
+DKK Valutakurser
+XML / CSV
+Realtid (kl. 14:10)
+Høj (Valutaafdækning)
+Nationalbanken
+Kreditvækst / Renter
+SDMX
+Månedligt
+Medium (Kreditvurdering)
+
+4. Branche- og sektorstatistik
+Brancheorganisationer og interesseorganisationer indsamler mikrodata fra deres medlemmer, som aggregeres til konjunkturbarometre. Disse data udgør ofte de tidligste indikatorer på branchespecifikke op- eller nedture.
+Finans Danmark (Markeds- og Investeringsdata) — Type (Data downloads / XML / Scraping) — Endpoint eller dokumentations-URL: finansdanmark.dk/tal-og-data — Opdateringsfrekvens: Månedligt / Kvartalsvist — Autentificering: Nej — Pris: Gratis — Kort vurdering af relevans for Y Business: Organisationen offentliggør omfattende data om boligudbud, realkreditlån, restancer og investeringsfondsafkast67. Mængden af tvangsauktioner (ROE1-statistikken) og restancer er vitale makro-risikosignaler for byggebranchen og detailhandlen68. Y Business kan inkorporere disse data for at give ejendomsrelaterede SMV'er et granulariseret blik på markedets sundhedstilstand71.
+Danmarks Eksport- og Investeringsfond (EIFO) — Type (Dokumenter / PDF parsing / Åbne lister) — Endpoint eller dokumentations-URL: eifo.dk — Opdateringsfrekvens: Kvartalsvist / Årligt — Autentificering: Nej — Pris: Gratis — Kort vurdering af relevans for Y Business: Som en sammenlægning af EKF og Vækstfonden udgør EIFO statens primære finansieringsarm for danske virksomheders internationale og grønne ekspansion72. EIFO publicerer data om udstedte lån og eksportkreditter, hvilket kortlægger, hvilke SMV'er der foretager aggressive eksportfremstød74. Adgang til lister over bevilgede garantier er en fremragende lead-generator for logistik- og rådgivningsvirksomheder.
+DI (Dansk Industri) og Dansk Erhverv — Type (RSS / API / Web Scraping) — Endpoint eller dokumentations-URL: danskindustri.dk, danskerhverv.dk/analyser — Opdateringsfrekvens: Ugentligt / Månedligt — Autentificering: Nogle rapporter kræver medlemskab — Pris: Delvist gratis — Kort vurdering af relevans for Y Business: Begge organisationer leverer markedsanalyser af høj kvalitet for bl.a. e-handel, logistik og produktion75. Selvom adgang til dybe datasæt ofte kræver medlemskab75, kan overskrifter, konjunkturindikatorer og resuméer indhentes automatisk for at berige platformens tekstkorpus vedrørende branchens fremtidsforventninger75.
+5. Virksomhedssignaler og leaddata
+Konkurrent- og kundeovervågning forudsætter identifikation af mikrosignaler på virksomhedsniveau. Adfærd – såsom ansættelse af nye medarbejdere, juridiske procedurer, og sikring af intellektuel ejendomsret – udgør prædiktive indikatorer for en virksomheds strategiske kurs.
+Jobnet API (DFDG & JobannonceService) ★ — Type (REST / Event-driven Webservice) — Endpoint eller dokumentations-URL: api.jobindsats.dk / star.dk — Opdateringsfrekvens: Nær-realtid (Event driven) — Autentificering: Ja (Token via tilslutningsaftale med STAR) — Pris: Gratis udvikling, brugerbetalt implementering — Kort vurdering af relevans for Y Business: Arbejdsmarkedsdata er formodentlig den stærkeste indikator for virksomhedsvækst. Styrelsen for Arbejdsmarked og Rekruttering (STAR) udstiller gennem "Det Fælles Datagrundlag" (DFDG) og JobannonceService et API, hvor alle offentliggjorte stillingsopslag i Danmark kan tilgås78. Maskinlæringsmodeller kan analysere jobbeskrivelserne; hvis en produktions-SMV pludselig søger compliance-eksperter eller AI-udviklere, signalerer det en strukturel ændring, der gør dem til et højværdi-lead for konsulenthuse eller softwareleverandører79.
+Statstidende REST API ★ — Type (REST API / XML / Open Data) — Endpoint eller dokumentations-URL: statstidende.dk — Opdateringsfrekvens: Dagligt — Autentificering: Nej (åben REST-søgning) — Pris: Gratis — Kort vurdering af relevans for Y Business: Enhver form for betalingsstandsning, konkursbegæring, proklama, gældssanering eller tvangsauktion skal lovpligtigt kundgøres i Statstidende83. En API-integration her muliggør en realtidsbaseret kredit- og forsyningskæde-monitorering, der øjeblikkeligt kan advare brugere, hvis en nøgleleverandør undergår rekonstruktion. Dette er et kritisk risikostyringsværktøj, som ingen seriøs BI-platform kan ignorere84.
+Patent- og Varemærkestyrelsen (DKPTO) IP-data ★ — Type (REST / XML / Open Data / PVS IP Client) — Endpoint eller dokumentations-URL: dkpto.dk / eFiling — Opdateringsfrekvens: Løbende — Autentificering: Ja (for transaktionsdata) / Nej (åbne registre) — Pris: Omkostninger tilknyttet specifikke bulk-udtræk — Kort vurdering af relevans for Y Business: Immaterielle rettigheder er fundamentale for innovationsdrevne SMV'er87. DKPTO (samt EPO og EUIPO for internationale udtræk) registrerer alle varemærke- og patentansøgninger. En patentansøgning indgives ofte 12-18 måneder før et produkt kommercialiseres90. NLP-analyse af patentkrav (claims) i XML-format91 giver Y Business' brugere et eksklusivt indblik i konkurrenternes fremtidige teknologi-portefølje, eksempelvis inden for kvanteteknologi eller grøn omstilling87.
+VIES (VAT Information Exchange System) API — Type (SOAP / REST Web Services) — Endpoint eller dokumentations-URL: ec.europa.eu/taxation_customs/vies/ — Opdateringsfrekvens: Realtid — Autentificering: Nej (underlagt 'fair-use' rate limiting) — Pris: Gratis — Kort vurdering af relevans for Y Business: VIES-systemet administreres af EU-Kommissionen og tillader realtidsvalidering af momsregistreringsnumre på tværs af medlemslande95. For SMV'er, der eksporterer, er automatisk validering af kunders momsstatus et essentielt compliance-krav for at undgå at hæfte for moms ved grænseoverskridende handel97. Integration af VIES i Y Business via tilgængelige open-source SDK'er reducerer friktionen i internationale B2B-transaktioner markant99.
+6. ESG, bæredygtighed og CSRD-compliance
+Direktivet for bæredygtighedsrapportering (CSRD) pålægger store virksomheder at redegøre for udledninger i hele deres værdikæde. Dette "trickle-down"-krav rammer danske SMV'er hårdt. Platforme, der kan automatisere indsamling og formidling af standardiserede ESG-data, står foran et eksponentielt marked.
+SBTi (Science Based Targets initiative) Data Dashboard & API ★ — Type (REST API / Python-pakke / CSV) — Endpoint eller dokumentations-URL: sciencebasedtargets.org / Github (SBTi-finance-tool) — Opdateringsfrekvens: Ugentligt — Autentificering: Nej — Pris: Gratis — Kort vurdering af relevans for Y Business: SBTi er guldstandarden for validering af virksomheders klimamål i overensstemmelse med Paris-aftalen101. SBTi udbyder ikke kun deres datasæt over virksomheders forpligtelser; de tilbyder et komplet open-source "Temperature Scoring and Portfolio Coverage" værktøj via et REST API104. Y Business kan inkorporere denne maskine, så en SMV kan uploade sit leverandørnetværk og automatisk få beregnet et aggregeret klimaaftryk (Temperature Score) for sin Scope 3-udledning105. Dette omdanner platformen fra et rapporteringsværktøj til et strategisk indkøbsværktøj for bæredygtighed.
+GRI (Global Reporting Initiative) Sustainability Taxonomy — Type (XBRL / Digital Taxonomy) — Endpoint eller dokumentations-URL: globalreporting.org/standards/gri-sustainability-taxonomy/ — Opdateringsfrekvens: Årligt/Løbende opdateret med standarderne — Autentificering: Nej — Pris: Gratis — Kort vurdering af relevans for Y Business: GRI er verdens mest anvendte rammeværk for ESG-rapportering107. Den seneste udvikling er GRI's digitale taksonomi i XBRL-format, der muliggør fuldautomatisk maskinlæsning af virksomheders bæredygtighedsrapporter109. Y Business kan integrere en XBRL-parser, der trækker granulære data (fx CO2-udledning, diversitetstal) direkte fra publicerede rapporter uden manuel indtastning110, hvilket tillader dyb benchmarking mellem virksomheder.
+CDP (Carbon Disclosure Project) Datasets & API — Type (API / Datasets / CSV) — Endpoint eller dokumentations-URL: cdp.net/en/data — Opdateringsfrekvens: Årlig (med løbende opdateringer) — Autentificering: Ja — Pris: Kommerciel (Enhanced, Foundation, Essential tiers) — Kort vurdering af relevans for Y Business: CDP administrerer det globale system for offentliggørelse af miljødata og tildeler klimakarakterer (A-F scores)112. Datasættet rummer den absolut dybeste indsigt i Scope 1, 2 og 3 emissioner og vand-risici114. Da CDP's primære virksomhedsdata er bag en betalingsmur med relativt høje adgangsbarrierer112, bør Y Business primært overveje dette som en "premium add-on" for enterprise-kunder, mens open-data portalen kan bruges til generel viden om byers og regioners klimatiltag114.
+Klimarådets Publikationer og Data — Type (PDF / RSS / Web) — Endpoint eller dokumentations-URL: klimaraadet.dk — Opdateringsfrekvens: Løbende — Autentificering: Nej — Pris: Gratis — Kort vurdering af relevans for Y Business: Som statens uafhængige klimavismænd analyserer Klimarådet effekten af afgifter (fx landbrug og industri), CCS (Carbon Capture and Storage) og teknologiske stier118. Ved at trække konklusionerne fra disse tunge rapporter gennem NLP, kan Y Business levere "oversatte" regulatoriske risikoprofiler for specifikke brancher (f.eks. hvilke konsekvenser et foreslået CO2-afgiftssystem vil have for SMV'er i transportsektoren)120.
+7. Internationale erhvervskilder med dansk relevans
+Danske SMV'ers konkurrenceevne er betinget af den globale økonomi. Integration af internationale finans- og råvaredatakilder er nødvendig for at yde rettidig rådgivning om prisvolatilitet og forsyningskædeproblemer.
+Reuters Connect API ★ — Type (REST API) — Endpoint eller dokumentations-URL: reutersagency.com/content-delivery-platforms/reuters-connect/ — Opdateringsfrekvens: Realtid — Autentificering: Ja (API Key / Token) — Pris: Kommerciel (Point-baseret model) — Kort vurdering af relevans for Y Business: Reuters Connect er en global "content hub", der leverer råtekst, video og grafik i det maskinlæsbare NewsML-G2 format fra Reuters og over 100 globale partnere122. Det point-baserede forbrugssystem124 giver Y Business fleksibilitet til at trække hyper-relevante internationale historier om råvaremangel, geopolitik eller centralbankudmeldinger, der påvirker dansk import/eksport, uden at skulle tegne separate licenser hos snesevis af internationale medier. Systemet overflødiggør behovet for separate AP Content eller AFP aftaler.
+Energi Data Service / Nord Pool API ★ — Type (REST API / GraphQL) — Endpoint eller dokumentations-URL: energidataservice.dk / nordpoolgroup.com/en/trading/api/ — Opdateringsfrekvens: Realtid / Dagligt — Autentificering: Nej for EDS / Ja for REMIT og Nord Pool specifikke API'er — Pris: Gratis for EDS / €1.200 - €9.000 for Nord Pool enterprise licenser — Kort vurdering af relevans for Y Business: Energi Data Service drives af Energinet og udstiller blandt andet Day-Ahead spotpriser på el fra Nord Pool for zonerne DK1 og DK2125. Energipriser er fundamentale for produktions- og industrivirksomheder. Y Business kan benytte disse API'er til at rådgive SMV'er om energi-optimering af deres drift eller varsle om forventede prisstigninger i el-nettet125.
+Baltic Exchange (Data Feed) — Type (API / FTP) — Endpoint eller dokumentations-URL: balticexchange.com — Opdateringsfrekvens: Dagligt — Autentificering: Ja — Pris: Kommerciel (£2.000 p.a. for feed) — Kort vurdering af relevans for Y Business: Baltic Exchange leverer de globale referencepriser og indeks (fx Baltic Dry Index) for maritime fragtrater og Forward Freight Agreements (FFA)131. For det danske transport-, shipping- og logistiknetværk er disse rater fuldstændig afgørende for prisfastsættelse og budgettering af forsyningskædeomkostninger. Adgangen er ikke gratis131, men den operationelle værdi for eksporttunge SMV'er retfærdiggør integrationen til fulde133.
+EMA (European Medicines Agency) Union Product Database (UPD) — Type (REST API) — Endpoint eller dokumentations-URL: ema.europa.eu/en/veterinary-regulatory-overview/veterinary-medicinal-products-regulation/union-product-database — Opdateringsfrekvens: Løbende — Autentificering: Ja (via SPOR) — Pris: Gratis for registrerede — Kort vurdering af relevans for Y Business: Life science-sektoren er et anker i dansk økonomi. EMA udstiller via Union Product Database (UPD) maskinlæsbare data om produktinformation (ePI) for medicin i EU136. Det tillader Y Business at spore kliniske godkendelser og mærkning på tværs af landegrænser136. Dette udgør en uundværlig markedsovervågning for de hundredevis af danske SMV'er, der fungerer som underleverandører eller udviklere i medtech og biotek.
+International Kilde
+Primært Formål
+Leveringsprotokol
+Prismodel
+Relevans
+Reuters Connect
+Globalt nyheds- og råvareflow
+REST API (NewsML-G2)
+Kommerciel (Points)
+Kritisk
+Energi Data Service
+El-spotpriser (Nord Pool)
+REST API (JSON)
+Gratis (Open Data)
+Kritisk
+Baltic Exchange
+Fragtrater & Supply Chain
+FTP / API
+Kommerciel (£2,000)
+Høj (for logistik)
+EMA UPD
+Life science og biotek approvals
+REST API
+Gratis (kræver auth)
+Høj (for medtech)
+
+Syntese: Strategiske differentieringsmuligheder for Y Business
+En kritisk gennemgang af de kortlagte datakilder viser et tydeligt strategisk tomrum i det danske marked for erhvervsintelligens: Hvor de etablerede aktører udelukkende kigger i bakspejlet via forsinkede årsrapporter og statiske CVR-udtræk, ligger den reelle, ukopierbare konkurrencefordel i evnen til at høste og samkøre prædiktive, højfrekvente signaler i realtid.
+Særligt to datadomæner er fundamentalt underlevererede og rummer nøglen til asymmetrisk markedsovervågning:
+For det første, operationel ESG- og Scope 3-data. Med CSRD-kravene er SMV'er tvunget til at bevise deres klimaaftryk over for store indkøbere. Ved at kombinere GRI's XBRL-taksonomier med SBTi's open-source API for Temperature Scoring kan Y Business lade en SMV uploade sine leverandører og øjeblikkeligt få beregnet klimarisikoen for sin Scope 3-kæde. Dette forvandler platformen fra et passivt nyhedsværktøj til et forretningskritisk indkøbs- og compliance-værktøj.
+For det andet, alternative vækst- og risikosignaler. En virksomheds næste træk kan forudses længe før det afspejles i regnskabet. Ved at krydsreferere geodata fra Plandata.dk (fremtidige byggeprojekter), jobopslag fra Jobnet API'et (teknologisk skifte gennem rekruttering), og intellektuel ejendomsret fra Patent- og Varemærkestyrelsen (fremtidig produktlancering), opstår et fuldkomment prædiktivt billede. Når dette netværk tilsættes den ultimative, lovhjemlede adgang til realtids likviditetsdata via Skattestyrelsens DUPLA-platform og konkursvarsling fra Statstidende, vil Y Business kunne levere en handlingsrettet risikomotor, der udkonkurrerer enhver traditionel BI-udbyder på hastighed og præcision.
