@@ -1570,12 +1570,6 @@ span.rm-stak {
 .src-wave.w3 { color:var(--muted);background:var(--tint);border:1px solid var(--line2); }
 .src-legend { display:flex;gap:12px;padding-top:14px;border-top:1px solid var(--line); }
 .src-legend-item { display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.06em; }
-/* Trigger styling */
-.smv-trigger {
-  cursor: pointer; border-bottom: 1px dashed var(--accent-30);
-  color: var(--accent); transition: border-color .15s, color .15s;
-}
-.smv-trigger:hover { border-bottom-color: var(--accent); }
 .drv-trigger {
   cursor: pointer; transition: background .15s;
   border-radius: 6px; padding: 8px; margin: -8px;
@@ -1720,7 +1714,7 @@ span.rm-stak {
         <div class="node-h">Positionering</div>
         <div class="node-pts">
           <div class="node-pt">Hvor Y Business kan vinde</div>
-          <div class="node-pt smv-trigger" onclick="openResearchModal(); event.stopPropagation();" title="Åbn segmentanalyse">SMV-markedet og hullet i informationsstacken ↗</div>
+          <div class="node-pt">SMV-markedet og hullet i informationsstacken</div>
           <div class="node-pt">Alternativer, priser og Y's forskel</div>
         </div>
       </div>
@@ -2444,7 +2438,7 @@ span.rm-stak {
           <div class="pos-cell-lbl">Operationel + uafhængig redaktion</div>
           <div class="pos-cell-actors">★ Y Business</div>
           <div class="pos-cell-note">Overvågning, Business AI og beslutningsværdi — ubesat felt.</div>
-          <div onclick="openSourcesModal()" style="display:inline-flex;align-items:center;gap:4px;margin-top:10px;cursor:pointer;font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.6);letter-spacing:.12em;text-transform:uppercase;border-bottom:1px dashed rgba(196,181,253,.3);padding-bottom:1px;transition:color .15s,border-color .15s" onmouseover="this.style.color='rgba(196,181,253,.9)';this.style.borderBottomColor='rgba(196,181,253,.6)'" onmouseout="this.style.color='rgba(196,181,253,.6)';this.style.borderBottomColor='rgba(196,181,253,.3)'">Hvad vi overvåger ↗</div>
+          <div onclick="openSourcesModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:800;color:#FAFAF8;letter-spacing:.13em;text-transform:uppercase;background:rgba(196,181,253,.18);border:1px solid rgba(196,181,253,.42);border-radius:4px;padding:8px 12px;box-shadow:0 8px 22px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.08);transition:background .15s,border-color .15s,transform .15s,color .15s" onmouseover="this.style.background='rgba(196,181,253,.28)';this.style.borderColor='rgba(196,181,253,.72)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='rgba(196,181,253,.18)';this.style.borderColor='rgba(196,181,253,.42)';this.style.transform='translateY(0)'">Hvad vi overvåger ↗</div>
         </div>
         <div class="pos-cell">
           <div class="pos-cell-lbl">Makro + rådgivning</div>
@@ -4135,6 +4129,44 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="ltl-item"><div class="ltl-lbl">GRI Database</div><div class="ltl-txt">Bæredygtighedsrapportering og ESG-historik.</div></div>
             <div class="ltl-item"><div class="ltl-lbl">EFRAG ESRS XBRL</div><div class="ltl-txt">Det digitale sprog for CSRD- og EU-taksonomidata.</div></div>
             <div class="ltl-item"><div class="ltl-lbl">ESAP / Klimarådet</div><div class="ltl-txt">Fremtidig EU-disclosure-platform og dansk klimaregulering.</div></div>
+          </div>
+        </div>
+
+        <div class="src-cat" style="grid-column:span 2;">
+          <div class="src-cat-name">Business AI, data og stemmer</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+            <div class="ltl-list" style="--ltl-color:#7C3AED;margin-bottom:0;padding-right:16px;">
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Danske AI-miljøer</div>
+              <div class="ltl-item"><div class="ltl-lbl">CAISA</div><div class="ltl-txt">Nationalt AI-center — governance, ansvarlig anvendelse og konsekvenser for virksomheder.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Pioneer Centre for AI</div><div class="ltl-txt">Dansk AI-forskning med international tyngde — metode, bias, modeller og anvendelse.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">CBS Digitalization</div><div class="ltl-txt">AI som organisations-, ledelses- og forretningsmodelforandring.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Alexandra Instituttet</div><div class="ltl-txt">Anvendt AI, software, cybersikkerhed og SMV-nære cases.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">ELLIS Denmark</div><div class="ltl-txt">Forskningsradar og international forbindelse til avanceret AI.</div></div>
+            </div>
+            <div class="ltl-list" style="--ltl-color:#7C3AED;margin-bottom:0;padding-right:16px;">
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Internationale AI-data</div>
+              <div class="ltl-item"><div class="ltl-lbl">Stanford AI Index / HAI</div><div class="ltl-txt">Global reference på AI's økonomiske fodaftryk, privatsektor, produktivitet og arbejde.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Microsoft WorkLab</div><div class="ltl-txt">Work Trend Index — agents, ledelse, organisation og menneskelig handlekraft.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">OECD AI and Work</div><div class="ltl-txt">AI, arbejdsmarked, produktivitet, innovation og kompetencer.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">PwC AI Jobs Barometer</div><div class="ltl-txt">Jobs, skills, løn og produktivitet baseret på globale jobdata.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">MIT Sloan / HBR</div><div class="ltl-txt">Ledelse, strategi, innovation og praktisk AI-adoption i organisationer.</div></div>
+            </div>
+            <div class="ltl-list" style="--ltl-color:#7C3AED;margin-bottom:0;padding-right:16px;">
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Governance, risiko og cyber</div>
+              <div class="ltl-item"><div class="ltl-lbl">European Commission / AI Act</div><div class="ltl-txt">Primær kilde til EU's AI-regulering og virksomhedskonsekvenser.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">NIST AI RMF</div><div class="ltl-txt">Praktisk sprog for AI-risiko, styring, vurdering og governance.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">ENISA / CFCS</div><div class="ltl-txt">Cybertrusler, NIS2, SME-risici, AI-sikkerhed og dansk beredskab.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Deloitte / BCG / McKinsey</div><div class="ltl-txt">Enterprise AI, skalering, ROI, operating models og barrierer i implementering.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Gartner / Forrester</div><div class="ltl-txt">CIO-agenda, hype cycles, enterprise software, CX og digital transformation.</div></div>
+            </div>
+            <div class="ltl-list" style="--ltl-color:#7C3AED;margin-bottom:0;">
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Kritiske stemmer</div>
+              <div class="ltl-item"><div class="ltl-lbl">Brynjolfsson / Coyle / Mollick</div><div class="ltl-txt">Produktivitet, værdimåling og praktisk AI-adoption i arbejde og organisationer.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Schaake / Wachter / Chowdhury</div><div class="ltl-txt">AI-governance, EU-regulering, audit, fairness og ansvarlig AI.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Kapoor / Narayanan</div><div class="ltl-txt">Hype-check, metodekritik, bias, privacy og overdrevne AI-claims.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Luccioni / Birhane</div><div class="ltl-txt">AI's klimaaftryk, dataetik, skadelige datasæt og sociale konsekvenser.</div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Martin / Perlroth / Hyppönen</div><div class="ltl-txt">Cyber, sårbarheder, resilience, statslige trusler og digital sikkerhed.</div></div>
+            </div>
           </div>
         </div>
 

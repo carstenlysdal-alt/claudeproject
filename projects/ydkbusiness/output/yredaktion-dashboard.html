@@ -1593,13 +1593,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .sv-genre-arrow{font-size:12px;opacity:.55}
 .sv-open-btn{
   display:inline-flex;align-items:center;gap:8px;
-  padding:7px 15px;background:rgba(124,58,237,.07);
-  border:1px solid rgba(124,58,237,.22);border-radius:2px;
-  font-family:var(--mono);font-size:8px;font-weight:700;
+  padding:10px 18px;background:rgba(124,58,237,.1);
+  border:1px solid rgba(124,58,237,.34);border-radius:3px;
+  font-family:var(--mono);font-size:9.5px;font-weight:800;
   color:#7C3AED;letter-spacing:.14em;text-transform:uppercase;
-  cursor:pointer;transition:background .15s;margin-bottom:14px;flex-shrink:0;
+  cursor:pointer;transition:background .15s,transform .15s,border-color .15s;
+  margin-bottom:16px;flex-shrink:0;
 }
-.sv-open-btn:hover{background:rgba(124,58,237,.13)}
+.sv-open-btn:hover{background:rgba(124,58,237,.16);border-color:rgba(124,58,237,.5);transform:translateY(-1px)}
 .sv-regel-box{
   padding:10px 16px;background:rgba(124,58,237,.04);
   border:1px solid rgba(124,58,237,.13);border-radius:2px;
@@ -2629,7 +2630,7 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
   <style>
     /* ── S6 PROTOKOLLER — korte redaktionelle beslutningsspørgsmål ── */
     #s6 .sec-body::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.022) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
-    #s6 .s6-wrap-v3{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:14px;padding:24px 32px 28px;box-sizing:border-box;position:relative}
+    #s6 .s6-wrap-v3{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;gap:12px;padding:22px 32px 26px;box-sizing:border-box;position:relative}
     #s6 .s6-proto-head{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:end;padding:0 4px 2px}
     #s6 .s6-kicker{font-family:var(--mono);font-size:10px;font-weight:700;color:rgba(196,181,253,.58);letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
     #s6 .s6-kicker::before{content:'';width:18px;height:1px;background:rgba(196,181,253,.42)}
@@ -2637,13 +2638,18 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
     #s6 .s6-proto-head p{font-family:var(--sans);font-size:14px;color:rgba(250,250,248,.62);line-height:1.55}
     #s6 .s6-proto-head strong{color:#FAFAF8;font-weight:700}
     #s6 .s6-proto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;min-height:0}
-    #s6 .proto-col{border-radius:6px;border-top:3px solid transparent;padding:18px 18px 16px;box-shadow:0 2px 6px rgba(0,0,0,.22),0 8px 32px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.07)}
-    #s6 .proto-col:nth-child(1){border-top-color:#16A34A}
-    #s6 .proto-col:nth-child(2){border-top-color:#D97706}
-    #s6 .proto-col:nth-child(3){border-top-color:#2563EB}
+    #s6 .proto-col{border-radius:6px;border-top:3px solid transparent;padding:16px 18px 14px;box-shadow:0 2px 6px rgba(0,0,0,.22),0 8px 32px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.07)}
+    /* Fix 1: Subtle baggrundstint per protokolpillar */
+    #s6 .proto-col:nth-child(1){border-top-color:#16A34A;background:rgba(22,163,74,.07)}
+    #s6 .proto-col:nth-child(2){border-top-color:#D97706;background:rgba(217,119,6,.07)}
+    #s6 .proto-col:nth-child(3){border-top-color:#2563EB;background:rgba(37,99,235,.07)}
     #s6 .proto-col:nth-child(4){border-top-color:#3B82F6}
     #s6 .proto-col.blind{background:#0F1E35}
+    /* Fix 3: Proto-tag farver matcher pillar */
     #s6 .proto-tag{font-size:9px;margin-bottom:8px}
+    #s6 .proto-tag.u{color:#16A34A}
+    #s6 .proto-tag.c{color:#D97706}
+    #s6 .proto-tag.i{color:#2563EB}
     #s6 .proto-title{font-size:18px;margin-bottom:6px}
     #s6 .proto-sub{font-size:11.5px;line-height:1.4;margin-bottom:12px}
     #s6 .proto-list{gap:8px}
@@ -2651,7 +2657,8 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
     #s6 .proto-item:first-child{border-top:0;padding-top:0}
     #s6 .proto-n{font-size:9px;line-height:1.45}
     #s6 .proto-t{font-size:11.5px;line-height:1.38}
-    #s6 .proto-t strong{display:block;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+    /* Fix 2: Synlig strong-farve på mørk baggrund */
+    #s6 .proto-t strong{display:block;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,181,253,.75);margin-bottom:2px}
     #s6 .proto-col.blind .proto-title{color:#FAFAF8}
     #s6 .proto-col.blind .proto-sub{color:rgba(147,197,253,.58)}
     #s6 .proto-col.blind .proto-t{color:rgba(250,250,248,.78)}
@@ -2661,10 +2668,20 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
     #s6 .proto-rule p{font-size:11px;line-height:1.35}
     #s6 .proto-col.blind .proto-rule{border-top-color:rgba(147,197,253,.16)}
     #s6 .proto-col.blind .proto-rule p{color:rgba(147,197,253,.62)}
-    #s6 .s6-ai-rule{border-radius:6px;background:rgba(255,255,255,.045);border:1px solid rgba(196,181,253,.12);box-shadow:0 2px 10px rgba(0,0,0,.24);padding:16px 18px;display:grid;grid-template-columns:1.1fr 1fr 1fr 1.2fr;gap:18px}
+    /* Fix 4: Case-mini visuelt konsistent med mørkt tema */
+    #s6 .s6-case-mini{border-radius:6px;background:rgba(255,255,255,.04);border-top:3px solid #D97706;border:1px solid rgba(217,119,6,.22);border-top-width:3px;box-shadow:0 2px 10px rgba(0,0,0,.24);padding:13px 16px;display:grid;grid-template-columns:210px 1fr 250px;gap:18px;align-items:start}
+    #s6 .s6-case-mini-tag{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#D97706;margin-bottom:5px;opacity:.8}
+    #s6 .s6-case-mini-title{font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.15}
+    #s6 .s6-case-mini-sub{font-family:var(--sans);font-size:10.5px;color:rgba(250,250,248,.5);line-height:1.4;margin-top:6px}
+    #s6 .s6-case-mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    #s6 .s6-case-q strong{display:block;font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(217,179,100,.75);margin-bottom:3px}
+    #s6 .s6-case-q{font-family:var(--sans);font-size:10.5px;color:rgba(250,250,248,.72);line-height:1.34}
+    #s6 .s6-case-mini-rule{font-family:var(--serif);font-size:13px;font-weight:700;font-style:italic;color:rgba(250,250,248,.65);line-height:1.3;border-left:1px solid rgba(217,119,6,.28);padding-left:16px}
+    #s6 .s6-ai-rule{border-radius:6px;background:rgba(255,255,255,.045);border:1px solid rgba(196,181,253,.12);box-shadow:0 2px 10px rgba(0,0,0,.24);padding:14px 18px;display:grid;grid-template-columns:1.1fr 1fr 1fr 1.2fr;gap:18px}
     #s6 .s6-ai-title{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(196,181,253,.62);letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px}
     #s6 .s6-ai-rule p,#s6 .s6-ai-rule li{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.62);line-height:1.45}
-    #s6 .s6-ai-rule ul{list-style:none;margin:0;padding:0;columns:2;column-gap:14px}
+    /* Fix 5: Erstat columns:2 med grid */
+    #s6 .s6-ai-rule ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:3px 14px}
     #s6 .s6-ai-rule li::before{content:'· ';color:rgba(196,181,253,.62)}
     #s6 .s6-ai-final{font-family:var(--serif);font-size:15px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.3}
   </style>
@@ -2731,6 +2748,21 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
         <div class="proto-rule"><p><strong>Grundregel:</strong> Blind Spot er ikke en modholdning. Det er et dokumenteret hul.</p></div>
       </div>
 
+    </div>
+
+    <div class="s6-case-mini">
+      <div>
+        <div class="s6-case-mini-tag">Formatprotokol · Casen der virker</div>
+        <div class="s6-case-mini-title">Den konkrete læring</div>
+        <p class="s6-case-mini-sub">Caseformatet ligger under Inspire, men har sit eget greb: kilden skal give redaktionen råmateriale med problem, valg, friktion og kopierbar læring.</p>
+      </div>
+      <div class="s6-case-mini-grid">
+        <div class="s6-case-q"><strong>Hvad tvang valget frem?</strong>Det konkrete problem, ikke den pæne anledning.</div>
+        <div class="s6-case-q"><strong>Hvad gjorde de?</strong>Beslutningen, processen eller arbejdsgangen der faktisk blev ændret.</div>
+        <div class="s6-case-q"><strong>Hvad gik galt?</strong>Fejl, modstand, pris, tidstab eller det øjeblik, hvor de var ved at stoppe.</div>
+        <div class="s6-case-q"><strong>Hvad kan andre kopiere?</strong>Læringen, begrænsningen og det, man ikke kan overføre direkte.</div>
+      </div>
+      <div class="s6-case-mini-rule">Grundregel: Ingen case uden friktion. Ingen case uden navngivet ophav.</div>
     </div>
 
     <div class="s6-ai-rule">
