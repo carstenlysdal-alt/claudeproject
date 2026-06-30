@@ -1661,9 +1661,32 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .sv-cand-name{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.2}
 .sv-cand-role{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.03em;margin-bottom:3px;line-height:1.35}
 .sv-cand-rel{font-family:var(--sans);font-size:10.5px;line-height:1.5;color:var(--ink70)}
-.sv-foot{flex-shrink:0;padding:13px 28px;background:var(--tint);border-top:1px solid var(--line)}
+.sv-foot{flex-shrink:0;background:var(--tint);border-top:1px solid var(--line)}
+.sv-foot-top{padding:12px 28px;border-bottom:1px solid var(--line)}
 .sv-foot-lbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7C3AED;margin-bottom:3px;opacity:.75}
 .sv-foot-txt{font-family:var(--sans);font-size:10.5px;line-height:1.5;color:var(--ink70);max-width:820px}
+.sv-suggest{padding:14px 28px;display:flex;flex-direction:column;gap:10px}
+.sv-suggest-lbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);opacity:.8}
+.sv-suggest-fields{display:grid;grid-template-columns:220px 1fr auto;gap:8px;align-items:end}
+.sv-suggest-field{display:flex;flex-direction:column;gap:4px}
+.sv-suggest-field label{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:.7}
+.sv-suggest-field input,.sv-suggest-field textarea{
+  font-family:var(--sans);font-size:12px;color:var(--ink);
+  background:var(--card);border:1px solid var(--line);
+  padding:7px 10px;outline:none;transition:border-color .15s;resize:none;
+}
+.sv-suggest-field input:focus,.sv-suggest-field textarea:focus{border-color:#7C3AED}
+.sv-suggest-btn{
+  padding:8px 16px;background:#7C3AED;border:none;
+  font-family:var(--mono);font-size:8px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:#fff;
+  cursor:pointer;transition:background .15s;white-space:nowrap;height:34px;
+}
+.sv-suggest-btn:hover{background:#6D28D9}
+.sv-suggest-btn:disabled{opacity:.5;cursor:not-allowed}
+.sv-suggest-status{font-family:var(--mono);font-size:9px;color:var(--muted)}
+.sv-suggest-status.ok{color:#16A34A}
+.sv-suggest-status.err{color:#C43A49}
 
 </style>
 <div class="bg-grid"></div>
@@ -1991,6 +2014,41 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 
 function togglePromptModal(){
   document.getElementById('s8PromptModal').classList.toggle('open');
+}
+
+// ── STEMME-FORSLAG ─────────────────────────────────────────
+async function submitStemmeForslag(){
+  var navnEl=document.getElementById('sv-navn');
+  var beskrivelseEl=document.getElementById('sv-beskrivelse');
+  var btn=document.getElementById('sv-suggest-btn');
+  var status=document.getElementById('sv-suggest-status');
+  var navn=navnEl.value.trim();
+  var beskrivelse=beskrivelseEl.value.trim();
+  if(!navn||!beskrivelse) return;
+  btn.disabled=true;
+  btn.textContent='Sender…';
+  status.textContent='';
+  status.className='sv-suggest-status';
+  try {
+    var res=await fetch('/api/feedback',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text:'Stemmeforslag: '+navn+' — '+beskrivelse,author:'Stemmekataloget'}),
+    });
+    if(!res.ok) throw new Error();
+    status.textContent='✓ Forslag sendt';
+    status.className='sv-suggest-status ok';
+    navnEl.value='';
+    beskrivelseEl.value='';
+    btn.textContent='Send forslag';
+    btn.disabled=false;
+    setTimeout(function(){status.textContent='';},4000);
+  } catch(e){
+    status.textContent='Kunne ikke sende — prøv igen';
+    status.className='sv-suggest-status err';
+    btn.textContent='Send forslag';
+    btn.disabled=false;
+  }
 }
 
 // ── STEMME-KATALOG ─────────────────────────────────────────
@@ -3754,8 +3812,25 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="sv-body" id="svBody"></div>
     <div class="sv-foot">
-      <div class="sv-foot-lbl">Redaktionel regel</div>
-      <div class="sv-foot-txt">Ingen stemme uden funktion. En stemme skal ikke med, fordi personen er kendt — men fordi personen kan hjælpe Y Business med at forklare, teste, udfordre eller konkretisere en udvikling, som betyder noget for virksomheder.</div>
+      <div class="sv-foot-top">
+        <div class="sv-foot-lbl">Redaktionel regel</div>
+        <div class="sv-foot-txt">Ingen stemme uden funktion. En stemme skal ikke med, fordi personen er kendt — men fordi personen kan hjælpe Y Business med at forklare, teste, udfordre eller konkretisere en udvikling, som betyder noget for virksomheder.</div>
+      </div>
+      <div class="sv-suggest">
+        <div class="sv-suggest-lbl">Foreslå flere</div>
+        <div class="sv-suggest-fields">
+          <div class="sv-suggest-field">
+            <label for="sv-navn">Navn</label>
+            <input id="sv-navn" type="text" placeholder="Fuldt navn" autocomplete="off">
+          </div>
+          <div class="sv-suggest-field">
+            <label for="sv-beskrivelse">Hvad kan de bidrage med?</label>
+            <input id="sv-beskrivelse" type="text" placeholder="Rolle og relevans for Y Business">
+          </div>
+          <button class="sv-suggest-btn" id="sv-suggest-btn" onclick="submitStemmeForslag()">Send forslag</button>
+        </div>
+        <div class="sv-suggest-status" id="sv-suggest-status"></div>
+      </div>
     </div>
   </div>
 </div>
