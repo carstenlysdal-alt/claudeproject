@@ -355,7 +355,19 @@ p { margin:0; text-wrap:pretty; }
         </article>
       </div>
     </section>
-    <section class="value-section">
+    <nav class="scroll-nav" aria-label="Naviger sektioner">
+      <a class="scroll-btn scroll-btn-up" href="#s1" aria-label="Forrige sektion">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </a>
+      <a class="scroll-btn scroll-btn-down" href="#s2b" aria-label="Næste sektion">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </nav>
+  </section>
+
+  <!-- ══ S2B · VÆRDIER ══ -->
+  <section class="snap-section" id="s2b">
+    <section class="value-section" style="flex:1;display:flex;flex-direction:column;justify-content:center;">
       <div class="value-inner">
         <div class="value-layout">
           <div class="value-statement">
@@ -372,7 +384,7 @@ p { margin:0; text-wrap:pretty; }
       </div>
     </section>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s1" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s2" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
       <a class="scroll-btn scroll-btn-down" href="#s3" aria-label="Næste sektion">
@@ -506,7 +518,7 @@ p { margin:0; text-wrap:pretty; }
 <script>
 (function () {
   /* ── Scroll-snap navigation ── */
-  var sections = ['s1','s2','s3','s4','s5'];
+  var sections = ['s1','s2','s2b','s3','s4','s5'];
   var current = 0;
   var locked = false;
 
