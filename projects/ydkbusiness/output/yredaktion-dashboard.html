@@ -1661,6 +1661,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#FAFAF8;-we
 .sv-cand-name{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.2}
 .sv-cand-role{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.03em;margin-bottom:3px;line-height:1.35}
 .sv-cand-rel{font-family:var(--sans);font-size:10.5px;line-height:1.5;color:var(--ink70)}
+.sv-sektorer{margin-top:16px;padding-top:14px;border-top:1px solid var(--line2)}
+.sv-sektorer-lbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;opacity:.65}
+.sv-sektorer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2)}
+.sv-sektor-item{background:var(--tint);padding:7px 12px;display:flex;flex-direction:column;gap:2px}
+.sv-sektor-navn{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--ink70)}
+.sv-sektor-brug{font-family:var(--mono);font-size:8px;color:var(--muted);line-height:1.4;letter-spacing:.02em}
 .sv-foot{flex-shrink:0;background:var(--tint);border-top:1px solid var(--line)}
 .sv-foot-top{padding:12px 28px;border-bottom:1px solid var(--line)}
 .sv-foot-lbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7C3AED;margin-bottom:3px;opacity:.75}
@@ -2064,6 +2070,11 @@ var stemmeKatalog=[
   {id:'I',name:'Udefra og ind',color:'#0369A1',
    funktion:'Globale signaler oversat til dansk erhvervsliv.',
    brugesTil:'Geopolitik, EU, forsyningskæder, sikkerhed, energi, tech-regulering, Kina/USA, europæisk konkurrenceevne og global markedsrisiko.',
+   sektorer:[
+    {navn:'ENISA',brug:'EU-cybersikkerhedsrapporter, NIS2-vejledning og AI-specifikke trusselsbilleder'},
+    {navn:'Center for Cybersikkerhed',brug:'Danske trusselsvurderinger og beredskab for virksomheder'},
+    {navn:'ELLIS Unit Denmark',brug:'Europæisk AI-forskningstyngde og internationale forskningsforbindelser'},
+   ],
    kandidater:[
     {name:'Elisabeth Braw',rolle:'Sikkerheds- og resilience-analytiker',relevant:'Hybridtrusler, totalforsvar, forsyningskæder og virksomheders sårbarhed i en mere usikker verden.'},
     {name:'Ulrike Franke',rolle:'Europæisk sikkerhedsanalytiker',relevant:'Droner, AI, forsvar og teknologi — bro mellem geopolitik og europæisk konkurrenceevne.'},
@@ -2081,6 +2092,14 @@ var stemmeKatalog=[
   {id:'II',name:'AI i maskinrummet',color:'#7C3AED',
    funktion:'AI, når det møder rigtige arbejdsgange.',
    brugesTil:'AI i arbejdet, AI Act, governance, workflow, ledelse, produktivitet, HR, økonomi, jura, compliance og implementering.',
+   sektorer:[
+    {navn:'CAISA / Pioneer Centre for AI',brug:'Dansk AI-forskning, governance, bias og samfundseffekter'},
+    {navn:'CBS Department of Digitalization',brug:'Ledelse, AI-adoption, organisation og forretningsmodeller'},
+    {navn:'Alexandra Instituttet',brug:'Praktisk AI, cybersikkerhed og SMV-perspektiv'},
+    {navn:'Microsoft WorkLab / Work Trend Index',brug:'AI i arbejdet, organisation, kompetencer og 2026-rapporter'},
+    {navn:'NIST AI Risk Management Framework',brug:'Risikosprog, governance-tjeklister og virksomhedsimplementering'},
+    {navn:'Implement Consulting Group',brug:'Dansk/nordisk forandringspraksis og AI-implementering'},
+   ],
    kandidater:[
     {name:'Nanna Inie',rolle:'AI-forsker, menneskecentrisk og participatory AI',relevant:'AI i arbejdet, adoption, kreativitet og menneskers rolle i teknologiforandring.'},
     {name:'Isabelle Augenstein',rolle:'Professor i Natural Language Processing, KU',relevant:'Sprogmodeller, bias, fact-checking, troværdighed og AI-kvalitet.'},
@@ -2101,6 +2120,15 @@ var stemmeKatalog=[
   {id:'III',name:'Markedets maskinrum',color:'#D97706',
    funktion:'Kapital, kunder og regulering bag markedets bevægelser.',
    brugesTil:'Renter, kapital, investeringer, brancheskift, AI, regulering, supply chain, efterspørgsel og konkurrence.',
+   sektorer:[
+    {navn:'Stanford AI Index / Stanford HAI',brug:'Global AI-status, adoption, økonomi og arbejdsmarked'},
+    {navn:'McKinsey / QuantumBlack',brug:'AI-surveys, ROI, operating model og nordisk transformation'},
+    {navn:'BCG / BCG X',brug:'Nordisk AI-adoption, værdiskabelse og implementeringserfaringer'},
+    {navn:'Deloitte AI Institute',brug:'State of AI in the Enterprise — adoption, impact og barrierer'},
+    {navn:'Gartner',brug:'CIO-agenda, tech-modenhed, hype cycles og enterprise software'},
+    {navn:'PwC AI Jobs Barometer',brug:'Job, kompetencer, løn og produktivitet — globalt datamateriale'},
+    {navn:'The Conference Board',brug:'Ledelse, makro, produktivitet og virksomheders forventninger'},
+   ],
    kandidater:[
     {name:'Andreas Steno Larsen',rolle:'Makroanalytiker, markedsformidler og podcastprofil',relevant:'Renter, geopolitik, makroøkonomi og finansielle signaler.'},
     {name:'Jens Nordvig',rolle:'Dansk global makroøkonom og markedsanalytiker',relevant:'Valuta, makrodata, global økonomi og AI-baseret markedsforståelse.'},
@@ -2121,6 +2149,10 @@ var stemmeKatalog=[
   {id:'IV',name:'Modspørgsmålet',color:'#DC2626',
    funktion:'Den kvalificerede uenighed — det spørgsmål der afslører en blind vinkel.',
    brugesTil:'AI-hype, grøn vækst, regulering, produktivitet, arbejdsliv, ledelse, innovation, EU, ESG og erhvervspolitik.',
+   sektorer:[
+    {navn:'Forrester',brug:'Kundeoplevelse, tech-adoption og kritisk analyseperspektiv på digitale løfter'},
+    {navn:'Harvard Business Review',brug:'Kurateret kritisk perspektiv på AI, beslutninger og organisation'},
+   ],
    kandidater:[
     {name:'Noah Smith',rolle:'Økonom og Substack-kommentator',relevant:'International modstemme på økonomi, teknologi, industri og politiske fortællinger.'},
     {name:'Tyler Cowen',rolle:'Økonom, forfatter og kulturkommentator',relevant:'Økonomi, innovation, produktivitet og samfundsforandring.'},
@@ -2140,6 +2172,11 @@ var stemmeKatalog=[
   {id:'V',name:'Det lærte vi',color:'#16A34A',
    funktion:'Praktikere med erfaring, friktion og noget på spil.',
    brugesTil:'Implementeringsfejl, salgsforandringer, AI-adoption, compliance, internationalisering, SaaS, kapital, kultur og ledelse.',
+   sektorer:[
+    {navn:'MIT Sloan Management Review',brug:'Ledelsesforskning og AI i organisationer — praktisk og evidensbaseret'},
+    {navn:'Harvard Business Review',brug:'Beslutninger, organisation og forretningsmodel'},
+    {navn:'Implement Consulting Group',brug:'Dansk/nordisk forandringspraksis — cases med friktion og læring'},
+   ],
    kandidater:[
     {name:'Camilla Ley Valentin',rolle:'Founder af Queue-it',relevant:'Dansk SaaS, international skalering, produkt, kunder og praktisk foundererfaring.'},
     {name:'Mette Lykke',rolle:'CEO i Too Good To Go',relevant:'Skalering, ledelse, mission, forbrugerforretning og international vækst.'},
@@ -2213,7 +2250,17 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
           +'<div class="sv-cand-rel">'+k.relevant+'</div>'
           +'</div>';
       }).join('')
-      +'</div>';
+      +'</div>'
+      +(g.sektorer?'<div class="sv-sektorer">'
+        +'<div class="sv-sektorer-lbl">Sektorer og datamiljøer</div>'
+        +'<div class="sv-sektorer-grid">'
+        +g.sektorer.map(function(s){
+          return '<div class="sv-sektor-item">'
+            +'<div class="sv-sektor-navn">'+s.navn+'</div>'
+            +'<div class="sv-sektor-brug">'+s.brug+'</div>'
+            +'</div>';
+        }).join('')
+        +'</div></div>':'');
     bodyEl.appendChild(panel);
   });
 
@@ -2580,138 +2627,129 @@ document.addEventListener('DOMContentLoaded',function buildStemmeModal(){
 </div>
 <div class="sec-body" style="background:#111520">
   <style>
-    /* ── S6 PROTOKOLKORT — mørk flade, flydende cards ── */
+    /* ── S6 PROTOKOLLER — korte redaktionelle beslutningsspørgsmål ── */
     #s6 .sec-body::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.022) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
-    #s6 .s6-wrap-v2{background:transparent;gap:16px;padding:26px 32px 30px;box-sizing:border-box;position:relative;grid-template-rows:minmax(0,1fr) 238px}
-    #s6 .s6-proto-grid{background:transparent;gap:12px;padding-bottom:0;min-height:0}
-    #s6 .proto-col{border-radius:6px;border-top:3px solid transparent;padding:19px 20px 16px;box-shadow:0 2px 6px rgba(0,0,0,.22),0 8px 32px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.07)}
+    #s6 .s6-wrap-v3{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:14px;padding:24px 32px 28px;box-sizing:border-box;position:relative}
+    #s6 .s6-proto-head{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:end;padding:0 4px 2px}
+    #s6 .s6-kicker{font-family:var(--mono);font-size:10px;font-weight:700;color:rgba(196,181,253,.58);letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+    #s6 .s6-kicker::before{content:'';width:18px;height:1px;background:rgba(196,181,253,.42)}
+    #s6 .s6-proto-head h2{font-family:var(--serif);font-size:38px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.05;letter-spacing:-.02em}
+    #s6 .s6-proto-head p{font-family:var(--sans);font-size:14px;color:rgba(250,250,248,.62);line-height:1.55}
+    #s6 .s6-proto-head strong{color:#FAFAF8;font-weight:700}
+    #s6 .s6-proto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;min-height:0}
+    #s6 .proto-col{border-radius:6px;border-top:3px solid transparent;padding:18px 18px 16px;box-shadow:0 2px 6px rgba(0,0,0,.22),0 8px 32px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.07)}
     #s6 .proto-col:nth-child(1){border-top-color:#16A34A}
     #s6 .proto-col:nth-child(2){border-top-color:#D97706}
     #s6 .proto-col:nth-child(3){border-top-color:#2563EB}
     #s6 .proto-col:nth-child(4){border-top-color:#3B82F6}
-    #s6 .proto-tag{font-size:9px;margin-bottom:9px}
-    #s6 .proto-title{font-size:17px}
-    #s6 .proto-sub{font-size:11px;line-height:1.38;margin-bottom:12px}
-    #s6 .proto-list{gap:6px}
-    #s6 .proto-t{font-size:11px;line-height:1.34}
-    #s6 .proto-rule{padding-top:10px}
-    #s6 .proto-rule p{font-size:10px;line-height:1.35}
-    #s6 .s6-case-band{border-radius:6px;border-top:3px solid #B08040;box-shadow:0 2px 10px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.05)}
-    #s6 .s6-case-intro{padding:20px 22px}
-    #s6 .s6-case-cluster{padding:17px 18px}
+    #s6 .proto-col.blind{background:#0F1E35}
+    #s6 .proto-tag{font-size:9px;margin-bottom:8px}
+    #s6 .proto-title{font-size:18px;margin-bottom:6px}
+    #s6 .proto-sub{font-size:11.5px;line-height:1.4;margin-bottom:12px}
+    #s6 .proto-list{gap:8px}
+    #s6 .proto-item{gap:9px;padding-top:7px;border-top:1px solid rgba(255,255,255,.055)}
+    #s6 .proto-item:first-child{border-top:0;padding-top:0}
+    #s6 .proto-n{font-size:9px;line-height:1.45}
+    #s6 .proto-t{font-size:11.5px;line-height:1.38}
+    #s6 .proto-t strong{display:block;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+    #s6 .proto-col.blind .proto-title{color:#FAFAF8}
+    #s6 .proto-col.blind .proto-sub{color:rgba(147,197,253,.58)}
+    #s6 .proto-col.blind .proto-t{color:rgba(250,250,248,.78)}
+    #s6 .proto-col.blind .proto-t strong{color:rgba(147,197,253,.75)}
+    #s6 .proto-col.blind .proto-n{color:rgba(147,197,253,.42)}
+    #s6 .proto-rule{padding-top:12px}
+    #s6 .proto-rule p{font-size:11px;line-height:1.35}
+    #s6 .proto-col.blind .proto-rule{border-top-color:rgba(147,197,253,.16)}
+    #s6 .proto-col.blind .proto-rule p{color:rgba(147,197,253,.62)}
+    #s6 .s6-ai-rule{border-radius:6px;background:rgba(255,255,255,.045);border:1px solid rgba(196,181,253,.12);box-shadow:0 2px 10px rgba(0,0,0,.24);padding:16px 18px;display:grid;grid-template-columns:1.1fr 1fr 1fr 1.2fr;gap:18px}
+    #s6 .s6-ai-title{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(196,181,253,.62);letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px}
+    #s6 .s6-ai-rule p,#s6 .s6-ai-rule li{font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.62);line-height:1.45}
+    #s6 .s6-ai-rule ul{list-style:none;margin:0;padding:0;columns:2;column-gap:14px}
+    #s6 .s6-ai-rule li::before{content:'· ';color:rgba(196,181,253,.62)}
+    #s6 .s6-ai-final{font-family:var(--serif);font-size:15px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.3}
   </style>
-  <div class="s6-wrap-v2">
-
-    <!-- ── CASEN DER VIRKER — Q&A PROTOKOL (horisontal kasse) ── -->
-    <div class="s6-case-band">
-      <div class="s6-case-intro">
-        <div class="s6-case-tag">05 · Q&A Protokol</div>
-        <div class="s6-case-title">Casen der virker</div>
-        <p class="s6-case-desc">Disse spørgsmål sendes til kilden inden produktion. Svarene er råmaterialet — AI strukturerer, redaktøren skærper, byline er kildens.</p>
-        <div class="s6-case-badge">AI in the loop</div>
-        <p class="s6-case-rule-foot">Ingen case uden friktion.<br>Ingen case uden navngivet ophav.</p>
+  <div class="s6-wrap-v3">
+    <div class="s6-proto-head">
+      <div>
+        <div class="s6-kicker">Protokoller</div>
+        <h2>Fire spørgsmål, der skærer historien fri</h2>
       </div>
-
-      <div class="s6-case-cluster">
-        <div class="s6-cluster-lbl">Situationen</div>
-        <div class="s6-q-item"><div class="s6-q-n">1</div><div class="s6-q-t">Hvad var det konkrete problem, der tvang en beslutning frem?</div></div>
-        <div class="s6-q-item"><div class="s6-q-n">2</div><div class="s6-q-t">Hvad havde I prøvet inden — og hvorfor holdt det ikke?</div></div>
-        <div class="s6-q-item"><div class="s6-q-n">3</div><div class="s6-q-t">Hvem var imod beslutningen, og hvad var argumentet?</div></div>
-        <div class="s6-q-item"><div class="s6-q-n">4</div><div class="s6-q-t">Hvad var de vigtigste begrænsninger — budget, tid, kompetencer?</div></div>
-        <div class="s6-cluster-rule">→ Det ene valg som omdrejningspunkt</div>
-      </div>
-
-      <div class="s6-case-cluster">
-        <div class="s6-cluster-lbl">Processen</div>
-        <div class="s6-q-item"><div class="s6-q-n">5</div><div class="s6-q-t">Hvad valgte I at gøre — og hvad fravalgte I aktivt?</div></div>
-        <div class="s6-q-item"><div class="s6-q-n">6</div><div class="s6-q-t">Hvad gik galt undervejs? Vær specifik: hvad kostede fejlen?</div></div>
-        <div class="s6-q-item"><div class="s6-q-n">7</div><div class="s6-q-t">Var der et øjeblik, hvor I overvejede at stoppe eller skifte kurs?</div></div>
-        <div class="s6-q-item"><div class="s6-q-n">8</div><div class="s6-q-t">Hvad overraskede dig mest undervejs?</div></div>
-        <div class="s6-cluster-rule">→ Friktion er ikke kontekst — det er historien</div>
-      </div>
-
-      <div class="s6-case-cluster">
-        <div class="s6-cluster-lbl">Resultatet</div>
-        <div class="s6-q-item"><div class="s6-q-n">9</div><div class="s6-q-t">Hvad virkede? Brug konkrete tal — ikke procenter uden kontekst.</div></div>
-        <div class="s6-q-item"><div class="s6-q-n">10</div><div class="s6-q-t">Hvad kostede det samlet — tid, penge, menneskelige ressourcer?</div></div>
-        <div class="s6-q-item"><div class="s6-q-n">11</div><div class="s6-q-t">Hvad kan en anden virksomhed i samme situation kopiere direkte?</div></div>
-        <div class="s6-q-item"><div class="s6-q-n">12</div><div class="s6-q-t">Hvad kan de ikke kopiere — og hvad ville du gøre anderledes?</div></div>
-        <div class="s6-cluster-rule">→ Kopierbar læring er produktets kernekrav</div>
-      </div>
+      <p><strong>Protokollen skal ikke sikre, at vi har spurgt om alt.</strong><br>Den skal sikre, at vi har fundet det vigtigste. Vi spørger for at finde den historie, en virksomhed faktisk kan bruge.</p>
     </div>
 
-    <!-- ── PROTOKOLLERNE (under Q&A-kassen) ── -->
     <div class="s6-proto-grid">
 
       <div class="proto-col">
-        <div class="proto-tag u">Understand-protokol</div>
+        <div class="proto-tag u">Understand</div>
         <div class="proto-title">Konsekvens og relevans</div>
-        <p class="proto-sub">Understand er ikke passiv registrering. Hver nyhed skal besvare læserens 'hvad så?' med kolde fakta og operationel nytte.</p>
+        <p class="proto-sub">Understand er ikke passiv registrering. Hver historie skal svare på brugerens "hvad så?"</p>
         <div class="proto-list">
-          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvilken konkret begivenhed eller data er anledningen?</div></div>
-          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad betyder dette direkte for en dansk virksomhed?</div></div>
-          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Er der en konkret deadline eller ikrafttrædelsesdato?</div></div>
-          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Har vi sat tal på (økonomi, tid, ressourcer)?</div></div>
-          <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Er sproget renset for passiv registrering og unødigt jargon?</div></div>
-          <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Er vi tidlige på denne nyhed — eller er det allerede konsensus?</div></div>
-          <div class="proto-item"><div class="proto-n">7</div><div class="proto-t">Hvad er læserens næste konkrete handling?</div></div>
-          <div class="proto-item"><div class="proto-n">8</div><div class="proto-t">Er AI-bidraget i denne historie deklareret og verificeret af et menneske?</div></div>
+          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t"><strong>Hvad er nyt?</strong>Hvilken beslutning, data, begivenhed eller udvikling gør historien aktuel nu?</div></div>
+          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t"><strong>Hvem mærker det?</strong>Ejeren, lederen, økonomi, HR, salg, compliance, kunderne eller hele branchen?</div></div>
+          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t"><strong>Hvad ændrer det konkret?</strong>Penge, tid, risiko, ansvar, ressourcer, deadline, drift eller ny opgave?</div></div>
+          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t"><strong>Hvad skal brugeren gøre nu?</strong>Handle, følge, undersøge, forberede sig — eller bare forstå konsekvensen?</div></div>
         </div>
-        <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Understand uden konsekvens. Vi rapporterer ikke blot begivenheder — vi forklarer deres eftervirkninger.</p></div>
+        <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Understand uden konsekvens.</p></div>
       </div>
 
       <div class="proto-col">
-        <div class="proto-tag c">Challenge-protokol</div>
+        <div class="proto-tag c">Challenge</div>
         <div class="proto-title">Dokumenteret modfortælling</div>
-        <p class="proto-sub">Otte spørgsmål skal besvares, inden en Challenge-historie publiceres. Kanten er ikke en holdning — det er en efterprøvet metode.</p>
+        <p class="proto-sub">Challenge er ikke en holdning. Det er en efterprøvet modfortælling.</p>
         <div class="proto-list">
-          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvilken dominerende fortælling udfordrer vi?</div></div>
-          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad mangler konkret og dokumenteret?</div></div>
-          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Hvilken dokumentation understøtter vores vinkel?</div></div>
-          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Hvilken modkilde har vi — med navn?</div></div>
-          <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Hvem kan legitimt kritisere vores vinkel?</div></div>
-          <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Er dette en blind vinkel — eller blot vores egen holdning?</div></div>
-          <div class="proto-item"><div class="proto-n">7</div><div class="proto-t">Dominerer én kildegruppe vores dokumentation — hvem mangler?</div></div>
-          <div class="proto-item"><div class="proto-n">8</div><div class="proto-t">Er AI-bidraget i analysen deklareret og verificeret af et menneske?</div></div>
+          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t"><strong>Hvilken sandhed er ved at sætte sig?</strong>Hvad gentages i markedet, branchen, medierne eller blandt eksperterne?</div></div>
+          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t"><strong>Hvad mangler i billedet?</strong>En kilde, en risiko, en pris, en gruppe, en interesse eller et datagrundlag?</div></div>
+          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t"><strong>Hvad kan vi bevise?</strong>Hvilke data, dokumenter, cases eller kilder bærer vinklen?</div></div>
+          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t"><strong>Hvem kan med rimelighed sige os imod?</strong>Har vi testet vores vinkel mod en stærk modkilde?</div></div>
         </div>
         <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Challenge uden dokumentation. En skarp vinkel uden belæg er bare en høj lyd.</p></div>
       </div>
 
       <div class="proto-col">
-        <div class="proto-tag i">Inspire-protokol</div>
+        <div class="proto-tag i">Inspire</div>
         <div class="proto-title">Friktion og læring</div>
-        <p class="proto-sub">Inspire kræver friktion. Den stærke case er ikke en succeshistorie, men en ærlig gennemgang af fejl, løsninger og kopierbare resultater.</p>
+        <p class="proto-sub">Inspire er ikke en succeshistorie. Det er en ærlig fortælling om noget, der blev prøvet, fejlede, virkede — og kan lære andre noget.</p>
         <div class="proto-list">
-          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t">Hvad var det konkrete, definerede problem?</div></div>
-          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t">Hvad gjorde virksomheden — præcist og operationelt?</div></div>
-          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t">Hvilke fejl og modstand stødte de på undervejs?</div></div>
-          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t">Hvad virkede — og med hvilken dokumentation?</div></div>
-          <div class="proto-item"><div class="proto-n">5</div><div class="proto-t">Hvad fejlede, og hvad kostede det?</div></div>
-          <div class="proto-item"><div class="proto-n">6</div><div class="proto-t">Hvilke rammebetingelser begrænser succesen for andre?</div></div>
-          <div class="proto-item"><div class="proto-n">7</div><div class="proto-t">Er læringen relevant for virksomheder med begrænsede ressourcer — eller forudsætter den skala, de færreste har?</div></div>
-          <div class="proto-item"><div class="proto-n">8</div><div class="proto-t">Hvad er den direkte, kopierbare læring for læseren?</div></div>
-          <div class="proto-item"><div class="proto-n">9</div><div class="proto-t">Hvad er casevirksomhedens egen kommercielle interesse i historien?</div></div>
-          <div class="proto-item"><div class="proto-n">10</div><div class="proto-t">Er AI-bidraget i denne historie deklareret og verificeret af et menneske?</div></div>
+          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t"><strong>Hvad var problemet?</strong>Hvad tvang virksomheden til at ændre noget?</div></div>
+          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t"><strong>Hvad gjorde de konkret?</strong>Hvilken beslutning, proces, teknologi eller arbejdsgang blev ændret?</div></div>
+          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t"><strong>Hvor gjorde det ondt?</strong>Hvad gik galt, kostede penge, tog tid eller mødte modstand?</div></div>
+          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t"><strong>Hvad kan andre bruge?</strong>Hvad kan kopieres — og hvad kræver særlige rammer?</div></div>
         </div>
-        <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Inspire uden friktion. En succeshistorie uden modstand er en pressemeddelelse — og dem bringer vi ikke.</p></div>
+        <div class="proto-rule"><p><strong>Grundregel:</strong> Ingen Inspire uden friktion. En succeshistorie uden modstand er en pressemeddelelse.</p></div>
       </div>
 
-      <div class="proto-col" style="background:#0F1E35">
-        <div class="proto-tag" style="color:rgba(147,197,253,.55)">Blind Spot · Redaktionel infrastruktur</div>
-        <div class="proto-title" style="color:#FAFAF8">Sprækken i ugens nyhedsbillede</div>
-        <p class="proto-sub" style="color:rgba(147,197,253,.5)">AI kører kontinuerligt — scanner mediebilledet og identificerer hvad nyhedslogikken gør svært at se. Journalisten aktiverer testen og afgør, om signalet kan bære en historie. Ikke et brugerformat — et redaktionelt og AI-drevet arbejdsredskab.</p>
+      <div class="proto-col blind">
+        <div class="proto-tag" style="color:rgba(147,197,253,.55)">Blind Spot</div>
+        <div class="proto-title">Sprækken i nyhedsbilledet</div>
+        <p class="proto-sub">Blind Spot er Y Business' dokumenterede modblik: en analyse af, hvad den dominerende fortælling overser — baseret på data, kilder og redaktionel modprøvning.</p>
         <div class="proto-list">
-          <div class="proto-item"><div class="proto-n" style="color:rgba(147,197,253,.4)">1</div><div class="proto-t" style="color:rgba(250,250,248,.78)"><strong style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(147,197,253,.7);display:block;margin-bottom:2px">Signal</strong>Er der et konkret spor: data, dokumenter, regnskaber, udbud, myndighedskilder eller markedsbevægelser?</div></div>
-          <div class="proto-item"><div class="proto-n" style="color:rgba(147,197,253,.4)">2</div><div class="proto-t" style="color:rgba(250,250,248,.78)"><strong style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(147,197,253,.7);display:block;margin-bottom:2px">Hul</strong>Er sagen overset, underbelyst — eller dækket gennem én alt for snæver vinkel?</div></div>
-          <div class="proto-item"><div class="proto-n" style="color:rgba(147,197,253,.4)">3</div><div class="proto-t" style="color:rgba(250,250,248,.78)"><strong style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(147,197,253,.7);display:block;margin-bottom:2px">Betydning</strong>Kan vi sige klart: <em style="color:rgba(250,250,248,.55)">Det berører [aktør], fordi [konsekvens].</em></div></div>
-          <div class="proto-item"><div class="proto-n" style="color:rgba(147,197,253,.4)">4</div><div class="proto-t" style="color:rgba(250,250,248,.78)"><strong style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(147,197,253,.7);display:block;margin-bottom:2px">Ramme</strong>Hvilken fortælling styrer dækningen: konkurrenceevne, regulering, fordeling, teknologi, konflikt eller ansvar?</div></div>
-          <div class="proto-item"><div class="proto-n" style="color:rgba(147,197,253,.4)">5</div><div class="proto-t" style="color:rgba(250,250,248,.78)"><strong style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(147,197,253,.7);display:block;margin-bottom:2px">Fravær</strong>Hvem mangler i billedet: SMV'er, ansatte, underleverandører, kunder, kommuner, eksperter eller lokale aktører?</div></div>
-          <div class="proto-item"><div class="proto-n" style="color:rgba(147,197,253,.4)">6</div><div class="proto-t" style="color:rgba(250,250,248,.78)"><strong style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(147,197,253,.7);display:block;margin-bottom:2px">Årsag</strong>Hvorfor blev vinklen usynlig: beat-grænser, kildehierarki, timing, kompleksitet, lav klikværdi eller en dominerende fortælling?</div></div>
-          <div class="proto-item"><div class="proto-n" style="color:rgba(147,197,253,.4)">7</div><div class="proto-t" style="color:rgba(250,250,248,.78)"><strong style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(147,197,253,.7);display:block;margin-bottom:2px">Modstand</strong>Holder signalet, når systemet forsøger at skyde det ned med tidligere dækning, beslægtede søgeord, nichemedier og stof bag betalingsmur?</div></div>
+          <div class="proto-item"><div class="proto-n">1</div><div class="proto-t"><strong>Hvad er signalet?</strong>Data, dokumenter, regnskaber, udbud, myndighedskilder eller markedsbevægelser?</div></div>
+          <div class="proto-item"><div class="proto-n">2</div><div class="proto-t"><strong>Hvad ser nyhedsbilledet ikke?</strong>Er sagen overset, underbelyst eller dækket gennem én for snæver fortælling?</div></div>
+          <div class="proto-item"><div class="proto-n">3</div><div class="proto-t"><strong>Hvorfor er hullet opstået?</strong>Beat-grænser, kildehierarki, timing, kompleksitet, lav klikværdi eller dominerende branchelogik?</div></div>
+          <div class="proto-item"><div class="proto-n">4</div><div class="proto-t"><strong>Hvem får konsekvensen?</strong>Hvilke virksomheder, roller, brancher eller beslutninger påvirkes af det, der ikke bliver set?</div></div>
         </div>
-        <div class="proto-rule" style="border-top-color:rgba(147,197,253,.15)"><p style="color:rgba(147,197,253,.5)">Blind spot er ikke bare det, ingen skrev. <strong style="color:rgba(250,250,248,.85)">Det er også det, nyhedslogikken gjorde svært at se.</strong></p></div>
+        <div class="proto-rule"><p><strong>Grundregel:</strong> Blind Spot er ikke en modholdning. Det er et dokumenteret hul.</p></div>
       </div>
 
+    </div>
+
+    <div class="s6-ai-rule">
+      <div>
+        <div class="s6-ai-title">AI-regel for alle protokoller</div>
+        <p>AI kan finde materialet. Mennesker kvalificerer det. Redaktionen afgør betydningen.</p>
+      </div>
+      <div>
+        <div class="s6-ai-title">AI må hjælpe med</div>
+        <ul><li>overvågning</li><li>sortering</li><li>kildesøgning</li><li>mønstergenkendelse</li><li>idéudvikling</li><li>spørgsmål</li><li>udkast</li><li>kildekort</li></ul>
+      </div>
+      <div>
+        <div class="s6-ai-title">AI må ikke</div>
+        <ul><li>afgøre vinklen alene</li><li>erstatte kildekritik</li><li>konkludere uden dokumentation</li><li>publicere uden redaktionel vurdering</li><li>forveksle popularitet med sandhed</li><li>gøre leverandørpåstande til fakta</li></ul>
+      </div>
+      <div>
+        <div class="s6-ai-title">Redaktionen ejer</div>
+        <p class="s6-ai-final">Prioritering, vinkling, dokumentation, kildekritik, konklusion, publicering, etik og ansvar.</p>
+      </div>
     </div>
   </div>
 </div>
