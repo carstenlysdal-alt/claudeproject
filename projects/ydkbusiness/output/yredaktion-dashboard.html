@@ -2024,7 +2024,11 @@ async function submitStemmeForslag(){
   var status=document.getElementById('sv-suggest-status');
   var navn=navnEl.value.trim();
   var beskrivelse=beskrivelseEl.value.trim();
-  if(!navn||!beskrivelse) return;
+  if(!navn||!beskrivelse){
+    status.textContent='Udfyld begge felter';
+    status.className='sv-suggest-status err';
+    return;
+  }
   btn.disabled=true;
   btn.textContent='Sender…';
   status.textContent='';
@@ -2033,18 +2037,22 @@ async function submitStemmeForslag(){
     var res=await fetch('/api/feedback',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({text:'Stemmeforslag: '+navn+' — '+beskrivelse,author:'Stemmekataloget'}),
+      body:JSON.stringify({
+        text:'Stemmeforslag\n\nNavn: '+navn+'\n\nHvad kan de bidrage med: '+beskrivelse,
+        author:'Stemmekataloget',
+        source:'Redaktionelt dashboard — Stemmekataloget',
+      }),
     });
     if(!res.ok) throw new Error();
-    status.textContent='✓ Forslag sendt';
+    status.textContent='✓ Forslag gemt i feedback-log';
     status.className='sv-suggest-status ok';
     navnEl.value='';
     beskrivelseEl.value='';
     btn.textContent='Send forslag';
     btn.disabled=false;
-    setTimeout(function(){status.textContent='';},4000);
+    setTimeout(function(){status.textContent='';},5000);
   } catch(e){
-    status.textContent='Kunne ikke sende — prøv igen';
+    status.textContent='Kunne ikke sende — server nede?';
     status.className='sv-suggest-status err';
     btn.textContent='Send forslag';
     btn.disabled=false;
