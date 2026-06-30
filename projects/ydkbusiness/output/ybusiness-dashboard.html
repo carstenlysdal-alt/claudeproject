@@ -1544,6 +1544,32 @@ span.rm-stak {
   border-left: 1px solid var(--line2);
 }
 
+/* Sources modal */
+.src-overlay { position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:999999;display:flex;align-items:center;justify-content:center;padding:32px 24px; }
+.src-overlay.hidden { display:none; }
+.src-modal { background:var(--card);border-radius:10px;border:1px solid var(--line);width:100%;max-width:940px;max-height:calc(100vh - 64px);display:flex;flex-direction:column;box-shadow:0 24px 72px rgba(0,0,0,.22);overflow:hidden; }
+.src-head { padding:14px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--card); }
+.src-head-tag { font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-30);padding:3px 8px; }
+.src-head-title { font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink); }
+.src-head-close { background:none;border:none;cursor:pointer;font-size:16px;color:var(--muted);padding:4px 8px; }
+.src-body { overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:20px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent; }
+.src-sec-lbl { font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px; }
+.src-stack { display:flex;flex-wrap:wrap;gap:5px; }
+.src-chip { font-family:var(--mono);font-size:8.5px;font-weight:700;padding:3px 8px;border:1px solid var(--line2);color:var(--ink70);letter-spacing:.04em; }
+.src-chip.active { color:var(--green);border-color:rgba(22,163,74,.3);background:var(--green-s); }
+.src-cat-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:10px; }
+.src-cat { border:1px solid var(--line);padding:12px 14px; }
+.src-cat-name { font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px; }
+.src-items { display:flex;flex-direction:column;gap:4px; }
+.src-item { display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid var(--line2); }
+.src-item:last-child { border-bottom:none; }
+.src-item-name { font-family:var(--sans);font-size:11.5px;color:var(--ink);flex:1; }
+.src-wave { font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.08em;padding:1px 5px;flex-shrink:0; }
+.src-wave.w1 { color:var(--green);background:var(--green-s);border:1px solid rgba(22,163,74,.25); }
+.src-wave.w2 { color:var(--amber);background:var(--amber-s);border:1px solid rgba(180,83,9,.25); }
+.src-wave.w3 { color:var(--muted);background:var(--tint);border:1px solid var(--line2); }
+.src-legend { display:flex;gap:12px;padding-top:14px;border-top:1px solid var(--line); }
+.src-legend-item { display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.06em; }
 /* Trigger styling */
 .smv-trigger {
   cursor: pointer; border-bottom: 1px dashed var(--accent-30);
@@ -2418,6 +2444,7 @@ span.rm-stak {
           <div class="pos-cell-lbl">Operationel + uafhængig redaktion</div>
           <div class="pos-cell-actors">★ Y Business</div>
           <div class="pos-cell-note">Overvågning, Business AI og beslutningsværdi — ubesat felt.</div>
+          <div onclick="openSourcesModal()" style="display:inline-flex;align-items:center;gap:4px;margin-top:10px;cursor:pointer;font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.6);letter-spacing:.12em;text-transform:uppercase;border-bottom:1px dashed rgba(196,181,253,.3);padding-bottom:1px;transition:color .15s,border-color .15s" onmouseover="this.style.color='rgba(196,181,253,.9)';this.style.borderBottomColor='rgba(196,181,253,.6)'" onmouseout="this.style.color='rgba(196,181,253,.6)';this.style.borderBottomColor='rgba(196,181,253,.3)'">Hvad vi overvåger ↗</div>
         </div>
         <div class="pos-cell">
           <div class="pos-cell-lbl">Makro + rådgivning</div>
@@ -3974,5 +4001,139 @@ document.getElementById('research-overlay').addEventListener('click', function(e
   });
 }());
 </script>
+
+<script>
+function openSourcesModal() { document.getElementById('sources-overlay').classList.remove('hidden'); }
+function closeSourcesModal() { document.getElementById('sources-overlay').classList.add('hidden'); }
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('sources-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeSourcesModal();
+  });
+});
+</script>
+
+<!-- SOURCES MODAL -->
+<div class="src-overlay hidden" id="sources-overlay">
+  <div class="src-modal">
+    <div class="src-head">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="src-head-tag">Datakilder · Juni 2026</div>
+        <div class="src-head-title">Hvad Y Business overvåger</div>
+      </div>
+      <button class="src-head-close" onclick="closeSourcesModal()">✕</button>
+    </div>
+    <div class="src-body">
+
+      <!-- Nuværende stak -->
+      <div>
+        <div class="src-sec-lbl">Nuværende stak — i drift</div>
+        <div class="src-stack">
+          <span class="src-chip active">Supertrends API</span>
+          <span class="src-chip active">CVR ElasticSearch</span>
+          <span class="src-chip active">XBRL / årsrapporter</span>
+          <span class="src-chip active">retsinformation.dk</span>
+          <span class="src-chip active">EUR-Lex (Cellar REST)</span>
+          <span class="src-chip active">udbud.dk</span>
+          <span class="src-chip active">Folketing ODA</span>
+          <span class="src-chip active">Danmarks Statistik API</span>
+          <span class="src-chip active">datafordeler.dk</span>
+          <span class="src-chip active">Tinglysning</span>
+        </div>
+      </div>
+
+      <!-- 7 kategorier i 2 kolonner -->
+      <div class="src-cat-grid">
+
+        <div class="src-cat">
+          <div class="src-cat-name">Erhvervsnyheder og fagmedier</div>
+          <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Via Ritzau</div><div class="ltl-txt">Pressemeddelelser, selskabssignaler og myndighedsnyt. <span class="src-wave w1">Bølge 1</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Watch Medier</div><div class="ltl-txt">FinansWatch, ShippingWatch, EnergyWatch, AgriWatch — sektorsignaler. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Brancheorg.</div><div class="ltl-txt">Finans Danmark, TEKNIQ, DI, Dansk Erhverv — statistik og nyheder. <span class="src-wave w2">Bølge 2</span></div></div>
+          </div>
+        </div>
+
+        <div class="src-cat">
+          <div class="src-cat-name">EU-regulering og lovgivning</div>
+          <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Finanstilsynet</div><div class="ltl-txt">Virksomhedsregister og OAM — tilsynshændelser og compliance. <span class="src-wave w1">Bølge 1</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Press Corner</div><div class="ltl-txt">EU-Kommissionens forslag, håndhævelse og sektorregulering. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">TED API</div><div class="ltl-txt">EU-udbud — supplement til udbud.dk. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">CURIA / KFST</div><div class="ltl-txt">EU-Domstolens afgørelser og dansk konkurrenceregulering. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Plandata.dk</div><div class="ltl-txt">Byggetilladelser og arealsignaler. <span class="src-wave w2">Bølge 2</span></div></div>
+          </div>
+        </div>
+
+        <div class="src-cat">
+          <div class="src-cat-name">Makroøkonomi</div>
+          <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Nationalbanken</div><div class="ltl-txt">Valutakurser, renter og Statistikbanken. <span class="src-wave w1">Bølge 1</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">DBnomics</div><div class="ltl-txt">Aggregerer ECB, IMF, OECD og Eurostat i én API-flade. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Trading Economics</div><div class="ltl-txt">Nær-realtidsindikatorer og økonomisk kalender. <span class="src-wave w3">Bølge 3</span></div></div>
+          </div>
+        </div>
+
+        <div class="src-cat">
+          <div class="src-cat-name">Branche, energi og handel</div>
+          <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Energi Data Service</div><div class="ltl-txt">El, gas, CO₂ og markedsdata — åben dansk kilde. <span class="src-wave w1">Bølge 1</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">UN Comtrade</div><div class="ltl-txt">Eksport- og importdata på HS-koder og markeder. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">EIFO</div><div class="ltl-txt">Signal om eksport, grøn omstilling og international vækst. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Nord Pool</div><div class="ltl-txt">Kommerciel energimarkedsdata og prisvarsler. <span class="src-wave w3">Bølge 3</span></div></div>
+          </div>
+        </div>
+
+        <div class="src-cat">
+          <div class="src-cat-name">Virksomhedssignaler og lead</div>
+          <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">Jobnet</div><div class="ltl-txt">Rekruttering som vækst- og teknologisignal. <span class="src-wave w1">Bølge 1</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Statstidende</div><div class="ltl-txt">Konkurser, likvidationer og juridiske hændelser. <span class="src-wave w1">Bølge 1</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">DKPTO / EPO OPS</div><div class="ltl-txt">Patentaktivitet — innovationssignaler før produktlancering. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Creditsafe / D&amp;B</div><div class="ltl-txt">Kreditdata og koncernrelationer. Pris og vilkår afklares. <span class="src-wave w3">Bølge 3</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">Dealroom</div><div class="ltl-txt">Funding-events og scaleup-signaler. <span class="src-wave w3">Bølge 3</span></div></div>
+          </div>
+        </div>
+
+        <div class="src-cat">
+          <div class="src-cat-name">ESG og bæredygtighed</div>
+          <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;">
+            <div class="ltl-item"><div class="ltl-lbl">SBTi / CDP</div><div class="ltl-txt">Klimamål, commitments og temperature scoring. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">GRI Database</div><div class="ltl-txt">Bæredygtighedsrapportering og ESG-historik. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">EFRAG ESRS XBRL</div><div class="ltl-txt">Det digitale sprog for CSRD- og EU-taksonomidata. <span class="src-wave w2">Bølge 2</span></div></div>
+            <div class="ltl-item"><div class="ltl-lbl">ESAP / Klimarådet</div><div class="ltl-txt">Fremtidig EU-disclosure-platform og dansk klimaregulering. <span class="src-wave w3">Bølge 3</span></div></div>
+          </div>
+        </div>
+
+        <div class="src-cat" style="grid-column:span 2;">
+          <div class="src-cat-name">Internationale erhvervskilder</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;">
+            <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;padding-right:16px;">
+              <div class="ltl-item"><div class="ltl-lbl">Reuters Connect</div><div class="ltl-txt">Primær bureaukilde. Licensvilkår afklares. <span class="src-wave w3">Bølge 3</span></div></div>
+              <div class="ltl-item"><div class="ltl-lbl">AP / AFP API</div><div class="ltl-txt">Alternativ eller supplement til Reuters. <span class="src-wave w3">Bølge 3</span></div></div>
+            </div>
+            <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;padding-right:16px;">
+              <div class="ltl-item"><div class="ltl-lbl">Baltic Exchange</div><div class="ltl-txt">Fragtrater — direkte relevant for eksport/import-SMV'er. <span class="src-wave w3">Bølge 3</span></div></div>
+              <div class="ltl-item"><div class="ltl-lbl">Freightos / FBX</div><div class="ltl-txt">Container- og fragtsignaler. <span class="src-wave w3">Bølge 3</span></div></div>
+            </div>
+            <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;">
+              <div class="ltl-item"><div class="ltl-lbl">EURACTIV</div><div class="ltl-txt">EU-politik, regulering og industripolitik. <span class="src-wave w2">Bølge 2</span></div></div>
+              <div class="ltl-item"><div class="ltl-lbl">EMA / Labiotech</div><div class="ltl-txt">Life science og pharma-signaler. <span class="src-wave w3">Bølge 3</span></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Integrationsbølger -->
+      <div class="src-legend">
+        <div class="src-legend-item"><span class="src-wave w1">Bølge 1</span> Jobnet · Statstidende · Finanstilsynet · Energi Data Service · Via Ritzau · Nationalbanken</div>
+        <div class="src-legend-item"><span class="src-wave w2">Bølge 2</span> TED · Press Corner · CURIA · Plandata.dk · DBnomics · SBTi · GRI · EFRAG · UN Comtrade · EURACTIV</div>
+        <div class="src-legend-item"><span class="src-wave w3">Bølge 3</span> Creditsafe · D&amp;B · Reuters · Nord Pool · Baltic Exchange · Freightos · Dealroom · CDP · ESAP</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
