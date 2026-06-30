@@ -1132,17 +1132,19 @@ body.bm-editing .bm-plot-cell .bm-add {
 .biz-pvb-item{font-family:var(--sans);font-size:11px;line-height:1.35;padding:2px 0;color:var(--muted)}
 .biz-pvb-col.pvb-business .biz-pvb-item{color:rgba(255,255,255,.6)}
 .biz-scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-bottom:20px}
-.biz-scenario{background:var(--tint);padding:14px 15px}
-.biz-scenario.sc-concept{border-top:3px solid var(--muted)}
-.biz-scenario.sc-baseline{border-top:3px solid var(--accent)}
-.biz-scenario.sc-upside{border-top:3px solid var(--green)}
+.biz-scenario{background:var(--card);padding:13px 15px;display:flex;flex-direction:column}
+.biz-scenario.sc-baseline{background:var(--accent)}
 .biz-sc-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.biz-sc-num{font-family:var(--serif);font-size:28px;font-weight:700;font-style:italic;line-height:1;letter-spacing:-.025em;margin-bottom:4px}
-.biz-scenario.sc-concept .biz-sc-num{color:var(--muted)}
-.biz-scenario.sc-baseline .biz-sc-num{color:var(--accent)}
+.biz-sc-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+.biz-scenario.sc-baseline .biz-sc-lbl{color:rgba(196,181,253,.6)}
+.biz-sc-num{font-family:var(--serif);font-size:22px;font-weight:700;font-style:italic;line-height:1;letter-spacing:-.02em;margin-bottom:4px}
+.biz-scenario.sc-concept .biz-sc-num{color:var(--ink)}
+.biz-scenario.sc-baseline .biz-sc-num{color:#FAFAF8}
 .biz-scenario.sc-upside .biz-sc-num{color:var(--green)}
-.biz-sc-desc{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.45}
-.biz-sc-note{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.04em;margin-top:5px}
+.biz-sc-desc{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4;flex:1}
+.biz-scenario.sc-baseline .biz-sc-desc{color:rgba(255,255,255,.72)}
+.biz-sc-note{font-family:var(--mono);font-size:7.5px;color:var(--muted);letter-spacing:.04em;margin-top:8px;text-transform:uppercase}
+.biz-scenario.sc-baseline .biz-sc-note{color:rgba(196,181,253,.5)}
 
 /* === FEEDBACK === */
 .btn-feedback {
@@ -1373,7 +1375,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 /* === RESEARCH MODAL === */
 .research-overlay {
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.52); z-index: 9998;
+  background: rgba(0,0,0,0.52); z-index: 999999;
   display: flex; align-items: center; justify-content: center;
   padding: 32px 24px;
 }
@@ -1408,26 +1410,45 @@ body.bm-editing .bm-plot-cell .bm-add {
 .rm-body { overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
 
 /* Beachhead strip */
-.rm-beachhead { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rm-beachhead { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .rm-bh-card {
-  background: var(--tint); border-radius: 7px; padding: 14px 16px;
-  border-left: 3px solid var(--accent); position: relative;
+  border-radius: 6px; padding: 18px 20px;
+  position: relative; display: flex; flex-direction: column; gap: 0;
 }
+.rm-bh-card.bh1 { background: var(--accent); }
+.rm-bh-card.bh2 { background: var(--tint); border: 1px solid var(--line); }
 .rm-bh-badge {
-  font-family: var(--mono); font-size: 9px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
-  margin-bottom: 6px;
+  font-family: var(--mono); font-size: 8.5px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 10px;
 }
-.rm-bh-name { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+.rm-bh-card.bh1 .rm-bh-badge { color: rgba(196,181,253,.5); }
+.rm-bh-card.bh2 .rm-bh-badge { color: var(--accent); }
+.rm-bh-name {
+  font-family: var(--sans); font-size: 12px; font-weight: 700;
+  margin-bottom: 10px; line-height: 1.2;
+}
+.rm-bh-card.bh1 .rm-bh-name { color: rgba(250,250,248,.65); }
+.rm-bh-card.bh2 .rm-bh-name { color: var(--ink); }
+.rm-bh-jtbd {
+  font-family: var(--serif); font-size: 15px; font-weight: 700;
+  font-style: italic; line-height: 1.38; letter-spacing: -.01em;
+  flex: 1; margin-bottom: 14px;
+}
+.rm-bh-card.bh1 .rm-bh-jtbd { color: #FAFAF8; }
+.rm-bh-card.bh2 .rm-bh-jtbd { color: var(--ink); }
 .rm-bh-vol {
-  font-family: var(--mono); font-size: 11px; color: var(--muted);
-  margin-bottom: 6px;
+  font-family: var(--mono); font-size: 10px;
+  margin-bottom: 8px;
 }
-.rm-bh-jtbd { font-size: 12px; color: var(--ink70); line-height: 1.5; font-style: italic; }
+.rm-bh-card.bh1 .rm-bh-vol { color: rgba(196,181,253,.45); }
+.rm-bh-card.bh2 .rm-bh-vol { color: var(--muted); }
 .rm-bh-barrier {
-  font-size: 11px; color: var(--amber); margin-top: 8px; padding-top: 8px;
-  border-top: 1px solid var(--line); line-height: 1.4;
+  font-family: var(--mono); font-size: 9.5px; line-height: 1.45;
+  padding-top: 9px; border-top: 1px solid;
 }
+.rm-bh-card.bh1 .rm-bh-barrier { color: rgba(250,250,248,.4); border-top-color: rgba(255,255,255,.1); }
+.rm-bh-card.bh2 .rm-bh-barrier { color: var(--amber); border-top-color: var(--line); }
 
 /* Segment label */
 .rm-sec-lbl {
@@ -1455,49 +1476,72 @@ body.bm-editing .bm-plot-cell .bm-add {
   color: #fff; background: var(--accent); padding: 2px 6px; border-radius: 3px;
   margin-right: 5px; vertical-align: middle;
 }
-.rm-wil-high { color: var(--green); font-weight: 600; font-size: 11px; }
-.rm-wil-med { color: var(--amber); font-weight: 600; font-size: 11px; }
-.rm-wil-ext { color: var(--accent); font-weight: 700; font-size: 11px; }
+.rm-wil-high { color: var(--green); font-weight: 600; font-size: 10px; }
+.rm-wil-med { color: var(--amber); font-weight: 600; font-size: 10px; }
+.rm-wil-ext { color: var(--accent); font-weight: 700; font-size: 10px; }
+/* Prioritetsprikker */
+.rm-dots { display:flex; align-items:center; gap:4px; margin-left:auto; }
+.rm-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.rm-dot.on-ext  { background:var(--accent); }
+.rm-dot.on-high { background:var(--green); }
+.rm-dot.on-med  { background:var(--amber); }
+.rm-dot.off { background:var(--line2); }
 
 /* Nøgletal footer */
+/* Stats footer — editorial horizontal */
 .rm-stats {
-  display: grid; grid-template-columns: repeat(5, 1fr);
-  gap: 10px; padding-top: 16px; border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  padding-top: 14px; border-top: 1px solid var(--line); gap: 0;
 }
-.rm-stat { text-align: center; }
-.rm-stat-v { font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
-.rm-stat-l { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+.rm-stat {
+  display: flex; align-items: baseline; gap: 6px;
+  padding: 0 16px; border-right: 1px solid var(--line2);
+}
+.rm-stat:first-child { padding-left: 0; }
+.rm-stat:last-child { border-right: none; }
+.rm-stat-v { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+.rm-stat-l { font-family: var(--mono); font-size: 8.5px; color: var(--muted); line-height: 1.3; }
 
-/* Segment card grid */
+/* Segment card grid — editorial 1px separator grid */
 .rm-seg-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--line); margin-bottom: 16px;
 }
 .rm-sc {
-  border: 1px solid var(--line); border-radius: 7px;
-  padding: 14px 16px; display: flex; flex-direction: column; gap: 7px;
+  border: none; border-radius: 0;
+  padding: 16px 18px; display: flex; flex-direction: column; gap: 8px;
   background: var(--card);
 }
-.rm-sc-bh {
-  border-color: var(--accent-30); border-left: 3px solid var(--accent);
-  background: rgba(54,19,82,.025);
-}
+.rm-sc-bh { background: rgba(54,19,82,.03); }
 .rm-sc-eye {
-  font-family: var(--mono); font-size: 9px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
+  font-family: var(--mono); font-size: 8.5px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
   color: var(--muted); display: flex; align-items: center; gap: 6px;
+  opacity: .65;
 }
+.rm-sc-bh .rm-sc-eye { color: var(--accent); opacity: 1; }
 .rm-sc-hed {
-  font-family: var(--serif); font-size: 15px; font-weight: 700;
-  color: var(--ink); line-height: 1.2; letter-spacing: -.01em;
+  font-family: var(--serif); font-size: 16px; font-weight: 700;
+  color: var(--ink); line-height: 1.18; letter-spacing: -.018em;
 }
 .rm-sc-scene {
   font-family: var(--sans); font-size: 11.5px; color: var(--ink70);
-  line-height: 1.6; flex: 1;
+  line-height: 1.62; flex: 1;
 }
 .rm-sc-meta {
-  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-  padding-top: 9px; border-top: 1px solid var(--line2);
-  margin-top: 2px;
+  display: flex; align-items: center; gap: 0;
+  padding-top: 10px; border-top: 1px solid var(--line2);
+  margin-top: auto;
+}
+/* Standalone vol/stak in card meta */
+span.rm-vol {
+  font-family: var(--mono); font-size: 10.5px; font-weight: 700;
+  color: var(--ink); letter-spacing: -.01em;
+}
+span.rm-stak {
+  font-family: var(--mono); font-size: 10px; color: var(--muted);
+  padding-left: 9px; margin-left: 9px;
+  border-left: 1px solid var(--line2);
 }
 
 /* Trigger styling */
@@ -1558,10 +1602,6 @@ body.bm-editing .bm-plot-cell .bm-add {
     </div>
     <div class="hub-header-rubrik">AI-drevet erhvervsintelligens — <em>overblik med konsekvens</em></div>
     <div class="dash-meta">
-      <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Feedback
-      </button>
     </div>
   </header>
 
@@ -1774,10 +1814,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
     </nav>
     <div class="dash-actions">
-      <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Feedback
-      </button>
     </div>
   </header>
   <div class="sec-hdr">
@@ -1950,10 +1986,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
     </nav>
     <div class="dash-actions">
-    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Feedback
-    </button>
     </div>
   </header>
   <div class="sec-hdr">
@@ -2171,9 +2203,6 @@ body.bm-editing .bm-plot-cell .bm-add {
 
       <!-- TAB 3: REVENUE & ADD-ONS -->
       <div class="biz-tab-panel" id="biz-revenue">
-      <div class="bm-addons" style="margin-bottom:16px;">
-        <div class="col-label-sm" style="margin-bottom:18px;">Revenue — tre scenarier</div>
-
         <div class="biz-scenarios">
           <div class="biz-scenario sc-concept">
             <div class="biz-sc-lbl">Konceptmodel</div>
@@ -2182,9 +2211,9 @@ body.bm-editing .bm-plot-cell .bm-add {
             <div class="biz-sc-note">Den oprindelige årsmodel · basis for konceptet</div>
           </div>
           <div class="biz-scenario sc-baseline">
-            <div class="biz-sc-lbl">Baseline</div>
+            <div class="biz-sc-lbl">Baseline · anbefalet</div>
             <div class="biz-sc-num">9M DKK</div>
-            <div class="biz-sc-desc">1.500 Business × 500 kr/md run-rate · Partner og API ikke inkluderet</div>
+            <div class="biz-sc-desc">1.500 Business × 500 kr/md run-rate. Partner og API ikke inkluderet.</div>
             <div class="biz-sc-note">ARR ved opfyldt mål år 1 · ingen opgradering indregnet</div>
           </div>
           <div class="biz-scenario sc-upside">
@@ -2195,18 +2224,17 @@ body.bm-editing .bm-plot-cell .bm-add {
           </div>
         </div>
 
-        <div style="padding:16px 18px; background:var(--accent); margin-bottom:20px;">
-          <div style="font-family:var(--mono); font-size:9px; font-weight:700; color:rgba(196,181,253,.6); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px;">Nøgleindsigt</div>
-          <div style="font-family:var(--serif); font-size:15px; font-weight:700; font-style:italic; color:#FAFAF8; line-height:1.35;">Business genererer 10× mere revenue per abonnent end Private. Private er platform-driveren — Business er omsætningen.</div>
+        <div class="ibox accent" style="margin-top:16px;">
+          <div class="ibox-t">Nøgleindsigt</div>
+          <div class="ibox-b">Business genererer <strong>10× mere revenue per abonnent</strong> end Private. Private er platform-driveren — Business er omsætningen.</div>
         </div>
 
-        <div class="ltl-list" style="--ltl-color:var(--amber);">
+        <div class="ltl-list" style="--ltl-color:var(--amber);margin-top:16px;">
           <div class="ltl-item">
             <div class="ltl-lbl">Afventer</div>
             <div class="ltl-txt" style="font-size:13px;">Seat-model er ikke fastlagt. Afklares i features spec v1.0 — ingen commitments inden da.</div>
           </div>
         </div>
-      </div><!-- /bm-addons -->
       </div><!-- /biz-revenue -->
 
       </div><!-- /biz-col-inner -->
@@ -2333,10 +2361,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
     </nav>
     <div class="dash-actions">
-    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Feedback
-    </button>
     </div>
   </header>
   <div class="sec-hdr">
@@ -2350,25 +2374,49 @@ body.bm-editing .bm-plot-cell .bm-add {
 
     <!-- VENSTRE KOLONNE -->
     <div class="col ani" style="overflow-y:auto; min-height:0; padding-bottom:88px;">
-      <div class="col-label">Positionen vi ejer</div>
-      <div class="cat-box">
-        <div class="cat-lbl">Kategorien vi ejer</div>
-        <div class="cat-txt">Redaktionel erhvervsintelligens for det private erhvervsliv</div>
-      </div>
+      <div class="col-label" style="margin-bottom:4px;">Positionen vi ejer</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.2;letter-spacing:-.02em;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line2);">Redaktionel erhvervsintelligens for det private erhvervsliv</div>
       <div style="padding:16px 18px; background:var(--accent); margin-bottom:18px;">
         <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">SMV-markedet</div>
         <div style="font-family:var(--serif);font-size:42px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.04em;margin-bottom:6px;">99%</div>
         <div style="font-family:var(--sans);font-size:12px;color:rgba(250,250,248,.62);line-height:1.5;margin-bottom:14px;">af alle kommercielle selskaber i Danmark er SMV'er — uden egne analyseafdelinger, compliance-teams eller business intelligence-enheder.</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-          <div style="padding:9px 11px;background:rgba(255,255,255,.06);border:1px solid rgba(196,181,253,.18);">
-            <div style="font-family:var(--serif);font-size:22px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.02em;">62.398</div>
-            <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.1em;text-transform:uppercase;margin-top:5px;">Erhvervsservice &amp; Rådgivning</div>
+        <div style="margin-top:10px;background:rgba(0,0,0,.15);border:1px solid rgba(196,181,253,.12);">
+          <!-- Segment 1 -->
+          <div style="padding:11px 13px;border-bottom:1px solid rgba(255,255,255,.08);">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,181,253,.45);margin-bottom:4px;">★ Beachhead 1</div>
+                <div style="font-family:var(--sans);font-size:12.5px;font-weight:700;color:#FAFAF8;line-height:1.2;letter-spacing:-.01em;margin-bottom:4px;">Erhvervsservice &amp; Rådgivning</div>
+                <div style="font-family:var(--mono);font-size:7.5px;color:rgba(196,181,253,.72);line-height:1.55;letter-spacing:.03em;">Informationsintensivt · abonnementsmodent · direkte betalingsvilje</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;padding-top:14px;">
+                <div style="font-family:var(--serif);font-size:19px;font-weight:700;font-style:italic;color:rgba(250,250,248,.78);line-height:1;letter-spacing:-.02em;">62.398</div>
+                <div style="font-family:var(--mono);font-size:6.5px;color:rgba(196,181,253,.6);letter-spacing:.07em;margin-top:2px;">virksomheder</div>
+              </div>
+            </div>
+            <div style="margin-top:9px;height:2px;background:rgba(255,255,255,.08);border-radius:1px;">
+              <div style="width:75%;height:100%;background:rgba(196,181,253,.5);border-radius:1px;"></div>
+            </div>
           </div>
-          <div style="padding:9px 11px;background:rgba(255,255,255,.06);border:1px solid rgba(196,181,253,.18);">
-            <div style="font-family:var(--serif);font-size:22px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.02em;">20.514</div>
-            <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.1em;text-transform:uppercase;margin-top:5px;">IT/SaaS</div>
+          <!-- Segment 2 -->
+          <div style="padding:11px 13px;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,181,253,.45);margin-bottom:4px;">★ Beachhead 2</div>
+                <div style="font-family:var(--sans);font-size:12.5px;font-weight:700;color:#FAFAF8;line-height:1.2;letter-spacing:-.01em;margin-bottom:4px;">IT, Software &amp; SaaS</div>
+                <div style="font-family:var(--mono);font-size:7.5px;color:rgba(196,181,253,.72);line-height:1.55;letter-spacing:.03em;">Høj SaaS-modenhed · build-vs-buy løst · hurtigst til ROI</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;padding-top:14px;">
+                <div style="font-family:var(--serif);font-size:19px;font-weight:700;font-style:italic;color:rgba(250,250,248,.78);line-height:1;letter-spacing:-.02em;">20.514</div>
+                <div style="font-family:var(--mono);font-size:6.5px;color:rgba(196,181,253,.6);letter-spacing:.07em;margin-top:2px;">virksomheder</div>
+              </div>
+            </div>
+            <div style="margin-top:9px;height:2px;background:rgba(255,255,255,.08);border-radius:1px;">
+              <div style="width:25%;height:100%;background:rgba(196,181,253,.3);border-radius:1px;"></div>
+            </div>
           </div>
         </div>
+        <div onclick="openResearchModal()" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;cursor:pointer;font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px dashed rgba(196,181,253,.22);padding-bottom:1px;transition:color .15s,border-color .15s" onmouseover="this.style.color='rgba(196,181,253,.85)';this.style.borderBottomColor='rgba(196,181,253,.55)'" onmouseout="this.style.color='rgba(196,181,253,.5)';this.style.borderBottomColor='rgba(196,181,253,.22)'">Se sektoranalyse — 7 brancher vurderet ↗</div>
       </div>
       <div class="col-label-sm" style="margin-bottom:10px;">Positioneringskort</div>
       <div class="pos-map">
@@ -2476,7 +2524,7 @@ body.bm-editing .bm-plot-cell .bm-add {
           </tr>
           <tr class="hl">
             <td class="str" style="color:var(--accent);font-style:italic;font-family:var(--serif);font-size:12px;">Y Business</td>
-            <td class="hi" style="font-size:12px;">5.000 kr./år</td>
+            <td class="hi" style="font-size:12px;">7.500 kr./år</td>
             <td style="font-size:12px;">Nyheder + overvågning + trends + Business AI — samlet</td>
             <td style="color:var(--line);">—</td>
           </tr>
@@ -2519,10 +2567,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
     </nav>
     <div class="dash-actions">
-    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Feedback
-    </button>
     </div>
   </header>
   <div class="sec-hdr">
@@ -2641,9 +2685,10 @@ body.bm-editing .bm-plot-cell .bm-add {
 #s-prd .sec-body { display:flex; flex-direction:column; overflow:hidden; }
 #s-prd .sec-cols { flex:1; min-height:0; overflow:hidden; display:grid; grid-template-columns:1.1fr 0.95fr 0.82fr; }
 /* Kolonne 1: Redaktionelle formater */
-.prd-nav-wrap { height:100%; display:flex; flex-direction:column; overflow:hidden; padding:0; }
+.prd-nav-wrap { height:100%; display:flex; flex-direction:column; overflow:hidden; padding:0; position:relative; }
+.prd-nav-wrap::after { content:''; position:absolute; bottom:0; left:0; right:0; height:56px; background:linear-gradient(to bottom, transparent, var(--card)); pointer-events:none; z-index:2; }
 .prd-nav-hdr { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.18em; text-transform:uppercase; padding:22px 28px 14px; border-bottom:2px solid var(--line); flex-shrink:0; }
-.prd-layer-nav { flex:1; overflow-y:auto; display:flex; flex-direction:column; scrollbar-width:thin; scrollbar-color:var(--line2) transparent; }
+.prd-layer-nav { flex:1; overflow-y:auto; display:flex; flex-direction:column; scrollbar-width:thin; scrollbar-color:var(--line2) transparent; padding-bottom:56px; }
 .prd-layer-nav::-webkit-scrollbar { width:3px; }
 .prd-layer-nav::-webkit-scrollbar-thumb { background:var(--line2); border-radius:2px; }
 .prd-layer-item { display:flex; align-items:stretch; cursor:pointer; border-bottom:1px solid var(--line2); transition:background .15s ease; }
@@ -2676,7 +2721,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 /* Kolonne 2: Generiske produktlag */
 .prd-lyr-wrap { height:100%; display:flex; flex-direction:column; overflow:hidden; border-left:1px solid var(--line); }
 .prd-lyr-hdr { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--muted); letter-spacing:.18em; text-transform:uppercase; padding:22px 24px 14px; border-bottom:2px solid var(--line); flex-shrink:0; }
-.prd-lyr-list { flex:1; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--line2) transparent; }
+.prd-lyr-list { flex:1; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--line2) transparent; padding-bottom:56px; }
 .prd-lyr-list::-webkit-scrollbar { width:3px; }
 .prd-lyr-list::-webkit-scrollbar-thumb { background:var(--line2); border-radius:2px; }
 .prd-lyr-item { padding:11px 20px 13px 22px; border-bottom:1px solid var(--line2); }
@@ -2708,10 +2753,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
     </nav>
     <div class="dash-actions">
-    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Feedback
-    </button>
     </div>
   </header>
   <div class="sec-hdr">
@@ -3048,10 +3089,6 @@ body.bm-editing .bm-plot-cell .bm-add {
       <button class="dash-nav-item nav-active" data-target="s-ai">AI-motor & Business AI</button>
     </nav>
     <div class="dash-actions">
-    <button class="btn-feedback" onclick="window.openFeedback()" title="Skriv en bemærkning eller idé">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Feedback
-    </button>
     </div>
   </header>
   <div class="sec-hdr">
@@ -3804,19 +3841,19 @@ document.getElementById('research-overlay').addEventListener('click', function(e
       <div>
         <div class="rm-sec-lbl">GTM fase 1 — Beachhead-segmenter</div>
         <div class="rm-beachhead">
-          <div class="rm-bh-card">
+          <div class="rm-bh-card bh1">
             <div class="rm-bh-badge">★ Beachhead 1</div>
             <div class="rm-bh-name">Erhvervsservice, Rådgivning & Revision</div>
-            <div class="rm-bh-vol">62.398 virksomheder · Stak: 60.000–140.000+ kr./år</div>
             <div class="rm-bh-jtbd">"Identificér hvornår kunden er klar til at handle — ikke hvem de er, men hvornår."</div>
-            <div class="rm-bh-barrier">⚠ Kritisk barriere: AI-fejl i tillidserhverv — eksplicit verifikationsmodel er afgørende for salget</div>
+            <div class="rm-bh-vol">62.398 virksomheder · Stak: 60.000–140.000+ kr./år</div>
+            <div class="rm-bh-barrier">AI-fejl i tillidserhverv: eksplicit verifikationsmodel er afgørende for salget</div>
           </div>
-          <div class="rm-bh-card">
+          <div class="rm-bh-card bh2">
             <div class="rm-bh-badge">★ Beachhead 2</div>
             <div class="rm-bh-name">IT, Software & SaaS</div>
-            <div class="rm-bh-vol">20.514 virksomheder · Stak: 105.000–130.000+ kr./år</div>
             <div class="rm-bh-jtbd">"Overvåg EU-regulering (AI Act, DORA, GDPR) der rammer produktroadmap — inden det er for sent."</div>
-            <div class="rm-bh-barrier">⚠ Kritisk barriere: Build-vs-buy — udviklere vil bygge det selv. Redaktionel kuratering er USP'en</div>
+            <div class="rm-bh-vol">20.514 virksomheder · Stak: 105.000–130.000+ kr./år</div>
+            <div class="rm-bh-barrier">Build-vs-buy: udviklere vil bygge det selv. Redaktionel kuratering er USP'en</div>
           </div>
         </div>
       </div>
@@ -3833,7 +3870,7 @@ document.getElementById('research-overlay').addEventListener('click', function(e
             <div class="rm-sc-meta">
               <span class="rm-vol">62.398 virksomheder</span>
               <span class="rm-stak">60K–140K+ kr./år</span>
-              <span class="rm-wil-ext" style="margin-left:auto">Særdeles høj</span>
+              <div class="rm-dots" title="Særdeles høj betalingsvilje"><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span></div>
             </div>
           </div>
 
@@ -3844,7 +3881,7 @@ document.getElementById('research-overlay').addEventListener('click', function(e
             <div class="rm-sc-meta">
               <span class="rm-vol">20.514 virksomheder</span>
               <span class="rm-stak">105K–130K+ kr./år</span>
-              <span class="rm-wil-high" style="margin-left:auto">Høj</span>
+              <div class="rm-dots" title="Høj betalingsvilje"><span class="rm-dot on-high"></span><span class="rm-dot on-high"></span><span class="rm-dot on-high"></span><span class="rm-dot on-high"></span><span class="rm-dot off"></span></div>
             </div>
           </div>
 
@@ -3855,7 +3892,7 @@ document.getElementById('research-overlay').addEventListener('click', function(e
             <div class="rm-sc-meta">
               <span class="rm-vol">86.936 virksomheder</span>
               <span class="rm-stak">20K–50K+ kr./år</span>
-              <span class="rm-wil-ext" style="margin-left:auto">Ekstremt høj</span>
+              <div class="rm-dots" title="Ekstremt høj betalingsvilje"><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span></div>
             </div>
           </div>
 
@@ -3866,7 +3903,7 @@ document.getElementById('research-overlay').addEventListener('click', function(e
             <div class="rm-sc-meta">
               <span class="rm-vol">20.545 virksomheder</span>
               <span class="rm-stak">30K–50K kr./år</span>
-              <span class="rm-wil-med" style="margin-left:auto">Middel–høj</span>
+              <div class="rm-dots" title="Middel–høj betalingsvilje"><span class="rm-dot on-med"></span><span class="rm-dot on-med"></span><span class="rm-dot on-med"></span><span class="rm-dot off"></span><span class="rm-dot off"></span></div>
             </div>
           </div>
 
@@ -3877,7 +3914,7 @@ document.getElementById('research-overlay').addEventListener('click', function(e
             <div class="rm-sc-meta">
               <span class="rm-vol">36.826 virksomheder</span>
               <span class="rm-stak">10K–50K kr./år</span>
-              <span class="rm-wil-med" style="margin-left:auto">Middel</span>
+              <div class="rm-dots" title="Middel betalingsvilje"><span class="rm-dot on-med"></span><span class="rm-dot on-med"></span><span class="rm-dot off"></span><span class="rm-dot off"></span><span class="rm-dot off"></span></div>
             </div>
           </div>
 
@@ -3888,7 +3925,7 @@ document.getElementById('research-overlay').addEventListener('click', function(e
             <div class="rm-sc-meta">
               <span class="rm-vol">68.303 virksomheder</span>
               <span class="rm-stak">30K–50K kr./år</span>
-              <span class="rm-wil-med" style="margin-left:auto">Middel–høj</span>
+              <div class="rm-dots" title="Middel–høj betalingsvilje"><span class="rm-dot on-med"></span><span class="rm-dot on-med"></span><span class="rm-dot on-med"></span><span class="rm-dot off"></span><span class="rm-dot off"></span></div>
             </div>
           </div>
 
@@ -3899,7 +3936,7 @@ document.getElementById('research-overlay').addEventListener('click', function(e
             <div class="rm-sc-meta">
               <span class="rm-vol">38.535 virksomheder</span>
               <span class="rm-stak">20K–50K+ kr./år</span>
-              <span class="rm-wil-ext" style="margin-left:auto">Særdeles høj</span>
+              <div class="rm-dots" title="Særdeles høj betalingsvilje"><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span><span class="rm-dot on-ext"></span></div>
             </div>
           </div>
 
