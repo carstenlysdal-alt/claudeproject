@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { useAuth } from '@/lib/authContext';
 import { useLanguage } from '@/lib/languageContext';
 import TiltCard from '@/components/TiltCard';
@@ -252,6 +253,23 @@ function IllSticks({ size = 80, color = '#ef5a3a', sw = 1.6 }) {
 
 
 
+// Lazy OSMD wrapper — kun client-side
+const OsmdRenderer = dynamic(() => import('@/components/OsmdRenderer'), { ssr: false });
+
+function NotationRenderer({ xml, accent }: { xml: string; accent: string }) {
+  const [measure, setMeasure] = React.useState(1);
+  return (
+    <div style={{ width: '100%', background: '#FAF8F5' }}>
+      <OsmdRenderer xmlData={xml} zoom={0.7} currentMeasure={measure} onLoadStatus={() => {}} />
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 8, paddingTop: 8 }}>
+        <button onClick={() => setMeasure(m => Math.max(1, m - 1))} style={{ background: 'transparent', border: `1px solid ${accent}`, color: accent, borderRadius: 6, padding: '2px 10px', fontSize: 14, cursor: 'pointer' }}>‹</button>
+        <span style={{ fontSize: 11, color: '#8a8580', alignSelf: 'center' }}>Takt {measure}</span>
+        <button onClick={() => setMeasure(m => m + 1)} style={{ background: 'transparent', border: `1px solid ${accent}`, color: accent, borderRadius: 6, padding: '2px 10px', fontSize: 14, cursor: 'pointer' }}>›</button>
+      </div>
+    </div>
+  );
+}
+
 interface DrumNotationProps {
   color?: string;
   width?: number;
@@ -457,7 +475,7 @@ function useExerciseProgress() {
 // ─────────────────────────────────────────────────────────────
 const EXERCISE_VIDEOS: Record<string, string[]> = {
   opvarmning: [
-    'https://www.youtube-nocookie.com/embed/8T_87k23Q1E?rel=0&modestbranding=1',
+    'https://www.youtube-nocookie.com/embed/F4FO7rsp-e0?rel=0&modestbranding=1',
     'https://www.youtube-nocookie.com/embed/8T_87k23Q1E?rel=0&modestbranding=1&start=120',
     'https://www.youtube-nocookie.com/embed/8T_87k23Q1E?rel=0&modestbranding=1&start=240',
     'https://www.youtube-nocookie.com/embed/8T_87k23Q1E?rel=0&modestbranding=1&start=360',
@@ -1042,7 +1060,7 @@ function PracticeScreen({ t, onSelectCategory, onPlayRhythmHero }: PracticeScree
                 fontFamily: t.font
               }}
             >
-              Start Game (+XP)
+              Start Game (+point)
             </button>
           </div>
         </TiltCard>
@@ -1166,6 +1184,7 @@ interface ExerciseItem {
   tags: string[];
   level: string;
   nodrums?: boolean;
+  notation?: string; // filnavn i public/content/notation/, fx 'opvarmning-2014.xml'
 }
 
 interface ExerciseDetailPopupProps {
@@ -1180,10 +1199,23 @@ interface ExerciseDetailPopupProps {
 }
 
 function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCompleted, onOpenCoach }: ExerciseDetailPopupProps) {
-  const [tab, setTab] = React.useState<'noder' | 'video'>('noder');
+  const [tab, setTab] = React.useState<'noder' | 'video'>(exercise.notation ? 'noder' : 'video');
   const [bpm, setBpm] = React.useState(typeof exercise.bpm === 'number' ? exercise.bpm : 90);
   const [playing, setPlaying] = React.useState(false);
   const [beat, setBeat] = React.useState(0);
+  const [notationXml, setNotationXml] = React.useState<string | null>(null);
+  const [notationLoading, setNotationLoading] = React.useState(false);
+  const [notationError, setNotationError] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!exercise.notation) return;
+    setNotationLoading(true);
+    setNotationError(false);
+    fetch(`/content/notation/${exercise.notation}`)
+      .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+      .then(xml => { setNotationXml(xml); setNotationLoading(false); })
+      .catch(() => { setNotationError(true); setNotationLoading(false); });
+  }, [exercise.notation]);
   const audioCtxRef = useRef<AudioContext | null>(null);
 
   // Close on Escape
@@ -1266,9 +1298,21 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
 
         {tab === 'noder' && (
           <div>
-            <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: '14px 6px', marginBottom: 14, overflowX: 'auto' }}>
-              <DrumNotation width={320} color="#16161a" accent={t.accent} active={playing ? beat : 99} />
-              <DrumNotation width={320} color="#16161a" accent={t.accent} active={99} />
+            <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: '14px 6px', marginBottom: 14, overflowX: 'auto', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {exercise.notation ? (
+                notationLoading ? (
+                  <div style={{ color: '#8a8580', fontSize: 13 }}>Indlæser noder…</div>
+                ) : notationError ? (
+                  <div style={{ color: '#F25545', fontSize: 12, padding: '0 12px', textAlign: 'center' }}>Kunne ikke hente noder. Upload filen via Admin → Scan.</div>
+                ) : notationXml ? (
+                  <NotationRenderer xml={notationXml} accent={t.accent} />
+                ) : null
+              ) : (
+                <div style={{ width: '100%' }}>
+                  <DrumNotation width={320} color="#16161a" accent={t.accent} active={playing ? beat : 99} />
+                  <DrumNotation width={320} color="#16161a" accent={t.accent} active={99} />
+                </div>
+              )}
             </div>
 
             {/* BPM + Play */}
@@ -1349,9 +1393,62 @@ interface MobileCategoryDetailProps {
 
 function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: MobileCategoryDetailProps) {
   const [activeChip, setActiveChip] = useState('Alle');
+  const [statusFilter, setStatusFilter] = useState<'alle' | 'gennemfort' | 'mangler'>('alle');
   const [bpm, setBpm] = useState(category === 'playalong' ? 105 : 90);
   const [selectedExercise, setSelectedExercise] = useState<ExerciseItem | null>(null);
   const { markOpened, markCompleted, isCompleted } = useExerciseProgress();
+  const { user, syncCompletedExercises } = useAuth();
+
+  const handleMarkCompleted = async (key: string) => {
+    markCompleted(key);
+
+    // XP: +25 per gennemført øvelse
+    const XP_PER_EXERCISE = 25;
+    const today = new Date().toISOString().slice(0, 10);
+
+    try {
+      if (user) {
+        // Streak-logik
+        const lastDate = localStorage.getItem('pocketdrummer_last_practice');
+        let newStreak = user.streak || 0;
+        if (lastDate !== today) {
+          const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+          newStreak = lastDate === yesterday ? newStreak + 1 : 1;
+        }
+        localStorage.setItem('pocketdrummer_last_practice', today);
+
+        const newXp = (user.xp || 0) + XP_PER_EXERCISE;
+        const newLevel = Math.floor(newXp / 200) + 1;
+
+        // Opdater completedExercises
+        const completed = [...(user.completedExercises || [])];
+        if (!completed.includes(key)) completed.push(key);
+
+        const { firestoreService } = await import('@/lib/firestoreService');
+        await firestoreService.saveUserProfile(user.uid, {
+          xp: newXp,
+          level: newLevel,
+          streak: newStreak,
+          completedExercises: completed,
+        });
+        await syncCompletedExercises(completed);
+      } else {
+        // Gæst: gem streak og XP i localStorage
+        const lastDate = localStorage.getItem('pocketdrummer_last_practice');
+        if (lastDate !== today) {
+          const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+          const prevStreak = parseInt(localStorage.getItem('pocketdrummer_streak') || '0', 10);
+          const newStreak = lastDate === yesterday ? prevStreak + 1 : 1;
+          localStorage.setItem('pocketdrummer_streak', String(newStreak));
+          localStorage.setItem('pocketdrummer_last_practice', today);
+        }
+        const prevXp = parseInt(localStorage.getItem('pocketdrummer_xp') || '0', 10);
+        localStorage.setItem('pocketdrummer_xp', String(prevXp + XP_PER_EXERCISE));
+      }
+    } catch (err) {
+      console.error('Fejl ved opdatering af XP/streak:', err);
+    }
+  };
 
   // Escape key to close this overlay (only when no sub-popup is open)
   useEffect(() => {
@@ -1526,7 +1623,7 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
 
   const categoryExercises = {
     opvarmning: [
-      { id: 1, title: '5 minutters teknik-start', sub: 'Single strokes og håndkontrol', dur: '5 min', bpm: 80, tags: ['5 min', 'Single strokes'], level: 'Begynder' },
+      { id: 1, title: '5 minutters teknik-start', sub: 'Single strokes og håndkontrol', dur: '5 min', bpm: 80, tags: ['5 min', 'Single strokes'], level: 'Begynder', notation: 'opvarmning-2014.xml' },
       { id: 2, title: 'Hånd-hastighed & kontrol', sub: 'Dobbelt slag og paradiddle kontrol', dur: '10 min', bpm: 100, tags: ['10 min', 'Hænder', 'Double strokes', 'Paradiddles'], level: 'Mellemniveau' },
       { id: 3, title: 'Stortromme styrke & kontrol', sub: 'Fodkontrol og udholdenhed', dur: '12 min', bpm: 90, tags: ['Fødder', 'Stortrommekontrol'], level: 'Øvet' },
       { id: 4, title: 'Tempo-ladder udfordring', sub: 'Øg tempoet gradvist', dur: '15 min', bpm: '80-140', tags: ['Tempo-ladder', 'Dynamik'], level: 'Øvet' },
@@ -1565,6 +1662,10 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
   }[category];
 
   const filteredExercises = categoryExercises.filter(ex => {
+    const key = `${category}_${ex.id}`;
+    const done = isCompleted(key);
+    if (statusFilter === 'gennemfort' && !done) return false;
+    if (statusFilter === 'mangler' && done) return false;
     if (activeChip === 'Alle') return true;
     return ex.tags.some(tag => tag.toLowerCase().includes(activeChip.toLowerCase()));
   });
@@ -1595,7 +1696,40 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
           {categoryBlurb}
         </div>
 
-        {/* Filter chips */}
+        {/* Status filter */}
+        {(() => {
+          const total = categoryExercises.length;
+          const done = categoryExercises.filter(ex => isCompleted(`${category}_${ex.id}`)).length;
+          const missing = total - done;
+          const statuses: { key: 'alle' | 'gennemfort' | 'mangler'; label: string; count: number; color: string }[] = [
+            { key: 'alle', label: 'Alle', count: total, color: t.accent },
+            { key: 'gennemfort', label: 'Gennemført', count: done, color: t.good },
+            { key: 'mangler', label: 'Mangler', count: missing, color: t.textMuted },
+          ];
+          return (
+            <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
+              {statuses.map(s => {
+                const active = statusFilter === s.key;
+                return (
+                  <button key={s.key} onClick={() => setStatusFilter(s.key)} style={{
+                    flex: 1, padding: '8px 4px', borderRadius: 10,
+                    border: `1px solid ${active ? s.color : t.border}`,
+                    background: active ? (s.key === 'gennemfort' ? t.goodSoft : s.key === 'alle' ? t.accentSoft : t.surface2) : t.surface,
+                    color: active ? s.color : t.textMuted,
+                    fontFamily: t.font, fontSize: 11, fontWeight: 700, cursor: 'pointer',
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2,
+                    transition: 'all 0.2s',
+                  }}>
+                    <span style={{ fontFamily: t.mono, fontSize: 16, fontWeight: 700, lineHeight: 1 }}>{s.count}</span>
+                    <span>{s.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          );
+        })()}
+
+        {/* Tag chips */}
         <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 12, marginBottom: 20, scrollbarWidth: 'none' }}>
           {categoryChips.map(chip => {
             const active = activeChip === chip;
@@ -1835,7 +1969,7 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
           exercise={selectedExercise}
           category={category}
           onClose={() => setSelectedExercise(null)}
-          onMarkDone={() => markCompleted(`${category}_${selectedExercise.id}`)}
+          onMarkDone={() => handleMarkCompleted(`${category}_${selectedExercise.id}`)}
           isCompleted={isCompleted(`${category}_${selectedExercise.id}`)}
           onOpenCoach={onOpenCoach}
         />
@@ -2743,7 +2877,7 @@ function ProfileScreen({ t, dark, setDark, guestXp }: ProfileScreenProps) {
             <div style={{ marginTop: 18, padding: '0 12px' }}>
               <div style={{ display: 'flex', fontSize: 10, color: t.textMuted, marginBottom: 6, fontFamily: t.mono, fontWeight: 600, letterSpacing: 0.5, justifyContent: 'space-between' }}>
                 <span>{translate('level').toUpperCase()} {level}</span>
-                <span>{xp % 200} / 200 XP</span>
+                <span>{xp % 200} / 200 point</span>
                 <span>{translate('level').toUpperCase()} {level + 1}</span>
               </div>
               <Progress pct={xpPct} t={t} h={6} />
@@ -2891,7 +3025,7 @@ function TabBar({ tab, onTab, t, dark, isMobile, onSelectCategory }: TabBarProps
 
   return (
     <div style={{
-      position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 50,
+      position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 150,
       paddingBottom: isMobile ? 'calc(env(safe-area-inset-bottom) + 10px)' : 20,
       paddingTop: 10, paddingLeft: 0, paddingRight: 0,
       background: t.navBackground,

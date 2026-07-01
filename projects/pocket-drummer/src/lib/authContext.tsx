@@ -11,6 +11,7 @@ import {
   sendPasswordResetEmail,
   updateProfile,
 } from 'firebase/auth';
+import { Timestamp } from 'firebase/firestore';
 import { firestoreService, UserProfile } from './firestoreService';
 import { UserPlan, getCompletedExercises, getUserPlan, saveUserPlan, setPremiumStatus } from './mockData';
 
@@ -97,6 +98,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       } catch (err) {
         console.error('Error during Auth state change handler:', err);
+        // Firestore fejlede — sæt minimal bruger fra Firebase Auth så login stadig virker
+        if (firebaseUser) {
+          const now = Timestamp.now();
+          setUser({
+            uid: firebaseUser.uid,
+            email: firebaseUser.email || '',
+            displayName: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'Trommeslager',
+            photoURL: firebaseUser.photoURL,
+            role: firebaseUser.email === 'carstenlysdal@gmail.com' ? 'admin' : 'user',
+            createdAt: now,
+            lastLogin: now,
+            completedExercises: [],
+            isPremium: false,
+          });
+        }
       } finally {
         setLoading(false);
       }
@@ -148,7 +164,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Nulstil kodeord
   const resetPassword = async (email: string) => {
     try {
-      await sendPasswordResetEmail(auth, email);
+      const actionCodeSettings = {
+        url: `${process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'}/login`,
+        handleCodeInApp: false,
+      };
+      await sendPasswordResetEmail(auth, email, actionCodeSettings);
     } catch (err) {
       console.error('Password reset error:', err);
       throw err;

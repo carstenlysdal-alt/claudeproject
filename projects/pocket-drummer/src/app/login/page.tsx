@@ -45,7 +45,10 @@ export default function LoginPage() {
       else if (code === 'auth/user-not-found') setErrorMsg('Vi kan ikke finde en konto med den email.');
       else if (code === 'auth/weak-password') setErrorMsg('Kodeordet skal være mindst 6 tegn.');
       else if (code === 'auth/invalid-email') setErrorMsg('Ugyldig email-adresse.');
-      else setErrorMsg('Der opstod en fejl. Prøv igen.');
+      else if (code === 'auth/operation-not-allowed') setErrorMsg('Email/kodeord-login er ikke aktiveret. Aktiver det i Firebase Console → Authentication → Sign-in methods.');
+      else if (code === 'auth/too-many-requests') setErrorMsg('For mange forsøg. Vent lidt og prøv igen.');
+      else if (code === 'auth/network-request-failed') setErrorMsg('Netværksfejl. Tjek din forbindelse og prøv igen.');
+      else setErrorMsg(`Der opstod en fejl (${code ?? 'ukendt'}). Prøv igen.`);
     } finally {
       setLoading(false);
     }

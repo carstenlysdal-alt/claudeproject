@@ -72,6 +72,9 @@ Vigtige regler:
   const [scanFile, setScanFile] = useState<File | null>(null);
   const [scanLoading, setScanLoading] = useState(false);
   const [scanLog, setScanLog] = useState<string[]>([]);
+  const [notationFilename, setNotationFilename] = useState('');
+  const [saveNotationLoading, setSaveNotationLoading] = useState(false);
+  const [saveNotationMsg, setSaveNotationMsg] = useState('');
   
   // Audio & YouTube Transcribe state
   const [audioFile, setAudioFile] = useState<File | null>(null);
@@ -216,9 +219,11 @@ Vigtige regler:
       addScanLog("Scanning og konvertering færdig!");
       addScanLog("Indlæser node-preview...");
       setXmlData(data.xml);
-      
+
       const baseName = scanFile.name.replace(/\.[^/.]+$/, "");
       setTitle(`Scannet: ${baseName}`);
+      setNotationFilename(baseName);
+      setSaveNotationMsg('');
       setActiveTab('preview');
     } catch (e) {
       console.error(e);
@@ -227,6 +232,26 @@ Vigtige regler:
       addScanLog(`❌ FEJL under scanning: ${message}`);
     } finally {
       setScanLoading(false);
+    }
+  };
+
+  const handleSaveNotation = async () => {
+    if (!xmlData || !notationFilename.trim()) return;
+    setSaveNotationLoading(true);
+    setSaveNotationMsg('');
+    try {
+      const res = await fetch('/api/save-notation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename: notationFilename.trim(), xml: xmlData }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Ukendt fejl');
+      setSaveNotationMsg(`✓ Gemt som ${data.saved}`);
+    } catch (e) {
+      setSaveNotationMsg(`❌ ${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      setSaveNotationLoading(false);
     }
   };
 
@@ -433,7 +458,7 @@ Vigtige regler:
     <div className="grid-bg" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header />
 
-      <main style={{ flex: 1, padding: '2rem' }}>
+      <main style={{ flex: 1, padding: '2rem 2.5rem' }}>
         
         {/* Admin Header */}
         <section style={{ maxWidth: '1400px', margin: '0 auto 1.5rem auto', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -475,7 +500,7 @@ Vigtige regler:
                 onClick={() => setToolTab('deepseek')} 
                 style={{ 
                   background: toolTab === 'deepseek' ? '#ef5a3a' : 'transparent', 
-                  color: '#fff', border: 'none', borderRadius: '8px', padding: '8px 4px', 
+                  color: '#fff', border: 'none', borderRadius: '8px', padding: '9px 8px',
                   fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', display: 'flex', 
                   alignItems: 'center', justifyContent: 'center', gap: '6px', transition: 'all 0.2s' 
                 }}
@@ -486,7 +511,7 @@ Vigtige regler:
                 onClick={() => setToolTab('gemini')} 
                 style={{ 
                   background: toolTab === 'gemini' ? '#ef5a3a' : 'transparent', 
-                  color: '#fff', border: 'none', borderRadius: '8px', padding: '8px 4px', 
+                  color: '#fff', border: 'none', borderRadius: '8px', padding: '9px 8px',
                   fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', display: 'flex', 
                   alignItems: 'center', justifyContent: 'center', gap: '6px', transition: 'all 0.2s' 
                 }}
@@ -497,7 +522,7 @@ Vigtige regler:
                 onClick={() => setToolTab('transcribe')} 
                 style={{ 
                   background: toolTab === 'transcribe' ? '#ef5a3a' : 'transparent', 
-                  color: '#fff', border: 'none', borderRadius: '8px', padding: '8px 4px', 
+                  color: '#fff', border: 'none', borderRadius: '8px', padding: '9px 8px',
                   fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', display: 'flex', 
                   alignItems: 'center', justifyContent: 'center', gap: '6px', transition: 'all 0.2s' 
                 }}
@@ -508,7 +533,7 @@ Vigtige regler:
                 onClick={() => setToolTab('presets')} 
                 style={{ 
                   background: toolTab === 'presets' ? '#ef5a3a' : 'transparent', 
-                  color: '#fff', border: 'none', borderRadius: '8px', padding: '8px 4px', 
+                  color: '#fff', border: 'none', borderRadius: '8px', padding: '9px 8px',
                   fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', display: 'flex', 
                   alignItems: 'center', justifyContent: 'center', gap: '6px', transition: 'all 0.2s' 
                 }}
@@ -747,6 +772,40 @@ Vigtige regler:
                     {scanLog.map((log, i) => (
                       <div key={i} style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: log.includes('❌') ? 'var(--accent-rose)' : '#ef5a3a', margin: '0.15rem 0' }}>{log}</div>
                     ))}
+                  </div>
+                )}
+
+                {xmlData && (
+                  <div style={{ marginTop: '1.25rem', padding: '1rem', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border-color)', borderRadius: '8px' }}>
+                    <div className="flex align-center gap-2 mb-2">
+                      <Save size={16} style={{ color: '#ef5a3a' }} />
+                      <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>Gem til notation-mappe</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <input
+                        className="form-control"
+                        style={{ flex: 1, fontSize: '0.85rem' }}
+                        value={notationFilename}
+                        onChange={(e) => setNotationFilename(e.target.value)}
+                        placeholder="filnavn (uden .xml)"
+                      />
+                      <button
+                        className="btn btn-primary"
+                        style={{ whiteSpace: 'nowrap' }}
+                        onClick={handleSaveNotation}
+                        disabled={saveNotationLoading || !notationFilename.trim()}
+                      >
+                        {saveNotationLoading ? 'Gemmer...' : 'Gem .xml'}
+                      </button>
+                    </div>
+                    {saveNotationMsg && (
+                      <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', color: saveNotationMsg.startsWith('✓') ? '#5dd39e' : 'var(--accent-rose)' }}>
+                        {saveNotationMsg}
+                      </p>
+                    )}
+                    <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
+                      Gemmes i <code>public/content/notation/[filnavn].xml</code>
+                    </p>
                   </div>
                 )}
               </div>
