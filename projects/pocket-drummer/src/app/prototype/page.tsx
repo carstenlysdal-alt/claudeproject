@@ -75,12 +75,8 @@ interface LessonDetailProps extends ScreenProps {
 }
 
 interface StudioKitScreenProps extends ScreenProps {
-  onOpenPads: () => void;
 }
 
-interface KitPadViewProps extends ScreenProps {
-  onClose: () => void;
-}
 
 interface CoachScreenProps extends ScreenProps {
   onClose: () => void;
@@ -2406,231 +2402,162 @@ function LessonDetail({ t, onClose, onOpenCoach }: LessonDetailProps) {
 }
 
 // 6. Studio Kit Screen
-function StudioKitScreen({ t, onOpenPads }: StudioKitScreenProps) {
-  const { language, t: translate } = useLanguage();
-  return (
-    <div style={{ color: t.text, fontFamily: t.font, padding: '4px 0 40px' }}>
-      <div style={{ padding: '4px 20px 4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: t.textMuted }}>{translate('kit') || 'Trommesæt'}</div>
-        <button style={{
-          width: 38, height: 38, borderRadius: '50%', background: 'transparent',
-          border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer',
-          display: 'flex', alignItems: 'center', }}><IcMore size={18} /></button>
-      </div>
+function StudioKitScreen({ t }: StudioKitScreenProps) {
+  const [bpm, setBpm] = React.useState(90);
+  const [playing, setPlaying] = React.useState(false);
+  const [beat, setBeat] = React.useState(0);
+  const [timeSig, setTimeSig] = React.useState<3|4|6>(4);
+  const [tapTimes, setTapTimes] = React.useState<number[]>([]);
+  const audioCtxRef = React.useRef<AudioContext | null>(null);
+  const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      <div style={{ padding: '0 24px' }}>
-        <div style={{ display: 'flex', margin: '10px 0 14px', position: 'relative' }}>
-          <div style={{
-            position: 'absolute', width: 240, height: 180,
-            background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 65%)`,
-            borderRadius: '50%', top: 0,
-          }} />
-          <div style={{ position: 'relative' }}>
-            <IllKit size={300} color={t.accent} sw={1.3}/>
-          </div>
-        </div>
-
-        <Display t={t} size={36} style={{ marginBottom: 6 }}>Studio Kit</Display>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: t.accent, marginBottom: 14 }}>
-          {language === 'da' ? 'Dit virtuelle trommesæt' : language === 'en' ? 'Your virtual drum kit' : language === 'de' ? 'Dein virtuelles Schlagzeug' : 'Tu batería virtual'}
-        </div>
-
-        <div style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 15, color: t.text, opacity: 0.8, lineHeight: 1.5 }}>
-          {language === 'da' ? 'Et professionelt trommesæt med realistisk lyd og respons.' : language === 'en' ? 'A professional drum kit with realistic sound and response.' : language === 'de' ? 'Ein professionelles Schlagzeug mit realistischem Sound und Ansprechverhalten.' : 'Una batería profesional con sonido y respuesta realistas.'}
-        </div>
-
-        <div style={{ marginTop: 26, display: 'flex', flexDirection: 'column', gap: 18 }}>
-          {[
-            { 
-              icon: <IcWave size={18} />, 
-              title: language === 'da' ? 'Realistisk lyd' : language === 'en' ? 'Realistic Sound' : language === 'de' ? 'Realistischer Sound' : 'Sonido realista', 
-              sub: language === 'da' ? 'Optaget i studiekvalitet' : language === 'en' ? 'Recorded in studio quality' : language === 'de' ? 'In Studioqualität aufgenommen' : 'Grabado en calidad de estudio' 
-            },
-            { 
-              icon: <IcTuner size={18} />, 
-              title: language === 'da' ? 'Tilpas dit kit' : language === 'en' ? 'Customize your kit' : language === 'de' ? 'Passe dein Kit an' : 'Personaliza tu kit', 
-              sub: language === 'da' ? 'Justér lyd og opsætning' : language === 'en' ? 'Adjust sound and setup' : language === 'de' ? 'Sound und Setup anpassen' : 'Ajustar sonido y configuración' 
-            },
-            { 
-              icon: <IcMic size={18} />, 
-              title: language === 'da' ? 'Responsiv følelse' : language === 'en' ? 'Responsive feel' : language === 'de' ? 'Reaktionsschnelles Gefühl' : 'Sensación receptiva', 
-              sub: language === 'da' ? 'Naturlig spiloplevelse' : language === 'en' ? 'Natural playing experience' : language === 'de' ? 'Natürliches Spielerlebnis' : 'Experiencia de juego natural' 
-            },
-          ].map((f, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
-                border: `1px solid ${t.borderStrong}`, color: t.accent,
-                display: 'flex', alignItems: 'center', }}>{f.icon}</div>
-              <div>
-                <div style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 18, lineHeight: 1.1 }}>{f.title}</div>
-                <div style={{ fontSize: 12, color: t.textMuted, marginTop: 2 }}>{f.sub}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ marginTop: 30 }}>
-          <CTA t={t} onClick={onOpenPads} icon={<IcPlay size={13} fill color="#fff"/>}>
-            {language === 'da' ? 'Åbn trommesæt' : language === 'en' ? 'Open drum kit' : language === 'de' ? 'Schlagzeug öffnen' : 'Abrir batería'}
-          </CTA>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 7. Pad view overlay
-const pads = [
-  { label: 'Hi-hat', sub: 'Closed', color: '#ef5a3a', accent: true, key: 'h' },
-  { label: 'Hi-hat', sub: 'Open',   color: '#ef5a3a', key: 'g' },
-  { label: 'Crash',  sub: '16"',    color: '#ef5a3a', key: 'c' },
-  { label: 'Snare',  sub: 'Center', color: '#ef5a3a', accent: true, key: 's' },
-  { label: 'Tom 1',  sub: '10"',    color: '#ef5a3a', key: 't' },
-  { label: 'Tom 2',  sub: '12"',    color: '#ef5a3a', key: 'y' },
-  { label: 'Floor',  sub: '14"',    color: '#ef5a3a', key: 'f' },
-  { label: 'Ride',   sub: '20"',    color: '#ef5a3a', key: 'r' },
-  { label: 'Kick',   sub: 'Bass',   color: '#ef5a3a', accent: true, key: 'k' },
-];
-
-interface CustomWindow extends Window {
-  AudioContext?: typeof AudioContext;
-  webkitAudioContext?: typeof AudioContext;
-  __kitAudio?: AudioContext;
-}
-
-function KitPadView({ t, onClose }: KitPadViewProps) {
-  const [active, setActive] = useState<Record<number, number>>({});
-  const [recording, setRecording] = useState(false);
-  const { language } = useLanguage();
-
-  const hit = (i: number) => {
-    setActive(a => ({ ...a, [i]: Date.now() }));
-    setTimeout(() => setActive(a => {
-      const next = { ...a };
-      delete next[i];
-      return next;
-    }), 240);
-
-    // Audio synthesizer synthesis
+  const tick = React.useCallback((beatIdx: number, totalBeats: number) => {
     try {
-      if (typeof window !== 'undefined') {
-        const win = window as unknown as CustomWindow;
-        const AudioCtx = win.AudioContext || win.webkitAudioContext;
-        if (AudioCtx) {
-          const ctx = win.__kitAudio || (win.__kitAudio = new AudioCtx());
-          if (ctx.state === 'suspended') {
-            ctx.resume();
-          }
-          const o = ctx.createOscillator();
-          const g = ctx.createGain();
-          const isKick = pads[i].label === 'Kick';
-          const isSnare = pads[i].label === 'Snare';
-          o.type = isKick ? 'sine' : isSnare ? 'triangle' : 'square';
-          o.frequency.value = isKick ? 60 : isSnare ? 200 : (300 + i * 40);
-          g.gain.value = 0.06;
-          o.connect(g); g.connect(ctx.destination);
-          o.start();
-          g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (isKick ? 0.18 : 0.08));
-          o.stop(ctx.currentTime + 0.2);
-        }
+      if (!audioCtxRef.current || audioCtxRef.current.state === 'closed') {
+        audioCtxRef.current = new (window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)();
       }
-    } catch {
-      // Ignore audio synthesis errors
+      const ctx = audioCtxRef.current;
+      if (ctx.state === 'suspended') ctx.resume();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      const isAccent = beatIdx % totalBeats === 0;
+      osc.frequency.setValueAtTime(isAccent ? 1000 : 660, ctx.currentTime);
+      gain.gain.setValueAtTime(isAccent ? 0.3 : 0.14, ctx.currentTime);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+      osc.stop(ctx.currentTime + 0.07);
+    } catch {}
+  }, []);
+
+  React.useEffect(() => {
+    if (!playing) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      setBeat(0);
+      return;
+    }
+    let b = 0;
+    const beats = timeSig === 6 ? 6 : timeSig;
+    const ms = (60000 / bpm) * (timeSig === 6 ? 0.5 : 1);
+    tick(0, beats);
+    setBeat(0);
+    intervalRef.current = setInterval(() => {
+      b = (b + 1) % beats;
+      tick(b, beats);
+      setBeat(b);
+    }, ms);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [playing, bpm, timeSig, tick]);
+
+  React.useEffect(() => () => { audioCtxRef.current?.close(); }, []);
+
+  const handleTap = () => {
+    const now = Date.now();
+    const recent = [...tapTimes, now].filter(t => now - t < 4000).slice(-6);
+    setTapTimes(recent);
+    if (recent.length >= 2) {
+      const intervals = recent.slice(1).map((t, i) => t - recent[i]);
+      const avg = intervals.reduce((a, b) => a + b, 0) / intervals.length;
+      setBpm(Math.max(30, Math.min(240, Math.round(60000 / avg))));
     }
   };
 
-  // Keyboard triggers
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const idx = pads.findIndex(p => p.key === e.key.toLowerCase());
-      if (idx !== -1) {
-        hit(idx);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  const totalBeats = timeSig === 6 ? 6 : timeSig;
 
   return (
-    <div style={{
-      position: 'absolute', inset: 0, background: t.bg, zIndex: 150,
-      display: 'flex', flexDirection: 'column', color: t.text, fontFamily: t.font,
-      animation: 'slideUp 0.3s ease-out', overflow: 'hidden',
-    }}>
-      <div style={{ height: 'var(--safe-top, 62px)' }} />
+    <div style={{ color: t.text, fontFamily: t.font, padding: '0 0 40px', display: 'flex', flexDirection: 'column', minHeight: '80vh' }}>
 
-      <div style={{ padding: '0 16px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <button onClick={onClose} style={{
-          width: 38, height: 38, borderRadius: '50%', background: 'transparent',
-          border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer',
-          display: 'flex', alignItems: 'center', }}><IcBack size={16} /></button>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: t.textMuted, letterSpacing: 1.8, textTransform: 'uppercase' }}>Studio Kit</div>
-          <Display t={t} size={16} style={{ marginTop: 2 }}>
-            {language === 'da' ? 'Live-spil' : language === 'en' ? 'Live Play' : language === 'de' ? 'Live-Spiel' : 'Juego en vivo'}
-          </Display>
-        </div>
-        <button onClick={() => setRecording(!recording)} style={{
-          width: 38, height: 38, borderRadius: '50%',
-          background: recording ? t.accent : 'transparent',
-          border: `1px solid ${recording ? t.accent : t.border}`,
-          color: recording ? '#fff' : t.text, cursor: 'pointer',
-          display: 'flex', alignItems: 'center', }}><IcMic size={16} /></button>
-      </div>
-
-      <div style={{ display: 'flex', padding: '6px 0 16px', position: 'relative' }}>
-        <div style={{
-          position: 'absolute', width: 200, height: 130,
-          background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 60%)`,
-          borderRadius: '50%', top: 0,
-        }} />
-        <div style={{ position: 'relative' }}>
-          <IllKit size={200} color={t.accent} sw={1.3}/>
+      {/* Header */}
+      <div style={{ padding: '16px 20px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${t.border}` }}>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: t.textMuted }}>Metronom</div>
+        <div style={{ display: 'flex', gap: 6 }}>
+          {([3,4,6] as const).map(s => (
+            <button key={s} onClick={() => { setTimeSig(s); setPlaying(false); }} style={{
+              padding: '4px 10px', borderRadius: 6, border: `1px solid ${timeSig === s ? t.accent : t.border}`,
+              background: timeSig === s ? t.accentSoft : 'transparent',
+              color: timeSig === s ? t.accent : t.textMuted,
+              fontFamily: t.mono, fontSize: 12, fontWeight: 700, cursor: 'pointer',
+            }}>{s}/4</button>
+          ))}
         </div>
       </div>
 
-      <div style={{ flex: 1, padding: '0 16px', overflow: 'auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
-          {pads.map((p, i) => {
-            const isActive = active[i];
-            return (
-              <button key={i} onMouseDown={() => hit(i)} onTouchStart={() => hit(i)} style={{
-                aspectRatio: '1', borderRadius: 18,
-                background: isActive ? t.accent : t.surface,
-                border: `1px solid ${isActive ? t.accent : (p.accent ? t.borderStrong : t.border)}`,
-                color: isActive ? '#fff' : t.text, cursor: 'pointer',
-                display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: t.font, transition: 'all 0.08s ease-out',
-                transform: isActive ? 'scale(0.96)' : 'scale(1)',
-                boxShadow: isActive ? '0 0 30px rgba(239,90,58,0.4)' : 'none',
-                padding: 0,
-              }}>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase', opacity: 0.7 }}>{p.sub}</div>
-                <div style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 22, marginTop: 4, lineHeight: 1 }}>{p.label}</div>
-              </button>
-            );
-          })}
+      {/* Beat dots */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 12, padding: '28px 20px 0' }}>
+        {Array.from({ length: totalBeats }).map((_, i) => (
+          <div key={i} style={{
+            width: i === 0 ? 16 : 12, height: i === 0 ? 16 : 12,
+            borderRadius: '50%',
+            background: playing && beat === i
+              ? (i === 0 ? t.accent : t.good)
+              : t.surface2,
+            border: `2px solid ${playing && beat === i ? 'transparent' : t.border}`,
+            transition: 'background 0.06s, transform 0.06s',
+            transform: playing && beat === i ? 'scale(1.3)' : 'scale(1)',
+            boxShadow: playing && beat === i ? `0 0 12px ${i === 0 ? t.accentGlow : 'rgba(93,211,158,0.4)'}` : 'none',
+          }} />
+        ))}
+      </div>
+
+      {/* BPM display */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px 20px' }}>
+        <div style={{ fontFamily: t.mono, fontSize: 88, fontWeight: 700, color: t.text, lineHeight: 1, letterSpacing: -2 }}>
+          {bpm}
+        </div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: 'uppercase', color: t.textMuted, marginTop: 4, marginBottom: 28 }}>
+          BPM
         </div>
 
-        <div style={{
-          marginTop: 18, padding: 14,
-          background: t.surface, border: `1px solid ${t.border}`, borderRadius: 18,
-          display: 'flex', alignItems: 'center', gap: 10,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: recording ? t.accent : t.textDim }} />
-            <div style={{ fontSize: 11, color: t.textMuted, fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase' }}>
-              {recording ? (language === 'da' ? 'Optager' : language === 'en' ? 'Recording' : language === 'de' ? 'Aufnahme' : 'Grabando') : (language === 'da' ? 'Klar' : language === 'en' ? 'Ready' : language === 'de' ? 'Bereit' : 'Listo')}
-            </div>
+        {/* BPM controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
+          <button onClick={() => setBpm(b => Math.max(30, b - 5))} style={{
+            width: 52, height: 52, borderRadius: '50%', border: `1px solid ${t.border}`,
+            background: t.surface2, color: t.text, fontSize: 24, fontWeight: 300,
+            cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>−</button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {[60, 80, 100, 120].map(p => (
+              <button key={p} onClick={() => setBpm(p)} style={{
+                padding: '5px 10px', borderRadius: 6,
+                border: `1px solid ${bpm === p ? t.accent : t.border}`,
+                background: bpm === p ? t.accentSoft : 'transparent',
+                color: bpm === p ? t.accent : t.textMuted,
+                fontFamily: t.mono, fontSize: 11, fontWeight: 600, cursor: 'pointer',
+              }}>{p}</button>
+            ))}
           </div>
-          <div style={{ fontFamily: t.mono, fontSize: 14, fontWeight: 600 }}>00:00</div>
-          <button style={{
-            background: 'transparent', border: `1px solid ${t.border}`, color: t.text,
-            padding: '8px 14px', borderRadius: 999, cursor: 'pointer',
-            fontSize: 11, fontWeight: 700, letterSpacing: 1.4, textTransform: 'uppercase',
-            display: 'flex', alignItems: 'center', gap: 6, fontFamily: t.font,
-          }}><IcMetro size={12} /> 92 BPM</button>
+          <button onClick={() => setBpm(b => Math.min(240, b + 5))} style={{
+            width: 52, height: 52, borderRadius: '50%', border: `1px solid ${t.border}`,
+            background: t.surface2, color: t.text, fontSize: 24, fontWeight: 300,
+            cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>+</button>
         </div>
+
+        {/* Start / Stop */}
+        <button onClick={() => setPlaying(p => !p)} style={{
+          width: 80, height: 80, borderRadius: '50%',
+          background: playing ? t.surface2 : t.accent,
+          border: `1px solid ${playing ? t.border : 'transparent'}`,
+          color: playing ? t.text : '#fff',
+          fontSize: 28, cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: playing ? 'none' : `0 6px 24px ${t.accentGlow}`,
+          transition: 'all 0.2s',
+          marginBottom: 20,
+        }}>
+          {playing ? '⏸' : '▶'}
+        </button>
+
+        {/* Tap tempo */}
+        <button onClick={handleTap} style={{
+          padding: '10px 28px', borderRadius: 999,
+          border: `1px solid ${t.border}`, background: 'transparent',
+          color: t.textMuted, fontFamily: t.font, fontSize: 13, fontWeight: 600,
+          cursor: 'pointer', letterSpacing: 0.5,
+        }}>
+          Tap tempo
+        </button>
       </div>
     </div>
   );
@@ -3080,7 +3007,7 @@ function TabBar({ tab, onTab, t, dark, isMobile, onSelectCategory }: TabBarProps
     { id: 'home', label: translate('home') || 'Hjem', icon: TabHome },
     { id: 'practice', label: translate('practice') || 'Øvelser', icon: TabPractice },
     { id: 'playalong', label: translate('playalong') || 'Play-along', icon: TabPlayalong },
-    { id: 'kit', label: translate('kit') || 'Trommesæt', icon: TabKit },
+    { id: 'kit', label: translate('kit') || 'Metronom', icon: TabKit },
     { id: 'profile', label: translate('profile') || 'Profil', icon: TabUser },
   ];
 
@@ -3151,7 +3078,7 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach }: {
     { id: 'home',     label: translate('home') || 'Hjem',       icon: TabHome },
     { id: 'practice', label: translate('practice') || 'Øvelser', icon: TabPractice },
     { id: 'playalong',label: translate('playalong') || 'Play-along', icon: TabPlayalong },
-    { id: 'kit',      label: translate('kit') || 'Trommesæt',   icon: TabKit },
+    { id: 'kit',      label: translate('kit') || 'Metronom',   icon: TabKit },
     { id: 'profile',  label: translate('profile') || 'Profil',  icon: TabUser },
   ];
 
@@ -3254,7 +3181,6 @@ export default function MobilePrototype() {
   const [trackId, setTrackId] = useState<string | null>(null);
   const [lessonId, setLessonId] = useState<string | null>(null);
   const [coachOpen, setCoachOpen] = useState(false);
-  const [padsOpen, setPadsOpen] = useState(false);
   const [onboarded, setOnboarded] = useState(false);
   const [desktopReady, setDesktopReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -3372,7 +3298,7 @@ export default function MobilePrototype() {
                 onPlayRhythmHero={() => setRhythmHeroOpen(true)} />
             )}
             {tab === 'kit' && (
-              <StudioKitScreen t={t} dark={dark} onOpenPads={() => setPadsOpen(true)} />
+              <StudioKitScreen t={t} dark={dark} />
             )}
             {tab === 'profile' && (
               <ProfileScreen t={t} dark={dark} setDark={setDark} guestXp={guestXp} />
@@ -3397,7 +3323,6 @@ export default function MobilePrototype() {
               onOpenCoach={() => { setLessonId(null); setCoachOpen(true); }} />
           )}
           {coachOpen && <CoachScreen t={t} dark={dark} onClose={() => setCoachOpen(false)} />}
-          {padsOpen && <KitPadView t={t} dark={dark} onClose={() => setPadsOpen(false)} />}
           {rhythmHeroOpen && (
             <RhythmHero
               onClose={() => setRhythmHeroOpen(false)}
@@ -3544,7 +3469,7 @@ export default function MobilePrototype() {
                     onPlayRhythmHero={() => setRhythmHeroOpen(true)} />
                 )}
                 {tab === 'kit' && (
-                  <StudioKitScreen t={t} dark={dark} onOpenPads={() => setPadsOpen(true)} />
+                  <StudioKitScreen t={t} dark={dark} />
                 )}
                 {tab === 'profile' && (
                   <ProfileScreen t={t} dark={dark} setDark={setDark} guestXp={guestXp} />
@@ -3584,10 +3509,7 @@ export default function MobilePrototype() {
             )}
 
             {/* Pad view overlay */}
-            {padsOpen && (
-              <KitPadView t={t} dark={dark} onClose={() => setPadsOpen(false)} />
-            )}
-
+  
             {/* Onboarding (covers everything) */}
             {!onboarded && (
               <OnboardingScreen t={t} dark={dark} onStart={completeOnboarding} />
