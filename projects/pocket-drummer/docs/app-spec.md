@@ -1,6 +1,6 @@
 # Pocket Drummer — App-specifikation
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Opdateret:** Juli 2026  
 **Status:** Pre-launch
 
@@ -56,7 +56,7 @@ Appen er unified: samme kodebase til mobil og desktop, med responsivt layout.
 AI-genereret 4-ugers forløb baseret på brugerens niveau og mål. Genereres via DeepSeek API. Vises på hjemskærmen som "Fortsæt projekt" med fremgangsindikator.
 
 ### AI Coach
-Chat med en dansk AI-trommelærer (DeepSeek `deepseek-chat`). Starter frisk ved hver session. Kender brugerens navn. Svarer kun på spørgsmål om tromme og musik. Giver konkrete, handlingsrettede råd.
+Chat med en dansk AI-trommelærer (DeepSeek `deepseek-chat`). Starter frisk ved hver session — ingen historik bevares på tværs af sessioner. Tiltaler brugeren ved fornavn fra `user.displayName`. Svarer udelukkende på spørgsmål om tromme og musik. Returnerer JSON med `{ message, action? }` hvor `action` kan pege på en kategori i appen.
 
 ### Øvelsesbibliotek
 Øvelser organiseret i fire kategorier: Opvarmning, Nodelære, Grooves, Play-along. Hver øvelse har:
@@ -70,18 +70,21 @@ Chat med en dansk AI-trommelærer (DeepSeek `deepseek-chat`). Starter frisk ved 
 På desktop vises noder og video side om side.
 
 ### Rytmeboks (metronom)
-Integreret metronom med:
+Integreret metronom tilgængelig via fanen **Rytmeboks**. Mellemrumstast starter/stopper (undtagen når BPM-felt er fokuseret).
 
-- BPM 20–400 med 0,5-trins præcision
-- Tap tempo
-- Nudge ±1 og ±5
+- BPM 20–400 med 0,5-trins præcision via input-felt
+- Tap tempo, nudge ±1 og ±5, hurtigvalg 60/80/100/120
 - Taktarter: 2/4, 3/4, 4/4, 5/4, 6/4, 6/8, 7/8, 9/8
 - Underdelinger: kvartnoder, ottendedele, 16.-dele, trioler
-- Kliklyde: klik, træblok, hi-hat
-- Træningstilstande: Normal, Gap, Backbeat, Ramp
-- Swing 50–70%
+- Beat-visualizer: alle cirkler animerer ved hvert slag — Snare Red på slag 1, grøn på øvrige
+- Subdivision-prikker vises under visualizeren ved underdeling > kvart
+- Kliklyde: klik, træblok, hi-hat. Underdelinger spiller dybere variant (42–45% frekvens, lowpass-filter på hi-hat)
+- Træningstilstande: Normal, Gap (X takter til/Y takter fra), Backbeat (kun slag 2 og 4), Ramp (gradvis BPM-stigning)
+- Swing 50–70% (synlig ved ottendedele og 16.-dele)
 
-Se [rytmeboks-metronom.md](rytmeboks-metronom.md) for fuld specifikation.
+**Teknisk note:** `METRO_TIME_SIGS` og `METRO_SUBDIVISIONS` er defineret uden for komponenten som konstanter. Objektreferencer inde i komponenter genoptrages ved hvert render og ville genstarte `useEffect` ved hvert slag, hvilket nulstillede beat-tælleren. Dependencies bruger primitive værdier (`totalBeats`, `subMult`).
+
+Se [rytmeboks-metronom.md](rytmeboks-metronom.md) for fuld specifikation og roadmap.
 
 ### Gamification
 - **Point:** +25 pr. gennemført øvelse
@@ -96,7 +99,7 @@ Se [rytmeboks-metronom.md](rytmeboks-metronom.md) for fuld specifikation.
 Indhold uploades og publiceres via `/admin` (kun tilgængeligt for admin-rolle):
 
 1. **Scan-tab:** Upload PDF-node → Gemini 2.5 Flash konverterer til MusicXML → vælg kategori → gem til `public/content/notation/[filnavn].xml`
-2. **Video-tab:** Upload video/lyd eller YouTube-URL → AI transskriberer → vælg kategori
+2. **Video-tab:** Upload video (MP4, MOV) eller lyd (MP3, WAV) eller YouTube-URL → AI transskriberer → vælg kategori
 3. **AI Gen-tab:** Generer MusicXML via DeepSeek med prompt og parametre
 4. **Presets-tab:** Importér præ-konfigurerede node-øvelser
 
@@ -116,7 +119,7 @@ Videofiler: kobles via `EXERCISE_VIDEOS`-mapping i `prototype/page.tsx`
 | AI Coach | DeepSeek `deepseek-chat` |
 | AI Nodeanalyse | Gemini 2.5 Flash (OMR) |
 | Noder | OpenSheetMusicDisplay (OSMD) |
-| Lyd | Web Audio API (metronom), Tone.js (Studio Kit) |
+| Lyd | Web Audio API (metronom) |
 
 ---
 
