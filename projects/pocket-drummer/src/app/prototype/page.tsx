@@ -2666,10 +2666,6 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
               <span style={{ fontSize: 11, color: t.textMuted }}>Online · husker dit niveau</span>
             </div>
           </div>
-          <button style={{
-            width: 38, height: 38, borderRadius: '50%', background: 'transparent',
-            border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer',
-            display: 'flex', alignItems: 'center', }}><IcMore size={18} /></button>
         </div>
       </div>
 
@@ -2983,25 +2979,18 @@ function ProfileScreen({ t, dark, setDark, guestXp }: ProfileScreenProps) {
             </div>
           </div>
 
-          {[
-            { icon: <IcBell size={14} />, label: language === 'da' ? 'Notifikationer' : language === 'en' ? 'Notifications' : language === 'de' ? 'Benachrichtigungen' : 'Notificaciones', detail: 'Hver dag kl. 18' },
-            { icon: <IcMetro size={14} />, label: language === 'da' ? 'Standard metronom' : language === 'en' ? 'Default Metronome' : language === 'de' ? 'Standard-Metronom' : 'Metrónomo predeterminado', detail: '92 BPM' },
-            ...(user ? [{ icon: <IcLogout size={14} />, label: translate('logout'), onClick: logout }] : [])
-          ].map((s, i, arr) => (
-            <div key={i} onClick={s.onClick} style={{
+          {user && (
+            <div onClick={logout} style={{
               display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px',
-              borderBottom: i < arr.length - 1 ? `1px solid ${t.border}` : 'none',
-              cursor: s.onClick ? 'pointer' : 'default',
+              cursor: 'pointer',
             }}>
               <div style={{
                 width: 32, height: 32, borderRadius: '50%', border: `1px solid ${t.borderStrong}`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.text,
-              }}>{s.icon}</div>
-              <div style={{ flex: 1, fontSize: 14, fontWeight: 500 }}>{s.label}</div>
-              {s.detail && <span style={{ fontSize: 12, color: t.textMuted, marginRight: 2 }}>{s.detail}</span>}
-              {!s.onClick && <IcChev size={14} color={t.textDim} />}
+              }}><IcLogout size={14} /></div>
+              <div style={{ flex: 1, fontSize: 14, fontWeight: 500 }}>{translate('logout')}</div>
             </div>
-          ))}
+          )}
         </div>
       </div>
 
