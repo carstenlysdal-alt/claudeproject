@@ -981,14 +981,14 @@ function HomeView({ t, dark, setDark, onView, isPremium, onUpgrade, onSelectCate
             {/* XP card */}
             <Card t={t} pad={22} className="anim-fade-up d-320">
               <Sect t={t} style={{ marginBottom: 10 }}>{translate('level')} {level}</Sect>
-              <Display t={t} size={28} style={{ marginBottom: 6 }}>{xpToNext} XP</Display>
+              <Display t={t} size={28} style={{ marginBottom: 6 }}>{xpToNext} point</Display>
               <div style={{ fontSize: 11, color: t.textMuted, marginBottom: 14 }}>fra næste niveau</div>
               <div className="bar anim-progress" style={{ height: 5 }}>
                 <i style={{ '--pct': xpPct + '%' } as React.CSSProperties} />
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6, fontFamily: t.mono, fontSize: 9, color: t.textDim }}>
-                <span>NIV. {level} · {xp % 200} XP</span>
-                <span>NIV. {level + 1} · 200 XP</span>
+                <span>NIV. {level} · {xp % 200} point</span>
+                <span>NIV. {level + 1} · 200 point</span>
               </div>
             </Card>
           </div>
@@ -1849,7 +1849,7 @@ function ProfileView({ t, dark, setDark, isPremium, onUpgrade, completedIds, onR
             
             <div style={{ marginTop: 16, maxWidth: 380 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: t.textMuted, marginBottom: 6, fontFamily: t.mono, fontWeight: 600, letterSpacing: 0.5 }}>
-                <span>Niv. 1</span><span>120 / 200 XP</span><span>Niv. 2</span>
+                <span>Niv. 1</span><span>120 / 200 point</span><span>Niv. 2</span>
               </div>
               <Prog pct={60} t={t} h={6} />
             </div>
