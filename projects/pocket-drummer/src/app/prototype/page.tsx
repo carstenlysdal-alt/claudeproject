@@ -1238,8 +1238,16 @@ interface ExerciseDetailPopupProps {
 
 function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCompleted, onOpenCoach }: ExerciseDetailPopupProps) {
   const [tab, setTab] = React.useState<'noder' | 'video'>(exercise.notation ? 'noder' : 'video');
+  const [isDesktopView, setIsDesktopView] = React.useState(false);
   const [bpm, setBpm] = React.useState(typeof exercise.bpm === 'number' ? exercise.bpm : 90);
   const [playing, setPlaying] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsDesktopView(window.innerWidth >= 1024);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
   const [beat, setBeat] = React.useState(0);
   const [notationXml, setNotationXml] = React.useState<string | null>(null);
   const [notationLoading, setNotationLoading] = React.useState(false);
@@ -1317,24 +1325,30 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
         <button onClick={onClose} style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, lineHeight: 1 }}>✕</button>
       </div>
 
-      {/* Tabs */}
-      <div style={{ display: 'flex', borderBottom: `1px solid ${t.border}` }}>
-        {(['noder', 'video'] as const).map(tt => (
-          <button key={tt} onClick={() => setTab(tt)} style={{
-            flex: 1, padding: '11px 0', border: 'none', background: 'transparent',
-            borderBottom: `2px solid ${tab === tt ? t.accent : 'transparent'}`,
-            color: tab === tt ? t.accent : t.textMuted,
-            fontFamily: t.font, fontSize: 13, fontWeight: 600, cursor: 'pointer',
-            transition: 'color 0.15s, border-color 0.15s',
-            textTransform: 'capitalize',
-          }}>{tt === 'noder' ? 'Noder' : 'Video'}</button>
-        ))}
-      </div>
+      {/* Tabs — kun på mobil */}
+      {!isDesktopView && (
+        <div style={{ display: 'flex', borderBottom: `1px solid ${t.border}` }}>
+          {(['noder', 'video'] as const).map(tt => (
+            <button key={tt} onClick={() => setTab(tt)} style={{
+              flex: 1, padding: '11px 0', border: 'none', background: 'transparent',
+              borderBottom: `2px solid ${tab === tt ? t.accent : 'transparent'}`,
+              color: tab === tt ? t.accent : t.textMuted,
+              fontFamily: t.font, fontSize: 13, fontWeight: 600, cursor: 'pointer',
+              transition: 'color 0.15s, border-color 0.15s',
+              textTransform: 'capitalize',
+            }}>{tt === 'noder' ? 'Noder' : 'Video'}</button>
+          ))}
+        </div>
+      )}
 
       {/* Content */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 80px', scrollbarWidth: 'none' }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 80px', scrollbarWidth: 'none',
+        display: isDesktopView ? 'grid' : 'block',
+        gridTemplateColumns: isDesktopView ? '1fr 1fr' : undefined,
+        gap: isDesktopView ? 24 : undefined,
+      }}>
 
-        {tab === 'noder' && (
+        {(tab === 'noder' || isDesktopView) && (
           <div>
             <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: '14px 6px', marginBottom: 14, overflowX: 'auto', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {exercise.notation ? (
@@ -1396,7 +1410,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
           </div>
         )}
 
-        {tab === 'video' && (
+        {(tab === 'video' || isDesktopView) && (
           <div>
             <div style={{ aspectRatio: '16/9', borderRadius: 16, overflow: 'hidden', background: '#000', border: `1px solid ${t.border}`, marginBottom: 16 }}>
               <iframe width="100%" height="100%" src={videoUrl} title={exercise.title}
