@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { scanSheetMusic } from '@/lib/gemini';
+import { getStandardDrumMusicXML } from '@/lib/mockData';
 
 export const maxDuration = 120;
 
@@ -40,6 +41,14 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error("Fejl i /api/scan-sheet-music:", error);
     const message = error instanceof Error ? error.message : String(error);
+
+    if (message.includes("Gemini API timeout")) {
+      return NextResponse.json({
+        xml: getStandardDrumMusicXML("Scannet nodeark (Gemini timeout fallback)", 100, "standard"),
+        warning: "Gemini OMR tog for lang tid og blev afbrudt. Viser en gyldig fallback-node, så preview/gem-flowet stadig kan testes. Prøv at beskære nodearket til kun selve nodesystemet eller konverter PDF'en til et skarpt PNG/JPG."
+      });
+    }
+
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

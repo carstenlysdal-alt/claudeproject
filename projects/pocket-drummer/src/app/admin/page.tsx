@@ -29,7 +29,7 @@ import Link from 'next/link';
 // Hent OsmdRenderer dynamisk uden SSR
 const OsmdRenderer = dynamic(() => import('@/components/OsmdRenderer'), { ssr: false });
 
-const SCAN_REQUEST_TIMEOUT_MS = 105_000;
+const SCAN_REQUEST_TIMEOUT_MS = 80_000;
 
 function normalizeMusicXmlResponse(xml: unknown, source: string): { xml: string; warning?: string } {
   if (typeof xml !== 'string' || !xml.trim()) {
@@ -217,8 +217,7 @@ Vigtige regler:
       setTimeout(() => addScanLog("Gemini arbejder stadig på konverteringen..."), 12000),
       setTimeout(() => addScanLog("Store PDF'er og scannede billeder kan tage 30-60 sekunder..."), 25000),
       setTimeout(() => addScanLog("Afventer stadig svar fra Gemini OMR API..."), 45000),
-      setTimeout(() => addScanLog("Gemini bruger længere tid end normalt. Holder forbindelsen åben lidt endnu..."), 75000),
-      setTimeout(() => addScanLog("Sidste forsøg før timeout. Hvis det fejler, prøv et mindre eller skarpere udsnit."), 95000)
+      setTimeout(() => addScanLog("Gemini bruger længere tid end normalt. Fallback aktiveres snart hvis der ikke kommer svar..."), 60000)
     ];
 
     let requestTimeout: ReturnType<typeof setTimeout> | undefined;
@@ -257,6 +256,9 @@ Vigtige regler:
       const validation = normalizeMusicXmlResponse(data.xml, "scanner");
 
       addScanLog("Scanning og konvertering færdig!");
+      if (data.warning) {
+        addScanLog(`⚠️ ${data.warning}`);
+      }
       if (validation.warning) {
         addScanLog(validation.warning);
       }

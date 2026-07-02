@@ -1,7 +1,7 @@
 import { getStandardDrumMusicXML } from './mockData';
 import { extractXmlPayload } from './musicXml';
 
-const GEMINI_TIMEOUT_MS = 90_000;
+const GEMINI_TIMEOUT_MS = 60_000;
 
 export interface ScanSheetMusicOptions {
   base64Data: string; // The raw base64 string
