@@ -35,7 +35,7 @@ function Avatar({ name, size = 30 }: { name: string; size?: number }) {
 
 export default function Header() {
   const pathname = usePathname();
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -52,6 +52,7 @@ export default function Header() {
   const isDashboard = pathname === '/dashboard';
 
   return (
+    <>
     <header style={{
       position: 'sticky', top: 0, zIndex: 100,
       background: BG,
@@ -126,7 +127,9 @@ export default function Header() {
       </nav>
 
       {/* Auth */}
-      {user ? (
+      {loading ? (
+        <div style={{ width: 80, height: 32, borderRadius: 9999, background: 'rgba(255,255,255,0.06)', animation: 'pulse 1.5s ease-in-out infinite' }} />
+      ) : user ? (
         <div ref={menuRef} style={{ position: 'relative' }}>
           <button
             onClick={() => setMenuOpen(v => !v)}
@@ -256,5 +259,7 @@ export default function Header() {
         </div>
       )}
     </header>
+    <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }`}</style>
+    </>
   );
 }
