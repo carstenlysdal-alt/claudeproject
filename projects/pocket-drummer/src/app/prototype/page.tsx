@@ -3201,6 +3201,7 @@ export default function MobilePrototype() {
   const [coachOpen, setCoachOpen] = useState(false);
   const [padsOpen, setPadsOpen] = useState(false);
   const [onboarded, setOnboarded] = useState(false);
+  const [desktopReady, setDesktopReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<'opvarmning' | 'nodelære' | 'grooves' | 'playalong' | null>(null);
@@ -3211,8 +3212,12 @@ export default function MobilePrototype() {
 
   useEffect(() => {
     const checkSize = () => {
-      setIsMobile(window.innerWidth < 768);
-      setIsDesktop(window.innerWidth >= 1024);
+      const mobile = window.innerWidth < 768;
+      const desktop = window.innerWidth >= 1024;
+      setIsMobile(mobile);
+      setIsDesktop(desktop);
+      // Desktop springer onboarding over — det er et mobil-first flow
+      if (desktop) setDesktopReady(true);
     };
     checkSize();
     window.addEventListener('resize', checkSize);
@@ -3344,7 +3349,11 @@ export default function MobilePrototype() {
               tTokens={t}
             />
           )}
-          {!onboarded && <OnboardingScreen t={t} dark={dark} onStart={completeOnboarding} />}
+          {!desktopReady && <div style={{ position: 'absolute', inset: 0, background: t.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}>
+            <div style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 28, color: t.text }}>
+              Pocket Drummer<span style={{ color: t.accent }}>.</span>
+            </div>
+          </div>}
         </div>
       </div>
     );
