@@ -2470,7 +2470,7 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
 
       {/* Header */}
       <div style={{ padding: '16px 20px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${t.border}` }}>
-        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: t.textMuted }}>Metronom</div>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: t.textMuted }}>Rytmeboks</div>
         <div style={{ display: 'flex', gap: 6 }}>
           {([3,4,6] as const).map(s => (
             <button key={s} onClick={() => { setTimeSig(s); setPlaying(false); }} style={{
@@ -3007,7 +3007,7 @@ function TabBar({ tab, onTab, t, dark, isMobile, onSelectCategory }: TabBarProps
     { id: 'home', label: translate('home') || 'Hjem', icon: TabHome },
     { id: 'practice', label: translate('practice') || 'Øvelser', icon: TabPractice },
     { id: 'playalong', label: translate('playalong') || 'Play-along', icon: TabPlayalong },
-    { id: 'kit', label: translate('kit') || 'Metronom', icon: TabKit },
+    { id: 'kit', label: translate('kit') || 'Rytmeboks', icon: TabKit },
     { id: 'profile', label: translate('profile') || 'Profil', icon: TabUser },
   ];
 
@@ -3078,7 +3078,7 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach }: {
     { id: 'home',     label: translate('home') || 'Hjem',       icon: TabHome },
     { id: 'practice', label: translate('practice') || 'Øvelser', icon: TabPractice },
     { id: 'playalong',label: translate('playalong') || 'Play-along', icon: TabPlayalong },
-    { id: 'kit',      label: translate('kit') || 'Metronom',   icon: TabKit },
+    { id: 'kit',      label: translate('kit') || 'Rytmeboks',   icon: TabKit },
     { id: 'profile',  label: translate('profile') || 'Profil',  icon: TabUser },
   ];
 
