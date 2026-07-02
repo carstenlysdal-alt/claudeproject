@@ -11,7 +11,7 @@ export const translations = {
     home: "Hjem",
     practice: "Øvelser",
     playalong: "Play-along",
-    kit: "Trommesæt",
+    kit: "Rytmeboks",
     profile: "Profil",
     coach: "AI Coach",
 
