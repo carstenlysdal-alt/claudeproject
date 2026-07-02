@@ -2417,14 +2417,14 @@ function LessonDetail({ t, onClose, onOpenCoach }: LessonDetailProps) {
 
 // 6. Studio Kit Screen
 function StudioKitScreen({ t }: StudioKitScreenProps) {
-  // ── State ───────────────────────────────────────────────
+  // ── State ─────────────────────────────────────────────
   const [bpm, setBpm] = React.useState(90);
   const [bpmInput, setBpmInput] = React.useState('90');
   const [playing, setPlaying] = React.useState(false);
-  const [beat, setBeat] = React.useState(0); // subdivision beat index
+  const [pulseBeat, setPulseBeat] = React.useState(-1); // which main beat is active
+  const [subBeat, setSubBeat] = React.useState(-1);     // which subdivision tick
   const [tapTimes, setTapTimes] = React.useState<number[]>([]);
 
-  // Time signature
   const TIME_SIGS = [
     { label: '2/4', beats: 2, note: 4 },
     { label: '3/4', beats: 3, note: 4 },
@@ -2435,20 +2435,18 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
     { label: '7/8', beats: 7, note: 8 },
     { label: '9/8', beats: 9, note: 8 },
   ] as const;
-  const [timeSigIdx, setTimeSigIdx] = React.useState(2); // 4/4 default
+  const [timeSigIdx, setTimeSigIdx] = React.useState(2);
   const timeSig = TIME_SIGS[timeSigIdx];
 
-  // Subdivision
   const SUBDIVISIONS = [
-    { label: 'Kvart', mult: 1 },
+    { label: 'Kvart',      mult: 1 },
     { label: 'Ottendedel', mult: 2 },
-    { label: '16.-del', mult: 4 },
-    { label: 'Triol', mult: 3 },
+    { label: '16.-del',    mult: 4 },
+    { label: 'Triol',      mult: 3 },
   ] as const;
   const [subIdx, setSubIdx] = React.useState(0);
   const sub = SUBDIVISIONS[subIdx];
 
-  // Mode
   const [mode, setMode] = React.useState<'normal' | 'gap' | 'backbeat' | 'ramp'>('normal');
   const [gapOn, setGapOn] = React.useState(1);
   const [gapOff, setGapOff] = React.useState(1);
@@ -2456,17 +2454,26 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
   const [rampEnd, setRampEnd] = React.useState(120);
   const [rampBars, setRampBars] = React.useState(8);
   const [swing, setSwing] = React.useState(50);
-
-  // Sound
   const [sound, setSound] = React.useState<'click' | 'woodblock' | 'hihat'>('click');
 
-  // Audio
   const audioCtxRef = React.useRef<AudioContext | null>(null);
   const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
   const rampBpmRef = React.useRef(bpm);
   const barCountRef = React.useRef(0);
   const gapBarRef = React.useRef(0);
   const gapModeRef = React.useRef<'on'|'off'>('on');
+
+  // Spacebar → toggle play
+  React.useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code === 'Space' && e.target === document.body) {
+        e.preventDefault();
+        setPlaying(p => !p);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   const getCtx = () => {
     if (!audioCtxRef.current || audioCtxRef.current.state === 'closed') {
@@ -2475,41 +2482,44 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
     return audioCtxRef.current;
   };
 
-  const playSound = React.useCallback((isAccent: boolean, soundType: string) => {
+  // isSub = true → dybere, blødere lyd
+  const playSound = React.useCallback((isAccent: boolean, soundType: string, isSub = false) => {
     try {
       const ctx = getCtx();
       if (ctx.state === 'suspended') ctx.resume();
       const gain = ctx.createGain();
       gain.connect(ctx.destination);
-      const vol = isAccent ? 0.4 : 0.18;
+
+      // Subdivision er 40% af normal volume, accent er 100%, puls er 70%
+      const vol = isSub ? 0.08 : (isAccent ? 0.4 : 0.2);
       gain.gain.setValueAtTime(vol, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (isSub ? 0.04 : 0.08));
 
       if (soundType === 'hihat') {
-        const bufSize = ctx.sampleRate * 0.05;
+        const bufSize = ctx.sampleRate * (isSub ? 0.03 : 0.05);
         const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
         const data = buf.getChannelData(0);
         for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1);
         const src = ctx.createBufferSource();
         src.buffer = buf;
         const filter = ctx.createBiquadFilter();
-        filter.type = 'highpass';
-        filter.frequency.value = isAccent ? 8000 : 10000;
+        // Subdivision: lowpass (blød, dæmpet) — Puls: highpass (skarp)
+        filter.type = isSub ? 'lowpass' : 'highpass';
+        filter.frequency.value = isSub ? 3000 : (isAccent ? 8000 : 10000);
         src.connect(filter);
         filter.connect(gain);
         src.start();
-        src.stop(ctx.currentTime + 0.05);
+        src.stop(ctx.currentTime + (isSub ? 0.03 : 0.05));
       } else {
         const osc = ctx.createOscillator();
         osc.connect(gain);
-        osc.frequency.setValueAtTime(
-          soundType === 'woodblock'
-            ? (isAccent ? 900 : 700)
-            : (isAccent ? 1200 : 800),
-          ctx.currentTime
-        );
+        // Subdivision: lavere frekvens (dybere)
+        const baseFreq = soundType === 'woodblock'
+          ? (isAccent ? 900 : 700)
+          : (isAccent ? 1200 : 800);
+        osc.frequency.setValueAtTime(isSub ? baseFreq * 0.45 : baseFreq, ctx.currentTime);
         osc.start();
-        osc.stop(ctx.currentTime + 0.05);
+        osc.stop(ctx.currentTime + (isSub ? 0.03 : 0.05));
       }
     } catch {}
   }, []);
@@ -2517,7 +2527,14 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
   // Metronome engine
   React.useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
-    if (!playing) { setBeat(0); barCountRef.current = 0; gapBarRef.current = 0; gapModeRef.current = 'on'; return; }
+    if (!playing) {
+      setPulseBeat(-1);
+      setSubBeat(-1);
+      barCountRef.current = 0;
+      gapBarRef.current = 0;
+      gapModeRef.current = 'on';
+      return;
+    }
 
     const totalBeats = timeSig.beats;
     const subMult = sub.mult;
@@ -2530,32 +2547,25 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
       const isPulse = tick % subMult === 0;
       const pulseIdx = Math.floor(tick / subMult);
       const isAccent = tick === 0;
-
-      // Swing: delay even subdivision ticks
-      const isSwingTick = subMult > 1 && tick % 2 === 1;
-
-      // Gap mode muting
       const muted = mode === 'gap' && gapModeRef.current === 'off';
-
-      // Backbeat: only play on beats 2 and 4 (0-indexed: 1 and 3)
       const backbeatOnly = mode === 'backbeat' && isPulse && !(pulseIdx === 1 || pulseIdx === 3);
 
       if (!muted && !backbeatOnly) {
         if (isPulse) {
-          playSound(isAccent, sound);
-        } else if (subMult > 1) {
-          playSound(false, sound);
+          playSound(isAccent, sound, false);
+        } else {
+          playSound(false, sound, true); // subdivision = dybere lyd
         }
       }
 
-      setBeat(tick);
+      // Update visual state
+      setPulseBeat(pulseIdx);
+      setSubBeat(tick);
+
       tick = (tick + 1) % totalTicks;
 
-      // Bar tracking
       if (tick === 0) {
         barCountRef.current++;
-
-        // Gap mode: switch on/off at bar boundaries
         if (mode === 'gap') {
           gapBarRef.current++;
           const threshold = gapModeRef.current === 'on' ? gapOn : gapOff;
@@ -2564,12 +2574,9 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
             gapBarRef.current = 0;
           }
         }
-
-        // Ramp mode: increment BPM per bar
         if (mode === 'ramp' && rampBpmRef.current < rampEnd) {
           const step = (rampEnd - rampStart) / rampBars;
           rampBpmRef.current = Math.min(rampEnd, rampBpmRef.current + step);
-          // Restart interval with new BPM
           clearInterval(intervalRef.current!);
           const beatMs = (60000 / rampBpmRef.current) / subMult;
           intervalRef.current = setInterval(schedule, beatMs);
@@ -2577,9 +2584,7 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
       }
     };
 
-    // Play first tick immediately
     schedule();
-
     const baseMs = (60000 / (mode === 'ramp' ? rampStart : bpm)) / subMult;
     intervalRef.current = setInterval(schedule, baseMs);
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
@@ -2605,16 +2610,15 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
   };
 
   const totalTicks = timeSig.beats * sub.mult;
-  const pulseIdx = Math.floor(beat / sub.mult);
-  const isSubBeat = beat % sub.mult !== 0;
 
-  // ── Render ───────────────────────────────────────────────
   return (
     <div style={{ color: t.text, fontFamily: t.font, padding: '0 0 60px', userSelect: 'none' }}>
 
       {/* Header */}
       <div style={{ padding: '16px 20px 12px', borderBottom: `1px solid ${t.border}` }}>
-        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: t.textMuted }}>Rytmeboks</div>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: t.textMuted }}>
+          Rytmeboks <span style={{ marginLeft: 8, fontWeight: 400, opacity: 0.5 }}>· Mellemrumstast = start/stop</span>
+        </div>
       </div>
 
       {/* Time signature */}
@@ -2633,20 +2637,25 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
         </div>
       </div>
 
-      {/* Beat visualizer */}
-      <div style={{ padding: '20px 20px 8px', display: 'flex', justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}>
+      {/* Beat visualizer — alle cirkler blinker */}
+      <div style={{ padding: '20px 20px 8px', display: 'flex', justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}>
         {Array.from({ length: timeSig.beats }).map((_, i) => {
-          const active = playing && pulseIdx === i;
+          const active = playing && pulseBeat === i;
           const isFirst = i === 0;
           return (
             <div key={i} style={{
-              width: isFirst ? 18 : 13, height: isFirst ? 18 : 13,
+              width: isFirst ? 20 : 14,
+              height: isFirst ? 20 : 14,
               borderRadius: '50%',
-              background: active ? (isFirst ? t.accent : t.good) : t.surface2,
+              background: active
+                ? (isFirst ? t.accent : t.good)
+                : t.surface2,
               border: `2px solid ${active ? 'transparent' : t.border}`,
-              boxShadow: active ? `0 0 10px ${isFirst ? t.accentGlow : 'rgba(93,211,158,0.4)'}` : 'none',
-              transition: 'background 0.05s, transform 0.05s',
-              transform: active ? 'scale(1.35)' : 'scale(1)',
+              boxShadow: active
+                ? `0 0 12px ${isFirst ? t.accentGlow : 'rgba(93,211,158,0.5)'}`
+                : 'none',
+              transition: 'background 0.04s, transform 0.04s, box-shadow 0.04s',
+              transform: active ? 'scale(1.4)' : 'scale(1)',
             }} />
           );
         })}
@@ -2654,12 +2663,13 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
 
       {/* Sub-beat dots */}
       {sub.mult > 1 && (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 8 }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 5, marginBottom: 4 }}>
           {Array.from({ length: totalTicks }).map((_, i) => (
             <div key={i} style={{
               width: 5, height: 5, borderRadius: '50%',
-              background: playing && beat === i ? t.accent : t.border,
-              opacity: i % sub.mult === 0 ? 1 : 0.4,
+              background: playing && subBeat === i ? t.accent : t.border,
+              opacity: i % sub.mult === 0 ? 1 : 0.35,
+              transition: 'background 0.03s',
             }} />
           ))}
         </div>
@@ -2673,7 +2683,7 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
           min={20} max={400} step={0.5}
           onChange={e => setBpmInput(e.target.value)}
           onBlur={() => handleBpmChange(parseFloat(bpmInput) || bpm)}
-          onKeyDown={e => e.key === 'Enter' && handleBpmChange(parseFloat(bpmInput) || bpm)}
+          onKeyDown={e => { if (e.key === 'Enter') handleBpmChange(parseFloat(bpmInput) || bpm); if (e.code === 'Space') e.stopPropagation(); }}
           style={{
             fontFamily: t.mono, fontSize: 80, fontWeight: 700,
             color: t.text, background: 'transparent', border: 'none',
@@ -2683,7 +2693,6 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
         />
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: 'uppercase', color: t.textMuted }}>BPM</div>
 
-        {/* Nudge */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 14 }}>
           {[-5, -1].map(d => (
             <button key={d} onClick={() => handleBpmChange(bpm + d)} style={{
@@ -2779,40 +2788,40 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
         </div>
 
         {mode === 'gap' && (
-          <div style={{ display: 'flex', gap: 16, alignItems: 'center', padding: '10px 12px', background: t.surface2, borderRadius: 10 }}>
-            <div style={{ fontSize: 12, color: t.textMuted }}>Klik på</div>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '10px 12px', background: t.surface2, borderRadius: 10, flexWrap: 'wrap' }}>
+            <span style={{ fontSize: 12, color: t.textMuted }}>Klik på</span>
             <input type="number" min={1} max={8} value={gapOn} onChange={e => setGapOn(Number(e.target.value))}
               style={{ width: 44, textAlign: 'center', background: t.surface, border: `1px solid ${t.border}`, borderRadius: 6, color: t.text, padding: '4px', fontFamily: t.mono, fontSize: 14 }} />
-            <div style={{ fontSize: 12, color: t.textMuted }}>takt, pause i</div>
+            <span style={{ fontSize: 12, color: t.textMuted }}>takt, pause i</span>
             <input type="number" min={1} max={8} value={gapOff} onChange={e => setGapOff(Number(e.target.value))}
               style={{ width: 44, textAlign: 'center', background: t.surface, border: `1px solid ${t.border}`, borderRadius: 6, color: t.text, padding: '4px', fontFamily: t.mono, fontSize: 14 }} />
-            <div style={{ fontSize: 12, color: t.textMuted }}>takt</div>
+            <span style={{ fontSize: 12, color: t.textMuted }}>takt</span>
           </div>
         )}
 
         {mode === 'backbeat' && (
           <div style={{ padding: '8px 12px', background: t.surface2, borderRadius: 10, fontSize: 12, color: t.textMuted }}>
-            Klik kun på slag 2 og 4 — træn intern puls
+            Klik kun på slag 2 og 4 — træner intern puls
           </div>
         )}
 
         {mode === 'ramp' && (
           <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', padding: '10px 12px', background: t.surface2, borderRadius: 10 }}>
-            <div style={{ fontSize: 12, color: t.textMuted }}>Fra</div>
+            <span style={{ fontSize: 12, color: t.textMuted }}>Fra</span>
             <input type="number" min={20} max={400} value={rampStart} onChange={e => setRampStart(Number(e.target.value))}
               style={{ width: 52, textAlign: 'center', background: t.surface, border: `1px solid ${t.border}`, borderRadius: 6, color: t.text, padding: '4px', fontFamily: t.mono, fontSize: 13 }} />
-            <div style={{ fontSize: 12, color: t.textMuted }}>til</div>
+            <span style={{ fontSize: 12, color: t.textMuted }}>til</span>
             <input type="number" min={20} max={400} value={rampEnd} onChange={e => setRampEnd(Number(e.target.value))}
               style={{ width: 52, textAlign: 'center', background: t.surface, border: `1px solid ${t.border}`, borderRadius: 6, color: t.text, padding: '4px', fontFamily: t.mono, fontSize: 13 }} />
-            <div style={{ fontSize: 12, color: t.textMuted }}>BPM over</div>
+            <span style={{ fontSize: 12, color: t.textMuted }}>BPM over</span>
             <input type="number" min={1} max={64} value={rampBars} onChange={e => setRampBars(Number(e.target.value))}
               style={{ width: 44, textAlign: 'center', background: t.surface, border: `1px solid ${t.border}`, borderRadius: 6, color: t.text, padding: '4px', fontFamily: t.mono, fontSize: 13 }} />
-            <div style={{ fontSize: 12, color: t.textMuted }}>takter</div>
+            <span style={{ fontSize: 12, color: t.textMuted }}>takter</span>
           </div>
         )}
       </div>
 
-      {/* Swing (kun ottendedele og sekstendedele) */}
+      {/* Swing */}
       {subIdx >= 1 && subIdx <= 2 && (
         <div style={{ padding: '12px 20px', borderTop: `1px solid ${t.border}` }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
@@ -2822,7 +2831,7 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
           <input type="range" min={50} max={70} step={1} value={swing} onChange={e => setSwing(Number(e.target.value))}
             style={{ width: '100%', accentColor: t.accent }} />
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: t.textDim, marginTop: 4 }}>
-            <span>Lige (50%)</span><span>Shuffle (66%)</span><span>Tung (70%)</span>
+            <span>Lige</span><span>Shuffle</span><span>Tung</span>
           </div>
         </div>
       )}
