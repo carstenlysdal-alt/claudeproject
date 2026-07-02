@@ -69,6 +69,8 @@ Komplementerer `bundle-kode` (web, tests, arkitektur) og `bundle-design` (visuel
 | `dev-owasp-checker` | OWASP Top 10: sikkerhedsaudit af applikation |
 | `dev-security-auditor` | Fuld sikkerhedsgennemgang af kodebase |
 | `dev-secrets-scanner` | Find og fjern secrets i kode og git-historik |
+| `cloud-cloud-security-guide` | Cloud security posture, IAM, netværk og compliance |
+| `security-dependency-audit` | Auditere dependencies for kendte sårbarheder |
 
 ### App-UI og interaktion
 | Skill | Aktivér når |
@@ -80,6 +82,80 @@ Komplementerer `bundle-kode` (web, tests, arkitektur) og `bundle-design` (visuel
 | `dev-wireframe-advisor` | Wireframes til app-flows inden implementering |
 | `make-interfaces-feel-better` | Mikro-interaktioner, animation og UX-forbedringer |
 | `data-visualization` | Visualisering: chart-valg, D3/Recharts, dashboard-layout |
+
+### API gateways, integrationer og backend-platforme
+| Skill | Aktivér når |
+|---|---|
+| `api-gateway-kong-api-gateway` | Designe eller konfigurere Kong API Gateway |
+| `api-gateway-ocelot-gateway-guide` | Designe Ocelot API Gateway i .NET |
+| `api-gateway-yarp-gateway-designer` | Designe YARP reverse proxy/API gateway i .NET |
+| `dev-openapi-contract-first` | Arbejde contract-first med OpenAPI |
+| `dev-grpc-service-designer` | Designe gRPC services og protobuf-kontrakter |
+| `dev-websocket-designer` | Designe WebSocket flows og real-time kommunikation |
+| `dev-rate-limiter-designer` | Designe rate limiting og quota-politikker |
+| `dev-outbox-pattern-guide` | Implementere outbox pattern og reliable events |
+| `dev-message-queue-architect` | Designe køer, topics og async messaging |
+| `dev-rabbitmq-patterns-guide` | Implementere RabbitMQ patterns |
+| `dev-hangfire-job-scheduler` | Planlægge jobs i .NET/Hangfire |
+| `dev-cron-job-designer` | Designe cron jobs og scheduled workflows |
+
+### Frameworks og sprog
+| Skill | Aktivér når |
+|---|---|
+| `dev-angular-guide` | Bygge Angular-applikationer |
+| `dev-nextjs-guide` | Bygge Next.js apps og routes |
+| `dev-svelte-guide` | Bygge Svelte/SvelteKit apps |
+| `dev-vue-guide` | Bygge Vue/Nuxt apps |
+| `dev-laravel-guide` | Bygge Laravel apps |
+| `dev-java-spring-advisor` | Bygge Java/Spring services |
+| `dev-dotnet-csharp-advisor` | Bygge .NET/C# services |
+| `dev-dotnet-aspire-guide` | Bruge .NET Aspire til cloud-native apps |
+| `dev-go-concurrency-guide` | Designe Go concurrency patterns |
+| `dev-rust-guide` | Bygge Rust services eller CLI'er |
+| `dev-kotlin-advanced` | Avancerede Kotlin patterns |
+| `dev-typescript-mastery` | Avanceret TypeScript i app-kode |
+
+### Data engineering og ML i apps
+| Skill | Aktivér når |
+|---|---|
+| `dev-data-pipeline-builder` | Bygge app-nære data pipelines |
+| `dev-etl-designer` | Designe ETL/ELT flows |
+| `dev-data-validation-helper` | Validere data mellem services og lagre |
+| `data-dbt-guide` | Bygge dbt-modeller og transformationslag |
+| `data-kafka-patterns` | Designe Kafka event streams |
+| `data-dimensional-modeling` | Modellere analytics- eller warehouse-data |
+| `data-data-governance-guide` | Data governance, ejerskab og lineage |
+| `ai-ml-dataset-builder` | Bygge og kuratere ML datasets |
+| `ai-ml-model-fine-tuner` | Fine-tune ML/LLM-modeller |
+| `ai-ml-model-optimization-guide` | Optimere ML-modeller til inference |
+| `ai-ml-computer-vision-guide` | Bygge computer vision features |
+| `ai-ml-nlp-pipeline-designer` | Designe NLP pipelines |
+| `ai-ml-anomaly-detection-builder` | Bygge anomalidetektion |
+| `ai-ml-ml-experiment-tracker` | Tracke ML-eksperimenter og modeller |
+| `dev-ml-model-deployer` | Deploye ML-modeller i produktion |
+| `dev-rag-pipeline-designer` | Designe RAG pipelines |
+| `dev-llm-integration-guide` | Integrere LLM'er i app-flows |
+| `dev-ai-agent-builder` | Bygge AI-agent features i apps |
+| `dev-ai-workflow-orchestrator` | Orkestrere AI workflows i app-produkter |
+
+### Cloud og infrastruktur
+| Skill | Aktivér når |
+|---|---|
+| `cloud-azure-functions-expert` | Bygge Azure Functions |
+| `cloud-gcp-guide` | Designe løsninger på Google Cloud |
+| `cloud-cloud-migration-planner` | Planlægge cloud migration |
+| `cloud-multi-cloud-strategist` | Vurdere multi-cloud setup |
+| `dev-infrastructure-as-code` | Designe IaC på tværs af stacks |
+| `dev-azure-devops-pipeline-advisor` | Bygge Azure DevOps pipelines |
+| `azure-pipelines-generator` | Generere Azure Pipelines YAML |
+| `azure-pipelines-validator` | Validere Azure Pipelines YAML |
+| `ansible-generator` | Generere Ansible playbooks |
+| `ansible-validator` | Validere Ansible playbooks |
+| `terraform-validator` | Validere Terraform-konfiguration |
+| `terragrunt-generator` | Generere Terragrunt struktur |
+| `dev-nginx-configurator` | Konfigurere Nginx som proxy eller webserver |
+| `dev-health-check-monitor` | Designe health checks og readiness probes |
+| `dev-monitoring-setup` | Sætte applikationsmonitorering op |
 
 ## Arbejdsflow
 

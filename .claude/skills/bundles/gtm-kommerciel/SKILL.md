@@ -25,6 +25,9 @@ Samler alle skills til go-to-market eksekvering, salg og kommerciel vækst.
 | `sales-enablement` | Pitch decks, one-pagers, objection handling til Commercial Lead |
 | `revops` | Revenue engine: lead lifecycle, scoring, routing, pipeline hygiejne |
 | `cold-email` | B2B cold outreach og prospekt-mail |
+| `agent-sales-agent-builder` | Designe salgsagent til prospektering og follow-up |
+| `business-commercial-proposal-generic` | Skrive generisk kommercielt tilbud eller proposal |
+| `business-it-commercial-proposal` | Skrive IT-/software-relateret tilbud |
 
 ### Indhold og SEO
 | Skill | Aktivér når |
@@ -34,12 +37,17 @@ Samler alle skills til go-to-market eksekvering, salg og kommerciel vækst.
 | `seo` | Generel SEO-rådgivning og søgeordsanalyse |
 | `programmatic-seo` | Skalerbar SEO via skabeloner og datadrevet indhold |
 | `marketing-ideas` | Generere markedsføringidéer og taktikker |
+| `copywriting` | Konverterende landing page copy |
+| `copy-editing` | Sproglig revision af kommercielle tekster |
 
 ### Email og automatisering
 | Skill | Aktivér når |
 |---|---|
 | `emails` | Email-sekvenser, drip-kampagner, onboarding-flow |
-| `cold-email` | Cold outreach og B2B-prospekt-mail |
+| `automation-zapier-workflow-builder` | Bygge Zapier automation til GTM-ops |
+| `automation-make-scenario-builder` | Bygge Make.com scenarios |
+| `automation-n8n-workflow-designer` | Bygge n8n workflows |
+| `automation-power-automate-designer` | Bygge Power Automate flows |
 
 ### Konvertering og analyse
 | Skill | Aktivér når |
@@ -49,6 +57,8 @@ Samler alle skills til go-to-market eksekvering, salg og kommerciel vækst.
 | `ads` | Paid advertising strategi: Meta, Google, LinkedIn |
 | `ad-creative` | Ad copy og creative iterations — headlines, beskrivelser, varianter i skala |
 | `social` | SoMe-opslag og organisk social distribution |
+| `ab-test-analysis` | Analysere split-testresultater på landing pages eller campaigns |
+| `measure-experiment-design` | Designe vækst- eller konverteringseksperiment |
 
 ## Brugsanvisning
 

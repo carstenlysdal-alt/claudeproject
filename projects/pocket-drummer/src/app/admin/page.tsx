@@ -14,8 +14,7 @@ import {
   Save,
   Lock,
   Music,
-  Library,
-  Youtube
+  Library
 } from 'lucide-react';
 import {
   getSavedExercises,
@@ -24,10 +23,34 @@ import {
 } from '@/lib/mockData';
 import { useAuth } from '@/lib/authContext';
 import { presetExercises, getPresetMusicXML } from '@/lib/presetExercises';
+import { extractXmlPayload, hasScorePartwise } from '@/lib/musicXml';
 import Link from 'next/link';
 
 // Hent OsmdRenderer dynamisk uden SSR
 const OsmdRenderer = dynamic(() => import('@/components/OsmdRenderer'), { ssr: false });
+
+const SCAN_REQUEST_TIMEOUT_MS = 105_000;
+
+function normalizeMusicXmlResponse(xml: unknown, source: string): { xml: string; warning?: string } {
+  if (typeof xml !== 'string' || !xml.trim()) {
+    throw new Error(`Ugyldigt MusicXML modtaget fra ${source}: Tomt XML-svar`);
+  }
+
+  const cleanedXml = extractXmlPayload(xml);
+
+  if (!/<[A-Za-z_][\w:.-]*(?:\s[^>]*)?>/.test(cleanedXml)) {
+    throw new Error(`Ugyldigt MusicXML modtaget fra ${source}: Kunne ikke finde XML-indhold`);
+  }
+
+  if (!hasScorePartwise(cleanedXml)) {
+    return {
+      xml: cleanedXml,
+      warning: `⚠️ XML fra ${source} mangler <score-partwise>. Forsøger preview alligevel.`
+    };
+  }
+
+  return { xml: cleanedXml };
+}
 
 export default function AdminPage() {
   const { user, login, logout, loading: authLoadingState } = useAuth();
@@ -148,14 +171,16 @@ Vigtige regler:
 
       const data = await response.json();
       
-      if (!data.xml || !data.xml.includes('<score-partwise>')) {
-        throw new Error("Ugyldigt MusicXML modtaget fra API: Mangler rod-elementer");
-      }
+      const validation = normalizeMusicXmlResponse(data.xml, "DeepSeek API");
 
       logTimers.forEach(t => clearTimeout(t));
-      addLog("MusicXML validering succesfuld!");
+      if (validation.warning) {
+        addLog(validation.warning);
+      } else {
+        addLog("MusicXML validering succesfuld!");
+      }
       addLog("Indlæser node-preview...");
-      setXmlData(data.xml);
+      setXmlData(validation.xml);
     } catch (e) {
       console.error(e);
       logTimers.forEach(t => clearTimeout(t));
@@ -188,38 +213,55 @@ Vigtige regler:
       setTimeout(() => addScanLog("Uploader fil til Gemini OMR API..."), 800),
       setTimeout(() => addScanLog("Gemini 2.5 Flash analyserer nodelinjer og symboler..."), 2000),
       setTimeout(() => addScanLog("Ekstraherer takter, tempo og General MIDI percussion mapping..."), 3500),
-      setTimeout(() => addScanLog("Genererer gyldig MusicXML 4.0 percussion clef..."), 5000)
+      setTimeout(() => addScanLog("Genererer gyldig MusicXML 4.0 percussion clef..."), 5000),
+      setTimeout(() => addScanLog("Gemini arbejder stadig på konverteringen..."), 12000),
+      setTimeout(() => addScanLog("Store PDF'er og scannede billeder kan tage 30-60 sekunder..."), 25000),
+      setTimeout(() => addScanLog("Afventer stadig svar fra Gemini OMR API..."), 45000),
+      setTimeout(() => addScanLog("Gemini bruger længere tid end normalt. Holder forbindelsen åben lidt endnu..."), 75000),
+      setTimeout(() => addScanLog("Sidste forsøg før timeout. Hvis det fejler, prøv et mindre eller skarpere udsnit."), 95000)
     ];
+
+    let requestTimeout: ReturnType<typeof setTimeout> | undefined;
 
     try {
       const formData = new FormData();
       formData.append("file", scanFile);
       formData.append("systemPrompt", scanSystemPrompt);
 
+      const controller = new AbortController();
+      requestTimeout = setTimeout(() => controller.abort(), SCAN_REQUEST_TIMEOUT_MS);
+
       const response = await fetch('/api/scan-sheet-music', {
         method: 'POST',
-        body: formData
+        body: formData,
+        signal: controller.signal
       });
+      clearTimeout(requestTimeout);
+      requestTimeout = undefined;
 
       logTimers.forEach(t => clearTimeout(t));
 
       if (!response.ok) {
-        throw new Error("Fejl under scanning af noder");
+        const errorData = await response.json().catch(() => null);
+        addScanLog(`❌ FEJL under scanning: ${errorData?.error || "Fejl under scanning af noder"}`);
+        return;
       }
 
       const data = await response.json();
 
       if (data.error) {
-        throw new Error(data.error);
+        addScanLog(`❌ FEJL under scanning: ${data.error}`);
+        return;
       }
 
-      if (!data.xml || !data.xml.includes('<score-partwise>')) {
-        throw new Error("Ugyldigt MusicXML modtaget fra scanner: Mangler rod-elementer");
-      }
+      const validation = normalizeMusicXmlResponse(data.xml, "scanner");
 
       addScanLog("Scanning og konvertering færdig!");
+      if (validation.warning) {
+        addScanLog(validation.warning);
+      }
       addScanLog("Indlæser node-preview...");
-      setXmlData(data.xml);
+      setXmlData(validation.xml);
 
       const baseName = scanFile.name.replace(/\.[^/.]+$/, "");
       setTitle(`Scannet: ${baseName}`);
@@ -227,11 +269,15 @@ Vigtige regler:
       setSaveNotationMsg('');
       setActiveTab('preview');
     } catch (e) {
-      console.error(e);
       logTimers.forEach(t => clearTimeout(t));
-      const message = e instanceof Error ? e.message : String(e);
+      const message = e instanceof Error && e.name === 'AbortError'
+        ? `Timeout efter ${Math.round(SCAN_REQUEST_TIMEOUT_MS / 1000)} sekunder. Prøv et mindre/skarpt billede eller en kortere PDF.`
+        : e instanceof Error ? e.message : String(e);
       addScanLog(`❌ FEJL under scanning: ${message}`);
     } finally {
+      if (requestTimeout) {
+        clearTimeout(requestTimeout);
+      }
       setScanLoading(false);
     }
   };
@@ -310,13 +356,14 @@ Vigtige regler:
         throw new Error(data.error);
       }
 
-      if (!data.xml || !data.xml.includes('<score-partwise>')) {
-        throw new Error("Ugyldigt MusicXML modtaget fra transskription: Mangler rod-elementer");
-      }
+      const validation = normalizeMusicXmlResponse(data.xml, "transskription");
 
       addTranscribeLog("Transskription og OMR konvertering fuldført!");
+      if (validation.warning) {
+        addTranscribeLog(validation.warning);
+      }
       addTranscribeLog("Indlæser node-preview...");
-      setXmlData(data.xml);
+      setXmlData(validation.xml);
       
       const defaultTitle = audioFile
         ? audioFile.name.replace(/\.[^/.]+$/, "")
@@ -577,7 +624,7 @@ Vigtige regler:
                       className="form-control" 
                       style={{ padding: '7px 10px', fontSize: '0.85rem' }}
                       value={category}
-                      onChange={(e) => setCategory(e.target.value as any)}
+                      onChange={(e) => setCategory(e.target.value as typeof category)}
                     >
                       <option value="groove">Groove</option>
                       <option value="rudiments">Rudiments</option>
@@ -593,7 +640,7 @@ Vigtige regler:
                       className="form-control" 
                       style={{ padding: '7px 10px', fontSize: '0.85rem' }}
                       value={difficulty}
-                      onChange={(e) => setDifficulty(e.target.value as any)}
+                      onChange={(e) => setDifficulty(e.target.value as typeof difficulty)}
                     >
                       <option value="begynder">Begynder</option>
                       <option value="mellemniveau">Mellemniveau</option>

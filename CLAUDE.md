@@ -28,8 +28,10 @@ Matches flere skills, aktivér den mest centrale først og nævn de øvrige.
 
 ### Bundles — aktivér helt sæt af skills per opgavetype
 
-Når brugeren skriver "aktiver bundle" uden at angive hvilket, spørg:
-"Hvilket bundle? pm, data, vækst, tekst, design, slides, kode, app eller workflow."
+Når brugeren beder om bundles uden en tydelig opgavegenre, spørg hvilket bundle brugeren ønsker:
+"Hvilket bundle? pm, metrics, gtm, redaktion, design, præsentation, kode, app eller workflow."
+
+Når brugerens spørgsmål allerede har en tydelig genre, vælg selv det mest relevante bundle ud fra tabellen nedenfor og sig kort hvorfor.
 
 Kald et bundle direkte med `/bundle-navn` for at aktivere alle relevante skills på én gang.
 
@@ -46,6 +48,8 @@ Kald et bundle direkte med `/bundle-navn` for at aktivere alle relevante skills 
 | Sessionstyring, prompt-design, skill-søgning, token-effektivitet | `/workflow` | handoff, context-mode, executing-plans, prompt-creator, skill-creator, skill-soeg, research-brief, caveman, caveman-compress, full-output-enforcement |
 
 Bundle-SKILL.md-filer: `.claude/skills/bundles/`
+
+Vigtig afklaring: De relevante bundle-samlinger for dette projekt ligger i den projektspecifikke mappe `.claude/skills/bundles/`, ikke i den globale mappe `~/.claude/skills/bundles/`. Den globale mappe kan indeholde enkelte personlige bundles, men dette repos 9 bundle-samlinger er: `app`, `design-ui`, `gtm-kommerciel`, `metrics-eksperimenter`, `pm-strategi`, `praesentation`, `redaktion-indhold`, `tech-kode`, `workflow`.
 
 ---
 
@@ -301,6 +305,8 @@ Mønstre i kundesprog → Årsagshypoteser → Prioriterede produktanbefalinger
 | Workflow | `/workflow` | Sessionstyring, prompt-design, skill-søgning, token-effektivitet |
 
 Bundle-filer: `.claude/skills/bundles/`
+
+Vigtig afklaring: De relevante bundle-samlinger for dette projekt ligger i den projektspecifikke mappe `.claude/skills/bundles/`, ikke i den globale mappe `~/.claude/skills/bundles/`. Den globale mappe kan indeholde enkelte personlige bundles, men dette repos 9 bundle-samlinger er: `app`, `design-ui`, `gtm-kommerciel`, `metrics-eksperimenter`, `pm-strategi`, `praesentation`, `redaktion-indhold`, `tech-kode`, `workflow`.
 
 ---
 

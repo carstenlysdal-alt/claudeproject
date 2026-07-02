@@ -41,12 +41,23 @@ Samler alle design-skills fra visuel audit til frontend-implementering.
 | `prototype` | Byg hurtigt interaktivt prototype — validér concept inden fuld implementering |
 | `design-an-interface` | Design en komplet interface fra beskrivelse til specifikation |
 | `accessibility` | WCAG-compliance og tilgængelighed |
+| `dev-accessibility-checker` | Teknisk accessibility-audit i frontend-kode |
+| `dev-css-layout-solver` | Løse CSS layoutproblemer |
+| `dev-responsive-design-helper` | Responsivt design og breakpoints |
+| `dev-react-component-builder` | Bygge robuste React-komponenter |
+| `dev-ui-design-system-builder` | Implementere design system med tokens og komponenter |
+| `dev-user-flow-designer` | Designe flows og navigation |
+| `dev-wireframe-advisor` | Lave wireframes til app- og webflows |
+| `dev-tailwind-expert` | Tailwind patterns, tokens og utility-arkitektur |
 
 ### Design-prompts
 | Skill | Aktivér når |
 |---|---|
 | `design-prompt` | Prompt til Gamma, Midjourney, DALL-E, Canva AI |
 | `canvas-design` | Design i Canva-format |
+| `brand-guidelines` | Skabe eller konsolidere brand guidelines |
+| `dev-pixel-art-advisor` | Designe pixel-art assets eller stil |
+| `dev-game-design-patterns` | UI/UX patterns til spil og interaktive oplevelser |
 
 ## Arbejdsflow: audit → design → implementering
 

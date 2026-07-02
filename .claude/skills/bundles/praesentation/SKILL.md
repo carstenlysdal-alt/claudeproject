@@ -30,6 +30,13 @@ Samler alle skills til præsentationer og dokumenter klar til ledelsesniveau.
 | Skill | Aktivér når |
 |---|---|
 | `document-quality` | Løfte PM-dokument til C-suite-niveau — dansk, præcist, handlingsklart |
+| `communication-pitch-deck-designer` | Designe pitch deck til investorer, ledelse eller salg |
+| `communication-presentation-builder` | Bygge struktureret præsentation fra budskab og audience |
+| `communication-public-speaking-coach` | Forberede mundtlig levering og speaker notes |
+| `communication-storytelling-expert` | Skærpe narrativ og dramaturgi i decket |
+| `business-commercial-proposal-generic` | Omsætte tilbud/proposal til præsentationsformat |
+| `business-it-commercial-proposal` | Omsætte IT-tilbud til deck eller executive summary |
+| `utility-slideshow-creator` | Oprette slideshow-struktur og slide-flow |
 
 ### SlideSpeak layout-typer
 `BIG_NUMBER` · `FUNNEL` · `TIMELINE` · `SWOT` · `PESTEL` · `TABLE` · `COMPARISON`

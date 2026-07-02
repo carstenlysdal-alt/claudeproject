@@ -17,6 +17,13 @@ Samler alle strategiske PM-frameworks i ét bundle. Aktivér den skill der passe
 |---|---|
 | `product-manager-skills:prd-development` | Skrive eller forfine et PRD (interaktivt interview-format) |
 | `to-prd` | Konvertere eksisterende samtalekontext direkte til PRD — ingen interview |
+| `create-prd` | Skabe et PRD fra tidlig idé eller krav |
+| `deliver-prd` | Levere færdigt PRD i aftalt format |
+| `deliver-acceptance-criteria` | Skrive acceptance criteria til feature eller epic |
+| `deliver-user-stories` | Skrive leveringsklare user stories |
+| `deliver-edge-cases` | Udfolde edge cases før implementation |
+| `deliver-launch-checklist` | Lave launch-checklist til produktændring |
+| `deliver-release-notes` | Skrive release notes til brugere eller stakeholders |
 | `product-manager-skills:roadmap-planning` | Planlægge eller kommunikere roadmap |
 | `product-manager-skills:discovery-process` | Starte en discovery-fase |
 | `product-manager-skills:prioritization-advisor` | Prioritere initiativer (RICE, MoSCoW) |
@@ -32,6 +39,14 @@ Samler alle strategiske PM-frameworks i ét bundle. Aktivér den skill der passe
 | `product-manager-skills:problem-framing-canvas` | Formulere og indramme problemrummet |
 | `product-manager-skills:problem-statement` | Skrive en skarp problemformulering |
 | `product-manager-skills:proto-persona` | Definere primær brugerprofil |
+| `define-problem-statement` | Definere problem statement fra rå input |
+| `define-hypothesis` | Formulere testbar hypotese |
+| `define-jtbd-canvas` | Udfylde JTBD canvas |
+| `define-opportunity-tree` | Bygge opportunity tree |
+| `discover-interview-synthesis` | Syntetisere discovery-interviews |
+| `discover-journey-map` | Kortlægge kunderejse fra discovery-data |
+| `customer-journey-map` | Udarbejde customer journey map |
+| `analyze-feature-requests` | Analysere og tematisere feature requests |
 
 ### Strategi og positionering
 | Skill | Aktivér når |
@@ -42,6 +57,20 @@ Samler alle strategiske PM-frameworks i ét bundle. Aktivér den skill der passe
 | `product-manager-skills:tam-sam-som-calculator` | Beregne markedsstørrelse |
 | `product-manager-skills:business-health-diagnostic` | Diagnosticere forretningens tilstand |
 | `product-manager-skills:recommendation-canvas` | Formulere og forankre en anbefaling |
+| `business-model` | Analysere eller designe forretningsmodel |
+| `ansoff-matrix` | Vurdere vækststrategier: marked/produkt |
+| `beachhead-segment` | Vælge første målsegment |
+| `competitor-analysis` | Analysere konkurrenter og strategisk position |
+| `competitive-battlecard` | Lave battlecard mod konkurrenter |
+| `discover-competitive-analysis` | Discovery-orienteret konkurrentanalyse |
+| `discover-market-sizing` | Estimere markedsstørrelse |
+| `value-prop-statements` | Skrive konkrete value proposition statements |
+| `value-proposition` | Udforme samlet value proposition |
+| `prioritize-assumptions` | Prioritere antagelser til validering |
+| `prioritize-features` | Prioritere features på tværs af impact, effort og risiko |
+| `define-prioritization-framework` | Vælge eller designe prioriteringsframework |
+| `brainstorm-ideas-existing` | Idégenerering til eksisterende produkt |
+| `brainstorm-ideas-new` | Idégenerering til nyt produkt |
 
 ### Stakeholder og alignment
 | Skill | Aktivér når |

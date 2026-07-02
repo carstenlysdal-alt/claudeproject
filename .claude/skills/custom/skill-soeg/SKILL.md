@@ -8,17 +8,19 @@ metadata:
 
 # Skill-søg
 
-Interaktiv skill-browser der præsenterer alle installerede bundles og projektspecifikke skills — og spørger hvad brugeren skal lave, inden den anbefaler det rigtige bundle.
+Interaktiv skill-browser der præsenterer alle installerede bundles og projektspecifikke skills — og enten spørger hvad brugeren skal lave eller selv vælger det rigtige bundle, når opgavens genre allerede er tydelig.
 
 ## Instruktion
 
 Når denne skill aktiveres:
 
-1. **Stil ét spørgsmål** — præcist og direkte:
+1. **Vurdér om brugerens opgavegenre er tydelig.**
+   - Hvis ja: vælg selv det mest relevante bundle ud fra rutingtabel og svar med anbefalet bundle.
+   - Hvis nej: stil ét spørgsmål — præcist og direkte:
 
 > **Hvad skal du lave?** Beskriv opgaven kort — fx "skrive et PRD", "designe en landing page", "planlægge en launch", "analysere et A/B-test" eller "skrive en artikel til LinkedIn.
 
-2. **Vent på svaret** — afbryd ikke med en liste af muligheder endnu.
+2. **Vent på svaret hvis du har spurgt** — afbryd ikke med en liste af muligheder endnu.
 
 3. **Kortlæg svaret til et bundle** og præsentér:
    - Det anbefalede bundle (fed, med kommando)
@@ -61,6 +63,14 @@ Brug: "Lav en præsentation", "Slides til ledelsen", "Løft dokumentet", "PPTX-d
 TDD, tests, arkitektur, performance, debugging, code review.
 Brug: "Byg en feature", "Skriv tests", "Refaktorér koden", "Debug dette", "Performance-optimer".
 
+### `/app`
+Fullstack app-udvikling: backend, databaser, mobil, DevOps, auth og sikkerhed.
+Brug: "Byg en app", "Design et API", "Sæt auth op", "Lav database-model", "Deploy backend".
+
+### `/workflow`
+Sessionstyring, prompt-design, skill-søgning, token-effektivitet og plan-eksekvering.
+Brug: "Find det rigtige bundle", "Lav en prompt", "Eksekvér denne plan", "Lav et handoff".
+
 ---
 
 ## Projektspecifikke skills — pocket-drummer
@@ -91,6 +101,8 @@ Disse skills er kun installeret i `projects/pocket-drummer/`:
 | Design, wireframe, audit, komponent, layout, typografi, farver, UI | `/design-ui` |
 | Præsentation, slides, PowerPoint, deck, ledelsen, CEO | `/praesentation` |
 | Kode, byg, test, debug, arkitektur, performance, refaktor | `/tech-kode` |
+| App, backend, API, database, mobil, DevOps, auth, sikkerhed | `/app` |
+| Workflow, prompt, plan, handoff, skill-søgning, context, token | `/workflow` |
 
 ---
 
@@ -109,4 +121,4 @@ Skills der er mest relevante her:
 Klar til at starte? Sig bare hvad du har brug for.
 ```
 
-Ingen lange forklaringer. Ingen liste af alle 7 bundles med mindre brugeren eksplicit beder om det.
+Ingen lange forklaringer. Ingen liste af alle 9 bundles med mindre brugeren eksplicit beder om det.

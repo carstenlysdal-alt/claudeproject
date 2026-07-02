@@ -27,6 +27,14 @@ Samler alle skills til professionel tekstproduktion og indholdsstrategi på dans
 | `copywriting` | Konverteringstekst: headlines, CTAs, landing pages (primært engelsk) |
 | `copy-editing` | Korrektur og sprogrensning af eksisterende tekst |
 | `doc-coauthoring` | Fælles redigering og iterativ dokumentudvikling |
+| `writing-blog-post-writer` | Skrive blogindlæg fra brief eller outline |
+| `writing-changelog-writer` | Skrive changelog eller produktnyheder |
+| `writing-content-repurposer` | Omskrive indhold til flere formater |
+| `writing-copywriting-assistant` | Assistere med kommerciel copy og variants |
+| `writing-email-drafter` | Drafts til emails og nyhedsbreve |
+| `writing-proofreader-fr` | Korrektur af fransk tekst |
+| `grammar-check` | Grammatik- og sprogtjek |
+| `sproglig-standard` | Sprogkontrol og AI-mønster-rensning |
 
 ### Narrativ struktur og skriveteknik
 | Skill | Aktivér når |
@@ -34,12 +42,17 @@ Samler alle skills til professionel tekstproduktion og indholdsstrategi på dans
 | `writing-shape` | Definer tekstens overordnede form og dramaturgi inden skriveprocessen |
 | `writing-beats` | Nedbryd teksten i beats — de afgørende øjeblikke der driver læseren frem |
 | `writing-fragments` | Skriv og iterér på fragmenter — sætninger og afsnit — inden de samles |
+| `communication-storytelling-expert` | Skærpe narrativ, hook og struktur |
+| `communication-public-speaking-coach` | Tilpasse tekst til mundtlig levering |
 
 ### Distribution og produktion
 | Skill | Aktivér når |
 |---|---|
 | `social` | SoMe-opslag til LinkedIn, Twitter/X, Instagram |
 | `emails` | Nyhedsbreve, drip-kampagner, redaktionelle e-mails |
+| `arabic-arabic-content-writer` | Skrive indhold på moderne standardarabisk |
+| `arabic-darija-translator` | Oversætte eller tilpasse til marokkansk darija |
+| `arabic-morocco-admin-guide` | Skrive/forstå marokkansk administrativt indhold |
 
 ### Prompts og AI-assisteret produktion
 | Skill | Aktivér når |

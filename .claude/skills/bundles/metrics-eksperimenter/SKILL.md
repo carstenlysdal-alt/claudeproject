@@ -18,6 +18,13 @@ Samler alle frameworks til at definere, designe og analysere metrics og eksperim
 | `north-star-metric` | Definere North Star Metric og input-metrics |
 | `data-visualization` | Visualisere data: valg af chart-type, perceptuel præcision, D3/Recharts/Victory |
 | `metrics-dashboard` | Designe et metrics-dashboard med KPI'er og alert-tærskler |
+| `analytics` | Sætte tracking, events og attribution op |
+| `cohort-analysis` | Analysere retention og cohort performance |
+| `data-quality-checker` | Kontrollere datakvalitet før analyse |
+| `data-sql-advanced-analytics` | Skrive avancerede SQL-analyser |
+| `data-power-bi-designer` | Designe Power BI dashboards |
+| `data-tableau-designer` | Designe Tableau dashboards |
+| `data-dimensional-modeling` | Modellere metrics i facts/dimensions |
 | `product-manager-skills:finance-metrics-quickref` | Hurtig reference til finansielle metrics |
 | `product-manager-skills:saas-revenue-growth-metrics` | SaaS-vækstmetrics og -benchmarks |
 | `product-manager-skills:saas-economics-efficiency-metrics` | Effektivitets- og unit economics-metrics |
@@ -28,6 +35,8 @@ Samler alle frameworks til at definere, designe og analysere metrics og eksperim
 | `ab-test-analysis` | Analysere A/B-testresultater og ship/extend/stop-beslutning |
 | `measure-experiment-design` | Designe et rigorøst eksperiment med hypotese og sample size |
 | `brainstorm-experiments-existing` | Generere eksperiment-hypoteser og pretotypes |
+| `brainstorm-experiments-new` | Designe pretotypes og eksperimenter til nye produktidéer |
+| `define-hypothesis` | Formulere en testbar eksperimenthypotese |
 
 ### Brugerindsigt og feedback
 | Skill | Aktivér når |
@@ -35,6 +44,8 @@ Samler alle frameworks til at definere, designe og analysere metrics og eksperim
 | `measure-survey-analysis` | Syntetisere survey-resultater til PM-beslutning |
 | `feedback-analyse` | Syntetisere interviews, surveys og support til PM-beslutning |
 | `outcome-analyse` | Evaluere afsluttet initiativ: iterér/pivotér/stop |
+| `discover-interview-synthesis` | Syntetisere interviewdata til temaer og opportunities |
+| `customer-journey-map` | Kortlægge friktion og målepunkter i kunderejsen |
 
 ### OKR og målstyring
 | Skill | Aktivér når |

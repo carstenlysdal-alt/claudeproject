@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { scanSheetMusic } from '@/lib/gemini';
 
+export const maxDuration = 120;
+
+const MAX_SCAN_FILE_SIZE_BYTES = 10 * 1024 * 1024;
+
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
@@ -9,6 +13,13 @@ export async function POST(req: NextRequest) {
 
     if (!file) {
       return NextResponse.json({ error: "Ingen fil modtaget i anmodningen." }, { status: 400 });
+    }
+
+    if (file.size > MAX_SCAN_FILE_SIZE_BYTES) {
+      return NextResponse.json(
+        { error: "Filen er for stor til hurtig OMR-scanning. Brug en fil under 10 MB eller beskær/komprimér nodearket." },
+        { status: 413 }
+      );
     }
 
     const mimeType = file.type || 'image/jpeg';
