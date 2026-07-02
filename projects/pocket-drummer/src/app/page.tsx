@@ -2166,30 +2166,13 @@ export default function App() {
   }, [user]);
 
   useEffect(() => {
-    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-    if (mobile) {
-      router.replace('/prototype');
-      return;
-    }
-
     const landingSeen = localStorage.getItem('pocketdrummer_landing_seen');
     if (!landingSeen) {
       router.replace('/landing');
-      return;
+    } else {
+      router.replace('/prototype');
     }
-
-    const timer = setTimeout(() => {
-      setMounted(true);
-      setIsMobile(mobile);
-      setPlan(getUserPlan());
-      if (!user) {
-        setCompletedIds(getCompletedExercises());
-        setIsPremium(getPremiumStatus());
-      }
-    }, 0);
-
-    return () => clearTimeout(timer);
-  }, [router, user]);
+  }, [router]);
 
   const openCheckout = () => setShowCheckout(true);
   const handlePremiumSuccess = () => {

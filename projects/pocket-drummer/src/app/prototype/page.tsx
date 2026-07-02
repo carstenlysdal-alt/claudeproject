@@ -53,6 +53,7 @@ interface HomeScreenProps extends ScreenProps {
   onOpenCoach: () => void;
   onPlayRhythmHero: () => void;
   guestXp: number;
+  isDesktop?: boolean;
 }
 
 interface PracticeScreenProps extends ScreenProps {
@@ -614,7 +615,7 @@ function OnboardingScreen({ t, onStart }: { t: ThemeTokens; dark: boolean; onSta
 }
 
 // 2. Home Screen
-function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, onPlayRhythmHero, guestXp }: HomeScreenProps) {
+function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, onPlayRhythmHero, guestXp, isDesktop }: HomeScreenProps) {
   const { user } = useAuth();
   const displayName = user ? user.displayName : 'Astrid';
   const { language, setLanguage, t: translate } = useLanguage();
@@ -630,11 +631,16 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, onPlayRhy
   const xpPct = ((xp % 200) / 200) * 100;
 
   return (
-    <div style={{ padding: '8px 20px 40px', color: t.text, fontFamily: t.font }}>
+    <div style={isDesktop ? {
+      maxWidth: 960, margin: '0 auto', padding: '40px 48px 60px',
+      color: t.text, fontFamily: t.font,
+    } : {
+      padding: '8px 20px 40px', color: t.text, fontFamily: t.font,
+    }}>
       {/* Top bar with Greeting and theme/coach toggle */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: isDesktop ? 32 : 20 }}>
         <div>
-          <span style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 22, fontWeight: 'normal', color: t.text }}>
+          <span style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: isDesktop ? 36 : 22, fontWeight: 'normal', color: t.text }}>
             {greeting}, {displayName}
           </span>
           <div style={{ fontSize: 11, color: t.textMuted, marginTop: 3, letterSpacing: 0.2 }}>{todayStr}</div>
@@ -699,7 +705,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, onPlayRhy
           onClick={() => onSelectCategory('grooves')}
           style={{
             borderRadius: 20, overflow: 'hidden', position: 'relative',
-            aspectRatio: '3 / 4', cursor: 'pointer',
+            aspectRatio: isDesktop ? '21 / 9' : '3 / 4', cursor: 'pointer',
             boxShadow: '0 8px 40px rgba(0,0,0,0.65)',
             transition: 'transform 150ms cubic-bezier(0.16,1,0.3,1)',
           }}
@@ -805,7 +811,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, onPlayRhy
       {/* Øvespor */}
       <div style={{ marginBottom: 24 }}>
         <SectionLabel t={t}>{language === 'da' ? 'Øvespor' : language === 'en' ? 'Practice paths' : language === 'de' ? 'Übungspfade' : 'Rutas de práctica'}</SectionLabel>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isDesktop ? '1fr 1fr 1fr 1fr' : '1fr 1fr', gap: 10 }}>
           {[
             {
               id: 'opvarmning' as const,
@@ -3073,6 +3079,102 @@ function TabBar({ tab, onTab, t, dark, isMobile, onSelectCategory }: TabBarProps
   );
 }
 
+// ─────────────────────────────────────────────────────────────
+// Desktop Rail — venstresøjle på ≥ 1024px
+// ─────────────────────────────────────────────────────────────
+function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach }: {
+  tab: string;
+  onTab: (tab: string) => void;
+  t: ThemeTokens;
+  onSelectCategory: (cat: 'opvarmning' | 'nodelære' | 'grooves' | 'playalong') => void;
+  onOpenCoach: () => void;
+}) {
+  const { t: translate } = useLanguage();
+  const { user } = useAuth();
+
+  const items = [
+    { id: 'home',     label: translate('home') || 'Hjem',       icon: TabHome },
+    { id: 'practice', label: translate('practice') || 'Øvelser', icon: TabPractice },
+    { id: 'playalong',label: translate('playalong') || 'Play-along', icon: TabPlayalong },
+    { id: 'kit',      label: translate('kit') || 'Trommesæt',   icon: TabKit },
+    { id: 'profile',  label: translate('profile') || 'Profil',  icon: TabUser },
+  ];
+
+  const initials = user
+    ? (user.displayName || user.email || 'U').split(' ').map((w: string) => w[0]).slice(0, 2).join('').toUpperCase()
+    : '?';
+
+  return (
+    <div style={{
+      width: 80, flexShrink: 0, height: '100vh', position: 'sticky', top: 0,
+      background: t.surface2, borderRight: `1px solid ${t.border}`,
+      display: 'flex', flexDirection: 'column', alignItems: 'center',
+      paddingTop: 20, paddingBottom: 16, zIndex: 10,
+    }}>
+      {/* Logo */}
+      <div style={{ marginBottom: 28 }}>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <ellipse cx="12" cy="12" rx="10" ry="6" stroke={t.accent} strokeWidth="1.8"/>
+          <ellipse cx="12" cy="12" rx="5" ry="2.8" stroke={t.accent} strokeWidth="1.6"/>
+          <line x1="12" y1="6" x2="12" y2="18" stroke={t.accent} strokeWidth="1.4"/>
+          <line x1="2" y1="12" x2="22" y2="12" stroke={t.accent} strokeWidth="1.4"/>
+        </svg>
+      </div>
+
+      {/* Nav items */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, width: '100%', padding: '0 8px' }}>
+        {items.map(item => {
+          const active = tab === item.id || (item.id === 'playalong' && false);
+          const Icon = item.icon;
+          return (
+            <button key={item.id} onClick={() => {
+              if (item.id === 'playalong') {
+                onSelectCategory('playalong');
+              } else {
+                onTab(item.id);
+              }
+            }} style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
+              padding: '10px 4px', borderRadius: 12, border: 'none', cursor: 'pointer',
+              background: active ? t.accentSoft : 'transparent',
+              color: active ? t.accent : t.textDim,
+              fontFamily: t.font, transition: 'all 0.18s',
+              width: '100%',
+            }}>
+              <Icon size={20} color={active ? t.accent : t.textDim} sw={active ? 2 : 1.5} />
+              <span style={{ fontSize: 9, fontWeight: active ? 700 : 500, letterSpacing: 0.2 }}>
+                {item.label}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Spacer */}
+      <div style={{ flex: 1 }} />
+
+      {/* Coach */}
+      <button onClick={onOpenCoach} style={{
+        width: 44, height: 44, borderRadius: '50%',
+        background: t.accentSoft, border: `1px solid ${t.accent}20`,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        cursor: 'pointer', marginBottom: 12,
+      }}>
+        <IcSpark size={18} color={t.accent} />
+      </button>
+
+      {/* User avatar */}
+      <div style={{
+        width: 36, height: 36, borderRadius: '50%',
+        background: t.accentSoft, border: `1px solid ${t.accent}40`,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontSize: 12, fontWeight: 700, color: t.accent,
+        fontFamily: t.font,
+      }}>{initials}</div>
+    </div>
+  );
+}
+
 function useFitScale(w: number, h: number, margin = 24) {
   const [scale, setScale] = useState(1);
   useEffect(() => {
@@ -3100,6 +3202,7 @@ export default function MobilePrototype() {
   const [padsOpen, setPadsOpen] = useState(false);
   const [onboarded, setOnboarded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<'opvarmning' | 'nodelære' | 'grooves' | 'playalong' | null>(null);
   const [rhythmHeroOpen, setRhythmHeroOpen] = useState(false);
   const [guestXp, setGuestXp] = useState(120);
@@ -3107,12 +3210,13 @@ export default function MobilePrototype() {
   const { user } = useAuth();
 
   useEffect(() => {
-    const checkMobile = () => {
+    const checkSize = () => {
       setIsMobile(window.innerWidth < 768);
+      setIsDesktop(window.innerWidth >= 1024);
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    checkSize();
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
   }, []);
 
   // Initialize guest XP, onboarded status, and landing-page gate
@@ -3167,22 +3271,84 @@ export default function MobilePrototype() {
   }, [tab]);
 
   const completeOnboarding = () => {
-    try {
-      localStorage.setItem('pocketdrummer-onboarded', '1');
-    } catch {
-      // Ignore errors silently
-    }
+    try { localStorage.setItem('pocketdrummer-onboarded', '1'); } catch {}
     setOnboarded(true);
   };
 
   const handleResetOnboarding = () => {
-    try {
-      localStorage.removeItem('pocketdrummer-onboarded');
-    } catch {
-      // Ignore errors silently
-    }
+    try { localStorage.removeItem('pocketdrummer-onboarded'); } catch {}
     setOnboarded(false);
   };
+
+  // ── Desktop layout ────────────────────────────────────────
+  if (isDesktop) {
+    return (
+      <div style={{
+        display: 'flex', height: '100vh', overflow: 'hidden',
+        background: t.bg, color: t.text, fontFamily: t.font,
+        WebkitFontSmoothing: 'antialiased',
+      }}>
+        <DesktopRail
+          tab={tab} onTab={setTab} t={t}
+          onSelectCategory={(cat) => setSelectedCategory(cat)}
+          onOpenCoach={() => setCoachOpen(true)}
+        />
+        <div ref={contentRef} style={{
+          flex: 1, overflowY: 'auto', position: 'relative',
+          background: t.bg,
+        }}>
+          <div key={tab} className="tab-content-enter">
+            {tab === 'home' && (
+              <HomeScreen t={t} dark={dark} setDark={setDark}
+                onSelectCategory={(id) => setSelectedCategory(id)}
+                onOpenCoach={() => setCoachOpen(true)}
+                onPlayRhythmHero={() => setRhythmHeroOpen(true)}
+                guestXp={guestXp} isDesktop />
+            )}
+            {tab === 'practice' && (
+              <PracticeScreen t={t} dark={dark}
+                onSelectCategory={(id) => setSelectedCategory(id)}
+                onPlayRhythmHero={() => setRhythmHeroOpen(true)} />
+            )}
+            {tab === 'kit' && (
+              <StudioKitScreen t={t} dark={dark} onOpenPads={() => setPadsOpen(true)} />
+            )}
+            {tab === 'profile' && (
+              <ProfileScreen t={t} dark={dark} setDark={setDark} guestXp={guestXp} />
+            )}
+          </div>
+
+          {/* Overlays fill content area (not the rail) */}
+          {selectedCategory && (
+            <MobileCategoryDetail t={t} dark={dark} category={selectedCategory}
+              onClose={() => setSelectedCategory(null)}
+              onOpenCoach={() => { setSelectedCategory(null); setCoachOpen(true); }} />
+          )}
+          {trackId && (
+            <TrackDetail t={t} dark={dark} trackId={trackId}
+              onClose={() => setTrackId(null)}
+              onOpenLesson={(id: string) => setLessonId(id)}
+              onOpenCoach={() => { setTrackId(null); setCoachOpen(true); }} />
+          )}
+          {lessonId && (
+            <LessonDetail t={t} dark={dark} lessonId={lessonId}
+              onClose={() => setLessonId(null)}
+              onOpenCoach={() => { setLessonId(null); setCoachOpen(true); }} />
+          )}
+          {coachOpen && <CoachScreen t={t} dark={dark} onClose={() => setCoachOpen(false)} />}
+          {padsOpen && <KitPadView t={t} dark={dark} onClose={() => setPadsOpen(false)} />}
+          {rhythmHeroOpen && (
+            <RhythmHero
+              onClose={() => setRhythmHeroOpen(false)}
+              onAwardXP={handleAwardXp}
+              tTokens={t}
+            />
+          )}
+          {!onboarded && <OnboardingScreen t={t} dark={dark} onStart={completeOnboarding} />}
+        </div>
+      </div>
+    );
+  }
 
   const safeVars = {
     '--safe-top': isMobile ? 'calc(env(safe-area-inset-top) + 12px)' : '62px',
