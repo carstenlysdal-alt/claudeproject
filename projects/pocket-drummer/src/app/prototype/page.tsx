@@ -2644,7 +2644,15 @@ interface CoachMessage {
 }
 
 function CoachScreen({ t, onClose }: CoachScreenProps) {
+  const { user } = useAuth();
+  const firstName = (user?.displayName || user?.email?.split('@')[0] || 'du').split(' ')[0];
+
   const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState<CoachMessage[]>([
+    { role: 'ai', text: `Hej ${firstName} 👋\nJeg er din AI Coach. Hvad øver du dig på for øjeblikket, og hvordan går det?` },
+  ]);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -2652,36 +2660,44 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
     return () => window.removeEventListener('keydown', h);
   }, [onClose]);
 
-  const [messages, setMessages] = useState<CoachMessage[]>([
-    { role: 'ai', text: 'Hej Astrid 👋\nJeg er din AI Coach. Jeg har set, du arbejder med 16-dele hi-hat lige nu. Hvordan går det?' },
-    { role: 'user', text: 'Det er svært at holde tempo når jeg tilføjer kick. Højre hånd bliver hurtig.' },
-    { role: 'ai', text: 'Det er en klassisk udfordring — kroppen vil gerne synkronisere bevægelserne. Prøv det her:\n\n1.   Sæt metronomen til 70 BPM\n2.   Spil KUN hi-hat 16-dele i 8 takter\n3.   Hold tempo, og tilføj så kun kick på 1\n\nFokuser bevidst på at hi-hat-hånden IKKE accelererer. Vil du have, jeg åbner en øvelse til dig?' },
-    { role: 'user', text: 'Ja tak.' },
-  ]);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages]);
 
-  const send = () => {
-    if (!input.trim()) return;
-    const next = [...messages, { role: 'user', text: input }];
+  const send = async (text?: string) => {
+    const msg = (text ?? input).trim();
+    if (!msg || loading) return;
     setInput('');
+    const next: CoachMessage[] = [...messages, { role: 'user', text: msg }];
     setMessages(next);
-    setTimeout(() => {
-      setMessages([...next, { role: 'ai', text: 'Lad mig finde den…', typing: true }]);
-      setTimeout(() => {
-        setMessages([...next, { role: 'ai', text: 'Klar — jeg har bygget et 4-trins forløb til dig: starter i 60 BPM og bygger op til 100 BPM. Tryk Start når du er klar.' }]);
-      }, 1100);
-    }, 250);
+    setLoading(true);
+    setMessages(m => [...m, { role: 'ai', text: '...', typing: true }]);
+
+    try {
+      const history = next
+        .filter(m => !m.typing)
+        .map(m => ({ role: m.role === 'ai' ? 'assistant' : 'user', content: m.text }));
+
+      const res = await fetch('/api/coach', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+      const data = await res.json();
+      const reply = data.message || 'Noget gik galt. Prøv igen.';
+      setMessages([...next, { role: 'ai', text: reply }]);
+    } catch {
+      setMessages([...next, { role: 'ai', text: 'Jeg kan ikke nå serveren lige nu. Tjek din forbindelse og prøv igen.' }]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const suggested = [
-    'Forklar synkoper',
-    'Vis paradiddle',
     'Hvad skal jeg øve i dag?',
-    'Hjælp med 16-dele',
+    'Hjælp med timing',
+    'Forklar paradiddle',
+    'Hjælp med fills',
   ];
 
   return (
@@ -2773,11 +2789,14 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
               fontFamily: t.font, fontSize: 14, color: t.text, padding: '8px 0',
             }}
           />
-          <button onClick={send} style={{
+          <button onClick={() => send()} disabled={!input.trim() || loading} style={{
             width: 38, height: 38, borderRadius: '50%',
-            background: input.trim() ? t.accent : t.surface2,
-            border: 'none', color: input.trim() ? '#fff' : t.textDim,
-            cursor: 'pointer', display: 'flex', alignItems: 'center', }}><IcSend size={16} /></button>
+            background: (input.trim() && !loading) ? t.accent : t.surface2,
+            border: 'none', color: (input.trim() && !loading) ? '#fff' : t.textDim,
+            cursor: (input.trim() && !loading) ? 'pointer' : 'default',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            transition: 'background 0.15s',
+          }}>{loading ? <span style={{ fontSize: 10, opacity: 0.6 }}>•••</span> : <IcSend size={16} />}</button>
         </div>
       </div>
     </div>
