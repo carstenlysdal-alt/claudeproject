@@ -75,6 +75,7 @@ Vigtige regler:
   const [notationFilename, setNotationFilename] = useState('');
   const [saveNotationLoading, setSaveNotationLoading] = useState(false);
   const [saveNotationMsg, setSaveNotationMsg] = useState('');
+  const [uploadCategory, setUploadCategory] = useState<'opvarmning' | 'nodelære' | 'grooves' | 'playalong'>('grooves');
   
   // Audio & YouTube Transcribe state
   const [audioFile, setAudioFile] = useState<File | null>(null);
@@ -261,7 +262,7 @@ Vigtige regler:
 
   const handleTranscribeAudio = async () => {
     if (!audioFile && !youtubeUrl.trim()) {
-      alert("Vælg venligst en lydfil eller angiv en YouTube-url.");
+      alert("Vælg venligst en video-/lydfil eller angiv en YouTube-url.");
       return;
     }
 
@@ -272,7 +273,7 @@ Vigtige regler:
 
     addTranscribeLog("Starter transskriberingspipeline...");
     if (audioFile) {
-      addTranscribeLog(`Uploader lydfil: ${audioFile.name} (${(audioFile.size / 1024 / 1024).toFixed(2)} MB)`);
+      addTranscribeLog(`Uploader fil: ${audioFile.name} (${(audioFile.size / 1024 / 1024).toFixed(2)} MB)`);
     } else {
       addTranscribeLog(`Forbinder til YouTube URL: ${youtubeUrl}`);
     }
@@ -317,8 +318,8 @@ Vigtige regler:
       addTranscribeLog("Indlæser node-preview...");
       setXmlData(data.xml);
       
-      const defaultTitle = audioFile 
-        ? `Lyd: ${audioFile.name.replace(/\.[^/.]+$/, "")}` 
+      const defaultTitle = audioFile
+        ? audioFile.name.replace(/\.[^/.]+$/, "")
         : `YouTube: Transskriberet`;
       setTitle(defaultTitle);
       setActiveTab('preview');
@@ -527,7 +528,7 @@ Vigtige regler:
                   alignItems: 'center', justifyContent: 'center', gap: '6px', transition: 'all 0.2s' 
                 }}
               >
-                <Music size={14} /> Lyd
+                <Music size={14} /> Video
               </button>
               <button 
                 onClick={() => setToolTab('presets')} 
@@ -759,8 +760,22 @@ Vigtige regler:
                   />
                 </div>
 
-                <button 
-                  onClick={handleScanSheetMusic} 
+                <div className="form-group">
+                  <label className="form-label">Kategori</label>
+                  <select
+                    className="form-control"
+                    value={uploadCategory}
+                    onChange={(e) => setUploadCategory(e.target.value as typeof uploadCategory)}
+                  >
+                    <option value="opvarmning">Opvarmning</option>
+                    <option value="nodelære">Nodelære</option>
+                    <option value="grooves">Grooves</option>
+                    <option value="playalong">Play-along</option>
+                  </select>
+                </div>
+
+                <button
+                  onClick={handleScanSheetMusic}
                   className="btn btn-primary w-full"
                   disabled={scanLoading || !scanFile}
                 >
@@ -816,17 +831,17 @@ Vigtige regler:
               <div className="glass-card">
                 <div className="flex align-center gap-2 mb-2">
                   <Music size={20} style={{ color: '#ef5a3a' }} />
-                  <h3 style={{ fontSize: '1.1rem' }}>Lyd & YouTube AI Transskription</h3>
+                  <h3 style={{ fontSize: '1.1rem' }}>Video & YouTube AI Transskription</h3>
                 </div>
                 <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }} className="mb-3">
-                  Upload en MP3/WAV lydfil af en trommeoptagelse, eller paste et YouTube-link for at transskribere lyden direkte til MusicXML.
+                  Upload en video- eller lydfil af en trommeoptagelse, eller paste et YouTube-link for at transskribere indholdet direkte til MusicXML.
                 </p>
 
                 <div className="form-group">
-                  <label className="form-label">Valgmulighed A: Upload lydfil (MP3/WAV)</label>
-                  <input 
-                    type="file" 
-                    accept="audio/*" 
+                  <label className="form-label">Valgmulighed A: Upload video eller lyd (MP4, MOV, MP3, WAV...)</label>
+                  <input
+                    type="file"
+                    accept="video/*,audio/*"
                     className="form-control"
                     onChange={(e) => {
                       if (e.target.files && e.target.files[0]) {
@@ -853,13 +868,26 @@ Vigtige regler:
                   />
                 </div>
 
-                <button 
-                  onClick={handleTranscribeAudio} 
+                <div className="form-group" style={{ marginTop: '0.5rem' }}>
+                  <label className="form-label">Kategori</label>
+                  <select
+                    className="form-control"
+                    value={uploadCategory}
+                    onChange={(e) => setUploadCategory(e.target.value as typeof uploadCategory)}
+                  >
+                    <option value="opvarmning">Opvarmning</option>
+                    <option value="nodelære">Nodelære</option>
+                    <option value="grooves">Grooves</option>
+                    <option value="playalong">Play-along</option>
+                  </select>
+                </div>
+
+                <button
+                  onClick={handleTranscribeAudio}
                   className="btn btn-primary w-full"
                   disabled={transcribeLoading || (!audioFile && !youtubeUrl.trim())}
-                  style={{ marginTop: '0.5rem' }}
                 >
-                  {transcribeLoading ? 'Transskriberer lydsporet...' : 'Kør AI Lyd-Transskription'}
+                  {transcribeLoading ? 'Transskriberer...' : 'Kør AI Video/Lyd-Transskription'}
                 </button>
 
                 {transcribeLog.length > 0 && (

@@ -699,13 +699,16 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, onPlayRhy
         </div>
       </div>
 
-      {/* Today's lesson — cinematic hero card */}
+      {/* Today's lesson — hero card */}
       <div style={{ marginBottom: 28 }}>
         <div
           onClick={() => onSelectCategory('grooves')}
           style={{
             borderRadius: 20, overflow: 'hidden', position: 'relative',
-            aspectRatio: isDesktop ? '21 / 9' : '3 / 4', cursor: 'pointer',
+            aspectRatio: isDesktop ? undefined : '3 / 4',
+            minHeight: isDesktop ? 280 : undefined,
+            display: isDesktop ? 'flex' : undefined,
+            cursor: 'pointer',
             boxShadow: '0 8px 40px rgba(0,0,0,0.65)',
             transition: 'transform 150ms cubic-bezier(0.16,1,0.3,1)',
           }}
@@ -743,7 +746,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, onPlayRhy
             background: 'linear-gradient(to bottom, rgba(12,10,7,0) 0%, rgba(12,10,7,0) 22%, rgba(12,10,7,0.46) 52%, rgba(12,10,7,0.9) 74%, rgba(12,10,7,0.97) 100%)',
           }} />
           {/* Top: day pill + play button */}
-          <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: isDesktop ? 'none' : 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{
               background: 'rgba(232,112,58,0.18)', border: '1px solid rgba(232,112,58,0.38)',
               borderRadius: 20, padding: '5px 12px',
@@ -761,27 +764,60 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, onPlayRhy
               <IcPlay size={12} color="white" />
             </div>
           </div>
-          {/* Bottom: eyebrow + title + subtitle + progress + CTA */}
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 20 }}>
-            <div style={{ fontSize: 10.5, fontWeight: 600, color: t.textMuted, letterSpacing: 0.9, textTransform: 'uppercase', marginBottom: 8 }}>
-              {language === 'da' ? 'I dag · Grundrytmer' : 'Today · Fundamentals'}
-            </div>
-            <div style={{ fontFamily: t.head, fontWeight: 800, fontSize: 26, color: t.text, letterSpacing: -0.6, lineHeight: 1.12, marginBottom: 8 }}>
-              {language === 'da' ? 'Grooves & fills — del 1' : 'Grooves & fills — pt. 1'}
-            </div>
-            <div style={{ fontSize: 13.5, color: t.textMuted, lineHeight: 1.45, marginBottom: 16 }}>
-              {language === 'da' ? 'Lær hi-hat mønstre med halvnoder over bass-tromme' : 'Learn hi-hat patterns with half notes over bass drum'}
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-              <div style={{ flex: 1, height: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 2, overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: '43%', background: t.accent, borderRadius: 2, boxShadow: `0 0 8px ${t.accentGlow}` }} />
+          {isDesktop ? (
+            /* Desktop: tekst-kolonne venstre, visuel højre */
+            <div style={{ display: 'flex', width: '100%', position: 'relative', zIndex: 1 }}>
+              <div style={{
+                flex: '0 0 55%', padding: '36px 40px',
+                display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                background: 'linear-gradient(to right, rgba(12,8,4,0.97) 60%, rgba(12,8,4,0) 100%)',
+              }}>
+                <div style={{ fontSize: 10, fontWeight: 700, color: t.accent, letterSpacing: 1.2, textTransform: 'uppercase', marginBottom: 12 }}>
+                  {language === 'da' ? 'I dag · Grundrytmer' : 'Today · Fundamentals'}
+                </div>
+                <div style={{ fontFamily: t.head, fontWeight: 800, fontSize: 32, color: t.text, letterSpacing: -0.8, lineHeight: 1.1, marginBottom: 10 }}>
+                  {language === 'da' ? 'Grooves & fills — del 1' : 'Grooves & fills — pt. 1'}
+                </div>
+                <div style={{ fontSize: 14, color: t.textMuted, lineHeight: 1.5, marginBottom: 24 }}>
+                  {language === 'da' ? 'Lær hi-hat mønstre med halvnoder over bass-tromme' : 'Learn hi-hat patterns with half notes over bass drum'}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
+                  <div style={{ flex: 1, height: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 2, overflow: 'hidden' }}>
+                    <div style={{ height: '100%', width: '43%', background: t.accent, borderRadius: 2 }} />
+                  </div>
+                  <span style={{ fontSize: 11, color: t.textMuted, whiteSpace: 'nowrap', fontFamily: t.mono }}>3 / 7</span>
+                </div>
+                <div>
+                  <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcChev size={16} />}>
+                    {language === 'da' ? 'Start lektion' : language === 'en' ? 'Start lesson' : language === 'de' ? 'Lektion starten' : 'Iniciar lección'}
+                  </CTA>
+                </div>
               </div>
-              <span style={{ fontSize: 12, color: t.textMuted, whiteSpace: 'nowrap' }}>3 / 7</span>
+              <div style={{ flex: 1 }} />
             </div>
-            <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcChev size={16} />}>
-              {language === 'da' ? 'Start lektion' : language === 'en' ? 'Start lesson' : language === 'de' ? 'Lektion starten' : 'Iniciar lección'}
-            </CTA>
-          </div>
+          ) : (
+            /* Mobil: absolut-positioneret tekst i bunden */
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 20 }}>
+              <div style={{ fontSize: 10.5, fontWeight: 600, color: t.textMuted, letterSpacing: 0.9, textTransform: 'uppercase', marginBottom: 8 }}>
+                {language === 'da' ? 'I dag · Grundrytmer' : 'Today · Fundamentals'}
+              </div>
+              <div style={{ fontFamily: t.head, fontWeight: 800, fontSize: 26, color: t.text, letterSpacing: -0.6, lineHeight: 1.12, marginBottom: 8 }}>
+                {language === 'da' ? 'Grooves & fills — del 1' : 'Grooves & fills — pt. 1'}
+              </div>
+              <div style={{ fontSize: 13.5, color: t.textMuted, lineHeight: 1.45, marginBottom: 16 }}>
+                {language === 'da' ? 'Lær hi-hat mønstre med halvnoder over bass-tromme' : 'Learn hi-hat patterns with half notes over bass drum'}
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+                <div style={{ flex: 1, height: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 2, overflow: 'hidden' }}>
+                  <div style={{ height: '100%', width: '43%', background: t.accent, borderRadius: 2, boxShadow: `0 0 8px ${t.accentGlow}` }} />
+                </div>
+                <span style={{ fontSize: 12, color: t.textMuted, whiteSpace: 'nowrap' }}>3 / 7</span>
+              </div>
+              <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcChev size={16} />}>
+                {language === 'da' ? 'Start lektion' : language === 'en' ? 'Start lesson' : language === 'de' ? 'Lektion starten' : 'Iniciar lección'}
+              </CTA>
+            </div>
+          )}
         </div>
       </div>
 
@@ -3294,12 +3330,13 @@ export default function MobilePrototype() {
         WebkitFontSmoothing: 'antialiased',
       }}>
         <DesktopRail
-          tab={tab} onTab={setTab} t={t}
+          tab={tab} onTab={(t) => { setTab(t); setSelectedCategory(null); }} t={t}
           onSelectCategory={(cat) => setSelectedCategory(cat)}
           onOpenCoach={() => setCoachOpen(true)}
         />
         <div ref={contentRef} style={{
           flex: 1, overflowY: 'auto', position: 'relative',
+          zIndex: 0, // stacking context — overlays kan ikke dække railen
           background: t.bg,
         }}>
           <div key={tab} className="tab-content-enter">
