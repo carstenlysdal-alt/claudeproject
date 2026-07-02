@@ -1341,12 +1341,8 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
         </div>
       )}
 
-      {/* Content */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 80px', scrollbarWidth: 'none',
-        display: isDesktopView ? 'grid' : 'block',
-        gridTemplateColumns: isDesktopView ? '1fr 1fr' : undefined,
-        gap: isDesktopView ? 24 : undefined,
-      }}>
+      {/* Content — noder øverst, video under (begge synlige på desktop) */}
+      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 80px', scrollbarWidth: 'none' }}>
 
         {(tab === 'noder' || isDesktopView) && (
           <div>
