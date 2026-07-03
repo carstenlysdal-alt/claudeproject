@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Carsten Lysdal — Redaktionel transformation, AI-enablement og data til beslutninger i medievirksomheder.">
+  <meta name="description" content="Carsten Lysdal bygger bro mellem journalistik, data, AI og organisation. Redaktionel transformation, AI-enablement og data til beslutninger i medievirksomheder.">
+  <meta property="og:title" content="Carsten Lysdal">
+  <meta property="og:description" content="Fra strategi til praksis: journalistik, AI, data og ledelse i virkeligheden.">
   <title>Carsten Lysdal</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -17,69 +19,72 @@
   <!-- NAV -->
   <nav>
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">CL<span>.</span></a>
+      <a href="#hero" class="nav-logo">Carsten Lysdal</a>
       <ul class="nav-links">
         <li><a href="#metode">Metode</a></li>
         <li><a href="#cases">Cases</a></li>
-        <li><a href="#ai-data">AI & Data</a></li>
+        <li><a href="#ai-data">AI &amp; Data</a></li>
         <li><a href="#ledelse">Ledelse</a></li>
         <li><a href="#cv">CV</a></li>
-        <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+        <li><a href="assets/carsten-lysdal-cv.pdf" download class="btn btn-primary nav-cta">Hent CV</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </button>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO: Split layout -->
   <section id="hero">
     <div class="container">
       <div class="hero-grid">
 
         <div class="hero-content">
-          <div class="hero-eyebrow animate-in" data-delay="1">
-            <span class="label">Mediechef · AI-enablement · Redaktionel transformation</span>
-          </div>
-
-          <h1 class="hero-title animate-in" data-delay="2">
+          <h1 class="hero-title animate-in" data-delay="1">
             Fra strategi<br>til <em>praksis</em>
           </h1>
 
-          <p class="hero-pitch animate-in" data-delay="3">
-            Jeg bygger bro mellem journalistik, data, AI og organisation —
+          <p class="hero-pitch animate-in" data-delay="2">
+            Jeg bygger bro mellem journalistik, data, AI og organisation
             og får strategi til at virke i redaktionel praksis.
           </p>
 
-          <div class="hero-tags animate-in" data-delay="4">
-            <span class="tag">Redaktionel transformation</span>
-            <span class="tag">AI-enablement</span>
-            <span class="tag">Data til beslutninger</span>
-            <span class="tag">Produkter og workflows</span>
+          <p class="hero-tagline animate-in" data-delay="3">
+            Redaktionel transformation · AI-enablement · Data til beslutninger
+          </p>
+
+          <div class="hero-actions animate-in" data-delay="4">
+            <a href="assets/carsten-lysdal-cv.pdf" download class="btn btn-primary">Hent CV</a>
+            <a href="#cases" class="btn btn-ghost">Se cases</a>
           </div>
 
-          <div class="hero-actions animate-in" data-delay="5">
-            <a href="#cases" class="btn btn-primary">Se cases</a>
-            <a href="#cv" class="btn btn-ghost">Hent CV</a>
+          <div class="hero-meta animate-in" data-delay="5">
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Profil</span>
+              <span class="hero-meta-value">Mediechef og redaktionel AI-profil</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Speciale</span>
+              <span class="hero-meta-value">AI-enablement og transformation</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Kontakt</span>
+              <span class="hero-meta-value">
+                <a href="mailto:carstenlysdal@proton.me">Send mail</a>
+              </span>
+            </div>
           </div>
         </div>
 
-        <div class="hero-visual animate-in" data-delay="3">
-          <div class="rrr-model">
-            <div class="rrr-circle rrr-circle-1">
-              <span class="rrr-label">Relevans</span>
-              <span class="rrr-sublabel">Hvad betyder noget?</span>
-            </div>
-            <div class="rrr-circle rrr-circle-2">
-              <span class="rrr-label">Resonans</span>
-              <span class="rrr-sublabel">Hvad skaber gennemslag?</span>
-            </div>
-            <div class="rrr-circle rrr-circle-3">
-              <span class="rrr-label">Relation</span>
-              <span class="rrr-sublabel">Hvad skaber bevægelse?</span>
-            </div>
+        <div class="hero-photo-wrap animate-in" data-delay="2">
+          <!-- TODO: Erstat med stien til dit professionelle portræt, fx:
+               <img src="assets/carsten-lysdal.jpg" alt="Carsten Lysdal" width="400" height="533">
+               Anbefalet: 600x800px, portræt, neutral eller lys baggrund -->
+          <div class="hero-photo-placeholder">
+            <span>&#9679;</span>
+            <span>Foto indsættes</span>
           </div>
         </div>
 
@@ -87,103 +92,110 @@
     </div>
   </section>
 
-  <hr class="divider">
+  <hr class="rule">
 
-  <!-- METODE -->
+  <!-- METODE: Full-width editorial prose -->
   <section id="metode">
     <div class="container">
-      <span class="section-label">Tilgang</span>
-      <h2 class="section-title reveal">
-        En model for redaktionel forandring
-      </h2>
 
-      <div class="metode-grid">
-
-        <div class="metode-card reveal">
-          <span class="metode-number">01</span>
-          <div class="metode-title">Relevans</div>
-          <p class="metode-desc">
-            Hvad betyder noget for brugeren, virksomheden, borgeren eller redaktionen?
-            Forandring starter med en præcis forståelse af, hvad der faktisk er på spil —
-            ikke hvad organisationen tror er på spil.
+      <div class="metode-intro">
+        <h2 class="reveal">Relevans,<br>Resonans<br>og Relation</h2>
+        <div class="metode-intro-body">
+          <p class="reveal">
+            Jeg arbejder i krydsfeltet mellem journalistik, data, AI og ledelse.
+            Min styrke er at omsætte komplekse muligheder til konkret redaktionel
+            praksis: produkter, workflows, prioriteringsmodeller, dashboards og
+            forandring, der kan mærkes i hverdagen.
+          </p>
+          <p class="reveal">
+            Jeg har ledet redaktionelle og digitale transformationer, udviklet
+            AI-værktøjer fra prototype til drift og arbejdet med at få data
+            og brugerindsigter ind i de beslutninger, der former journalistikken.
+          </p>
+          <p class="reveal">
+            Mit fokus er ikke teknologi for teknologiens skyld. Det er relevans,
+            resonans og relation: Hvad betyder noget? Hvad skaber gennemslag?
+            Og hvordan får man mennesker og organisationer til at flytte sig?
           </p>
         </div>
-
-        <div class="metode-card reveal">
-          <span class="metode-number">02</span>
-          <div class="metode-title">Resonans</div>
-          <p class="metode-desc">
-            Hvordan får indhold, data eller teknologi faktisk gennemslag?
-            Det handler ikke om at producere mere, men om at forstå hvad der
-            rammer rigtigt — og bygge systemer der gør det konsistent.
-          </p>
-        </div>
-
-        <div class="metode-card reveal">
-          <span class="metode-number">03</span>
-          <div class="metode-title">Relation</div>
-          <p class="metode-desc">
-            Hvordan skaber man tillid, følgeskab og adfærdsændring?
-            Teknologi og strategi implementeres af mennesker. Uden forankring
-            i organisationen stopper forandringen ved pilotfasen.
-          </p>
-        </div>
-
       </div>
 
-      <div class="metode-about reveal" style="margin-top:3.5rem; max-width:72ch; color:var(--text-muted); line-height:1.75;">
-        <p>
-          Jeg arbejder i krydsfeltet mellem journalistik, data, AI og ledelse. Min styrke er
-          at omsætte komplekse muligheder til konkret redaktionel praksis: produkter, workflows,
-          prioriteringsmodeller, dashboards og forandring, der kan mærkes i hverdagen.
-        </p>
-        <br>
-        <p>
-          Jeg har ledet redaktionelle og digitale transformationer, udviklet AI-værktøjer fra
-          prototype til drift og arbejdet med at få data og brugerindsigter ind i de beslutninger,
-          der former journalistikken.
-        </p>
+      <div class="metode-pillars">
+        <div class="metode-pillar reveal">
+          <div class="metode-pillar-word">Relevans</div>
+          <div class="metode-pillar-question">Hvad betyder noget?</div>
+          <p class="metode-pillar-desc">
+            For brugeren, virksomheden, borgeren eller redaktionen.
+            Forandring starter med en præcis forståelse af, hvad der faktisk
+            er på spil. Ikke hvad organisationen tror er på spil.
+          </p>
+        </div>
+        <div class="metode-pillar reveal">
+          <div class="metode-pillar-word">Resonans</div>
+          <div class="metode-pillar-question">Hvad skaber gennemslag?</div>
+          <p class="metode-pillar-desc">
+            Indhold, data eller teknologi får kun værdi, når det rammer rigtigt.
+            Det handler ikke om at producere mere, men om at forstå hvad der
+            virker og bygge systemer der gør det konsistent.
+          </p>
+        </div>
+        <div class="metode-pillar reveal">
+          <div class="metode-pillar-word">Relation</div>
+          <div class="metode-pillar-question">Hvad skaber bevægelse?</div>
+          <p class="metode-pillar-desc">
+            Teknologi og strategi implementeres af mennesker. Uden forankring
+            i organisationen stopper forandringen ved pilotfasen. Jeg arbejder
+            med at bygge intern opbakning ved at involvere, ikke ved at sælge.
+          </p>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <hr class="divider">
+  <hr class="rule">
 
-  <!-- CASES -->
+  <!-- CASES: 2-column grid -->
   <section id="cases">
     <div class="container">
-      <span class="section-label">Bevisførelse</span>
-      <h2 class="section-title reveal">Cases</h2>
-      <p class="cases-intro reveal">
-        Seks dokumenterede eksempler på, hvad det betyder at gå fra idé til drift
-        i virkelige redaktionelle organisationer.
-      </p>
+
+      <div class="cases-header">
+        <div>
+          <span class="cases-eyebrow">Bevisførelse</span>
+          <h2 class="reveal">Cases</h2>
+        </div>
+        <p class="reveal" style="max-width:38ch; font-size:0.9rem;">
+          Seks dokumenterede eksempler på, hvad det vil sige at gå
+          fra idé til drift i virkelige redaktionelle organisationer.
+        </p>
+      </div>
 
       <div class="cases-grid">
 
         <div class="case-card reveal">
-          <span class="case-index">Case 01</span>
-          <h3 class="case-title">Chatty — AI fra prototype til redaktionel drift</h3>
+          <span class="case-num">Case 01</span>
+          <h3 class="case-title">Chatty: AI fra prototype til redaktionel drift</h3>
           <p class="case-desc">
-            Udviklede og implementerede AI-assistentplatform i redaktionen: use cases,
-            træningsforløb, workflows, feedback loops, kvalitetsstandarder og governance.
-            Fra pilotprojekt til daglig drift i en levende organisation.
+            Udviklede og implementerede AI-assistentplatform i redaktionen fra pilot
+            til daglig drift: use cases, træning, workflows, feedback loops,
+            kvalitetsstandarder og governance. Det farligste stoppested er
+            halvimplementeret teknologi med aktive brugere og uklart ejerskab.
           </p>
           <div class="case-tags">
             <span class="case-tag">AI-enablement</span>
             <span class="case-tag">Implementering</span>
-            <span class="case-tag">Change management</span>
+            <span class="case-tag">Governance</span>
           </div>
         </div>
 
         <div class="case-card reveal">
-          <span class="case-index">Case 02</span>
+          <span class="case-num">Case 02</span>
           <h3 class="case-title">Redaktionel transformation, Sjællandske Medier</h3>
           <p class="case-desc">
-            Fra fragmenteret drift til datadrevet, AI-understøttet og prioriteret redaktionel
-            praksis. Strategisk ledelse af organisatorisk forandring på tværs af redaktioner,
-            formater og beslutningsniveauer.
+            Fra fragmenteret drift til datadrevet, AI-understøttet og prioriteret
+            redaktionel praksis. Strategisk ledelse af organisatorisk forandring
+            på tværs af redaktioner, formater og beslutningsniveauer med begrænsede
+            ressourcer og høje forventninger.
           </p>
           <div class="case-tags">
             <span class="case-tag">Transformation</span>
@@ -193,27 +205,29 @@
         </div>
 
         <div class="case-card reveal">
-          <span class="case-index">Case 03</span>
+          <span class="case-num">Case 03</span>
           <h3 class="case-title">Data til redaktionelle beslutninger</h3>
           <p class="case-desc">
-            Byggede beslutningsgrundlag på tværs af KPI, OKR, relevanskriterier og
-            content performance. Oversatte brugerindsigter til redaktionelle prioriteringer —
-            og gjorde data til et redaktionelt arbejdsredskab, ikke et ledelses-Excel.
+            Byggede beslutningsgrundlag på tværs af KPI, OKR, relevanskriterier
+            og content performance. Oversatte brugerindsigter til redaktionelle
+            prioriteringer og gjorde data til et arbejdsredskab i hverdagen,
+            ikke et ledelses-regneark.
           </p>
           <div class="case-tags">
             <span class="case-tag">Data</span>
-            <span class="case-tag">KPI/OKR</span>
+            <span class="case-tag">KPI og OKR</span>
             <span class="case-tag">Content performance</span>
           </div>
         </div>
 
         <div class="case-card reveal">
-          <span class="case-index">Case 04</span>
+          <span class="case-num">Case 04</span>
           <h3 class="case-title">Skalering af korte formater</h3>
           <p class="case-desc">
-            Øgede redaktionel output og effektivitet gennem redesignede processer og
-            AI-understøttede produktionsflows. Uden at øge bemanding. Bevis for at
-            teknologi og metode kan erstatte ressourcer, når de bruges rigtigt.
+            Øgede redaktionel output og effektivitet gennem redesignede processer
+            og AI-understøttede produktionsflows uden at øge bemanding. Bevis
+            for at teknologi og metode kan erstatte ressourcer, når de bruges
+            med bevidsthed om det redaktionelle mål.
           </p>
           <div class="case-tags">
             <span class="case-tag">Workflow-design</span>
@@ -223,12 +237,13 @@
         </div>
 
         <div class="case-card reveal">
-          <span class="case-index">Case 05</span>
-          <h3 class="case-title">Y Business — AI-medieprodukt</h3>
+          <span class="case-num">Case 05</span>
+          <h3 class="case-title">Y Business: AI-medieprodukt fra idé til spec</h3>
           <p class="case-desc">
             Konceptudvikling af AI-drevet erhvervsintelligens-platform: ratingmodeller,
             datafeeds, brugerbehov, redaktionelle formater og teknologisk arkitektur.
-            Fra idé til produktspecifikation klar til implementation.
+            Fra strategisk idé til produktspecifikation klar til implementation
+            i samarbejde med CEO, Tech Lead og Commercial Lead.
           </p>
           <div class="case-tags">
             <span class="case-tag">Produktudvikling</span>
@@ -238,12 +253,13 @@
         </div>
 
         <div class="case-card reveal">
-          <span class="case-index">Case 06</span>
+          <span class="case-num">Case 06</span>
           <h3 class="case-title">Research, OSINT og journalistisk metode</h3>
           <p class="case-desc">
-            Den nye specialistrolle: digitale kilder, AI-assisteret research, åbne data,
-            dokumentanalyse og systematisk journalistisk metode. Fra hændelse til dybde
-            med bedre redskaber og skarpere systematik.
+            Den nye specialistrolle i journalistikken: digitale kilder, AI-assisteret
+            research, åbne data, dokumentanalyse og systematisk metode. Fra hændelse
+            til dybde med bedre redskaber og skarpere systematik i en acceleration
+            af AI-mulighederne i faget.
           </p>
           <div class="case-tags">
             <span class="case-tag">OSINT</span>
@@ -256,67 +272,74 @@
     </div>
   </section>
 
-  <hr class="divider">
+  <hr class="rule">
 
-  <!-- AI & DATA -->
+  <!-- AI & DATA: Divide-y horizontal list -->
   <section id="ai-data">
     <div class="container">
-      <span class="section-label">Værktøjskasse</span>
-      <h2 class="section-title reveal">AI & Data</h2>
 
-      <div class="tools-grid">
+      <div class="ai-data-header">
+        <h2 class="reveal">AI og data i praksis</h2>
+        <p class="reveal">
+          Ikke teknologi for teknologiens skyld. Konkrete værktøjer og tilgange
+          brugt i levende redaktionelle organisationer med reelle
+          produktions- og beslutningskrav.
+        </p>
+      </div>
 
-        <div class="tool-item reveal">
-          <span class="tool-icon">⬡</span>
+      <div class="tools-list">
+
+        <div class="tool-row reveal">
           <div class="tool-name">AI-enablement</div>
           <p class="tool-desc">
-            Chatty og tilsvarende platforme. Use case-design, træning, prompting,
-            kvalitetssikring og governance i redaktionel kontekst.
+            Chatty og tilsvarende platforme. Use case-design, træning og
+            promptdisciplin, kvalitetssikring og governance i en redaktionel
+            kontekst der stiller krav til både hastighed og journalistisk integritet.
           </p>
         </div>
 
-        <div class="tool-item reveal">
-          <span class="tool-icon">⬡</span>
+        <div class="tool-row reveal">
           <div class="tool-name">Dashboards og KPI-design</div>
           <p class="tool-desc">
-            Redaktionelle performance-dashboards. Fra datakilde til beslutningsgrundlag —
-            designet til at bruges, ikke blot aflæses.
+            Redaktionelle performance-dashboards der omsætter data til beslutninger.
+            Designet til at blive brugt i redaktionelle morgenmøder, ikke blot
+            aflæst i ledelsesrapporter.
           </p>
         </div>
 
-        <div class="tool-item reveal">
-          <span class="tool-icon">⬡</span>
-          <div class="tool-name">Prototyping</div>
+        <div class="tool-row reveal">
+          <div class="tool-name">Produktprototyping</div>
           <p class="tool-desc">
-            Fra idé til testbar prototype. Konceptudvikling, feature-spec og
-            produktarkitektur i medievirksomheder.
+            Fra idé til testbar prototype: konceptudvikling, feature-specifikation
+            og produktarkitektur i medievirksomheder. Værktøjer: Figma, Claude,
+            kodebaserede prototyper og rapid discovery-metoder.
           </p>
         </div>
 
-        <div class="tool-item reveal">
-          <span class="tool-icon">⬡</span>
+        <div class="tool-row reveal">
           <div class="tool-name">Workflow-design</div>
           <p class="tool-desc">
             Produktion, kvalitetssikring og publiceringsflows med AI-integration.
-            Designet til at virke i en travl redaktion.
+            Designet til at virke under deadlinepres med journalister, der har
+            andre prioriteter end at lære ny teknologi.
           </p>
         </div>
 
-        <div class="tool-item reveal">
-          <span class="tool-icon">⬡</span>
-          <div class="tool-name">OSINT og datakilder</div>
+        <div class="tool-row reveal">
+          <div class="tool-name">OSINT og åbne datakilder</div>
           <p class="tool-desc">
-            Åbne data, digitale spor, dokumentanalyse og systematisk
-            kildeidentifikation med AI som arbejdsredskab.
+            Digitale spor, åbne registre, dokumentanalyse og systematisk
+            kildeidentifikation med AI som arbejdsredskab. Metodik, ikke
+            magi: kildekritik gælder også for algoritmisk output.
           </p>
         </div>
 
-        <div class="tool-item reveal">
-          <span class="tool-icon">⬡</span>
+        <div class="tool-row reveal">
           <div class="tool-name">AI-governance</div>
           <p class="tool-desc">
             Standarder, etiske rammer og kvalitetskriterier for AI-anvendelse
-            i redaktionelle organisationer.
+            i redaktionelle organisationer. Hvad må AI? Hvad skal mennesker
+            beslutte? Og hvem ejer fejlene?
           </p>
         </div>
 
@@ -324,203 +347,227 @@
     </div>
   </section>
 
-  <hr class="divider">
+  <hr class="rule">
 
-  <!-- LEDELSE & TRANSFORMATION -->
+  <!-- LEDELSE: Large statement + numbered list -->
   <section id="ledelse">
     <div class="container">
-      <div class="ledelse-grid">
 
-        <div class="ledelse-text">
-          <span class="section-label">Ledelse & Transformation</span>
-          <h2 class="reveal">Forandring der kan mærkes</h2>
-          <p class="reveal">
-            Teknologi implementeres af mennesker. Strategi eksekveres i
-            hverdagen. Det er i spændet mellem det mulige og det praktiske,
-            at reel forandring sker — eller stopper.
-          </p>
-          <p class="reveal">
-            Min tilgang kombinerer redaktionel forståelse med organisatorisk
-            realisme: hvad der virker i teorien, og hvad der holder under
-            produktionspres og budgetbegrænsninger.
-          </p>
+      <div class="ledelse-statement reveal">
+        <h2>Forandring der kan mærkes</h2>
+        <p>
+          Teknologi implementeres af mennesker. Strategi eksekveres i hverdagen.
+          Det er i spændet mellem det mulige og det praktiske, at reel forandring
+          sker. Eller stopper.
+        </p>
+      </div>
+
+      <div class="ledelse-items">
+
+        <div class="ledelse-item reveal">
+          <span class="ledelse-item-num">01</span>
+          <div>
+            <h4>Følgeskab og forankring</h4>
+            <p>Forandring kræver mennesker, der vil med. Jeg arbejder med at
+            bygge intern opbakning, ikke ved at sælge, men ved at involvere
+            på det rigtige tidspunkt med det rigtige niveau af information.</p>
+          </div>
         </div>
 
-        <div class="ledelse-pillars">
-
-          <div class="pillar reveal">
-            <span class="pillar-num">01</span>
-            <div class="pillar-content">
-              <h4>Følgeskab og forankring</h4>
-              <p>Forandring kræver mennesker, der vil med. Jeg arbejder med at
-              bygge intern opbakning — ikke ved at sælge, men ved at involvere.</p>
-            </div>
+        <div class="ledelse-item reveal">
+          <span class="ledelse-item-num">02</span>
+          <div>
+            <h4>Fra pilot til drift</h4>
+            <p>Pilotprojekter er lette. Drift er svær. Overgangen kræver
+            ejerskab, dokumentation og en organisation, der har lært at
+            leve med det nye. Det er den overgang jeg specialiserer mig i.</p>
           </div>
+        </div>
 
-          <div class="pillar reveal">
-            <span class="pillar-num">02</span>
-            <div class="pillar-content">
-              <h4>Fra pilot til drift</h4>
-              <p>Pilotprojekter er lette. Drift er svær. Jeg er specialiseret
-              i overgangen: hvad der skal til for at noget holder.</p>
-            </div>
+        <div class="ledelse-item reveal">
+          <span class="ledelse-item-num">03</span>
+          <div>
+            <h4>Tværfunktionel eksekvering</h4>
+            <p>Redaktion, tech, ledelse og kommercielle interesser i samme rum.
+            Jeg ved, hvad der blokerer og hvad der baner vej, når disse
+            perspektiver kolliderer under tidspres.</p>
           </div>
+        </div>
 
-          <div class="pillar reveal">
-            <span class="pillar-num">03</span>
-            <div class="pillar-content">
-              <h4>Tværfunktionel eksekvering</h4>
-              <p>Redaktion, tech, ledelse og kommercielle interesser i samme rum.
-              Jeg ved, hvad der blokerer og hvad der baner vej.</p>
-            </div>
+        <div class="ledelse-item reveal">
+          <span class="ledelse-item-num">04</span>
+          <div>
+            <h4>Adfærdsændring, ikke awareness</h4>
+            <p>Kommunikation er ikke forandring. Det er adfærden, der tæller.
+            Jeg designer processer og incitamenter der bringer folk til at
+            handle anderledes, ikke blot tænke anderledes.</p>
           </div>
-
-          <div class="pillar reveal">
-            <span class="pillar-num">04</span>
-            <div class="pillar-content">
-              <h4>Adfærdsændring, ikke awareness</h4>
-              <p>Kommunikation er ikke forandring. Det er adfærden, der tæller —
-              og det er den, jeg designer processer til at ændre.</p>
-            </div>
-          </div>
-
         </div>
 
       </div>
     </div>
   </section>
 
-  <hr class="divider">
+  <hr class="rule">
 
-  <!-- CV -->
+  <!-- CV: Two-column timeline -->
   <section id="cv">
     <div class="container">
+
+      <div class="cv-header">
+        <div>
+          <span class="cv-eyebrow">Baggrund</span>
+          <h2 class="reveal">Carsten Lysdal</h2>
+        </div>
+        <div class="cv-download-group reveal">
+          <a href="assets/carsten-lysdal-cv.pdf" download class="btn btn-primary">Hent CV som PDF</a>
+          <a href="https://linkedin.com/in/carstenlysdal" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
       <div class="cv-layout">
 
-        <div class="cv-sidebar">
-          <span class="section-label">Baggrund</span>
-          <h3 class="reveal">Carsten<br>Lysdal</h3>
-          <p class="reveal">
-            Mediechef med 20+ års erfaring i dansk journalistik,
-            ledelse og digital transformation.
-          </p>
-          <div class="cv-download reveal">
-            <a href="#" class="btn btn-primary" style="justify-content:center;">
-              Hent CV (PDF)
-            </a>
-            <a href="https://linkedin.com/in/carstenlysdal" class="btn btn-ghost" style="justify-content:center;">
-              LinkedIn
-            </a>
-          </div>
+        <div class="cv-sidebar reveal">
+          <div class="cv-sidebar-name">Carsten Lysdal</div>
+          <p class="cv-sidebar-role">Journalistisk chefredaktør og transformationsleder</p>
+          <ul class="cv-contact-list">
+            <li>Tlf. 20 63 20 12</li>
+            <li><a href="mailto:carstenlysdal@proton.me">carstenlysdal@proton.me</a></li>
+            <li><a href="https://linkedin.com/in/carstenlysdal" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
         </div>
 
         <div class="cv-main">
 
           <div class="cv-section reveal">
-            <div class="cv-section-label">Erfaring</div>
+            <span class="cv-section-title">Erfaring</span>
 
             <div class="cv-entry">
-              <span class="cv-year">2022 →</span>
+              <span class="cv-year">2023 &#8594; nu</span>
               <div>
-                <div class="cv-role">Chefredaktør / Udviklingschef</div>
+                <div class="cv-role">Journalistisk chefredaktør</div>
                 <div class="cv-org">Sjællandske Medier</div>
                 <p class="cv-detail">
-                  Redaktionel ledelse, AI-implementering (Chatty), datadrevet
-                  prioritering, transformation af redaktionel praksis på tværs af enheder.
+                  Transformation fra manuelle processer til agilt, datadrevet og AI-understøttet setup.
+                  Ledelses- og resultatansvar for ca. 150 medarbejdere. Udviklet og implementeret
+                  AI-platformen Chatty fra proof of concept til fuld drift. Etableret OKR-struktur
+                  og KPI-styring. Bidraget til fordobling af trafik gennem datadrevet
+                  prioritering og kapacitet til 500-600 ugentlige formater.
                 </p>
               </div>
             </div>
 
             <div class="cv-entry">
-              <span class="cv-year">— — —</span>
+              <span class="cv-year">2021-2023</span>
               <div>
-                <div class="cv-role">[Rolle]</div>
-                <div class="cv-org">[Organisation] — udfyldes</div>
-                <p class="cv-detail">Placeholder — afventer CV-data</p>
+                <div class="cv-role">Nyhedsredaktør</div>
+                <div class="cv-org">Sjællandske Medier</div>
+                <p class="cv-detail">
+                  Ledet daglig redaktionel drift med ansvar for prioritering, kvalitet og
+                  performance på tværs af platforme. Implementeret datadrevet tilgang til
+                  indholdsproduktion og distribution.
+                </p>
               </div>
             </div>
 
             <div class="cv-entry">
-              <span class="cv-year">— — —</span>
+              <span class="cv-year">2016-2021</span>
               <div>
-                <div class="cv-role">[Rolle]</div>
-                <div class="cv-org">[Organisation] — udfyldes</div>
-                <p class="cv-detail">Placeholder — afventer CV-data</p>
+                <div class="cv-role">Lokalredaktør, Slagelse</div>
+                <div class="cv-org">Sjællandske Medier</div>
+                <p class="cv-detail">
+                  Ledelsesansvar for redaktion, drift og journalistisk performance.
+                  Drevet redaktionelle projekter og lokale udviklingsinitiativ.
+                </p>
+              </div>
+            </div>
+
+            <div class="cv-entry">
+              <span class="cv-year">2012-2016</span>
+              <div>
+                <div class="cv-role">Journalistpraktikant og journalist</div>
+                <div class="cv-org">Sjællandske Medier</div>
+              </div>
+            </div>
+
+            <div class="cv-entry">
+              <span class="cv-year">2007-2017</span>
+              <div>
+                <div class="cv-role">Underviser, musik- og trommeinstruktør</div>
+                <div class="cv-org">Musikskoler, bygarder og privat</div>
+              </div>
+            </div>
+
+            <div class="cv-entry">
+              <span class="cv-year">2007-2009</span>
+              <div>
+                <div class="cv-role">Konstabel, Tambourkorpset</div>
+                <div class="cv-org">Den Kongelige Livgarde</div>
               </div>
             </div>
 
           </div>
 
           <div class="cv-section reveal">
-            <div class="cv-section-label">Kompetencer</div>
-
+            <span class="cv-section-title">Uddannelse</span>
             <div class="cv-entry">
-              <span class="cv-year">AI</span>
+              <span class="cv-year">2010-2014</span>
               <div>
-                <p class="cv-detail">
-                  AI-enablement · Prompt engineering · AI-governance ·
-                  Redaktionelle AI-workflows · Chatty/ChatGPT/Claude
-                </p>
+                <div class="cv-role">Journalistuddannelse</div>
+                <div class="cv-org">Syddansk Universitet</div>
               </div>
             </div>
+          </div>
 
-            <div class="cv-entry">
-              <span class="cv-year">Data</span>
-              <div>
-                <p class="cv-detail">
-                  KPI/OKR-design · Content performance · Dashboards ·
-                  OSINT · Brugeradfærdsanalyse
-                </p>
+          <div class="cv-section reveal">
+            <span class="cv-section-title">Kompetencer</span>
+            <div class="cv-skills-grid">
+              <div class="cv-skill-row">
+                <span class="cv-skill-area">AI</span>
+                <p class="cv-skill-list">AI-adoption og implementering, Chatty, ChatGPT (OpenAI), Claude (Anthropic), Gemini, AI-governance, prompt-engineering, prototyping</p>
+              </div>
+              <div class="cv-skill-row">
+                <span class="cv-skill-area">Data</span>
+                <p class="cv-skill-list">KPI og OKR-styring, content performance, relevanskriterier, datadrevet prioritering, brugeradfærdsanalyse</p>
+              </div>
+              <div class="cv-skill-row">
+                <span class="cv-skill-area">Produkt</span>
+                <p class="cv-skill-list">Product management, konceptudvikling, workflow-design, VS Code, AI-prototyping</p>
+              </div>
+              <div class="cv-skill-row">
+                <span class="cv-skill-area">Ledelse</span>
+                <p class="cv-skill-list">Forandringsledelse, transformation, redaktionel ledelse, teamudvikling, strategisk kommunikation</p>
+              </div>
+              <div class="cv-skill-row">
+                <span class="cv-skill-area">CMS</span>
+                <p class="cv-skill-list">Aptoma, Saxotech, Echobox, Naviga, InDesign, InCopy, Photoshop, Canva, Google Workspace</p>
+              </div>
+              <div class="cv-skill-row">
+                <span class="cv-skill-area">Sprog</span>
+                <p class="cv-skill-list">Dansk (modersmål), engelsk (flydende), tysk (taler og forstår), nordisk (kommunikerer)</p>
               </div>
             </div>
-
-            <div class="cv-entry">
-              <span class="cv-year">Produkt</span>
-              <div>
-                <p class="cv-detail">
-                  Produktstrategi · Discovery · Roadmap · Feature-spec ·
-                  Workflow-design · Prototyping
-                </p>
-              </div>
-            </div>
-
-            <div class="cv-entry">
-              <span class="cv-year">Ledelse</span>
-              <div>
-                <p class="cv-detail">
-                  Redaktionel ledelse · Forandringsledelse · Tværfunktionel eksekvering ·
-                  Stakeholder-kommunikation
-                </p>
-              </div>
-            </div>
-
           </div>
 
         </div>
-
       </div>
     </div>
   </section>
 
-  <hr class="divider">
+  <hr class="rule">
 
-  <!-- KONTAKT -->
+  <!-- KONTAKT: Centered minimal -->
   <section id="kontakt">
     <div class="container">
       <div class="kontakt-inner">
-        <span class="section-label">Kontakt</span>
         <h2 class="reveal">Lad os tale om det</h2>
         <p class="reveal">
-          Hvis du leder efter en profil der kan bygge broen mellem
-          journalistikken, teknologien og organisationen — og få folk over den.
+          Hvis du leder efter en profil der kan bygge broen
+          mellem journalistikken, teknologien og organisationen.
         </p>
-        <div class="kontakt-links reveal">
-          <a href="mailto:carsten@lysdal.dk" class="btn btn-primary">
-            Skriv en mail
-          </a>
-          <a href="https://linkedin.com/in/carstenlysdal" class="btn btn-ghost">
-            LinkedIn
-          </a>
+        <div class="kontakt-actions reveal">
+          <a href="mailto:carstenlysdal@proton.me" class="btn btn-primary">Skriv en mail</a>
+          <a href="assets/carsten-lysdal-cv.pdf" download class="btn btn-outline">Hent CV</a>
         </div>
       </div>
     </div>
@@ -528,10 +575,10 @@
 
   <footer>
     <div class="footer-inner">
-      <span class="footer-copy">© 2026 Carsten Lysdal</span>
+      <span class="footer-copy">&#169; 2026 Carsten Lysdal</span>
       <div class="footer-links">
-        <a href="mailto:carsten@lysdal.dk">Mail</a>
-        <a href="https://linkedin.com/in/carstenlysdal">LinkedIn</a>
+        <a href="mailto:carstenlysdal@proton.me">Mail</a>
+        <a href="https://linkedin.com/in/carstenlysdal" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </footer>
