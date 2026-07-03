@@ -1252,13 +1252,19 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
   }, []);
   const [beat, setBeat] = React.useState(0);
   const [notationXml, setNotationXml] = React.useState<string | null>(null);
+  const [notationImageUrl, setNotationImageUrl] = React.useState<string | null>(null);
   const [notationLoading, setNotationLoading] = React.useState(false);
   const [notationError, setNotationError] = React.useState(false);
+
+  const notationExt = exercise.notation?.split('.').pop()?.toLowerCase() ?? '';
+  const isImageNotation = ['jpg', 'jpeg', 'png'].includes(notationExt);
+  const isPdfNotation = notationExt === 'pdf';
 
   // Admin upload panel
   const [showUploadPanel, setShowUploadPanel] = React.useState(false);
   const [uploadFile, setUploadFile] = React.useState<File | null>(null);
   const [uploadXml, setUploadXml] = React.useState('');
+  const [uploadImageFile, setUploadImageFile] = React.useState<File | null>(null);
   const [uploadLog, setUploadLog] = React.useState<string[]>([]);
   const [uploadLoading, setUploadLoading] = React.useState(false);
   const [uploadSaveMsg, setUploadSaveMsg] = React.useState('');
@@ -1266,13 +1272,17 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
 
   React.useEffect(() => {
     if (!exercise.notation) return;
+    if (isImageNotation || isPdfNotation) {
+      setNotationImageUrl(`/content/notation/${exercise.notation}`);
+      return;
+    }
     setNotationLoading(true);
     setNotationError(false);
     fetch(`/content/notation/${exercise.notation}`)
       .then(r => { if (!r.ok) throw new Error(); return r.text(); })
       .then(xml => { setNotationXml(xml); setNotationLoading(false); })
       .catch(() => { setNotationError(true); setNotationLoading(false); });
-  }, [exercise.notation]);
+  }, [exercise.notation, isImageNotation, isPdfNotation]);
   const audioCtxRef = useRef<AudioContext | null>(null);
 
   // Close on Escape
@@ -1318,9 +1328,13 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
     setUploadLoading(true);
     setUploadLog([]);
     setUploadXml('');
+    setUploadImageFile(null);
     setUploadSaveMsg('');
 
-    const isXml = uploadFile.name.toLowerCase().match(/\.(xml|musicxml)$/);
+    const fname = uploadFile.name.toLowerCase();
+    const isXml = fname.match(/\.(xml|musicxml)$/);
+    const isImage = fname.match(/\.(jpg|jpeg|png)$/) || uploadFile.type.startsWith('image/');
+    const isPdf = fname.endsWith('.pdf') || uploadFile.type === 'application/pdf';
 
     try {
       if (isXml) {
@@ -1328,12 +1342,17 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
         const xml = await uploadFile.text();
         setUploadXml(xml);
         addUploadLog('XML indlæst. Klar til gem.');
+      } else if (isImage || isPdf) {
+        addUploadLog(`Billede/PDF klar til direkte gem — ingen scanning nødvendig.`);
+        setUploadImageFile(uploadFile);
       } else {
         addUploadLog(`Sender "${uploadFile.name}" til Gemini OMR...`);
         const formData = new FormData();
         formData.append('file', uploadFile);
         const res = await fetch('/api/scan-sheet-music', { method: 'POST', body: formData });
-        const data = await res.json();
+        const text = await res.text();
+        let data: Record<string, string>;
+        try { data = JSON.parse(text); } catch { throw new Error('Server returnerede en uventet fejl.'); }
         if (!res.ok || data.error) {
           addUploadLog(`❌ ${data.error ?? 'Ukendt fejl'}`);
         } else {
@@ -1346,6 +1365,27 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
       addUploadLog(`❌ ${e instanceof Error ? e.message : String(e)}`);
     } finally {
       setUploadLoading(false);
+    }
+  };
+
+  const handleAdminSaveImage = async () => {
+    if (!uploadImageFile) return;
+    setUploadSaveMsg('Gemmer billede...');
+    try {
+      const formData = new FormData();
+      formData.append('file', uploadImageFile);
+      formData.append('filename', suggestedFilename);
+      const res = await fetch('/api/save-sheet-image', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        setUploadSaveMsg(`❌ ${data.error}`);
+      } else {
+        setUploadSaveMsg(`✅ Gemt som ${data.saved}`);
+        setNotationImageUrl(`/content/notation/${data.saved}`);
+        setNotationError(false);
+      }
+    } catch (e) {
+      setUploadSaveMsg(`❌ ${e instanceof Error ? e.message : String(e)}`);
     }
   };
 
@@ -1364,6 +1404,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
       } else {
         setUploadSaveMsg(`✅ Gemt som ${data.saved}`);
         setNotationXml(uploadXml);
+        setNotationImageUrl(null);
         setNotationError(false);
       }
     } catch (e) {
@@ -1460,6 +1501,29 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
             </div>
           )}
 
+          {uploadImageFile && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ fontSize: 11, color: t.textMuted }}>
+                {uploadImageFile.name} ({(uploadImageFile.size / 1024).toFixed(1)} KB) — gemmes direkte som billede.
+              </div>
+              <button
+                onClick={handleAdminSaveImage}
+                style={{
+                  padding: '10px', borderRadius: 10, border: 'none',
+                  background: '#4edea3', color: '#0a2a1a',
+                  fontFamily: t.font, fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                }}
+              >
+                Gem som billede
+              </button>
+              {uploadSaveMsg && (
+                <div style={{ fontSize: 12, color: uploadSaveMsg.startsWith('❌') ? '#F25545' : '#4edea3', fontFamily: 'monospace' }}>
+                  {uploadSaveMsg}
+                </div>
+              )}
+            </div>
+          )}
+
           {uploadXml && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               <div style={{ fontSize: 11, color: t.textMuted }}>
@@ -1506,9 +1570,15 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
 
         {(tab === 'noder' || isDesktopView) && (
           <div>
-            <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: '14px 6px', marginBottom: 14, overflowX: 'auto', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: isImageNotation || isPdfNotation ? 0 : '14px 6px', marginBottom: 14, overflowX: 'auto', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
               {exercise.notation ? (
-                notationLoading ? (
+                notationImageUrl ? (
+                  isPdfNotation ? (
+                    <iframe src={notationImageUrl} style={{ width: '100%', height: 420, border: 'none' }} title="Nodeark (PDF)" />
+                  ) : (
+                    <img src={notationImageUrl} alt="Nodeark" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 16 }} />
+                  )
+                ) : notationLoading ? (
                   <div style={{ color: '#8a8580', fontSize: 13 }}>Indlæser noder…</div>
                 ) : notationError ? (
                   <div style={{ color: '#F25545', fontSize: 12, padding: '0 12px', textAlign: 'center' }}>Kunne ikke hente noder. Upload filen via Admin → Scan.</div>

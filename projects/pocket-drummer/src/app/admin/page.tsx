@@ -63,57 +63,8 @@ function isMusicXmlFile(file: File): boolean {
   );
 }
 
-async function prepareSheetMusicFileForOmr(file: File, addLog: (msg: string) => void): Promise<File> {
-  const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
-
-  if (!isPdf) {
-    return file;
-  }
-
-  addLog("PDF registreret. Konverterer side 1 til hvid-baggrund JPEG før Gemini...");
-
-  const pdfjs = await import('pdfjs-dist');
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.mjs',
-    import.meta.url
-  ).toString();
-
-  const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
-  const page = await pdf.getPage(1);
-  const viewport = page.getViewport({ scale: 2.5 });
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-
-  if (!context) {
-    throw new Error("Kunne ikke oprette canvas til PDF-konvertering");
-  }
-
-  canvas.width = Math.ceil(viewport.width);
-  canvas.height = Math.ceil(viewport.height);
-  context.fillStyle = '#ffffff';
-  context.fillRect(0, 0, canvas.width, canvas.height);
-
-  await page.render({
-    canvas,
-    canvasContext: context,
-    viewport,
-    background: '#ffffff',
-  }).promise;
-
-  const blob = await new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob(
-      (result) => result ? resolve(result) : reject(new Error("Kunne ikke konvertere PDF-side til JPEG")),
-      'image/jpeg',
-      0.92
-    );
-  });
-
-  const convertedName = file.name.replace(/\.pdf$/i, '') + '-side-1.jpg';
-  addLog(`PDF konverteret: ${convertedName} (${(blob.size / 1024).toFixed(1)} KB)`);
-
-  return new File([blob], convertedName, { type: 'image/jpeg' });
-}
+// PDF sendes direkte til Gemini — Gemini 2.5 Flash understøtter PDF nativt.
+// Client-side pdfjs-konvertering fjernet da den er inkompatibel med Turbopack/Next.js 16.
 
 export default function AdminPage() {
   const { user, login, logout, loading: authLoadingState } = useAuth();
@@ -322,9 +273,8 @@ Vigtige regler:
     let requestTimeout: ReturnType<typeof setTimeout> | undefined;
 
     try {
-      const uploadFile = await prepareSheetMusicFileForOmr(scanFile, addScanLog);
       const formData = new FormData();
-      formData.append("file", uploadFile);
+      formData.append("file", scanFile);
       formData.append("systemPrompt", scanSystemPrompt);
 
       const controller = new AbortController();
