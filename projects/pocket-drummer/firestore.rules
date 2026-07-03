@@ -39,5 +39,10 @@ service cloud.firestore {
       allow read: if true;
       allow write: if isAdmin();
     }
+
+    match /exerciseNotations/{exerciseKey} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
   }
 }

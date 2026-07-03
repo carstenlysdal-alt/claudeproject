@@ -1270,19 +1270,50 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
   const [uploadSaveMsg, setUploadSaveMsg] = React.useState('');
   const suggestedFilename = `${category}-${exercise.id}`;
 
+  // Indlæs notation: tjek Firestore-override først, derefter static file
   React.useEffect(() => {
-    if (!exercise.notation) return;
-    if (isImageNotation || isPdfNotation) {
-      setNotationImageUrl(`/content/notation/${exercise.notation}`);
-      return;
-    }
-    setNotationLoading(true);
-    setNotationError(false);
-    fetch(`/content/notation/${exercise.notation}`)
-      .then(r => { if (!r.ok) throw new Error(); return r.text(); })
-      .then(xml => { setNotationXml(xml); setNotationLoading(false); })
-      .catch(() => { setNotationError(true); setNotationLoading(false); });
-  }, [exercise.notation, isImageNotation, isPdfNotation]);
+    let cancelled = false;
+    const load = async () => {
+      // Tjek Firestore for URL uploadet via admin-panel
+      try {
+        const { doc, getDoc } = await import('firebase/firestore');
+        const { db } = await import('@/lib/firebase');
+        const snap = await getDoc(doc(db, 'exerciseNotations', `${category}_${exercise.id}`));
+        if (!cancelled && snap.exists()) {
+          const { url } = snap.data() as { url: string };
+          const isImg = /\.(jpg|jpeg|png)(\?|$)/i.test(url);
+          if (isImg) {
+            setNotationImageUrl(url);
+          } else if (/\.pdf(\?|$)/i.test(url)) {
+            setNotationImageUrl(url);
+          } else {
+            // XML fra Storage — hent som tekst
+            const res = await fetch(url);
+            if (res.ok) setNotationXml(await res.text());
+          }
+          setNotationLoading(false);
+          return;
+        }
+      } catch { /* ingen Firestore-override — fortsæt til static */ }
+
+      if (cancelled) return;
+
+      // Static fil fra curriculum.ts
+      if (!exercise.notation) return;
+      if (isImageNotation || isPdfNotation) {
+        setNotationImageUrl(`/content/notation/${exercise.notation}`);
+        return;
+      }
+      setNotationLoading(true);
+      setNotationError(false);
+      fetch(`/content/notation/${exercise.notation}`)
+        .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+        .then(xml => { if (!cancelled) { setNotationXml(xml); setNotationLoading(false); } })
+        .catch(() => { if (!cancelled) { setNotationError(true); setNotationLoading(false); } });
+    };
+    load();
+    return () => { cancelled = true; };
+  }, [category, exercise.id, exercise.notation, isImageNotation, isPdfNotation]);
   const audioCtxRef = useRef<AudioContext | null>(null);
 
   // Close on Escape
@@ -1343,8 +1374,19 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
         setUploadXml(xml);
         addUploadLog('XML indlæst. Klar til gem.');
       } else if (isImage || isPdf) {
-        addUploadLog(`Billede/PDF klar til direkte gem — ingen scanning nødvendig.`);
-        setUploadImageFile(uploadFile);
+        addUploadLog(`Billede/PDF klar til upload — uploader til Firebase Storage...`);
+        const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage');
+        const { storage } = await import('@/lib/firebase');
+        const ext = isPdf ? '.pdf' : fname.endsWith('.png') ? '.png' : '.jpg';
+        const storageRef = ref(storage, `notation/${suggestedFilename}${ext}`);
+        await uploadBytes(storageRef, uploadFile);
+        const url = await getDownloadURL(storageRef);
+        addUploadLog(`✅ Uploadet. Gemmer URL i databasen...`);
+        await saveNotationUrl(url);
+        setNotationImageUrl(url);
+        setNotationError(false);
+        setUploadSaveMsg(`✅ Gemt og klar til visning.`);
+        setUploadImageFile(null);
       } else {
         addUploadLog(`Sender "${uploadFile.name}" til Gemini OMR...`);
         const formData = new FormData();
@@ -1368,45 +1410,29 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
     }
   };
 
-  const handleAdminSaveImage = async () => {
-    if (!uploadImageFile) return;
-    setUploadSaveMsg('Gemmer billede...');
-    try {
-      const formData = new FormData();
-      formData.append('file', uploadImageFile);
-      formData.append('filename', suggestedFilename);
-      const res = await fetch('/api/save-sheet-image', { method: 'POST', body: formData });
-      const data = await res.json();
-      if (!res.ok || data.error) {
-        setUploadSaveMsg(`❌ ${data.error}`);
-      } else {
-        setUploadSaveMsg(`✅ Gemt som ${data.saved}`);
-        setNotationImageUrl(`/content/notation/${data.saved}`);
-        setNotationError(false);
-      }
-    } catch (e) {
-      setUploadSaveMsg(`❌ ${e instanceof Error ? e.message : String(e)}`);
-    }
+  const saveNotationUrl = async (url: string) => {
+    const { doc, setDoc, serverTimestamp } = await import('firebase/firestore');
+    const { db } = await import('@/lib/firebase');
+    await setDoc(doc(db, 'exerciseNotations', `${category}_${exercise.id}`), {
+      url,
+      updatedAt: serverTimestamp(),
+    });
   };
 
   const handleAdminSave = async () => {
     if (!uploadXml) return;
     setUploadSaveMsg('Gemmer...');
     try {
-      const res = await fetch('/api/save-notation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename: suggestedFilename, xml: uploadXml }),
-      });
-      const data = await res.json();
-      if (!res.ok || data.error) {
-        setUploadSaveMsg(`❌ ${data.error}`);
-      } else {
-        setUploadSaveMsg(`✅ Gemt som ${data.saved}`);
-        setNotationXml(uploadXml);
-        setNotationImageUrl(null);
-        setNotationError(false);
-      }
+      const { ref, uploadString, getDownloadURL } = await import('firebase/storage');
+      const { storage } = await import('@/lib/firebase');
+      const storageRef = ref(storage, `notation/${suggestedFilename}.xml`);
+      await uploadString(storageRef, uploadXml, 'raw', { contentType: 'application/xml' });
+      const url = await getDownloadURL(storageRef);
+      await saveNotationUrl(url);
+      setUploadSaveMsg(`✅ XML gemt i Firebase Storage.`);
+      setNotationXml(uploadXml);
+      setNotationImageUrl(null);
+      setNotationError(false);
     } catch (e) {
       setUploadSaveMsg(`❌ ${e instanceof Error ? e.message : String(e)}`);
     }
@@ -1501,26 +1527,9 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
             </div>
           )}
 
-          {uploadImageFile && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              <div style={{ fontSize: 11, color: t.textMuted }}>
-                {uploadImageFile.name} ({(uploadImageFile.size / 1024).toFixed(1)} KB) — gemmes direkte som billede.
-              </div>
-              <button
-                onClick={handleAdminSaveImage}
-                style={{
-                  padding: '10px', borderRadius: 10, border: 'none',
-                  background: '#4edea3', color: '#0a2a1a',
-                  fontFamily: t.font, fontSize: 13, fontWeight: 700, cursor: 'pointer',
-                }}
-              >
-                Gem som billede
-              </button>
-              {uploadSaveMsg && (
-                <div style={{ fontSize: 12, color: uploadSaveMsg.startsWith('❌') ? '#F25545' : '#4edea3', fontFamily: 'monospace' }}>
-                  {uploadSaveMsg}
-                </div>
-              )}
+          {uploadSaveMsg && !uploadXml && (
+            <div style={{ fontSize: 12, color: uploadSaveMsg.startsWith('❌') ? '#F25545' : '#4edea3', fontFamily: 'monospace' }}>
+              {uploadSaveMsg}
             </div>
           )}
 
