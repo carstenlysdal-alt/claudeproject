@@ -52,6 +52,69 @@ function normalizeMusicXmlResponse(xml: unknown, source: string): { xml: string;
   return { xml: cleanedXml };
 }
 
+function isMusicXmlFile(file: File): boolean {
+  const name = file.name.toLowerCase();
+  return (
+    name.endsWith('.xml') ||
+    name.endsWith('.musicxml') ||
+    file.type === 'application/vnd.recordare.musicxml+xml' ||
+    file.type === 'application/xml' ||
+    file.type === 'text/xml'
+  );
+}
+
+async function prepareSheetMusicFileForOmr(file: File, addLog: (msg: string) => void): Promise<File> {
+  const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+
+  if (!isPdf) {
+    return file;
+  }
+
+  addLog("PDF registreret. Konverterer side 1 til hvid-baggrund JPEG før Gemini...");
+
+  const pdfjs = await import('pdfjs-dist');
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    'pdfjs-dist/build/pdf.worker.mjs',
+    import.meta.url
+  ).toString();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const page = await pdf.getPage(1);
+  const viewport = page.getViewport({ scale: 2.5 });
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+
+  if (!context) {
+    throw new Error("Kunne ikke oprette canvas til PDF-konvertering");
+  }
+
+  canvas.width = Math.ceil(viewport.width);
+  canvas.height = Math.ceil(viewport.height);
+  context.fillStyle = '#ffffff';
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  await page.render({
+    canvas,
+    canvasContext: context,
+    viewport,
+    background: '#ffffff',
+  }).promise;
+
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob(
+      (result) => result ? resolve(result) : reject(new Error("Kunne ikke konvertere PDF-side til JPEG")),
+      'image/jpeg',
+      0.92
+    );
+  });
+
+  const convertedName = file.name.replace(/\.pdf$/i, '') + '-side-1.jpg';
+  addLog(`PDF konverteret: ${convertedName} (${(blob.size / 1024).toFixed(1)} KB)`);
+
+  return new File([blob], convertedName, { type: 'image/jpeg' });
+}
+
 export default function AdminPage() {
   const { user, login, logout, loading: authLoadingState } = useAuth();
   const [authError, setAuthError] = useState('');
@@ -84,15 +147,17 @@ Regler for noteringen:
 - Hi-hat: display-step = G, display-octave = 5, notehoved skal være x (<notehead>x</notehead>).`);
 
   const [scanSystemPrompt, setScanSystemPrompt] = useState(`Du er en ekspert i Optical Music Recognition (OMR) og trommenoder.
-Analysér det vedhæftede billede eller PDF af en trommenode og transskriber den til en gyldig, komplet MusicXML 4.0-streng.
+Analysér det vedhæftede billede af en trommenode og transskriber den til en gyldig, komplet MusicXML 4.0-streng.
 
 Vigtige regler:
 1. Returner KUN den rå XML-streng uden nogen Markdown-formatering eller forklaringer.
 2. Noderne skal være skrevet i percussion clef i 4/4 takt.
-3. Brug standard General MIDI trommenotations-standarder.`);
+3. Brug standard General MIDI trommenotations-standarder.
+4. Hvis billedet indeholder mange takter, transskriber de første 8 takter præcist frem for at forsøge hele siden upræcist.`);
 
   // Gemini OMR scan state
   const [scanFile, setScanFile] = useState<File | null>(null);
+  const [pdfPreviewUrl, setPdfPreviewUrl] = useState<string | null>(null);
   const [scanLoading, setScanLoading] = useState(false);
   const [scanLog, setScanLog] = useState<string[]>([]);
   const [notationFilename, setNotationFilename] = useState('');
@@ -112,6 +177,16 @@ Vigtige regler:
   const [logs, setLogs] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<'preview' | 'xml'>('preview');
   const [successMsg, setSuccessMsg] = useState("");
+
+  useEffect(() => {
+    if (scanFile && (scanFile.type === 'application/pdf' || scanFile.name.toLowerCase().endsWith('.pdf'))) {
+      const url = URL.createObjectURL(scanFile);
+      setPdfPreviewUrl(url);
+      return () => URL.revokeObjectURL(url);
+    } else {
+      setPdfPreviewUrl(null);
+    }
+  }, [scanFile]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -209,6 +284,30 @@ Vigtige regler:
     addScanLog("Klargør nodeark til scanning...");
     addScanLog(`Valgt fil: ${scanFile.name} (${(scanFile.size / 1024).toFixed(1)} KB)`);
 
+    if (isMusicXmlFile(scanFile)) {
+      try {
+        addScanLog("MusicXML-fil registreret. Indlæser direkte uden Gemini...");
+        const xml = await scanFile.text();
+        const validation = normalizeMusicXmlResponse(xml, "MusicXML-upload");
+        if (validation.warning) {
+          addScanLog(validation.warning);
+        }
+        setXmlData(validation.xml);
+        const baseName = scanFile.name.replace(/\.(musicxml|xml)$/i, "");
+        setTitle(baseName);
+        setNotationFilename(baseName);
+        setSaveNotationMsg('');
+        setActiveTab('preview');
+        addScanLog("MusicXML indlæst og klar til preview.");
+      } catch (e) {
+        const message = e instanceof Error ? e.message : String(e);
+        addScanLog(`❌ FEJL under XML-import: ${message}`);
+      } finally {
+        setScanLoading(false);
+      }
+      return;
+    }
+
     const logTimers = [
       setTimeout(() => addScanLog("Uploader fil til Gemini OMR API..."), 800),
       setTimeout(() => addScanLog("Gemini 2.5 Flash analyserer nodelinjer og symboler..."), 2000),
@@ -223,8 +322,9 @@ Vigtige regler:
     let requestTimeout: ReturnType<typeof setTimeout> | undefined;
 
     try {
+      const uploadFile = await prepareSheetMusicFileForOmr(scanFile, addScanLog);
       const formData = new FormData();
-      formData.append("file", scanFile);
+      formData.append("file", uploadFile);
       formData.append("systemPrompt", scanSystemPrompt);
 
       const controller = new AbortController();
@@ -738,7 +838,7 @@ Vigtige regler:
                   <h3 style={{ fontSize: '1.1rem' }}>Billede & PDF Node-Scanner (Gemini 2.5 Flash)</h3>
                 </div>
                 <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }} className="mb-3">
-                  Scan et billede (PNG/JPG) eller en PDF af en trommenode og omdan den direkte til spilbart MusicXML.
+                  Scan et billede/PDF af en trommenode eller importér en eksisterende MusicXML-fil.
                 </p>
 
                 <div className="form-group">
@@ -756,7 +856,7 @@ Vigtige regler:
                     <input 
                       type="file" 
                       id="sheet-upload-input"
-                      accept="image/*,application/pdf"
+                      accept="image/*,application/pdf,.xml,.musicxml,application/vnd.recordare.musicxml+xml"
                       style={{ display: 'none' }}
                       onChange={(e) => {
                         if (e.target.files && e.target.files[0]) {
@@ -782,11 +882,29 @@ Vigtige regler:
                         </p>
                         <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
                           Understøtter JPG, PNG, PDF op til 20MB
+                          {' '}samt XML/MusicXML
                         </p>
                       </div>
                     )}
                   </div>
                 </div>
+
+                {pdfPreviewUrl && (
+                  <div className="form-group">
+                    <label className="form-label">PDF-forhåndsvisning</label>
+                    <iframe
+                      src={pdfPreviewUrl}
+                      style={{
+                        width: '100%',
+                        height: '420px',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '8px',
+                        background: '#fff',
+                      }}
+                      title="PDF forhåndsvisning"
+                    />
+                  </div>
+                )}
 
                 <div className="form-group">
                   <label className="form-label">Scanner Systeminstruktioner (Gemini OMR)</label>

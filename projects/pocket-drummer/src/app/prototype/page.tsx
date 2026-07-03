@@ -140,6 +140,7 @@ const IcCalendar = (p: IcProps) => <Ic {...p}><rect x="3" y="5" width="18" heigh
 const IcAttach = (p: IcProps) => <Ic {...p}><path d="M21 11l-9 9a5 5 0 0 1-7-7l9-9a3 3 0 1 1 4 4l-9 9a1 1 0 0 1-2-2l8-8"/></Ic>;
 const IcLoop = (p: IcProps) => <Ic {...p}><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></Ic>;
 const IcMin = (p: IcProps) => <Ic {...p}><path d="M5 12h14"/></Ic>;
+const IcUpload = (p: IcProps) => <Ic {...p}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></Ic>;
 
 function TabHome({ size = 24, color = 'currentColor', sw = 1.5 }) {
   return (
@@ -1234,9 +1235,10 @@ interface ExerciseDetailPopupProps {
   onMarkDone: () => void;
   isCompleted: boolean;
   onOpenCoach: () => void;
+  isAdmin?: boolean;
 }
 
-function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCompleted, onOpenCoach }: ExerciseDetailPopupProps) {
+function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCompleted, onOpenCoach, isAdmin }: ExerciseDetailPopupProps) {
   const [tab, setTab] = React.useState<'noder' | 'video'>(exercise.notation ? 'noder' : 'video');
   const [isDesktopView, setIsDesktopView] = React.useState(false);
   const [bpm, setBpm] = React.useState(typeof exercise.bpm === 'number' ? exercise.bpm : 90);
@@ -1252,6 +1254,15 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
   const [notationXml, setNotationXml] = React.useState<string | null>(null);
   const [notationLoading, setNotationLoading] = React.useState(false);
   const [notationError, setNotationError] = React.useState(false);
+
+  // Admin upload panel
+  const [showUploadPanel, setShowUploadPanel] = React.useState(false);
+  const [uploadFile, setUploadFile] = React.useState<File | null>(null);
+  const [uploadXml, setUploadXml] = React.useState('');
+  const [uploadLog, setUploadLog] = React.useState<string[]>([]);
+  const [uploadLoading, setUploadLoading] = React.useState(false);
+  const [uploadSaveMsg, setUploadSaveMsg] = React.useState('');
+  const suggestedFilename = `${category}-${exercise.id}`;
 
   React.useEffect(() => {
     if (!exercise.notation) return;
@@ -1300,6 +1311,66 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
 
   useEffect(() => () => { audioCtxRef.current?.close(); }, []);
 
+  const addUploadLog = (msg: string) => setUploadLog(l => [...l, msg]);
+
+  const handleAdminUpload = async () => {
+    if (!uploadFile) return;
+    setUploadLoading(true);
+    setUploadLog([]);
+    setUploadXml('');
+    setUploadSaveMsg('');
+
+    const isXml = uploadFile.name.toLowerCase().match(/\.(xml|musicxml)$/);
+
+    try {
+      if (isXml) {
+        addUploadLog('MusicXML-fil registreret. Indlæser direkte...');
+        const xml = await uploadFile.text();
+        setUploadXml(xml);
+        addUploadLog('XML indlæst. Klar til gem.');
+      } else {
+        addUploadLog(`Sender "${uploadFile.name}" til Gemini OMR...`);
+        const formData = new FormData();
+        formData.append('file', uploadFile);
+        const res = await fetch('/api/scan-sheet-music', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (!res.ok || data.error) {
+          addUploadLog(`❌ ${data.error ?? 'Ukendt fejl'}`);
+        } else {
+          setUploadXml(data.xml ?? '');
+          if (data.warning) addUploadLog(`⚠️ ${data.warning}`);
+          addUploadLog('Scanning færdig. Gennemse og gem.');
+        }
+      }
+    } catch (e) {
+      addUploadLog(`❌ ${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      setUploadLoading(false);
+    }
+  };
+
+  const handleAdminSave = async () => {
+    if (!uploadXml) return;
+    setUploadSaveMsg('Gemmer...');
+    try {
+      const res = await fetch('/api/save-notation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename: suggestedFilename, xml: uploadXml }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        setUploadSaveMsg(`❌ ${data.error}`);
+      } else {
+        setUploadSaveMsg(`✅ Gemt som ${data.saved}`);
+        setNotationXml(uploadXml);
+        setNotationError(false);
+      }
+    } catch (e) {
+      setUploadSaveMsg(`❌ ${e instanceof Error ? e.message : String(e)}`);
+    }
+  };
+
   const videoUrl = getVideoUrl(category, exercise.id);
   const lvlColor = exercise.level === 'Begynder' ? '#4edea3' : exercise.level === 'Mellemniveau' ? t.textMuted : t.accent;
 
@@ -1322,8 +1393,97 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
           </div>
           <Display t={t} size={16}>{exercise.title}</Display>
         </div>
-        <button onClick={onClose} style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, lineHeight: 1 }}>✕</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          {isAdmin && (
+            <button
+              onClick={() => setShowUploadPanel(v => !v)}
+              title="Admin: Upload materiale"
+              style={{
+                width: 38, height: 38, borderRadius: '50%', background: showUploadPanel ? t.accent : 'transparent',
+                border: `1px solid ${showUploadPanel ? t.accent : t.border}`,
+                color: showUploadPanel ? '#fff' : t.textMuted, cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}
+            >
+              <IcUpload size={16} />
+            </button>
+          )}
+          <button onClick={onClose} style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, lineHeight: 1 }}>✕</button>
+        </div>
       </div>
+
+      {/* Admin upload panel */}
+      {isAdmin && showUploadPanel && (
+        <div style={{ background: t.surface, borderBottom: `1px solid ${t.border}`, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: t.accent, letterSpacing: 0.8, textTransform: 'uppercase' }}>
+            Admin · Upload materiale til {exercise.title}
+          </div>
+          <div style={{ fontSize: 11, color: t.textMuted }}>
+            Filnavn: <span style={{ fontFamily: 'monospace', color: t.text }}>{suggestedFilename}.xml</span>
+          </div>
+
+          <label style={{
+            display: 'flex', alignItems: 'center', gap: 8, padding: '10px 12px',
+            border: `1px dashed ${t.border}`, borderRadius: 10, cursor: 'pointer',
+            fontSize: 13, color: t.textMuted,
+          }}>
+            <IcUpload size={16} color={t.accent} />
+            <span style={{ color: uploadFile ? t.text : t.textMuted }}>
+              {uploadFile ? uploadFile.name : 'Vælg PDF, billede eller XML'}
+            </span>
+            <input
+              type="file"
+              accept="image/*,application/pdf,.xml,.musicxml"
+              style={{ display: 'none' }}
+              onChange={e => { if (e.target.files?.[0]) { setUploadFile(e.target.files[0]); setUploadXml(''); setUploadLog([]); setUploadSaveMsg(''); }}}
+            />
+          </label>
+
+          <button
+            onClick={handleAdminUpload}
+            disabled={!uploadFile || uploadLoading}
+            style={{
+              padding: '10px', borderRadius: 10, border: 'none',
+              background: (!uploadFile || uploadLoading) ? t.surface2 : t.accent,
+              color: (!uploadFile || uploadLoading) ? t.textMuted : '#fff',
+              fontFamily: t.font, fontSize: 13, fontWeight: 600, cursor: uploadFile && !uploadLoading ? 'pointer' : 'default',
+            }}
+          >
+            {uploadLoading ? 'Scanner...' : 'Start scanning / indlæs'}
+          </button>
+
+          {uploadLog.length > 0 && (
+            <div style={{ background: 'rgba(0,0,0,0.15)', borderRadius: 8, padding: '8px 10px', maxHeight: 80, overflowY: 'auto' }}>
+              {uploadLog.map((l, i) => (
+                <div key={i} style={{ fontSize: 11, fontFamily: 'monospace', color: l.startsWith('❌') ? '#F25545' : t.textMuted, marginBottom: 2 }}>{l}</div>
+              ))}
+            </div>
+          )}
+
+          {uploadXml && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ fontSize: 11, color: t.textMuted }}>
+                XML klar ({(uploadXml.length / 1024).toFixed(1)} KB) — gem og noderne opdateres med det samme.
+              </div>
+              <button
+                onClick={handleAdminSave}
+                style={{
+                  padding: '10px', borderRadius: 10, border: 'none',
+                  background: '#4edea3', color: '#0a2a1a',
+                  fontFamily: t.font, fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                }}
+              >
+                Gem som {suggestedFilename}.xml
+              </button>
+              {uploadSaveMsg && (
+                <div style={{ fontSize: 12, color: uploadSaveMsg.startsWith('❌') ? '#F25545' : '#4edea3', fontFamily: 'monospace' }}>
+                  {uploadSaveMsg}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Tabs — kun på mobil */}
       {!isDesktopView && (
@@ -2020,6 +2180,7 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
           onMarkDone={() => handleMarkCompleted(`${category}_${selectedExercise.id}`)}
           isCompleted={isCompleted(`${category}_${selectedExercise.id}`)}
           onOpenCoach={onOpenCoach}
+          isAdmin={user?.role === 'admin'}
         />
       )}
     </div>
