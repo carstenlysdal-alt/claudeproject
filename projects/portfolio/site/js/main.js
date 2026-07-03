@@ -1,29 +1,26 @@
-/* ================================================
-   CARSTEN LYSDAL — Portfolio JS v3
-   Scroll progress · Active nav · Reveal · Case accordion ·
-   Counter animation · Competency bars · Mobile nav
-   ================================================ */
-
 'use strict';
 
-// ── Scroll progress bar ──────────────────────────
+/* ================================================
+   CARSTEN LYSDAL — Portfolio JS v3.1
+   Scroll progress: CSS animation-timeline (no JS listener)
+   Active nav · Reveal · Case accordion · Counter · Mobile nav
+   ================================================ */
+
+// Inject progress bar element (styled via CSS scroll-driven animation)
 const progressBar = document.createElement('div');
 progressBar.className = 'scroll-progress';
 document.body.prepend(progressBar);
 
-window.addEventListener('scroll', () => {
-  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-  progressBar.style.width = `${Math.min(pct * 100, 100)}%`;
-}, { passive: true });
-
 // ── Active nav link ──────────────────────────────
-const sections   = document.querySelectorAll('section[id]');
-const navLinks   = document.querySelectorAll('.nav-links a[href^="#"]');
+const sections  = document.querySelectorAll('section[id]');
+const navLinks  = document.querySelectorAll('.nav-links a[href^="#"]');
 
 const navObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${e.target.id}`));
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === `#${e.target.id}`);
+      });
     }
   });
 }, { rootMargin: '-40% 0px -40% 0px' });
@@ -43,40 +40,37 @@ const revealObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // ── Mobile nav ───────────────────────────────────
-const toggle      = document.querySelector('.nav-toggle');
-const navLinksEl  = document.querySelector('.nav-links');
+const toggle     = document.querySelector('.nav-toggle');
+const navLinksEl = document.querySelector('.nav-links');
 
 if (toggle && navLinksEl) {
   toggle.addEventListener('click', (e) => {
     e.stopPropagation();
     navLinksEl.classList.toggle('open');
   });
-  navLinksEl.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinksEl.classList.remove('open')));
+  navLinksEl.querySelectorAll('a').forEach(l => {
+    l.addEventListener('click', () => navLinksEl.classList.remove('open'));
+  });
 }
-
 document.addEventListener('click', (e) => {
   if (!e.target.closest('nav')) navLinksEl?.classList.remove('open');
 });
 
 // ── Counter animation ────────────────────────────
 function animateCounter(el) {
-  const target    = parseFloat(el.dataset.target);
-  const suffix    = el.dataset.suffix || '';
-  const prefix    = el.dataset.prefix || '';
-  const duration  = 1400;
-  const start     = performance.now();
-  const isDecimal = String(target).includes('.');
+  const target   = parseFloat(el.dataset.target);
+  const suffix   = el.dataset.suffix || '';
+  const duration = 1400;
+  const start    = performance.now();
+  const isFloat  = String(target).includes('.');
 
   const tick = (now) => {
-    const elapsed  = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const value = target * eased;
-    el.textContent = prefix + (isDecimal ? value.toFixed(1) : Math.round(value)) + suffix;
+    const progress = Math.min((now - start) / duration, 1);
+    const eased    = 1 - Math.pow(1 - progress, 3);
+    const value    = target * eased;
+    el.textContent = (isFloat ? value.toFixed(1) : Math.round(value)) + suffix;
     if (progress < 1) requestAnimationFrame(tick);
   };
-
   requestAnimationFrame(tick);
 }
 
@@ -99,48 +93,24 @@ document.querySelectorAll('.case-trigger').forEach(trigger => {
     const inner  = item.querySelector('.case-detail-inner');
     const isOpen = item.classList.contains('active');
 
-    // Close all others
-    document.querySelectorAll('.case-item.active').forEach(openItem => {
-      if (openItem !== item) {
-        openItem.classList.remove('active');
-        openItem.querySelector('.case-detail').style.height = '0';
+    // Close others
+    document.querySelectorAll('.case-item.active').forEach(open => {
+      if (open !== item) {
+        open.classList.remove('active');
+        open.querySelector('.case-detail').style.height = '0';
+        open.querySelector('.case-trigger').setAttribute('aria-expanded', 'false');
       }
     });
 
     if (isOpen) {
       item.classList.remove('active');
       detail.style.height = '0';
+      trigger.setAttribute('aria-expanded', 'false');
     } else {
       item.classList.add('active');
       detail.style.height = inner.scrollHeight + 'px';
-      // Scroll into view slightly
-      setTimeout(() => {
-        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 420);
+      trigger.setAttribute('aria-expanded', 'true');
+      setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 420);
     }
   });
 });
-
-// ── Competency bars ──────────────────────────────
-const barObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const pct  = e.target.dataset.pct;
-      e.target.style.width = pct + '%';
-      barObserver.unobserve(e.target);
-    }
-  });
-}, { rootMargin: '0px 0px -60px 0px' });
-
-document.querySelectorAll('.kompetence-fill[data-pct]').forEach(el => barObserver.observe(el));
-
-// ── Timeline line animation ──────────────────────
-const timelineObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-    }
-  });
-}, { rootMargin: '0px 0px -60px 0px' });
-
-document.querySelectorAll('.timeline-item').forEach(el => timelineObserver.observe(el));
