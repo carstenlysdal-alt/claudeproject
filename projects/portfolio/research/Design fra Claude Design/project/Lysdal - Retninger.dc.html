@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#E7E0D2; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  @keyframes maskUp { from { transform: translateY(108%); } to { transform: translateY(0); } }
+  @keyframes riseIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: none; } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes lineDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes sweep { from { background-size:0% 100%; } to { background-size:100% 100%; } }
+  @keyframes breathe { 0%,100% { transform: scale(1); opacity:.55; } 50% { transform: scale(1.55); opacity:1; } }
+  @keyframes drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  @keyframes blink { 0%,50% { opacity:1; } 50.01%,100% { opacity:0; } }
+  @keyframes flowDash { from { background-position:0 0; } to { background-position:18px 0; } }
+  @keyframes pulseRing { 0% { box-shadow:0 0 0 0 rgba(169,80,58,0.45); } 70% { box-shadow:0 0 0 10px rgba(169,80,58,0); } 100% { box-shadow:0 0 0 0 rgba(169,80,58,0); } }
+  @keyframes spinSlow { to { transform: rotate(360deg); } }
+</style>
+</helmet>
+
+<section style="font-family:'Instrument Sans',sans-serif; padding:56px 56px 40px; min-width:2960px; box-sizing:border-box;">
+
+  <div style="display:flex; align-items:baseline; gap:20px; margin-bottom:8px;">
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:26px; color:#201C16; margin:0; letter-spacing:-0.01em;">Retning 3 — <em style="font-style:italic;">C-suite &amp; interaktivt AI-lag</em></h2>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8272; letter-spacing:0.04em;">3A · executive header · live Chatty · animeret værdikæde</span>
+  </div>
+  <p style="font-size:14px; color:#6E665A; margin:0 0 40px; max-width:640px; line-height:1.5;">Executive-format med utility-bar + klar menu, tung kursiv og et interaktivt AI-lag. <strong style="font-weight:600; color:#201C16;">Klik på fanerne</strong> i konsollen — Chatty "kører" hver use-case. Accent kan skiftes til enhver af farverne fra Retning 2.</p>
+
+  <div id="3a" style="width:1460px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.12); box-shadow:0 40px 100px -50px rgba(36,32,26,0.45); overflow:hidden; margin-bottom:64px;">
+
+    <!-- utility bar -->
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 46px; background:#1E1B16; color:#CFC7B6; font-size:12.5px;">
+      <span style="font-family:'Newsreader',serif; font-style:italic; font-size:14.5px; color:#EDE7D9; letter-spacing:0.01em;">Chefredaktør &amp; transformationsleder</span>
+      <div style="display:flex; align-items:center; gap:20px;">
+        <span style="display:inline-flex; align-items:center; gap:8px;"><span style="width:7px; height:7px; border-radius:50%; background:#8FA05C; display:inline-block; animation:pulseRing 2.4s ease-out infinite;"></span>Åben for nye samarbejder</span>
+        <span style="opacity:.35;">§</span>
+        <span>DA <span style="opacity:.4;">/ EN</span></span>
+        <span style="opacity:.35;">§</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px;">carstenlysdal@proton.me</span>
+      </div>
+    </div>
+
+    <!-- main nav -->
+    <header style="display:flex; align-items:center; justify-content:space-between; padding:22px 46px; border-bottom:1px solid rgba(36,32,26,0.14);">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="width:38px; height:38px; background:#A9503A; color:#F2ECDF; font-family:'Newsreader',serif; font-style:italic; font-size:18px; display:flex; align-items:center; justify-content:center; letter-spacing:-0.02em;">CL</span>
+        <span style="font-family:'Newsreader',serif; font-style:italic; font-weight:500; font-size:23px; color:#201C16; letter-spacing:-0.01em;">Carsten Lysdal</span>
+      </div>
+      <nav style="display:flex; align-items:center; gap:32px; font-size:14.5px; color:#6E665A;">
+        <span style="cursor:pointer; padding-bottom:4px; border-bottom:2px solid transparent; transition:color .25s, border-color .25s;" style-hover="color:#201C16; border-bottom-color:rgba(169,80,58,0.4);">Metode</span>
+        <span style="cursor:pointer; padding-bottom:4px; border-bottom:2px solid transparent; transition:color .25s, border-color .25s;" style-hover="color:#201C16; border-bottom-color:rgba(169,80,58,0.4);">Cases</span>
+        <span style="cursor:pointer; font-family:'Newsreader',serif; font-style:italic; font-size:17px; color:#A9503A; padding-bottom:4px; border-bottom:2px solid #A9503A;">Ledelse</span>
+        <span style="cursor:pointer; padding-bottom:4px; border-bottom:2px solid transparent; transition:color .25s, border-color .25s;" style-hover="color:#201C16; border-bottom-color:rgba(169,80,58,0.4);">AI &amp; Data</span>
+        <span style="cursor:pointer; padding-bottom:4px; border-bottom:2px solid transparent; transition:color .25s, border-color .25s;" style-hover="color:#201C16; border-bottom-color:rgba(169,80,58,0.4);">Karriere</span>
+        <span style="cursor:pointer; padding-bottom:4px; border-bottom:2px solid transparent; transition:color .25s, border-color .25s;" style-hover="color:#201C16; border-bottom-color:rgba(169,80,58,0.4);">Kontakt</span>
+        <span style="display:inline-flex; align-items:center; gap:8px; padding:11px 20px; background:#A9503A; color:#F7F2E9; font-weight:500; font-size:13.5px; border-radius:2px; cursor:pointer; transition:transform .25s;" style-hover="transform:translateY(-2px);">Hent CV <span style="font-family:'JetBrains Mono',monospace;">↓</span></span>
+      </nav>
+    </header>
+
+    <!-- hero -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; padding:70px 46px 60px; align-items:center;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:28px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.12em; color:#8A8272; text-transform:uppercase; animation:fadeIn .8s ease .1s both;">
+          <span style="color:#A9503A;">§</span> AI-enablement <span style="color:#A9503A;">·</span> Data <span style="color:#A9503A;">·</span> Redaktionel ledelse
+        </div>
+        <h1 style="font-family:'Newsreader',serif; font-weight:400; font-size:66px; line-height:1.06; letter-spacing:-0.025em; color:#201C16; margin:0 0 26px;">
+          <span style="display:block; overflow:hidden;"><span style="display:block; animation:maskUp .95s cubic-bezier(.22,1,.36,1) both;">Jeg gør <em style="font-style:italic; color:#A9503A;">AI</em> til en</span></span>
+          <span style="display:block; overflow:hidden;"><span style="display:block; animation:maskUp .95s cubic-bezier(.22,1,.36,1) .12s both;"><em style="font-style:italic;">integreret</em> del af den</span></span>
+          <span style="display:block; overflow:hidden;"><span style="display:block; animation:maskUp .95s cubic-bezier(.22,1,.36,1) .24s both;">redaktionelle <em style="font-style:italic; color:#A9503A;">værdikæde.</em></span></span>
+        </h1>
+        <p style="font-family:'Newsreader',serif; font-size:19px; line-height:1.55; color:#4A443A; max-width:40ch; margin:0 0 30px; animation:riseIn .8s ease .5s both;">
+          Fra eksperiment til daglig, ansvarlig drift — med <em style="font-style:italic;">markant øget output, tempo og kvalitet.</em>
+        </p>
+        <div style="display:flex; gap:14px; margin-bottom:40px; animation:riseIn .8s ease .65s both;">
+          <span style="display:inline-flex; align-items:center; gap:9px; padding:13px 24px; background:#A9503A; color:#F7F2E9; font-weight:500; font-size:14.5px; border-radius:2px; cursor:pointer; transition:transform .25s;" style-hover="transform:translateY(-2px);">Se Chatty i praksis <span style="font-family:'JetBrains Mono',monospace;">→</span></span>
+          <span style="display:inline-flex; align-items:center; gap:9px; padding:13px 24px; border:1px solid rgba(36,32,26,0.35); color:#201C16; font-weight:500; font-size:14.5px; border-radius:2px; cursor:pointer; transition:background .25s;" style-hover="background:rgba(36,32,26,0.05);">Hent CV <span style="font-family:'JetBrains Mono',monospace;">↓</span></span>
+        </div>
+        <div style="display:flex; gap:40px; animation:riseIn .8s ease .8s both;">
+          <div><span data-count="150" data-suffix="+" style="font-family:'Newsreader',serif; font-size:34px; color:#201C16; display:block; line-height:1;">150+</span><span style="font-size:12px; color:#6E665A;">Medarbejdere ledet</span></div>
+          <div style="width:1px; background:rgba(36,32,26,0.16);"></div>
+          <div><span data-count="600" data-suffix="" style="font-family:'Newsreader',serif; font-size:34px; color:#201C16; display:block; line-height:1;">600</span><span style="font-size:12px; color:#6E665A;">Enheder / uge</span></div>
+          <div style="width:1px; background:rgba(36,32,26,0.16);"></div>
+          <div><span data-count="2" data-suffix="x" style="font-family:'Newsreader',serif; font-size:34px; color:#201C16; display:block; line-height:1;">2x</span><span style="font-size:12px; color:#6E665A;">Trafik</span></div>
+        </div>
+      </div>
+
+      <!-- live AI console -->
+      <div style="position:relative; animation:riseIn .9s ease .4s both;">
+        <div style="position:absolute; top:-16px; right:-6px; width:70px; height:70px; border:1px dashed rgba(169,80,58,0.5); border-radius:50%; animation:spinSlow 14s linear infinite;"></div>
+        <div style="position:absolute; top:8px; right:18px; font-family:'JetBrains Mono',monospace; font-size:10px; color:#A9503A; letter-spacing:0.1em;">AI</div>
+        <div style="background:#1E1B16; border-radius:8px; overflow:hidden; box-shadow:0 40px 80px -40px rgba(36,32,26,0.7); border:1px solid rgba(36,32,26,0.4);">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid rgba(237,231,217,0.1);">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="display:flex; gap:6px;"><span style="width:10px; height:10px; border-radius:50%; background:#A9503A;"></span><span style="width:10px; height:10px; border-radius:50%; background:rgba(237,231,217,0.2);"></span><span style="width:10px; height:10px; border-radius:50%; background:rgba(237,231,217,0.2);"></span></span>
+              <span style="font-family:'Newsreader',serif; font-style:italic; font-size:16px; color:#EDE7D9;">Chatty</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8A8272;">redaktionel copilot</span>
+            </div>
+            <span style="display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8FA05C;"><span style="width:6px; height:6px; border-radius:50%; background:#8FA05C; animation:breathe 2s ease-in-out infinite;"></span>live</span>
+          </div>
+          <div style="display:flex; gap:6px; padding:12px 16px 0;">
+            <button onClick="{{ tab0 }}" style="background:transparent; border:none; border-bottom:2px solid {{ tabBd0 }}; color:{{ tabCol0 }}; font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:6px 10px; cursor:pointer;">⌕ Research</button>
+            <button onClick="{{ tab1 }}" style="background:transparent; border:none; border-bottom:2px solid {{ tabBd1 }}; color:{{ tabCol1 }}; font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:6px 10px; cursor:pointer;">¶ Produktion</button>
+            <button onClick="{{ tab2 }}" style="background:transparent; border:none; border-bottom:2px solid {{ tabBd2 }}; color:{{ tabCol2 }}; font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:6px 10px; cursor:pointer;">✓ Kvalitet</button>
+          </div>
+          <div style="padding:18px; font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.75; color:#CFC7B6; white-space:pre-wrap; min-height:196px;">{{ typed }}<span style="display:inline-block; width:8px; height:15px; background:#A9503A; vertical-align:-2px; margin-left:1px; animation:blink 1s steps(1) infinite;"></span></div>
+          <div style="display:flex; gap:8px; padding:0 18px 18px; flex-wrap:wrap;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#8A8272; border:1px solid rgba(237,231,217,0.14); padding:5px 10px; border-radius:99px;">onboarding</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#8A8272; border:1px solid rgba(237,231,217,0.14); padding:5px 10px; border-radius:99px;">governance</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#8A8272; border:1px solid rgba(237,231,217,0.14); padding:5px 10px; border-radius:99px;">feedback loops</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#8A8272; border:1px solid rgba(237,231,217,0.14); padding:5px 10px; border-radius:99px;">CMS-integration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- animated value chain -->
+    <div style="background:#EBE3D4; padding:44px 46px 48px; border-top:1px solid rgba(36,32,26,0.14);">
+      <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:34px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:#A9503A; text-transform:uppercase;">¶ Den redaktionelle værdikæde</span>
+        <span style="font-family:'Newsreader',serif; font-style:italic; font-size:15px; color:#6E665A;">— AI som operationelt lag i hvert led</span>
+      </div>
+      <div style="display:flex; align-items:center; padding:0 6px;">
+        <div style="position:relative; display:flex; flex-direction:column; align-items:center; cursor:pointer;" style-hover="transform:translateY(-3px)">
+          <span style="width:52px; height:52px; border-radius:50%; border:1.5px solid #A9503A; background:#F2ECDF; display:flex; align-items:center; justify-content:center; font-size:19px; color:#A9503A; animation:pulseRing 3s ease-out infinite;">✷</span>
+          <span style="position:absolute; top:60px; font-size:12.5px; color:#4A443A; white-space:nowrap;">Idé</span>
+        </div>
+        <div style="flex:1; height:2px; margin:0 6px; background:linear-gradient(90deg,#A9503A 0 45%,transparent 45% 100%); background-size:18px 2px; animation:flowDash 1s linear infinite;"></div>
+        <div style="position:relative; display:flex; flex-direction:column; align-items:center; cursor:pointer;" style-hover="transform:translateY(-3px)">
+          <span style="width:52px; height:52px; border-radius:50%; border:1.5px solid #A9503A; background:#F2ECDF; display:flex; align-items:center; justify-content:center; font-size:19px; color:#A9503A;">⌕</span>
+          <span style="position:absolute; top:60px; font-size:12.5px; color:#4A443A; white-space:nowrap;">Research</span>
+        </div>
+        <div style="flex:1; height:2px; margin:0 6px; background:linear-gradient(90deg,#A9503A 0 45%,transparent 45% 100%); background-size:18px 2px; animation:flowDash 1s linear .2s infinite;"></div>
+        <div style="position:relative; display:flex; flex-direction:column; align-items:center; cursor:pointer;" style-hover="transform:translateY(-3px)">
+          <span style="width:52px; height:52px; border-radius:50%; border:1.5px solid #A9503A; background:#F2ECDF; display:flex; align-items:center; justify-content:center; font-size:19px; color:#A9503A;">¶</span>
+          <span style="position:absolute; top:60px; font-size:12.5px; color:#4A443A; white-space:nowrap;">Produktion</span>
+        </div>
+        <div style="flex:1; height:2px; margin:0 6px; background:linear-gradient(90deg,#A9503A 0 45%,transparent 45% 100%); background-size:18px 2px; animation:flowDash 1s linear .4s infinite;"></div>
+        <div style="position:relative; display:flex; flex-direction:column; align-items:center; cursor:pointer;" style-hover="transform:translateY(-3px)">
+          <span style="width:52px; height:52px; border-radius:50%; border:1.5px solid #A9503A; background:#F2ECDF; display:flex; align-items:center; justify-content:center; font-size:19px; color:#A9503A;">✓</span>
+          <span style="position:absolute; top:60px; font-size:12.5px; color:#4A443A; white-space:nowrap;">Kvalitet</span>
+        </div>
+        <div style="flex:1; height:2px; margin:0 6px; background:linear-gradient(90deg,#A9503A 0 45%,transparent 45% 100%); background-size:18px 2px; animation:flowDash 1s linear .6s infinite;"></div>
+        <div style="position:relative; display:flex; flex-direction:column; align-items:center; cursor:pointer;" style-hover="transform:translateY(-3px)">
+          <span style="width:52px; height:52px; border-radius:50%; border:1.5px solid #A9503A; background:#A9503A; display:flex; align-items:center; justify-content:center; font-size:19px; color:#F2ECDF;">→</span>
+          <span style="position:absolute; top:60px; font-size:12.5px; color:#4A443A; white-space:nowrap;">Publicering</span>
+        </div>
+      </div>
+      <div style="height:22px;"></div>
+    </div>
+  </div>
+
+  <div style="display:flex; align-items:baseline; gap:20px; margin-bottom:8px;">
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:26px; color:#201C16; margin:0; letter-spacing:-0.01em;">Retning 2 — <em style="font-style:italic;">Header &amp; farver</em></h2>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8272; letter-spacing:0.04em;">2 header-layouts · 5 paletter</span>
+  </div>
+  <p style="font-size:14px; color:#6E665A; margin:0 0 40px; max-width:600px; line-height:1.5;">Mere balancerede headere og et sæt dæmpede accenter (samme lethed &amp; kulør-styrke, kun kulør skifter — derfor harmonerer de). Referér som <strong style="font-weight:600; color:#201C16;">2H-A</strong> / <strong style="font-weight:600; color:#201C16;">2H-B</strong> og farve som <strong style="font-weight:600; color:#201C16;">Rust</strong>, <strong style="font-weight:600; color:#201C16;">Oliven</strong> osv.</p>
+
+  <!-- ── HEADER LAYOUTS ── -->
+  <div style="display:flex; gap:40px; flex-wrap:wrap; margin-bottom:56px;">
+
+    <div id="2h-a" style="width:1400px; background:#F4EFE4; border:1px solid rgba(36,32,26,0.12); box-shadow:0 24px 60px -40px rgba(36,32,26,0.35);">
+      <div style="padding:12px 32px; background:#F0E9DB; border-bottom:1px solid rgba(36,32,26,0.1);"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.12em; color:#8A8272; text-transform:uppercase;">2H-A · balanceret split — monogram + let CTA</span></div>
+      <header style="display:flex; align-items:center; justify-content:space-between; padding:22px 44px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <span style="width:34px; height:34px; background:#A9503A; color:#F4EFE4; font-family:'Newsreader',serif; font-size:16px; display:flex; align-items:center; justify-content:center; letter-spacing:-0.02em;">CL</span>
+          <span style="font-family:'Newsreader',serif; font-weight:500; font-size:21px; color:#201C16; letter-spacing:-0.01em;">Carsten Lysdal</span>
+        </div>
+        <nav style="display:flex; align-items:center; gap:34px; font-size:14.5px; color:#6E665A;">
+          <span>Metode</span>
+          <span>Cases</span>
+          <span style="color:#201C16; position:relative; padding-bottom:4px; border-bottom:2px solid #A9503A;">Ledelse</span>
+          <span>AI &amp; Data</span>
+          <span>Kontakt</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; background:#A9503A; color:#F7F2E9; font-weight:500; font-size:13.5px; border-radius:2px;">Hent CV<span style="font-family:'JetBrains Mono',monospace;">↓</span></span>
+        </nav>
+      </header>
+    </div>
+
+    <div id="2h-b" style="width:1400px; background:#F4EFE4; border:1px solid rgba(36,32,26,0.12); box-shadow:0 24px 60px -40px rgba(36,32,26,0.35);">
+      <div style="padding:12px 32px; background:#F0E9DB; border-bottom:1px solid rgba(36,32,26,0.1);"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.12em; color:#8A8272; text-transform:uppercase;">2H-B · centreret masthead — rolig &amp; redaktionel</span></div>
+      <header style="padding:20px 44px 0;">
+        <div style="display:grid; grid-template-columns:1fr auto 1fr; align-items:center;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8272; letter-spacing:0.06em;">Roskilde · DK</span>
+          <span style="font-family:'Newsreader',serif; font-weight:500; font-size:26px; color:#201C16; letter-spacing:-0.01em; justify-self:center;">Carsten Lysdal</span>
+          <span style="justify-self:end; display:inline-flex; align-items:center; gap:7px; font-size:13.5px; color:#A9503A; font-weight:500;">Hent CV <span style="font-family:'JetBrains Mono',monospace;">↓</span></span>
+        </div>
+        <nav style="display:flex; justify-content:center; gap:44px; font-size:14.5px; color:#6E665A; margin-top:18px; padding:14px 0; border-top:1px solid rgba(36,32,26,0.14);">
+          <span>Metode</span>
+          <span>Cases</span>
+          <span style="color:#A9503A; font-style:italic; font-family:'Newsreader',serif; font-size:16px;">Ledelse</span>
+          <span>AI &amp; Data</span>
+          <span>Kontakt</span>
+        </nav>
+      </header>
+    </div>
+  </div>
+
+  <!-- ── FARVEPALETTER ── -->
+  <div style="display:flex; gap:40px; flex-wrap:wrap;">
+
+    <div id="rust" style="width:560px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.12); box-shadow:0 24px 60px -40px rgba(36,32,26,0.35);">
+      <header style="display:flex; align-items:center; justify-content:space-between; padding:16px 28px; border-bottom:1px solid rgba(36,32,26,0.12);">
+        <div style="display:flex; align-items:center; gap:10px;"><span style="width:24px; height:24px; background:#A9503A; color:#F2ECDF; font-family:'Newsreader',serif; font-size:12px; display:flex; align-items:center; justify-content:center;">CL</span><span style="font-family:'Newsreader',serif; font-size:15px; color:#24201A;">Carsten Lysdal</span></div>
+        <span style="font-size:11px; padding:6px 12px; background:#A9503A; color:#F2ECDF; border-radius:2px;">Hent CV</span>
+      </header>
+      <div style="padding:30px 28px 24px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:#A9503A; text-transform:uppercase;">Rust</span>
+        <h3 style="font-family:'Newsreader',serif; font-weight:500; font-size:38px; line-height:1.0; letter-spacing:-0.02em; color:#24201A; margin:12px 0 14px;">Fra strategi til <em style="font-style:italic; color:#A9503A;">praksis.</em></h3>
+        <p style="font-family:'Newsreader',serif; font-size:15px; line-height:1.5; color:#4A443A; margin:0 0 20px;">Chefredaktør &amp; transformationsleder.</p>
+        <div style="height:1px; background:#A9503A; margin-bottom:20px;"></div>
+      </div>
+      <div style="display:flex; padding:0 28px 26px; gap:0;">
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.15);"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">F2ECDF</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#24201A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">24201A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#6E665A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">6E665A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#A9503A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">A9503A</span></div>
+      </div>
+    </div>
+
+    <div id="okker" style="width:560px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.12); box-shadow:0 24px 60px -40px rgba(36,32,26,0.35);">
+      <header style="display:flex; align-items:center; justify-content:space-between; padding:16px 28px; border-bottom:1px solid rgba(36,32,26,0.12);">
+        <div style="display:flex; align-items:center; gap:10px;"><span style="width:24px; height:24px; background:#977A2E; color:#F2ECDF; font-family:'Newsreader',serif; font-size:12px; display:flex; align-items:center; justify-content:center;">CL</span><span style="font-family:'Newsreader',serif; font-size:15px; color:#24201A;">Carsten Lysdal</span></div>
+        <span style="font-size:11px; padding:6px 12px; background:#977A2E; color:#F2ECDF; border-radius:2px;">Hent CV</span>
+      </header>
+      <div style="padding:30px 28px 24px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:#977A2E; text-transform:uppercase;">Okker</span>
+        <h3 style="font-family:'Newsreader',serif; font-weight:500; font-size:38px; line-height:1.0; letter-spacing:-0.02em; color:#24201A; margin:12px 0 14px;">Fra strategi til <em style="font-style:italic; color:#977A2E;">praksis.</em></h3>
+        <p style="font-family:'Newsreader',serif; font-size:15px; line-height:1.5; color:#4A443A; margin:0 0 20px;">Chefredaktør &amp; transformationsleder.</p>
+        <div style="height:1px; background:#977A2E; margin-bottom:20px;"></div>
+      </div>
+      <div style="display:flex; padding:0 28px 26px; gap:0;">
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.15);"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">F2ECDF</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#24201A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">24201A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#6E665A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">6E665A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#977A2E;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">977A2E</span></div>
+      </div>
+    </div>
+
+    <div id="oliven" style="width:560px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.12); box-shadow:0 24px 60px -40px rgba(36,32,26,0.35);">
+      <header style="display:flex; align-items:center; justify-content:space-between; padding:16px 28px; border-bottom:1px solid rgba(36,32,26,0.12);">
+        <div style="display:flex; align-items:center; gap:10px;"><span style="width:24px; height:24px; background:#5F6B3E; color:#F2ECDF; font-family:'Newsreader',serif; font-size:12px; display:flex; align-items:center; justify-content:center;">CL</span><span style="font-family:'Newsreader',serif; font-size:15px; color:#24201A;">Carsten Lysdal</span></div>
+        <span style="font-size:11px; padding:6px 12px; background:#5F6B3E; color:#F2ECDF; border-radius:2px;">Hent CV</span>
+      </header>
+      <div style="padding:30px 28px 24px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:#5F6B3E; text-transform:uppercase;">Oliven</span>
+        <h3 style="font-family:'Newsreader',serif; font-weight:500; font-size:38px; line-height:1.0; letter-spacing:-0.02em; color:#24201A; margin:12px 0 14px;">Fra strategi til <em style="font-style:italic; color:#5F6B3E;">praksis.</em></h3>
+        <p style="font-family:'Newsreader',serif; font-size:15px; line-height:1.5; color:#4A443A; margin:0 0 20px;">Chefredaktør &amp; transformationsleder.</p>
+        <div style="height:1px; background:#5F6B3E; margin-bottom:20px;"></div>
+      </div>
+      <div style="display:flex; padding:0 28px 26px; gap:0;">
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.15);"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">F2ECDF</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#24201A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">24201A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#6E665A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">6E665A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#5F6B3E;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">5F6B3E</span></div>
+      </div>
+    </div>
+
+    <div id="skifer" style="width:560px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.12); box-shadow:0 24px 60px -40px rgba(36,32,26,0.35);">
+      <header style="display:flex; align-items:center; justify-content:space-between; padding:16px 28px; border-bottom:1px solid rgba(36,32,26,0.12);">
+        <div style="display:flex; align-items:center; gap:10px;"><span style="width:24px; height:24px; background:#4E6274; color:#F2ECDF; font-family:'Newsreader',serif; font-size:12px; display:flex; align-items:center; justify-content:center;">CL</span><span style="font-family:'Newsreader',serif; font-size:15px; color:#24201A;">Carsten Lysdal</span></div>
+        <span style="font-size:11px; padding:6px 12px; background:#4E6274; color:#F2ECDF; border-radius:2px;">Hent CV</span>
+      </header>
+      <div style="padding:30px 28px 24px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:#4E6274; text-transform:uppercase;">Skifer</span>
+        <h3 style="font-family:'Newsreader',serif; font-weight:500; font-size:38px; line-height:1.0; letter-spacing:-0.02em; color:#24201A; margin:12px 0 14px;">Fra strategi til <em style="font-style:italic; color:#4E6274;">praksis.</em></h3>
+        <p style="font-family:'Newsreader',serif; font-size:15px; line-height:1.5; color:#4A443A; margin:0 0 20px;">Chefredaktør &amp; transformationsleder.</p>
+        <div style="height:1px; background:#4E6274; margin-bottom:20px;"></div>
+      </div>
+      <div style="display:flex; padding:0 28px 26px; gap:0;">
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.15);"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">F2ECDF</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#24201A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">24201A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#6E665A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">6E665A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#4E6274;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">4E6274</span></div>
+      </div>
+    </div>
+
+    <div id="blomme" style="width:560px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.12); box-shadow:0 24px 60px -40px rgba(36,32,26,0.35);">
+      <header style="display:flex; align-items:center; justify-content:space-between; padding:16px 28px; border-bottom:1px solid rgba(36,32,26,0.12);">
+        <div style="display:flex; align-items:center; gap:10px;"><span style="width:24px; height:24px; background:#845059; color:#F2ECDF; font-family:'Newsreader',serif; font-size:12px; display:flex; align-items:center; justify-content:center;">CL</span><span style="font-family:'Newsreader',serif; font-size:15px; color:#24201A;">Carsten Lysdal</span></div>
+        <span style="font-size:11px; padding:6px 12px; background:#845059; color:#F2ECDF; border-radius:2px;">Hent CV</span>
+      </header>
+      <div style="padding:30px 28px 24px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:#845059; text-transform:uppercase;">Blomme</span>
+        <h3 style="font-family:'Newsreader',serif; font-weight:500; font-size:38px; line-height:1.0; letter-spacing:-0.02em; color:#24201A; margin:12px 0 14px;">Fra strategi til <em style="font-style:italic; color:#845059;">praksis.</em></h3>
+        <p style="font-family:'Newsreader',serif; font-size:15px; line-height:1.5; color:#4A443A; margin:0 0 20px;">Chefredaktør &amp; transformationsleder.</p>
+        <div style="height:1px; background:#845059; margin-bottom:20px;"></div>
+      </div>
+      <div style="display:flex; padding:0 28px 26px; gap:0;">
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#F2ECDF; border:1px solid rgba(36,32,26,0.15);"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">F2ECDF</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#24201A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">24201A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#6E665A;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">6E665A</span></div>
+        <div style="flex:1; text-align:center;"><div style="height:38px; background:#845059;"></div><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#8A8272; display:block; margin-top:6px;">845059</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="font-family:'Instrument Sans',sans-serif; padding:16px 56px 96px; min-width:2960px; box-sizing:border-box;">
+
+  <div style="display:flex; align-items:baseline; gap:20px; margin-bottom:8px;">
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:26px; color:#201C16; margin:0; letter-spacing:-0.01em;">Retning 1 — <em style="font-style:italic;">Hero + Ledelse</em></h2>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8272; letter-spacing:0.04em;">to varianter · vælg stil før fuld build</span>
+  </div>
+  <p style="font-size:14px; color:#6E665A; margin:0 0 40px; max-width:560px; line-height:1.5;">Begge på varmt papir med én dæmpet accent og editorial serif. Klik/hover for at mærke bevægelsen. Referér til en variant i chatten som <strong style="font-weight:600; color:#201C16;">1A</strong> eller <strong style="font-weight:600; color:#201C16;">1B</strong>.</p>
+
+  <div style="display:flex; gap:56px; align-items:flex-start; flex-wrap:wrap;">
+
+    <!-- ══════════ OPTION 1A · SPALTEN ══════════ -->
+    <div id="1a" style="width:1400px; background:#F4EFE4; border:1px solid rgba(32,28,22,0.12); box-shadow:0 30px 80px -40px rgba(32,28,22,0.35); overflow:hidden;">
+
+      <div style="display:flex; align-items:center; gap:14px; padding:16px 40px; background:#201C16;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:500; letter-spacing:0.12em; color:#F4EFE4;">1A</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.12em; color:#A9503A; text-transform:uppercase;">Spalten — struktureret &amp; redaktionel</span>
+      </div>
+
+      <!-- masthead -->
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:26px 64px; border-bottom:1px solid rgba(32,28,22,0.14);">
+        <span style="font-family:'Newsreader',serif; font-weight:500; font-size:23px; color:#201C16; letter-spacing:-0.01em;">Carsten Lysdal</span>
+        <nav style="display:flex; gap:30px; align-items:center; font-size:14px; color:#6E665A; letter-spacing:0.01em;">
+          <span>Metode</span>
+          <span>Cases</span>
+          <span style="color:#201C16; font-weight:500;">Ledelse</span>
+          <span>AI &amp; Data</span>
+          <span>Kontakt</span>
+          <span style="padding:9px 18px; border:1px solid #A9503A; color:#A9503A; font-weight:500; font-size:13px;">Hent CV</span>
+        </nav>
+      </div>
+
+      <!-- hero -->
+      <div style="display:grid; grid-template-columns:1.25fr 0.75fr; gap:56px; padding:72px 64px 80px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:28px; animation:fadeIn .8s ease .1s both;">
+            <span style="width:7px; height:7px; border-radius:50%; background:#A9503A; display:inline-block; animation:breathe 2.8s ease-in-out infinite;"></span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:#8A8272; text-transform:uppercase;">Redaktionel transformation · AI · Data</span>
+          </div>
+
+          <h1 style="font-family:'Newsreader',serif; font-weight:500; font-size:90px; line-height:0.98; letter-spacing:-0.025em; color:#201C16; margin:0 0 30px;">
+            <span style="display:block; overflow:hidden;"><span style="display:block; animation:maskUp 0.95s cubic-bezier(.22,1,.36,1) both;">Fra strategi</span></span>
+            <span style="display:block; overflow:hidden;"><span style="display:block; animation:maskUp 0.95s cubic-bezier(.22,1,.36,1) .13s both;">til <em style="font-style:italic; color:#A9503A;">praksis.</em></span></span>
+          </h1>
+
+          <p style="font-family:'Newsreader',serif; font-size:21px; line-height:1.5; color:#403A31; max-width:34ch; margin:0 0 12px; animation:riseIn .8s ease .5s both;">
+            Chefredaktør &amp; transformationsleder. Jeg bygger bro mellem journalistik, data, AI og organisation — og får strategi til at virke i redaktionel drift.
+          </p>
+
+          <div style="height:1px; background:#A9503A; margin:36px 0 28px; transform-origin:left; animation:lineDraw .9s cubic-bezier(.22,1,.36,1) .7s both;"></div>
+
+          <div style="display:flex; gap:44px; animation:riseIn .8s ease .8s both;">
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <span data-count="150" data-suffix="+" style="font-family:'Newsreader',serif; font-size:40px; font-weight:500; color:#201C16; line-height:1;">150+</span>
+              <span style="font-size:12.5px; color:#6E665A; max-width:12ch; line-height:1.3;">Medarbejdere ledet</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <span data-count="600" data-suffix="" style="font-family:'Newsreader',serif; font-size:40px; font-weight:500; color:#201C16; line-height:1;">600</span>
+              <span style="font-size:12.5px; color:#6E665A; max-width:12ch; line-height:1.3;">Enheder i produktion / uge</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <span data-count="2" data-suffix="x" style="font-family:'Newsreader',serif; font-size:40px; font-weight:500; color:#201C16; line-height:1;">2x</span>
+              <span style="font-size:12.5px; color:#6E665A; max-width:12ch; line-height:1.3;">Trafikfordobling</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <span data-count="13" data-suffix=" år" style="font-family:'Newsreader',serif; font-size:40px; font-weight:500; color:#201C16; line-height:1;">13 år</span>
+              <span style="font-size:12.5px; color:#6E665A; max-width:12ch; line-height:1.3;">Sjællandske Medier</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="animation:riseIn .9s ease .35s both;">
+          <div style="aspect-ratio:4/5; width:100%; background-color:#EAE2D3; background-image:repeating-linear-gradient(135deg, rgba(32,28,22,0.055) 0 11px, transparent 11px 22px); border:1px solid rgba(32,28,22,0.16); display:flex; align-items:flex-end; padding:18px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.08em; color:#8A8272; text-transform:uppercase;">portræt · 4:5</span>
+          </div>
+          <p style="font-family:'Newsreader',serif; font-style:italic; font-size:15px; color:#6E665A; margin:14px 2px 0; line-height:1.4;">»Teknologi for teknologiens skyld interesserer mig ikke. Effekt gør.«</p>
+        </div>
+      </div>
+
+      <!-- ledelse -->
+      <div style="background:#EBE3D4; padding:76px 64px 84px; border-top:1px solid rgba(32,28,22,0.14);">
+        <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:34px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:#A9503A; text-transform:uppercase;">Ledelse i praksis</span>
+          <span style="flex:1; height:1px; background:rgba(32,28,22,0.14);"></span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8272;">05 principper</span>
+        </div>
+
+        <p style="font-family:'Newsreader',serif; font-weight:400; font-size:38px; line-height:1.28; letter-spacing:-0.01em; color:#201C16; max-width:22ch; margin:0 0 44px;">
+          Jeg omsætter <em style="font-style:italic; color:#A9503A;">data, teknologi og AI</em> til konkrete resultater — i redaktionel drift, ikke på slides.
+        </p>
+
+        <div style="border-bottom:1px solid rgba(32,28,22,0.14);">
+          <div style="display:grid; grid-template-columns:70px 1fr 320px; gap:36px; align-items:baseline; padding:26px 14px; border-top:1px solid rgba(32,28,22,0.14); transition:background .3s ease, padding .3s ease;" style-hover="background:rgba(169,80,58,0.08); padding-left:26px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#A9503A;">01</span>
+            <span style="font-family:'Newsreader',serif; font-style:italic; font-size:25px; color:#201C16; line-height:1.25;">Jeg leder ledere — ikke kun medarbejdere.</span>
+            <span style="font-size:14.5px; color:#6E665A; line-height:1.5;">Forandring forankres, når ansvar og retning er tydeligt på alle niveauer.</span>
+          </div>
+          <div style="display:grid; grid-template-columns:70px 1fr 320px; gap:36px; align-items:baseline; padding:26px 14px; border-top:1px solid rgba(32,28,22,0.14); transition:background .3s ease, padding .3s ease;" style-hover="background:rgba(169,80,58,0.08); padding-left:26px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#A9503A;">02</span>
+            <span style="font-family:'Newsreader',serif; font-style:italic; font-size:25px; color:#201C16; line-height:1.25;">AI skal gøre journalistikken modigere — ikke billigere.</span>
+            <span style="font-size:14.5px; color:#6E665A; line-height:1.5;">Teknologi som løftestang for kvalitet og tempo, ikke som besparelse alene.</span>
+          </div>
+          <div style="display:grid; grid-template-columns:70px 1fr 320px; gap:36px; align-items:baseline; padding:26px 14px; border-top:1px solid rgba(32,28,22,0.14); transition:background .3s ease, padding .3s ease;" style-hover="background:rgba(169,80,58,0.08); padding-left:26px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#A9503A;">03</span>
+            <span style="font-family:'Newsreader',serif; font-style:italic; font-size:25px; color:#201C16; line-height:1.25;">Brugerindsigt binder ambition og strategi sammen.</span>
+            <span style="font-size:14.5px; color:#6E665A; line-height:1.5;">Digitale adfærdsdata som grundlag for redaktionelle prioriteringer og retning.</span>
+          </div>
+          <div style="display:grid; grid-template-columns:70px 1fr 320px; gap:36px; align-items:baseline; padding:26px 14px; border-top:1px solid rgba(32,28,22,0.14); transition:background .3s ease, padding .3s ease;" style-hover="background:rgba(169,80,58,0.08); padding-left:26px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#A9503A;">04</span>
+            <span style="font-family:'Newsreader',serif; font-style:italic; font-size:25px; color:#201C16; line-height:1.25;">Løsninger skal virke i praksis — og kunne skaleres.</span>
+            <span style="font-size:14.5px; color:#6E665A; line-height:1.5;">Fra eksperiment og enkeltværktøj til daglig, ansvarlig drift.</span>
+          </div>
+          <div style="display:grid; grid-template-columns:70px 1fr 320px; gap:36px; align-items:baseline; padding:26px 14px; border-top:1px solid rgba(32,28,22,0.14); transition:background .3s ease, padding .3s ease;" style-hover="background:rgba(169,80,58,0.08); padding-left:26px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#A9503A;">05</span>
+            <span style="font-family:'Newsreader',serif; font-style:italic; font-size:25px; color:#201C16; line-height:1.25;">Dømmekraft, analyse og AI-fortrolighed i samme hånd.</span>
+            <span style="font-size:14.5px; color:#6E665A; line-height:1.5;">Redaktionel erfaring og praktisk teknologiforståelse hører sammen.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ OPTION 1B · MANIFEST ══════════ -->
+    <div id="1b" style="width:1400px; background:#F4EFE4; border:1px solid rgba(32,28,22,0.12); box-shadow:0 30px 80px -40px rgba(32,28,22,0.35); overflow:hidden;">
+
+      <div style="display:flex; align-items:center; gap:14px; padding:16px 40px; background:#201C16;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:500; letter-spacing:0.12em; color:#F4EFE4;">1B</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.12em; color:#6E7A45; text-transform:uppercase;">Manifest — ekspressiv &amp; kursiv-drevet</span>
+      </div>
+
+      <!-- masthead -->
+      <div style="display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:26px 64px; border-bottom:1px solid rgba(32,28,22,0.14);">
+        <span style="font-family:'Newsreader',serif; font-weight:500; font-size:23px; color:#201C16; letter-spacing:-0.01em;">Carsten Lysdal</span>
+        <nav style="display:flex; gap:30px; align-items:center; font-size:14px; color:#6E665A; justify-self:center;">
+          <span>Metode</span>
+          <span>Cases</span>
+          <span style="color:#201C16; font-weight:500;">Ledelse</span>
+          <span>AI &amp; Data</span>
+          <span>Kontakt</span>
+        </nav>
+        <span style="justify-self:end; padding:9px 18px; border:1px solid #5F6B3E; color:#4F5A32; font-weight:500; font-size:13px;">Hent CV</span>
+      </div>
+
+      <!-- hero -->
+      <div style="padding:72px 64px 24px; text-align:center;">
+        <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:30px; animation:fadeIn .8s ease .1s both;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#5F6B3E; display:inline-block; animation:breathe 2.8s ease-in-out infinite;"></span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:#8A8272; text-transform:uppercase;">Chefredaktør &amp; transformationsleder</span>
+        </div>
+
+        <h1 style="font-family:'Newsreader',serif; font-weight:400; font-size:104px; line-height:0.96; letter-spacing:-0.03em; color:#201C16; margin:0 auto; max-width:15ch;">
+          <span style="display:block; overflow:hidden;"><span style="display:block; animation:maskUp 0.95s cubic-bezier(.22,1,.36,1) both;">Strategi, der virker</span></span>
+          <span style="display:block; overflow:hidden;"><span style="display:block; animation:maskUp 0.95s cubic-bezier(.22,1,.36,1) .13s both;">i <em style="font-style:italic; color:#5F6B3E;">praksis.</em></span></span>
+        </h1>
+
+        <p style="font-family:'Newsreader',serif; font-style:italic; font-size:23px; line-height:1.5; color:#403A31; max-width:40ch; margin:30px auto 0; animation:riseIn .8s ease .5s both;">
+          Jeg gør AI til en integreret del af arbejdsgange og binder publicistisk ambition sammen med strategisk retning.
+        </p>
+      </div>
+
+      <!-- portrait band + stats -->
+      <div style="padding:36px 64px 8px; animation:riseIn .9s ease .4s both;">
+        <div style="height:300px; width:100%; background-color:#EAE2D3; background-image:repeating-linear-gradient(135deg, rgba(32,28,22,0.055) 0 11px, transparent 11px 22px); border:1px solid rgba(32,28,22,0.16); display:flex; align-items:flex-end; justify-content:space-between; padding:20px 22px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.08em; color:#8A8272; text-transform:uppercase;">portræt · panorama 21:9</span>
+          <span style="font-family:'Newsreader',serif; font-style:italic; font-size:15px; color:#6E665A;">Roskilde · 2026</span>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; padding:34px 64px 76px; animation:riseIn .8s ease .6s both;">
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <span data-count="150" data-suffix="+" style="font-family:'Newsreader',serif; font-size:44px; font-weight:400; color:#201C16; line-height:1;">150+</span>
+          <span style="font-size:13px; color:#6E665A;">Medarbejdere ledet</span>
+        </div>
+        <div style="width:1px; background:rgba(32,28,22,0.14);"></div>
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <span data-count="600" data-suffix="" style="font-family:'Newsreader',serif; font-size:44px; font-weight:400; color:#201C16; line-height:1;">600</span>
+          <span style="font-size:13px; color:#6E665A;">Enheder / uge</span>
+        </div>
+        <div style="width:1px; background:rgba(32,28,22,0.14);"></div>
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <span data-count="2" data-suffix="x" style="font-family:'Newsreader',serif; font-size:44px; font-weight:400; color:#201C16; line-height:1;">2x</span>
+          <span style="font-size:13px; color:#6E665A;">Trafikfordobling</span>
+        </div>
+        <div style="width:1px; background:rgba(32,28,22,0.14);"></div>
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <span data-count="13" data-suffix=" år" style="font-family:'Newsreader',serif; font-size:44px; font-weight:400; color:#201C16; line-height:1;">13 år</span>
+          <span style="font-size:13px; color:#6E665A;">Sjællandske Medier</span>
+        </div>
+      </div>
+
+      <!-- ledelse — manifest -->
+      <div style="background:#201C16; padding:84px 64px 92px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#8FA05C; text-transform:uppercase;">Sådan leder jeg</span>
+
+        <p style="font-family:'Newsreader',serif; font-weight:400; font-size:44px; line-height:1.34; letter-spacing:-0.01em; color:#F4EFE4; max-width:26ch; margin:30px 0 56px;">
+          Dokumenteret erfaring i at omsætte
+          <em style="font-style:italic; color:#F4EFE4; background:linear-gradient(rgba(143,160,92,.4),rgba(143,160,92,.4)); background-size:0% 100%; background-repeat:no-repeat; background-position:0 90%; animation:sweep 1s ease .7s forwards;">data, teknologi og AI</em>
+          til resultater i drift — med
+          <em style="font-style:italic; color:#F4EFE4; background:linear-gradient(rgba(143,160,92,.4),rgba(143,160,92,.4)); background-size:0% 100%; background-repeat:no-repeat; background-position:0 90%; animation:sweep 1s ease 1.15s forwards;">markant øget output, tempo og kvalitet.</em>
+        </p>
+
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid rgba(244,239,228,0.18);">
+          <div style="padding:34px 32px 34px 0; border-right:1px solid rgba(244,239,228,0.18);">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8FA05C;">01</span>
+            <p style="font-family:'Newsreader',serif; font-style:italic; font-size:26px; line-height:1.3; color:#F4EFE4; margin:16px 0 0;">Jeg leder ledere — ikke kun medarbejdere.</p>
+          </div>
+          <div style="padding:34px 32px; border-right:1px solid rgba(244,239,228,0.18);">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8FA05C;">02</span>
+            <p style="font-family:'Newsreader',serif; font-style:italic; font-size:26px; line-height:1.3; color:#F4EFE4; margin:16px 0 0;">AI skal gøre journalistikken modigere — ikke billigere.</p>
+          </div>
+          <div style="padding:34px 0 34px 32px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8FA05C;">03</span>
+            <p style="font-family:'Newsreader',serif; font-style:italic; font-size:26px; line-height:1.3; color:#F4EFE4; margin:16px 0 0;">Løsninger skal virke i praksis — og kunne skaleres.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 0, typed: '' };
+  timer = null;
+
+  scripts = [
+    { text: '> Kortlæg åbne kilder i sag om kommunal økonomi\n\n· scanner 3 offentlige registre …\n· krydstjekker dokumenter …\n\n✓ 14 relevante spor fundet\n✓ 3 kræver menneskelig verifikation\n→ research-note klar til redaktionen' },
+    { text: '> Skriv kort nyhedsformat ud fra pressemeddelelse\n\n· genererer udkast …\n· foreslår rubrik + underrubrik …\n\n✓ 3 varianter klar til A/B\n✓ tone matcher brandprofil\n→ sendt til redaktionel godkendelse' },
+    { text: '> Kvalitetssikr artikel før publicering\n\n· tjekker tal, citater og kilder …\n· vurderer balance og faktatjek …\n\n✓ 2 tal markeret til kontrol\n✓ ingen usikre kilder\n→ klar med forbehold noteret' },
+  ];
+
+  componentDidMount() {
+    this.runCounters();
+    this.startTyping(0);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  runCounters() {
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseFloat(el.getAttribute('data-count'));
+      const suffix = el.getAttribute('data-suffix') || '';
+      const dur = 1500;
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
+  startTyping(i) {
+    clearInterval(this.timer);
+    const full = this.scripts[i].text;
+    let n = 0;
+    this.setState({ typed: '' });
+    this.timer = setInterval(() => {
+      n++;
+      this.setState({ typed: full.slice(0, n) });
+      if (n >= full.length) clearInterval(this.timer);
+    }, 20);
+  }
+
+  setTab(i) { this.setState({ tab: i }); this.startTyping(i); }
+
+  renderVals() {
+    const on = '#A9503A', off = '#8A8272', tr = 'transparent';
+    const t = this.state.tab;
+    return {
+      typed: this.state.typed,
+      tab0: () => this.setTab(0),
+      tab1: () => this.setTab(1),
+      tab2: () => this.setTab(2),
+      tabCol0: t === 0 ? on : off, tabBd0: t === 0 ? on : tr,
+      tabCol1: t === 1 ? on : off, tabBd1: t === 1 ? on : tr,
+      tabCol2: t === 2 ? on : off, tabBd2: t === 2 ? on : tr,
+    };
+  }
+}
+</script>
+</body>
+</html>

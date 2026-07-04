@@ -1,116 +1,143 @@
 'use strict';
 
 /* ================================================
-   CARSTEN LYSDAL — Portfolio JS v3.1
-   Scroll progress: CSS animation-timeline (no JS listener)
-   Active nav · Reveal · Case accordion · Counter · Mobile nav
+   CARSTEN LYSDAL — Portfolio JS v4
+   Scroll progress (CSS) · Active nav · Reveal ·
+   Case accordion · Counter · Chatty typewriter ·
+   Mobile nav
    ================================================ */
 
-// Inject progress bar element (styled via CSS scroll-driven animation)
-const progressBar = document.createElement('div');
-progressBar.className = 'scroll-progress';
-document.body.prepend(progressBar);
+// Scroll progress (CSS animation-timeline handles it — just inject the element)
+const bar = document.createElement('div');
+bar.className = 'scroll-progress';
+document.body.prepend(bar);
 
-// ── Active nav link ──────────────────────────────
+// ── Active nav ───────────────────────────────────
 const sections  = document.querySelectorAll('section[id]');
-const navLinks  = document.querySelectorAll('.nav-links a[href^="#"]');
+const navAs     = document.querySelectorAll('.nav-links a[href^="#"]');
 
-const navObserver = new IntersectionObserver((entries) => {
+const navObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      navLinks.forEach(l => {
-        l.classList.toggle('active', l.getAttribute('href') === `#${e.target.id}`);
-      });
-    }
+    if (!e.isIntersecting) return;
+    navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`));
   });
 }, { rootMargin: '-40% 0px -40% 0px' });
 
-sections.forEach(s => navObserver.observe(s));
+sections.forEach(s => navObs.observe(s));
 
-// ── Reveal on scroll ─────────────────────────────
-const revealObserver = new IntersectionObserver((entries) => {
+// ── Reveal ───────────────────────────────────────
+const revObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
   });
 }, { rootMargin: '0px 0px -72px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
 // ── Mobile nav ───────────────────────────────────
-const toggle     = document.querySelector('.nav-toggle');
-const navLinksEl = document.querySelector('.nav-links');
+const toggle  = document.querySelector('.nav-toggle');
+const navList = document.querySelector('.nav-links');
 
-if (toggle && navLinksEl) {
-  toggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navLinksEl.classList.toggle('open');
-  });
-  navLinksEl.querySelectorAll('a').forEach(l => {
-    l.addEventListener('click', () => navLinksEl.classList.remove('open'));
-  });
-}
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('nav')) navLinksEl?.classList.remove('open');
-});
+toggle?.addEventListener('click', e => { e.stopPropagation(); navList?.classList.toggle('open'); });
+navList?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+document.addEventListener('click', e => { if (!e.target.closest('nav')) navList?.classList.remove('open'); });
 
 // ── Counter animation ────────────────────────────
-function animateCounter(el) {
-  const target   = parseFloat(el.dataset.target);
-  const suffix   = el.dataset.suffix || '';
-  const duration = 1400;
-  const start    = performance.now();
-  const isFloat  = String(target).includes('.');
-
-  const tick = (now) => {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased    = 1 - Math.pow(1 - progress, 3);
-    const value    = target * eased;
-    el.textContent = (isFloat ? value.toFixed(1) : Math.round(value)) + suffix;
-    if (progress < 1) requestAnimationFrame(tick);
+function countUp(el) {
+  const target = parseFloat(el.dataset.target || el.textContent);
+  const suffix = el.dataset.suffix || '';
+  const dur    = 1400;
+  const t0     = performance.now();
+  const isF    = String(target).includes('.');
+  const tick   = now => {
+    const p = Math.min((now - t0) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = (isF ? (target * e).toFixed(1) : Math.round(target * e)) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
 }
 
-const counterObserver = new IntersectionObserver((entries) => {
+const cntObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      animateCounter(e.target);
-      counterObserver.unobserve(e.target);
-    }
+    if (e.isIntersecting) { countUp(e.target); cntObs.unobserve(e.target); }
   });
 }, { rootMargin: '0px 0px -80px 0px' });
 
-document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObserver.observe(el));
+document.querySelectorAll('[data-target]').forEach(el => cntObs.observe(el));
 
 // ── Case accordion ───────────────────────────────
-document.querySelectorAll('.case-trigger').forEach(trigger => {
-  trigger.addEventListener('click', () => {
-    const item   = trigger.closest('.case-item');
+document.querySelectorAll('.case-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item   = btn.closest('.case-item');
     const detail = item.querySelector('.case-detail');
     const inner  = item.querySelector('.case-detail-inner');
-    const isOpen = item.classList.contains('active');
+    const open   = item.classList.contains('active');
 
-    // Close others
-    document.querySelectorAll('.case-item.active').forEach(open => {
-      if (open !== item) {
-        open.classList.remove('active');
-        open.querySelector('.case-detail').style.height = '0';
-        open.querySelector('.case-trigger').setAttribute('aria-expanded', 'false');
-      }
+    document.querySelectorAll('.case-item.active').forEach(other => {
+      if (other === item) return;
+      other.classList.remove('active');
+      other.querySelector('.case-detail').style.height = '0';
+      other.querySelector('.case-trigger').setAttribute('aria-expanded', 'false');
     });
 
-    if (isOpen) {
+    if (open) {
       item.classList.remove('active');
       detail.style.height = '0';
-      trigger.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-expanded', 'false');
     } else {
       item.classList.add('active');
       detail.style.height = inner.scrollHeight + 'px';
-      trigger.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-expanded', 'true');
       setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 420);
     }
   });
 });
+
+// ── Chatty typewriter ────────────────────────────
+const TABS = {
+  research: `> Chatty — Research-assistent\n\nAnalyserer primærkilder ...\nIdentificerer mønstre i offentlige data ...\nForeslår vinkler baseret på tendenser ...\n\nKlar til OSINT, åbne registre og kildekortlægning.\nTranskriberer og koder interviews.\nKildekritik som fast led i hvert output.`,
+  produktion: `> Chatty — Redaktionel produktion\n\nGenererer første udkast på under 3 minutter.\nTilpasser til tone-of-voice og format.\nForeslår overskrifter og strukturvarianter.\n\n500-600 korte enheder per uge. Samme team.\nFrigjorte ressourcer til prioriteret journalistik.`,
+  kvalitet: `> Chatty — Kvalitetssikring\n\nTjekker fakta mod primærkilder ...\nFlagger juridiske og etiske risici ...\nVerificerer citaternes korrekthed ...\n\nRedaktionel godkendelse som fast led.\nAI assisterer — journalisten beslutter.`
+};
+
+const consoleBody   = document.querySelector('.console-body');
+const consoleCursor = document.querySelector('.console-cursor');
+
+let typeTimer = null;
+let currentTab = 'research';
+
+function typeText(text) {
+  if (!consoleBody) return;
+  clearTimeout(typeTimer);
+  consoleBody.textContent = '';
+  let i = 0;
+  const tick = () => {
+    if (i < text.length) {
+      consoleBody.textContent += text[i++];
+      typeTimer = setTimeout(tick, i < 30 ? 18 : text[i-1] === '\n' ? 80 : 22);
+    }
+  };
+  tick();
+}
+
+document.querySelectorAll('.console-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const key = tab.dataset.tab;
+    if (key === currentTab) return;
+    currentTab = key;
+    document.querySelectorAll('.console-tab').forEach(t => t.classList.toggle('active', t === tab));
+    typeText(TABS[key] || '');
+  });
+});
+
+// Start typewriter when console enters viewport
+const consoleEl = document.querySelector('.console');
+if (consoleEl) {
+  const consObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      typeText(TABS[currentTab]);
+      consObs.unobserve(consoleEl);
+    }
+  }, { rootMargin: '0px 0px -100px 0px' });
+  consObs.observe(consoleEl);
+}
