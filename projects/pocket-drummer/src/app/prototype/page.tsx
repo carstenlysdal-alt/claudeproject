@@ -1059,28 +1059,22 @@ function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps)
     { id: 'playalong' as const, label: translate('playalong') || 'Play-along', desc: 'Spil med rigtig musik', bg: 'radial-gradient(ellipse at 40% 30%, rgba(180,80,220,0.35) 0%, transparent 65%), #110820', accent: '#b060dc', icon: <TabPlayalong size={20} color="#b060dc" /> },
   ];
 
-  const cols = isDesktop ? 'repeat(4, 1fr)' : '1fr 1fr';
-  const cardH = isDesktop ? 140 : 110;
-
   return (
-    <div style={{ color: t.text, fontFamily: t.font, padding: '4px 0 40px' }}>
-      <div style={{
-        padding: isDesktop ? '24px 40px 20px' : '4px 16px 16px',
-        maxWidth: isDesktop ? 960 : undefined,
-      }}>
-        <Display t={t} size={isDesktop ? 32 : 26} style={{ marginBottom: 16 }}>
+    <div style={{ color: t.text, fontFamily: t.font }}>
+      <div style={{ padding: '16px 20px 20px' }}>
+        <Display t={t} size={26} style={{ marginBottom: 18 }}>
           {language === 'da' ? 'Øvelser' : 'Exercises'}
         </Display>
 
-        {/* Search input */}
-        <div style={{ position: 'relative', marginBottom: 20 }}>
+        {/* Search */}
+        <div style={{ position: 'relative', marginBottom: 24 }}>
           <input
             type="text"
             placeholder="Søg i alle øvelser..."
             value={search}
             onChange={e => setSearch(e.target.value)}
             style={{
-              width: '100%', padding: '11px 16px', borderRadius: 12,
+              width: '100%', padding: '12px 16px', borderRadius: 12,
               border: `1px solid ${t.border}`, background: t.surface,
               color: t.text, fontSize: 14, outline: 'none', fontFamily: t.font,
               boxSizing: 'border-box',
@@ -1094,14 +1088,24 @@ function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps)
           )}
         </div>
 
-        {/* Category cards — primær navigation */}
+        {/* Category cards */}
         {!search && (
-          <div style={{ display: 'grid', gridTemplateColumns: cols, gap: 12 }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: isDesktop ? 'repeat(4, 1fr)' : 'repeat(2, 1fr)',
+            gap: isDesktop ? 14 : 10,
+          }}>
             {categories.map(cat => (
               <div key={cat.id} onClick={() => onSelectCategory(cat.id)} style={{
-                borderRadius: 18, overflow: 'hidden', cursor: 'pointer', position: 'relative',
-                height: cardH, border: `1px solid rgba(255,255,255,0.07)`,
-                background: cat.bg, transition: 'transform 120ms cubic-bezier(0.16,1,0.3,1)',
+                borderRadius: 18,
+                overflow: 'hidden',
+                cursor: 'pointer',
+                position: 'relative',
+                height: isDesktop ? 150 : 120,
+                border: `1px solid rgba(255,255,255,0.07)`,
+                background: cat.bg,
+                transition: 'transform 120ms cubic-bezier(0.16,1,0.3,1)',
+                minWidth: 0,
               }}
                 onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.97)'; }}
                 onMouseUp={e => { e.currentTarget.style.transform = ''; }}
@@ -1109,18 +1113,40 @@ function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps)
                 onTouchStart={e => { e.currentTarget.style.transform = 'scale(0.97)'; }}
                 onTouchEnd={e => { e.currentTarget.style.transform = ''; }}
               >
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, rgba(6,5,4,0.75) 100%)' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, transparent 30%, rgba(4,3,2,0.8) 100%)' }} />
                 <div style={{ position: 'absolute', top: 12, left: 12 }}>
-                  <div style={{ width: 34, height: 34, borderRadius: 9, background: 'rgba(0,0,0,0.32)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{
+                    width: 32, height: 32, borderRadius: 8,
+                    background: 'rgba(0,0,0,0.35)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
                     {cat.icon}
                   </div>
                 </div>
-                <div style={{ position: 'absolute', bottom: 10, left: 12, right: 28 }}>
-                  <div style={{ fontFamily: t.head, fontSize: isDesktop ? 14 : 13, fontWeight: 700, color: '#FAF8F5', letterSpacing: -0.2, marginBottom: 2 }}>{cat.label}</div>
-                  <div style={{ fontSize: isDesktop ? 11 : 10, color: 'rgba(237,233,228,0.55)', lineHeight: 1.3 }}>{cat.desc}</div>
-                </div>
-                <div style={{ position: 'absolute', bottom: 12, right: 10 }}>
-                  <IcChev size={13} color="rgba(255,255,255,0.3)" />
+                <div style={{
+                  position: 'absolute', bottom: 10, left: 12, right: 12,
+                  overflow: 'hidden',
+                }}>
+                  <div style={{
+                    fontFamily: t.head,
+                    fontSize: isDesktop ? 14 : 13,
+                    fontWeight: 700,
+                    color: '#FAF8F5',
+                    letterSpacing: -0.2,
+                    marginBottom: 3,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}>{cat.label}</div>
+                  <div style={{
+                    fontSize: 10,
+                    color: 'rgba(237,233,228,0.5)',
+                    lineHeight: 1.35,
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                  }}>{cat.desc}</div>
                 </div>
               </div>
             ))}
@@ -1937,7 +1963,7 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
 
       {/* Scrollable Content */}
       <div style={{ flex: 1, overflowY: 'auto' }}>
-      <div style={{ maxWidth: 720, margin: '0 auto', padding: '16px 20px 60px' }}>
+      <div style={{ padding: '16px 20px 60px' }}>
 
         {/* Status filter */}
         {(() => {
