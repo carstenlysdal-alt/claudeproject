@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Carsten Lysdal: chefredaktør og transformationsleder. Redaktionel AI-enablement, data til beslutninger og organisatorisk forandring i medievirksomheder.">
-  <meta property="og:title" content="Carsten Lysdal">
-  <meta property="og:description" content="Jeg gor AI til en integreret del af den redaktionelle vaerdikæde.">
-  <title>Carsten Lysdal</title>
-
+  <meta name="description" content="Carsten Lysdal: chefredaktør og transformationsleder. Redaktionel AI, data til beslutninger og organisatorisk forandring i medievirksomheder.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Carsten Lysdal — Redaktionel transformation og AI">
+  <meta property="og:description" content="Jeg gør AI til en integreret del af den redaktionelle værdikæde. Fra løst eksperiment til ansvarlig drift med mere output, højere tempo og skarpere kvalitet.">
+  <meta property="og:locale" content="da_DK">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Carsten Lysdal — Redaktionel transformation og AI">
+  <meta name="twitter:description" content="Jeg gør AI til en integreret del af den redaktionelle værdikæde.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='2' fill='%23A9503A'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='18' fill='%23F2ECDF' text-anchor='middle'%3ECL%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <title>Carsten Lysdal — Redaktionel transformation og AI</title>
 </head>
 <body>
 
@@ -24,8 +29,6 @@
         <span class="status-dot"></span>
         Åben for nye samarbejder
       </span>
-      <span class="utility-sep">§</span>
-      <span class="utility-lang">DA <span>/ EN</span></span>
       <span class="utility-sep">§</span>
       <a href="mailto:carstenlysdal@proton.me" class="utility-email">carstenlysdal@proton.me</a>
     </div>
@@ -44,6 +47,7 @@
       <li><a href="#cases">Cases</a></li>
       <li><a href="#ai-data">AI &amp; Data</a></li>
       <li><a href="#karriere">Karriere</a></li>
+      <li><a href="#om-mig">Om mig</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
       <li>
         <a href="assets/carsten-lysdal-cv.pdf" download class="nav-cta">
@@ -68,7 +72,7 @@
       <div>
         <div class="hero-eyebrow">
           <span class="accent">§</span>
-          AI-enablement
+          AI-implementering
           <span class="accent">·</span>
           Data
           <span class="accent">·</span>
@@ -82,8 +86,8 @@
         </h1>
 
         <p class="hero-pitch">
-          Fra eksperiment til daglig, ansvarlig drift - med
-          <em>markant øget output, tempo og kvalitet.</em>
+          Fra løst eksperiment til ansvarlig drift med
+          <em>mere output, højere tempo og skarpere kvalitet.</em>
         </p>
 
         <div class="hero-actions">
@@ -123,25 +127,25 @@
                 <div class="console-dot"></div>
               </div>
               <span class="console-name">Chatty</span>
-              <span class="console-subtitle">redaktionel copilot</span>
+              <span class="console-subtitle">redaktionel makker</span>
             </div>
             <div class="console-live">
               <span class="live-dot"></span>live
             </div>
           </div>
 
-          <div class="console-tabs">
-            <button class="console-tab active" data-tab="research">⌕ Research</button>
-            <button class="console-tab" data-tab="produktion">¶ Produktion</button>
-            <button class="console-tab" data-tab="kvalitet">✓ Kvalitet</button>
+          <div class="console-tabs" role="tablist" aria-label="Chatty funktioner">
+            <button class="console-tab active" role="tab" aria-selected="true" aria-controls="console-output" data-tab="research">⌕ Research</button>
+            <button class="console-tab" role="tab" aria-selected="false" aria-controls="console-output" data-tab="produktion">¶ Produktion</button>
+            <button class="console-tab" role="tab" aria-selected="false" aria-controls="console-output" data-tab="kvalitet">✓ Kvalitet</button>
           </div>
 
-          <div class="console-body"></div><span class="console-cursor"></span>
+          <div class="console-body" id="console-output" role="tabpanel" aria-live="polite" aria-label="Chatty output"></div><span class="console-cursor" aria-hidden="true"></span>
 
           <div class="console-tags">
-            <span class="console-tag">onboarding</span>
-            <span class="console-tag">governance</span>
-            <span class="console-tag">feedback loops</span>
+            <span class="console-tag">introduktion</span>
+            <span class="console-tag">styring</span>
+            <span class="console-tag">feedbacksløjfer</span>
             <span class="console-tag">CMS-integration</span>
           </div>
         </div>
@@ -155,8 +159,8 @@
 <section id="value-chain">
   <div class="container">
     <div class="vc-label">
-      <span class="vc-label-main">¶ Den redaktionelle vaerdikæde</span>
-      <span class="vc-label-sub">AI som operationelt lag i hvert led</span>
+      <span class="vc-label-main">¶ Den redaktionelle værdikæde</span>
+      <span class="vc-label-sub">AI som arbejdende lag i hvert led</span>
     </div>
     <div class="vc-track">
       <div class="vc-node">
@@ -199,20 +203,20 @@
         <h2 class="reveal">Relevans,<br>Resonans<br>og Relation</h2>
         <p class="reveal">
           Jeg arbejder i krydsfeltet mellem redaktion, AI, data, research, brugere og
-          ledelse med fokus på losninger, der styrker journalistik og indhold, kan bruges
-          i daglig drift og skaber målbar vaerdi.
+          ledelse. Opgaven er at bygge løsninger, der styrker journalistik og indhold,
+          fungerer i hverdagen og skaber målbar værdi.
         </p>
         <p class="reveal">
-          Min saerlige styrke er at flytte AI fra eksperimenter og enkeltstaende
-          vaerktoejer til ansvarlig, daglig og vaerdiskabende praksis: gennem konkrete
-          use cases, prototyper, traening, metodeudvikling, feedback loops, ledelse
-          og organisatorisk forankring.
+          Min særlige styrke er at flytte AI fra enkeltstående forsøg til ansvarlig,
+          daglig praksis. Det sker gennem konkrete brugsscenarier, prototyper,
+          træning, metodeudvikling, feedbacksløjfer, ledelse og organisatorisk
+          forankring.
         </p>
         <p class="reveal">
-          Jeg er ophavsmand til AI-vaerktojet Chatty, som understoetter den redaktionelle
-          vaerdikæde fra idé, analyse og research til produktion, kvalitetssikring og
-          sparring. Arbejdet har handlet om tillid, faelles metode og hoejere journalistisk
-          effekt. Ikke om teknologi for teknologiens skyld.
+          Jeg er ophavsmand til AI-værktøjet Chatty, som understøtter den redaktionelle
+          værdikæde fra idé, analyse og research til produktion, kvalitetssikring og
+          sparring. Arbejdet har handlet om tillid, fælles metode og stærkere
+          journalistisk effekt. Ikke om teknologi for teknologiens skyld.
         </p>
       </div>
 
@@ -222,26 +226,26 @@
           <span class="rrr-q">Hvad betyder noget?</span>
           <p class="rrr-desc">
             For brugeren, virksomheden, borgeren eller redaktionen.
-            Forandring starter med en praecis forstaelse af, hvad der faktisk
-            er pa spil. Ikke hvad organisationen tror er pa spil.
+            Forandring starter med en præcis forståelse af, hvad der faktisk
+            er på spil. Ikke kun hvad organisationen tror, der er på spil.
           </p>
         </div>
         <div class="rrr-pillar">
           <span class="rrr-word">Resonans</span>
           <span class="rrr-q">Hvad skaber gennemslag?</span>
           <p class="rrr-desc">
-            Indhold, data eller teknologi far kun vaerdi, nar det rammer rigtigt.
-            Det handler ikke om at producere mere, men om at forsta hvad der
-            virker og bygge systemer der goer det konsistent.
+            Indhold, data og teknologi får først værdi, når de rammer rigtigt.
+            Det handler ikke bare om at producere mere, men om at forstå, hvad
+            der virker, og bygge systemer, som kan gentage det.
           </p>
         </div>
         <div class="rrr-pillar">
           <span class="rrr-word">Relation</span>
-          <span class="rrr-q">Hvad skaber bevaegelse?</span>
+          <span class="rrr-q">Hvad skaber bevægelse?</span>
           <p class="rrr-desc">
-            Teknologi og strategi implementeres af mennesker. Uden forankring
-            i organisationen stopper forandringen ved pilotfasen. Jeg arbejder
-            med at bygge intern opbakning ved at involvere, ikke ved at saelge.
+            Teknologi og strategi bliver virkelighed gennem mennesker. Uden
+            organisatorisk forankring stopper forandringen ved pilotfasen.
+            Jeg bygger intern opbakning ved at involvere, ikke ved at sælge.
           </p>
         </div>
       </div>
@@ -256,10 +260,10 @@
 <section id="cases">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-label">Bevisforelse</span>
+      <span class="section-label">Bevisførelse</span>
       <h2>Cases</h2>
       <p style="margin-top:.6rem; font-size:.95rem; max-width:52ch;">
-        Klik pa en case for at se det fulde billede: problem, indsigt, losning, implementering og effekt.
+        Klik på en case og se hele forløbet: problem, indsigt, løsning, implementering og effekt.
       </p>
     </div>
 
@@ -271,10 +275,10 @@
           <div>
             <span class="case-title">Chatty: AI fra prototype til redaktionel drift</span>
             <div class="case-tags">
-              <span class="case-tag">AI-enablement</span>
+              <span class="case-tag">AI-implementering</span>
               <span class="case-tag">Implementering</span>
-              <span class="case-tag">Governance</span>
-              <span class="case-tag">Change management</span>
+              <span class="case-tag">Styring</span>
+              <span class="case-tag">Forandringsledelse</span>
             </div>
           </div>
           <span class="case-arrow">
@@ -286,19 +290,19 @@
         <div class="case-detail">
           <div class="case-detail-inner">
             <div class="case-grid">
-              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Redaktionen eksperimenterede med AI men uden systematisk praksis. Individuel, ustruktureret brug gav inkonsistent kvalitet og manglende skalerbarhed. AI var et sideprojekt, ikke et redskab.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Barrieren var ikke teknologien. Den var ejerskab, tydelige use cases og organisatorisk tillid. Implementering kraever mere end adgang til et vaerktoej.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Losning</span><p class="case-dim-text">Udviklede Chatty: et internt AI-vaerktoej designet til redaktionelle arbejdsgange. Idéudvikling, research, produktion, transkribering og kvalitetssikring.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Systematisk onboarding, malrettet traening, faelles standarder, feedback loops og loebende evaluering. Fokus pa at flytte arbejdsmoenstre fra individuel til struktureret faelles praksis.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Teknisk</span><p class="case-dim-text">Integration i CMS, mailflows og brugergraenseflader. AI koblet direkte til den redaktionelle vaerdikæde som operationelt lag, ikke som isoleret feature.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Redaktionen eksperimenterede med AI, men uden fælles metode. Individuel og ustruktureret brug gav svingende kvalitet og begrænset skalerbarhed. AI var et sideprojekt, ikke et arbejdsredskab.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Barrieren var ikke teknologien. Den var ejerskab, tydelige brugsscenarier og organisatorisk tillid. Implementering kræver mere end adgang til et værktøj.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Løsning</span><p class="case-dim-text">Udviklede Chatty: et internt AI-værktøj til redaktionelle arbejdsgange. Idéudvikling, research, produktion, transskribering og kvalitetssikring blev samlet i én fælles praksis.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Systematisk introduktion, målrettet træning, fælles standarder, feedbacksløjfer og løbende evaluering. Fokus var at flytte arbejdsmønstre fra individuel brug til struktureret fælles praksis.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Teknisk</span><p class="case-dim-text">Integration i CMS, mailflows og brugergrænseflader. AI blev koblet direkte på den redaktionelle værdikæde som arbejdende lag, ikke som isoleret funktion.</p></div>
             </div>
             <div class="case-effect">
               <span class="case-effect-label">Effekt</span>
               <div class="case-effect-items">
-                <span class="case-effect-item">Tid fra input til udkast: fa minutter</span>
-                <span class="case-effect-item">Varig aendring i arbejdsmoenstre</span>
+                <span class="case-effect-item">Tid fra input til udkast: få minutter</span>
+                <span class="case-effect-item">Varig ændring i arbejdsmønstre</span>
                 <span class="case-effect-item">Frigjorte ressourcer til prioriteret journalistik</span>
-                <span class="case-effect-item">AI fra sideprojekt til operationelt lag</span>
+                <span class="case-effect-item">AI fra sideprojekt til dagligt arbejdsredskab</span>
               </div>
             </div>
           </div>
@@ -309,7 +313,7 @@
         <button class="case-trigger" aria-expanded="false">
           <span class="case-num">02</span>
           <div>
-            <span class="case-title">Redaktionel transformation, Sjaellandske Medier</span>
+            <span class="case-title">Redaktionel transformation, Sjællandske Medier</span>
             <div class="case-tags">
               <span class="case-tag">Transformation</span>
               <span class="case-tag">Forandringsledelse</span>
@@ -322,18 +326,18 @@
         <div class="case-detail">
           <div class="case-detail-inner">
             <div class="case-grid">
-              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Organisation med 150 medarbejdere i fragmenteret drift. Manuelle, siloopdelte processer. Ingen systematisk brug af data i redaktionelle beslutninger. Strategisk retning uklar under konstant forandring og pres.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Forandring i redaktionelle organisationer kraever tydelig retning og ejerskab pa alle niveauer. OKR-struktur virker kun, nar strategi er oversat til konkrete daglige prioriteringer med synlige succeskriterier.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Losning</span><p class="case-dim-text">Transformation til agilt, lean, datadrevet og AI-understoettet setup. Ny OKR/KPI-struktur, nye prioriteringsmodeller og procesflows med tydeligt ejerskab per funktion.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Gradvis implementering med fokus pa at lede ledere, ikke kun medarbejdere. Mellemlederudvikling, feedbackkultur og loebende justering baseret pa data og organisatorisk respons.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Ledelse</span><p class="case-dim-text">Tvaerfunktionel koordinering af redaktion, tech og forretning. Tydeligere roller, ansvar, mal og prioriteringer i en organisation under konstant forandring og ressourcepres.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">En organisation med 150 medarbejdere arbejdede i fragmenteret drift. Processer var manuelle og silo-opdelte, data blev ikke brugt systematisk i redaktionelle beslutninger, og den strategiske retning stod uklart under konstant pres.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Forandring i redaktionelle organisationer kræver tydelig retning og ejerskab på alle niveauer. OKR-struktur virker først, når strategi er oversat til daglige prioriteringer med synlige succeskriterier.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Løsning</span><p class="case-dim-text">Transformation til en agil, datadrevet og AI-understøttet arbejdsform. Ny OKR/KPI-struktur, nye prioriteringsmodeller og klarere procesforløb med tydeligt ejerskab i hver funktion.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Gradvis implementering med fokus på at lede ledere, ikke kun medarbejdere. Mellemlederudvikling, feedbackkultur og løbende justering på baggrund af data og organisatorisk respons.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Ledelse</span><p class="case-dim-text">Tværgående koordinering af redaktion, teknologi og forretning. Tydeligere roller, ansvar, mål og prioriteringer i en organisation præget af forandring og ressourcepres.</p></div>
             </div>
             <div class="case-effect">
               <span class="case-effect-label">Effekt</span>
               <div class="case-effect-items">
-                <span class="case-effect-item">Oeget output trods reduceret medarbejderstab</span>
+                <span class="case-effect-item">Øget output trods reduceret medarbejderstab</span>
                 <span class="case-effect-item">Forbedret produktivitet per medarbejder</span>
-                <span class="case-effect-item">Staerkere feedbackkultur og metodebevidsthed</span>
+                <span class="case-effect-item">Stærkere feedbackkultur og metodebevidsthed</span>
                 <span class="case-effect-item">Tydeligere organisatorisk retning</span>
               </div>
             </div>
@@ -349,7 +353,7 @@
             <div class="case-tags">
               <span class="case-tag">Data</span>
               <span class="case-tag">Relevanskriterier</span>
-              <span class="case-tag">Content performance</span>
+              <span class="case-tag">Indholdseffekt</span>
               <span class="case-tag">Brugerindsigt</span>
             </div>
           </div>
@@ -358,11 +362,11 @@
         <div class="case-detail">
           <div class="case-detail-inner">
             <div class="case-grid">
-              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Brugerdata eksisterede men blev ikke brugt operationelt. Redaktionelle beslutninger baseret pa tradition og mavefornemmelse frem for brugerbehov og dokumenteret performance.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Data skal overseettes til redaktionel sprogdragt og kobles til konkrete daglige prioriteringer for at aendre adfaerd. Et dashboard ingen bruger aendrer ingenting.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Losning</span><p class="case-dim-text">Frameworks for relevanskriterier, prioritering og content performance. Systematisk brug af brugeradfaerdsdata i redaktionelle moeder og beslutningsprocesser.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Involvering af noegleprofiler i design af frameworks. Gradvis implementering og coaching i datainterpretation. Data som fast del af redaktionelle rutiner og prioriteringsprocesser.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Metode</span><p class="case-dim-text">Kobling af kvantitative data (trafik, tid, klik) med kvalitative brugerindsigter og journalistisk dommekraft. Relevanskriterier som filter frem for siloer af performance-metrics.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Brugerdata fandtes, men blev ikke brugt i den daglige drift. Redaktionelle beslutninger byggede ofte på tradition og mavefornemmelse frem for brugerbehov og dokumenteret effekt.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Data skal oversættes til redaktionelt sprog og kobles til konkrete prioriteringer, hvis de skal ændre adfærd. Et dashboard, ingen bruger, flytter ingenting.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Løsning</span><p class="case-dim-text">Rammer for relevanskriterier, prioritering og indholdseffekt. Systematisk brug af brugeradfærdsdata i redaktionelle møder og beslutningsprocesser.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Nøglepersoner blev involveret i designet af metoderne. Implementeringen skete gradvist med coaching i dataforståelse og med data som fast del af redaktionelle rutiner.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Metode</span><p class="case-dim-text">Kvantitative data om trafik, tid og klik blev koblet med kvalitative brugerindsigter og journalistisk dømmekraft. Relevanskriterier blev brugt som filter frem for løsrevne performancetal.</p></div>
             </div>
             <div class="case-effect">
               <span class="case-effect-label">Effekt</span>
@@ -383,7 +387,7 @@
           <div>
             <span class="case-title">Skalering af korte formater</span>
             <div class="case-tags">
-              <span class="case-tag">Workflow-design</span>
+              <span class="case-tag">Workflowdesign</span>
               <span class="case-tag">AI-produktion</span>
               <span class="case-tag">500-600 enheder/uge</span>
               <span class="case-tag">Skalering</span>
@@ -394,17 +398,17 @@
         <div class="case-detail">
           <div class="case-detail-inner">
             <div class="case-grid">
-              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Ressourcekaevende produktion af korte nyhedsformater med inkonsistent kvalitet og begraenset kapacitet. Manuel produktion satte et loft for volumen og fleksibilitet.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">AI-understoettede workflows kan skalere produktion markant uden tilsvarende ressourceforbrug, men kraever designede processer og klare kvalitetsstandarder, ikke blot teknologiadgang.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Losning</span><p class="case-dim-text">Centraliseret, automatiseret produktionssetup med AI-integration. Standardiserede templates, tydelige workflows og kvalitetssikringsprocesser designet til redaktionelle krav.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Iterativ opbygning af kapacitet med loebende justering baseret pa kvalitet og effektivitet. Integration af redaktionel dommekraft som quality gate i det automatiserede flow.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Setup</span><p class="case-dim-text">AI-assisteret produktion koblet til CMS med redaktionel godkendelse som fast led. Frigjorde menneskelige ressourcer fra rutineproduktion til prioriteret, undersogende journalistik.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Produktionen af korte nyhedsformater var ressourcekrævende, kvaliteten svingede, og kapaciteten var begrænset. Manuel produktion satte et loft over både volumen og fleksibilitet.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">AI-understøttede arbejdsgange kan skalere produktionen markant uden tilsvarende ressourceforbrug. Det kræver designede processer og klare kvalitetsstandarder, ikke bare adgang til teknologi.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Løsning</span><p class="case-dim-text">Centraliseret og automatiseret produktionsmodel med AI-integration. Standardiserede skabeloner, tydelige arbejdsgange og kvalitetssikring designet til redaktionelle krav.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Kapaciteten blev bygget op trin for trin med løbende justering på kvalitet og effektivitet. Redaktionel dømmekraft blev fastholdt som fast kontrolpunkt i det automatiserede flow.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Model</span><p class="case-dim-text">AI-assisteret produktion blev koblet til CMS med redaktionel godkendelse som fast led. Det frigjorde menneskelig kapacitet fra rutineproduktion til prioriteret og undersøgende journalistik.</p></div>
             </div>
             <div class="case-effect">
               <span class="case-effect-label">Effekt</span>
               <div class="case-effect-items">
                 <span class="case-effect-item">500-600 enheder per uge</span>
-                <span class="case-effect-item">Markant oeget volumen og ensartet kvalitet</span>
+                <span class="case-effect-item">Markant øget volumen og ensartet kvalitet</span>
                 <span class="case-effect-item">Frigjorte ressourcer til prioriteret journalistik</span>
                 <span class="case-effect-item">Bedre brugerrelevans og gennemslag</span>
               </div>
@@ -417,7 +421,7 @@
         <button class="case-trigger" aria-expanded="false">
           <span class="case-num">05</span>
           <div>
-            <span class="case-title">Y Business: AI-medieprodukt fra idé til spec</span>
+            <span class="case-title">Y Business: AI-medieprodukt fra idé til specifikation</span>
             <div class="case-tags">
               <span class="case-tag">Produktudvikling</span>
               <span class="case-tag">AI-arkitektur</span>
@@ -430,18 +434,18 @@
         <div class="case-detail">
           <div class="case-detail-inner">
             <div class="case-grid">
-              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Konceptualisering af et nyt AI-drevet erhvervsmedieprojekt fra bunden. Komplekst kryds af redaktionelt koncept, teknologisk arkitektur, kommerciel model og brugerbehov uden eksisterende infrastruktur.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Et medieprodukt i 2026 kraever fra dag ét integration af AI i alle dele af vaerdikæden, ikke som feature men som grundlaegende produktionsparadigme. Redaktionelt koncept og tech-arkitektur skal designes simultant.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Losning</span><p class="case-dim-text">Systematisk discovery-proces: positionering, redaktionelt koncept, AI-orkestrering, ratingmodeller, datafeeds, brugerrejse og kommerciel model defineret i taet samspil med CEO, Tech Lead og Commercial Lead.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Tvaerfunktionel PRD-proces med iterativ konceptudvikling, loebende stakeholder-alignment og klarhed om afhaengigheder og risici inden implementering paabegyndes.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Scope</span><p class="case-dim-text">Platform rettet mod erhvervslæsere og SMV-ejere med AI-drevet erhvervsintelligens, markedsovervaagning og B2B-briefs. Positioneret i et ubesat markedssegment.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Et nyt AI-drevet erhvervsmedie skulle konceptualiseres fra bunden. Redaktionelt koncept, teknologisk arkitektur, kommerciel model og brugerbehov skulle tænkes sammen uden eksisterende infrastruktur.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Et medieprodukt i 2026 kræver fra dag ét AI i hele værdikæden. Ikke som ekstra funktion, men som grundlæggende produktionsparadigme. Redaktionelt koncept og teknisk arkitektur skal tegnes samtidig.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Løsning</span><p class="case-dim-text">Systematisk discovery-proces med positionering, redaktionelt koncept, AI-orkestrering, ratingmodeller, datafeeds, brugerrejse og kommerciel model defineret i tæt samspil med CEO, Tech Lead og Commercial Lead.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Tværfunktionel PRD-proces med iterativ konceptudvikling, løbende interessentafstemning og klarhed om afhængigheder og risici, før implementeringen begyndte.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Scope</span><p class="case-dim-text">Platformen blev rettet mod erhvervslæsere og SMV-ejere med AI-drevet erhvervsintelligens, markedsovervågning og B2B-briefs. Positionen lå i et ubesat markedsrum.</p></div>
             </div>
             <div class="case-effect">
               <span class="case-effect-label">Output</span>
               <div class="case-effect-items">
-                <span class="case-effect-item">Komplet produktspecifikation klar til implementation</span>
+                <span class="case-effect-item">Komplet produktspecifikation klar til implementering</span>
                 <span class="case-effect-item">Klar markedspositionering</span>
-                <span class="case-effect-item">Roadmap med prioritering og afhaengigheder</span>
+                <span class="case-effect-item">Køreplan med prioritering og afhængigheder</span>
                 <span class="case-effect-item">Redaktionelt koncept og AI-arkitektur</span>
               </div>
             </div>
@@ -466,19 +470,19 @@
         <div class="case-detail">
           <div class="case-detail-inner">
             <div class="case-grid">
-              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Journalistisk research sker i stigende grad i komplekse digitale rum med abne data, AI-genereret materiale og nye kildelandskaber. Systematisk metodetilgang mangler i de fleste redaktioner.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Den nye specialistrolle kombinerer klassisk kildekritik med digital systematik og AI-assisteret analyse. Algoritmisk output kraever samme kritiske vurdering som menneskelige kilder.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Losning</span><p class="case-dim-text">Metodisk tilgang til digital research: OSINT-teknikker, abne registre, dokumentanalyse og AI-assisteret research med kildekritisk rammestaetning som fundament.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Traening og metodeudvikling tilpasset redaktionelle hverdagsbehov. Konkrete workflows til brug i daglig research og undersogende journalistik.</p></div>
-              <div class="case-dim"><span class="case-dim-label">Metodik</span><p class="case-dim-text">Fra haendelse til dybde med kombinerede teknikker: digitale spor, abne registre, dokumentanalyse og AI-assisteret kildekortlaegning med systematisk verifikationsproces.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Problem</span><p class="case-dim-text">Journalistisk research foregår i stigende grad i komplekse digitale rum med åbne data, AI-genereret materiale og nye kildelandskaber. Mange redaktioner mangler en systematisk metode til at arbejde i det felt.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Indsigt</span><p class="case-dim-text">Den nye specialistrolle kombinerer klassisk kildekritik med digital systematik og AI-assisteret analyse. Algoritmisk output kræver samme kritiske blik som menneskelige kilder.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Løsning</span><p class="case-dim-text">Metodisk tilgang til digital research: OSINT-teknikker, åbne registre, dokumentanalyse og AI-assisteret research med kildekritisk rammesætning som fundament.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Implementering</span><p class="case-dim-text">Træning og metodeudvikling tilpasset redaktionelle hverdagsbehov. Konkrete arbejdsgange til daglig research og undersøgende journalistik.</p></div>
+              <div class="case-dim"><span class="case-dim-label">Metodik</span><p class="case-dim-text">Fra hændelse til dybde med kombinerede teknikker: digitale spor, åbne registre, dokumentanalyse og AI-assisteret kildekortlægning med systematisk verifikation.</p></div>
             </div>
             <div class="case-effect">
               <span class="case-effect-label">Effekt</span>
               <div class="case-effect-items">
                 <span class="case-effect-item">Styrket research-kapacitet</span>
                 <span class="case-effect-item">Systematisk brug af digitale kildemuligheder</span>
-                <span class="case-effect-item">Bedre og hurtigere undersogende journalistik</span>
-                <span class="case-effect-item">Kildekritisk AI-anvendelse som faelles standard</span>
+                <span class="case-effect-item">Bedre og hurtigere undersøgende journalistik</span>
+                <span class="case-effect-item">Kildekritisk AI-anvendelse som fælles standard</span>
               </div>
             </div>
           </div>
@@ -497,15 +501,15 @@
     <div class="section-header reveal">
       <h2>AI og data i praksis</h2>
       <p style="margin-top:.6rem; font-size:.95rem; max-width:56ch;">
-        Ikke teknologi for teknologiens skyld. Konkrete vaerktojer og tilgange brugt i levende redaktionelle organisationer med reelle krav til tempo, kvalitet og organisatorisk forankring.
+        Ikke teknologi for teknologiens skyld. Konkrete værktøjer og metoder brugt i levende redaktionelle organisationer med reelle krav til tempo, kvalitet og organisatorisk forankring.
       </p>
     </div>
 
     <div class="tools-list">
 
       <div class="tool-row reveal">
-        <div class="tool-name">AI-enablement</div>
-        <p class="tool-desc">Chatty og tilsvarende platforme. Use case-design, onboarding, promptdisciplin, kvalitetssikring og governance i redaktionel kontekst med krav til baade hastighed og journalistisk integritet.</p>
+        <div class="tool-name">AI-implementering</div>
+        <p class="tool-desc">Chatty og tilsvarende platforme. Design af brugsscenarier, introduktion, promptdisciplin, kvalitetssikring og styring i en redaktionel kontekst med krav til både hastighed og journalistisk integritet.</p>
         <div class="tool-level">
           <div class="tool-dots">
             <div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div>
@@ -516,7 +520,7 @@
 
       <div class="tool-row reveal">
         <div class="tool-name">Dashboards og KPI-design</div>
-        <p class="tool-desc">Redaktionelle performance-dashboards der omstter data til beslutninger. Designet til at bruges i redaktionelle morgenmoder, ikke aflaeses i ledelsesrapporter.</p>
+        <p class="tool-desc">Redaktionelle dashboards, der omsætter data til beslutninger. Designet til brug i morgenmøder, ikke til at samle støv i ledelsesrapporter.</p>
         <div class="tool-level">
           <div class="tool-dots">
             <div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot"></div>
@@ -527,7 +531,7 @@
 
       <div class="tool-row reveal">
         <div class="tool-name">Produktprototyping</div>
-        <p class="tool-desc">Fra idé til testbar prototype: konceptudvikling, feature-spec og produktarkitektur. Hands-on med VS Code, Claude, kodebaserede prototyper og rapid discovery-metoder.</p>
+        <p class="tool-desc">Fra idé til testbar prototype: konceptudvikling, funktionsspecifikation og produktarkitektur. Praktisk arbejde med VS Code, Claude, kodebaserede prototyper og hurtige discovery-forløb.</p>
         <div class="tool-level">
           <div class="tool-dots">
             <div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot"></div>
@@ -537,8 +541,8 @@
       </div>
 
       <div class="tool-row reveal">
-        <div class="tool-name">Workflow-design</div>
-        <p class="tool-desc">Produktion, kvalitetssikring og publiceringsflows med AI-integration, designet til at virke under deadlinepres med journalister der har andre prioriteter end at laere ny teknologi.</p>
+        <div class="tool-name">Workflowdesign</div>
+        <p class="tool-desc">Produktion, kvalitetssikring og publiceringsforløb med AI-integration, designet til at virke under deadlinepres hos journalister, der har vigtigere opgaver end at lære ny teknologi for teknologiens skyld.</p>
         <div class="tool-level">
           <div class="tool-dots">
             <div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div>
@@ -548,8 +552,8 @@
       </div>
 
       <div class="tool-row reveal">
-        <div class="tool-name">OSINT og abne datakilder</div>
-        <p class="tool-desc">Digitale spor, abne registre, dokumentanalyse og systematisk kildeidentifikation med AI som arbejdsredskab. Kildekritik gaelder ogsa for algoritmisk output.</p>
+        <div class="tool-name">OSINT og åbne datakilder</div>
+        <p class="tool-desc">Digitale spor, åbne registre, dokumentanalyse og systematisk kildeidentifikation med AI som arbejdsredskab. Kildekritik gælder også for algoritmisk output.</p>
         <div class="tool-level">
           <div class="tool-dots">
             <div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot"></div>
@@ -559,8 +563,8 @@
       </div>
 
       <div class="tool-row reveal">
-        <div class="tool-name">AI-governance</div>
-        <p class="tool-desc">Standarder, etiske rammer og kvalitetskriterier for AI-anvendelse i redaktionelle organisationer. Hvad ma AI? Hvad skal mennesker beslutte? Hvem ejer fejlene?</p>
+        <div class="tool-name">AI-styring</div>
+        <p class="tool-desc">Standarder, etiske rammer og kvalitetskriterier for AI-anvendelse i redaktionelle organisationer. Hvad må AI? Hvad skal mennesker beslutte? Hvem ejer fejlene?</p>
         <div class="tool-level">
           <div class="tool-dots">
             <div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot on"></div><div class="tool-dot"></div>
@@ -581,8 +585,8 @@
     <div class="section-header reveal">
       <h2>Karriere</h2>
       <p style="margin-top:.6rem; font-size:.95rem; max-width:52ch;">
-        13 ar i Sjaellandske Medier, fra journalist til journalistisk chefredaktoer.
-        Nu med fokus pa konceptudvikling og produkter i krydsfeltet mellem redaktion, AI og forretning.
+        13 år i Sjællandske Medier, fra journalist til journalistisk chefredaktør.
+        I dag arbejder jeg med koncepter og produkter i krydsfeltet mellem redaktion, AI og forretning.
       </p>
     </div>
 
@@ -593,9 +597,9 @@
         <div class="tl-item current">
           <div class="tl-dot"></div>
           <span class="tl-year">Jun 2026 - nu</span>
-          <span class="tl-role">Koncept- og produktudvikler, Business og AI</span>
+          <span class="tl-role">Koncept- og produktudvikler, business og AI</span>
           <span class="tl-org">Projekt Y, Copenhagen</span>
-          <p class="tl-body">Konceptualisering, produktudvikling og planlaeging med strategisk fokus pa redaktionelt koncept, AI-understoettede workflows, kommerciel model og roadmap pa tvaers af indhold, tech og forretning.</p>
+          <p class="tl-body">Konceptudvikling og produktarbejde med strategisk fokus på redaktionelt koncept, AI-understøttede arbejdsgange, kommerciel model og køreplan på tværs af indhold, teknologi og forretning.</p>
           <div class="tl-tags">
             <span class="tl-tag">Discovery</span>
             <span class="tl-tag">Produktstrategi</span>
@@ -606,11 +610,11 @@
         <div class="tl-item">
           <div class="tl-dot"></div>
           <span class="tl-year">Maj 2023 - Apr 2026</span>
-          <span class="tl-role">Journalistisk chefredaktoer</span>
-          <span class="tl-org">Sjaellandske Medier</span>
-          <p class="tl-body">Journalistisk retning, kvalitet og digital udvikling. Ansvar for ca. 150 medarbejdere. Udviklede og implementerede Chatty. OKR/KPI-struktur, datadrevet prioritering, trafikvaekst.</p>
+          <span class="tl-role">Journalistisk chefredaktør</span>
+          <span class="tl-org">Sjællandske Medier</span>
+          <p class="tl-body">Journalistisk retning, kvalitet og digital udvikling. Ansvar for ca. 150 medarbejdere. Udviklede og implementerede Chatty, etablerede OKR/KPI-struktur, styrkede datadrevet prioritering og bidrog til trafikvækst.</p>
           <div class="tl-tags">
-            <span class="tl-tag">AI-enablement</span>
+            <span class="tl-tag">AI-implementering</span>
             <span class="tl-tag">Transformation</span>
             <span class="tl-tag">150 ansatte</span>
           </div>
@@ -619,9 +623,9 @@
         <div class="tl-item">
           <div class="tl-dot"></div>
           <span class="tl-year">Sep 2021 - Maj 2023</span>
-          <span class="tl-role">Nyhedsredaktoer</span>
-          <span class="tl-org">Sjaellandske Medier</span>
-          <p class="tl-body">Daglig nyhedsdrift, prioritering og digital performance pa tvaers af platforme og brands. Datadrevet tilgang til produktion.</p>
+          <span class="tl-role">Nyhedsredaktør</span>
+          <span class="tl-org">Sjællandske Medier</span>
+          <p class="tl-body">Daglig nyhedsdrift, prioritering og digital performance på tværs af platforme og brands. Datadrevet tilgang til produktion og publicering.</p>
           <div class="tl-tags">
             <span class="tl-tag">Redaktionel drift</span>
             <span class="tl-tag">Data</span>
@@ -631,16 +635,16 @@
         <div class="tl-item">
           <div class="tl-dot"></div>
           <span class="tl-year">Okt 2016 - Sep 2021</span>
-          <span class="tl-role">Lokalredaktoer, Slagelse</span>
-          <span class="tl-org">Sjaellandske Medier</span>
-          <p class="tl-body">Ledelsesansvar for redaktion, drift og journalistisk performance. Redaktionelle projekter og lokale udviklingsinitiativ.</p>
+          <span class="tl-role">Lokalredaktør, Slagelse</span>
+          <span class="tl-org">Sjællandske Medier</span>
+          <p class="tl-body">Ledelsesansvar for redaktion, drift og journalistisk performance. Redaktionelle projekter og lokale udviklingsinitiativer.</p>
         </div>
 
         <div class="tl-item">
           <div class="tl-dot"></div>
           <span class="tl-year">Aug 2012 - Sep 2021</span>
           <span class="tl-role">Journalistpraktikant og journalist</span>
-          <span class="tl-org">Sjaellandske Medier</span>
+          <span class="tl-org">Sjællandske Medier</span>
         </div>
 
         <div class="tl-item">
@@ -661,12 +665,12 @@
 
       <div class="skills-panel reveal">
         <p class="skills-panel-title">Kompetenceprofil</p>
-        <p class="skills-panel-intro">Konkrete erfaringsomrader med dokumenterede resultater i medievirksomheder.</p>
+        <p class="skills-panel-intro">Konkrete erfaringsområder med dokumenterede resultater fra medievirksomheder i forandring.</p>
 
         <div class="skill-clusters">
           <div class="skill-cluster">
             <span class="skill-area">AI og LLM</span>
-            <p class="skill-terms">Chatty, ChatGPT, Claude, Gemini, AI-governance, prompt-engineering, use case-design, kvalitetssikring</p>
+            <p class="skill-terms">Chatty, ChatGPT, Claude, Gemini, AI-styring, promptdisciplin, brugsscenarier, kvalitetssikring</p>
           </div>
           <div class="skill-cluster">
             <span class="skill-area">Transformation</span>
@@ -674,15 +678,15 @@
           </div>
           <div class="skill-cluster">
             <span class="skill-area">Redaktionel ledelse</span>
-            <p class="skill-terms">Journalistisk retning, prioritering, kvalitetssikring, nyhedsdrift, 13 ar regional medievirksomhed</p>
+            <p class="skill-terms">Journalistisk retning, prioritering, kvalitetssikring, nyhedsdrift, 13 år i regional medievirksomhed</p>
           </div>
           <div class="skill-cluster">
             <span class="skill-area">Data</span>
-            <p class="skill-terms">Relevanskriterier, content performance, brugeradfaerdsanalyse, datadrevet prioritering, trafikvaekst</p>
+            <p class="skill-terms">Relevanskriterier, indholdseffekt, brugeradfærdsanalyse, datadrevet prioritering, trafikvækst</p>
           </div>
           <div class="skill-cluster">
             <span class="skill-area">Produkt</span>
-            <p class="skill-terms">Discovery, PRD, roadmap, prototyping, tvaerfunktionel eksekvering, stakeholder-alignment</p>
+            <p class="skill-terms">Discovery, PRD, køreplan, prototyping, tværgående eksekvering, interessentafstemning</p>
           </div>
           <div class="skill-cluster">
             <span class="skill-area">Workflow</span>
@@ -693,7 +697,7 @@
         <div class="lang-grid">
           <div class="lang-item">
             <span class="lang-name">Dansk</span>
-            <span class="lang-level">Modersmaal</span>
+            <span class="lang-level">Modersmål</span>
           </div>
           <div class="lang-item">
             <span class="lang-name">Engelsk</span>
@@ -701,7 +705,7 @@
           </div>
           <div class="lang-item">
             <span class="lang-name">Tysk</span>
-            <span class="lang-level">Taler og forstar</span>
+            <span class="lang-level">Taler og forstår</span>
           </div>
           <div class="lang-item">
             <span class="lang-name">Nordisk</span>
@@ -720,14 +724,122 @@
   </div>
 </section>
 
+<!-- OM MIG -->
+<section id="om-mig">
+  <div class="container">
+
+    <div class="section-header om-mig-header reveal">
+      <span class="section-label">Kulturpersonlighed · musiker · underviser · moderator</span>
+      <h2>Rytme, retning og menneskelig udvikling</h2>
+    </div>
+
+    <div class="om-mig-quote reveal">
+      <blockquote>
+        Stærke præstationer skabes i samspillet mellem mennesker.
+      </blockquote>
+    </div>
+
+    <div class="om-mig-grid">
+
+      <div class="om-mig-body reveal">
+        <p>
+          Jeg har spillet trommer og undervist i musik i mere end to årtier. Ikke som sideprojekt
+          eller weekendhobby, men som en parallel identitet, der har formet min tilgang til
+          alt, hvad jeg har lavet professionelt: prioritering, timing, samspil og evnen til
+          at få det bedste frem i andre.
+        </p>
+        <p>
+          Som fuldgyldigt medlem og trommeslager i Danish Drum Company og som
+          kapelmester og trommeslager i Soulman Group har jeg arbejdet med præstation
+          i ensembleformat. Bag trommesættet er der ingen steder at gemme sig
+          bag en god idé eller en stærk PowerPoint. Resten af bandet lytter.
+        </p>
+        <p>
+          Som underviser gennem mange år ved musikskoler og med private elever har jeg
+          lært at bryde komplekse færdigheder ned til næste skridt, mærke, når nogen
+          er klar til et spring, og vente med tålmodighed, når de ikke er.
+          Det er den samme kompetence, jeg bruger, når en redaktion skal flytte sig.
+        </p>
+        <p>
+          Det samme gælder mit virke som moderator, oplægsholder og aktiv
+          samfundsborger. Jeg trives i samtaler, hvor forskellige perspektiver skal
+          mødes uden at blive udglattet: på scenen, i debatter, i foreninger og i de
+          rum, hvor kultur, medier og lokalsamfund kan finde fælles retning.
+        </p>
+        <div class="om-mig-bands">
+          <span class="band-tag">Kulturpersonlighed</span>
+          <span class="band-tag">Moderator</span>
+          <span class="band-tag">Oplægsholder</span>
+          <span class="band-tag">Aktiv samfundsborger</span>
+          <span class="band-tag">Danish Drum Company</span>
+          <span class="band-tag">Soulman Group</span>
+          <span class="band-tag">Trommeslager</span>
+          <span class="band-tag">Kapelmester</span>
+          <span class="band-tag">Musikunderviser</span>
+        </div>
+      </div>
+
+      <div class="vaerdi-pillars reveal">
+
+        <div class="vaerdi-pillar">
+          <span class="vaerdi-dimension">Værdi 01</span>
+          <span class="vaerdi-titel">Timing</span>
+          <p class="vaerdi-desc">
+            Musik er ikke kun, hvad du spiller. Det er også, hvornår du spiller det.
+            Den erfaring er overført direkte til redaktionelt lederskab:
+            hvornår man hæver tempoet, hvornår man skaber ro, og
+            hvornår en beslutning ikke tåler at vente.
+          </p>
+        </div>
+
+        <div class="vaerdi-pillar">
+          <span class="vaerdi-dimension">Værdi 02</span>
+          <span class="vaerdi-titel">Samspil</span>
+          <p class="vaerdi-desc">
+            Et ensemble lyder kun godt, når hvert instrument lytter til de andre.
+            Stærke organisationer er bygget på samme princip: ikke blindt hierarki,
+            men gensidigt ansvar og tydelig, kollektiv retning.
+          </p>
+        </div>
+
+        <div class="vaerdi-pillar">
+          <span class="vaerdi-dimension">Værdi 03</span>
+          <span class="vaerdi-titel">Mestring over tid</span>
+          <p class="vaerdi-desc">
+            To årtier bag et trommesæt har lært mig, at der ikke findes
+            genveje til reel beherskelse. Det kræver systematik,
+            gentagelse og evnen til at vurdere sig selv ærligt.
+            Det samme gælder for implementering af AI i en redaktion.
+          </p>
+        </div>
+
+        <div class="vaerdi-pillar">
+          <span class="vaerdi-dimension">Værdi 04</span>
+          <span class="vaerdi-titel">Offentlig samtale</span>
+          <p class="vaerdi-desc">
+            Som moderator og oplægsholder arbejder jeg med at skabe rum, hvor
+            viden, uenighed og erfaring kan blive produktive kræfter. Et stærkt
+            demokrati kræver mennesker, der kan lytte, stille skarpt og tage ansvar
+            for den samtale, de selv er en del af.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
 <!-- KONTAKT -->
 <section id="kontakt">
   <div class="container">
     <div class="kontakt-inner">
       <h2 class="reveal">Lad os tale om det</h2>
       <p class="reveal">
-        Hvis du leder efter en profil der kan bygge broen
-        mellem journalistikken, teknologien og organisationen.
+        Hvis du leder efter en profil, der kan bygge bro
+        mellem journalistik, teknologi og organisation.
       </p>
       <div class="kontakt-actions reveal">
         <a href="mailto:carstenlysdal@proton.me" class="btn btn-rust-sm btn-rust-inv">Skriv en mail</a>

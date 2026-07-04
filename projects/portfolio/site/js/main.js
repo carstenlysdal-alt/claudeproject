@@ -95,9 +95,9 @@ document.querySelectorAll('.case-trigger').forEach(btn => {
 
 // ── Chatty typewriter ────────────────────────────
 const TABS = {
-  research: `> Chatty — Research-assistent\n\nAnalyserer primærkilder ...\nIdentificerer mønstre i offentlige data ...\nForeslår vinkler baseret på tendenser ...\n\nKlar til OSINT, åbne registre og kildekortlægning.\nTranskriberer og koder interviews.\nKildekritik som fast led i hvert output.`,
-  produktion: `> Chatty — Redaktionel produktion\n\nGenererer første udkast på under 3 minutter.\nTilpasser til tone-of-voice og format.\nForeslår overskrifter og strukturvarianter.\n\n500-600 korte enheder per uge. Samme team.\nFrigjorte ressourcer til prioriteret journalistik.`,
-  kvalitet: `> Chatty — Kvalitetssikring\n\nTjekker fakta mod primærkilder ...\nFlagger juridiske og etiske risici ...\nVerificerer citaternes korrekthed ...\n\nRedaktionel godkendelse som fast led.\nAI assisterer — journalisten beslutter.`
+  research: `> Chatty — Researchassistent\n\nAnalyserer primærkilder ...\nFinder mønstre i offentlige data ...\nForeslår vinkler på baggrund af tendenser ...\n\nKlar til OSINT, åbne registre og kildekortlægning.\nTransskriberer og koder interviews.\nKildekritik som fast led i hvert output.`,
+  produktion: `> Chatty — Redaktionel produktion\n\nGenererer første udkast på under 3 minutter.\nTilpasser tone, format og genre.\nForeslår overskrifter og strukturvarianter.\n\n500-600 korte enheder om ugen. Samme team.\nFrigjorte ressourcer til prioriteret journalistik.`,
+  kvalitet: `> Chatty — Kvalitetssikring\n\nTjekker fakta mod primærkilder ...\nMarkerer juridiske og etiske risici ...\nVerificerer citaternes korrekthed ...\n\nRedaktionel godkendelse som fast led.\nAI assisterer — journalisten beslutter.`
 };
 
 const consoleBody   = document.querySelector('.console-body');
@@ -125,7 +125,11 @@ document.querySelectorAll('.console-tab').forEach(tab => {
     const key = tab.dataset.tab;
     if (key === currentTab) return;
     currentTab = key;
-    document.querySelectorAll('.console-tab').forEach(t => t.classList.toggle('active', t === tab));
+    document.querySelectorAll('.console-tab').forEach(t => {
+      const isActive = t === tab;
+      t.classList.toggle('active', isActive);
+      t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
     typeText(TABS[key] || '');
   });
 });
