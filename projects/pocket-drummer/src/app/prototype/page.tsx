@@ -1093,7 +1093,7 @@ function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps)
           <div style={{
             display: 'grid',
             gridTemplateColumns: isDesktop ? 'repeat(4, 1fr)' : 'repeat(2, 1fr)',
-            gap: isDesktop ? 14 : 10,
+            gap: 12,
           }}>
             {categories.map(cat => (
               <div key={cat.id} onClick={() => onSelectCategory(cat.id)} style={{
@@ -1101,7 +1101,7 @@ function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps)
                 overflow: 'hidden',
                 cursor: 'pointer',
                 position: 'relative',
-                height: isDesktop ? 150 : 120,
+                height: isDesktop ? 160 : 140,
                 border: `1px solid rgba(255,255,255,0.07)`,
                 background: cat.bg,
                 transition: 'transform 120ms cubic-bezier(0.16,1,0.3,1)',
@@ -1113,10 +1113,10 @@ function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps)
                 onTouchStart={e => { e.currentTarget.style.transform = 'scale(0.97)'; }}
                 onTouchEnd={e => { e.currentTarget.style.transform = ''; }}
               >
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, transparent 30%, rgba(4,3,2,0.8) 100%)' }} />
-                <div style={{ position: 'absolute', top: 12, left: 12 }}>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, transparent 30%, rgba(4,3,2,0.82) 100%)' }} />
+                <div style={{ position: 'absolute', top: 14, left: 14 }}>
                   <div style={{
-                    width: 32, height: 32, borderRadius: 8,
+                    width: 34, height: 34, borderRadius: 9,
                     background: 'rgba(0,0,0,0.35)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
@@ -1124,24 +1124,24 @@ function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps)
                   </div>
                 </div>
                 <div style={{
-                  position: 'absolute', bottom: 10, left: 12, right: 12,
+                  position: 'absolute', bottom: 14, left: 14, right: 14,
                   overflow: 'hidden',
                 }}>
                   <div style={{
                     fontFamily: t.head,
-                    fontSize: isDesktop ? 14 : 13,
+                    fontSize: 14,
                     fontWeight: 700,
                     color: '#FAF8F5',
                     letterSpacing: -0.2,
-                    marginBottom: 3,
+                    marginBottom: 4,
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap',
                   }}>{cat.label}</div>
                   <div style={{
-                    fontSize: 10,
+                    fontSize: 11,
                     color: 'rgba(237,233,228,0.5)',
-                    lineHeight: 1.35,
+                    lineHeight: 1.4,
                     overflow: 'hidden',
                     display: '-webkit-box',
                     WebkitLineClamp: 2,
