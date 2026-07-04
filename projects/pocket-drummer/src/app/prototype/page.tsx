@@ -56,6 +56,7 @@ interface HomeScreenProps extends ScreenProps {
 
 interface PracticeScreenProps extends ScreenProps {
   onSelectCategory: (cat: 'opvarmning' | 'nodelære' | 'grooves' | 'playalong') => void;
+  isDesktop?: boolean;
 }
 
 interface TrackDetailProps extends ScreenProps {
@@ -90,7 +91,10 @@ interface TabBarProps {
   t: ThemeTokens;
   dark: boolean;
   isMobile: boolean;
+  selectedCategory: string | null;
+  isAdmin?: boolean;
   onSelectCategory: (cat: 'opvarmning' | 'nodelære' | 'grooves' | 'playalong' | null) => void;
+  onOpenAdmin?: () => void;
 }
 
 
@@ -998,7 +1002,7 @@ const practiceTracks = [
   },
 ];
 
-function PracticeScreen({ t, onSelectCategory }: PracticeScreenProps) {
+function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps) {
   const [search, setSearch] = useState('');
   const { language, t: translate } = useLanguage();
   const [activeChip, setActiveChip] = useState<'Alle' | 'opvarmning' | 'nodelære' | 'grooves' | 'playalong'>('Alle');
@@ -1048,116 +1052,117 @@ function PracticeScreen({ t, onSelectCategory }: PracticeScreenProps) {
     { id: 'playalong' as const, label: translate('playalong') }
   ];
 
+  const categories = [
+    { id: 'opvarmning' as const, label: translate('warmup') || 'Opvarmning', desc: 'Hænder, fødder & timing', bg: 'radial-gradient(ellipse at 40% 30%, rgba(78,222,163,0.35) 0%, transparent 65%), #0A1810', accent: '#4edea3', icon: <IcWave size={20} color="#4edea3" /> },
+    { id: 'nodelære' as const, label: translate('musicTheory') || 'Nodelære', desc: 'Rhythm & notation', bg: 'radial-gradient(ellipse at 40% 30%, rgba(100,140,255,0.35) 0%, transparent 65%), #080C1A', accent: '#7090ff', icon: <IcMetro size={20} color="#7090ff" /> },
+    { id: 'grooves' as const, label: translate('grooves') || 'Grooves', desc: 'Beats, fills & genrer', bg: 'radial-gradient(ellipse at 40% 30%, rgba(232,112,58,0.4) 0%, transparent 65%), #180C04', accent: t.accent, icon: <TabKit size={20} color={t.accent} /> },
+    { id: 'playalong' as const, label: translate('playalong') || 'Play-along', desc: 'Spil med rigtig musik', bg: 'radial-gradient(ellipse at 40% 30%, rgba(180,80,220,0.35) 0%, transparent 65%), #110820', accent: '#b060dc', icon: <TabPlayalong size={20} color="#b060dc" /> },
+  ];
+
+  const cols = isDesktop ? 'repeat(4, 1fr)' : '1fr 1fr';
+  const cardH = isDesktop ? 140 : 110;
+
   return (
     <div style={{ color: t.text, fontFamily: t.font, padding: '4px 0 40px' }}>
-      <div style={{ padding: '4px 20px 14px' }}>
-        <Display t={t} size={28} style={{ marginBottom: 16 }}>
-          {language === 'da' ? 'Øvelsesbibliotek' : language === 'en' ? 'Exercise Library' : language === 'de' ? 'Übungsbibliothek' : 'Biblioteca de ejercicios'}
+      <div style={{
+        padding: isDesktop ? '24px 40px 20px' : '4px 16px 16px',
+        maxWidth: isDesktop ? 960 : undefined,
+      }}>
+        <Display t={t} size={isDesktop ? 32 : 26} style={{ marginBottom: 16 }}>
+          {language === 'da' ? 'Øvelser' : 'Exercises'}
         </Display>
 
         {/* Search input */}
-        <div style={{ position: 'relative', marginBottom: 16 }}>
+        <div style={{ position: 'relative', marginBottom: 20 }}>
           <input
             type="text"
-            placeholder={language === 'da' ? 'Søg efter øvelser, teknik...' : language === 'en' ? 'Search exercises, techniques...' : language === 'de' ? 'Übungen, Techniken suchen...' : 'Buscar ejercicios, técnicas...'}
+            placeholder="Søg i alle øvelser..."
             value={search}
             onChange={e => setSearch(e.target.value)}
             style={{
-              width: '100%',
-              padding: '12px 16px',
-              borderRadius: 14,
-              border: `1px solid ${t.borderStrong}`,
-              background: t.surface,
-              color: t.text,
-              fontSize: 14,
-              outline: 'none',
-              fontFamily: t.font,
+              width: '100%', padding: '11px 16px', borderRadius: 12,
+              border: `1px solid ${t.border}`, background: t.surface,
+              color: t.text, fontSize: 14, outline: 'none', fontFamily: t.font,
+              boxSizing: 'border-box',
             }}
           />
           {search && (
             <button onClick={() => setSearch('')} style={{
               position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
-              background: 'transparent', border: 'none', color: t.textMuted, cursor: 'pointer',
-              fontSize: 14
+              background: 'transparent', border: 'none', color: t.textMuted, cursor: 'pointer', fontSize: 14
             }}>✕</button>
           )}
         </div>
 
-        {/* Filter chips */}
-        <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 8, scrollbarWidth: 'none' }}>
-          {chips.map(chip => {
-            const active = activeChip === chip.id;
-            return (
-              <button key={chip.id} onClick={() => setActiveChip(chip.id)} style={{
-                padding: '8px 14px', borderRadius: 999, border: `1px solid ${active ? t.accent : t.border}`,
-                background: active ? t.accentSoft : t.surface, color: active ? t.accent : t.textMuted,
-                fontFamily: t.font, fontSize: 12, fontWeight: 600, cursor: 'pointer',
-                whiteSpace: 'nowrap', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)'
-              }}>{chip.label}</button>
-            );
-          })}
-        </div>
+        {/* Category cards — primær navigation */}
+        {!search && (
+          <div style={{ display: 'grid', gridTemplateColumns: cols, gap: 12 }}>
+            {categories.map(cat => (
+              <div key={cat.id} onClick={() => onSelectCategory(cat.id)} style={{
+                borderRadius: 18, overflow: 'hidden', cursor: 'pointer', position: 'relative',
+                height: cardH, border: `1px solid rgba(255,255,255,0.07)`,
+                background: cat.bg, transition: 'transform 120ms cubic-bezier(0.16,1,0.3,1)',
+              }}
+                onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.97)'; }}
+                onMouseUp={e => { e.currentTarget.style.transform = ''; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = ''; }}
+                onTouchStart={e => { e.currentTarget.style.transform = 'scale(0.97)'; }}
+                onTouchEnd={e => { e.currentTarget.style.transform = ''; }}
+              >
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, rgba(6,5,4,0.75) 100%)' }} />
+                <div style={{ position: 'absolute', top: 12, left: 12 }}>
+                  <div style={{ width: 34, height: 34, borderRadius: 9, background: 'rgba(0,0,0,0.32)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {cat.icon}
+                  </div>
+                </div>
+                <div style={{ position: 'absolute', bottom: 10, left: 12, right: 28 }}>
+                  <div style={{ fontFamily: t.head, fontSize: isDesktop ? 14 : 13, fontWeight: 700, color: '#FAF8F5', letterSpacing: -0.2, marginBottom: 2 }}>{cat.label}</div>
+                  <div style={{ fontSize: isDesktop ? 11 : 10, color: 'rgba(237,233,228,0.55)', lineHeight: 1.3 }}>{cat.desc}</div>
+                </div>
+                <div style={{ position: 'absolute', bottom: 12, right: 10 }}>
+                  <IcChev size={13} color="rgba(255,255,255,0.3)" />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Exercises list */}
-      <div style={{ padding: '0 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {filtered.map((ex, idx) => {
-          const thumbGrads = [
-            `radial-gradient(ellipse at 50% 40%, rgba(200,100,50,0.55) 0%, transparent 70%), #1A1008`,
-            `radial-gradient(ellipse at 50% 40%, rgba(60,90,210,0.55) 0%, transparent 70%), #080C1A`,
-            `radial-gradient(ellipse at 50% 40%, rgba(150,60,200,0.5) 0%, transparent 70%), #110818`,
-            `radial-gradient(ellipse at 50% 40%, rgba(20,170,100,0.45) 0%, transparent 70%), #071A10`,
-            `radial-gradient(ellipse at 50% 40%, rgba(220,80,80,0.5) 0%, transparent 70%), #1A0808`,
-          ];
-          const thumbBg = thumbGrads[idx % thumbGrads.length];
-          return (
+      {/* Søgeresultater */}
+      {search && (
+        <div style={{ padding: '0 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {filtered.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '40px 20px', color: t.textMuted }}>
+              <div style={{ fontSize: 13 }}>Ingen øvelser matcher &quot;{search}&quot;</div>
+            </div>
+          ) : filtered.map(ex => (
             <div key={ex.id} onClick={() => onSelectCategory(ex.cat)} style={{
               background: t.surface, border: `1px solid ${t.border}`,
-              borderRadius: 14, padding: '10px 12px', cursor: 'pointer',
+              borderRadius: 12, padding: '12px 14px', cursor: 'pointer',
               display: 'flex', alignItems: 'center', gap: 12,
-              transition: 'background 120ms, transform 120ms cubic-bezier(0.16,1,0.3,1)',
+              transition: 'transform 120ms cubic-bezier(0.16,1,0.3,1)',
             }}
-              onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.98)'; e.currentTarget.style.background = t.surface2; }}
-              onMouseUp={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.background = t.surface; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.background = t.surface; }}
+              onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.98)'; }}
+              onMouseUp={e => { e.currentTarget.style.transform = ''; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ''; }}
               onTouchStart={e => { e.currentTarget.style.transform = 'scale(0.98)'; }}
               onTouchEnd={e => { e.currentTarget.style.transform = ''; }}
             >
-              {/* Gradient thumbnail */}
-              <div style={{
-                width: 64, height: 48, borderRadius: 8, overflow: 'hidden',
-                flexShrink: 0, position: 'relative', background: thumbBg,
-              }}>
-                <div style={{
-                  position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.18)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}>
-                  <IcPlay size={12} color="rgba(255,255,255,0.65)" />
-                </div>
-              </div>
-              {/* Text */}
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontFamily: t.head, fontSize: 14, fontWeight: 700, color: t.text, letterSpacing: -0.2, marginBottom: 3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ex.title}</div>
-                <div style={{ fontSize: 12, color: t.textMuted, display: 'flex', gap: 6, alignItems: 'center' }}>
-                  <span style={{ color: t.accent, fontWeight: 500 }}>{getLevelLabel(ex.level)}</span>
+                <div style={{ fontFamily: t.head, fontSize: 14, fontWeight: 700, color: t.text, marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ex.title}</div>
+                <div style={{ fontSize: 11, color: t.textMuted, display: 'flex', gap: 6 }}>
+                  <span style={{ color: t.accent }}>{getCategoryLabel(ex.cat)}</span>
+                  <span>·</span>
+                  <span>{ex.level}</span>
                   <span>·</span>
                   <span>{ex.dur}</span>
                 </div>
               </div>
-              <IcChev size={15} color={t.textDim} />
+              <IcChev size={14} color={t.textDim} />
             </div>
-          );
-        })}
-
-        {filtered.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '40px 20px', color: t.textMuted }}>
-            <span style={{ fontSize: 24 }}>🔍</span>
-            <div style={{ fontSize: 13, marginTop: 8 }}>
-              {language === 'da' ? 'Ingen øvelser matcher din søgning.' : language === 'en' ? 'No exercises match your search.' : language === 'de' ? 'Keine Übungen entsprechen Ihrer Suche.' : 'No hay ejercicios que coincidan con tu búsqueda.'}
-            </div>
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -1528,7 +1533,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
               const hasMedia = notationImageUrl || notationXml;
               const noPadding = Boolean(notationImageUrl);
               return (
-            <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: noPadding ? 0 : '14px 6px', marginBottom: 14, overflowX: 'auto', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+            <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: noPadding ? 0 : '14px 6px', marginBottom: 14, overflowX: noPadding ? 'hidden' : 'auto', overflowY: 'hidden', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {notationImageUrl ? (
                 urlIsPdf ? (
                   <object data={notationImageUrl} type="application/pdf" style={{ width: '100%', height: 480, border: 'none' }}>
@@ -1931,7 +1936,8 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
       </div>
 
       {/* Scrollable Content */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px 60px' }}>
+      <div style={{ flex: 1, overflowY: 'auto' }}>
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '16px 20px 60px' }}>
 
         {/* Status filter */}
         {(() => {
@@ -2036,6 +2042,7 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
               <div style={{ fontSize: 12 }}>Ingen øvelser matcher chip &quot;{activeChip}&quot;.</div>
             </div>
           )}
+        </div>
         </div>
       </div>
 
@@ -3251,7 +3258,7 @@ function ProfileScreen({ t, dark, setDark, guestXp }: ProfileScreenProps) {
 // ─────────────────────────────────────────────────────────────
 // App Tab bar & Shell Wrapper
 // ─────────────────────────────────────────────────────────────
-function TabBar({ tab, onTab, t, dark, isMobile, onSelectCategory }: TabBarProps) {
+function TabBar({ tab, onTab, t, dark, isMobile, selectedCategory, isAdmin, onSelectCategory, onOpenAdmin }: TabBarProps) {
   const { t: translate } = useLanguage();
   const tabs = [
     { id: 'home', label: translate('home') || 'Hjem', icon: TabHome },
@@ -3274,13 +3281,14 @@ function TabBar({ tab, onTab, t, dark, isMobile, onSelectCategory }: TabBarProps
     }}>
       <div style={{ display: 'flex', alignItems: 'center', padding: '0 4px' }}>
         {tabs.map(tt => {
-          const active = tab === tt.id;
+          const active = tt.id === 'playalong' ? selectedCategory === 'playalong' : (tab === tt.id && selectedCategory === null);
           const Icon = tt.icon;
           return (
             <button key={tt.id} onClick={() => {
               if (tt.id === 'playalong') {
                 onSelectCategory('playalong');
               } else {
+                onSelectCategory(null);
                 onTab(tt.id);
               }
             }} style={{
@@ -3289,7 +3297,6 @@ function TabBar({ tab, onTab, t, dark, isMobile, onSelectCategory }: TabBarProps
               padding: '6px 0', fontFamily: t.font,
               color: active ? t.accent : t.textDim,
               transition: 'color 0.2s cubic-bezier(0.16,1,0.3,1)',
-              opacity: 1,
             }}>
               <div style={{
                 width: 40, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -3299,13 +3306,22 @@ function TabBar({ tab, onTab, t, dark, isMobile, onSelectCategory }: TabBarProps
               }}>
                 <Icon size={20} color={active ? t.accent : t.textDim} sw={active ? 2 : 1.5} />
               </div>
-              <span style={{
-                fontSize: 9, fontWeight: active ? 700 : 500,
-                letterSpacing: 0.2, textTransform: 'none',
-              }}>{tt.label}</span>
+              <span style={{ fontSize: 9, fontWeight: active ? 700 : 500, letterSpacing: 0.2 }}>{tt.label}</span>
             </button>
           );
         })}
+        {isAdmin && (
+          <button onClick={onOpenAdmin} style={{
+            flex: 1, background: 'transparent', border: 'none', cursor: 'pointer',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
+            padding: '6px 0', fontFamily: t.font, color: t.textDim,
+          }}>
+            <div style={{ width: 40, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}>
+              <IcUpload size={20} color={t.textDim} sw={1.5} />
+            </div>
+            <span style={{ fontSize: 9, fontWeight: 500 }}>Admin</span>
+          </button>
+        )}
       </div>
     </div>
   );
@@ -3314,12 +3330,14 @@ function TabBar({ tab, onTab, t, dark, isMobile, onSelectCategory }: TabBarProps
 // ─────────────────────────────────────────────────────────────
 // Desktop Rail — venstresøjle på ≥ 1024px
 // ─────────────────────────────────────────────────────────────
-function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach }: {
+function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach, selectedCategory, onOpenAdmin }: {
   tab: string;
   onTab: (tab: string) => void;
   t: ThemeTokens;
   onSelectCategory: (cat: 'opvarmning' | 'nodelære' | 'grooves' | 'playalong') => void;
   onOpenCoach: () => void;
+  selectedCategory: string | null;
+  onOpenAdmin?: () => void;
 }) {
   const { t: translate } = useLanguage();
   const { user } = useAuth();
@@ -3356,7 +3374,9 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach }: {
       {/* Nav items */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4, width: '100%', padding: '0 8px' }}>
         {items.map(item => {
-          const active = tab === item.id || (item.id === 'playalong' && false);
+          const active = item.id === 'playalong'
+            ? selectedCategory === 'playalong'
+            : (tab === item.id && selectedCategory === null);
           const Icon = item.icon;
           return (
             <button key={item.id} onClick={() => {
@@ -3385,6 +3405,18 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach }: {
       {/* Spacer */}
       <div style={{ flex: 1 }} />
 
+      {/* Admin upload knap (kun admin) */}
+      {user?.role === 'admin' && onOpenAdmin && (
+        <button onClick={onOpenAdmin} title="Admin: Upload materiale" style={{
+          width: 44, height: 44, borderRadius: '50%',
+          background: 'transparent', border: `1px solid ${t.border}`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          cursor: 'pointer', marginBottom: 8, color: t.textMuted,
+        }}>
+          <IcUpload size={16} color={t.textMuted} />
+        </button>
+      )}
+
       {/* Coach */}
       <button onClick={onOpenCoach} style={{
         width: 44, height: 44, borderRadius: '50%',
@@ -3403,6 +3435,165 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach }: {
         fontSize: 12, fontWeight: 700, color: t.accent,
         fontFamily: t.font,
       }}>{initials}</div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// Admin Panel Overlay
+// ─────────────────────────────────────────────────────────────
+function AdminPanel({ t, onClose }: { t: ThemeTokens; onClose: () => void }) {
+  const allExercises = [
+    { id: 1, cat: 'opvarmning' as const, title: '5 minutters teknik-start', level: 'Begynder', notation: 'opvarmning-2014.xml' },
+    { id: 2, cat: 'opvarmning' as const, title: 'Hånd-hastighed & kontrol', level: 'Mellemniveau' },
+    { id: 3, cat: 'opvarmning' as const, title: 'Stortromme styrke & kontrol', level: 'Øvet' },
+    { id: 4, cat: 'opvarmning' as const, title: 'Tempo-ladder udfordring', level: 'Øvet' },
+    { id: 1, cat: 'nodelære' as const, title: 'Læs fjerdedele & pauser', level: 'Begynder' },
+    { id: 2, cat: 'nodelære' as const, title: 'Ottendedele syncopation', level: 'Mellemniveau' },
+    { id: 3, cat: 'nodelære' as const, title: 'Sekstendedele ghost notes', level: 'Øvet' },
+    { id: 1, cat: 'grooves' as const, title: 'Basic Rock Beat', level: 'Begynder' },
+    { id: 2, cat: 'grooves' as const, title: 'Funk Pocket Groove', level: 'Mellemniveau' },
+    { id: 3, cat: 'grooves' as const, title: 'Linear Funk Pattern', level: 'Øvet' },
+    { id: 1, cat: 'playalong' as const, title: 'Classic Rock 4/4 Beat', level: 'Begynder' },
+    { id: 2, cat: 'playalong' as const, title: 'Funk Groove Odyssey', level: 'Mellemniveau' },
+  ] as Array<{ id: number; cat: 'opvarmning' | 'nodelære' | 'grooves' | 'playalong'; title: string; level: string; notation?: string }>;
+
+  const [uploadingFor, setUploadingFor] = React.useState<string | null>(null);
+  const [uploadLog, setUploadLog] = React.useState<Record<string, string>>({});
+  const [notationStatus, setNotationStatus] = React.useState<Record<string, string | null>>({});
+
+  React.useEffect(() => {
+    const load = async () => {
+      const { collection, getDocs } = await import('firebase/firestore');
+      const { db } = await import('@/lib/firebase');
+      const snap = await getDocs(collection(db, 'exerciseNotations'));
+      const map: Record<string, string | null> = {};
+      snap.forEach(d => { map[d.id] = 'firestore'; });
+      setNotationStatus(map);
+    };
+    load().catch(() => {});
+  }, []);
+
+  const catLabel = (c: string) => ({ opvarmning: 'Opvarmning', nodelære: 'Nodelære', grooves: 'Grooves', playalong: 'Play-along' })[c] ?? c;
+  const lvlColor = (l: string) => l === 'Begynder' ? '#4edea3' : l === 'Mellemniveau' ? t.textMuted : t.accent;
+
+  const handleFileUpload = async (ex: typeof allExercises[0], file: File) => {
+    const key = `${ex.cat}_${ex.id}`;
+    setUploadingFor(key);
+    const addLog = (msg: string) => setUploadLog(p => ({ ...p, [key]: msg }));
+    try {
+      const fname = file.name.toLowerCase();
+      const isXml = fname.match(/\.(xml|musicxml)$/);
+      const isImage = fname.match(/\.(jpg|jpeg|png)$/) || file.type.startsWith('image/');
+      const isPdf = fname.endsWith('.pdf') || file.type === 'application/pdf';
+
+      if (isXml) {
+        addLog('Indlæser XML...');
+        const xml = await file.text();
+        const { doc, setDoc, serverTimestamp } = await import('firebase/firestore');
+        const { db } = await import('@/lib/firebase');
+        await setDoc(doc(db, 'exerciseNotations', key), { xml, mimeType: 'application/xml', name: file.name, updatedAt: serverTimestamp() });
+        setNotationStatus(p => ({ ...p, [key]: 'firestore' }));
+        addLog('✅ XML gemt');
+      } else if (isImage || isPdf) {
+        addLog('Konverterer til data URL...');
+        const dataUrl = await new Promise<string>((res, rej) => {
+          const r = new FileReader(); r.onload = () => res(r.result as string); r.onerror = rej; r.readAsDataURL(file);
+        });
+        addLog('Gemmer i Firestore...');
+        const { doc, setDoc, serverTimestamp } = await import('firebase/firestore');
+        const { db } = await import('@/lib/firebase');
+        await setDoc(doc(db, 'exerciseNotations', key), { dataUrl, mimeType: file.type, name: file.name, updatedAt: serverTimestamp() });
+        setNotationStatus(p => ({ ...p, [key]: 'firestore' }));
+        addLog('✅ Gemt');
+      } else {
+        addLog('Sender til Gemini OMR...');
+        const formData = new FormData();
+        formData.append('file', file);
+        const res = await fetch('/api/scan-sheet-music', { method: 'POST', body: formData });
+        const text = await res.text();
+        let data: Record<string, string>;
+        try { data = JSON.parse(text); } catch { throw new Error('Serverfejl'); }
+        if (!res.ok || data.error) throw new Error(data.error);
+        const { doc, setDoc, serverTimestamp } = await import('firebase/firestore');
+        const { db } = await import('@/lib/firebase');
+        await setDoc(doc(db, 'exerciseNotations', key), { xml: data.xml, mimeType: 'application/xml', name: file.name, updatedAt: serverTimestamp() });
+        setNotationStatus(p => ({ ...p, [key]: 'firestore' }));
+        addLog('✅ Scannet og gemt');
+      }
+    } catch (e) {
+      setUploadLog(p => ({ ...p, [key]: `❌ ${e instanceof Error ? e.message : String(e)}` }));
+    } finally {
+      setUploadingFor(null);
+    }
+  };
+
+  const groups = ['opvarmning', 'nodelære', 'grooves', 'playalong'] as const;
+
+  return (
+    <div style={{ position: 'absolute', inset: 0, background: t.bg, zIndex: 135, display: 'flex', flexDirection: 'column', animation: 'slideUp 0.28s cubic-bezier(0.16,1,0.3,1)' }}>
+      <div style={{ height: 'var(--safe-top, 62px)' }} />
+      <div style={{ padding: '0 16px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${t.border}` }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ width: 28, height: 28, borderRadius: 6, background: t.accentSoft, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <IcUpload size={14} color={t.accent} />
+          </div>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: t.accent, letterSpacing: 0.8, textTransform: 'uppercase' }}>Admin</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: t.text, fontFamily: t.head }}>Upload materiale</div>
+          </div>
+        </div>
+        <button onClick={onClose} style={{ width: 36, height: 36, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>✕</button>
+      </div>
+
+      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 80px' }}>
+        {groups.map(cat => (
+          <div key={cat} style={{ marginBottom: 28 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: t.textMuted, letterSpacing: 1.2, textTransform: 'uppercase', marginBottom: 10 }}>{catLabel(cat)}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {allExercises.filter(e => e.cat === cat).map(ex => {
+                const key = `${ex.cat}_${ex.id}`;
+                const hasNotation = ex.notation || notationStatus[key];
+                const isUploading = uploadingFor === key;
+                const log = uploadLog[key];
+                return (
+                  <div key={key} style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: 12, padding: '12px 14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: log ? 8 : 0 }}>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 13, fontWeight: 600, color: t.text, marginBottom: 2 }}>{ex.title}</div>
+                        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                          <span style={{ fontSize: 10, color: lvlColor(ex.level), fontWeight: 600 }}>{ex.level}</span>
+                          {hasNotation && <span style={{ fontSize: 10, color: '#4edea3', fontWeight: 600 }}>· ✓ Notation</span>}
+                        </div>
+                      </div>
+                      <label style={{
+                        padding: '6px 12px', borderRadius: 8, cursor: isUploading ? 'default' : 'pointer',
+                        background: isUploading ? t.surface2 : t.accentSoft,
+                        border: `1px solid ${isUploading ? t.border : t.accent}20`,
+                        fontSize: 11, fontWeight: 700, color: isUploading ? t.textMuted : t.accent,
+                        display: 'flex', alignItems: 'center', gap: 5, whiteSpace: 'nowrap',
+                      }}>
+                        {isUploading ? '...' : <><IcUpload size={12} color={t.accent} /> Upload</>}
+                        <input type="file" accept="image/*,application/pdf,.xml,.musicxml" style={{ display: 'none' }}
+                          disabled={isUploading}
+                          onChange={e => { if (e.target.files?.[0]) handleFileUpload(ex, e.target.files[0]); e.target.value = ''; }}
+                        />
+                      </label>
+                    </div>
+                    {log && <div style={{ fontSize: 11, fontFamily: 'monospace', color: log.startsWith('❌') ? '#F25545' : '#4edea3', marginTop: 4 }}>{log}</div>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+
+        <div style={{ padding: '16px', background: t.surface2, borderRadius: 12, border: `1px dashed ${t.border}` }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: t.textMuted, marginBottom: 4 }}>Fuld admin-side</div>
+          <div style={{ fontSize: 11, color: t.textMuted, marginBottom: 10 }}>Scan, generer og administrer alt indhold</div>
+          <a href="/admin" style={{ fontSize: 12, fontWeight: 700, color: t.accent, textDecoration: 'none' }}>Åbn /admin →</a>
+        </div>
+      </div>
     </div>
   );
 }
@@ -3437,6 +3628,7 @@ export default function MobilePrototype() {
   const [isDesktop, setIsDesktop] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<'opvarmning' | 'nodelære' | 'grooves' | 'playalong' | null>(null);
   const [guestXp, setGuestXp] = useState(120);
+  const [adminOpen, setAdminOpen] = useState(false);
 
   const { user } = useAuth();
 
@@ -3508,6 +3700,8 @@ export default function MobilePrototype() {
           tab={tab} onTab={(t) => { setTab(t); setSelectedCategory(null); }} t={t}
           onSelectCategory={(cat) => setSelectedCategory(cat)}
           onOpenCoach={() => setCoachOpen(true)}
+          selectedCategory={selectedCategory}
+          onOpenAdmin={() => setAdminOpen(true)}
         />
         <div ref={contentRef} style={{
           flex: 1, overflowY: 'auto', position: 'relative',
@@ -3522,7 +3716,7 @@ export default function MobilePrototype() {
                 guestXp={guestXp} isDesktop />
             )}
             {tab === 'practice' && (
-              <PracticeScreen t={t} dark={dark}
+              <PracticeScreen t={t} dark={dark} isDesktop
                 onSelectCategory={(id) => setSelectedCategory(id)} />
             )}
             {tab === 'kit' && (
@@ -3551,6 +3745,7 @@ export default function MobilePrototype() {
               onOpenCoach={() => { setLessonId(null); setCoachOpen(true); }} />
           )}
           {coachOpen && <CoachScreen t={t} dark={dark} onClose={() => setCoachOpen(false)} />}
+          {adminOpen && user?.role === 'admin' && <AdminPanel t={t} onClose={() => setAdminOpen(false)} />}
           {!desktopReady && <div style={{ position: 'absolute', inset: 0, background: t.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}>
             <div style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 28, color: t.text }}>
               Pocket Drummer<span style={{ color: t.accent }}>.</span>
@@ -3698,7 +3893,10 @@ export default function MobilePrototype() {
 
             {/* Tab bar */}
             <TabBar tab={tab} onTab={setTab} t={t} dark={dark} isMobile={isMobile}
-              onSelectCategory={(cat) => setSelectedCategory(cat)} />
+              selectedCategory={selectedCategory}
+              isAdmin={user?.role === 'admin'}
+              onSelectCategory={(cat) => setSelectedCategory(cat)}
+              onOpenAdmin={() => setAdminOpen(true)} />
 
             {/* Category detail overlay */}
             {selectedCategory && (
