@@ -31,6 +31,11 @@ const OsmdRenderer = dynamic(() => import('@/components/OsmdRenderer'), { ssr: f
 
 const SCAN_REQUEST_TIMEOUT_MS = 80_000;
 
+function getCleanPdfUrl(url: string) {
+  const separator = url.includes('#') ? '&' : '#';
+  return `${url}${separator}toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+}
+
 function normalizeMusicXmlResponse(xml: unknown, source: string): { xml: string; warning?: string } {
   if (typeof xml !== 'string' || !xml.trim()) {
     throw new Error(`Ugyldigt MusicXML modtaget fra ${source}: Tomt XML-svar`);
@@ -843,13 +848,14 @@ Vigtige regler:
                   <div className="form-group">
                     <label className="form-label">PDF-forhåndsvisning</label>
                     <iframe
-                      src={pdfPreviewUrl}
+                      src={getCleanPdfUrl(pdfPreviewUrl)}
                       style={{
                         width: '100%',
-                        height: '420px',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '8px',
+                        height: '72vh',
+                        border: 'none',
+                        borderRadius: 0,
                         background: '#fff',
+                        display: 'block',
                       }}
                       title="PDF forhåndsvisning"
                     />

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useAuth } from '@/lib/authContext';
-import { useLanguage } from '@/lib/languageContext';
+import { Language, useLanguage } from '@/lib/languageContext';
 import TiltCard from '@/components/TiltCard';
 
 
@@ -11,35 +11,40 @@ import TiltCard from '@/components/TiltCard';
 // Tokens
 // ─────────────────────────────────────────────────────────────
 const tokens = (dark: boolean) => ({
-  bg: dark ? '#0C0A07' : '#FAF8F5',
-  bgGradient: dark ? '#0C0A07' : '#FAF8F5',
-  surface: dark ? '#1A1512' : '#ffffff',
-  surface2: dark ? '#1E1A13' : '#EBE6DC',
-  surfaceElev: dark ? '#272118' : '#ffffff',
-  border: dark ? 'rgba(255,255,255,0.07)' : 'rgba(37,37,37,0.08)',
-  borderStrong: dark ? 'rgba(255,255,255,0.12)' : 'rgba(37,37,37,0.14)',
-  text: dark ? '#EDE9E4' : '#252525',
-  textMuted: dark ? '#A09890' : '#77716B',
-  textDim: dark ? '#5A4E48' : '#A39C94',
-  accent: '#E8703A',
-  accentDeep: '#D4622E',
-  accentSoft: dark ? 'rgba(232,112,58,0.12)' : 'rgba(232,112,58,0.08)',
-  accentText: dark ? '#E8A080' : '#D4622E',
-  accentGlow: '0 0 20px rgba(232,112,58,0.2)',
-  good: '#4edea3',
-  goodSoft: dark ? 'rgba(78,222,163,0.14)' : 'rgba(93,211,158,0.14)',
-  glassBackground: dark ? 'rgba(22,18,14,0.7)' : '#ffffff',
+  bg: dark ? '#15120F' : '#FBFAF6',
+  bgGradient: dark ? '#15120F' : '#FBFAF6',
+  surface: dark ? '#201B17' : '#FFFFFF',
+  surface2: dark ? '#2B2520' : '#F4EFE8',
+  surfaceElev: dark ? '#332B25' : '#FFFFFF',
+  border: dark ? 'rgba(255,255,255,0.08)' : '#EEE9E1',
+  borderStrong: dark ? 'rgba(255,255,255,0.15)' : '#E3DDD3',
+  text: dark ? '#FBFAF6' : '#2B2723',
+  textMuted: dark ? '#B7AEA2' : '#A79E93',
+  textDim: dark ? '#7C736A' : '#C6BDB2',
+  accent: '#EE6C48',
+  accentDeep: '#C95A3C',
+  accentSoft: dark ? 'rgba(238,108,72,0.16)' : '#FCE9E1',
+  accentText: dark ? '#F8B39F' : '#B5714F',
+  accentGlow: '0 8px 20px rgba(238,108,72,0.28)',
+  good: '#3FAE86',
+  goodSoft: dark ? 'rgba(63,174,134,0.18)' : '#E4F3EC',
+  glassBackground: dark ? 'rgba(32,27,23,0.86)' : '#FFFFFF',
   glassBlur: dark ? 'blur(16px)' : 'none',
-  navBackground: dark ? 'rgba(10,8,5,0.88)' : 'rgba(250,248,245,0.95)',
-  navBorder: dark ? 'rgba(255,255,255,0.07)' : 'rgba(37,37,37,0.1)',
-  navShadow: dark ? '0 -1px 0 rgba(255,255,255,0.06)' : '0 -4px 16px rgba(0,0,0,0.06)',
+  navBackground: dark ? 'rgba(21,18,15,0.92)' : 'rgba(251,250,246,0.92)',
+  navBorder: dark ? 'rgba(255,255,255,0.08)' : '#EEE9E1',
+  navShadow: dark ? '0 -1px 0 rgba(255,255,255,0.06)' : '0 -8px 22px rgba(43,39,35,0.06)',
   mono: 'var(--font-mono, monospace)',
-  font: 'var(--font-sans, sans-serif)',
-  head: 'var(--font-head, var(--font-title, sans-serif))',
-  serif: 'var(--font-head, var(--font-title, sans-serif))',
+  font: '"Hanken Grotesk", var(--font-sans, sans-serif)',
+  head: '"Bricolage Grotesque", var(--font-head, var(--font-title, sans-serif))',
+  serif: '"Bricolage Grotesque", var(--font-head, var(--font-title, sans-serif))',
 });
 
 type ThemeTokens = ReturnType<typeof tokens>;
+
+function getCleanPdfUrl(url: string) {
+  const separator = url.includes('#') ? '&' : '#';
+  return `${url}${separator}toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+}
 
 interface ScreenProps {
   t: ThemeTokens;
@@ -72,8 +77,7 @@ interface LessonDetailProps extends ScreenProps {
   onOpenCoach: () => void;
 }
 
-interface StudioKitScreenProps extends ScreenProps {
-}
+type StudioKitScreenProps = ScreenProps;
 
 
 interface CoachScreenProps extends ScreenProps {
@@ -442,7 +446,7 @@ function useExerciseProgress() {
   React.useEffect(() => {
     try {
       const stored = localStorage.getItem(PROGRESS_KEY);
-      if (stored) setProgress(JSON.parse(stored));
+      if (stored) setTimeout(() => setProgress(JSON.parse(stored)), 0);
     } catch {}
   }, []);
 
@@ -615,59 +619,86 @@ function OnboardingScreen({ t, onStart }: { t: ThemeTokens; dark: boolean; onSta
 // 2. Home Screen
 function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, isDesktop }: HomeScreenProps) {
   const { user } = useAuth();
-  const displayName = user ? user.displayName : 'Astrid';
+  const displayName = user ? user.displayName : 'Carsten';
   const { language, setLanguage, t: translate } = useLanguage();
 
-  const greeting = language === 'da' ? 'Hej' : language === 'en' ? 'Hello' : language === 'de' ? 'Hallo' : 'Hola';
   const dateLang = language === 'da' ? 'da-DK' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : 'es-ES';
+  const greeting = language === 'da' ? 'Hej' : language === 'en' ? 'Hi' : language === 'de' ? 'Hallo' : 'Hola';
   const todayRaw = new Date().toLocaleDateString(dateLang, { weekday: 'long', day: 'numeric', month: 'long' });
   const todayStr = todayRaw.charAt(0).toUpperCase() + todayRaw.slice(1);
 
   const xp = user?.xp !== undefined ? user.xp : guestXp;
   const level = user ? (user.level || 1) : Math.floor(xp / 200) + 1;
-  const streak = user?.streak !== undefined ? user.streak : 7;
+  const streak = user?.streak !== undefined ? user.streak : 3;
   const xpPct = ((xp % 200) / 200) * 100;
+  const contentMax = isDesktop ? 980 : undefined;
+
+  const quickTiles = [
+    {
+      id: 'practice',
+      title: translate('practice') || 'Øvelser',
+      desc: language === 'da' ? '312 i biblioteket' : '312 in library',
+      bg: t.goodSoft,
+      color: t.good,
+      icon: <TabPractice size={23} color={t.good} />,
+      action: () => onSelectCategory('nodelære'),
+    },
+    {
+      id: 'playalong',
+      title: translate('playalong') || 'Play-along',
+      desc: language === 'da' ? 'Spil med musik' : 'Play with music',
+      bg: t.accentSoft,
+      color: t.accent,
+      icon: <TabPlayalong size={23} color={t.accent} />,
+      action: () => onSelectCategory('playalong'),
+    },
+    {
+      id: 'kit',
+      title: translate('kit') || 'Studio Kit',
+      desc: language === 'da' ? 'Digitalt trommesæt' : 'Digital drum kit',
+      bg: dark ? 'rgba(123,111,176,0.20)' : '#EEEAF6',
+      color: '#7B6FB0',
+      icon: <TabKit size={23} color="#7B6FB0" />,
+      action: () => onSelectCategory('grooves'),
+    },
+    {
+      id: 'coach',
+      title: 'AI Coach',
+      desc: language === 'da' ? 'Spørg om alt' : 'Ask anything',
+      bg: dark ? 'rgba(214,154,52,0.20)' : '#FBEFD9',
+      color: '#D69A34',
+      icon: <IcSpark size={22} color="#D69A34" />,
+      action: onOpenCoach,
+    },
+  ];
 
   return (
     <div style={isDesktop ? {
-      maxWidth: 960, margin: '0 auto', padding: '40px 48px 60px',
+      maxWidth: contentMax, margin: '0 auto', padding: '40px 48px 60px',
       color: t.text, fontFamily: t.font,
     } : {
-      padding: '8px 20px 40px', color: t.text, fontFamily: t.font,
+      padding: '8px 22px 40px', color: t.text, fontFamily: t.font,
     }}>
-      {/* Top bar with Greeting and theme/coach toggle */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: isDesktop ? 32 : 20 }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 14, marginBottom: 20 }}>
         <div>
-          <span style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: isDesktop ? 36 : 22, fontWeight: 'normal', color: t.text }}>
-            {greeting}, {displayName}
-          </span>
-          <div style={{ fontSize: 11, color: t.textMuted, marginTop: 3, letterSpacing: 0.2 }}>{todayStr}</div>
-          {/* Streak chip */}
-          <div style={{
-            marginTop: 8, display: 'inline-flex', alignItems: 'center', gap: 5,
-            background: t.accentSoft, border: `1px solid ${t.accentSoft}`,
-            padding: '4px 10px', borderRadius: 999,
-          }}>
-            <IcFlame size={13} color={t.accent} />
-            <span style={{ fontSize: 11, fontWeight: 700, color: t.accent, letterSpacing: 0.3 }}>
-              {streak} {streak === 1 ? 'dag' : 'dage'} i træk
-            </span>
-          </div>
-          {/* Flag language switcher */}
-          <div style={{ display: 'flex', gap: 5, marginTop: 8 }}>
-            {[
+          <div style={{ fontSize: 14, color: t.textMuted, fontWeight: 500, marginBottom: 4 }}>{todayStr}</div>
+          <Display t={t} size={isDesktop ? 34 : 27} style={{ letterSpacing: -0.5 }}>
+            {greeting} {displayName}
+          </Display>
+          <div style={{ display: 'flex', gap: 6, marginTop: 10 }}>
+            {([
               { code: 'da', flag: '🇩🇰' },
               { code: 'en', flag: '🇬🇧' },
               { code: 'de', flag: '🇩🇪' },
               { code: 'es', flag: '🇪🇸' }
-            ].map(l => (
+            ] satisfies { code: Language; flag: string }[]).map(l => (
               <button
                 key={l.code}
-                onClick={() => setLanguage(l.code as any)}
+                onClick={() => setLanguage(l.code)}
                 style={{
                   background: language === l.code ? t.accentSoft : 'transparent',
-                  border: `1px solid ${language === l.code ? t.accent : 'transparent'}`,
-                  borderRadius: 6, padding: '2px 5px',
+                  border: `1px solid ${language === l.code ? t.accent : t.border}`,
+                  borderRadius: 8, padding: '4px 6px',
                   fontSize: 13, cursor: 'pointer', transition: 'all 0.15s', lineHeight: 1,
                 }}
               >
@@ -676,284 +707,129 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
             ))}
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => setDark(!dark)} style={{
-            width: 36, height: 36, borderRadius: '50%',
-            background: t.glassBackground, backdropFilter: t.glassBlur,
-            border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer',
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <button onClick={() => setDark(!dark)} aria-label={dark ? 'Lys tilstand' : 'Mørk tilstand'} style={{
+            width: 40, height: 40, borderRadius: 12,
+            background: t.surface, border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 3px 12px rgba(43,39,35,.06)',
           }}>
-            {dark ? <IcSun size={15} /> : <IcMoon size={15} />}
+            {dark ? <IcSun size={17} /> : <IcMoon size={17} />}
           </button>
-          <button onClick={onOpenCoach} style={{
-            width: 36, height: 36, borderRadius: '50%',
-            background: t.accentSoft,
-            border: `1px solid ${t.accent}40`, cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: t.accentGlow,
-          }}>
-            <IcSpark size={15} color={t.accent} />
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: t.surface, borderRadius: 999, padding: '8px 13px 8px 11px', boxShadow: '0 3px 12px rgba(43,39,35,.06)', border: `1px solid ${t.border}` }}>
+            <IcFlame size={18} color={t.accent} />
+            <span style={{ fontSize: 14, fontWeight: 800 }}>{streak}</span>
+          </div>
         </div>
       </div>
 
-      {/* Today's lesson — hero card */}
-      <div style={{ marginBottom: 28 }}>
-        <div
-          onClick={() => onSelectCategory('grooves')}
-          style={{
-            borderRadius: 20, overflow: 'hidden', position: 'relative',
-            aspectRatio: isDesktop ? undefined : '3 / 4',
-            minHeight: isDesktop ? 280 : undefined,
-            display: isDesktop ? 'flex' : undefined,
+      <div onClick={() => onSelectCategory('grooves')} style={{
+        background: dark ? 'linear-gradient(160deg,#382016 0%,#2B2520 100%)' : 'linear-gradient(160deg,#FDF0EA 0%,#FCE7DC 100%)',
+        borderRadius: 28,
+        padding: isDesktop ? '28px 32px' : '22px 22px 24px',
+        marginBottom: 22,
+        boxShadow: '0 10px 30px rgba(238,108,72,.10)',
+        cursor: 'pointer',
+      }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: t.surface, borderRadius: 999, padding: '6px 12px', marginBottom: 16 }}>
+          <span style={{ width: 7, height: 7, borderRadius: '50%', background: t.accent, display: 'inline-block' }} />
+          <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.2, textTransform: 'uppercase', color: t.accent }}>
+            {language === 'da' ? 'I dag · Grundrytmer' : 'Today · Fundamentals'}
+          </span>
+        </div>
+        <Display t={t} size={isDesktop ? 36 : 31} style={{ marginBottom: 8 }}>
+          {language === 'da' ? 'Grooves & fills' : 'Grooves & fills'}<br />
+          {language === 'da' ? 'del 1' : 'pt. 1'}
+        </Display>
+        <p style={{ margin: '0 0 20px', fontSize: 14.5, lineHeight: 1.5, color: dark ? '#D4B0A0' : '#8A6F62', maxWidth: 320 }}>
+          {language === 'da' ? 'Hi-hat mønstre med halvnoder over bastromme.' : 'Hi-hat patterns with half notes over bass drum.'}
+        </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+          <div style={{ display: 'flex', gap: 5, flex: 1 }}>
+            {[0, 1, 2, 3, 4, 5, 6].map(i => (
+              <span key={i} style={{ flex: 1, height: 6, borderRadius: 3, background: i < 3 ? t.accent : dark ? '#52362D' : '#F3D3C4' }} />
+            ))}
+          </div>
+          <span style={{ fontSize: 13, fontWeight: 800, color: t.accentText }}>3/7</span>
+        </div>
+        <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcPlay size={17} color="#fff" />}>
+          {language === 'da' ? 'Fortsæt lektion' : 'Continue lesson'}
+        </CTA>
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 13 }}>
+        <Display t={t} size={18}>{language === 'da' ? 'Kom hurtigt i gang' : 'Start quickly'}</Display>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: isDesktop ? 'repeat(4, 1fr)' : '1fr 1fr', gap: 12, marginBottom: 26 }}>
+        {quickTiles.map(tile => (
+          <button key={tile.id} onClick={tile.action} style={{
+            background: t.surface,
+            border: `1px solid ${t.border}`,
+            borderRadius: 20,
+            padding: 16,
+            boxShadow: '0 4px 16px rgba(43,39,35,.05)',
+            textAlign: 'left',
             cursor: 'pointer',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.65)',
-            transition: 'transform 150ms cubic-bezier(0.16,1,0.3,1)',
-          }}
-          onMouseDown={e => (e.currentTarget.style.transform = 'scale(0.975)')}
-          onMouseUp={e => (e.currentTarget.style.transform = '')}
-          onMouseLeave={e => (e.currentTarget.style.transform = '')}
-          onTouchStart={e => (e.currentTarget.style.transform = 'scale(0.975)')}
-          onTouchEnd={e => (e.currentTarget.style.transform = '')}
-        >
-          {/* Video thumbnail — warm stage lighting */}
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: `
-              radial-gradient(ellipse at 50% 28%, rgba(200,100,40,0.58) 0%, transparent 52%),
-              radial-gradient(ellipse at 82% 68%, rgba(130,60,20,0.38) 0%, transparent 46%),
-              radial-gradient(ellipse at 18% 62%, rgba(80,40,10,0.28) 0%, transparent 42%),
-              linear-gradient(160deg, #2C1A08 0%, #1A0E05 44%, #0C0805 100%)
-            `,
-          }} />
-          {/* Drum kit silhouette */}
-          <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.055 }} viewBox="0 0 350 460" fill="none">
-            <ellipse cx="175" cy="225" rx="85" ry="32" stroke="white" strokeWidth="2"/>
-            <ellipse cx="175" cy="225" rx="128" ry="55" stroke="white" strokeWidth="1.5"/>
-            <ellipse cx="95" cy="258" rx="48" ry="19" stroke="white" strokeWidth="1.5"/>
-            <ellipse cx="255" cy="258" rx="48" ry="19" stroke="white" strokeWidth="1.5"/>
-            <line x1="175" y1="183" x2="175" y2="95" stroke="white" strokeWidth="1.5"/>
-            <line x1="138" y1="198" x2="104" y2="128" stroke="white" strokeWidth="1.5"/>
-            <line x1="212" y1="198" x2="246" y2="128" stroke="white" strokeWidth="1.5"/>
-            <ellipse cx="60" cy="115" rx="38" ry="12" stroke="white" strokeWidth="1.2" transform="rotate(-15 60 115)"/>
-            <ellipse cx="290" cy="115" rx="38" ry="12" stroke="white" strokeWidth="1.2" transform="rotate(15 290 115)"/>
-          </svg>
-          {/* Cinematic gradient overlay — text lives here */}
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(to bottom, rgba(12,10,7,0) 0%, rgba(12,10,7,0) 22%, rgba(12,10,7,0.46) 52%, rgba(12,10,7,0.9) 74%, rgba(12,10,7,0.97) 100%)',
-          }} />
-          {/* Top: day pill + play button */}
-          <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: isDesktop ? 'none' : 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{
-              background: 'rgba(232,112,58,0.18)', border: '1px solid rgba(232,112,58,0.38)',
-              borderRadius: 20, padding: '5px 12px',
-              fontSize: 11, fontWeight: 600, color: t.accent,
-              letterSpacing: 0.5, textTransform: 'uppercase',
-            }}>
-              {language === 'da' ? 'Dag 7 · 14 min' : 'Day 7 · 14 min'}
+            minHeight: 118,
+            fontFamily: t.font,
+          }}>
+            <div style={{ width: 42, height: 42, borderRadius: 13, background: tile.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
+              {tile.icon}
             </div>
-            <div style={{
-              width: 38, height: 38, borderRadius: '50%',
-              background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)',
-              backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}>
-              <IcPlay size={12} color="white" />
-            </div>
-          </div>
-          {isDesktop ? (
-            /* Desktop: tekst-kolonne venstre, visuel højre */
-            <div style={{ display: 'flex', width: '100%', position: 'relative', zIndex: 1 }}>
-              <div style={{
-                flex: '0 0 55%', padding: '36px 40px',
-                display: 'flex', flexDirection: 'column', justifyContent: 'center',
-                background: 'linear-gradient(to right, rgba(12,8,4,0.97) 60%, rgba(12,8,4,0) 100%)',
-              }}>
-                <div style={{ fontSize: 10, fontWeight: 700, color: t.accent, letterSpacing: 1.2, textTransform: 'uppercase', marginBottom: 12 }}>
-                  {language === 'da' ? 'I dag · Grundrytmer' : 'Today · Fundamentals'}
-                </div>
-                <div style={{ fontFamily: t.head, fontWeight: 800, fontSize: 32, color: t.text, letterSpacing: -0.8, lineHeight: 1.1, marginBottom: 10 }}>
-                  {language === 'da' ? 'Grooves & fills — del 1' : 'Grooves & fills — pt. 1'}
-                </div>
-                <div style={{ fontSize: 14, color: t.textMuted, lineHeight: 1.5, marginBottom: 24 }}>
-                  {language === 'da' ? 'Lær hi-hat mønstre med halvnoder over bass-tromme' : 'Learn hi-hat patterns with half notes over bass drum'}
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-                  <div style={{ flex: 1, height: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 2, overflow: 'hidden' }}>
-                    <div style={{ height: '100%', width: '43%', background: t.accent, borderRadius: 2 }} />
-                  </div>
-                  <span style={{ fontSize: 11, color: t.textMuted, whiteSpace: 'nowrap', fontFamily: t.mono }}>3 / 7</span>
-                </div>
-                <div>
-                  <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcChev size={16} />}>
-                    {language === 'da' ? 'Start lektion' : language === 'en' ? 'Start lesson' : language === 'de' ? 'Lektion starten' : 'Iniciar lección'}
-                  </CTA>
-                </div>
-              </div>
-              <div style={{ flex: 1 }} />
-            </div>
-          ) : (
-            /* Mobil: absolut-positioneret tekst i bunden */
-            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 20 }}>
-              <div style={{ fontSize: 10.5, fontWeight: 600, color: t.textMuted, letterSpacing: 0.9, textTransform: 'uppercase', marginBottom: 8 }}>
-                {language === 'da' ? 'I dag · Grundrytmer' : 'Today · Fundamentals'}
-              </div>
-              <div style={{ fontFamily: t.head, fontWeight: 800, fontSize: 26, color: t.text, letterSpacing: -0.6, lineHeight: 1.12, marginBottom: 8 }}>
-                {language === 'da' ? 'Grooves & fills — del 1' : 'Grooves & fills — pt. 1'}
-              </div>
-              <div style={{ fontSize: 13.5, color: t.textMuted, lineHeight: 1.45, marginBottom: 16 }}>
-                {language === 'da' ? 'Lær hi-hat mønstre med halvnoder over bass-tromme' : 'Learn hi-hat patterns with half notes over bass drum'}
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-                <div style={{ flex: 1, height: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 2, overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: '43%', background: t.accent, borderRadius: 2, boxShadow: `0 0 8px ${t.accentGlow}` }} />
-                </div>
-                <span style={{ fontSize: 12, color: t.textMuted, whiteSpace: 'nowrap' }}>3 / 7</span>
-              </div>
-              <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcChev size={16} />}>
-                {language === 'da' ? 'Start lektion' : language === 'en' ? 'Start lesson' : language === 'de' ? 'Lektion starten' : 'Iniciar lección'}
-              </CTA>
-            </div>
-          )}
-        </div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: t.text }}>{tile.title}</div>
+            <div style={{ fontSize: 12.5, color: t.textMuted, marginTop: 2 }}>{tile.desc}</div>
+          </button>
+        ))}
       </div>
 
-      {/* Presentation video */}
-      <div style={{ marginBottom: 24 }}>
-        <div style={{ borderRadius: 18, overflow: 'hidden', background: '#000', border: `1px solid ${t.border}`, position: 'relative', aspectRatio: '16/9' }}>
-          <iframe
-            width="100%" height="100%"
-            src="https://www.youtube-nocookie.com/embed/8T_87k23Q1E?rel=0&modestbranding=1"
-            title="Pocket Drummer — Introduktion"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            style={{ width: '100%', height: '100%', border: '0', display: 'block' }}
-          />
-        </div>
-        <div style={{ marginTop: 10, paddingLeft: 2 }}>
-          <div style={{ fontFamily: t.head, fontSize: 15, fontWeight: 700, color: t.text, letterSpacing: -0.3, marginBottom: 2 }}>
-            {language === 'da' ? 'Velkommen til Pocket Drummer' : 'Welcome to Pocket Drummer'}
-          </div>
-          <div style={{ fontSize: 12, color: t.textMuted }}>
-            {language === 'da' ? 'Lær hvad appen kan — og hvad den vil gøre for dig' : 'See what the app can do for you'}
-          </div>
-        </div>
-      </div>
-
-      {/* Øvespor */}
-      <div style={{ marginBottom: 24 }}>
-        <SectionLabel t={t}>{language === 'da' ? 'Øvespor' : language === 'en' ? 'Practice paths' : language === 'de' ? 'Übungspfade' : 'Rutas de práctica'}</SectionLabel>
-        <div style={{ display: 'grid', gridTemplateColumns: isDesktop ? '1fr 1fr 1fr 1fr' : '1fr 1fr', gap: 10 }}>
-          {[
-            {
-              id: 'opvarmning' as const,
-              title: translate('warmup'),
-              desc: language === 'da' ? 'Hænder, fødder & timing' : 'Hands, feet & timing',
-              bg: 'radial-gradient(ellipse at 40% 30%, rgba(78,222,163,0.35) 0%, transparent 65%), #0A1810',
-              icon: <IcWave size={18} color="#4edea3" />,
-            },
-            {
-              id: 'nodelære' as const,
-              title: translate('musicTheory'),
-              desc: language === 'da' ? 'Rhythm & notation' : 'Rhythm & notation',
-              bg: 'radial-gradient(ellipse at 40% 30%, rgba(100,140,255,0.35) 0%, transparent 65%), #080C1A',
-              icon: <IcMetro size={18} color="#7090ff" />,
-            },
-            {
-              id: 'grooves' as const,
-              title: translate('grooves'),
-              desc: language === 'da' ? 'Beats, fills & genrer' : 'Beats, fills & genres',
-              bg: 'radial-gradient(ellipse at 40% 30%, rgba(232,112,58,0.4) 0%, transparent 65%), #180C04',
-              icon: <TabKit size={18} color={t.accent} />,
-            },
-            {
-              id: 'playalong' as const,
-              title: translate('playalong'),
-              desc: language === 'da' ? 'Spil med rigtig musik' : 'Play with real music',
-              bg: 'radial-gradient(ellipse at 40% 30%, rgba(180,80,220,0.35) 0%, transparent 65%), #110820',
-              icon: <TabPlayalong size={18} color="#b060dc" />,
-            },
-          ].map(cat => (
-            <div key={cat.id} onClick={() => onSelectCategory(cat.id)} style={{
-              borderRadius: 16, overflow: 'hidden', cursor: 'pointer', position: 'relative',
-              height: 110, border: `1px solid ${t.border}`,
-              background: cat.bg,
-              transition: 'transform 120ms cubic-bezier(0.16,1,0.3,1), border-color 150ms',
-            }}
-              onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.97)'; }}
-              onMouseUp={e => { e.currentTarget.style.transform = ''; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; }}
-              onTouchStart={e => { e.currentTarget.style.transform = 'scale(0.97)'; }}
-              onTouchEnd={e => { e.currentTarget.style.transform = ''; }}
-            >
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 25%, rgba(12,10,7,0.75) 100%)' }} />
-              <div style={{ position: 'absolute', top: 12, left: 12 }}>
-                <div style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(0,0,0,0.3)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {cat.icon}
-                </div>
-              </div>
-              <div style={{ position: 'absolute', bottom: 10, left: 12, right: 12 }}>
-                <div style={{ fontFamily: t.head, fontSize: 13, fontWeight: 700, color: t.text, letterSpacing: -0.2, marginBottom: 2 }}>{cat.title}</div>
-                <div style={{ fontSize: 10, color: 'rgba(237,233,228,0.65)' }}>{cat.desc}</div>
-              </div>
-              <div style={{ position: 'absolute', bottom: 12, right: 12 }}>
-                <IcChev size={14} color="rgba(255,255,255,0.35)" />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* AI Coach CTA */}
-      <div style={{ marginBottom: 24 }}>
-        <div onClick={onOpenCoach} style={{
-          background: `linear-gradient(135deg, rgba(232,112,58,0.14) 0%, rgba(180,60,20,0.08) 100%)`,
-          border: `1px solid rgba(232,112,58,0.28)`,
-          borderRadius: 18, padding: '18px 18px',
-          display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer',
-          transition: 'transform 120ms cubic-bezier(0.16,1,0.3,1)',
-        }}
-          onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.98)'; }}
-          onMouseUp={e => { e.currentTarget.style.transform = ''; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = ''; }}
-          onTouchStart={e => { e.currentTarget.style.transform = 'scale(0.98)'; }}
-          onTouchEnd={e => { e.currentTarget.style.transform = ''; }}
-        >
-          <div style={{ width: 44, height: 44, borderRadius: 14, background: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 6px 16px rgba(232,112,58,0.35)' }}>
-            <IcSpark size={20} color="#fff" />
-          </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontFamily: t.head, fontSize: 15, fontWeight: 700, color: t.text, letterSpacing: -0.2, marginBottom: 3 }}>
-              {language === 'da' ? 'Spørg AI Coach' : 'Ask AI Coach'}
-            </div>
-            <div style={{ fontSize: 12, color: t.textMuted, lineHeight: 1.4 }}>
-              {language === 'da' ? 'Din personlige trommelærer husker dig og tilpasser til dit niveau' : 'Your personal teacher adapts to your level'}
-            </div>
-          </div>
-          <IcChev size={16} color={t.accent} />
-        </div>
-      </div>
-
-      {/* Progression mini */}
-      <div style={{ marginBottom: 8 }}>
+      <Display t={t} size={18} style={{ marginBottom: 13 }}>
+        {language === 'da' ? 'Fortsæt hvor du slap' : 'Continue where you left off'}
+      </Display>
+      <button onClick={() => onSelectCategory('nodelære')} style={{
+        background: t.surface,
+        border: `1px solid ${t.border}`,
+        borderRadius: 20,
+        padding: 14,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 14,
+        width: '100%',
+        boxShadow: '0 4px 16px rgba(43,39,35,.05)',
+        textAlign: 'left',
+        cursor: 'pointer',
+        fontFamily: t.font,
+        marginBottom: 18,
+      }}>
         <div style={{
-          background: t.glassBackground, backdropFilter: t.glassBlur, WebkitBackdropFilter: t.glassBlur,
-          border: `1px solid ${t.border}`, borderRadius: 14, padding: '12px 16px',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
+          width: 54, height: 54, borderRadius: 15,
+          background: dark ? '#2B2520' : 'repeating-linear-gradient(135deg,#F1ECE4 0 7px,#F7F3EC 7px 14px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
         }}>
-          <div style={{ fontSize: 12, color: t.text, lineHeight: 1.5 }}>
-            {language === 'da' ? 'Denne uge' : 'This week'}:{' '}
-            <span style={{ fontWeight: 600, color: t.accent }}>3 {language === 'da' ? 'øvedage' : 'practice days'}</span>
-            {' · '}
-            <span style={{ fontWeight: 600 }}>72 min</span>
-            {' · '}
-            <span style={{ fontWeight: 600 }}>{translate('level')} {level}</span>
-          </div>
-          <div style={{ width: 56, flexShrink: 0 }}><Progress pct={xpPct} t={t} h={4} /></div>
+          <IcMetro size={22} color={t.textMuted} />
         </div>
-      </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 15, fontWeight: 800, color: t.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {language === 'da' ? 'Sekstendedele · timing' : 'Sixteenths · timing'}
+          </div>
+          <div style={{ fontSize: 12.5, color: t.textMuted, marginTop: 2 }}>
+            {language === 'da' ? 'Nodelære · 4 min tilbage' : 'Notation · 4 min left'}
+          </div>
+        </div>
+        <IcChev size={18} color={t.textDim} />
+      </button>
+
+      <Card t={t} padding={16} style={{ borderRadius: 20, boxShadow: '0 4px 16px rgba(43,39,35,.04)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+          <div style={{ fontSize: 12.5, color: t.text, lineHeight: 1.5 }}>
+            <span style={{ fontWeight: 800 }}>{language === 'da' ? 'Denne uge' : 'This week'}</span>
+            {' · '}
+            <span style={{ fontWeight: 800, color: t.accent }}>3 {language === 'da' ? 'øvedage' : 'practice days'}</span>
+            {' · 72 min · '}
+            <span style={{ fontWeight: 800 }}>{translate('level')} {level}</span>
+          </div>
+          <div style={{ width: 64, flexShrink: 0 }}><Progress pct={xpPct} t={t} h={5} /></div>
+        </div>
+      </Card>
     </div>
   );
 }
@@ -1002,7 +878,7 @@ const practiceTracks = [
   },
 ];
 
-function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps) {
+function PracticeScreen({ t, dark, onSelectCategory, isDesktop }: PracticeScreenProps) {
   const [search, setSearch] = useState('');
   const { language, t: translate } = useLanguage();
   const [activeChip, setActiveChip] = useState<'Alle' | 'opvarmning' | 'nodelære' | 'grooves' | 'playalong'>('Alle');
@@ -1052,32 +928,29 @@ function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps)
     { id: 'playalong' as const, label: translate('playalong') }
   ];
 
-  const categories = [
-    { id: 'opvarmning' as const, label: translate('warmup') || 'Opvarmning', desc: 'Hænder, fødder & timing', bg: 'radial-gradient(ellipse at 40% 30%, rgba(78,222,163,0.35) 0%, transparent 65%), #0A1810', accent: '#4edea3', icon: <IcWave size={20} color="#4edea3" /> },
-    { id: 'nodelære' as const, label: translate('musicTheory') || 'Nodelære', desc: 'Rhythm & notation', bg: 'radial-gradient(ellipse at 40% 30%, rgba(100,140,255,0.35) 0%, transparent 65%), #080C1A', accent: '#7090ff', icon: <IcMetro size={20} color="#7090ff" /> },
-    { id: 'grooves' as const, label: translate('grooves') || 'Grooves', desc: 'Beats, fills & genrer', bg: 'radial-gradient(ellipse at 40% 30%, rgba(232,112,58,0.4) 0%, transparent 65%), #180C04', accent: t.accent, icon: <TabKit size={20} color={t.accent} /> },
-    { id: 'playalong' as const, label: translate('playalong') || 'Play-along', desc: 'Spil med rigtig musik', bg: 'radial-gradient(ellipse at 40% 30%, rgba(180,80,220,0.35) 0%, transparent 65%), #110820', accent: '#b060dc', icon: <TabPlayalong size={20} color="#b060dc" /> },
-  ];
-
   return (
     <div style={{ color: t.text, fontFamily: t.font }}>
-      <div style={{ padding: '16px 20px 20px' }}>
-        <Display t={t} size={26} style={{ marginBottom: 18 }}>
+      <div style={{ padding: isDesktop ? '40px 48px 60px' : '8px 22px 40px', maxWidth: isDesktop ? 980 : undefined, margin: isDesktop ? '0 auto' : undefined }}>
+        <Display t={t} size={isDesktop ? 34 : 30} style={{ marginBottom: 4 }}>
           {language === 'da' ? 'Øvelser' : 'Exercises'}
         </Display>
+        <div style={{ fontSize: 13.5, color: t.textMuted, marginBottom: 18 }}>
+          {filtered.length} {language === 'da' ? 'øvelser' : 'exercises'} · 40 gratis
+        </div>
 
-        {/* Search */}
-        <div style={{ position: 'relative', marginBottom: 24 }}>
+        <div style={{ position: 'relative', marginBottom: 16 }}>
+          <IcWave size={19} color={t.textDim} style={{ position: 'absolute', left: 15, top: 13, pointerEvents: 'none' }} />
           <input
             type="text"
-            placeholder="Søg i alle øvelser..."
+            placeholder={language === 'da' ? 'Søg efter teknik, groove...' : 'Search technique, groove...'}
             value={search}
             onChange={e => setSearch(e.target.value)}
             style={{
-              width: '100%', padding: '12px 16px', borderRadius: 12,
+              width: '100%', padding: '13px 42px 13px 45px', borderRadius: 15,
               border: `1px solid ${t.border}`, background: t.surface,
-              color: t.text, fontSize: 14, outline: 'none', fontFamily: t.font,
+              color: t.text, fontSize: 15, outline: 'none', fontFamily: t.font,
               boxSizing: 'border-box',
+              boxShadow: '0 3px 12px rgba(43,39,35,.05)',
             }}
           />
           {search && (
@@ -1088,107 +961,76 @@ function PracticeScreen({ t, onSelectCategory, isDesktop }: PracticeScreenProps)
           )}
         </div>
 
-        {/* Category cards */}
-        {!search && (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: isDesktop ? 'repeat(4, 1fr)' : 'repeat(2, 1fr)',
-            gap: 12,
-          }}>
-            {categories.map(cat => (
-              <div key={cat.id} onClick={() => onSelectCategory(cat.id)} style={{
-                borderRadius: 18,
-                overflow: 'hidden',
+        <div style={{ display: 'flex', gap: 9, marginBottom: 22, overflowX: 'auto', scrollbarWidth: 'none', paddingBottom: 2 }}>
+          {chips.map(chip => {
+            const active = activeChip === chip.id;
+            return (
+              <button key={chip.id} onClick={() => setActiveChip(chip.id)} style={{
+                background: active ? t.text : t.surface,
+                color: active ? (dark ? '#2B2723' : '#fff') : t.text,
+                fontSize: 13,
+                fontWeight: 700,
+                padding: '9px 16px',
+                borderRadius: 999,
+                whiteSpace: 'nowrap',
+                border: active ? `1px solid ${t.text}` : `1px solid ${t.border}`,
+                boxShadow: active ? 'none' : 'inset 0 0 0 1px rgba(43,39,35,.02)',
                 cursor: 'pointer',
-                position: 'relative',
-                height: isDesktop ? 160 : 140,
-                border: `1px solid rgba(255,255,255,0.07)`,
-                background: cat.bg,
-                transition: 'transform 120ms cubic-bezier(0.16,1,0.3,1)',
-                minWidth: 0,
-              }}
-                onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.97)'; }}
-                onMouseUp={e => { e.currentTarget.style.transform = ''; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = ''; }}
-                onTouchStart={e => { e.currentTarget.style.transform = 'scale(0.97)'; }}
-                onTouchEnd={e => { e.currentTarget.style.transform = ''; }}
-              >
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, transparent 30%, rgba(4,3,2,0.82) 100%)' }} />
-                <div style={{ position: 'absolute', top: 14, left: 14 }}>
-                  <div style={{
-                    width: 34, height: 34, borderRadius: 9,
-                    background: 'rgba(0,0,0,0.35)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  }}>
-                    {cat.icon}
-                  </div>
-                </div>
-                <div style={{
-                  position: 'absolute', bottom: 14, left: 14, right: 14,
-                  overflow: 'hidden',
-                }}>
-                  <div style={{
-                    fontFamily: t.head,
-                    fontSize: 14,
-                    fontWeight: 700,
-                    color: '#FAF8F5',
-                    letterSpacing: -0.2,
-                    marginBottom: 4,
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                  }}>{cat.label}</div>
-                  <div style={{
-                    fontSize: 11,
-                    color: 'rgba(237,233,228,0.5)',
-                    lineHeight: 1.4,
-                    overflow: 'hidden',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                  }}>{cat.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+                fontFamily: t.font,
+              }}>
+                {chip.label}
+              </button>
+            );
+          })}
+        </div>
 
-      {/* Søgeresultater */}
-      {search && (
-        <div style={{ padding: '0 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {filtered.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '40px 20px', color: t.textMuted }}>
               <div style={{ fontSize: 13 }}>Ingen øvelser matcher &quot;{search}&quot;</div>
             </div>
-          ) : filtered.map(ex => (
-            <div key={ex.id} onClick={() => onSelectCategory(ex.cat)} style={{
-              background: t.surface, border: `1px solid ${t.border}`,
-              borderRadius: 12, padding: '12px 14px', cursor: 'pointer',
-              display: 'flex', alignItems: 'center', gap: 12,
-              transition: 'transform 120ms cubic-bezier(0.16,1,0.3,1)',
-            }}
-              onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.98)'; }}
-              onMouseUp={e => { e.currentTarget.style.transform = ''; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; }}
-              onTouchStart={e => { e.currentTarget.style.transform = 'scale(0.98)'; }}
-              onTouchEnd={e => { e.currentTarget.style.transform = ''; }}
-            >
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontFamily: t.head, fontSize: 14, fontWeight: 700, color: t.text, marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ex.title}</div>
-                <div style={{ fontSize: 11, color: t.textMuted, display: 'flex', gap: 6 }}>
-                  <span style={{ color: t.accent }}>{getCategoryLabel(ex.cat)}</span>
-                  <span>·</span>
-                  <span>{ex.level}</span>
-                  <span>·</span>
-                  <span>{ex.dur}</span>
+          ) : filtered.map((ex, idx) => {
+            const levelTone = ex.level === 'Begynder'
+              ? { bg: t.goodSoft, color: t.good }
+              : ex.level === 'Mellemniveau'
+              ? { bg: dark ? 'rgba(214,154,52,0.18)' : '#FBEFD9', color: '#D69A34' }
+              : { bg: t.accentSoft, color: t.accent };
+            const iconBg = idx % 3 === 0 ? t.accentSoft : idx % 3 === 1 ? t.goodSoft : dark ? 'rgba(123,111,176,0.2)' : '#EEEAF6';
+            const iconColor = idx % 3 === 0 ? t.accent : idx % 3 === 1 ? t.good : '#7B6FB0';
+            return (
+              <button key={ex.id} onClick={() => onSelectCategory(ex.cat)} style={{
+                background: t.surface,
+                border: `1px solid ${t.border}`,
+                borderRadius: 20,
+                padding: 14,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 14,
+                width: '100%',
+                boxShadow: '0 4px 16px rgba(43,39,35,.05)',
+                textAlign: 'left',
+                fontFamily: t.font,
+              }}>
+                <div style={{ width: 52, height: 52, borderRadius: 15, background: iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  {ex.cat === 'playalong' ? <TabPlayalong size={24} color={iconColor} /> : ex.cat === 'nodelære' ? <IcMetro size={24} color={iconColor} /> : <TabPractice size={24} color={iconColor} />}
                 </div>
-              </div>
-              <IcChev size={14} color={t.textDim} />
-            </div>
-          ))}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: t.text, marginBottom: 5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ex.title}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ fontSize: 11, fontWeight: 800, color: levelTone.color, background: levelTone.bg, padding: '3px 9px', borderRadius: 999 }}>
+                      {getLevelLabel(ex.level)}
+                    </span>
+                    <span style={{ fontSize: 12, color: t.textMuted }}>· {ex.dur}</span>
+                    <span style={{ fontSize: 12, color: t.textMuted, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>· {getCategoryLabel(ex.cat)}</span>
+                  </div>
+                </div>
+                <IcChev size={18} color={t.textDim} />
+              </button>
+            );
+          })}
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -1302,7 +1144,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
 
   // Metronome
   useEffect(() => {
-    if (!playing) { setBeat(0); return; }
+    if (!playing) { setTimeout(() => setBeat(0), 0); return; }
     const ms = (60000 / bpm) / 2;
     const id = setInterval(() => {
       setBeat(b => {
@@ -1555,18 +1397,42 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
         {(tab === 'noder' || isDesktopView) && (
           <div>
             {(() => {
-              const urlIsPdf = notationImageUrl?.startsWith('data:application/pdf') || Boolean(notationImageUrl && /\.pdf(\?|$)/i.test(notationImageUrl));
+              const urlIsPdf = notationImageUrl?.startsWith('data:application/pdf') || Boolean(notationImageUrl && /\.pdf([?#]|$)/i.test(notationImageUrl));
+              const pdfUrl = notationImageUrl && urlIsPdf ? getCleanPdfUrl(notationImageUrl) : '';
               const hasMedia = notationImageUrl || notationXml;
               const noPadding = Boolean(notationImageUrl);
               return (
-            <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: noPadding ? 0 : '14px 6px', marginBottom: 14, overflowX: noPadding ? 'hidden' : 'auto', overflowY: 'hidden', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{
+              background: urlIsPdf ? 'transparent' : '#FAF8F5',
+              border: urlIsPdf ? 'none' : `1px solid ${t.border}`,
+              borderRadius: urlIsPdf ? 0 : 16,
+              padding: noPadding ? 0 : '14px 6px',
+              margin: urlIsPdf ? '0 -16px 14px' : '0 0 14px',
+              overflowX: noPadding ? 'hidden' : 'auto',
+              overflowY: urlIsPdf ? 'visible' : 'hidden',
+              minHeight: urlIsPdf ? 'calc(100dvh - 190px)' : 120,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
               {notationImageUrl ? (
                 urlIsPdf ? (
-                  <object data={notationImageUrl} type="application/pdf" style={{ width: '100%', height: 480, border: 'none' }}>
+                  <iframe
+                    src={pdfUrl}
+                    title="Nodeark PDF"
+                    style={{
+                      width: '100%',
+                      height: isDesktopView ? 'min(82vh, 900px)' : 'calc(100dvh - 190px)',
+                      border: 'none',
+                      borderRadius: 0,
+                      background: '#fff',
+                      display: 'block',
+                    }}
+                  >
                     <p style={{ padding: 16, fontSize: 13, color: '#8a8580' }}>
                       PDF kan ikke vises direkte — <a href={notationImageUrl} download="nodeark.pdf" style={{ color: '#ef5a3a' }}>klik for at downloade</a>
                     </p>
-                  </object>
+                  </iframe>
                 ) : (
                   <img src={notationImageUrl} alt="Nodeark" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 16 }} />
                 )
@@ -1649,6 +1515,44 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
             </button>
           </div>
         )}
+      </div>
+
+      <div style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        padding: '14px 22px calc(env(safe-area-inset-bottom) + 30px)',
+        background: t.navBackground,
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderTop: `1px solid ${t.navBorder}`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        boxShadow: t.navShadow,
+      }}>
+        <button aria-label="Loop" style={{
+          width: 52, height: 52, borderRadius: 16, background: t.surface2, border: 'none',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.text,
+          cursor: 'pointer',
+        }}>
+          <IcLoop size={22} />
+        </button>
+        <button onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Afspil'} style={{
+          width: 70, height: 70, borderRadius: '50%', background: t.accent, border: 'none',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff',
+          boxShadow: '0 10px 24px rgba(238,108,72,.4)', cursor: 'pointer',
+        }}>
+          {playing ? <IcPause size={28} fill color="#fff" /> : <IcPlay size={28} fill color="#fff" />}
+        </button>
+        <button aria-label="Næste" style={{
+          width: 52, height: 52, borderRadius: 16, background: t.surface2, border: 'none',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.text,
+          cursor: 'pointer',
+        }}>
+          <IcChev size={22} />
+        </button>
       </div>
     </div>
   );
@@ -2233,7 +2137,7 @@ function TrackDetail({ t, trackId, onClose, onOpenLesson, onOpenCoach }: TrackDe
 }
 
 // 5. Lesson Detail Overlay
-function LessonDetail({ t, onClose, onOpenCoach }: LessonDetailProps) {
+function LessonDetail({ t, dark, onClose, onOpenCoach }: LessonDetailProps) {
   const [tab, setTab] = useState('noder');
   const [playing, setPlaying] = useState(false);
   const [bpm, setBpm] = useState(92);
@@ -2282,28 +2186,32 @@ function LessonDetail({ t, onClose, onOpenCoach }: LessonDetailProps) {
 
       <div style={{ padding: '0 16px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <button onClick={onClose} style={{
-          width: 38, height: 38, borderRadius: '50%', background: 'transparent',
+          width: 40, height: 40, borderRadius: 12, background: t.surface,
           border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer',
-          display: 'flex', alignItems: 'center', }}><IcBack size={16} /></button>
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 3px 12px rgba(43,39,35,.06)',
+        }}><IcBack size={16} /></button>
         <div style={{ textAlign: 'center', flex: 1, padding: '0 12px' }}>
           <div style={{ fontSize: 10, fontWeight: 700, color: t.textMuted, letterSpacing: 1.8, textTransform: 'uppercase' }}>Lektion 04</div>
           <Display t={t} size={16} style={{ marginTop: 2 }}>16-dele hi-hat</Display>
         </div>
         <button style={{
-          width: 38, height: 38, borderRadius: '50%', background: 'transparent',
+          width: 40, height: 40, borderRadius: 12, background: t.surface,
           border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer',
-          display: 'flex', alignItems: 'center', }}><IcMore size={18} /></button>
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 3px 12px rgba(43,39,35,.06)',
+        }}><IcMore size={18} /></button>
       </div>
 
       <div style={{ padding: '0 16px' }}>
-        <div style={{ display: 'flex', background: t.surface, borderRadius: 999, padding: 4, border: `1px solid ${t.border}` }}>
+        <div style={{ display: 'flex', background: t.surface, borderRadius: 16, padding: 4, border: `1px solid ${t.border}`, boxShadow: '0 3px 12px rgba(43,39,35,.04)' }}>
           {[
             { id: 'noder', label: 'Noder' },
             { id: 'video', label: 'Video' },
             { id: 'ovelser', label: 'Øvelser' },
           ].map(tt => (
             <button key={tt.id} onClick={() => setTab(tt.id)} style={{
-              flex: 1, padding: '8px 12px', borderRadius: 999, border: 'none',
+              flex: 1, padding: '9px 12px', borderRadius: 12, border: 'none',
               background: tab === tt.id ? t.accent : 'transparent',
               color: tab === tt.id ? '#fff' : t.textMuted,
               fontWeight: tab === tt.id ? 700 : 500, fontSize: 12,
@@ -2314,54 +2222,53 @@ function LessonDetail({ t, onClose, onOpenCoach }: LessonDetailProps) {
         </div>
       </div>
 
-      <div style={{ flex: 1, overflow: 'auto', padding: '20px 16px 24px' }}>
+      <div style={{ flex: 1, overflow: 'auto', padding: '18px 16px 118px' }}>
         {tab === 'noder' && (
           <div>
             <div style={{
               background: t.surface, border: `1px solid ${t.border}`,
-              borderRadius: 20, padding: '18px 8px',
+              borderRadius: 20, padding: '18px 16px',
+              boxShadow: '0 4px 16px rgba(43,39,35,.05)',
             }}>
-              <div style={{ display: 'flex', padding: '0 12px 12px', alignItems: 'center' }}>
-                <div style={{ fontSize: 10, color: t.textMuted, fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase' }}>Takt 1 af 8</div>
+              <div style={{ display: 'flex', padding: '0 0 14px', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ fontSize: 13, color: t.text, fontWeight: 800 }}>Takt 3</div>
                 <Pill t={t} tone="accent">4/4 · {bpm} BPM</Pill>
               </div>
-              <DrumNotation width={340} color={t.text} accent={t.accent} active={playing ? beat : 99} />
-              <DrumNotation width={340} color={t.text} accent={t.accent} active={99} />
+              <div style={{ background: dark ? '#FBFAF6' : '#FFFFFF', borderRadius: 16, overflowX: 'auto' }}>
+                <DrumNotation width={330} color="#16161a" accent={t.accent} active={playing ? beat : 99} />
+                <DrumNotation width={330} color="#16161a" accent={t.accent} active={99} />
+              </div>
             </div>
 
             <div style={{
               marginTop: 14, background: t.surface, border: `1px solid ${t.border}`,
-              borderRadius: 20, padding: 16,
+              borderRadius: 16, padding: '12px 14px',
+              boxShadow: '0 4px 16px rgba(43,39,35,.05)',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <button style={{
-                    width: 40, height: 40, borderRadius: '50%', background: t.surface2,
+                  <div style={{
+                    width: 40, height: 40, borderRadius: 13, background: t.goodSoft,
                     border: 'none', color: t.text, cursor: 'pointer',
-                    display: 'flex', alignItems: 'center', }}><IcLoop size={16} /></button>
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}><IcMetro size={18} color={t.good} /></div>
                   <div>
-                    <div style={{ fontFamily: t.mono, fontSize: 22, fontWeight: 600 }}>{bpm}</div>
-                    <div style={{ fontSize: 10, color: t.textMuted, letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>BPM</div>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: t.text }}>Tempo</div>
+                    <div style={{ fontSize: 11, color: t.textMuted }}>{playing ? 'Metronom spiller' : 'Metronom klar'}</div>
                   </div>
                 </div>
-
-                <button onClick={() => setPlaying(!playing)} style={{
-                  width: 64, height: 64, borderRadius: '50%',
-                  background: t.accent, border: 'none', color: '#fff',
-                  cursor: 'pointer', display: 'flex', alignItems: 'center', boxShadow: '0 10px 28px rgba(239,90,58,0.45)',
-                }}>
-                  {playing ? <IcPause size={22} fill color="#fff" /> : <IcPlay size={22} fill color="#fff" />}
-                </button>
-
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <button onClick={() => setBpm(Math.max(40, bpm - 4))} style={{
-                    width: 36, height: 36, borderRadius: '50%', background: t.surface2,
+                    width: 32, height: 32, borderRadius: 10, background: t.surface2,
                     border: 'none', color: t.text, cursor: 'pointer',
-                    display: 'flex', alignItems: 'center', }}><IcMin size={14} /></button>
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}><IcMin size={14} /></button>
+                  <span style={{ fontFamily: t.head, fontWeight: 800, fontSize: 18, minWidth: 64, textAlign: 'center' }}>{bpm} BPM</span>
                   <button onClick={() => setBpm(Math.min(220, bpm + 4))} style={{
-                    width: 36, height: 36, borderRadius: '50%', background: t.surface2,
+                    width: 32, height: 32, borderRadius: 10, background: t.surface2,
                     border: 'none', color: t.text, cursor: 'pointer',
-                    display: 'flex', alignItems: 'center', }}><IcPlus size={14} /></button>
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}><IcPlus size={14} /></button>
                 </div>
               </div>
             </div>
@@ -2375,9 +2282,10 @@ function LessonDetail({ t, onClose, onOpenCoach }: LessonDetailProps) {
         {tab === 'video' && (
           <div>
             <div style={{
-              aspectRatio: '16/9', borderRadius: 18, position: 'relative',
+              aspectRatio: '16/10', borderRadius: 22, position: 'relative',
               background: '#000',
               border: `1px solid ${t.border}`, overflow: 'hidden',
+              boxShadow: '0 4px 16px rgba(43,39,35,.05)',
             }}>
               <iframe
                 width="100%"
@@ -2390,7 +2298,7 @@ function LessonDetail({ t, onClose, onOpenCoach }: LessonDetailProps) {
                 style={{ width: '100%', height: '100%', border: '0' }}
               />
             </div>
-            <div style={{ marginTop: 16 }}>
+            <div style={{ marginTop: 16, background: t.surface, border: `1px solid ${t.border}`, borderRadius: 20, padding: 16, boxShadow: '0 4px 16px rgba(43,39,35,.05)' }}>
               <Display t={t} size={20}>16-dele hi-hat</Display>
               <Display t={t} size={20} style={{ opacity: 0.5 }}>— forklaret enkelt</Display>
               <div style={{ fontSize: 11, color: t.textMuted, marginTop: 8, letterSpacing: 0.5 }}>Mikkel Holm · Drum School DK · 124k visninger</div>
@@ -2580,7 +2488,7 @@ function StudioKitScreen({ t }: StudioKitScreenProps) {
   React.useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     if (!playing) {
-      setPulseBeat(-1); setSubBeat(-1);
+      setTimeout(() => { setPulseBeat(-1); setSubBeat(-1); }, 0);
       barCountRef.current = 0; gapBarRef.current = 0; gapModeRef.current = 'on';
       return;
     }
@@ -3071,7 +2979,7 @@ function ProfileScreen({ t, dark, setDark, guestXp }: ProfileScreenProps) {
               {language === 'da' ? 'Gem dine fremskridt' : language === 'en' ? 'Save Your Progress' : language === 'de' ? 'Speichere deinen Fortschritt' : 'Guarda tu progreso'}
             </Display>
             <div style={{ fontSize: 12, color: t.textMuted, marginBottom: 20, lineHeight: 1.5 }}>
-              {translate('loginGoogleSub')}
+              {language === 'da' ? 'Log ind med Google for at gemme dine øvelser, point og streak.' : 'Sign in with Google to save your exercises, points and streak.'}
             </div>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -3234,15 +3142,15 @@ function ProfileScreen({ t, dark, setDark, guestXp }: ProfileScreenProps) {
               {language === 'da' ? 'Sprog' : language === 'en' ? 'Language' : language === 'de' ? 'Sprache' : 'Idioma'}
             </div>
             <div style={{ display: 'flex', gap: 4 }}>
-              {[
+              {([
                 { code: 'da', flag: '🇩🇰' },
                 { code: 'en', flag: '🇬🇧' },
                 { code: 'de', flag: '🇩🇪' },
                 { code: 'es', flag: '🇪🇸' }
-              ].map((l) => (
+              ] satisfies { code: Language; flag: string }[]).map((l) => (
                 <button
                   key={l.code}
-                  onClick={() => setLanguage(l.code as any)}
+                  onClick={() => setLanguage(l.code)}
                   style={{
                     background: language === l.code ? t.accentSoft : 'transparent',
                     border: `1px solid ${language === l.code ? t.accent : 'transparent'}`,
@@ -3297,15 +3205,15 @@ function TabBar({ tab, onTab, t, dark, isMobile, selectedCategory, isAdmin, onSe
   return (
     <div style={{
       position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 150,
-      paddingBottom: isMobile ? 'calc(env(safe-area-inset-bottom) + 10px)' : 20,
-      paddingTop: 10, paddingLeft: 0, paddingRight: 0,
+      paddingBottom: isMobile ? 'calc(env(safe-area-inset-bottom) + 12px)' : 30,
+      paddingTop: 12, paddingLeft: 10, paddingRight: 10,
       background: t.navBackground,
-      backdropFilter: 'blur(28px)',
-      WebkitBackdropFilter: 'blur(28px)',
+      backdropFilter: 'blur(12px)',
+      WebkitBackdropFilter: 'blur(12px)',
       borderTop: `1px solid ${t.navBorder}`,
       boxShadow: t.navShadow,
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', padding: '0 4px' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-end', padding: 0 }}>
         {tabs.map(tt => {
           const active = tt.id === 'playalong' ? selectedCategory === 'playalong' : (tab === tt.id && selectedCategory === null);
           const Icon = tt.icon;
@@ -3320,19 +3228,19 @@ function TabBar({ tab, onTab, t, dark, isMobile, selectedCategory, isAdmin, onSe
             }} style={{
               flex: 1, background: 'transparent', border: 'none', cursor: 'pointer',
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
-              padding: '6px 0', fontFamily: t.font,
+              padding: '4px 0', fontFamily: t.font,
               color: active ? t.accent : t.textDim,
               transition: 'color 0.2s cubic-bezier(0.16,1,0.3,1)',
             }}>
               <div style={{
-                width: 40, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                borderRadius: 10,
-                background: active ? t.accentSoft : 'transparent',
+                width: 38, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                borderRadius: 12,
+                background: 'transparent',
                 transition: 'background 0.2s cubic-bezier(0.16,1,0.3,1)',
               }}>
                 <Icon size={20} color={active ? t.accent : t.textDim} sw={active ? 2 : 1.5} />
               </div>
-              <span style={{ fontSize: 9, fontWeight: active ? 700 : 500, letterSpacing: 0.2 }}>{tt.label}</span>
+              <span style={{ fontSize: 10.5, fontWeight: active ? 800 : 600, letterSpacing: 0 }}>{tt.label}</span>
             </button>
           );
         })}
@@ -3389,11 +3297,15 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach, selectedCat
     }}>
       {/* Logo */}
       <div style={{ marginBottom: 28 }}>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <ellipse cx="12" cy="12" rx="10" ry="6" stroke={t.accent} strokeWidth="1.8"/>
-          <ellipse cx="12" cy="12" rx="5" ry="2.8" stroke={t.accent} strokeWidth="1.6"/>
-          <line x1="12" y1="6" x2="12" y2="18" stroke={t.accent} strokeWidth="1.4"/>
-          <line x1="2" y1="12" x2="22" y2="12" stroke={t.accent} strokeWidth="1.4"/>
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-label="Pocket Drummer">
+          <circle cx="17" cy="7.2" r="3.1" stroke={t.accent} strokeWidth="2" />
+          <path d="M12.6 13.2c1.7-1.8 7.1-1.8 8.8 0" stroke={t.accent} strokeWidth="2" strokeLinecap="round" />
+          <path d="M14.2 15.2l-4.3 3.6M19.8 15.2l4.3 3.6" stroke={t.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M9 9.4l5.1 5.2M25 9.4l-5.1 5.2" stroke={t.accent} strokeWidth="1.7" strokeLinecap="round" />
+          <ellipse cx="8.5" cy="23.8" rx="5.5" ry="3.2" stroke={t.accent} strokeWidth="2" />
+          <ellipse cx="25.5" cy="23.8" rx="5.5" ry="3.2" stroke={t.accent} strokeWidth="2" />
+          <ellipse cx="17" cy="26.4" rx="6.4" ry="3.6" stroke={t.accent} strokeWidth="2" />
+          <path d="M14.5 19.4c1.3.7 3.7.7 5 0" stroke={t.accent} strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       </div>
 
@@ -3643,7 +3555,7 @@ function useFitScale(w: number, h: number, margin = 24) {
 }
 
 export default function MobilePrototype() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
   const [tab, setTab] = useState('home');
   const [trackId, setTrackId] = useState<string | null>(null);
   const [lessonId, setLessonId] = useState<string | null>(null);
@@ -3677,7 +3589,7 @@ export default function MobilePrototype() {
     try {
       if (typeof window !== 'undefined') {
         const valXp = localStorage.getItem('pocketdrummer_xp');
-        if (valXp) setGuestXp(Number(valXp));
+        if (valXp) setTimeout(() => setGuestXp(Number(valXp)), 0);
 
         const valOnboard = localStorage.getItem('pocketdrummer-onboarded');
         setTimeout(() => {
