@@ -1572,28 +1572,37 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
 
         {(tab === 'noder' || isDesktopView) && (
           <div>
-            <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: isImageNotation || isPdfNotation ? 0 : '14px 6px', marginBottom: 14, overflowX: 'auto', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-              {exercise.notation ? (
-                notationImageUrl ? (
-                  isPdfNotation ? (
-                    <iframe src={notationImageUrl} style={{ width: '100%', height: 420, border: 'none' }} title="Nodeark (PDF)" />
-                  ) : (
-                    <img src={notationImageUrl} alt="Nodeark" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 16 }} />
-                  )
-                ) : notationLoading ? (
-                  <div style={{ color: '#8a8580', fontSize: 13 }}>Indlæser noder…</div>
-                ) : notationError ? (
-                  <div style={{ color: '#F25545', fontSize: 12, padding: '0 12px', textAlign: 'center' }}>Kunne ikke hente noder. Upload filen via Admin → Scan.</div>
-                ) : notationXml ? (
-                  <NotationRenderer xml={notationXml} accent={t.accent} />
-                ) : null
-              ) : (
+            {(() => {
+              const urlIsPdf = notationImageUrl?.startsWith('data:application/pdf') || Boolean(notationImageUrl && /\.pdf(\?|$)/i.test(notationImageUrl));
+              const hasMedia = notationImageUrl || notationXml;
+              const noPadding = Boolean(notationImageUrl);
+              return (
+            <div style={{ background: '#FAF8F5', border: `1px solid ${t.border}`, borderRadius: 16, padding: noPadding ? 0 : '14px 6px', marginBottom: 14, overflowX: 'auto', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              {notationImageUrl ? (
+                urlIsPdf ? (
+                  <object data={notationImageUrl} type="application/pdf" style={{ width: '100%', height: 480, border: 'none' }}>
+                    <p style={{ padding: 16, fontSize: 13, color: '#8a8580' }}>
+                      PDF kan ikke vises direkte — <a href={notationImageUrl} download="nodeark.pdf" style={{ color: '#ef5a3a' }}>klik for at downloade</a>
+                    </p>
+                  </object>
+                ) : (
+                  <img src={notationImageUrl} alt="Nodeark" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 16 }} />
+                )
+              ) : notationXml ? (
+                <NotationRenderer xml={notationXml} accent={t.accent} />
+              ) : notationLoading ? (
+                <div style={{ color: '#8a8580', fontSize: 13 }}>Indlæser noder…</div>
+              ) : notationError ? (
+                <div style={{ color: '#F25545', fontSize: 12, padding: '0 12px', textAlign: 'center' }}>Kunne ikke hente noder. Upload via admin-knappen.</div>
+              ) : !hasMedia ? (
                 <div style={{ width: '100%' }}>
                   <DrumNotation width={320} color="#16161a" accent={t.accent} active={playing ? beat : 99} />
                   <DrumNotation width={320} color="#16161a" accent={t.accent} active={99} />
                 </div>
-              )}
+              ) : null}
             </div>
+          );
+        })()}
 
             {/* BPM + Play */}
             <Card t={t} padding={14} style={{ marginBottom: 14 }}>
