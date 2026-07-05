@@ -75,9 +75,10 @@ body {
 h1, h2, h3 {
   font-family: var(--font-serif);
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 1.18;
   letter-spacing: -0.02em;
   color: var(--text);
+  text-wrap: balance;
 }
 h1 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); }
 h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); }
@@ -266,12 +267,16 @@ nav {
 
 .hero-title {
   font-family: var(--font-serif); font-weight: 400;
-  font-size: clamp(3rem, 5vw, 4.1rem); line-height: 1.06;
+  font-size: clamp(3rem, 5vw, 4.1rem); line-height: 1.22;
   letter-spacing: -0.025em; color: var(--text);
   margin-bottom: 26px;
 }
 
-.hero-title .mask-row { display: block; overflow: hidden; }
+.hero-title .mask-row {
+  display: block; overflow: hidden;
+  padding-bottom: 0.22em;
+  margin-bottom: -0.14em;
+}
 .hero-title .mask-inner { display: block; animation: maskUp .95s var(--ease-out) both; }
 .hero-title .mask-inner:nth-child(1) { animation-delay: 0s; }
 .hero-title .mask-row:nth-child(2) .mask-inner { animation-delay: .12s; }
