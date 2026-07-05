@@ -78,27 +78,69 @@ Chefredaktør, udviklingschef, direktør eller rekrutterer i medie- og videnorga
 - Vi har strategi, men ingen adfærdsændring
 - Vi har redaktionelle behov, men mangler teknisk oversættelse
 
+## v2 — "The Operating System of Carsten Lysdal"
+
+Sitet rebuildes som et interaktivt karriere-dashboard, ikke en redaktionel
+scroll-side. Metafor: intelligent kontrolpanel over karrieren.
+
+**Fra → Til:** Portfolio med sektioner → interaktivt CV som produktinterface.
+Tekstflader → infografiske, klikbare, bevægelige moduler. Topnav → side-rail/
+bottom-nav. Accordions → bento-grid. Timeline → career stack. Kompetence-liste
+→ radar.
+
+### Ny struktur (8 scener)
+
+01 Start (hero-dashboard) → 02 Impact (klikbare nøgletal) → 03 AI-systemet
+(interaktiv værdikæde med Chatty) → 04 Transformation Map (før/efter) →
+05 Cases (bento-grid) → 06 Kompetence-radar (6 akser) → 07 Career Stack
+(progression) → 08 Mennesket (kort) → Kontakt.
+
+### Låste designbeslutninger
+
+| Punkt | Beslutning |
+|---|---|
+| Baggrund | Hybrid — kulsort #0E0C09 i hero/impact/AI/transformation. Varmere paneler i cases/karriere/menneske. |
+| Brand-accent | Rust #A9503A |
+| AI/data-accent | Elektrisk blå #3DD5F3 (ny) |
+| Typografi | Newsreader (display) · Instrument Sans (body/interface) · JetBrains Mono (labels/metrics) |
+| Tech | Ren HTML/CSS/JS + SVG. Ingen build. |
+| Navigation | Side-rail (desktop venstre) + bottom-nav (mobil) |
+| OSINT-case | Foldes ind i radar + AI-system. Ikke selvstændig case-kort. |
+| Cases i bento | Chatty (featured), Transformation, Data, Skalering, Produkt/discovery (5 kort) |
+| Mennesket | Halveres vs v1. Portræt + 3 punkter (timing, samspil, mestring). |
+
+### 6 infografiske moduler
+
+1. Impact Dashboard — klikbare animerede nøgletal
+2. AI Value Chain — interaktiv flow med Chatty som central node
+3. Transformation Map — før/efter-diagram med animeret overgang
+4. Kompetence-radar — SVG-radar, 6 akser, vælg akse → beviser
+5. Case Cards — bento-grid, åbner 5-trins flow
+6. Career Stack — progression der låser kompetencer op
+
+### Motion-princip
+
+Motion skal have funktion: retning, prioritering, årsag/virkning. Ikke pynt.
+AI bevæger sig gennem værdikæden. Tal tæller op. Cases folder ud som flows.
+Kompetencer forbinder til resultater.
+
 ## Tech-stack
 
 Format: Statisk HTML/CSS/JS — ingen framework, ingen build-step
 Hosting: Beslutning mangler — Vercel, Netlify eller eget domæne
 Domæne: Ikke fastlagt endnu
 
-## Åbne spørgsmål
-
-- [ ] Hvilke cases har artefakter klar nu?
-- [ ] Covergrafik med Relevans/Resonans/Relation — har du filen?
-- [ ] Eksisterende visuel identitet (farver, fonte)?
-- [ ] Domæne og hosting-valg
-- [ ] Tidslinje for v1
-
 ## Mappestruktur
 
-- `docs/` — brief, kravspec, wireframe-noter
+- `docs/` — brief, kravspec, wireframe-noter, content.md (SSOT)
 - `output/` — færdige leverancer og eksport
 - `research/` — research-input og videngab
-- `site/` — den faktiske hjemmeside (HTML/CSS/JS)
+- `site/` — den faktiske hjemmeside
+  - `lysdal-portfolio.html` — v1 (beholdes som reference)
+  - `os.html` — v2 "OS" (aktiv build)
+  - `css/os.css` — v2 stylesheet
+  - `js/os.js` — v2 interaktioner
 
 ## Nuværende fase
 
-Projektopsætning og initial HTML-prototype
+v2-build: "The Operating System of Carsten Lysdal"
