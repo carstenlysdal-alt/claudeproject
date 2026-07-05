@@ -14,11 +14,13 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='2' fill='%23A9503A'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='18' fill='%23F2ECDF' text-anchor='middle'%3ECL%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=Schibsted+Grotesk:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <title>Carsten Lysdal — Redaktionel transformation og AI</title>
 </head>
 <body>
+
+<a href="#hero" class="skip-link">Spring til indhold</a>
 
 <!-- UTILITY BAR -->
 <div class="utility-bar">
@@ -64,6 +66,7 @@
 </nav>
 
 <!-- HERO -->
+<main id="main">
 <section id="hero">
   <div class="container">
     <div class="hero-grid">
@@ -80,9 +83,9 @@
         </div>
 
         <h1 class="hero-title">
-          <span class="mask-row"><span class="mask-inner">Jeg gør <em style="color:var(--accent);">AI</em> til en</span></span>
+          <span class="mask-row"><span class="mask-inner">Jeg gør <em class="accent">AI</em> til en</span></span>
           <span class="mask-row"><span class="mask-inner"><em>integreret</em> del af den</span></span>
-          <span class="mask-row"><span class="mask-inner">redaktionelle <em style="color:var(--accent);">værdikæde.</em></span></span>
+          <span class="mask-row"><span class="mask-inner">redaktionelle <em class="accent">værdikæde.</em></span></span>
         </h1>
 
         <p class="hero-pitch">
@@ -96,21 +99,15 @@
           <a href="assets/carsten-lysdal-cv.pdf" download class="btn btn-outline">Hent CV <span class="btn-mono">↓</span></a>
         </div>
 
-        <div class="hero-stats">
-          <div>
-            <span class="stat-num" data-target="150" data-suffix="+">150+</span>
-            <span class="stat-lbl">Medarbejdere ledet</span>
-          </div>
-          <div class="hero-stat-divider"></div>
-          <div>
-            <span class="stat-num" data-target="600" data-suffix="">600</span>
-            <span class="stat-lbl">Enheder per uge</span>
-          </div>
-          <div class="hero-stat-divider"></div>
-          <div>
-            <span class="stat-num" data-target="2" data-suffix="x">2x</span>
-            <span class="stat-lbl">Trafik</span>
-          </div>
+        <div class="hero-proof reveal">
+          <p class="proof-line">
+            <span class="proof-num">150</span> medarbejdere
+            <span class="proof-sep">·</span>
+            <span class="proof-num">600</span> enheder/uge
+            <span class="proof-sep">·</span>
+            <span class="proof-num">2×</span> trafikvækst
+          </p>
+          <p class="proof-source">Dokumenteret i Sjællandske Medier, 2023–2026.</p>
         </div>
       </div>
 
@@ -141,7 +138,21 @@
             <button class="console-tab" role="tab" aria-selected="false" aria-controls="console-output" data-tab="kvalitet">✓ Kvalitet</button>
           </div>
 
-          <div class="console-body" id="console-output" role="tabpanel" aria-live="polite" aria-label="Chatty output"></div><span class="console-cursor" aria-hidden="true"></span>
+          <div class="console-body" id="console-output" role="tabpanel" aria-live="polite" aria-label="Chatty output">&gt; Chatty — Researchassistent
+
+Analyserer primærkilder ...
+Finder mønstre i offentlige data ...
+Foreslår vinkler på baggrund af tendencer ...
+
+Klar til OSINT, åbne registre og kildekortlægning.
+Transskriberer og koder interviews.
+Kildekritik som fast led i hvert output.</div><span class="console-cursor" aria-hidden="true"></span>
+
+          <noscript>
+            <p style="padding: 0 18px 18px; font-family: var(--font-sans); font-size: .8rem; color: var(--text-inv-dim); margin: 0;">
+              Chatty er et interaktivt eksempel. Aktiver JavaScript for at se alle tre funktioner: Research, Produktion, Kvalitet.
+            </p>
+          </noscript>
 
           <div class="console-tags">
             <span class="console-tag">introduktion</span>
@@ -189,7 +200,7 @@
         <span class="vc-node-label">Publicering</span>
       </div>
     </div>
-    <div style="height:22px;"></div>
+    <div class="vc-spacer"></div>
   </div>
 </section>
 
@@ -218,7 +229,7 @@
     <div class="section-header reveal">
       <span class="section-label">Bevisførelse</span>
       <h2>Cases</h2>
-      <p style="margin-top:.6rem; font-size:.95rem; max-width:52ch;">
+      <p class="section-intro">
         Klik på en case og se hele forløbet: problem, indsigt, løsning, implementering og effekt.
       </p>
     </div>
@@ -524,10 +535,99 @@
   <div class="container">
     <div class="section-header reveal">
       <h2>AI og data i praksis</h2>
-      <p style="margin-top:.6rem; font-size:.95rem; max-width:56ch;">
+      <p class="section-intro">
         Ikke teknologi for teknologiens skyld. Konkrete værktøjer og metoder brugt i levende redaktionelle organisationer med reelle krav til tempo, kvalitet og organisatorisk forankring.
       </p>
     </div>
+
+    <figure class="system-map reveal">
+      <svg viewBox="0 0 1080 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sysmap-title sysmap-desc">
+        <title id="sysmap-title">Redaktionel AI-arkitektur</title>
+        <desc id="sysmap-desc">Diagram der viser datakilder, AI-orkestrering, redaktionelt output og styring som fire forbundne lag.</desc>
+
+        <!-- Layer labels -->
+        <text x="40" y="32" font-family="'Geist Mono', monospace" font-size="11" fill="#A9503A" letter-spacing="2">KILDER</text>
+        <text x="300" y="32" font-family="'Geist Mono', monospace" font-size="11" fill="#A9503A" letter-spacing="2">AI-ORKESTRERING</text>
+        <text x="600" y="32" font-family="'Geist Mono', monospace" font-size="11" fill="#A9503A" letter-spacing="2">OUTPUT</text>
+        <text x="860" y="32" font-family="'Geist Mono', monospace" font-size="11" fill="#A9503A" letter-spacing="2">STYRING</text>
+
+        <!-- Sources column -->
+        <g font-family="'Schibsted Grotesk', sans-serif" font-size="13" fill="#5A5246">
+          <rect x="40" y="56" width="200" height="44" fill="#F2ECDF" stroke="#1F1B15" stroke-width="0.5"/>
+          <text x="140" y="83" text-anchor="middle">Brugeradfærd</text>
+
+          <rect x="40" y="116" width="200" height="44" fill="#F2ECDF" stroke="#1F1B15" stroke-width="0.5"/>
+          <text x="140" y="143" text-anchor="middle">Primærkilder</text>
+
+          <rect x="40" y="176" width="200" height="44" fill="#F2ECDF" stroke="#1F1B15" stroke-width="0.5"/>
+          <text x="140" y="203" text-anchor="middle">Åbne registre</text>
+
+          <rect x="40" y="236" width="200" height="44" fill="#F2ECDF" stroke="#1F1B15" stroke-width="0.5"/>
+          <text x="140" y="263" text-anchor="middle">Arkiv og CMS</text>
+        </g>
+
+        <!-- Connectors sources → AI -->
+        <g stroke="#A9503A" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.55">
+          <path d="M240 78 L300 130"/>
+          <path d="M240 138 L300 144"/>
+          <path d="M240 198 L300 158"/>
+          <path d="M240 258 L300 168"/>
+        </g>
+
+        <!-- AI core -->
+        <g>
+          <rect x="300" y="56" width="280" height="220" fill="#1E1B16"/>
+          <text x="440" y="100" text-anchor="middle" font-family="'Source Serif 4', serif" font-style="italic" font-size="28" fill="#EDE7D9">Chatty</text>
+          <text x="440" y="124" text-anchor="middle" font-family="'Geist Mono', monospace" font-size="11" fill="#AEA591" letter-spacing="1">RED AKTIONEL MAKKER</text>
+
+          <line x1="320" y1="148" x2="560" y2="148" stroke="#A9503A" stroke-width="0.5" opacity="0.6"/>
+
+          <text x="440" y="180" text-anchor="middle" font-family="'Schibsted Grotesk', sans-serif" font-size="13" fill="#CFC7B6">Promptdisciplin</text>
+          <text x="440" y="208" text-anchor="middle" font-family="'Schibsted Grotesk', sans-serif" font-size="13" fill="#CFC7B6">Brugsscenarier</text>
+          <text x="440" y="236" text-anchor="middle" font-family="'Schibsted Grotesk', sans-serif" font-size="13" fill="#CFC7B6">Feedbacksløjfer</text>
+          <text x="440" y="264" text-anchor="middle" font-family="'Schibsted Grotesk', sans-serif" font-size="13" fill="#CFC7B6">Kvalitetssikring</text>
+        </g>
+
+        <!-- Connectors AI → output -->
+        <g stroke="#A9503A" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.55">
+          <path d="M580 110 L640 110"/>
+          <path d="M580 150 L640 150"/>
+          <path d="M580 190 L640 190"/>
+          <path d="M580 230 L640 230"/>
+        </g>
+
+        <!-- Output column -->
+        <g font-family="'Schibsted Grotesk', sans-serif" font-size="13" fill="#5A5246">
+          <rect x="640" y="86" width="200" height="44" fill="#F2ECDF" stroke="#1F1B15" stroke-width="0.5"/>
+          <text x="740" y="113" text-anchor="middle">Udkast</text>
+
+          <rect x="640" y="146" width="200" height="44" fill="#F2ECDF" stroke="#1F1B15" stroke-width="0.5"/>
+          <text x="740" y="173" text-anchor="middle">Researchnoter</text>
+
+          <rect x="640" y="206" width="200" height="44" fill="#F2ECDF" stroke="#1F1B15" stroke-width="0.5"/>
+          <text x="740" y="233" text-anchor="middle">Færdige enheder</text>
+        </g>
+
+        <!-- Connector output → styring -->
+        <g stroke="#A9503A" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.55">
+          <path d="M840 130 L880 130"/>
+          <path d="M840 168 L880 168"/>
+          <path d="M840 206 L880 206"/>
+        </g>
+
+        <!-- Governance -->
+        <g>
+          <rect x="880" y="86" width="160" height="164" fill="#A9503A"/>
+          <text x="960" y="130" text-anchor="middle" font-family="'Source Serif 4', serif" font-style="italic" font-size="20" fill="#F2ECDF">Styring</text>
+          <line x1="900" y1="148" x2="1020" y2="148" stroke="#F2ECDF" stroke-width="0.5" opacity="0.4"/>
+          <text x="960" y="172" text-anchor="middle" font-family="'Schibsted Grotesk', sans-serif" font-size="12" fill="#F2ECDF">Etiske rammer</text>
+          <text x="960" y="194" text-anchor="middle" font-family="'Schibsted Grotesk', sans-serif" font-size="12" fill="#F2ECDF">Kildekritik</text>
+          <text x="960" y="216" text-anchor="middle" font-family="'Schibsted Grotesk', sans-serif" font-size="12" fill="#F2ECDF">Redaktionelt ejerskab</text>
+          <text x="960" y="238" text-anchor="middle" font-family="'Schibsted Grotesk', sans-serif" font-size="12" fill="#F2ECDF">Evalueringsloop</text>
+        </g>
+      </svg>
+      <figcaption>AI som arbejdende lag i hele den redaktionelle værdikæde — fra datakilde til publicering, med styring som integreret del, ikke efterslep.</figcaption>
+    </figure>
 
     <div class="tools-list">
 
@@ -608,7 +708,7 @@
   <div class="container">
     <div class="section-header reveal">
       <h2>Karriere</h2>
-      <p style="margin-top:.6rem; font-size:.95rem; max-width:52ch;">
+      <p class="section-intro">
         13 år i Sjællandske Medier, fra journalist til journalistisk chefredaktør.
         I dag arbejder jeg med koncepter og produkter i krydsfeltet mellem redaktion, AI og forretning.
       </p>
@@ -737,7 +837,7 @@
           </div>
         </div>
 
-        <div style="display:flex; gap:.75rem;">
+        <div class="skills-actions">
           <a href="assets/carsten-lysdal-cv.pdf" download class="btn btn-rust">Hent CV <span class="btn-mono">↓</span></a>
           <a href="https://linkedin.com/in/carstenlysdal" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
         </div>
@@ -756,6 +856,11 @@
       <span class="section-label">Kulturpersonlighed · musiker · underviser · moderator</span>
       <h2>Rytme, retning og menneskelig udvikling</h2>
     </div>
+
+    <figure class="portrait-frame reveal">
+      <img src="assets/carsten-lysdal.jpg" alt="Portræt af Carsten Lysdal — taget ved trommesættet, hvor han har tilbringt over to årtier med at lære samspil, timing og mestring." loading="lazy" width="320" height="400">
+      <figcaption>Bag trommerne, i kapellet, i redaktionen — samme disciplin: lyt, svar, led rummet.</figcaption>
+    </figure>
 
     <div class="om-mig-quote reveal">
       <blockquote>
@@ -806,7 +911,7 @@
       <div class="vaerdi-pillars reveal">
 
         <div class="vaerdi-pillar">
-          <span class="vaerdi-dimension">Værdi 01</span>
+          <span class="vaerdi-dimension">01</span>
           <span class="vaerdi-titel">Timing</span>
           <p class="vaerdi-desc">
             Musik er ikke kun, hvad du spiller. Det er også, hvornår du spiller det.
@@ -817,7 +922,7 @@
         </div>
 
         <div class="vaerdi-pillar">
-          <span class="vaerdi-dimension">Værdi 02</span>
+          <span class="vaerdi-dimension">02</span>
           <span class="vaerdi-titel">Samspil</span>
           <p class="vaerdi-desc">
             Et ensemble lyder kun godt, når hvert instrument lytter til de andre.
@@ -827,7 +932,7 @@
         </div>
 
         <div class="vaerdi-pillar">
-          <span class="vaerdi-dimension">Værdi 03</span>
+          <span class="vaerdi-dimension">03</span>
           <span class="vaerdi-titel">Mestring over tid</span>
           <p class="vaerdi-desc">
             To årtier bag et trommesæt har lært mig, at der ikke findes
@@ -838,7 +943,7 @@
         </div>
 
         <div class="vaerdi-pillar">
-          <span class="vaerdi-dimension">Værdi 04</span>
+          <span class="vaerdi-dimension">04</span>
           <span class="vaerdi-titel">Offentlig samtale</span>
           <p class="vaerdi-desc">
             Som moderator og oplægsholder arbejder jeg med at skabe rum, hvor
@@ -873,6 +978,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="footer-inner">

@@ -41,52 +41,23 @@ toggle?.addEventListener('click', e => { e.stopPropagation(); navList?.classList
 navList?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
 document.addEventListener('click', e => { if (!e.target.closest('nav')) navList?.classList.remove('open'); });
 
-// ── Counter animation ────────────────────────────
-function countUp(el) {
-  const target = parseFloat(el.dataset.target || el.textContent);
-  const suffix = el.dataset.suffix || '';
-  const dur    = 1400;
-  const t0     = performance.now();
-  const isF    = String(target).includes('.');
-  const tick   = now => {
-    const p = Math.min((now - t0) / dur, 1);
-    const e = 1 - Math.pow(1 - p, 3);
-    el.textContent = (isF ? (target * e).toFixed(1) : Math.round(target * e)) + suffix;
-    if (p < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-}
-
-const cntObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { countUp(e.target); cntObs.unobserve(e.target); }
-  });
-}, { rootMargin: '0px 0px -80px 0px' });
-
-document.querySelectorAll('[data-target]').forEach(el => cntObs.observe(el));
-
 // ── Case accordion ───────────────────────────────
 document.querySelectorAll('.case-trigger').forEach(btn => {
   btn.addEventListener('click', () => {
-    const item   = btn.closest('.case-item');
-    const detail = item.querySelector('.case-detail');
-    const inner  = item.querySelector('.case-detail-inner');
-    const open   = item.classList.contains('active');
+    const item = btn.closest('.case-item');
+    const open = item.classList.contains('active');
 
     document.querySelectorAll('.case-item.active').forEach(other => {
       if (other === item) return;
       other.classList.remove('active');
-      other.querySelector('.case-detail').style.height = '0';
       other.querySelector('.case-trigger').setAttribute('aria-expanded', 'false');
     });
 
     if (open) {
       item.classList.remove('active');
-      detail.style.height = '0';
       btn.setAttribute('aria-expanded', 'false');
     } else {
       item.classList.add('active');
-      detail.style.height = inner.scrollHeight + 'px';
       btn.setAttribute('aria-expanded', 'true');
       setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 420);
     }
