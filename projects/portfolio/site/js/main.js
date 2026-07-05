@@ -1,118 +1,148 @@
 'use strict';
 
-/* ================================================
-   CARSTEN LYSDAL — Portfolio JS v4
-   Scroll progress (CSS) · Active nav · Reveal ·
-   Case accordion · Counter · Chatty typewriter ·
-   Mobile nav
-   ================================================ */
+/* ════════════════════════════════════════════════════
+   CARSTEN LYSDAL — Portfolio JS v3
+   Active nav · Reveal · Mobile nav · Transform console ·
+   Chain engine · Case cards · Competence fields · Tools drawer
+════════════════════════════════════════════════════ */
 
-// Scroll progress (CSS animation-timeline handles it — just inject the element)
-const bar = document.createElement('div');
-bar.className = 'scroll-progress';
-document.body.prepend(bar);
-
-// ── Active nav ───────────────────────────────────
-const sections  = document.querySelectorAll('section[id]');
-const navAs     = document.querySelectorAll('.nav-links a[href^="#"]');
+// ── Active nav via IntersectionObserver ─────────────
+const sections = document.querySelectorAll('section[id]');
+const navAs    = document.querySelectorAll('.nav-links a[href^="#"]');
 
 const navObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`));
   });
-}, { rootMargin: '-40% 0px -40% 0px' });
+}, { rootMargin: '-35% 0px -35% 0px' });
 
 sections.forEach(s => navObs.observe(s));
 
-// ── Reveal ───────────────────────────────────────
+// ── Reveal ───────────────────────────────────────────
 const revObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
   });
-}, { rootMargin: '0px 0px -72px 0px' });
+}, { rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-// ── Mobile nav ───────────────────────────────────
-const toggle  = document.querySelector('.nav-toggle');
-const navList = document.querySelector('.nav-links');
+// ── Mobile nav ────────────────────────────────────────
+const navToggle = document.querySelector('.nav-toggle');
+const navList   = document.querySelector('.nav-links');
 
-toggle?.addEventListener('click', e => { e.stopPropagation(); navList?.classList.toggle('open'); });
-navList?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
-document.addEventListener('click', e => { if (!e.target.closest('nav')) navList?.classList.remove('open'); });
+navToggle?.addEventListener('click', e => {
+  e.stopPropagation();
+  const open = navList?.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
 
-// ── Case accordion ───────────────────────────────
+navList?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navList.classList.remove('open');
+  navToggle?.setAttribute('aria-expanded', 'false');
+}));
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('nav') && navList?.classList.contains('open')) {
+    navList.classList.remove('open');
+    navToggle?.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// ── Transform console (AI section) ───────────────────
+const transformTabs   = document.querySelectorAll('.transform-tab');
+const transformPanels = document.querySelectorAll('.transform-panel');
+
+transformTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const state = tab.dataset.state;
+
+    transformTabs.forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    transformPanels.forEach(p => p.classList.remove('active'));
+
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+
+    const target = document.querySelector(`.transform-panel[data-panel="${state}"]`);
+    if (target) target.classList.add('active');
+  });
+});
+
+// ── Chain engine (editorial motor) ───────────────────
+const chainNodes  = document.querySelectorAll('.chain-node');
+const chainPanels = document.querySelectorAll('.chain-panel');
+
+chainNodes.forEach(node => {
+  node.addEventListener('click', () => {
+    const idx = node.dataset.chain;
+
+    chainNodes.forEach(n => {
+      n.classList.remove('active');
+      n.setAttribute('aria-selected', 'false');
+    });
+    chainPanels.forEach(p => p.classList.remove('active'));
+
+    node.classList.add('active');
+    node.setAttribute('aria-selected', 'true');
+
+    const target = document.querySelector(`.chain-panel[data-panel="${idx}"]`);
+    if (target) target.classList.add('active');
+  });
+});
+
+// ── Case cards (expand/collapse) ─────────────────────
 document.querySelectorAll('.case-trigger').forEach(btn => {
   btn.addEventListener('click', () => {
-    const item = btn.closest('.case-item');
-    const open = item.classList.contains('active');
+    const card = btn.closest('.case-card');
+    const isOpen = card.classList.contains('active');
 
-    document.querySelectorAll('.case-item.active').forEach(other => {
-      if (other === item) return;
-      other.classList.remove('active');
-      other.querySelector('.case-trigger').setAttribute('aria-expanded', 'false');
+    document.querySelectorAll('.case-card.active').forEach(c => {
+      if (c !== card) c.classList.remove('active');
     });
 
-    if (open) {
-      item.classList.remove('active');
+    if (isOpen) {
+      card.classList.remove('active');
       btn.setAttribute('aria-expanded', 'false');
     } else {
-      item.classList.add('active');
+      card.classList.add('active');
       btn.setAttribute('aria-expanded', 'true');
-      setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 420);
+      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 420);
     }
   });
 });
 
-// ── Chatty typewriter ────────────────────────────
-const TABS = {
-  research: `> Chatty — Researchassistent\n\nAnalyserer primærkilder ...\nFinder mønstre i offentlige data ...\nForeslår vinkler på baggrund af tendenser ...\n\nKlar til OSINT, åbne registre og kildekortlægning.\nTransskriberer og koder interviews.\nKildekritik som fast led i hvert output.`,
-  produktion: `> Chatty — Redaktionel produktion\n\nGenererer første udkast på under 3 minutter.\nTilpasser tone, format og genre.\nForeslår overskrifter og strukturvarianter.\n\n500-600 korte enheder om ugen. Samme team.\nFrigjorte ressourcer til prioriteret journalistik.`,
-  kvalitet: `> Chatty — Kvalitetssikring\n\nTjekker fakta mod primærkilder ...\nMarkerer juridiske og etiske risici ...\nVerificerer citaternes korrekthed ...\n\nRedaktionel godkendelse som fast led.\nAI assisterer — journalisten beslutter.`
-};
+// ── Competence fields (expand/collapse) ──────────────
+document.querySelectorAll('.comp-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const field = btn.closest('.competence-field');
+    const isOpen = field.classList.contains('active');
 
-const consoleBody   = document.querySelector('.console-body');
-const consoleCursor = document.querySelector('.console-cursor');
-
-let typeTimer = null;
-let currentTab = 'research';
-
-function typeText(text) {
-  if (!consoleBody) return;
-  clearTimeout(typeTimer);
-  consoleBody.textContent = '';
-  let i = 0;
-  const tick = () => {
-    if (i < text.length) {
-      consoleBody.textContent += text[i++];
-      typeTimer = setTimeout(tick, i < 30 ? 18 : text[i-1] === '\n' ? 80 : 22);
-    }
-  };
-  tick();
-}
-
-document.querySelectorAll('.console-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    const key = tab.dataset.tab;
-    if (key === currentTab) return;
-    currentTab = key;
-    document.querySelectorAll('.console-tab').forEach(t => {
-      const isActive = t === tab;
-      t.classList.toggle('active', isActive);
-      t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    document.querySelectorAll('.competence-field.active').forEach(f => {
+      if (f !== field) {
+        f.classList.remove('active');
+        f.querySelector('.comp-trigger')?.setAttribute('aria-expanded', 'false');
+      }
     });
-    typeText(TABS[key] || '');
+
+    if (isOpen) {
+      field.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+    } else {
+      field.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   });
 });
 
-// Start typewriter when console enters viewport
-const consoleEl = document.querySelector('.console');
-if (consoleEl) {
-  const consObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      typeText(TABS[currentTab]);
-      consObs.unobserve(consoleEl);
-    }
-  }, { rootMargin: '0px 0px -100px 0px' });
-  consObs.observe(consoleEl);
-}
+// ── Tools drawer ─────────────────────────────────────
+const toolsToggle = document.querySelector('.tools-toggle');
+const toolsDrawer = document.querySelector('.tools-drawer');
+
+toolsToggle?.addEventListener('click', () => {
+  const open = toolsDrawer?.classList.toggle('open');
+  toolsToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (toolsDrawer) toolsDrawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+});
