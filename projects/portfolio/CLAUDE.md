@@ -111,8 +111,8 @@ først) under 760px. Hamburger-menuen bevares uændret for 761-900px-intervallet
 ## Tech-stack
 
 Format: Statisk HTML/CSS/JS — ingen framework, ingen build-step
-Hosting: Beslutning mangler — Vercel, Netlify eller eget domæne
-Domæne: Ikke fastlagt endnu
+Hosting: Firebase Hosting (projekt `portfolio-36137`)
+Domæne: `carstenlysdal.dk` (DNS via Cloudflare, se `docs/firebase-hosting-setup.md`)
 
 ## Mappestruktur
 

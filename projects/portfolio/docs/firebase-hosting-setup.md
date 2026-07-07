@@ -2,9 +2,9 @@
 
 Formål: hoste portfolio-siden (`projects/portfolio/site/`) via Firebase Hosting på eget domæne `carstenlysdal.dk`.
 
-## Status ved sessionens afslutning
+## Status
 
-DNS er korrekt sat op og propageret. Domænet er tilføjet som custom domain i Firebase, men verifikation er endnu ikke gennemført — blokeret på en `_acme-challenge`-TXT-record der ikke kunne bekræftes synlig i DNS. Se "Åbent punkt" nederst.
+**Live.** `https://carstenlysdal.dk` svarer 200 OK med gyldigt SSL-certifikat udstedt til `CN=carstenlysdal.dk` (Google Trust Services). Verifikationen gik igennem via Advanced/DNS-01-metoden efter at `_acme-challenge`-TXT-recorden var korrekt propageret.
 
 ## Proces, trin for trin
 
@@ -51,8 +51,8 @@ Diagnose: certifikatudstedere validerer domæne-ejerskab fra flere netværksloka
 For at omgå HTTP-baseret propageringsfølsomhed skiftede vi til Firebases "Advanced setup mode", som bruger DNS TXT-validering (DNS-01) i stedet. Denne kræver en ekstra record:
 - TXT: `_acme-challenge` → unik værdi vist i Firebase Console
 
-**12. Blokeret på `_acme-challenge`-recorden**
-Brugeren tilføjede recorden i Cloudflare og bekræftede at den stod i record-listen. Gentagne `dig`-opslag mod 1.1.1.1, 8.8.8.8 og 9.9.9.9 viste den dog ikke som synlig i DNS på noget tidspunkt. Verify i Firebase blev forsøgt igen, men fejlede med samme 404-fejl som før (hvilket tyder på at Firebase-dialogen faldt tilbage til den gamle HTTP-baserede udfordring, eller at Advanced-fanen ikke var blevet gemt/anvendt korrekt). Årsagen til at recorden ikke var synlig blev ikke afklaret inden sessionen sluttede — mistanke er enten en fejl i Name-feltet (domænet tilføjet dobbelt, se nedenfor) eller at værdien i Firebase var regenereret siden den blev kopieret.
+**12. `_acme-challenge`-recorden propagerede til sidst**
+Brugeren tilføjede recorden i Cloudflare; den var i en periode ikke synlig i `dig`-opslag mod 1.1.1.1, 8.8.8.8 og 9.9.9.9, og et Verify-forsøg fejlede stadig med den gamle 404-fejl. Efter yderligere propageringstid slog recorden igennem, og et efterfølgende Verify-forsøg lykkedes. Firebase udstedte SSL-certifikatet, og `https://carstenlysdal.dk` blev bekræftet live med certifikat udstedt til `CN=carstenlysdal.dk`.
 
 ## Kendte faldgruber at være opmærksom på fremover
 
@@ -60,14 +60,10 @@ Brugeren tilføjede recorden i Cloudflare og bekræftede at den stod i record-li
 - **Proxy-status:** A-recorden for roddomænet skal stå til **DNS only**, aldrig Proxied, så længe sitet er hostet på Firebase.
 - **Firebases `_acme-challenge`-værdi regenereres** ved nye forsøg — brug altid den værdi der står i dialogen lige nu, ikke en tidligere kopieret værdi.
 
-## Næste skridt
+## Eventuel oprydning (valgfrit, ikke hastende)
 
-1. Åbn Firebase Console → Hosting → custom domain `carstenlysdal.dk` → Advanced setup, og hent den **aktuelle** `_acme-challenge`-værdi
-2. Tjek i Cloudflare at recorden er gemt med Name = `_acme-challenge` (uden ekstra domænenavn)
-3. Bekræft synlighed: `dig +short TXT _acme-challenge.carstenlysdal.dk @8.8.8.8`
-4. Klik Verify i Firebase
-5. Efter verifikation: vent på SSL-certifikatudstedelse (15 min – nogle timer), test med `curl -I https://carstenlysdal.dk` og bekræft at certifikatet er udstedt til `carstenlysdal.dk` (ikke `firebaseapp.com`)
-6. Overvej oprydning af den efterladte wildcard-record (`*.carstenlysdal.dk` → `212.237.249.17`), og evt. opsætning af `www.carstenlysdal.dk` hvis det ønskes
+- Den efterladte wildcard-record (`*.carstenlysdal.dk` → `212.237.249.17`) peger stadig på Dandomains gamle parkeringsserver. Den forstyrrer ikke roddomænet, men bør ryddes op hvis subdomæner ikke skal bruges.
+- `www.carstenlysdal.dk` er ikke sat op til at pege på Firebase — kan tilføjes som ekstra custom domain i Firebase Console hvis ønsket.
 
 ## Reference — opsætning og kommandoer
 
