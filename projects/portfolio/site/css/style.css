@@ -35,6 +35,7 @@
   --gutter:      clamp(1.5rem, 4vw, 3rem);
   --ease-out:    cubic-bezier(.22,1,.36,1);
   --ease-io:     cubic-bezier(.4,0,.2,1);
+  --bn-h:        60px;
 }
 
 /* ─── RESET ──────────────────────────────────────── */
@@ -87,11 +88,22 @@ strong { font-weight: 600; color: var(--text); }
 
 /* ─── LAYOUT ─────────────────────────────────────── */
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
-section { padding: clamp(5rem, 10vw, 9rem) 0; }
+
+/* One section = one full page. Content taller than the viewport scrolls
+   inside the section itself; spacebar (see main.js) always jumps a whole
+   section regardless of that internal scroll position. */
+html { scroll-snap-type: y proximity; }
+section {
+  padding: clamp(2.5rem, 6vw, 4rem) 0;
+  min-height: calc(100dvh - 66px);
+  max-height: calc(100dvh - 66px);
+  overflow-y: auto;
+  scroll-snap-align: start;
+  scroll-margin-top: 66px;
+}
 .section-alt { background: var(--bg-alt); }
 .section-dark { background: var(--bg-dark); }
 .section-contact { background: var(--bg-dark-2); }
-hr.rule { border: none; border-top: 1px solid var(--border); }
 
 /* ─── ANIMATIONS ────────────────────────────────── */
 @keyframes maskUp  { from { transform: translateY(110%); } to { transform: translateY(0); } }
@@ -103,6 +115,7 @@ hr.rule { border: none; border-top: 1px solid var(--border); }
 .reveal.visible { opacity:1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .reveal, [style*="animation"] { animation: none !important; opacity:1 !important; transform: none !important; }
 }
 
@@ -206,6 +219,27 @@ hr.rule { border: none; border-top: 1px solid var(--border); }
   color: var(--text); padding: .4rem;
   min-width: 44px; min-height: 44px;
   align-items: center; justify-content: center;
+}
+
+/* ─── READING PROGRESS BAR ──────────────────────── */
+.progress-bar {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 3px; background: var(--border);
+}
+.progress-fill {
+  display: block; height: 100%; width: 0%;
+  background: var(--accent);
+  transition: width 120ms linear;
+}
+.progress-ticks {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.progress-ticks i {
+  position: absolute; top: 0; bottom: 0; width: 1px;
+  background: var(--bg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill { transition: none; }
 }
 
 /* ─── BUTTONS ───────────────────────────────────── */
@@ -383,12 +417,17 @@ hr.rule { border: none; border-top: 1px solid var(--border); }
 
 /* ─── EDITOR NOTE (redaktørnote) ─────────────────── */
 .editor-note {
-  max-width: 680px; margin: 0 auto;
-  padding: clamp(2.5rem, 6vw, 4.5rem) var(--gutter);
+  display: block;
+  max-width: 640px;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  padding-left: 1.5rem;
   border-left: 2px solid var(--accent);
   font-family: var(--font-serif); font-style: italic;
-  font-size: clamp(1.3rem, 2.2vw, 1.7rem); line-height: 1.5;
+  font-size: clamp(1.2rem, 2vw, 1.5rem); line-height: 1.5;
   color: var(--text);
+}
+.editor-note-dark {
+  color: var(--text-inv);
 }
 
 /* ─── MODULE LABEL ──────────────────────────────── */
@@ -580,14 +619,12 @@ hr.rule { border: none; border-top: 1px solid var(--border); }
 .career-layer {
   display: grid; grid-template-columns: 220px 1fr;
   gap: 2.5rem; align-items: start;
-  padding: 2rem 0; border-bottom: 1px solid var(--border);
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
   transition: background 160ms;
   cursor: default;
 }
-.career-layer:hover { padding-left: .5rem; }
-
-.layer-current { border-left: 2px solid var(--accent); padding-left: 1rem; }
-.layer-current:hover { padding-left: 1rem; }
+.career-layer:hover { background: var(--bg-deep); }
 
 .layer-meta { padding-top: .15rem; }
 
@@ -826,6 +863,9 @@ footer {
   animation: breathe 2.4s ease-in-out infinite;
 }
 
+/* ─── BOTTOM TAB BAR (mobil-native, <760px) ──────── */
+.bottom-nav { display: none; }
+
 /* ─── RESPONSIVE ────────────────────────────────── */
 @media (max-width: 1060px) {
   .hero-grid { grid-template-columns: 1fr; gap: 3.5rem; }
@@ -855,8 +895,6 @@ footer {
 @media (max-width: 760px) {
   h1 { font-size: clamp(3rem, 10vw, 4rem); }
   h2 { font-size: clamp(2.2rem, 8vw, 3rem); }
-  .merit-grid { grid-template-columns: 1fr; }
-  .cases-bento { grid-template-columns: 1fr; }
   .case-dims { grid-template-columns: 1fr 1fr; }
   .value-cards { grid-template-columns: 1fr; }
   .tools-groups { grid-template-columns: 1fr; }
@@ -864,6 +902,78 @@ footer {
   .footer-tagline { display: none; }
   .footer-inner { justify-content: center; text-align: center; }
   .nav-avatar { display: none; }
+
+  /* Mobile-native mode: bottom tab bar replaces the hamburger dropdown,
+     section height and scroll-margin make room for the fixed bar,
+     the FAB retires (bottom-nav's "Kontakt" covers that job). */
+  body { padding-bottom: var(--bn-h); }
+  section {
+    min-height: calc(100dvh - 66px - var(--bn-h));
+    max-height: calc(100dvh - 66px - var(--bn-h));
+    scroll-margin-top: 66px;
+  }
+  .section-hero { min-height: calc(100dvh - 66px - var(--bn-h)); }
+  .contact-fab { display: none !important; }
+
+  #site-nav .nav-toggle { display: none; }
+  #site-nav .nav-links.open { display: none; }
+  .nav-ctas { display: none; }
+
+  .bottom-nav {
+    display: block;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+    background: var(--bg);
+    border-top: 1px solid var(--border-mid);
+    box-shadow: 0 -8px 24px -12px rgba(26,23,20,.18);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .bottom-nav ul {
+    display: flex; list-style: none; margin: 0; padding: 0;
+  }
+  .bottom-nav li { flex: 1; display: flex; }
+  .bottom-nav a, .bn-more {
+    flex: 1; min-height: var(--bn-h);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px; background: none; border: none; cursor: pointer;
+    font-family: var(--font-sans); color: var(--text-dim); text-decoration: none;
+  }
+  .bottom-nav a svg, .bn-more svg { width: 20px; height: 20px; }
+  .bn-label {
+    font-size: .62rem; letter-spacing: .02em;
+  }
+  .bottom-nav a.active, .bn-more[aria-expanded="true"] { color: var(--accent); }
+
+  .bn-sheet {
+    display: grid; grid-template-rows: 0fr;
+    transition: grid-template-rows .3s var(--ease-out);
+    background: var(--bg); border-top: 1px solid var(--border);
+    position: absolute; left: 0; right: 0; bottom: 100%;
+  }
+  .bn-sheet.open { grid-template-rows: 1fr; }
+  .bn-sheet-inner { overflow: hidden; }
+  .bn-sheet a {
+    display: block; padding: 1rem var(--gutter);
+    font-family: var(--font-sans); font-size: .9rem; color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Cases/Meritter as swipeable carousels */
+  .merit-grid, .cases-bento {
+    display: flex; align-items: flex-start; gap: 1rem; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-padding-left: var(--gutter);
+    padding: 0 var(--gutter); margin: 0 calc(var(--gutter) * -1);
+    background: none; border: none;
+  }
+  .merit-card, .case-card {
+    flex: 0 0 86vw; scroll-snap-align: start;
+    border: 1px solid var(--border-mid);
+  }
+
+  /* Hero: portrait leads on mobile */
+  .hero-portrait { order: -1; animation-delay: .1s; }
+
+  /* Touch target: proof-chip links inside kompetence detail panels */
+  .comp-proofs a { padding: .55em 1em; }
 }
 
 @media (max-width: 520px) {
@@ -875,8 +985,12 @@ footer {
 @media print {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   body { background: #fff !important; color: #111 !important; font-size: 10pt; }
-  #site-nav, .contact-fab, footer { display: none !important; }
-  section { padding: .75rem 0 !important; page-break-inside: avoid; }
+  #site-nav, .contact-fab, .bottom-nav, footer { display: none !important; }
+  section {
+    padding: .75rem 0 !important; page-break-inside: avoid;
+    min-height: 0 !important; max-height: none !important; overflow: visible !important;
+  }
+  .merit-grid, .cases-bento { display: grid !important; overflow: visible !important; }
   h1 { font-size: 22pt; } h2 { font-size: 16pt; }
   .reveal { opacity:1 !important; transform: none !important; }
   .comp-detail, .case-detail, .tools-drawer {

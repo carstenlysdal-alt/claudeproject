@@ -93,6 +93,21 @@ Motion-princip fastholdes: motion skal have funktion (retning, prioritering,
 årsag/virkning), ikke pynt. Cases og kompetencer folder ud som paneler;
 career stack viser progression.
 
+## Navigationsmodel: fuld-viewport sektionspaging + mobil-native UX
+
+Hver sektion fylder én viewport (`100dvh` minus topnav, minus bottom-nav på
+mobil). Indhold der overstiger højden scroller internt i sektionen; et tryk
+på mellemrumstasten skifter altid hel sektion (næste/forrige med Shift),
+uafhængigt af intern scrollposition — se `js/main.js`. CSS `scroll-snap-type:
+y proximity` på `html` understøtter samme opførsel ved almindelig
+scroll/swipe uden at spærre adgang til footer efter Kontakt.
+
+Under 760px erstattes topnav'ens hamburger-dropdown af en fast bottom tab bar
+(`.bottom-nav`, 5 primære sektioner + "Mere"-overflow til Menneske/Kontakt/CV).
+Cases og Meritter bliver til horisontale swipe-carousels (CSS scroll-snap på
+x-aksen) på samme breakpoint. Hero-portrættet vender rækkefølge (portræt
+først) under 760px. Hamburger-menuen bevares uændret for 761-900px-intervallet.
+
 ## Tech-stack
 
 Format: Statisk HTML/CSS/JS — ingen framework, ingen build-step
