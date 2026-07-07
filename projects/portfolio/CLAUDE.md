@@ -9,11 +9,21 @@ organisationer.
 
 ## Positionering (låst)
 
-**Én-linjepitch:**
-Jeg bygger bro mellem journalistik, data, AI og organisation — og får strategi til at virke i redaktionel praksis.
+**Bærende sætning (alt indhold måles op mod denne):**
+Jeg forbinder journalistisk dømmekraft, brugerbehov, data, teknologi og mennesker — så idéer bliver til redaktionel praksis, stærkere beslutninger og organisationer, der kan flytte sig.
 
 **Tagline:**
-Redaktionel transformation · AI-enablement · Data til beslutninger · Produkter og workflows
+AI, data og mennesker. Sat i system.
+
+**Hierarki (må aldrig brydes):**
+Niveau 1 Carsten (person, blik, rolle, erfaring, stemme) → Niveau 2 Kapabiliteter
+(ledelse, strategi, dømmekraft, organisation, AI, platforme, formidling) →
+Niveau 3 Dokumentation (chefredaktion, 150 medarbejdere, OKR/KPI, brugerbehov,
+Chatty, cases, trafikvækst, oplæg) → Niveau 4 Features/værktøjer (Den Korte
+Version, rating-systemer, recommender, SEO-tool, 500-600 enheder). Features må
+aldrig ligge i niveau 1 eller 2 — kun optræde som dokumentation under en
+kompetence eller case. Chatty, Den Korte Version og AI-værktøjer må aldrig
+være sitets hovedcase eller hero-emne.
 
 **Tone og æstetik:**
 Editorial intelligence — ikke cyberpunk.
@@ -38,26 +48,25 @@ Chefredaktør, udviklingschef, direktør eller rekrutterer i medie- og videnorga
 **Resonans** — Hvordan får indhold, data eller teknologi faktisk gennemslag?
 **Relation** — Hvordan skaber man tillid, følgeskab og adfærdsændring?
 
-## Navigation
+## Navigation (v6, låst)
 
 | Sektion | Indhold |
 |---|---|
-| Forside | Position, visuel identitet, pitch, tre kompetencer |
-| Cases | 5–6 dokumenterede eksempler |
-| Metode | Relevans/Resonans/Relation + arbejdsform |
-| AI & Data | Chatty, dashboards, prototyping, datakilder, prompts, AI-governance |
-| Ledelse & Transformation | Følgeskab, implementering, adfærdsændring |
-| CV | Kompakt, interaktivt, downloadbart PDF |
+| Start | Split hero: eyebrow, H1, pitch, proof-line, portræt — intet system/infografik på første skærm |
+| Meritter | "Det korte overblik" — 6-korts merit-dashboard, ingen talbokse |
+| Kompetencer | "Det jeg kan få til at ske" — 5 kapabiliteter, interaktiv matrix |
+| Cases | "Udvalgte beviser" — 5 kort navngivet efter kapabilitet, ikke værktøj |
+| Erfaring | "Erfaring bygget i lag" — 8-lags career stack + værktøjs-drawer |
+| Menneske | "Rytme, retning og samspil" — portræt, 3 kort (Timing/Samspil/Mestring) |
 | Kontakt | Kort og professionelt |
 
-## Cases (oplagte)
+## Cases (låst, v6)
 
-1. **Chatty** — AI fra prototype til redaktionel drift
-2. **Redaktionel transformation, Sjællandske Medier** — data, AI, prioritering
-3. **Data til redaktionelle beslutninger** — KPI, OKR, relevanskriterier, content performance
-4. **Skalering af korte formater** — output, effektivitet, AI-workflows
-5. **Y Business / AI-medieprodukt** — konceptudvikling, ratingmodeller, AI-arkitektur
-6. **Research, OSINT og metode** — digitale kilder, åbne data, journalistisk systematik
+1. **Digital indholdsstrategi i drift** — brugerbehov, relevanskriterier, SEO, performance (Den Korte Version som dokumentation)
+2. **Organisationsudvikling og ledelse** — 150 medarbejdere, OKR/KPI, mellemlederudvikling
+3. **AI-implementering og enablement** — Chatty som dokumentation, ikke hovedcase
+4. **Platforme og redaktionelle systemer** — rating-systemer, recommender, roadmap, discovery
+5. **Nyhedsdrift, samfundsblik og formidling** — journalistisk grundmotor, oplæg, moderation
 
 ## Artefakter der skal vises
 
@@ -69,60 +78,20 @@ Chefredaktør, udviklingschef, direktør eller rekrutterer i medie- og videnorga
 - Links til dokumenter og præsentationer
 - "Toolbox"-side med metoder og værktøjer
 
-## Interaktiv element (v2)
+## v6 — Content/IA-rewrite (nuværende retning, afløser v2 "OS")
 
-"Vælg en udfordring"-model:
-- Vi har AI-piloter, men ingen drift
-- Vi har data, men mangler beslutningskraft
-- Vi har formater, men mangler brugerindsigt
-- Vi har strategi, men ingen adfærdsændring
-- Vi har redaktionelle behov, men mangler teknisk oversættelse
+Den tidligere "OS"-vision (8-scene interaktivt dashboard, side-rail-navigation,
+kompetence-radar, elektrisk blå AI-accent, Newsreader/Instrument Sans) blev
+aldrig bygget færdig (intet `os.html` blev nogensinde oprettet) og er nu
+opgivet til fordel for denne retning: **samme visuelle sprog som v5**
+(Cormorant Garamond / Schibsted Grotesk / Geist Mono, cream/charcoal/rust
+#A9503A) — men en fuld omskrivning af indhold og informationsarkitektur, så
+siden læses som en strategisk præsentation af Carsten, ikke et feature- eller
+værktøjsshowroom. Se `docs/content.md` for den fulde, låste tekst.
 
-## v2 — "The Operating System of Carsten Lysdal"
-
-Sitet rebuildes som et interaktivt karriere-dashboard, ikke en redaktionel
-scroll-side. Metafor: intelligent kontrolpanel over karrieren.
-
-**Fra → Til:** Portfolio med sektioner → interaktivt CV som produktinterface.
-Tekstflader → infografiske, klikbare, bevægelige moduler. Topnav → side-rail/
-bottom-nav. Accordions → bento-grid. Timeline → career stack. Kompetence-liste
-→ radar.
-
-### Ny struktur (8 scener)
-
-01 Start (hero-dashboard) → 02 Impact (klikbare nøgletal) → 03 AI-systemet
-(interaktiv værdikæde med Chatty) → 04 Transformation Map (før/efter) →
-05 Cases (bento-grid) → 06 Kompetence-radar (6 akser) → 07 Career Stack
-(progression) → 08 Mennesket (kort) → Kontakt.
-
-### Låste designbeslutninger
-
-| Punkt | Beslutning |
-|---|---|
-| Baggrund | Hybrid — kulsort #0E0C09 i hero/impact/AI/transformation. Varmere paneler i cases/karriere/menneske. |
-| Brand-accent | Rust #A9503A |
-| AI/data-accent | Elektrisk blå #3DD5F3 (ny) |
-| Typografi | Newsreader (display) · Instrument Sans (body/interface) · JetBrains Mono (labels/metrics) |
-| Tech | Ren HTML/CSS/JS + SVG. Ingen build. |
-| Navigation | Side-rail (desktop venstre) + bottom-nav (mobil) |
-| OSINT-case | Foldes ind i radar + AI-system. Ikke selvstændig case-kort. |
-| Cases i bento | Chatty (featured), Transformation, Data, Skalering, Produkt/discovery (5 kort) |
-| Mennesket | Halveres vs v1. Portræt + 3 punkter (timing, samspil, mestring). |
-
-### 6 infografiske moduler
-
-1. Impact Dashboard — klikbare animerede nøgletal
-2. AI Value Chain — interaktiv flow med Chatty som central node
-3. Transformation Map — før/efter-diagram med animeret overgang
-4. Kompetence-radar — SVG-radar, 6 akser, vælg akse → beviser
-5. Case Cards — bento-grid, åbner 5-trins flow
-6. Career Stack — progression der låser kompetencer op
-
-### Motion-princip
-
-Motion skal have funktion: retning, prioritering, årsag/virkning. Ikke pynt.
-AI bevæger sig gennem værdikæden. Tal tæller op. Cases folder ud som flows.
-Kompetencer forbinder til resultater.
+Motion-princip fastholdes: motion skal have funktion (retning, prioritering,
+årsag/virkning), ikke pynt. Cases og kompetencer folder ud som paneler;
+career stack viser progression.
 
 ## Tech-stack
 
@@ -136,11 +105,11 @@ Domæne: Ikke fastlagt endnu
 - `output/` — færdige leverancer og eksport
 - `research/` — research-input og videngab
 - `site/` — den faktiske hjemmeside
-  - `lysdal-portfolio.html` — v1 (beholdes som reference)
-  - `os.html` — v2 "OS" (aktiv build)
-  - `css/os.css` — v2 stylesheet
-  - `js/os.js` — v2 interaktioner
+  - `lysdal-portfolio.html` — eneste live site
+  - `css/style.css` — stylesheet
+  - `js/main.js` — interaktioner
 
 ## Nuværende fase
 
-v2-build: "The Operating System of Carsten Lysdal"
+v6-rewrite: content/IA-omskrivning til strategisk præsentation (se
+"v6 — Content/IA-rewrite" ovenfor og `docs/content.md`).
