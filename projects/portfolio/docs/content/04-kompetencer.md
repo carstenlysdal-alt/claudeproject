@@ -1,0 +1,61 @@
+# 04 — Kompetencer
+
+## Heading
+Kompetencer *med bevis*
+
+## Intro
+Min styrke ligger i koblingen: journalistik, AI, data, produkt, organisation og mennesker. Ikke som adskilte discipliner, men som ét arbejdende system.
+
+---
+
+## Kompetence 01 — Redaktionel dømmekraft
+
+**Beskrivelse:** Nyhedstæft, samfundsblik, kildekritik, prioritering og publicistisk ansvar.
+
+**Beviser:**
+Journalistisk chefredaktør · Nyhedsredaktør · Lokalredaktør · Nyhedsdrift · Kvalitetssikring · Samfundsforståelse · Timing · Vinkling
+
+---
+
+## Kompetence 02 — Digital indholdsstrategi
+
+**Beskrivelse:** Brugerbehov, relevanskriterier, formatstrategi, distribution og performance.
+
+**Beviser:**
+Relevanskriterier · Brugeradfærd · Content performance · Indholdseffekt · Formatvalg · SEO · Trafikvækst · Redaktionel prioritering
+
+---
+
+## Kompetence 03 — AI og platformudvikling
+
+**Beskrivelse:** Fra use case til infrastruktur, prototype, interface og drift.
+
+**Beviser:**
+Chatty · Rating-systemer · Recommender · Performance tracking · SEO-optimeringsværktøj · Researchværktøjer · AI-prototyping · CMS-integration
+
+---
+
+## Kompetence 04 — Enablement og adfærdsdesign
+
+**Beskrivelse:** Træning, workshops, standarder, feedbacksløjfer og ændrede arbejdsmønstre.
+
+**Beviser:**
+AI-adoption · Workshops · Promptdisciplin · Fælles metode · Feedbacksløjfer · Medarbejdertræning · Lavere friktion · Organisatorisk forankring
+
+---
+
+## Kompetence 05 — Organisationsudvikling
+
+**Beskrivelse:** Retning, roller, OKR/KPI, mellemledere, procesflows og feedbackkultur.
+
+**Beviser:**
+150 medarbejdere · Ledelse af ledere · Mellemlederudvikling · OKR/KPI · Prioriteringsmodeller · Procesflows · Transformation · Ressourceudnyttelse
+
+---
+
+## Kompetence 06 — Medieledelse og offentlig formidling
+
+**Beskrivelse:** Oplæg, moderation, talsperson, konferencer og samtaler om medier, AI og samfund.
+
+**Beviser:**
+Oplæg om AI · Workshops · Moderatorroller · Talsperson · Medieledelse · Konferencer · Panelsamtaler · Offentlig samtale
