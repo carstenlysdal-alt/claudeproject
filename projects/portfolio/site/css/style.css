@@ -981,6 +981,143 @@ footer {
   .nav-ctas .btn-text-nav { display: none; }
 }
 
+/* ════════════════════════════════════════════════════
+   NEO-BRUTALIST OVERRIDE
+   Syne 800 (display) · hårde kanter · offset shadows · zero radius
+════════════════════════════════════════════════════ */
+
+:root {
+  --font-serif:        'Syne', var(--font-sans);
+  --shadow-brutal:     4px 4px 0 var(--text);
+  --shadow-brutal-sm:  3px 3px 0 var(--text);
+  --border:            rgba(26,23,20,0.55);
+  --border-mid:        rgba(26,23,20,0.85);
+}
+
+/* Nul border-radius — kun layout-elementer, ikke native controls */
+.merit-card, .case-card, .competence-field, .career-layer, .value-card,
+.btn-pill-dark, .btn-pill-light, .btn-outline, .btn-outline-inv,
+.comp-proofs span, .comp-proofs a, .case-tags span, .chip-sm, .dark-tag,
+.section-num, .layer-chips .chip-sm, .tools-tag, .contact-pill,
+.nav-links a, #site-nav, .bottom-nav, .bn-sheet,
+.comp-detail, .case-detail, .tools-drawer, .tools-group {
+  border-radius: 0 !important;
+}
+
+/* Overskrifter — Syne, fed, stram */
+h1, h2, h3 {
+  font-family: 'Syne', var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+h1 { font-size: clamp(3.2rem, 7vw, 8.5rem); }
+h2 { font-size: clamp(2rem, 5vw, 5rem); }
+h3 { font-size: clamp(1.25rem, 2.2vw, 2.1rem); }
+
+/* Nav brand — Syne, ingen kursiv */
+.nav-brand { font-family: 'Syne', sans-serif; font-style: normal; font-weight: 700; }
+
+/* Nav — tykkere bundlinje */
+#site-nav { border-bottom: 2px solid var(--text); }
+
+/* Bottom nav — 2px top */
+.bottom-nav { border-top: 2px solid var(--text) !important; box-shadow: none !important; }
+
+/* Knapper — hård kant, offset shadow */
+.btn-pill-dark, .btn-pill-light, .btn-outline, .btn-outline-inv {
+  border: 2px solid currentColor;
+  box-shadow: var(--shadow-brutal-sm);
+  transition: transform 100ms, box-shadow 100ms;
+}
+@media (hover: hover) {
+  .btn-pill-dark:hover, .btn-pill-light:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--text); }
+  .btn-outline:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--text); }
+}
+
+/* Merit-kort — tyk kant, offset shadow */
+.merit-card {
+  border: 2px solid var(--text) !important;
+  box-shadow: var(--shadow-brutal);
+  transition: transform 120ms, box-shadow 120ms;
+}
+@media (hover: hover) {
+  .merit-card:hover { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 var(--text); background: var(--bg-alt); }
+}
+
+/* Kompetence-felter — hover kun, ikke active (active bruger expand-animation) */
+.competence-field {
+  border: 2px solid var(--text) !important;
+  box-shadow: var(--shadow-brutal);
+}
+@media (hover: hover) {
+  .competence-field:not(.active):hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--text); }
+}
+
+/* Case-kort */
+.case-card {
+  border: 2px solid var(--text) !important;
+  box-shadow: var(--shadow-brutal);
+  transition: transform 120ms, box-shadow 120ms;
+}
+@media (hover: hover) {
+  .case-card:not(.active):hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--text); }
+}
+
+/* Karriere-lag */
+.career-layer {
+  border: 2px solid rgba(26,23,20,0.35) !important;
+  box-shadow: var(--shadow-brutal-sm);
+}
+@media (hover: hover) {
+  .career-layer:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--text); background: var(--bg-deep); }
+}
+
+/* Værdikort (mørk baggrund — inverteret shadow) */
+.value-card {
+  border: 2px solid rgba(245,240,232,0.5) !important;
+  box-shadow: 4px 4px 0 rgba(245,240,232,0.2);
+  transition: transform 120ms, box-shadow 120ms;
+}
+@media (hover: hover) {
+  .value-card:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 rgba(245,240,232,0.35); }
+}
+
+/* Chip-tags — tydelig kant */
+.case-tags span, .chip-sm, .dark-tag, .comp-proofs span {
+  border: 1.5px solid currentColor !important;
+}
+
+/* Sektionsoverskrift — accent-understregning */
+.section-header h2 {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: .4rem;
+  display: inline-block;
+}
+
+/* ─── NEO-BRUTALIST MOBIL (<760px) ──────────────── */
+@media (max-width: 760px) {
+  h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
+  h2 { font-size: clamp(2rem, 8vw, 3rem); }
+  h3 { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+
+  /* Karussel-kort: bevar kant, fjern offset shadow for bedre swipe-flow */
+  .merit-card, .case-card {
+    box-shadow: 2px 2px 0 var(--text) !important;
+  }
+
+  /* Kompetencer: slimmer kant på mobil */
+  .competence-field { box-shadow: 2px 2px 0 var(--text); }
+
+  /* Karriere-lag: ingen shadow på smal skærm */
+  .career-layer { box-shadow: none !important; }
+
+  /* Bottom nav: Syne-labels */
+  .bn-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .6rem; letter-spacing: .05em; }
+
+  /* Section header understregning — inline-block er nødvendig på mobil */
+  .section-header h2 { display: block; border-bottom-width: 2px; }
+}
+
 /* ─── PRINT ──────────────────────────────────────── */
 @media print {
   *, *::before, *::after { animation: none !important; transition: none !important; }
