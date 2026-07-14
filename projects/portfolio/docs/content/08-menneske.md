@@ -4,7 +4,7 @@
 Rytme, retning *og samspil*
 
 ## Citat
-Den varige konkurrencefordel i AI er ikke modellen. Det er organisationens akkumulerede læring.
+Den varige fordel i AI ligger ikke i modellen. Den ligger i alt det, organisationen har lært at gøre med den.
 
 ## Intro
 Mere end to årtier med musik har formet min måde at lede på. Et stærkt ensemble kræver retning, timing, disciplin og lydhørhed — og plads til, at den enkelte kan sit fag bedre end dirigenten.

@@ -10,14 +10,14 @@ Jeg er journalist og har brugt alle mine professionelle år på at forstå, hvad
 Som journalistisk chefredaktør for Sjællandske Medier ledede jeg ca. 150 journalister med ansvar for journalistisk retning, digital udvikling og organisatorisk forandring. Det var her, AI gik fra eksperiment til infrastruktur. Chatty er ikke et pilotprojekt, der endte i en præsentation. Det endte i drift, med CMS-integration, feedbacksløjfer og 500–600 ugentlige enheder.
 
 ## Afsnit 3
-Teknologi forandrer ingenting af sig selv. Det er menneskene, der gør det — når de ved, hvad de arbejder hen imod, og har plads til at lære undervejs.
+Teknologi skaber ikke forandring i sig selv. Det gør mennesker, når retning, ansvar og læring hænger sammen.
 
-Jeg tænker i tre lag. Nye systemer gør os hurtigere. Ny metode gør os dygtigere. Ny kunnen gør os i stand til noget, vi slet ikke kunne før. Det tredje lag er det, der tæller. Det er der, organisationer holder op med at gentage sig selv.
+Nye modeller kan købes. Nye systemer kan bygges. Men den dømmekraft, der gør teknologien værdifuld, vokser over tid. Ingen opdatering kan installere erfaring.
 
 ## Afsnit 4
-Nu arbejder jeg projektbaseret med AI, produktstrategi og redaktionel konceptudvikling. En strategi er først noget værd, når folk kan mærke den i hverdagen — når de forstår retningen, ser deres rolle og oplever, at det nye faktisk gør kerneopgaven bedre.
+Nu arbejder jeg projektbaseret med AI, produktstrategi og redaktionel konceptudvikling. Jeg begynder ikke med værktøjet, men med behovet: Hvilket problem skal vi løse? Hvem skal mærke forskellen? Og hvad skal organisationen kunne bagefter, som den ikke kunne før?
 
-Jeg lader maskinerne tage rutinen og menneskene beholde tænkningen. Jo mere information maskinerne producerer, jo sjældnere og mere kostbar bliver evnen til at vurdere, prioritere og handle rigtigt. Det er ikke en teknologipointe. Det er en ledelsespointe.
+Et projekt må gerne slutte. Læringen må ikke. Den reelle mangelvare er ikke information. Det er evnen til at skelne, prioritere og handle rigtigt.
 
 ---
 

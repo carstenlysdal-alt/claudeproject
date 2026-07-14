@@ -37,7 +37,7 @@ Chatty · Rating-systemer · Recommender · Performance tracking · SEO-optimeri
 
 ## Kompetence 04 — Implementering og varig kunnen
 
-**Beskrivelse:** En god specialistfunktion skaber sig selv overflødig. Den løser ikke problemerne for resten. Den lærer resten at løse dem. Fra use case og træning til metode, feedbacksløjfer og praksis, der holder.
+**Beskrivelse:** En specialistfunktion måles på to ting: hvad den skaber, og hvad den efterlader. Den løser ikke problemerne for resten. Den lærer resten at løse dem.
 
 **Beviser:**
 AI-adoption · Workshops · Promptdisciplin · Fælles metode · Feedbacksløjfer · Medarbejdertræning · Lavere friktion · Organisatorisk forankring
