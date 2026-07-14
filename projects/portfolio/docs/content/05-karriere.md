@@ -25,8 +25,8 @@ Fra journalistisk håndværk til redaktionel ledelse, digital transformation, AI
 **Tema:** Transformation og AI i drift
 **Titel:** Journalistisk chefredaktør
 **Organisation:** Sjællandske Medier
-**Beskrivelse:** Journalistisk retning, digital udvikling, AI-implementering, OKR/KPI, datadrevet prioritering, organisatorisk forankring og ledelse af ca. 150 medarbejdere.
-**Chips:** Chatty · AI-infrastruktur · OKR/KPI · 150 medarbejdere · Transformation · Enablement
+**Beskrivelse:** Overordnet journalistisk og organisatorisk ledelse af en organisation på ca. 150 medarbejdere. Sat retning for digital udvikling, AI-implementering og datadrevet prioritering — og omsat strategi til ansvar, beslutninger, arbejdsgange og varig praksis.
+**Chips:** Chatty · AI-infrastruktur · Ledelse af ledere · OKR/KPI · Transformation · Organisatorisk forankring
 
 ---
 

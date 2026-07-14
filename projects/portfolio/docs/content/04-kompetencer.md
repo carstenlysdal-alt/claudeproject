@@ -35,21 +35,21 @@ Chatty · Rating-systemer · Recommender · Performance tracking · SEO-optimeri
 
 ---
 
-## Kompetence 04 — Enablement og adfærdsdesign
+## Kompetence 04 — Implementering og varig adoption
 
-**Beskrivelse:** Træning, workshops, standarder, feedbacksløjfer og ændrede arbejdsmønstre.
+**Beskrivelse:** Fra træning og fælles standarder til ændrede arbejdsgange, feedbacksløjfer og praksis, der holder.
 
 **Beviser:**
 AI-adoption · Workshops · Promptdisciplin · Fælles metode · Feedbacksløjfer · Medarbejdertræning · Lavere friktion · Organisatorisk forankring
 
 ---
 
-## Kompetence 05 — Organisationsudvikling
+## Kompetence 05 — Ledelse og organisatorisk transformation
 
-**Beskrivelse:** Retning, roller, OKR/KPI, mellemledere, procesflows og feedbackkultur.
+**Beskrivelse:** Tydelig retning, ledelse af ledere, faglig autonomi, psykologisk tryghed og forandring under reelt driftspres.
 
 **Beviser:**
-150 medarbejdere · Ledelse af ledere · Mellemlederudvikling · OKR/KPI · Prioriteringsmodeller · Procesflows · Transformation · Ressourceudnyttelse
+150 medarbejdere · Ledelse af ledere · Mellemlederudvikling · Strategisk retning · OKR/KPI · Prioriteringsmodeller · Feedbackkultur · Organisatorisk forankring
 
 ---
 

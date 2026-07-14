@@ -26,7 +26,7 @@ Facilitering af samtaler, paneler og konferencer, hvor viden, uenighed og erfari
 Offentlig formidling om medier, AI, nyheder, digital udvikling, journalistisk ansvar og samfundets informationsstrømme.
 
 ### Advisory
-Sparring med ledelser, organisationer og redaktionelle miljøer om strategi, AI, indhold, platforme og forandring.
+Sparring med ledelser, organisationer og redaktionelle miljøer om strategi, transformationsledelse, AI, indhold, platforme og organisatorisk implementering. Fokus er ikke kun på, hvad der kan bygges, men på hvad der kan fungere i praksis.
 
 ---
 

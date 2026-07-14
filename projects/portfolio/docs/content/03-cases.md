@@ -4,7 +4,7 @@
 Cases
 
 ## Intro
-Seks forløb der dokumenterer, hvad det tager at flytte en redaktionel organisation — fra problem til indsigt, fra løsning til konkret effekt.
+Syv forløb der dokumenterer, hvad det tager at flytte en redaktionel organisation — fra problem til indsigt, fra løsning til konkret effekt.
 
 ---
 
@@ -42,17 +42,17 @@ Seks forløb der dokumenterer, hvad det tager at flytte en redaktionel organisat
 
 ## Case 03 — Organisationsudvikling
 
-**Undertitel:** Fra fragmenteret drift til fælles metode
-**Effekt:** Klarere retning, roller og ansvar
+**Undertitel:** Fra fragmenteret drift til fælles retning
+**Effekt:** Tydeligere ansvar, stærkere mellemledelse og bedre beslutninger
 **Tags:** ledelse · OKR/KPI · mellemledere · feedback
 
 | Dimension      | Tekst |
 |----------------|-------|
 | Problem        | En stor redaktionel organisation arbejdede under højt driftspres med manuelle processer, siloer, uklart ejerskab og varierende brug af data og teknologi. |
-| Indsigt        | Strategi virker først, når den bliver oversat til daglige prioriteringer, synlige succeskriterier og tydeligt ejerskab. |
-| Løsning        | Etablering af OKR/KPI-struktur, nye prioriteringsmodeller, klarere procesflows og stærkere kobling mellem redaktion, data, teknologi og ledelse. |
-| Implementering | Fokus på at lede ledere, udvikle mellemledere, skabe feedbackkultur og justere løbende på baggrund af data og organisatorisk respons. |
-| Effekt         | Øget output, bedre ressourceudnyttelse, stærkere metodebevidsthed og tydeligere organisatorisk retning. |
+| Indsigt        | Strategi virker først, når den kan mærkes i hverdagen: som tydelige prioriteringer, placeret ansvar og beslutninger, der hænger sammen på tværs. Data kan skabe overblik, men ikke erstatte dømmekraft og ejerskab. |
+| Løsning        | En fælles ledelsesramme med OKR/KPI, tydeligere beslutningsrum, nye prioriteringsmodeller og en stærkere kobling mellem redaktion, data, teknologi og ledelse. |
+| Implementering | Mellemledere og faglige nøglepersoner blev gjort til medskabere af løsningerne. Faste opfølgningsrytmer, feedbacksløjfer og synlige prioriteringer gav plads til faglig uenighed og løbende justering — men ikke til uklarhed om retning eller ansvar. |
+| Effekt         | Større fælles retning, stærkere lokalt ejerskab og bedre sammenhæng mellem strategi og daglige beslutninger. Output og ressourceudnyttelse blev løftet, mens nye arbejdsformer blev forankret. |
 
 ---
 
@@ -101,3 +101,19 @@ Seks forløb der dokumenterer, hvad det tager at flytte en redaktionel organisat
 | Løsning        | Metoder og værktøjer til digital research, OSINT, åbne registre, dokumentanalyse og AI-assisteret overblik. |
 | Implementering | Træning, metodeudvikling og konkrete arbejdsgange, der kan bruges i både daglig nyhedsdrift og undersøgende journalistik. |
 | Effekt         | Styrket researchkapacitet, hurtigere kvalificering af spor og bedre kildekritisk anvendelse af digitale muligheder. |
+
+---
+
+## Case 07 — Redaktionel intelligensplatform
+
+**Undertitel:** Fra kronologi og mavefornemmelse til LLM-drevet journalistisk prioritering
+**Effekt:** Redaktionelt DNA kodet som algoritme — feedet sorteret på potentiale, ikke på tid
+**Tags:** AI-arkitektur · LLM · product management · scoringsmodel · CMS-integration · anbefalingssystem
+
+| Dimension      | Tekst |
+|----------------|-------|
+| Problem        | Indhold strømmer ind fra nyhedsmedier, pressemeddelelser, rapporter, myndigheder og tænketanke. Uden et systematisk prioriteringsprincip sorterer redaktøren efter kronologi eller mavefornemmelse — begge dele skalerer dårligt og er blinde for mediets redaktionelle særkende. Journalisterne kan ikke hurtigt identificere, hvilke inputs der bærer potentiale til de historier, mediet eksisterer for at lave. |
+| Indsigt        | Problemet er ikke volumen. Det er fraværet af et system der kan stille det afgørende spørgsmål om hvert eneste input: Kan dette blive til en stærk historie for dette medie? En ratingmodel skal ikke måle popularitet — den skal vurdere journalistisk potentiale ud fra mediets redaktionelle DNA. Det kræver, at redaktionelle principper oversættes til eksplicitte, vægtede kriterier — og at beslutninger om funktion og format kan træffes af chefredaktøren, ikke af algoritmen alene. |
+| Løsning        | En LLM-drevet intelligensplatform med tre lag: emneklassifikation på 25 primære topics, scoring på 11 journalistiske funktioner (Challenge, Blind Spot, Mythbuster, Signal, Threat, Opportunity, Inspiration, Guide, Solution, Perspective, Curiosity) og en samlet score beregnet på tværs af syv vægtede dimensioner — målgrupperelevans, impact, modfortællings-værdi, perspektivværdi, beslutningsværdi, kildestyrke og produktionspotentiale. Systemet virker som prioriteringsmotor, anbefalingssystem, trigger-platform og kildeintelligens i ét. |
+| Implementering | Konceptet, arkitekturen, de 11 funktioner, scoreformlen og tre centrale redaktionelle beslutninger om vægtning og output-struktur specificeret og valideret med chefredaktøren. MVP bygget som fuld React/TypeScript-applikation på Cloud Run med Firebase Hosting, med Gemini som primær LLM og DeepSeek som fallback. 25 live RSS-feeds. Funktioner ud over scoring: inline kildesøgning, bulk-analyse, manuel score-override, runtime prompt-editor, source originality-klassifikation, pairing potential og animeret score curve. Test-MVP i aktiv drift. |
+| Effekt         | Feedet sorteres på journalistisk potentiale frem for kronologi. Redaktøren ser score, primær og sekundære journalistiske funktioner, redaktionel pille (Understand/Challenge/Inspire), mulige vinkler, konkret løftningsråd, kildekritisk advarsel og formatanbefaling pr. input. Intet kasseres automatisk — lav score vises nedtonet, ikke fjernet. Systemet frigør redaktionel kapacitet til det arbejde, der kræver menneskelig dømmekraft. |

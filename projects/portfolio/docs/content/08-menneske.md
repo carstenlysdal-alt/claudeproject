@@ -4,10 +4,10 @@
 Rytme, retning *og samspil*
 
 ## Citat
-Stærke præstationer skabes i samspillet mellem mennesker.
+Min opgave som leder er ikke at være den dygtigste i alle rum, men at få fagligheden i rummet til at arbejde i samme retning.
 
 ## Intro
-Mere end to årtier med musik har formet min måde at lede på: timing, disciplin, lydhørhed og evnen til at få mennesker til at spille bedre sammen.
+Mere end to årtier med musik har formet min måde at lede på. Et stærkt ensemble kræver retning, timing, disciplin og lydhørhed — og plads til, at den enkelte kan sit fag bedre end dirigenten.
 
 ---
 
@@ -17,18 +17,18 @@ Mere end to årtier med musik har formet min måde at lede på: timing, discipli
 Ledelse handler også om hvornår: hvornår tempoet skal op, hvornår der skal skabes ro, og hvornår en beslutning ikke kan vente.
 
 ### 02 — Samspil
-Et stærkt ensemble bygger på gensidig opmærksomhed. Det samme gør en organisation, der skal præstere under pres.
+Dygtige mennesker behøver ikke detailstyring. De behøver en fælles retning, tydelige rammer og blik for, hvordan forskellige fagligheder gør hinanden bedre.
 
 ### 03 — Mestring
-Reel udvikling kræver gentagelse, feedback og ærlig vurdering. Det gælder musik. Og det gælder implementering af AI.
+Høje standarder kræver gentagelse, ærlig feedback og plads til at lære. Psykologisk tryghed er ikke fravær af krav, men muligheden for at sige tvivlen højt, før den bliver til en fejl.
 
-### 04 — Offentlig samtale
-Som moderator og oplægsholder arbejder jeg med at skabe rum, hvor viden, uenighed og erfaring kan blive produktive kræfter.
+### 04 — Retning
+Retning er mere end en plan. Den skal kunne ses i prioriteringerne og mærkes i hverdagen. En forandring er først lykkedes, når nye beslutninger og arbejdsgange fungerer uden konstant ledelsesmæssigt pres.
 
 ---
 
 ## Personlig tekst
-Jeg er 39 år, gift, far til tre og bosat på Sjælland. Jeg motiveres af at skabe resultater gennem andre — og af at udvikle organisationer, hvor ambition, struktur og engagement kan eksistere samtidig.
+Jeg er 39 år, gift, far til tre og bosat på Sjælland. Jeg motiveres af at skabe resultater gennem andre — og af at udvikle organisationer, hvor ambition, faglighed og menneskelig tillid kan eksistere samtidig.
 
 ## Tags
-Musiker · Trommeslager · Kapelmester · Underviser · Moderator · Oplægsholder · Kulturpersonlighed · Samfundsinteresseret · Nysgerrig · Videbegærlig
+Musiker · Trommeslager · Kapelmester · Underviser · Leder · Moderator · Oplægsholder · Samfundsinteresseret · Nysgerrig · Videbegærlig

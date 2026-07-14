@@ -10,10 +10,10 @@ Jeg er journalist og har brugt alle mine professionelle år på at forstå, hvad
 Som journalistisk chefredaktør for Sjællandske Medier ledede jeg ca. 150 journalister med ansvar for journalistisk retning, digital udvikling og organisatorisk forandring. Det var her, AI gik fra eksperiment til infrastruktur. Chatty er ikke et pilotprojekt, der endte i en præsentation. Det endte i drift, med CMS-integration, feedbacksløjfer og 500–600 ugentlige enheder.
 
 ## Afsnit 3
-Jeg er den type leder, der tænker i systemer, men handler konkret. Jeg kan oversætte ny teknologi til adfærd, der holder — fordi jeg kender begge sider: redaktionen der skal bruge det, og produktet der skal virke. Organisatorisk tålmodighed er ikke noget, jeg har lært af en bog. Det er noget, jeg har øvet under pres.
+Jeg leder gennem tydelig retning, høje forventninger og reel faglig tillid. Jeg sætter mål, prioriteringer og ansvar klart, men detailstyrer ikke mennesker, der kan deres fag. Min opgave er at skabe rammerne, beslutningerne og rytmen, der får specialister, ledere og teams til at lykkes sammen — også når driften presser, og forandringen ikke kan vente.
 
 ## Afsnit 4
-Nu arbejder jeg projektbaseret med AI-arkitektur, produktstrategi og redaktionel konceptudvikling. Jeg bringer erfaring fra journalistikkens kerne, ledelseserfaringen fra en stor mediekoncern og den praktiske indsigt i, hvad det tager at flytte en organisation.
+Nu arbejder jeg projektbaseret med AI-arkitektur, produktstrategi og redaktionel konceptudvikling. Fællesnævneren er implementering: En strategi er først noget værd, når mennesker forstår retningen, kan se deres egen rolle og oplever, at nye arbejdsgange gør kerneopgaven bedre. Jeg følger derfor idéer hele vejen — fra beslutning og organisering til den adfærd, der bliver ved, når projektet er afsluttet.
 
 ---
 
