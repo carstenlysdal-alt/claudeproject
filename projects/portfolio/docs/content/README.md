@@ -8,7 +8,7 @@
 |------------------------|---------------------------------|
 | `01-hero.md`           | Hero, stats-bar, chips          |
 | `02-profil.md`         | Profil, faktaboks               |
-| `03-cases.md`          | Alle seks cases                 |
+| `03-cases.md`          | Alle syv cases                  |
 | `04-kompetencer.md`    | Seks kompetencefelter           |
 | `05-karriere.md`       | CV-tidslinje                    |
 | `06-vaerktoejer.md`    | Værktøjer og sprog              |

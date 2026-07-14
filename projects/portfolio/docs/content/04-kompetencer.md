@@ -35,18 +35,20 @@ Chatty · Rating-systemer · Recommender · Performance tracking · SEO-optimeri
 
 ---
 
-## Kompetence 04 — Implementering og varig kunnen
+## Kompetence 04 — Implementering og organisatorisk læring
 
-**Beskrivelse:** En specialistfunktion måles på to ting: hvad den skaber, og hvad den efterlader. Den løser ikke problemerne for resten. Den lærer resten at løse dem.
+**Beskrivelse:** Implementering handler ikke kun om at tage et system i brug. Det handler om at ændre adfærd, opbygge fælles standarder og sikre, at metode og erfaring bliver i organisationen. Træning, feedbacksløjfer og ændrede arbejdsgange er redskaberne. Målet er, at organisationen er bedre i stand til at forstå og løse den slags problemer selv.
+
+En specialistfunktion måles på det, den skaber, og det, den efterlader. Et projekt må gerne slutte. Læringen må ikke. Den varige fordel i AI ligger ikke i modellen — den ligger i alt det, organisationen har lært at gøre med den.
 
 **Beviser:**
-AI-adoption · Workshops · Promptdisciplin · Fælles metode · Feedbacksløjfer · Medarbejdertræning · Lavere friktion · Organisatorisk forankring
+AI-adoption · Workshops · Fælles metode · Feedbacksløjfer · Medarbejdertræning · Lavere friktion · Ændrede arbejdsgange · Varig faglig styrke
 
 ---
 
 ## Kompetence 05 — Ledelse og organisatorisk transformation
 
-**Beskrivelse:** Tydelig retning, ledelse af ledere, faglig autonomi, psykologisk tryghed og forandring under reelt driftspres.
+**Beskrivelse:** Tydelig retning, ledelse af ledere og faglige nøglepersoner, høje forventninger og reel faglig tillid. Forandring og stabil drift på samme tid. Psykologisk tryghed som vej til kvalitet — ikke som fravær af krav.
 
 **Beviser:**
 150 medarbejdere · Ledelse af ledere · Mellemlederudvikling · Strategisk retning · OKR/KPI · Prioriteringsmodeller · Feedbackkultur · Organisatorisk forankring

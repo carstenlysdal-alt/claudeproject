@@ -14,7 +14,7 @@ Fra journalistisk håndværk til redaktionel ledelse, digital transformation, AI
 **Tema:** Produkt, platform og AI-arkitektur
 **Titel:** Koncept- og produktudvikler, business og AI
 **Organisation:** Projektbaseret · Projekt Y
-**Beskrivelse:** Konceptudvikling, discovery, redaktionelt produktarbejde, AI-understøttede workflows, kommerciel model, roadmap og kobling mellem indhold, teknologi og forretning.
+**Beskrivelse:** Produktansvar for et AI-drevet erhvervsmedieprodukt og tilhørende AI-infrastruktur. Konceptudvikling, discovery og roadmap i tæt samarbejde med CEO, Tech Lead og Commercial Lead. Koblingen mellem redaktionelt indhold, teknologi og kommerciel model er den bærende opgave — fra første idé til funktionel arkitektur.
 **Chips:** Discovery · Produktstrategi · Roadmap · AI-arkitektur · Brugerrejse · Forretning
 
 ---
@@ -25,7 +25,7 @@ Fra journalistisk håndværk til redaktionel ledelse, digital transformation, AI
 **Tema:** Transformation og AI i drift
 **Titel:** Journalistisk chefredaktør
 **Organisation:** Sjællandske Medier
-**Beskrivelse:** Overordnet journalistisk og organisatorisk ledelse af en organisation på ca. 150 medarbejdere. Sat retning for digital udvikling, AI-implementering og datadrevet prioritering — og omsat strategi til ansvar, beslutninger, arbejdsgange og varig praksis.
+**Beskrivelse:** Overordnet journalistisk og organisatorisk ledelse af ca. 150 medarbejdere. Sat retning for digital udvikling, AI fra eksperiment til drift og datadrevet prioritering. Ledet via mellemledere og faglige nøglepersoner med klart placeret ansvar og fælles beslutningsrammer. Strategi omsat til beslutninger og arbejdsgange — og forankret, så metode og erfaring blev i organisationen.
 **Chips:** Chatty · AI-infrastruktur · Ledelse af ledere · OKR/KPI · Transformation · Organisatorisk forankring
 
 ---

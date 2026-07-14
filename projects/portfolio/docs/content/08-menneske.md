@@ -4,7 +4,7 @@
 Rytme, retning *og samspil*
 
 ## Citat
-Den varige fordel i AI ligger ikke i modellen. Den ligger i alt det, organisationen har lært at gøre med den.
+Min opgave som leder er ikke at være den dygtigste i alle rum, men at få fagligheden i rummet til at arbejde i samme retning.
 
 ## Intro
 Mere end to årtier med musik har formet min måde at lede på. Et stærkt ensemble kræver retning, timing, disciplin og lydhørhed — og plads til, at den enkelte kan sit fag bedre end dirigenten.
@@ -17,7 +17,7 @@ Mere end to årtier med musik har formet min måde at lede på. Et stærkt ensem
 Ledelse handler også om hvornår: hvornår tempoet skal op, hvornår der skal skabes ro, og hvornår en beslutning ikke kan vente.
 
 ### 02 — Samspil
-Dygtige mennesker vil ikke have nogen til at stå bag dem og nikke. De vil have en retning at gå i og plads til at finde den bedste vej selv. Min opgave er at sætte kursen, ikke styre hvert skridt.
+Dygtige mennesker vil ikke have nogen til at stå bag dem og nikke. De vil have en retning at gå i og klare rammer at arbejde inden for — og plads til at finde den bedste vej selv. Stærke specialister gør hinanden bedre, når de spiller i samme retning. Min opgave er at sikre det — ikke at styre hvert skridt.
 
 ### 03 — Mestring
 Man vokser ikke under pres alene. Man vokser, når man tør sige tingene højt — fejlen, tvivlen, det man ikke forstår. Det er tillid, der gør standarder høje. Ikke angst.
