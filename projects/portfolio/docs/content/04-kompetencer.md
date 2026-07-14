@@ -35,9 +35,9 @@ Chatty · Rating-systemer · Recommender · Performance tracking · SEO-optimeri
 
 ---
 
-## Kompetence 04 — Implementering og varig kapabilitet
+## Kompetence 04 — Implementering og varig kunnen
 
-**Beskrivelse:** En AI-funktion løser ikke problemer for organisationen — den gør organisationen bedre til selv at løse dem. Fra use case og træning til metode, feedbacksløjfer og praksis, der holder.
+**Beskrivelse:** En god specialistfunktion skaber sig selv overflødig. Den løser ikke problemerne for resten. Den lærer resten at løse dem. Fra use case og træning til metode, feedbacksløjfer og praksis, der holder.
 
 **Beviser:**
 AI-adoption · Workshops · Promptdisciplin · Fælles metode · Feedbacksløjfer · Medarbejdertræning · Lavere friktion · Organisatorisk forankring

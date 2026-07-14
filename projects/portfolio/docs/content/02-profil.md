@@ -10,10 +10,14 @@ Jeg er journalist og har brugt alle mine professionelle år på at forstå, hvad
 Som journalistisk chefredaktør for Sjællandske Medier ledede jeg ca. 150 journalister med ansvar for journalistisk retning, digital udvikling og organisatorisk forandring. Det var her, AI gik fra eksperiment til infrastruktur. Chatty er ikke et pilotprojekt, der endte i en præsentation. Det endte i drift, med CMS-integration, feedbacksløjfer og 500–600 ugentlige enheder.
 
 ## Afsnit 3
-Jeg leder AI-projekter, produktudvikling og organisatorisk forandring med et enkelt udgangspunkt: Teknologi skaber ikke forandring alene. Det gør mennesker, når de får retning, ansvar og mulighed for at lære. Jeg arbejder med udvikling i tre lag — output gør os hurtigere, kompetence gør mennesker dygtigere, kapabilitet gør organisationen i stand til noget, den ikke kunne før. Min ambition er altid at nå det tredje lag og efterlade organisationen klogere end inden vi begyndte.
+Teknologi forandrer ingenting af sig selv. Det er menneskene, der gør det — når de ved, hvad de arbejder hen imod, og har plads til at lære undervejs.
+
+Jeg tænker i tre lag. Nye systemer gør os hurtigere. Ny metode gør os dygtigere. Ny kunnen gør os i stand til noget, vi slet ikke kunne før. Det tredje lag er det, der tæller. Det er der, organisationer holder op med at gentage sig selv.
 
 ## Afsnit 4
-Nu arbejder jeg projektbaseret med AI-arkitektur, produktstrategi og redaktionel konceptudvikling. Fællesnævneren er implementering: En strategi er først noget værd, når mennesker forstår retningen, kan se deres egen rolle og oplever, at nye arbejdsgange gør kerneopgaven bedre. Jeg tror på at automatisere rutinen og bevare tænkningen — for når maskiner kan producere mere information hurtigere, bliver menneskelig dømmekraft ikke mindre vigtig. Den bliver mere værdifuld.
+Nu arbejder jeg projektbaseret med AI, produktstrategi og redaktionel konceptudvikling. En strategi er først noget værd, når folk kan mærke den i hverdagen — når de forstår retningen, ser deres rolle og oplever, at det nye faktisk gør kerneopgaven bedre.
+
+Jeg lader maskinerne tage rutinen og menneskene beholde tænkningen. Jo mere information maskinerne producerer, jo sjældnere og mere kostbar bliver evnen til at vurdere, prioritere og handle rigtigt. Det er ikke en teknologipointe. Det er en ledelsespointe.
 
 ---
 

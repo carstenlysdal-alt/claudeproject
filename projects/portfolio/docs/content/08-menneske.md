@@ -17,10 +17,10 @@ Mere end to årtier med musik har formet min måde at lede på. Et stærkt ensem
 Ledelse handler også om hvornår: hvornår tempoet skal op, hvornår der skal skabes ro, og hvornår en beslutning ikke kan vente.
 
 ### 02 — Samspil
-Dygtige mennesker behøver ikke detailstyring. De behøver en fælles retning, tydelige rammer og blik for, hvordan forskellige fagligheder gør hinanden bedre.
+Dygtige mennesker vil ikke have nogen til at stå bag dem og nikke. De vil have en retning at gå i og plads til at finde den bedste vej selv. Min opgave er at sætte kursen, ikke styre hvert skridt.
 
 ### 03 — Mestring
-Høje standarder kræver gentagelse, ærlig feedback og plads til at lære. Psykologisk tryghed er ikke fravær af krav, men muligheden for at sige tvivlen højt, før den bliver til en fejl.
+Man vokser ikke under pres alene. Man vokser, når man tør sige tingene højt — fejlen, tvivlen, det man ikke forstår. Det er tillid, der gør standarder høje. Ikke angst.
 
 ### 04 — Retning
 Retning er mere end en plan. Den skal kunne ses i prioriteringerne og mærkes i hverdagen. En forandring er først lykkedes, når nye beslutninger og arbejdsgange fungerer uden konstant ledelsesmæssigt pres.
