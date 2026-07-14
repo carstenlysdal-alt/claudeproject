@@ -35,9 +35,9 @@ Chatty · Rating-systemer · Recommender · Performance tracking · SEO-optimeri
 
 ---
 
-## Kompetence 04 — Implementering og varig adoption
+## Kompetence 04 — Implementering og varig kapabilitet
 
-**Beskrivelse:** Fra træning og fælles standarder til ændrede arbejdsgange, feedbacksløjfer og praksis, der holder.
+**Beskrivelse:** En AI-funktion løser ikke problemer for organisationen — den gør organisationen bedre til selv at løse dem. Fra use case og træning til metode, feedbacksløjfer og praksis, der holder.
 
 **Beviser:**
 AI-adoption · Workshops · Promptdisciplin · Fælles metode · Feedbacksløjfer · Medarbejdertræning · Lavere friktion · Organisatorisk forankring

@@ -4,7 +4,7 @@
 Rytme, retning *og samspil*
 
 ## Citat
-Min opgave som leder er ikke at være den dygtigste i alle rum, men at få fagligheden i rummet til at arbejde i samme retning.
+Den varige konkurrencefordel i AI er ikke modellen. Det er organisationens akkumulerede læring.
 
 ## Intro
 Mere end to årtier med musik har formet min måde at lede på. Et stærkt ensemble kræver retning, timing, disciplin og lydhørhed — og plads til, at den enkelte kan sit fag bedre end dirigenten.

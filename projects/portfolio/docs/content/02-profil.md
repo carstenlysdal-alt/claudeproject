@@ -10,10 +10,10 @@ Jeg er journalist og har brugt alle mine professionelle år på at forstå, hvad
 Som journalistisk chefredaktør for Sjællandske Medier ledede jeg ca. 150 journalister med ansvar for journalistisk retning, digital udvikling og organisatorisk forandring. Det var her, AI gik fra eksperiment til infrastruktur. Chatty er ikke et pilotprojekt, der endte i en præsentation. Det endte i drift, med CMS-integration, feedbacksløjfer og 500–600 ugentlige enheder.
 
 ## Afsnit 3
-Jeg leder gennem tydelig retning, høje forventninger og reel faglig tillid. Jeg sætter mål, prioriteringer og ansvar klart, men detailstyrer ikke mennesker, der kan deres fag. Min opgave er at skabe rammerne, beslutningerne og rytmen, der får specialister, ledere og teams til at lykkes sammen — også når driften presser, og forandringen ikke kan vente.
+Jeg leder AI-projekter, produktudvikling og organisatorisk forandring med et enkelt udgangspunkt: Teknologi skaber ikke forandring alene. Det gør mennesker, når de får retning, ansvar og mulighed for at lære. Jeg arbejder med udvikling i tre lag — output gør os hurtigere, kompetence gør mennesker dygtigere, kapabilitet gør organisationen i stand til noget, den ikke kunne før. Min ambition er altid at nå det tredje lag og efterlade organisationen klogere end inden vi begyndte.
 
 ## Afsnit 4
-Nu arbejder jeg projektbaseret med AI-arkitektur, produktstrategi og redaktionel konceptudvikling. Fællesnævneren er implementering: En strategi er først noget værd, når mennesker forstår retningen, kan se deres egen rolle og oplever, at nye arbejdsgange gør kerneopgaven bedre. Jeg følger derfor idéer hele vejen — fra beslutning og organisering til den adfærd, der bliver ved, når projektet er afsluttet.
+Nu arbejder jeg projektbaseret med AI-arkitektur, produktstrategi og redaktionel konceptudvikling. Fællesnævneren er implementering: En strategi er først noget værd, når mennesker forstår retningen, kan se deres egen rolle og oplever, at nye arbejdsgange gør kerneopgaven bedre. Jeg tror på at automatisere rutinen og bevare tænkningen — for når maskiner kan producere mere information hurtigere, bliver menneskelig dømmekraft ikke mindre vigtig. Den bliver mere værdifuld.
 
 ---
 
