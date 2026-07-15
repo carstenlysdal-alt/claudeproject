@@ -1,38 +1,30 @@
 # 02 — Profil
 
 ## Heading
-Hvem jeg er
+Rundet af journalistikken
 
 ## Afsnit 1
-Jeg er journalist og har brugt alle mine professionelle år på at forstå, hvad der foregår — i samfundet, i medierne og i de organisationer, der producerer dem. Det er gået fra lokal reportage til redaktionel ledelse, digital transformation og AI-implementering. Ikke som interessefelter. Som stillinger, med ansvar og konsekvenser.
+Jeg er journalist og rundet af nyhedsarbejdet: kildearbejdet, samfundsblikket og det daglige krav om at skelne det væsentlige fra det ligegyldige. Jeg begyndte i den lokale journalistik, hvor konsekvenserne af arbejdet er konkrete, og hvor relevans ikke er et abstrakt begreb. Den erfaring har fulgt mig fra reporterens arbejde til chefredaktørens ansvar for journalistik, mennesker og strategisk retning.
 
 ## Afsnit 2
-Som journalistisk chefredaktør for Sjællandske Medier ledede jeg ca. 150 journalister med ansvar for journalistisk retning, digital udvikling og organisatorisk forandring. Det var her, AI gik fra eksperiment til infrastruktur. Chatty er ikke et pilotprojekt, der endte i en præsentation. Det endte i drift, med CMS-integration, feedbacksløjfer og 500–600 ugentlige enheder.
+Som journalistisk chefredaktør for Sjællandske Medier havde jeg ledelses- og resultatansvar for ca. 150 medarbejdere. Jeg satte retning for journalistikken, den digitale udvikling og en omfattende organisatorisk transformation. Undervejs fordoblede vi trafikken, udviklede nye prioriteringsmodeller og gjorde AI til en integreret del af redaktionens arbejdsgange.
 
 ## Afsnit 3
-Jeg leder gennem andre ledere og faglige nøglepersoner. Min opgave er at sætte kursen, gøre valgene tydelige og give de rigtige mennesker plads til at løse opgaven. Høje forventninger og reel faglig tillid er ikke modsætninger. De er forudsætninger for hinanden.
-
-Faglig frihed kræver tydelig retning. Ellers bliver friheden blot uklarhed.
-
-Psykologisk tryghed handler ikke om at skrue ned for kravene. Det handler om retten til at sige tvivlen, fejlen og uenigheden højt, mens der stadig er tid til at handle. Det er grundlaget for ærlig feedback og høje standarder — og for at drive forandring, mens driften kører.
+Jeg ser journalistik som et løfte til brugeren: at gøre mennesker klogere på den virkelighed, de er en del af. Derfor interesserer jeg mig for brugerbehov, data, teknologi og nye produktformer. Ikke for at underordne journalistikken en algoritme, men for at sikre, at væsentlig journalistik bliver fundet, forstået og brugt. Publicistisk ambition og brugerorientering skal styrke hinanden.
 
 ## Afsnit 4
-Teknologi skaber ikke forandring i sig selv. Det gør mennesker, når retning, ansvar og læring hænger sammen.
-
-Jeg ser AI som en ledelsesopgave, inden det er en teknisk opgave. Nye modeller kan købes og systemer bygges. Men den metode og dømmekraft, der gør teknologien værdifuld, vokser gennem tid og mange iterationer. Ingen opdatering kan installere erfaring.
-
-Nu arbejder jeg projektbaseret med AI, produktstrategi og redaktionel konceptudvikling. Jeg begynder ikke med værktøjet, men med behovet: Hvilket problem skal løses? Hvem skal mærke forskellen? Og hvad skal organisationen kunne bagefter, som den ikke kunne før?
+Jeg ser AI som en ledelses- og produktudviklingsopgave, før den er en teknisk opgave. Værdien opstår først, når teknologien løser et reelt problem, understøtter den faglige dømmekraft og bliver en naturlig del af organisationens praksis.
 
 ---
 
 ## Faktaboks
 
-| Label         | Værdi                                     |
-|---------------|-------------------------------------------|
-| Profil        | Journalist · Chefredaktør · Systembygger  |
-| Erfaring      | 13 år i medievirksomhed                   |
-| Ledelse       | Ca. 150 medarbejdere, Sjællandske Medier  |
-| AI i drift    | Chatty — redaktionel AI-infrastruktur     |
-| Digital vækst | 2× trafikvækst, datadrevet drift          |
-| Uddannelse    | Journalist, SDU 2010–2014                 |
-| I dag         | Projektbaseret — AI, produkt og strategi  |
+| Label         | Værdi                                              |
+|---------------|----------------------------------------------------|
+| Profil        | Journalist · Chefredaktør · Transformationsleder   |
+| Erfaring      | 13 år i medievirksomhed                            |
+| Ledelse       | Ca. 150 medarbejdere, Sjællandske Medier           |
+| AI i drift    | Chatty — redaktionel AI-infrastruktur              |
+| Digital vækst | 2× trafikvækst, datadrevet drift                   |
+| Uddannelse    | Journalist, SDU 2010–2014                          |
+| I dag         | Projektbaseret — medieprodukt, forretning og AI    |

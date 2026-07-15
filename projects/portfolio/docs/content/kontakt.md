@@ -1,10 +1,10 @@
 # Kontakt
 
 ## Heading
-Skal vi tale om AI, redaktionel transformation eller produktudvikling?
+Skal vi tale om journalistik, ledelse eller transformation?
 
 ## Intro
-Jeg er relevant i samtaler om AI i drift, digitale indholdsstrategier, brugerbehov, redaktionelle workflows, platformudvikling, medieledelse og organisatorisk forandring.
+Jeg er relevant for organisationer, der vil udvikle journalistik, produkter og arbejdsformer — og som har brug for at forbinde publicistisk retning med mennesker, brugerindsigt, teknologi og gennemførelseskraft.
 
 ## Knapper
 - Primær: `Skriv til mig` → `mailto:carstenlysdal@proton.me?subject=Samarbejde`
@@ -19,5 +19,5 @@ carstenlysdal@proton.me
 ## Footer
 
 **Copyright:** © 2026 Carsten Lysdal
-**Tagline:** AI · data · mennesker · redaktionel transformation
+**Tagline:** Journalistisk dømmekraft · Ledelse · Transformation · Produktudvikling
 **Links:** Mail · LinkedIn · CV

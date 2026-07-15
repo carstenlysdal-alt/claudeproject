@@ -4,7 +4,7 @@
 Værktøjer og *teknisk spændvidde*
 
 ## Intro
-Jeg er ikke udvikler i klassisk forstand, men arbejder tæt på systemer, prototyper, workflows og brugerflader — med praktisk forståelse for, hvordan redaktionelle behov bliver til funktionelle løsninger.
+Jeg arbejder tæt på systemer, prototyper og brugerflader og kan omsætte redaktionelle og forretningsmæssige behov til workflows, funktionskrav og løsninger, der kan udvikles og afprøves i praksis.
 
 ---
 

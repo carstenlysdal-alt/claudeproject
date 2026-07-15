@@ -1,10 +1,10 @@
 # 05 — Karriere
 
 ## Heading
-Erfaring *bygget i lag*
+Erfaring
 
 ## Intro
-Fra journalistisk håndværk til redaktionel ledelse, digital transformation, AI-infrastruktur og produktorienteret medieudvikling.
+Fra journalistisk håndværk til chefredaktion, transformation og produktudvikling.
 
 ---
 
@@ -12,9 +12,9 @@ Fra journalistisk håndværk til redaktionel ledelse, digital transformation, AI
 
 **Periode:** 2026–
 **Tema:** Produkt, platform og AI-arkitektur
-**Titel:** Koncept- og produktudvikler, business og AI
+**Titel:** Koncept- og produktudvikler, Business og AI
 **Organisation:** Projektbaseret · Projekt Y
-**Beskrivelse:** Produktansvar for et AI-drevet erhvervsmedieprodukt og tilhørende AI-infrastruktur. Konceptudvikling, discovery og roadmap i tæt samarbejde med CEO, Tech Lead og Commercial Lead. Koblingen mellem redaktionelt indhold, teknologi og kommerciel model er den bærende opgave — fra første idé til funktionel arkitektur.
+**Beskrivelse:** Ansvar for konceptudvikling, produktretning og centrale leverancer på et AI-drevet erhvervsmedieprodukt og en LLM-drevet redaktionel intelligensplatform. Arbejdet dækker redaktionelt koncept, discovery, brugerrejser, roadmap og teknisk specifikation — i tæt samarbejde med CEO, Tech Lead og Commercial Lead.
 **Chips:** Discovery · Produktstrategi · Roadmap · AI-arkitektur · Brugerrejse · Forretning
 
 ---
@@ -22,11 +22,11 @@ Fra journalistisk håndværk til redaktionel ledelse, digital transformation, AI
 ## Stilling 2
 
 **Periode:** 2023–2026
-**Tema:** Transformation og AI i drift
+**Tema:** Journalistisk ledelse og transformation
 **Titel:** Journalistisk chefredaktør
 **Organisation:** Sjællandske Medier
-**Beskrivelse:** Overordnet journalistisk og organisatorisk ledelse af ca. 150 medarbejdere. Sat retning for digital udvikling, AI fra eksperiment til drift og datadrevet prioritering. Ledet via mellemledere og faglige nøglepersoner med klart placeret ansvar og fælles beslutningsrammer. Strategi omsat til beslutninger og arbejdsgange — og forankret, så metode og erfaring blev i organisationen.
-**Chips:** Chatty · AI-infrastruktur · Ledelse af ledere · OKR/KPI · Transformation · Organisatorisk forankring
+**Beskrivelse:** Overordnet journalistisk, organisatorisk og resultatmæssig ledelse af ca. 150 medarbejdere. Ansvar for journalistisk retning, publicistisk kvalitet, digital udvikling og transformation af organisation og arbejdsgange — og for at omsætte strategi til ansvar, beslutninger og varig praksis via mellemledere og faglige nøglepersoner. AI gik fra eksperiment til integreret drift. Metode og erfaring blev i organisationen.
+**Chips:** Journalistisk retning · Ledelse af ledere · AI-infrastruktur · OKR/KPI · Transformation
 
 ---
 
@@ -36,7 +36,7 @@ Fra journalistisk håndværk til redaktionel ledelse, digital transformation, AI
 **Tema:** Digital nyhedsdrift
 **Titel:** Nyhedsredaktør
 **Organisation:** Sjællandske Medier
-**Beskrivelse:** Daglig redaktionel prioritering, timing, kvalitet og performance på tværs af platforme — med data som grundlag for bedre produktion og distribution.
+**Beskrivelse:** Daglig redaktionel prioritering, timing, kvalitet og performance på tværs af platforme — med data som grundlag for bedre produktion og distribution. Coachede og udviklede medarbejdere med fokus på performance og journalistisk kvalitet.
 
 ---
 
@@ -46,7 +46,7 @@ Fra journalistisk håndværk til redaktionel ledelse, digital transformation, AI
 **Tema:** Redaktionel ledelse
 **Titel:** Lokalredaktør, Slagelse
 **Organisation:** Sjællandske Medier
-**Beskrivelse:** Ledelsesansvar for redaktion, drift, journalistisk performance, lokale udviklingsinitiativer og relationer til myndigheder, aktører og lokalsamfund.
+**Beskrivelse:** Ledelse af en lokalredaktion med ansvar for daglig nyhedsdrift, journalistisk kvalitet, prioritering og relationen til det lokalsamfund, redaktionen dækkede kritisk og tæt. Drev redaktionelle projekter og lokale udviklingsinitiativer i tæt samarbejde med myndigheder, aktører og interessenter.
 
 ---
 
@@ -56,7 +56,7 @@ Fra journalistisk håndværk til redaktionel ledelse, digital transformation, AI
 **Tema:** Nyhedshåndværk
 **Titel:** Journalistpraktikant og journalist
 **Organisation:** Sjællandske Medier
-**Beskrivelse:** Grundlaget: lokal journalistik, kildearbejde, produktion, vinkling, samfundsblik og forståelse for, hvad der betyder noget for brugerne.
+**Beskrivelse:** Lokal nyhedsjournalistik, kildearbejde, dagsordenssætning og løbende vurdering af, hvilke historier der havde reel betydning for mennesker og lokalsamfund. Det publicistiske fundament.
 
 ---
 

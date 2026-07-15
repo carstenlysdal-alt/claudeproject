@@ -1,29 +1,29 @@
-# 08 — Mennesket
+# 08 — Ledelsestilgang
 
 ## Heading
-Rytme, retning *og samspil*
+Sådan leder jeg
 
-## Citat
-Min opgave som leder er ikke at være den dygtigste i alle rum, men at få fagligheden i rummet til at arbejde i samme retning.
+## Ledelsesprincip
+Min opgave som leder er ikke at være den dygtigste i alle rum, men at sætte en tydelig retning og få fagligheden i rummet til at arbejde sammen om den.
 
 ## Intro
-Mere end to årtier med musik har formet min måde at lede på. Et stærkt ensemble kræver retning, timing, disciplin og lydhørhed — og plads til, at den enkelte kan sit fag bedre end dirigenten.
+Mere end to årtier med musik har skærpet mit blik for timing, samspil og ledelse af stærke fagligheder. Begge steder handler det om det samme: at skabe en retning, der giver stærke fagligheder mulighed for at spille bedre sammen.
 
 ---
 
 ## Værdikort
 
-### 01 — Timing
-Ledelse handler også om hvornår: hvornår tempoet skal op, hvornår der skal skabes ro, og hvornår en beslutning ikke kan vente.
+### 01 — Retning
+Jeg leder gennem andre ledere og faglige nøglepersoner. Min opgave er at gøre prioriteringerne tydelige, placere ansvaret og give de rette mennesker mandat til at finde den bedste løsning.
 
-### 02 — Samspil
-Dygtige mennesker vil ikke have nogen til at stå bag dem og nikke. De vil have en retning at gå i og klare rammer at arbejde inden for — og plads til at finde den bedste vej selv. Stærke specialister gør hinanden bedre, når de spiller i samme retning. Min opgave er at sikre det — ikke at styre hvert skridt.
+### 02 — Krav og tillid
+Høje forventninger og reel faglig tillid er ikke modsætninger. Mennesker præsterer bedst, når de ved, hvad der forventes, og samtidig har plads til at bruge deres faglighed.
 
-### 03 — Mestring
-Man vokser ikke under pres alene. Man vokser, når man tør sige tingene højt — fejlen, tvivlen, det man ikke forstår. Det er tillid, der gør standarder høje. Ikke angst.
+### 03 — Psykologisk tryghed
+Psykologisk tryghed er ikke fravær af krav. Det er retten til at sige tvivlen, fejlen og uenigheden højt, mens der stadig er tid til at handle.
 
-### 04 — Retning
-Retning er mere end en plan. Den skal kunne ses i prioriteringerne og mærkes i hverdagen. En forandring er først lykkedes, når nye beslutninger og arbejdsgange fungerer uden konstant ledelsesmæssigt pres.
+### 04 — Musikken
+Mere end to årtier med musik har skærpet mit blik for timing, samspil og ledelse af stærke fagligheder. Et ensemble lykkes ikke, fordi alle spiller det samme, men fordi forskelligheden samles om en fælles retning.
 
 ---
 

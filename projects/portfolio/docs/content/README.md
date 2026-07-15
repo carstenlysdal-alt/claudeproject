@@ -2,19 +2,19 @@
 
 Én fil per sektion. Rediger teksten her. Sig "opdater HTML fra content" når du er klar.
 
-## Filer
+## Filer og sektionsorden i HTML
 
-| Fil                    | Sektion                         |
-|------------------------|---------------------------------|
-| `01-hero.md`           | Hero, stats-bar, chips          |
-| `02-profil.md`         | Profil, faktaboks               |
-| `03-cases.md`          | Alle syv cases                  |
-| `04-kompetencer.md`    | Seks kompetencefelter           |
-| `05-karriere.md`       | CV-tidslinje                    |
-| `06-vaerktoejer.md`    | Værktøjer og sprog              |
-| `07-scene.md`          | Oplæg, workshops, advisory      |
-| `08-menneske.md`       | Musik, værdier, personalia      |
-| `kontakt.md`           | Kontaktsektion og footer        |
+| Fil                    | Sektion                                    |
+|------------------------|--------------------------------------------|
+| `01-hero.md`           | Hero, stats-bar, chips                     |
+| `02-profil.md`         | Profil — publicistisk fundament, faktaboks |
+| `05-karriere.md`       | Erfaring — karrieretidslinje (FØR cases)   |
+| `03-cases.md`          | Fire cases med Mit ansvar                  |
+| `04-kompetencer.md`    | Seks kompetencer med beviser               |
+| `07-scene.md`          | Scene — oplæg, workshops, sparring         |
+| `08-menneske.md`       | Ledelsestilgang — Sådan leder jeg          |
+| `06-vaerktoejer.md`    | Værktøjer og sprog                         |
+| `kontakt.md`           | Kontaktsektion og footer                   |
 
 ## Workflow
 

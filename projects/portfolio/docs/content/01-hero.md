@@ -1,20 +1,20 @@
 # 01 — Hero
 
 ## Eyebrow
-Journalist · Chefredaktør · AI-implementering · Produktstrategi
+Journalist · Chefredaktør · Transformationsleder
 
 ## Headline (h1)
-AI, data og
-mennesker.
-*Sat i system.*
+Journalistisk dømmekraft.
+Strategisk retning.
+*Forandring i praksis.*
 
-> `*kursiv*` = accent-farve + gul understregning i designet
+> `*kursiv*` = accent-farve i designet
 
 ## Pitch
-De fleste organisationer ved godt, hvad AI kan. Udfordringen er at få det til at virke i drift — med rigtige mennesker, rigtige deadlines og rigtige kvalitetskrav. Det er det, jeg gør.
+Jeg er rundet af nyhedsarbejdet: tempoet, tvivlen, prioriteringerne og fornemmelsen for, hvornår noget betyder noget. Som journalistisk chefredaktør har jeg brugt den dømmekraft til at lede mennesker, udvikle journalistik og omsætte data, teknologi og AI til stærkere produkter og bedre redaktionel drift.
 
 ## Proof-line
-Journalist. Chefredaktør for 150 journalister. AI fra prototype til drift. 13 år i medievirksomhed.
+Tidligere journalistisk chefredaktør med ledelses- og resultatansvar for ca. 150 medarbejdere. Fordoblet trafik. AI fra prototype til drift. 13 års erfaring fra mediebranchen.
 
 ## CTA-knapper
 - Primær: `Læs profil` → `#profil`
@@ -22,10 +22,7 @@ Journalist. Chefredaktør for 150 journalister. AI fra prototype til drift. 13 �
 - Tekst: `Hent CV ↓` → `assets/carsten-lysdal-cv.pdf`
 
 ## Chips
-Chatty · AI-infrastruktur · Relevanskriterier · Brugerbehov · Enablement · OKR/KPI · 150 medarbejdere · 500–600 enheder/uge · Nyhedstæft · Medieledelse
-
-## Microcopy
-Ikke AI som sideprojekt. AI som praksis, infrastruktur og ledelse.
+Journalistisk ledelse · 150 medarbejdere · 2× trafikvækst · AI fra prototype til drift · Produkt- og organisationsudvikling
 
 ## Portræt-status
 Åben for nye projekter

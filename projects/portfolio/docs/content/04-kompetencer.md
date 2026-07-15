@@ -4,60 +4,58 @@
 Kompetencer *med bevis*
 
 ## Intro
-Min styrke ligger i koblingen: journalistik, AI, data, produkt, organisation og mennesker. Ikke som adskilte discipliner, men som ét arbejdende system.
+Seks kompetenceområder dokumenteret gennem konkret arbejde og målbare resultater.
 
 ---
 
-## Kompetence 01 — Redaktionel dømmekraft
+## Kompetence 01 — Journalistisk og publicistisk ledelse
 
-**Beskrivelse:** Nyhedstæft, samfundsblik, kildekritik, prioritering og publicistisk ansvar.
+**Beskrivelse:** Overordnet journalistisk ledelse, publicistisk ansvar og kvalitetssikring. Nyhedstæft, samfundsblik, kildekritik og prioritering — og evnen til at bevare den redaktionelle dømmekraft, når organisation og teknologi forandrer sig.
 
 **Beviser:**
-Journalistisk chefredaktør · Nyhedsredaktør · Lokalredaktør · Nyhedsdrift · Kvalitetssikring · Samfundsforståelse · Timing · Vinkling
+Chefredaktøransvar for ca. 150 medarbejdere · Journalistisk retning og publicistisk ansvar · Nyhedsredaktør · Lokalredaktør · Oplæg og moderation · Research og OSINT
 
 ---
 
 ## Kompetence 02 — Digital indholdsstrategi
 
-**Beskrivelse:** Brugerbehov, relevanskriterier, formatstrategi, distribution og performance.
+**Beskrivelse:** Brugerbehov, relevanskriterier, formatstrategi, distribution og content performance. Oversætter data til redaktionelle beslutninger, der kan forstås og bruges i hverdagen.
 
 **Beviser:**
-Relevanskriterier · Brugeradfærd · Content performance · Indholdseffekt · Formatvalg · SEO · Trafikvækst · Redaktionel prioritering
+Bidrag til fordobling af trafik · Relevanskriterier og brugeradfærd · Formatudvikling · SEO · Datadrevet prioritering
 
 ---
 
-## Kompetence 03 — AI og platformudvikling
+## Kompetence 03 — Organisationsudvikling
 
-**Beskrivelse:** Fra use case til infrastruktur, prototype, interface og drift.
+**Beskrivelse:** Ledelse via mellemledere og faglige nøglepersoner. Forandring og stabil drift på samme tid. Strategi oversat til ansvar, beslutninger og vaner.
 
 **Beviser:**
-Chatty · Rating-systemer · Recommender · Performance tracking · SEO-optimeringsværktøj · Researchværktøjer · AI-prototyping · CMS-integration
+Ledelse af ca. 150 medarbejdere via mellemledere · OKR/KPI og nye beslutningsrammer · Feedbackkultur · Organisatorisk forankring
 
 ---
 
-## Kompetence 04 — Implementering og organisatorisk læring
+## Kompetence 04 — AI-implementering
 
-**Beskrivelse:** Implementering handler ikke kun om at tage et system i brug. Det handler om at ændre adfærd, opbygge fælles standarder og sikre, at metode og erfaring bliver i organisationen. Træning, feedbacksløjfer og ændrede arbejdsgange er redskaberne. Målet er, at organisationen er bedre i stand til at forstå og løse den slags problemer selv.
-
-En specialistfunktion måles på det, den skaber, og det, den efterlader. Et projekt må gerne slutte. Læringen må ikke. Den varige fordel i AI ligger ikke i modellen — den ligger i alt det, organisationen har lært at gøre med den.
+**Beskrivelse:** Fra use case til infrastruktur og drift. Evnen til at oversætte redaktionelle problemer til AI-løsninger med reel organisatorisk forankring og varig metodisk styrke.
 
 **Beviser:**
-AI-adoption · Workshops · Fælles metode · Feedbacksløjfer · Medarbejdertræning · Lavere friktion · Ændrede arbejdsgange · Varig faglig styrke
+Chatty fra prototype til integreret drift · CMS-integration · Workshops og træning · Feedbacksløjfer · Fælles metode
 
 ---
 
-## Kompetence 05 — Ledelse og organisatorisk transformation
+## Kompetence 05 — Skalering og workflows
 
-**Beskrivelse:** Tydelig retning, ledelse af ledere og faglige nøglepersoner, høje forventninger og reel faglig tillid. Forandring og stabil drift på samme tid. Psykologisk tryghed som vej til kvalitet — ikke som fravær af krav.
+**Beskrivelse:** Designede processer, redaktionel kontrol og klare kvalitetsstandarder. Skalering uden tab af faglig vurdering eller journalistisk intention.
 
 **Beviser:**
-150 medarbejdere · Ledelse af ledere · Mellemlederudvikling · Strategisk retning · OKR/KPI · Prioriteringsmodeller · Feedbackkultur · Organisatorisk forankring
+500–600 ugentlige enheder · Centraliseret produktionsflow · Kvalitetssikring og godkendelsespunkter
 
 ---
 
-## Kompetence 06 — Medieledelse og offentlig formidling
+## Kompetence 06 — Produktudvikling
 
-**Beskrivelse:** Oplæg, moderation, talsperson, konferencer og samtaler om medier, AI og samfund.
+**Beskrivelse:** Fra redaktionelt problem til system, brugerrejse og fungerende MVP. Produktansvar forankret i redaktionelle behov og forretningsmæssig logik.
 
 **Beviser:**
-Oplæg om AI · Workshops · Moderatorroller · Talsperson · Medieledelse · Konferencer · Panelsamtaler · Offentlig samtale
+Koncept og roadmap for AI-drevet erhvervsmedieprodukt · LLM-drevet scoringsplatform i aktiv drift · Discovery · Funktionsspecifikation
