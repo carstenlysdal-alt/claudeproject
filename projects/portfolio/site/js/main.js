@@ -2,7 +2,7 @@
 
 /* ══════════════════════════════════════
    Carsten Lysdal Portfolio
-   Nav · Mobile menu · Reveal · Cases · Bottom nav
+   Nav · Mobile menu · Reveal · Cases · CV-expand · Bottom nav
 ══════════════════════════════════════ */
 
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -55,7 +55,6 @@ mobileMenu?.querySelectorAll('.mobile-link').forEach(a => {
   a.addEventListener('click', closeMenu);
 });
 
-// Close menu on outside click
 mobileMenu?.addEventListener('click', e => {
   if (e.target === mobileMenu) closeMenu();
 });
@@ -66,7 +65,6 @@ function closeMenu() {
   document.body.style.overflow = '';
 }
 
-// Esc key closes menu
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeMenu();
 });
@@ -93,7 +91,6 @@ document.querySelectorAll('.case-trigger').forEach(btn => {
     } else {
       btn.setAttribute('aria-expanded', 'true');
       if (detail) detail.hidden = false;
-      // Scroll card into view after transition
       setTimeout(() => {
         card?.scrollIntoView({ behavior: scrollBehavior, block: 'nearest' });
       }, 80);
@@ -101,14 +98,13 @@ document.querySelectorAll('.case-trigger').forEach(btn => {
   });
 });
 
-// ── Cases preview list — scroll to case ──────────────
+// ── Cases preview list — scroll to case and open it ──
 document.querySelectorAll('.case-preview-item').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     const target = document.querySelector(link.getAttribute('href'));
     if (!target) return;
 
-    // Open the case
     const trigger = target.querySelector('.case-trigger');
     const detail  = target.querySelector('.case-detail');
     if (trigger && detail && trigger.getAttribute('aria-expanded') !== 'true') {
@@ -117,6 +113,25 @@ document.querySelectorAll('.case-preview-item').forEach(link => {
     }
 
     target.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
+  });
+});
+
+// ── CV expand/collapse in career timeline ─────────────
+document.querySelectorAll('.ci-expand').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const detail  = btn.nextElementSibling;
+    const isOpen  = btn.getAttribute('aria-expanded') === 'true';
+    const icon    = btn.querySelector('.expand-icon');
+
+    if (isOpen) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = 'Vis detaljer <span class="expand-icon">+</span>';
+      if (detail) detail.hidden = true;
+    } else {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.innerHTML = 'Skjul detaljer <span class="expand-icon">+</span>';
+      if (detail) detail.hidden = false;
+    }
   });
 });
 

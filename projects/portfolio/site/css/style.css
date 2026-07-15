@@ -1374,3 +1374,361 @@ ul, ol { list-style: none; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 2px; }
+
+/* ══════════════════════════════════════
+   PROFIL SECTION
+══════════════════════════════════════ */
+.profil-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 900px) {
+  .profil-grid { grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+}
+
+.profil-text { }
+
+.profil-p {
+  font-size: .9375rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  max-width: 62ch;
+  margin-bottom: 1.25rem;
+}
+
+.profil-p:last-child { margin-bottom: 0; }
+
+.profil-oneliner {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.fakt-col { }
+
+.fakt-heading {
+  margin-bottom: 1.25rem;
+}
+
+.fakt-table {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--gray-200);
+}
+
+.fakt-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--gray-100);
+  align-items: baseline;
+}
+
+.fakt-key {
+  font-size: .5625rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+
+.fakt-val {
+  font-size: .875rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════
+   SCENE SECTION
+══════════════════════════════════════ */
+.scene-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--gray-200);
+  border: 1px solid var(--gray-200);
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .scene-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+.scene-card {
+  background: var(--bg);
+  padding: 1.5rem;
+}
+
+.section-alt .scene-card { background: var(--gray-50); }
+
+.scene-card-label {
+  display: block;
+  font-size: .5625rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: .75rem;
+}
+
+.scene-card-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin-bottom: .5rem;
+}
+
+.scene-card-text {
+  font-size: .875rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+
+.scene-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.scene-cta-text {
+  font-size: .9375rem;
+  color: var(--gray-600);
+}
+
+/* ══════════════════════════════════════
+   MENNESKE SECTION (mørk baggrund)
+══════════════════════════════════════ */
+.section-dark {
+  background: var(--ink);
+  color: #fff;
+}
+
+.section-dark .container { padding-block: clamp(3rem, 6vw, 5rem); }
+
+.menneske-quote {
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  color: #fff;
+  max-width: 44ch;
+  margin-bottom: 2.5rem;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--blue);
+}
+
+.menneske-intro {
+  font-size: .9375rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.75;
+  max-width: 54ch;
+  margin-bottom: 2.5rem;
+}
+
+.value-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.1);
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 480px) {
+  .value-cards-grid { grid-template-columns: 1fr; }
+}
+
+.value-card {
+  background: var(--ink);
+  padding: 1.5rem;
+}
+
+.value-card-num {
+  display: block;
+  font-size: .5625rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--blue);
+  letter-spacing: .12em;
+  margin-bottom: .5rem;
+}
+
+.value-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: .5rem;
+}
+
+.value-card-text {
+  font-size: .8125rem;
+  color: rgba(255,255,255,.55);
+  line-height: 1.65;
+}
+
+.menneske-personal {
+  font-size: .9375rem;
+  color: rgba(255,255,255,.55);
+  line-height: 1.75;
+  max-width: 52ch;
+  margin-bottom: 1.5rem;
+}
+
+.menneske-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.menneske-tags span {
+  font-size: .5625rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  padding: .3rem .6rem;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 2px;
+}
+
+/* ══════════════════════════════════════
+   CV DETALJER I KARRIERETIDSLINJEN
+══════════════════════════════════════ */
+.ci-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin-top: .5rem;
+}
+
+.ci-chips span {
+  font-size: .5625rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  padding: .2rem .5rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 2px;
+}
+
+.ci-expand {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-top: .75rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: opacity .15s;
+}
+
+.ci-expand:hover { opacity: .7; }
+
+.ci-expand .expand-icon {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform .2s;
+}
+
+.ci-expand[aria-expanded="true"] .expand-icon { transform: rotate(45deg); }
+
+.ci-cv-detail { margin-top: 1.25rem; }
+.ci-cv-detail[hidden] { display: none; }
+
+.cv-sub { margin-bottom: 1.25rem; }
+
+.cv-sub-label {
+  display: block;
+  font-size: .5625rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: .5rem;
+}
+
+.cv-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 .75rem;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.cv-bullet-list li {
+  font-size: .8125rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+  padding-left: .875rem;
+  position: relative;
+}
+
+.cv-bullet-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--gray-400);
+  font-size: .75rem;
+}
+
+.cv-effekt-label {
+  display: block;
+  font-size: .5625rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: .35rem;
+}
+
+/* ══════════════════════════════════════
+   TOOLS SECTION I ERFARING
+══════════════════════════════════════ */
+.tools-col { }
+
+.tools-group-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--gray-200);
+  margin-bottom: 1.75rem;
+}
+
+.tools-group-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--gray-100);
+  align-items: baseline;
+}
+
+.tools-group-key {
+  font-size: .5625rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+
+.tools-group-val {
+  font-size: .8125rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
