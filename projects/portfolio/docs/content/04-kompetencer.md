@@ -1,61 +1,69 @@
 # 04 — Kompetencer
 
 ## Heading
-Kompetencer *med bevis*
+Det jeg bringer i spil
 
 ## Intro
-Seks kompetenceområder dokumenteret gennem konkret arbejde og målbare resultater.
+Min styrke ligger i at forbinde journalistisk dømmekraft med ledelse, publikum, produkt og teknologi. Kompetencerne står ikke alene; de er dokumenteret gennem roller, produkter og forandringer, som har skullet fungere i en virkelig organisation.
 
 ---
 
 ## Kompetence 01 — Journalistisk og publicistisk ledelse
 
-**Beskrivelse:** Overordnet journalistisk ledelse, publicistisk ansvar og kvalitetssikring. Nyhedstæft, samfundsblik, kildekritik og prioritering — og evnen til at bevare den redaktionelle dømmekraft, når organisation og teknologi forandrer sig.
+**Beskrivelse:** Nyhedstæft, samfundsblik, kildekritik, redaktionel prioritering og ansvar for, at journalistikken både er væsentlig, præcis og relevant for brugerne.
 
-**Beviser:**
-Chefredaktøransvar for ca. 150 medarbejdere · Journalistisk retning og publicistisk ansvar · Nyhedsredaktør · Lokalredaktør · Oplæg og moderation · Research og OSINT
-
----
-
-## Kompetence 02 — Digital indholdsstrategi
-
-**Beskrivelse:** Brugerbehov, relevanskriterier, formatstrategi, distribution og content performance. Oversætter data til redaktionelle beslutninger, der kan forstås og bruges i hverdagen.
-
-**Beviser:**
-Bidrag til fordobling af trafik · Relevanskriterier og brugeradfærd · Formatudvikling · SEO · Datadrevet prioritering
+**Dokumentation:** Journalistisk chefredaktør · nyhedsredaktør · lokalredaktør · ledelse af større redaktionelle satsninger · publicistisk ansvar i nyhedsdrift og produktudvikling
 
 ---
 
-## Kompetence 03 — Organisationsudvikling
+## Kompetence 02 — Redaktionelle produkter og brands
 
-**Beskrivelse:** Ledelse via mellemledere og faglige nøglepersoner. Forandring og stabil drift på samme tid. Strategi oversat til ansvar, beslutninger og vaner.
+**Beskrivelse:** Udvikling af journalistiske produkter fra idé og målgruppe til format, identitet, distribution og drift — på tværs af tekst, lyd, nyhedsbrev, sociale medier og digitale brugerflader.
 
-**Beviser:**
-Ledelse af ca. 150 medarbejdere via mellemledere · OKR/KPI og nye beslutningsrammer · Feedbackkultur · Organisatorisk forankring
-
----
-
-## Kompetence 04 — AI-implementering
-
-**Beskrivelse:** Fra use case til infrastruktur og drift. Evnen til at oversætte redaktionelle problemer til AI-løsninger med reel organisatorisk forankring og varig metodisk styrke.
-
-**Beviser:**
-Chatty fra prototype til integreret drift · CMS-integration · Workshops og træning · Feedbacksløjfer · Fælles metode
+**Dokumentation:** *Manden fra Korsør* · SN Erhverv · Den Korte Version · SN Undersøger · nyhedsbreve · ugeavis- og brandstandardisering
 
 ---
 
-## Kompetence 05 — Skalering og workflows
+## Kompetence 03 — Publikums- og indholdsstrategi
 
-**Beskrivelse:** Designede processer, redaktionel kontrol og klare kvalitetsstandarder. Skalering uden tab af faglig vurdering eller journalistisk intention.
+**Beskrivelse:** Brugerbehov, relevanskriterier, formatvalg, distribution og performance omsat til konkrete redaktionelle beslutninger.
 
-**Beviser:**
-500–600 ugentlige enheder · Centraliseret produktionsflow · Kvalitetssikring og godkendelsespunkter
+**Dokumentation:** Fordobling af digital trafik · relevanskriterier · content performance · nyhedsbreve · målgruppestrategi for SMV'er · format- og distributionsudvikling
 
 ---
 
-## Kompetence 06 — Produktudvikling
+## Kompetence 04 — Ledelse og organisatorisk transformation
 
-**Beskrivelse:** Fra redaktionelt problem til system, brugerrejse og fungerende MVP. Produktansvar forankret i redaktionelle behov og forretningsmæssig logik.
+**Beskrivelse:** Tydelig retning, ledelse gennem ledere og faglige nøglepersoner, strategisk prioritering og forandring under fortsat drift. Jeg arbejder med klare beslutningsrum, synligt ansvar og løbende opfølgning.
 
-**Beviser:**
-Koncept og roadmap for AI-drevet erhvervsmedieprodukt · LLM-drevet scoringsplatform i aktiv drift · Discovery · Funktionsspecifikation
+**Dokumentation:** Ledelses- og resultatansvar for ca. 150 medarbejdere · OKR/KPI · mellemlederudvikling · nye produktionsmodeller · transformation af ugeaviser · etablering af fælles nyhedsbureau
+
+---
+
+## Kompetence 05 — AI, data og implementering
+
+**Beskrivelse:** Fra behov og anvendelsessituation til prototype, produkt, arbejdsgang og organisatorisk adoption. Teknologien skal understøtte den faglige opgave og efterlade organisationen med stærkere metode og større handlekraft.
+
+**Dokumentation:** Chatty · CMS-integration · AI-understøttede produktionsflows · rating- og anbefalingssystemer · researchværktøjer · workshops · fælles standarder og feedbacksløjfer
+
+---
+
+## Kompetence 06 — Strategisk kommunikation og offentlig formidling
+
+**Beskrivelse:** Oplæg, moderation, workshops og strategisk sparring om journalistik, medieledelse, produktudvikling, AI og samfund.
+
+**Dokumentation:** Branchekonferencer · medlemsmøder · webinarer · talsperson · moderatorroller · facilitering af ledelser og redaktioner
+
+---
+
+## Kompakt bevisoversigt
+
+| Område | Udvalgt bevis |
+|---|---|
+| Publicistisk produkt | *Manden fra Korsør* og en bredere podcaststrategi |
+| Publikum | Fordobling af digital trafik gennem brugerorienteret indholdsstrategi |
+| Brand og målgruppe | SN Erhverv for SMV'er på Sjælland |
+| Digitalt produkt | Driver bag Den Korte Version fra tidligt AI-forsøg til skalerbar produktionsfeature |
+| Organisation | Ledelse af ca. 150 medarbejdere og transformation under drift |
+| Produktion | 500–600 ugentlige enheder i fælles kvalitetssikret flow |
+| AI i praksis | Chatty fra idé til redaktionel arbejdsvane |

@@ -1,72 +1,165 @@
 # 03 — Cases
 
 ## Heading
-Cases
+Udvalgt arbejde
 
 ## Intro
-Fire forløb der dokumenterer, hvad det tager at flytte en redaktionel organisation og bygge nye produkter — fra problem til indsigt, fra ansvar til konkret effekt.
+Et udvalg af journalistiske produkter og transformationer, som viser spændvidden i mit arbejde: fra lyd, nyhedsbreve og digitale brugerprodukter til nye produktionsmodeller, organisationsudvikling og AI i redaktionel drift.
+
+Casene er kurateret efter, hvad de dokumenterer — ikke efter, hvor ny teknologien er. Resultater og KPI'er vises dér, hvor de forklarer produktets eller forandringens reelle betydning.
 
 ---
 
-## Case 01 — Organisationsudvikling og ledelse *(featured, bred)*
+## Case 01 — Manden fra Korsør og podcastsatsningen *(featured)*
 
-**Undertitel:** Fra fragmenteret drift til fælles retning
-**Effekt:** Tydeligere ansvar, stærkere mellemledelse og bedre beslutninger
-**Tags:** ledelse · OKR/KPI · mellemledere · feedback · transformation
+**Titel:** Fra lokal journalistisk styrke til national lydsucces  
+**Effekt:** Et journalistisk lydprodukt med national rækkevidde og mere end én million samlede downloads  
+**Tags:** podcast · redaktionel produktudvikling · lyd · publicistisk ledelse · distribution
 
-| Dimension    | Tekst |
-|--------------|-------|
-| Situation    | En stor redaktionel organisation arbejdede under højt driftspres med manuelle processer, siloer, uklart ejerskab og varierende brug af data og teknologi. |
-| Mit ansvar   | Overordnet ledelses- og resultatansvar for ca. 150 medarbejdere. Jeg satte retning, prioriterede ressourcer, definerede beslutningsrammer og ledede via mellemledere og faglige nøglepersoner. |
-| Indsigt      | Strategi virker først, når den kan mærkes i hverdagen: som tydelige prioriteringer, placeret ansvar og beslutninger, der hænger sammen på tværs. Data kan skabe overblik, men ikke erstatte dømmekraft og ejerskab. |
-| Det jeg gjorde | En fælles ledelsesramme med OKR/KPI, tydeligere beslutningsrum og nye prioriteringsmodeller. Mellemlederne fik et klarere mandat. Faglige nøglepersoner fik reel medindflydelse på løsningerne. Faste opfølgningsrytmer, feedbacksløjfer og synlige prioriteringer gav plads til faglig uenighed og løbende justering — men ikke til uklarhed om retning eller ansvar. Forandringen skete i en organisation under konstant driftspres, uden at kernedriften blev sat på pause. |
-| Resultat     | Større fælles retning, stærkere lokalt ejerskab og bedre sammenhæng mellem strategi og daglige beslutninger. Output og ressourceudnyttelse blev løftet, og nye arbejdsmønstre holdt sig — ikke fordi ledelsen fastholdt dem, men fordi organisationen ejede dem. |
+| Dimension | Tekst |
+|---|---|
+| Situation | Sjællandske Nyheder havde kun begrænset erfaring med podcast, men så et potentiale i at udvikle et selvstændigt journalistisk lydprodukt om en sag med stærk lokal forankring og national interesse. Til produktionen knyttede vi to erfarne og profilerede eksterne værter, som kunne bære fortællingen journalistisk og formidlingsmæssigt. |
+| Mit ansvar | Som journalistisk chefredaktør havde jeg det overordnede ansvar for lydsatsningen og var ansvarlig for retningen, konceptualiseringen og indholdsstrategien bag *Manden fra Korsør*. Jeg satte ambitionen for produktet og samlede værter, podcastredaktør, lydproduktion, design, sociale medier og digital distribution omkring en fælles retning. Den daglige redaktionelle tilrettelæggelse blev varetaget af podcastredaktøren, værterne og produktionsteamet. |
+| Grebet | Podcasten blev udviklet som et selvstændigt journalistisk produkt med sin egen dramaturgi, identitet og publikumsrelation. Vi hentede bevidst profilerede eksterne værter ind og byggede en produktion omkring deres journalistiske og formidlingsmæssige styrker. Produktet blev understøttet af digital journalistik, visuel identitet, sociale medier og målrettet distribution. |
+| Resultat | De første fire afsnit passerede 70.000 downloads på to uger. Under retssagen nåede podcasten 265.000 ugentlige downloads og førstepladsen på både Apple Podcasts og Spotify i Danmark. Samlet endte *Manden fra Korsør* med langt over én million downloads ifølge Sjællandske Nyheders interne podcastdata. |
+| Videreførelse | Erfaringerne blev ført videre i et bredere lydspor med blandt andet *Rejseholdet* og *SN Undersøger*. Jeg havde det overordnede ansvar for lydproduktionen og retningen på tværs, mens podcastredaktører, værter og produktionsteams stod for den daglige redaktionelle udvikling og produktion. |
+| Betydning | Casen viste, hvordan et regionalt mediehus kan skabe et journalistisk produkt med national rækkevidde, når koncept, værter, indhold og distribution tænkes sammen fra begyndelsen. Den dokumenterer især min erfaring med at identificere et redaktionelt potentiale, sætte den overordnede retning og skabe rammerne for, at stærke fagligheder kan realisere produktet. Den viste samtidig behovet for en tydelig presseetisk ramme i et stofområde med stor interesse og alvorlige konsekvenser for de berørte. |
 
----
-
-## Case 02 — Digital indholdsstrategi og trafikvækst
-
-**Undertitel:** Fra mavefornemmelse til brugerbehov og relevanskriterier
-**Effekt:** Fordoblet trafik og bedre match mellem indhold og publicistisk ambition
-**Tags:** brugerbehov · relevans · performance · strategi
-
-| Dimension    | Tekst |
-|--------------|-------|
-| Situation    | Brugerdata fandtes, men blev ikke brugt systematisk i den daglige redaktionelle drift. Beslutninger byggede på tradition, vaner og mavefornemmelse. |
-| Mit ansvar   | Strategisk ansvar for redaktionens digitale indholdsdagsorden, herunder prioriteringsmodeller, brugerindsigter, formatvalg og content performance. |
-| Indsigt      | Data skulle ikke diktere journalistikken, men kvalificere vores forestillinger om relevans og skabe et stærkere møde mellem publicistisk ambition og dokumenterede brugerbehov. Data ændrer ikke adfærd alene — den skal oversættes til redaktionelt sprog og konkrete prioriteringer. |
-| Det jeg gjorde | Arbejde med brugerbehov, relevanskriterier, formatvalg, distribution og content performance som samlet digital indholdsstrategi. Data og brugerbehov blev koblet direkte til redaktionelle møder og prioriteringer. Nøglepersoner var med til at forme metoderne, og de blev indarbejdet trinvist i den daglige drift. |
-| Resultat     | Trafikken fordobledes. Indholdet matchede brugernes behov markant bedre. Data gik fra at være et sidedokument til at blive et redaktionelt arbejdsredskab, folk faktisk brugte i hverdagen. |
+**Dokumentationsnote, ikke nødvendigvis til visning:** Milliontallet er et internt nøgletal. Gem dokumentation fra podcastplatform eller intern resultatrapport. Offentligt kan 70.000 downloads efter to uger, 265.000 ugentlige downloads og hitlisteplaceringerne dokumenteres.
 
 ---
 
-## Case 03 — Chatty og AI i redaktionel drift
+## Case 02 — Digital indholdsstrategi *(featured)*
 
-**Undertitel:** Fra AI-eksperiment til redaktionel infrastruktur og skaleret produktion
-**Effekt:** Fælles metode, 500–600 ugentlige enheder og AI forankret som organisatorisk kunnen
-**Tags:** AI · infrastruktur · fælles metode · CMS · kvalitetssikring · skalering
+**Titel:** Fra redaktionelle vaner til dokumenterede brugerbehov  
+**Effekt:** Et bedre match mellem journalistik og publikum — og en fordobling af den digitale trafik  
+**Tags:** brugerbehov · relevans · data · indholdsstrategi · performance
 
-| Dimension    | Tekst |
-|--------------|-------|
-| Situation    | Redaktionen eksperimenterede med AI, men uden fælles metode. Individuel og ustruktureret brug gav svingende kvalitet, begrænset skalerbarhed og usikkerhed om, hvordan AI skulle bruges ansvarligt. |
-| Mit ansvar   | Ophavsmand til og ansvarlig for konceptudvikling, implementering og organisatorisk forankring af AI-platformen Chatty — fra første idé til integreret drift. |
-| Indsigt      | At give adgang til et værktøj er ikke det samme som at opbygge en fælles redaktionel metode. Målet var ikke at producere mest muligt med AI, men at bruge teknologien dér, hvor den kunne frigøre journalistisk tid, styrke kvaliteten og give redaktionen bedre mulighed for at prioritere den journalistik, der kræver menneskelig tilstedeværelse og dømmekraft. |
-| Det jeg gjorde | Chatty blev udviklet som en redaktionel AI-infrastruktur: et fælles lag for idéudvikling, research, produktion, transskribering, sparring, kvalitetssikring og læring. Struktureret introduktion med workshops og målrettet træning, fælles standarder, feedbacksløjfer og løbende evaluering. Sideløbende en centraliseret og AI-understøttet produktionsmodel med skabeloner, CMS-flow, kvalitetssikring og faste godkendelsespunkter. |
-| Resultat     | AI gik fra individuel brug til fælles redaktionel praksis. Tid fra input til første udkast faldt markant. 500–600 ugentlige enheder produceres i centraliseret, kvalitetssikret flow. Ressourcer frigjort til prioriteret journalistik. Redaktionen opbyggede en fælles metode og en varig organisatorisk erfaring med AI. |
+| Dimension | Tekst |
+|---|---|
+| Situation | Brugerdata fandtes, men indgik ikke systematisk i den daglige redaktionelle prioritering. Beslutninger byggede ofte på tradition, erfaring og mavefornemmelse uden et fælles sprog for, hvad der skabte relevans og værdi for brugerne. |
+| Mit ansvar | Jeg satte retning for en digital indholdsstrategi, der skulle gøre brugerindsigt operationel i redaktionens møder, formater og prioriteringer — uden at reducere journalistikken til et klikregnestykke. |
+| Grebet | Vi udviklede relevanskriterier, arbejdede systematisk med brugerbehov, formatvalg, distribution og content performance og omsatte data til et redaktionelt sprog, der kunne bruges i den daglige drift. Redaktører og faglige nøglepersoner var med til at forme metoden. |
+| Resultat | Den digitale trafik blev fordoblet over et år, og data gik fra at være et sidedokument til at blive et praktisk arbejdsredskab. Indhold, format og distribution blev i højere grad valgt ud fra både publicistisk betydning og dokumenteret brugeradfærd. |
+| Betydning | Den varige ændring var ikke alene mere trafik. Det var en stærkere beslutningskultur, hvor redaktionel dømmekraft og publikumsindsigt kvalificerede hinanden. |
 
 ---
 
-## Case 04 — Aktuel produkt- og platformudvikling
+## Case 03 — Ugeaviser og Det Sjællandske Nyhedsbureau *(featured)*
 
-**Undertitel:** Fra redaktionelt konceptbehov til fungerende produktarkitektur og MVP
-**Effekt:** Roadmap og specifikation klar til implementering — og en LLM-drevet prototype i aktiv drift
-**Tags:** produkt · platform · discovery · AI-arkitektur · LLM · MVP
+**Titel:** Ugeavisen gentænkt  
+**Effekt:** En mere sammenhængende og økonomisk ansvarlig produktionsmodel, som frigjorde lokal journalistisk kapacitet  
+**Tags:** ugeaviser · lokaljournalistik · portefølje · standardisering · ressourceledelse · AI
 
-| Dimension    | Tekst |
-|--------------|-------|
-| Situation    | Ny produktrolle med ansvar for at omsætte et redaktionelt konceptbehov til et konkret, teknisk og kommercielt funderet medieprodukt — og sideløbende bygge en prototype på et system, der kan prioritere journalistisk potentiale i indgående indhold frem for kronologi. |
-| Mit ansvar   | Produktansvar for konceptudvikling, discovery, redaktionelt design og teknisk specifikation af to parallelle projekter: et AI-drevet erhvervsmedieprodukt og en LLM-drevet redaktionel intelligensplatform — i tæt samarbejde med CEO, Tech Lead og Commercial Lead. |
-| Indsigt      | Den stærkeste produktudvikling begynder ikke med teknologi, men med redaktionel adfærd: Hvilke beslutninger skal blive bedre? Hvilken kvalitet skal systemet beskytte? Og hvem skal mærke forskellen i hverdagen? |
-| Det jeg gjorde | Konceptudvikling, discovery, brugerrejser og roadmap for erhvervsmedieproduktet. Sideløbende: LLM-drevet intelligensplatform med emneklassifikation på 25 topics, scoring på 11 journalistiske funktioner og samlet prioritetsscore på tværs af syv vægtede dimensioner. MVP bygget som fuld React/TypeScript-applikation på Cloud Run med Firebase Hosting og 25 live RSS-feeds. |
-| Resultat     | Produktspecifikation, positionering og roadmap klar til implementering for erhvervsmedieproduktet. Intelligensplatformen — test-MVP i aktiv drift. Feedet sorteres på journalistisk potentiale frem for kronologi. Systemet skal frigøre menneskelig dømmekraft, ikke erstatte den. |
-| Status       | Aktuel rolle (jun 2026–) |
+| Dimension | Tekst |
+|---|---|
+| Situation | Ugeaviserne var fortsat et vigtigt kontaktpunkt mellem Sjællandske Medier og brugerne. Samtidig faldt dækningsprocenter og annoncemængde, antallet af udgivelser blev reduceret, og den traditionelle decentrale produktion lagde beslag på ressourcer, som også var nødvendige til original journalistik. |
+| Mit ansvar | Som journalistisk chefredaktør var jeg en central driver i gentænkningen af ugeavisernes brands, redaktionelle flow og produktionsmodel. Forandringen havde både journalistiske, organisatoriske og forretningsmæssige konsekvenser og blev derfor udviklet og besluttet i koncernledelsen. Mit ansvar var især at drive den redaktionelle og organisatoriske del og omsætte den fælles retning til nye arbejdsgange og en anden anvendelse af de journalistiske ressourcer. |
+| Grebet | Vi adskilte den journalistik, der krævede lokal tilstedeværelse, kildearbejde og selvstændig vurdering, fra indhold, der kunne produceres og kvalitetssikres centralt. Vi standardiserede brands, designrammer og produktionsprocesser og etablerede Det Sjællandske Nyhedsbureau som fælles produktionsenhed for blandt andet noter, artikler og bearbejdning af pressemeddelelser. AI blev indarbejdet som støtte i de relevante produktionsled. Forandringen blev gennemført sammen med den øvrige koncernledelse, redaktionelle chefer, ledere og medarbejdere. |
+| Resultat | Det fælles setup opbyggede kapacitet til 500–600 ugentlige enheder. Produktionen blev mere ensartet og mindre fragmenteret, og de lokale redaktioner kunne bruge en større del af deres tid på egne historier, lokale kilder og journalistik med højere publicistisk værdi. |
+| Betydning | Transformationen gjorde det muligt at fastholde ugeaviserne som synlige lokale produkter med et ressourceforbrug, der i højere grad svarede til deres ændrede økonomiske virkelighed. Casen viser min erfaring med at drive en omfattende redaktionel forandring inden for en fælles koncernstrategi og skabe fremdrift gennem chefer, ledere og medarbejdere. |
+
+**Afklaringsnote:** Bureauets officielle navn er Det Sjællandske Nyhedsbureau. Præcisér ved den endelige publicering, om bureauet alene bearbejdede pressemeddelelser eller også producerede materiale, der blev betegnet som pressemeddelelser.
+
+---
+
+## Case 04 — Chatty *(featured)*
+
+**Titel:** Tidligt fra AI-eksperiment til redaktionel arbejdsvane  
+**Effekt:** En fælles AI-assistent integreret i redaktionens systemer, metode og daglige praksis  
+**Tags:** AI · produktudvikling · CMS · adoption · kvalitetssikring · thought leadership
+
+| Dimension | Tekst |
+|---|---|
+| Situation | Generativ AI blev hurtigt taget i brug individuelt, men uden fælles standarder, kvalitetssikring eller en tydelig organisatorisk retning. Det gav svingende kvalitet og gjorde det vanskeligt at omsætte eksperimenterne til varig redaktionel værdi. |
+| Mit ansvar | Jeg var ophavsmand til Chatty og drev den redaktionelle produktudvikling og implementering i tæt samarbejde med digitale udviklere, redaktører og journalister. Min opgave var at forbinde de journalistiske behov med produkt, arbejdsgange, træning og ledelsesmæssig forankring. |
+| Grebet | Chatty blev udviklet omkring konkrete brugssituationer og integreret i blandt andet CMS, mailflows og redaktionelle brugerflader. Værktøjet understøttede idéudvikling, research, transskribering, versionering, kvalitetssikring, resuméer, korte artikelkladder og SoMe. Workshops, fælles standarder og feedbacksløjfer gjorde anvendelsen til en fælles redaktionel metode. |
+| Resultat | Chatty blev anvendt i den daglige drift og reducerede tiden fra input til første udkast markant. Rutineprægede opgaver kunne løses hurtigere, mens journalisterne fik mere tid til research, kildearbejde og viderebearbejdning. Sjællandske Mediers erfaringer førte til invitationer til at dele metoden på konferencer, seminarer og webinarer. |
+| Betydning | Sjællandske Medier var blandt de danske mediehuse, der tidligt bevægede sig fra spredte AI-forsøg til en fælles redaktionel platform og systematisk anvendelse. Casen dokumenterer, at AI-adoption først bliver varig, når produkt, faglig metode, organisation og ledelse udvikles sammen. |
+
+**Sprogprincip:** Brug "blandt de tidlige" eller "omtalt som dansk frontløber". Brug ikke "den første" uden en dokumenteret branchekortlægning.
+
+---
+
+## Case 05 — SN Erhverv
+
+**Titel:** Et nyt erhvervsmedie for SMV'er på Sjælland  
+**Effekt:** Et samlet brand og redaktionelt produkt med målgruppe, nyhedsbrev, sociale medier og en tydelig position  
+**Tags:** erhvervsjournalistik · SMV · brand · nyhedsbrev · sociale medier · produktstrategi
+
+| Dimension | Tekst |
+|---|---|
+| Situation | Den eksisterende erhvervsdækning manglede en skarp målgruppe og en tydelig rolle i hverdagen hos de små og mellemstore virksomheder, der udgør en væsentlig del af erhvervslivet på Sjælland. |
+| Mit ansvar | Som journalistisk chefredaktør havde jeg det overordnede ansvar for erhvervsredaktionen og var driver i udviklingen af SN Erhverv som nyt brand og journalistisk produkt. Jeg stod for den overordnede konceptualisering, målgruppe, position og fortælling i samarbejde med den øvrige koncernledelse. Den daglige journalistiske prioritering blev varetaget af erhvervsredaktøren og den tilknyttede redaktion. |
+| Grebet | Vi samlede erhvervsjournalistikken omkring en tydelig SMV-målgruppe og en redaktionel idé om at se globale og nationale bevægelser med lokale erhvervsbriller: Hvad betyder økonomi, regulering, teknologi og nye markedsvilkår konkret for ejerledere og SMV'er på Sjælland? Konceptet omfattede journalistisk retning, brand, design, nyhedsbrev, sociale medier og distribution. Erhvervsredaktøren og redaktionen omsatte retningen til daglig journalistik og konkrete prioriteringer. |
+| Resultat | SN Erhverv blev etableret som et selvstændigt brand og et mere sammenhængende erhvervsjournalistisk produkt frem for en løs samling artikler. Satsningen skabte en klarere redaktionel position over for SMV-målgruppen og blev et erfaringsgrundlag for mit senere arbejde med Y Business. |
+| Betydning | Casen viser min erfaring med at sætte en strategisk og redaktionel retning for et nyt medieprodukt og skabe rammerne for, at redaktører og medarbejdere kan udvikle og drive det i den journalistiske hverdag. |
+
+**Dokumentationsnote:** Tilføj senere abonnenttal, åbningsrate, trafik, social rækkevidde eller andre verificerbare resultater, hvis de kan findes. Indtil da beskrives casen som en etableret produkt- og brandsatsning, ikke som en kvantificeret vækstcase.
+
+---
+
+## Case 06 — Den Korte Version
+
+**Titel:** En lille produktfeature med effekt på forbruget  
+**Effekt:** Et AI-genereret overblik i artiklen, som styrkede engagementet og hjalp flere brugere videre til mere journalistik  
+**Tags:** brugerbehov · AI · mikroformat · engagement · UX · skalering
+
+| Dimension | Tekst |
+|---|---|
+| Situation | Nyhedsbrugere møder journalistikken i mange situationer og har ikke altid tid eller motivation til at læse hele artiklen fra begyndelsen. Behovet var en enkel feature, som hurtigt kunne give brugeren artiklens vigtigste pointer og skabe en lettere indgang til indholdet. |
+| Mit ansvar | Jeg var driver i Sjællandske Mediers tidlige arbejde med generativ AI og tog sammen med en udvikler de første skridt til Den Korte Version. Jeg satte den redaktionelle retning og førte an i udviklingen af produktionsmodellen, så formatet kunne genereres og anvendes systematisk på tværs af artikler og redaktioner. |
+| Grebet | Den Korte Version blev udviklet som et lille AI-genereret mikroformat inde i den enkelte artikel. Formatet kondenserede artiklens centrale oplysninger og gav brugeren mulighed for hurtigt at orientere sig og vælge, om vedkommende ville læse videre. Det afgørende var, at løsningen kunne indgå stabilt i produktionen og skaleres på tværs af organisationen. |
+| Resultat | Formatet blev indarbejdet bredt på sn.dk og bidrog til et ændret forbrugsmønster. Flere brugere klikkede videre og læste flere artikler, hvilket styrkede engagementet på tværs af sitet. Samtidig etablerede vi tidligt en fungerende produktionsmodel for generativ AI i den daglige journalistiske produktion. |
+| Betydning | Casen viser, hvordan en relativt lille AI-understøttet feature kan skabe mærkbar brugerværdi, når den tager udgangspunkt i et konkret behov og bygges ind i den eksisterende produktion. Den dokumenterer også min rolle som driver i at flytte generativ AI fra eksperiment til skalerbar redaktionel praksis. |
+
+**Dokumentationsnote:** Tilføj de konkrete produktdata bag stigningen i videreklik og antal læste artikler, hvis de findes. Indtil målingen er dokumenteret, behold formuleringen "bidrog til" frem for en entydig årsagspåstand.
+
+---
+
+## Aktuelt arbejde — Y Business *(vises som work in progress, ikke resultatcase)*
+
+**Titel:** Et AI-understøttet erhvervsmedieprodukt for danske SMV'er
+
+Jeg arbejder aktuelt med koncept-, produkt- og forretningsudvikling af Y Business: et erhvervsmedieprodukt målrettet danske SMV'er og beslutningstagere i mellemstore virksomheder. Arbejdet omfatter positionering, målgrupper, redaktionelt koncept, formatunivers, nyhedsbrev, brugerrejser, ratingmodel, AI-understøttede workflows og samspillet mellem redaktion, teknologi og kommerciel model.
+
+Projektet beskrives åbent som igangværende. Funktioner, prototyper og leverancer kan dokumenteres, men effekten må først beskrives som et resultat efter lancering og validering.
+
+---
+
+## Supplerende faglige spor
+
+Disse emner vises kort som kompetencer eller projekter, ikke som fulde cases, medmindre der senere tilføjes mandat og dokumenteret effekt:
+
+- OSINT, åbne registre og digital kildekritik
+- rating- og anbefalingssystemer
+- research- og performanceværktøjer
+- SEO og formatoptimering
+- brandtransformation og designrammer
+- øvrige dokumentariske podcastproduktioner, herunder *Justitsmordet på det ufødte barn* og *Flugten til Tyskland*
+
+---
+
+## Dokumentationskilder til redaktionelt brug
+
+Disse links er arbejdsdokumentation og behøver ikke alle vises på sitet. De kan bruges til at kontrollere formuleringer og udvælge enkelte eksterne beviser i de udfoldede cases.
+
+### Manden fra Korsør
+
+- 70.000 downloads på de første fire afsnit efter to uger samt beskrivelse af det tværgående produkt: `https://dk.linkedin.com/posts/louise-pettersson-a33a497_to-uger-efter-at-sjællandske-nyheder-udkom-activity-7175802855839174656-M_QN`
+- 265.000 ugentlige downloads under retssagen og tak til Carsten Lysdal for at se potentialet: `https://dk.linkedin.com/posts/sannefahnoe_sikke-en-rejse-sj%C3%A6llandske-nyheder-har-activity-7270700879798849536-nmlS`
+- Nummer ét i Danmark på både Apple Podcasts og Spotify den 29. maj 2024: `https://podnews.net/update/podcasts-average-age`
+- Samtidig ekstern omtale og presseetisk kritik: `https://soundvenue.com/kultur/2024/03/hit-podcasten-manden-fra-korsoer-boer-foere-til-selvransagelse-blandt-true-crime-fans-563815`
+- Offentlige credits på *Flugten til Tyskland*. Kontrollér krediteringen mod den faktiske rolle som overordnet ansvarlig for lydproduktionen; Carsten Lysdal var ikke den daglige podcastredaktør: `https://music.amazon.com/podcasts/08f30394-58f6-496f-b549-dd3f498238fe/justitsmordet-p%C3%A5-det-uf%C3%B8dte-barn`
+
+### Chatty
+
+- Lancering, konkrete brugssituationer og Carsten Lysdals produktforklaring: `https://km24.dk/customers/ai-sjaellandsk-mediekoncern-producerer-mere-journalistik-indhold/`
+- DMJX omtaler Carsten Lysdal som en af de danske frontløbere og beskriver brugen i den daglige drift: `https://www.dmjx.dk/aktuelt/nyhed/ai-det-er-blevet-meget-mere-laekkert-vaere-journalist-i-dagens-mediebillede`
+- Media City Odenses medlemsmøde om implementeringen: `https://www.mediacityodense.dk/Nyheder/medlemsmoede-med-carsten-lysdal/`
+- Sjællands Udviklingsalliance, AI i praksis: `https://sjua.dk/kunstig-intelligens/`
+- Webinar om AI som redaktionel medspiller: `https://vimeo.com/1132461730`
+
+### Den Korte Version
+
+- Sjællandske Mediers offentlige produktlancering: `https://dk.linkedin.com/posts/sjellandske-nyheder_vi-vil-g%C3%B8re-det-nemt-at-l%C3%A6se-nyheder-derfor-activity-7222103299934588928-3YN4`
