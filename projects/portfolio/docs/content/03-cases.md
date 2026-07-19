@@ -4,7 +4,7 @@
 Udvalgt arbejde
 
 ## Intro
-Et udvalg af journalistiske produkter og transformationer, som viser spændvidden i mit arbejde: fra lyd, nyhedsbreve og digitale brugerprodukter til nye produktionsmodeller, organisationsudvikling og AI i redaktionel drift.
+Et udvalg af journalistiske produkter og transformationer, som viser spændvidden i mit arbejde: fra tekst, video, lyd, nyhedsbreve, sociale medier og digitale brugerprodukter til nye produktionsmodeller, organisationsudvikling og AI i redaktionel drift.
 
 Casene er kurateret efter, hvad de dokumenterer — ikke efter, hvor ny teknologien er. Resultater og KPI'er vises dér, hvor de forklarer produktets eller forandringens reelle betydning.
 
@@ -38,10 +38,11 @@ Casene er kurateret efter, hvad de dokumenterer — ikke efter, hvor ny teknolog
 | Dimension | Tekst |
 |---|---|
 | Situation | Brugerdata fandtes, men indgik ikke systematisk i den daglige redaktionelle prioritering. Beslutninger byggede ofte på tradition, erfaring og mavefornemmelse uden et fælles sprog for, hvad der skabte relevans og værdi for brugerne. |
-| Mit ansvar | Jeg satte retning for en digital indholdsstrategi, der skulle gøre brugerindsigt operationel i redaktionens møder, formater og prioriteringer — uden at reducere journalistikken til et klikregnestykke. |
-| Grebet | Vi udviklede relevanskriterier, arbejdede systematisk med brugerbehov, formatvalg, distribution og content performance og omsatte data til et redaktionelt sprog, der kunne bruges i den daglige drift. Redaktører og faglige nøglepersoner var med til at forme metoden. |
+| Mit ansvar | Jeg faciliterede og drev en digital indholdsstrategi, der skulle gøre brugerindsigt operationel i redaktionens møder, formater og prioriteringer — uden at reducere journalistikken til et klikregnestykke. Jeg satte retning for arbejdet med målgrupper, brugerrejser, funnels, formatvalg og de metrikker, der skulle kvalificere indholdet. |
+| Grebet | Vi udviklede relevanskriterier og arbejdede systematisk med brugerbehov, datapunkter, brugerrejser, frafald, engagement, formatvalg og distribution. Data blev omsat til et fælles redaktionelt sprog, som kunne bruges til at vælge indhold og formater på tværs af site, nyhedsbrev, sociale medier, lyd og video. Redaktører og faglige nøglepersoner var med til at forme og forankre metoden. |
+| Video som format og platform | Som en del af den bredere indholds- og formatstrategi udviklede jeg et videokoncept og stod for ansættelsen af en videoredaktør, som fik ansvar for den daglige produktion og videreudvikling. Video blev behandlet som et selvstændigt journalistisk format med sin egen fortælleform, rytme, platformlogik og distribution — ikke som en afledt version af en artikel. Det blev et markant rækkeviddeformat og opnåede ofte væsentligt større reach end det skrevne indhold. Dermed blev video både en stærk publikumsindgang og et konkret bevis på værdien af at matche historie, målgruppe, platform og format. |
 | Resultat | Den digitale trafik blev fordoblet over et år, og data gik fra at være et sidedokument til at blive et praktisk arbejdsredskab. Indhold, format og distribution blev i højere grad valgt ud fra både publicistisk betydning og dokumenteret brugeradfærd. |
-| Betydning | Den varige ændring var ikke alene mere trafik. Det var en stærkere beslutningskultur, hvor redaktionel dømmekraft og publikumsindsigt kvalificerede hinanden. |
+| Betydning | Den varige ændring var ikke alene mere trafik. Det var en stærkere beslutningskultur, hvor redaktionel dømmekraft, brugerrejser og publikumsindsigt kvalificerede hinanden — og hvor formatet blev valgt ud fra både historien, målgruppen og den ønskede brugerhandling. |
 
 ---
 
@@ -65,17 +66,18 @@ Casene er kurateret efter, hvad de dokumenterer — ikke efter, hvor ny teknolog
 
 ## Case 04 — Chatty *(featured)*
 
-**Titel:** Tidligt fra AI-eksperiment til redaktionel arbejdsvane  
-**Effekt:** En fælles AI-assistent integreret i redaktionens systemer, metode og daglige praksis  
+**Titel:** Fra chefbeslutning og tidligt AI-initiativ til fælles redaktionel praksis
+**Effekt:** En AI-satsning, der blev omsat til produkt, produktionsmodel, læringssystem og daglig drift
 **Tags:** AI · produktudvikling · CMS · adoption · kvalitetssikring · thought leadership
 
 | Dimension | Tekst |
 |---|---|
 | Situation | Generativ AI blev hurtigt taget i brug individuelt, men uden fælles standarder, kvalitetssikring eller en tydelig organisatorisk retning. Det gav svingende kvalitet og gjorde det vanskeligt at omsætte eksperimenterne til varig redaktionel værdi. |
-| Mit ansvar | Jeg var ophavsmand til Chatty og drev den redaktionelle produktudvikling og implementering i tæt samarbejde med digitale udviklere, redaktører og journalister. Min opgave var at forbinde de journalistiske behov med produkt, arbejdsgange, træning og ledelsesmæssig forankring. |
+| Mit ansvar | Som journalistisk chefredaktør var jeg ophavsmand til Chatty og den ledelsesmæssige driver i satsningen. Jeg satte retningen, prioriterede udviklingen og samlede digitale udviklere, redaktører, journalister og ledere om at flytte AI fra individuelle forsøg til fælles produkt og praksis. Min opgave var at forbinde journalistiske behov med produkt, kvalitetskrav, arbejdsgange, træning og organisatorisk forankring. |
 | Grebet | Chatty blev udviklet omkring konkrete brugssituationer og integreret i blandt andet CMS, mailflows og redaktionelle brugerflader. Værktøjet understøttede idéudvikling, research, transskribering, versionering, kvalitetssikring, resuméer, korte artikelkladder og SoMe. Workshops, fælles standarder og feedbacksløjfer gjorde anvendelsen til en fælles redaktionel metode. |
+| Læringssystemet | Udviklingen foregik i korte iterationer mellem journalister, redaktører og udviklere. Hver afprøvning skulle både forbedre produktet og øge organisationens forståelse af, hvor AI skabte værdi, hvilke kvalitetsproblemer der opstod, og hvilke standarder der var nødvendige. Erfaringerne blev omsat til træning, fælles sprog, arbejdsgange og kvalitetskriterier, så læringen ikke blev hos enkelte ildsjæle. |
 | Resultat | Chatty blev anvendt i den daglige drift og reducerede tiden fra input til første udkast markant. Rutineprægede opgaver kunne løses hurtigere, mens journalisterne fik mere tid til research, kildearbejde og viderebearbejdning. Sjællandske Mediers erfaringer førte til invitationer til at dele metoden på konferencer, seminarer og webinarer. |
-| Betydning | Sjællandske Medier var blandt de danske mediehuse, der tidligt bevægede sig fra spredte AI-forsøg til en fælles redaktionel platform og systematisk anvendelse. Casen dokumenterer, at AI-adoption først bliver varig, når produkt, faglig metode, organisation og ledelse udvikles sammen. |
+| Betydning | Chatty var både et produkt og et strategisk greb i Sjællandske Mediers større digitale transformation. Mediehuset var blandt de danske aktører, der tidligt bevægede sig fra spredte AI-forsøg til en fælles redaktionel platform, produktionsmodel og systematisk anvendelse. Casen dokumenterer min erfaring som chef og driver i at gøre ny teknologi til organisatorisk kapacitet — og viser, at AI-adoption først bliver varig, når produkt, faglig metode, organisation og ledelse udvikles sammen. |
 
 **Sprogprincip:** Brug "blandt de tidlige" eller "omtalt som dansk frontløber". Brug ikke "den første" uden en dokumenteret branchekortlægning.
 

@@ -1,39 +1,34 @@
 # 01 — Hero
 
 ## Eyebrow
-Journalist · Chefredaktør · Transformationsleder
+Carsten Lysdal / Journalistisk ledelse
 
 ## Headline (h1)
-Journalistisk dømmekraft.
-Strategisk retning.
-*Forandring i praksis.*
+Jeg får forandring
+*til at virke.*
 
-> `*kursiv*` = accent-farve i designet
+> `*kursiv*` = accentfarve i designet. Brug effekten diskret; ingen gul understregning, hvis den gør udtrykket kampagneagtigt.
 
 ## Pitch
-Jeg er rundet af nyhedsarbejdet: tempoet, tvivlen, prioriteringerne og fornemmelsen for, hvornår noget betyder noget. Som journalistisk chefredaktør har jeg brugt den dømmekraft til at lede mennesker, udvikle journalistik og omsætte data, teknologi og AI til stærkere produkter og bedre redaktionel drift.
+Jeg udvikler journalistik, produkter og organisationer i krydsfeltet mellem mennesker, data og AI.
 
-## Proof-line
-Tidligere journalistisk chefredaktør med ledelses- og resultatansvar for ca. 150 medarbejdere. Fordoblet trafik. AI fra prototype til drift. 13 års erfaring fra mediebranchen.
+## Positioneringslinje
+Tidligere journalistisk chefredaktør for Sjællandske Medier med ansvar for ca. 150 medarbejdere og dokumenteret erfaring med at drive digital og AI-understøttet transformation fra chefstolen. I dag arbejder jeg med journalistik, produktudvikling, forretning og AI i krydsfeltet mellem indhold, teknologi og organisation.
 
 ## CTA-knapper
-- Primær: `Læs profil` → `#profil`
-- Sekundær: `Se cases` → `#cases`
-- Tekst: `Hent CV ↓` → `assets/carsten-lysdal-cv.pdf`
+- Primær: `Se hvordan ↓` → `#overblik`
+- Sekundær: `CV` → `assets/carsten-lysdal-cv.pdf`
 
-## Chips
-Journalistisk ledelse · 150 medarbejdere · 2× trafikvækst · AI fra prototype til drift · Produkt- og organisationsudvikling
+## Bevislinje
+150 medarbejdere ledet · 2× digital trafik · 1M+ podcastdownloads
 
 ## Portræt-status
-Åben for nye projekter
+Åben for den rette ledelses-, produkt- eller transformationsopgave
 
 ---
 
-## Stats-bar
+## Redaktionsnote til designet
 
-| Tal | Label                |
-|-----|----------------------|
-| 150 | medarbejdere ledet   |
-| 600 | ugentlige enheder    |
-| 2×  | digital trafikvækst  |
-| 13  | år i medievirksomhed |
+Heroen må ikke blive en resultattavle. Resultaterne skal bruges dér, hvor de har forklaringskraft: ledelsesansvar under karriere, trafikvækst i indholdsstrategi-casen, produktionskapacitet i ugeaviscasen og podcastdownloads i podcastcasen.
+
+AI skal stå som et væsentligt og dokumenteret selling point, men som del af en bredere chef- og transformationsprofil — ikke som hele identiteten.

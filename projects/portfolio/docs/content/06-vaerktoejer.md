@@ -4,7 +4,7 @@
 Værktøjer og *teknisk spændvidde*
 
 ## Intro
-Jeg arbejder tæt på systemer, prototyper og brugerflader og kan omsætte redaktionelle og forretningsmæssige behov til workflows, funktionskrav og løsninger, der kan udvikles og afprøves i praksis.
+Jeg er ikke udvikler i klassisk forstand, men arbejder tæt på systemer, prototyper, workflows og brugerflader — med praktisk forståelse for, hvordan redaktionelle behov bliver til funktionelle løsninger.
 
 ---
 
@@ -13,6 +13,9 @@ Jeg arbejder tæt på systemer, prototyper og brugerflader og kan omsætte redak
 | Kategori                | Indhold                                                                                     |
 |-------------------------|---------------------------------------------------------------------------------------------|
 | Redaktionelle systemer  | Aptoma · Saxotech · Naviga · Echobox                                                        |
+| Publikum og produkt     | Brugerrejser · funnels · brugerbehov · målgrupper · format- og platformvalg                |
+| Data og performance     | Metrikdesign · datapunkter · frafald · engagement · content performance · SEO · KPI/OKR    |
+| Formater og distribution| Tekst · videokoncept · platformstilpasset video · lyd · nyhedsbreve · SoMe-formater · distribution |
 | Design og produktion    | InDesign · InCopy · Photoshop · Canva                                                       |
 | Arbejde og samarbejde   | Office · Google Workspace                                                                   |
 | AI og LLM               | ChatGPT · Claude · Gemini · Manus · Promptdisciplin · AI-styring · Kvalitetssikring         |
@@ -27,4 +30,4 @@ Jeg arbejder tæt på systemer, prototyper og brugerflader og kan omsætte redak
 | Dansk   | Modersmål               |
 | Engelsk | Flydende                |
 | Tysk    | Forstår og taler        |
-| Nordisk | Forstår og kommunikerer |
+| Svensk, norsk og færøsk | Forstår og kommunikerer |

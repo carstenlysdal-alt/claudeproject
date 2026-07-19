@@ -16,19 +16,19 @@ Min styrke ligger i at forbinde journalistisk dømmekraft med ledelse, publikum,
 
 ---
 
-## Kompetence 02 — Redaktionelle produkter og brands
+## Kompetence 02 — Redaktionelle formater, produkter og brands
 
-**Beskrivelse:** Udvikling af journalistiske produkter fra idé og målgruppe til format, identitet, distribution og drift — på tværs af tekst, lyd, nyhedsbrev, sociale medier og digitale brugerflader.
+**Beskrivelse:** Udvikling af journalistiske formater og produkter fra idé og målgruppe til fortælleform, identitet, distribution og drift. Jeg arbejder på tværs af tekst, video, lyd, nyhedsbrev, sociale medier og digitale brugerflader og vurderer, hvilket format og hvilken platform der bedst løser den journalistiske og publikumsmæssige opgave. Video er en selvstændig spidskompetence i dette arbejde — fra koncept og bemanding til platformtilpasning, distribution, reach og engagement.
 
-**Dokumentation:** *Manden fra Korsør* · SN Erhverv · Den Korte Version · SN Undersøger · nyhedsbreve · ugeavis- og brandstandardisering
+**Dokumentation:** Videokoncept og ansættelse af videoredaktør · video som markant rækkeviddeformat · *Manden fra Korsør* · SN Erhverv · Den Korte Version · SN Undersøger · nyhedsbreve · SoMe-formater · ugeavis- og brandstandardisering
 
 ---
 
 ## Kompetence 03 — Publikums- og indholdsstrategi
 
-**Beskrivelse:** Brugerbehov, relevanskriterier, formatvalg, distribution og performance omsat til konkrete redaktionelle beslutninger.
+**Beskrivelse:** Design og kvalificering af brugerrejser og funnels på tværs af site, nyhedsbrev, sociale medier og øvrige platforme. Jeg forbinder brugerbehov med målgrupper, formatvalg, distribution og de metrikker og datapunkter, der kan omsættes til konkrete redaktionelle beslutninger.
 
-**Dokumentation:** Fordobling af digital trafik · relevanskriterier · content performance · nyhedsbreve · målgruppestrategi for SMV'er · format- og distributionsudvikling
+**Dokumentation:** Facilitering og ledelse af indholdsstrategi · fordobling af digital trafik · brugerrejser og funnels · relevanskriterier · content performance · SoMe-strategi · videokoncept med markant rækkevidde · nyhedsbreve · målgruppestrategi for SMV'er · format- og distributionsudvikling
 
 ---
 
@@ -40,11 +40,11 @@ Min styrke ligger i at forbinde journalistisk dømmekraft med ledelse, publikum,
 
 ---
 
-## Kompetence 05 — AI, data og implementering
+## Kompetence 05 — AI-ledelse og digital transformation
 
-**Beskrivelse:** Fra behov og anvendelsessituation til prototype, produkt, arbejdsgang og organisatorisk adoption. Teknologien skal understøtte den faglige opgave og efterlade organisationen med stærkere metode og større handlekraft.
+**Beskrivelse:** Ledelse af AI og digital transformation fra chefstolen: retning, prioritering, mandat, produktudvikling, kvalitetskrav, implementering og organisatorisk adoption. Jeg kan samle redaktion, produkt, teknologi og ledelse om konkrete problemer og flytte AI fra prototype til produktionsmodel og daglig praksis. Arbejdet sker i korte, disciplinerede læringssløjfer, hvor hver iteration både skal forbedre løsningen og opbygge organisationens dømmekraft, metode og handlekraft.
 
-**Dokumentation:** Chatty · CMS-integration · AI-understøttede produktionsflows · rating- og anbefalingssystemer · researchværktøjer · workshops · fælles standarder og feedbacksløjfer
+**Dokumentation:** Ledelsesmæssig driver bag Chatty · AI som del af Sjællandske Mediers digitale transformation · CMS-integration · AI-understøttede produktionsmodeller · iterative læringssløjfer · rating- og anbefalingssystemer · researchværktøjer · workshops · fælles standarder, kvalitetskriterier og feedbacksløjfer
 
 ---
 
@@ -62,8 +62,10 @@ Min styrke ligger i at forbinde journalistisk dømmekraft med ledelse, publikum,
 |---|---|
 | Publicistisk produkt | *Manden fra Korsør* og en bredere podcaststrategi |
 | Publikum | Fordobling af digital trafik gennem brugerorienteret indholdsstrategi |
+| Video | Koncept, bemanding, platformtilpasning og video som markant rækkevidde- og engagementformat |
 | Brand og målgruppe | SN Erhverv for SMV'er på Sjælland |
 | Digitalt produkt | Driver bag Den Korte Version fra tidligt AI-forsøg til skalerbar produktionsfeature |
 | Organisation | Ledelse af ca. 150 medarbejdere og transformation under drift |
 | Produktion | 500–600 ugentlige enheder i fælles kvalitetssikret flow |
 | AI i praksis | Chatty fra idé til redaktionel arbejdsvane |
+| AI-ledelse | Fra chefbeslutning og tidlige forsøg til fælles platform, produktionsmodel og organisatorisk kapacitet |

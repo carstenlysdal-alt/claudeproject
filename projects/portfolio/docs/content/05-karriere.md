@@ -28,20 +28,21 @@ Fra lokal journalistik og daglig nyhedsdrift til chefredaktion, produktudvikling
 **Titel:** Journalistisk chefredaktør  
 **Organisation:** Sjællandske Medier
 
-**Beskrivelse:** Overordnet journalistisk, organisatorisk og resultatmæssig ledelse af ca. 150 medarbejdere. Ansvar for journalistisk retning, digital udvikling, redaktionelle produkter og transformation af organisation, arbejdsgange og produktionsmodeller. Ledede gennem mellemledere og faglige nøglepersoner med tydelige beslutningsrum, fælles prioriteringer og systematisk opfølgning.
+**Beskrivelse:** Overordnet journalistisk, organisatorisk og resultatmæssig ledelse af ca. 150 medarbejdere. Fra chefstolen drev jeg en omfattende digital transformation af journalistik, produkter, dataanvendelse, organisation, arbejdsgange og produktionsmodeller. AI var et centralt udviklingsspor: fra tidlige eksperimenter og Chatty til fælles platforme, produktionsflows, kvalitetsstandarder og daglig redaktionel praksis. Ledede gennem mellemledere og faglige nøglepersoner med tydelige beslutningsrum, fælles prioriteringer og systematisk opfølgning.
 
 **Udvalgt ansvar og resultater:**
 
-- satte retning for en digital indholdsstrategi, der bidrog til en fordobling af trafikken over et år
+- faciliterede og drev en digital indholdsstrategi baseret på målgrupper, brugerbehov, brugerrejser, funnels, formatvalg og metrikker; arbejdet bidrog til en fordobling af trafikken over et år
+- udviklede videokonceptet, ansatte en videoredaktør og etablerede video som et selvstændigt journalistisk format og en markant rækkeviddedriver på relevante platforme
 - havde det overordnede ansvar for lydsatsningen og satte retning, koncept og indholdsstrategi for *Manden fra Korsør*, som passerede én million downloads; den daglige produktion blev drevet af podcastredaktør, eksterne værter og produktionsteam
 - var central driver i koncernledelsens transformation af ugeavisernes brands, flow og produktionsmodel samt etableringen af Det Sjællandske Nyhedsbureau
-- var ophavsmand til Chatty og drev udvikling og organisatorisk implementering af en fælles redaktionel AI-assistent
+- var ophavsmand til Chatty og den ledelsesmæssige driver i at flytte AI fra eksperiment til fælles produkt, produktionsmodel og organisatorisk praksis
 - tog sammen med en udvikler initiativ til og drev udviklingen af Den Korte Version, en skalerbar AI-genereret produktfeature på sn.dk
 - satte i samarbejde med koncernledelsen koncept, position og narrativ for SN Erhverv; erhvervsredaktøren og redaktionen drev den daglige journalistiske prioritering
 - etablerede OKR/KPI-struktur og nye prioriterings- og opfølgningsrytmer
 - ledte forandringen under fortsat nyhedsdrift og med et markant ændret ressourcegrundlag
 
-**Fokus:** Publicistisk ledelse · ledelse af ledere · produktudvikling · publikum · organisation · AI i drift
+**Fokus:** Publicistisk ledelse · ledelse af ledere · indholds- og formatstrategi · video · produktudvikling · publikum · organisation · AI i drift
 
 ---
 
