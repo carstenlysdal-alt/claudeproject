@@ -34,6 +34,7 @@ Projektmapper:
 |--------------------|-------------|------|
 | ydkbusiness/       | YDK/        | https://drive.google.com/open?id=1ATVkes-f-nCr6eLfc9QkGIL7ZF6_gtq- |
 | pocket-drummer/           | Pocket Drummer/    | https://drive.google.com/drive/folders/1qIxAHMHfSOVWj9MaYsyx1AqXC5uZU9v0 |
+| newzy/             | Newzy/      | *(ikke oprettet endnu)* |
 
 ---
 
