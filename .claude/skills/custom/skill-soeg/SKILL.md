@@ -101,6 +101,7 @@ Disse skills er kun installeret i `projects/pocket-drummer/`:
 | Design, wireframe, audit, komponent, layout, typografi, farver, UI | `/design-ui` |
 | Præsentation, slides, PowerPoint, deck, ledelsen, CEO | `/praesentation` |
 | Kode, byg, test, debug, arkitektur, performance, refaktor | `/tech-kode` |
+| Optimer app, mobil-padding, horizontal scroll, UI-tekst, spacing, Core Web Vitals, accessibility-audit | `app-optimering` |
 | App, backend, API, database, mobil, DevOps, auth, sikkerhed | `/app` |
 | Workflow, prompt, plan, handoff, skill-søgning, context, token | `/workflow` |
 

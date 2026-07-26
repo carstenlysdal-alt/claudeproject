@@ -40,6 +40,7 @@ Samler alle tekniske skills til udvikling, test og arkitektur.
 ### Performance og core web vitals
 | Skill | Aktivér når |
 |---|---|
+| `app-optimering` | Samlet audit: mobil-padding, UI-tekst, responsivt layout, Core Web Vitals og accessibility |
 | `performance` | Performance-optimering: rendering, bundling, caching |
 | `core-web-vitals` | LCP, FID/INP, CLS — Google-metrics til web |
 | `accessibility` | WCAG-compliance og tilgængelighed |
