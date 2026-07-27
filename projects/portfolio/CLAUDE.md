@@ -48,17 +48,19 @@ Chefredaktør, udviklingschef, direktør eller rekrutterer i medie- og videnorga
 **Resonans** — Hvordan får indhold, data eller teknologi faktisk gennemslag?
 **Relation** — Hvordan skaber man tillid, følgeskab og adfærdsændring?
 
-## Navigation (v6, låst)
+## Navigation (v9, nuværende)
 
 | Sektion | Indhold |
 |---|---|
-| Start | Split hero: eyebrow, H1, pitch, proof-line, portræt — intet system/infografik på første skærm |
-| Meritter | "Det korte overblik" — 6-korts merit-dashboard, ingen talbokse |
-| Kompetencer | "Det jeg kan få til at ske" — 5 kapabiliteter, interaktiv matrix |
-| Cases | "Udvalgte beviser" — 5 kort navngivet efter kapabilitet, ikke værktøj |
-| Erfaring | "Erfaring bygget i lag" — 8-lags career stack + værktøjs-drawer |
-| Menneske | "Rytme, retning og samspil" — portræt, 3 kort (Timing/Samspil/Mestring) |
-| Kontakt | Kort og professionelt |
+| Start | Filmisk full-bleed hero: identitet, kort positionering, CTA og smal proof-rail |
+| Overblik | Executive index, dokumenterede resultater og kildeforankret evidence ledger |
+| Profil | Executive brief med tematiske faner og kompakt faktaboks |
+| Erfaring | Mørk executive timeline med mandat, udvalgte resultater og sekundært værktøjs-drawer |
+| Cases | Filtrerbart dossier-register: ledelse, publikum, produkt, transformation og AI i drift |
+| Kompetencer | Kapabiliteter koblet direkte til roller, cases og dokumenterede resultater |
+| Scene | Filmisk menneskeligt kapitel med oplæg, workshops, moderation og sparring |
+| Ledelse | Ledelsesprotokol og AI-ledelse som dokumenteret anvendelsesspor |
+| Kontakt | Stor, direkte afslutning med mail, LinkedIn og CV |
 
 ## Cases (låst, v6)
 
@@ -78,35 +80,31 @@ Chefredaktør, udviklingschef, direktør eller rekrutterer i medie- og videnorga
 - Links til dokumenter og præsentationer
 - "Toolbox"-side med metoder og værktøjer
 
-## v6 — Content/IA-rewrite (nuværende retning, afløser v2 "OS")
+## v9 — Cinematic Command Index
 
-Den tidligere "OS"-vision (8-scene interaktivt dashboard, side-rail-navigation,
-kompetence-radar, elektrisk blå AI-accent, Newsreader/Instrument Sans) blev
-aldrig bygget færdig (intet `os.html` blev nogensinde oprettet) og er nu
-opgivet til fordel for denne retning: **samme visuelle sprog som v5**
-(Cormorant Garamond / Schibsted Grotesk / Geist Mono, cream/charcoal/rust
-#A9503A) — men en fuld omskrivning af indhold og informationsarkitektur, så
-siden læses som en strategisk præsentation af Carsten, ikke et feature- eller
-værktøjsshowroom. Se `docs/content.md` for den fulde, låste tekst.
+Den nuværende retning kombinerer et filmisk identitetsrum med et kompakt
+executive dokumentationsinterface. Heroen er dramatisk, mørk og full-bleed;
+resten af siden veksler mellem dybe blågrønne flader og varme dokumentflader.
+Typografien bæres af Barlow Condensed, Inter og Geist Mono. Brændt orange
+`#FF5A35` bruges som signalaccent.
 
-Motion-princip fastholdes: motion skal have funktion (retning, prioritering,
-årsag/virkning), ikke pynt. Cases og kompetencer folder ud som paneler;
-career stack viser progression.
+Siden må ikke ligne et opskaleret mobildashboard eller et AI-showroom. Små
+UI-formater bruges til at kuratere ansvar, effekt og dokumentation. Cases er
+dossiers, kompetencer er bevisnavigation, og karrieren er en executive
+timeline. AI er et tydeligt filter og et dokumenteret ledelsesspor — aldrig
+den samlede identitet.
 
-## Navigationsmodel: fuld-viewport sektionspaging + mobil-native UX
+Motion skal forklare rækkefølge, relation eller fokus. Elementer entrer i små
+grupper med forskudt timing; heroen bygges op i lag. Al bevægelse har
+`prefers-reduced-motion`-fallback.
 
-Hver sektion fylder én viewport (`100dvh` minus topnav, minus bottom-nav på
-mobil). Indhold der overstiger højden scroller internt i sektionen; et tryk
-på mellemrumstasten skifter altid hel sektion (næste/forrige med Shift),
-uafhængigt af intern scrollposition — se `js/main.js`. CSS `scroll-snap-type:
-y proximity` på `html` understøtter samme opførsel ved almindelig
-scroll/swipe uden at spærre adgang til footer efter Kontakt.
+## Navigationsmodel: filmisk åbning + dokumentationsrejse
 
-Under 760px erstattes topnav'ens hamburger-dropdown af en fast bottom tab bar
-(`.bottom-nav`, 5 primære sektioner + "Mere"-overflow til Menneske/Kontakt/CV).
-Cases og Meritter bliver til horisontale swipe-carousels (CSS scroll-snap på
-x-aksen) på samme breakpoint. Hero-portrættet vender rækkefølge (portræt
-først) under 760px. Hamburger-menuen bevares uændret for 761-900px-intervallet.
+Topnavigationen ligger transparent over heroen og skifter til en mørk,
+kompakt navigation efter første viewport. På mobil suppleres den af en fast
+bottom tab bar. Executive index og casefiltre giver resultatorienteret
+navigation inde i indholdet. Siden bruger almindelig, fri scroll uden
+scroll-hijacking.
 
 ## Tech-stack
 
@@ -126,5 +124,5 @@ Domæne: `carstenlysdal.dk` (DNS via Cloudflare, se `docs/firebase-hosting-setup
 
 ## Nuværende fase
 
-v6-rewrite: content/IA-omskrivning til strategisk præsentation (se
-"v6 — Content/IA-rewrite" ovenfor og `docs/content.md`).
+v9: Cinematic Command Index — visuelt system, progressive disclosure og
+skarpere binding mellem markdownkilder, roller, cases og resultater.

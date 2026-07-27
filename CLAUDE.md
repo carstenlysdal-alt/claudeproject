@@ -63,6 +63,7 @@ Vigtig afklaring: De relevante bundle-samlinger for dette projekt ligger i den p
 | Tegn wireframe, redesign skærmbillede, design audit, polish, typografi | `impeccable` |
 | Byg UI-komponent, implementér design i kode, vælg farver/fonts/layout | `ui-ux-pro-max` |
 | Byg landing page, portfolio, marketing site (production-grade) | `design-taste-frontend` |
+| Optimer app: mobil-padding, horizontal scroll, UI-tekst, spacing, performance, accessibility | `app-optimering` |
 | Definer features, skriv PRD, nedbryd epic, user stories | deanpeters: `prd-development` / `user-story` |
 | Roadmap, prioritering, RICE-scoring | deanpeters: `roadmap-planning` / `prioritization-advisor` |
 | Discovery, JTBD, opportunity solution tree | deanpeters: `jobs-to-be-done` / `opportunity-solution-tree` |
@@ -420,6 +421,12 @@ Canva AI og andre AI-modeller og designplatforme.
 Specificerer præcist hvad der mangler af ekstern viden efter
 hver session — med kilder, formål og hvilken Claude Code-session
 der venter på resultatet. Bygges som afsluttende opgave i Etape 1.
+
+**app-optimering** — `.claude/skills/custom/app-optimering/`
+Seks-trins audit og optimering af frontend-apps: mobiloplevelse (padding, overflow, touch-targets),
+UI-tekst og sprog, visuelt hierarki og spacing, responsivt layout (320–1440px),
+Core Web Vitals (LCP, CLS, INP) og Accessibility (WCAG 2.2 AA).
+Producerer prioriteret handlingsliste og anvender rettelserne direkte i koden.
 
 **sproglig-standard** — `.claude/skills/custom/sproglig-standard/`
 Gennemgår og løfter tekster til den skarpeste version af sig selv — leveringsklar

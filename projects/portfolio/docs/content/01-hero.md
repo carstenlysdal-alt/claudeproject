@@ -10,7 +10,7 @@ Jeg får forandring
 > `*kursiv*` = accentfarve i designet. Brug effekten diskret; ingen gul understregning, hvis den gør udtrykket kampagneagtigt.
 
 ## Pitch
-Jeg udvikler journalistik, produkter og organisationer i krydsfeltet mellem mennesker, data og AI.
+Jeg udvikler journalistik, produkter og organisationer — og får strategi til at leve i den daglige drift.
 
 ## Positioneringslinje
 Tidligere journalistisk chefredaktør for Sjællandske Medier med ansvar for ca. 150 medarbejdere og dokumenteret erfaring med at drive digital og AI-understøttet transformation fra chefstolen. I dag arbejder jeg med journalistik, produktudvikling, forretning og AI i krydsfeltet mellem indhold, teknologi og organisation.
@@ -20,7 +20,7 @@ Tidligere journalistisk chefredaktør for Sjællandske Medier med ansvar for ca.
 - Sekundær: `CV` → `assets/carsten-lysdal-cv.pdf`
 
 ## Bevislinje
-150 medarbejdere ledet · 2× digital trafik · 1M+ podcastdownloads
+150 medarbejdere ledet · 2× digital trafik · 1M+ downloads
 
 ## Portræt-status
 Åben for den rette ledelses-, produkt- eller transformationsopgave

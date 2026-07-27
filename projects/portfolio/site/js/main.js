@@ -168,6 +168,40 @@ document.querySelectorAll('.case-trigger').forEach(btn => {
   });
 });
 
+// ── Case registry filters — AI is a documented lens, not the default ──
+const caseFilterButtons = Array.from(document.querySelectorAll('[data-case-filter]'));
+const caseRegistryCards = Array.from(document.querySelectorAll('.case-card[data-lenses]'));
+
+function applyCaseFilter(filter = 'all') {
+  caseFilterButtons.forEach(button => {
+    const active = button.dataset.caseFilter === filter;
+    button.classList.toggle('is-active', active);
+    button.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+
+  caseRegistryCards.forEach(card => {
+    const lenses = (card.dataset.lenses || '').split(/\s+/);
+    const visible = filter === 'all' || lenses.includes(filter);
+    card.hidden = !visible;
+    if (!visible) {
+      const trigger = card.querySelector('.case-trigger');
+      trigger?.setAttribute('aria-expanded', 'false');
+      closeDetail(card);
+    }
+  });
+}
+
+caseFilterButtons.forEach(button => {
+  button.addEventListener('click', () => applyCaseFilter(button.dataset.caseFilter));
+});
+
+document.querySelectorAll('a[href^="#case-"]').forEach(link => {
+  link.addEventListener('click', () => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target?.matches('.case-card[hidden]')) applyCaseFilter('all');
+  });
+});
+
 // ── Cases preview list — scroll to case and open it ──
 document.querySelectorAll('.case-preview-item').forEach(link => {
   link.addEventListener('click', e => {
@@ -256,6 +290,17 @@ document.querySelectorAll('.ci-expand').forEach(btn => {
       btn.innerHTML = 'Skjul detaljer <span class="expand-icon">+</span>';
       if (detail) detail.hidden = false;
     }
+  });
+});
+
+// ── Leadership protocol — keep one principle open at a time ──
+const leadershipCards = Array.from(document.querySelectorAll('#ledelse details.value-card'));
+leadershipCards.forEach(card => {
+  card.addEventListener('toggle', () => {
+    if (!card.open) return;
+    leadershipCards.forEach(other => {
+      if (other !== card) other.open = false;
+    });
   });
 });
 
