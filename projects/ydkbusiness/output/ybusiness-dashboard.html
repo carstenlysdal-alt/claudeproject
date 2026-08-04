@@ -629,6 +629,53 @@ body.bm-editing .bm-plot-cell .bm-add {
   white-space: nowrap;
 }
 .bm-mini.muted { color: var(--muted); }
+
+/* Sub-row — tilkøb under primær feature */
+.bm-plot-subrow {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  min-height: 36px;
+  border-bottom: 1px solid var(--line2);
+  background: var(--tint);
+}
+.bm-plot-subrow:last-child { border-bottom: none; }
+.bm-plot-subfeat {
+  padding: 7px 18px 7px 28px;
+  border-right: 1px solid var(--line2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bm-plot-subfeat::before {
+  content: '+';
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--accent-30);
+  flex-shrink: 0;
+  line-height: 1;
+}
+.bm-plot-subfeat strong {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink70);
+  line-height: 1.2;
+}
+.bm-plot-subfeat span {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.bm-plot-subcell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--line2);
+}
+.bm-plot-subcell:last-child { border-right: none; }
 .bm-empty {
   width: 18px;
   height: 1px;
@@ -2149,6 +2196,12 @@ span.rm-stak {
             <div class="bm-plot-cell" data-xlsx-key="media_monitoring_plus"><span class="bm-dot"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="media_monitoring_premium"><span class="bm-dot"></span></div>
           </div>
+          <div class="bm-plot-subrow">
+            <div class="bm-plot-subfeat"><strong>Ekstra brugere</strong><span>Tilkøb pr. bruger ud over 5</span></div>
+            <div class="bm-plot-subcell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-subcell"><span class="bm-add">Tilkøb</span></div>
+            <div class="bm-plot-subcell"><span class="bm-add">Tilkøb</span></div>
+          </div>
           <div class="bm-plot-row" data-xlsx-row="market_monitoring">
             <div class="bm-plot-feature">
               <div class="info-wrap">
@@ -2167,6 +2220,12 @@ span.rm-stak {
             <div class="bm-plot-cell" data-xlsx-key="market_monitoring_erhverv"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="market_monitoring_plus"><span class="bm-dot"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="market_monitoring_premium"><span class="bm-dot"></span></div>
+          </div>
+          <div class="bm-plot-subrow">
+            <div class="bm-plot-subfeat"><strong>Ekstra brands</strong><span>Tilkøb pr. brand ud over 5</span></div>
+            <div class="bm-plot-subcell"><span class="bm-empty"></span></div>
+            <div class="bm-plot-subcell"><span class="bm-add">Tilkøb</span></div>
+            <div class="bm-plot-subcell"><span class="bm-add">Tilkøb</span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="extra_users">
             <div class="bm-plot-feature"><strong data-xlsx-key="extra_users_label">5 ekstra brugere</strong><span data-xlsx-key="extra_users_description">Teamadgang som opgraderingsdriver.</span></div>
