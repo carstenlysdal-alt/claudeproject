@@ -1576,6 +1576,42 @@ span.rm-stak {
 }
 .drv-trigger:hover { background: var(--accent-10); }
 
+/* Info popup */
+.info-wrap { position:relative; display:inline-flex; align-items:center; gap:5px; }
+.info-icon {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:14px; height:14px; border-radius:50%;
+  border:1.5px solid var(--accent-30); color:var(--accent);
+  font-family:var(--mono); font-size:8px; font-weight:700;
+  cursor:pointer; flex-shrink:0; transition:background .15s, border-color .15s;
+  user-select:none;
+}
+.info-icon:hover { background:var(--accent-10); border-color:var(--accent); }
+.info-popup {
+  display:none; position:absolute; z-index:200;
+  left:20px; top:50%; transform:translateY(-50%);
+  width:260px; background:var(--card);
+  border:1px solid var(--accent-20); border-left:3px solid var(--accent);
+  box-shadow:0 8px 24px rgba(54,19,82,.12);
+  padding:12px 14px;
+}
+.info-popup.active { display:block; }
+.info-popup-title {
+  font-family:var(--mono); font-size:9px; font-weight:700;
+  color:var(--accent); letter-spacing:.1em; text-transform:uppercase;
+  margin-bottom:8px;
+}
+.info-popup-body {
+  font-family:var(--sans); font-size:12px; font-weight:400;
+  color:var(--ink70); line-height:1.6;
+}
+.info-popup-body strong { color:var(--ink); font-weight:600; }
+.info-popup-tag {
+  display:inline-block; margin-top:8px;
+  font-family:var(--mono); font-size:9px; font-weight:700;
+  color:var(--muted); letter-spacing:.06em; text-transform:uppercase;
+}
+
 </style>
 </head>
 <body>
@@ -2094,13 +2130,40 @@ span.rm-stak {
             <div class="bm-plot-cell" data-xlsx-key="content_access_premium"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="media_monitoring">
-            <div class="bm-plot-feature"><strong data-xlsx-key="media_monitoring_label">Medieovervågning</strong><span data-xlsx-key="media_monitoring_description">Realtidsomtale af eget brand, produkter, personer og konkurrenter på tværs af medier. Sammenlign omtale vs. konkurrenter.</span></div>
+            <div class="bm-plot-feature">
+              <div class="info-wrap">
+                <strong data-xlsx-key="media_monitoring_label">Medieovervågning</strong>
+                <span class="info-icon" onclick="toggleInfo('media-popup')">i</span>
+                <div class="info-popup" id="media-popup">
+                  <div class="info-popup-title">Medieovervågning</div>
+                  <div class="info-popup-body">
+                    Op til <strong>5 brugere</strong> modtager realtidsnotifikationer når virksomhedens brand, produkter eller nøglepersoner nævnes i en af de <strong>50.000 kilder</strong> vi scanner — inkl. alle danske nyhedsmedier.<br><br>
+                    Inkluderer månedlig <strong>PR impact-rapport</strong>.
+                    <span class="info-popup-tag">Integration: HubSpot · Slack · Salesforce</span>
+                  </div>
+                </div>
+              </div>
+              <span data-xlsx-key="media_monitoring_description">Op til 5 brugere · realtidsnotifikationer ved omtale på tværs af medier · månedlig PR-rapport.</span>
+            </div>
             <div class="bm-plot-cell" data-xlsx-key="media_monitoring_erhverv"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="media_monitoring_plus"><span class="bm-dot"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="media_monitoring_premium"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="market_monitoring">
-            <div class="bm-plot-feature"><strong data-xlsx-key="market_monitoring_label">Markedsovervågning</strong><span data-xlsx-key="market_monitoring_description">Konkurrenter, brancher, CVR-ændringer, regnskaber, ansættelser og markedssignaler.</span></div>
+            <div class="bm-plot-feature">
+              <div class="info-wrap">
+                <strong data-xlsx-key="market_monitoring_label">Markedsovervågning</strong>
+                <span class="info-icon" onclick="toggleInfo('market-popup')">i</span>
+                <div class="info-popup" id="market-popup">
+                  <div class="info-popup-title">Markedsovervågning</div>
+                  <div class="info-popup-body">
+                    Overvåg op til <strong>5 brands</strong>. Modtag realtidsnotifikationer ved ændringer i <strong>CVR-registret</strong> — regnskaber, nye bestyrelsesmedlemmer, direktørskift m.m.
+                    <span class="info-popup-tag">Integration: HubSpot · Slack · Salesforce</span>
+                  </div>
+                </div>
+              </div>
+              <span data-xlsx-key="market_monitoring_description">Op til 5 brands · CVR-ændringer, regnskaber, ansættelser og markedssignaler i realtid.</span>
+            </div>
             <div class="bm-plot-cell" data-xlsx-key="market_monitoring_erhverv"><span class="bm-empty"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="market_monitoring_plus"><span class="bm-dot"></span></div>
             <div class="bm-plot-cell" data-xlsx-key="market_monitoring_premium"><span class="bm-dot"></span></div>
@@ -2118,10 +2181,41 @@ span.rm-stak {
             <div class="bm-plot-cell" data-xlsx-key="ad_free_premium"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="article_sharing">
-            <div class="bm-plot-feature"><strong data-xlsx-key="article_sharing_label">Artikel-deling</strong><span data-xlsx-key="article_sharing_description">Videresend indhold bag betalingsmuren via tokeniserede links.</span></div>
+            <div class="bm-plot-feature">
+              <div class="info-wrap">
+                <strong data-xlsx-key="article_sharing_label">Artikel-deling</strong>
+                <span class="info-icon" onclick="toggleInfo('sharing-popup')">i</span>
+                <div class="info-popup" id="sharing-popup">
+                  <div class="info-popup-title">Artikel-deling</div>
+                  <div class="info-popup-body">
+                    Videresend et antal artikler og andet indhold bag betalingsmuren til andre der ikke har abonnement — så de kan læse hele artiklen.
+                    <span class="info-popup-tag">Erhverv 5/md · Erhverv+ 10/md · Premium 50/md</span>
+                  </div>
+                </div>
+              </div>
+              <span data-xlsx-key="article_sharing_description">Videresend indhold bag betalingsmuren via tokeniserede links.</span>
+            </div>
             <div class="bm-plot-cell" data-xlsx-key="article_sharing_erhverv"><span class="bm-mini muted">5/md</span></div>
             <div class="bm-plot-cell" data-xlsx-key="article_sharing_plus"><span class="bm-mini">10/md</span></div>
             <div class="bm-plot-cell" data-xlsx-key="article_sharing_premium"><span class="bm-mini">50/md</span></div>
+          </div>
+          <div class="bm-plot-row" data-xlsx-row="article_rights">
+            <div class="bm-plot-feature">
+              <div class="info-wrap">
+                <strong data-xlsx-key="article_rights_label">Brug artikler i markedsføring</strong>
+                <span class="info-icon" onclick="toggleInfo('rights-popup')">i</span>
+                <div class="info-popup" id="rights-popup">
+                  <div class="info-popup-title">Brug artikler i markedsføring</div>
+                  <div class="info-popup-body">
+                    Brug artikler og andet indhold hvori abonnenten nævnes til <strong>egen markedsføring</strong> — inkl. at poste indholdet på sociale medier uden om betalingsmur.
+                  </div>
+                </div>
+              </div>
+              <span data-xlsx-key="article_rights_description">Post indhold hvori virksomheden nævnes på sociale medier og i egne kanaler.</span>
+            </div>
+            <div class="bm-plot-cell" data-xlsx-key="article_rights_erhverv"><span class="bm-empty"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_rights_plus"><span class="bm-dot"></span></div>
+            <div class="bm-plot-cell" data-xlsx-key="article_rights_premium"><span class="bm-dot"></span></div>
           </div>
           <div class="bm-plot-row" data-xlsx-row="job_portal">
             <div class="bm-plot-feature"><strong data-xlsx-key="job_portal_label">Jobportal — gratis jobopslag</strong><span data-xlsx-key="job_portal_description">Opret jobopslag via selvbetjening. Vises i jobsektion og deles via egne kanaler. Acquisition-driver — afklares om ubegrænset år 1.</span></div>
@@ -4209,5 +4303,20 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
+<script>
+function toggleInfo(id) {
+  document.querySelectorAll('.info-popup').forEach(function(p) {
+    if (p.id !== id) p.classList.remove('active');
+  });
+  document.getElementById(id).classList.toggle('active');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.info-wrap')) {
+    document.querySelectorAll('.info-popup.active').forEach(function(p) {
+      p.classList.remove('active');
+    });
+  }
+});
+</script>
 </body>
 </html>

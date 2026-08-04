@@ -109,14 +109,19 @@ Selvstændigt produkt. Følger omtale på tværs af medier i realtid.
 ### Funktionelle krav
 
 **F2a.1 — Medieovervågning**
-- Følger omtale af eget brand, produktnavne, nøglepersoner og konkurrenter
-- Realtidsnotifikationer ved nævnelse
+- Op til **5 brugere** fra abonnentvirksomheden modtager notifikationer
+- Følger omtale af eget brand, produktnavne og nøglepersoner på tværs af medier
+- Realtidsnotifikationer ved nævnelse i 50.000+ scannede kilder inkl. danske nyhedsmedier
 - Sammenligningsvisning: egen omtale vs. konkurrenter
+- Månedlig PR impact-rapport
 - Reference: Infomedia / digitalt udklipsbureau til SMV-pris
 
 **F2a.2 — Alerts og digest**
 - Push-notifikation ved nyt hit (høj prioritet)
 - Daglig/ugentlig digest
+
+**F2a.3 — Integrationer**
+- HubSpot, Slack, Salesforce (scope afklares med tech)
 
 **Tekniske krav:** Datakilder og realtids-løsning afklares med tech (Q7).
 
@@ -131,8 +136,10 @@ Selvstændigt produkt. Følger markedsudvikling — ikke medieomtale.
 ### Funktionelle krav
 
 **F2b.1 — Watchlist-opsætning**
-- Brugeren kan oprette overvågning på: konkurrenter (virksomhedsnavn), nøgleord, brancher, navngivne politikere, reguleringsemner
-- **Enkeltpersoner:** eksperter, analytikere og indflydelsesrige skikkelser inden for specifikke fagområder — særligt tech og AI fra erhvervsperspektiv. Teknisk løsning afklares med tech.
+- Op til **5 brands** kan overvåges pr. abonnement
+- Brugeren kan oprette overvågning på: konkurrenter (virksomhedsnavn), nøgleord, brancher, reguleringsemner
+- CVR-ændringer: regnskaber, nye bestyrelsesmedlemmer, direktørskift, ejerandele
+- **Enkeltpersoner:** analytikere og nøglepersoner — teknisk løsning afklares med tech.
 - Minimum 5 watchlist-elementer pr. bruger i Erhverv; ubegrænset i Erhverv+
 - Hvert element kan tildeles prioritet (høj / normal / lav) der påvirker notifikationsfrekvens
 
@@ -445,9 +452,19 @@ Besluttet juni 2026: Bygges af Y.dk. Gælder hele Y.dk-platformen — ikke kun B
 | Erhverv+ | 10 |
 | Premium | 50 |
 
-### F7.2 — Brugsret til artikler i markedsføring *(Udgår — ikke i aktuel plan)*
+### F7.2 — Brugsret til artikler i markedsføring
 
-Fjernet fra den aktuelle produktplan. For kompleks og juridisk risikofyldt. Kan genovervejes i fase 3.
+**Beskrivelse:** Abonnenter kan bruge artikler og andet indhold, hvori de eller deres virksomhed nævnes, til egen markedsføring — inkl. at poste indholdet på sociale medier uden om betalingsmur.
+
+**Tier-adgang:**
+
+| Tier | Brugsret |
+|---|---|
+| Erhverv | Ingen |
+| Erhverv+ | ✓ |
+| Premium | ✓ |
+
+**Note:** Brug er begrænset til indhold, hvor virksomheden er nævnt. Klare vilkår for tilladt brug defineres inden launch.
 
 ### F7.3 — Marketing kick-back
 
