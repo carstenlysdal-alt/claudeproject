@@ -14,14 +14,14 @@
 - Personaliseret nyhedsfeed og morgenbrief (tekst + lyd)
 - Markedsovervågning med regulatory-kategori
 - Branchetrends (ugentlig rapport)
-- B2B-briefs (on-demand)
-- Leadgenerering — signal-baseret (primær) og CVR-baseret (sekundær)
+- B2B-briefs (præferencebaseret automatisering)
 - Onboarding-profil og grundlæggende personalisering
-- Lukket community (modereret forum)
 - Web (desktop + mobil) — tekst og lyd
 
 ### Ikke inkluderet i fase 1
 
+- Lukket community (modereret forum) — udskydes til fase 2, scopedefinition afventer
+- Leadgenerering — signal-baseret og CVR-baseret — udskydes til fase 2
 - Video-format
 - API-integration til CRM og egne systemer
 - Avanceret personalisering med løbende machine learning
@@ -35,7 +35,7 @@ Eksakt prisstruktur afklares i fællesskab i juni. Kravspecifikationen opererer 
 
 | Tier | Arbejdsnavn | Indhold | Prisindikation |
 |---|---|---|---|
-| Erhverv | Y.dk Business Erhverv | Nyhedsfeed + morgenbrief | 50 DKK/md |
+| Erhverv | Y.dk Business Erhverv | Nyhedsfeed + morgenbrief | 500 DKK/md |
 | Erhverv+ | Y.dk Business Erhverv+ | Alle seks lag inkl. lyd, community og leadgenerering | 500 DKK/md / 5.000 DKK/år |
 | Premium | Y.dk Business Premium | Erhverv+ inkl. reklamefri adgang, udvidet artikel-deling og marketingværdi | Afklares |
 
@@ -83,9 +83,9 @@ Onboarding må ikke kræve betaling, inden brugeren har oplevet mindst ét morge
 
 ### Tekniske krav
 
-- Supertrends API leverer rådata — dansk SMV-output kræver enten rekonfiguration (Valg A) eller LLM-lag (Valg B)
-- Via Ritzau API (2.800 kr./mdr.) supplerer med realtids pressemeddelelser og selskabsmeddelelser
-- TTS-motor til lyd: ekstern service kræves (Supertrends understøtter kun pre-recorded podcasts)
+- Eget nyhedsaggregerings-lag bygges af Y.dk — direkte mod RSS-feeds, Via Ritzau og offentlige APIs
+- Via Ritzau (nyhedskilde, ikke mellemmand til regulatory-data) supplerer med realtids pressemeddelelser og selskabsmeddelelser
+- TTS-motor til lyd: ekstern service kræves (ElevenLabs, Google Cloud TTS eller Azure Neural TTS — beslutning afventer)
 - E-mail-leverandør: afklares
 - Push-notifikation: native app (Circle eller Discourse) — PWA er ikke sufficient
 
@@ -102,13 +102,37 @@ Onboarding må ikke kræve betaling, inden brugeren har oplevet mindst ét morge
 
 ---
 
-## Lag 2 — Markedsovervågning
+## Lag 2a — Medieovervågning
+
+Selvstændigt produkt. Følger omtale på tværs af medier i realtid.
 
 ### Funktionelle krav
 
-**F2.1 — Watchlist-opsætning**
+**F2a.1 — Medieovervågning**
+- Følger omtale af eget brand, produktnavne, nøglepersoner og konkurrenter
+- Realtidsnotifikationer ved nævnelse
+- Sammenligningsvisning: egen omtale vs. konkurrenter
+- Reference: Infomedia / digitalt udklipsbureau til SMV-pris
+
+**F2a.2 — Alerts og digest**
+- Push-notifikation ved nyt hit (høj prioritet)
+- Daglig/ugentlig digest
+
+**Tekniske krav:** Datakilder og realtids-løsning afklares med tech (Q7).
+
+**Tier-adgang:** Inkluderet i Erhverv+ og Premium. Ikke tilkøb i Erhverv — skal drive upgrade.
+
+---
+
+## Lag 2b — Markedsovervågning
+
+Selvstændigt produkt. Følger markedsudvikling — ikke medieomtale.
+
+### Funktionelle krav
+
+**F2b.1 — Watchlist-opsætning**
 - Brugeren kan oprette overvågning på: konkurrenter (virksomhedsnavn), nøgleord, brancher, navngivne politikere, reguleringsemner
-- **Enkeltpersoner:** eksperter, analytikere og indflydelsesrige skikkelser inden for specifikke fagområder — særligt tech og AI fra erhvervsperspektiv. Feature-request til Supertrends — afventer teknisk vurdering.
+- **Enkeltpersoner:** eksperter, analytikere og indflydelsesrige skikkelser inden for specifikke fagområder — særligt tech og AI fra erhvervsperspektiv. Teknisk løsning afklares med tech.
 - Minimum 5 watchlist-elementer pr. bruger i Erhverv; ubegrænset i Erhverv+
 - Hvert element kan tildeles prioritet (høj / normal / lav) der påvirker notifikationsfrekvens
 
@@ -143,7 +167,7 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 | BBR + Ejerfortegnelse | Ejendoms- og ejerdata | `datafordeler.dk` — Geodatastyrelsen | Gratis |
 | Tinglysning | Pant, skøder, servitutter | Tinglysningsrettens HTTP API | Gratis |
 | Dansk presse (RSS) | Nyheder fra åbne danske medier og branchemedier | Direkte RSS-feeds pr. medie | Gratis |
-| Supertrends API | Globale trends og brancheanalyse | Intern (ejerkreds) | Intern |
+| Eget trend-aggregerings-lag | Trends og brancheanalyse — bygges internt | Direkte kildeintegration | Afklares |
 
 **Note:** DAWA-adresse-API'et udfases 1. juli 2026 — erstattes af `datafordeler.dk`. Tech Lead må ikke bygge mod DAWA.
 
@@ -163,9 +187,9 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 - Folketing: direkte mod `oda.ft.dk/api`
 - Statistik: direkte mod `api.statbank.dk/v1/`
 - Nyheder: RSS-feeds crawles direkte fra kildemedier
-- Supertrends API supplerer med trend-signaler (intern infrastruktur)
+- Eget overvågningssystem bygges mod direkte endpoints (CVR, RSS, Retsinformation, EUR-Lex)
 - Watchlist-konfiguration gemmes i brugerprofil og synkroniseres på tværs af enheder
-- Via Ritzau og øvrige mellemleverandører er fravalgt — alle datakilder skal have kendte, direkte endpoints
+- Via Ritzau er fravalgt som kilde til regulatory-data — alle regulatory-endpoints skal integreres direkte (retsinformation.dk, EUR-Lex, oda.ft.dk). Via Ritzau bruges som nyhedskilde i Lag 1, ikke i Lag 2.
 
 ### Tier-adgang
 
@@ -325,7 +349,7 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 
 ---
 
-## Lag 6 — Leadgenerering
+## Lag 6 — Leadgenerering *(Fase 2 — ikke i oktober-launch)*
 
 ### Rationale
 
@@ -418,22 +442,12 @@ Besluttet juni 2026: Bygges af Y.dk. Gælder hele Y.dk-platformen — ikke kun B
 | Tier | Artikler pr. måned |
 |---|---|
 | Erhverv | 5 |
-| Erhverv+ | 25 |
-| Premium | 100 |
+| Erhverv+ | 10 |
+| Premium | 50 |
 
-### F7.2 — Brugsret til artikler i markedsføring
+### F7.2 — Brugsret til artikler i markedsføring *(Udgår — ikke i aktuel plan)*
 
-**Beskrivelse:** Abonnenter får ret til at bruge artikler, hvor de eller deres virksomhed nævnes, i egen markedsføring (SoMe, nyhedsbreve, hjemmesider, investor-/PR-materiale).
-
-**Tier-adgang:**
-
-| Tier | Brugsret |
-|---|---|
-| Erhverv | Ingen |
-| Erhverv+ | Ca. 5 artikler/år |
-| Premium | Ca. 20 artikler/år |
-
-**Tekniske og juridiske krav:** Klare vilkår for tilladt brug. Redaktionen godkender ikke aktivt — brug er begrænset til tilfælde, hvor virksomheden er nævnt i artiklen.
+Fjernet fra den aktuelle produktplan. For kompleks og juridisk risikofyldt. Kan genovervejes i fase 3.
 
 ### F7.3 — Marketing kick-back
 
@@ -449,12 +463,12 @@ Besluttet juni 2026: Bygges af Y.dk. Gælder hele Y.dk-platformen — ikke kun B
 
 ### F7.4 — Reklamefri adgang
 
-**Beskrivelse:** Erhverv+ og Premium er fri for annoncer — herunder pre-roll, mid-roll og out-stream/videoannoncer.
+**Beskrivelse:** Premium er fri for annoncer — herunder pre-roll, mid-roll og out-stream/videoannoncer. Erhverv og Erhverv+ vises annoncer.
 
 | Tier | Reklamefri |
 |---|---|
 | Erhverv | Nej |
-| Erhverv+ | ✓ |
+| Erhverv+ | Nej |
 | Premium | ✓ |
 
 ---
@@ -463,22 +477,23 @@ Besluttet juni 2026: Bygges af Y.dk. Gælder hele Y.dk-platformen — ikke kun B
 
 ### Personalisering
 
-**P1 — Onboarding-profil (obligatorisk ved tilmelding)**
-Brugeren angiver:
+**P1 — Onboarding-profil (trin 1 — obligatorisk ved tilmelding)**
+Brugeren angiver ved registrering:
 - Rolle og ansvarsområde (obligatorisk): SMV-ejer / C-level / Iværksætter / Kommunikation & marketing / Rådgiver & investor / Medarbejder
 - Primær branche (obligatorisk)
-- Sekundær branche (valgfrit)
-- Virksomhedsstørrelse: 1–4 / 5–50 / 51–250 ansatte
-- Geografi: Danmark + op til 3 eksportmarkeder
-- Konkurrenter at overvåge (fri tekst, min. 0 — maks. 10)
-- Interesseområder (flervalg): Regulering, Finans, Teknologi, Arbejdsmarked, Handel, Bæredygtighed, Geopolitik
-- Foretrukket format: Scanning (korte briefs) / Dybdelæsning / Blandet
-- Ønsket brief-frekvens: Dagligt / 3 gange ugentligt / Ugentligt
 
-**P2 — Friktion-regel**
-Onboarding må maksimalt have 3 trin og maks. 5 minutters samlet tidsforbrug.
-Brugeren ser første morgenbrief inden profil er 100% udfyldt.
-Rolle og branche er obligatoriske felter i trin 1 — øvrige er valgfrie.
+Alle øvrige data indsamles via progressivt profileringsforløb de første 7 dage (se P2).
+
+**P2 — Progressivt profileringsforløb (dag 1–7)**
+Resten af profilen opbygges løbende via kontekstuelle nudges i platformen:
+- Dag 1: Virksomhedsstørrelse + geografi (efter første morgenbrief)
+- Dag 2–3: Konkurrenter at overvåge (ved første feed-visning)
+- Dag 3–5: Interesseområder + foretrukket format (ved anden morgenbrief)
+- Dag 5–7: Eksportmarkeder + brief-frekvens (ved første trendrapport)
+
+Friktion-regel: onboarding må maksimalt have 3 trin og maks. 5 minutters samlet tidsforbrug.
+Trin 1 (rolle + branche) er obligatorisk. Brugeren ser første morgenbrief inden profil er 100% udfyldt.
+Progressiv dataindsamling må aldrig blokere adgang til indhold.
 
 **P3 — Løbende adfærdslæring (fase 1: eksplicit + passiv registrering)**
 - Brugeren kan markere artikler og trends som "Ikke relevant"
@@ -539,7 +554,7 @@ Brugeren definerer tidsrum uden push-notifikationer. Standard: ingen stille time
 
 Disse krav er ikke forhandlingsbare og gælder på tværs af alle features:
 
-1. **AI kommunikeres aktivt — ikke skjult.** Y's redaktionelle retning: "Vi er fronten af AI i mediebranchen." Formlen er "AI producerer, mennesker verificerer" — skalaen kommer fra teknologien, troværdigheden fra det redaktionelle lag. AI-ikonet og "Powered by Supertrends"-branding vises der, hvor det er relevant. Barrieren hos de 53%, der er utrygge ved AI-journalistik, håndteres med kompetent kommunikation om verificeringsprocessen — ikke med tavshed om AI.
+1. **AI kommunikeres aktivt — ikke skjult.** Y's redaktionelle retning: "Vi er fronten af AI i mediebranchen." Formlen er "AI producerer, mennesker verificerer" — skalaen kommer fra teknologien, troværdigheden fra det redaktionelle lag. Barrieren hos de 53%, der er utrygge ved AI-journalistik, håndteres med kompetent kommunikation om verificeringsprocessen — ikke med tavshed om AI.
 
 2. **Produktet kommunikeres som virksomhedsudgift.** Checkout, faktura og onboarding bruger altid firmasprog: "Tilmeld din virksomhed" — ikke "Tilmeld dig selv". Faktura udstedes til virksomhed, ikke person.
 
@@ -553,43 +568,29 @@ Opdateret efter platformsundersøgelse maj 2026. Spørgsmål der er besvaret af 
 
 | ID | Spørgsmål | Påvirker | Status |
 |---|---|---|---|
-| Q1 | TTS: Supertrends understøtter kun pre-recorded podcasts — ikke dynamisk TTS. Kræver ekstern service. Hvilken vælges: ElevenLabs, Google Cloud TTS eller Azure Neural TTS? | Lag 1 + Lag 4 | **Åbent — beslutning afventer** |
-| Q2 | Regulatory: syv.ai Retsinformation API (gratis, JSON) og EUR-Lex (gratis) dækker dansk og EU-lovgivning. Kan Tech Lead integrere disse inden launch? Rate limits: 20 kald/time (syv.ai). | Lag 2 | **Løsning identificeret — afklar kapacitet** |
-| Q3 | Supertrends' taksonomi dækker 170 brancher globalt — men er dansk SMV-branchedækning tilstrækkelig til min. 3 trends/uge? Afklares direkte med Lars Tvede. | Lag 3 | **Åbent — kræver afklaring med Supertrends** |
-| Q4 | Supertrends leverer struktureret taksonomi (trends, innovationer, milepæle). Emerging/Peak/Fading-klassificering bygges oven på dette — er det Tech Leads ansvar eller PM's? | Lag 3 | **Åbent — ansvarsfordeling** |
-| Q5 | On-demand briefs: Supertrends understøtter IKKE on-demand queries. Kræver separat LLM-lag (Claude/OpenAI API) oven på Supertrends-rådata. Er dette i scope for fase 1? | Lag 4 | **Kritisk — beslutning afventer** |
-| Q6 | Community: Circle.so ($298/mdr., SSO-friktion) vs. Discourse managed ($100/mdr., friktionsfri SSO via DiscourseConnect). Hvad er Tech Leads præference og DevOps-kapacitet? | Lag 5 | **Løsning identificeret — Tech Lead vælger** |
-| Q7 | Watchlist-elementer: teknisk grænse pr. bruger uden performance-forringelse i Supertrends-API? | Lag 2 | **Åbent — afklares med Supertrends** |
-| Q8 | Mobilapp: Bettermode (ingen native app) er fravalgt. Circle og Discourse har native app på standardplan. PWA er ikke sufficient — push-notifikationer kræver native app. Bekræft valg. | Tværgående | **Afklaret: native app er krav** |
+| Q1 | TTS: Kræver ekstern service. Hvilken vælges: ElevenLabs, Google Cloud TTS eller Azure Neural TTS? | Lag 1 + Lag 4 | **Åbent — beslutning afventer** |
+| Q2 | Regulatory: Retsinformation API (gratis, JSON) og EUR-Lex (gratis) dækker dansk og EU-lovgivning. Kan Jesper integrere inden launch? | Lag 2 | **Løsning identificeret — afklar kapacitet** |
+| Q3 | Branchetrends: Eget trend-aggregerings-lag kræver tilstrækkelig dansk SMV-branchedækning. Minimum 3 trends/uge pr. aktiv branche. Afklares med tech. | Lag 3 | **Åbent — afklares med tech** |
+| Q4 | Emerging/Peak/Fading-klassificering: Er det Jespers ansvar eller PM's at definere heuristikken? | Lag 3 | **Åbent — ansvarsfordeling** |
+| Q5 | On-demand briefs: Kræver separat LLM-lag (Claude/OpenAI API). Er dette i scope for fase 1? | Lag 4 | **Kritisk — beslutning afventer** |
+| Q6 | Community: udskydes til fase 2 — spørgsmål om platform udgår. | Lag 5 | **Udgår — community er fase 2** |
+| Q7 | Medieovervågning i realtid: hvilke datakilder og hvilken teknisk løsning? Afklares med tech. | Lag 2a | **Åbent — afklares med tech** |
+| Q8 | Mobilapp: PWA er ikke sufficient — push-notifikationer kræver native app. Bekræft valg. | Tværgående | **Afklaret: native app er krav** |
 
-### Arkitekturafklaring — Supertrends (besluttet juni 2026)
+### Arkitekturstatus
 
-**Valg A er bekræftet.** Møde med Supertrends 3. juni 2026 afklarede at Supertrends leverer CMS, datastruktur og overvågningsmotor. Y.dk Business bygger oven på denne infrastruktur.
-
-**Hvad Supertrends leverer:**
-- CMS som Y.dk arbejder i og med
-- Datastruktur (på plads — kildekobling til nyheder bygges af Y.dk)
-- Brancheovervågning: nyheder, forordninger, jura, regulærer fra danske og internationale kilder
-- Smart Scans: monitorering af hovedemner med brugerstyrede notifikationer
-- Præferencebaserede automatiserede briefs
-- AI-genereret kontekstanalyse ("Det her er vigtigt, fordi...")
-- Regulatorisk overvågning: dekreter, lovforslag, EU-forordninger
-
-**Branding:** Features leveret af Supertrends brandes "Powered by Supertrends" i UI.
+**Y.dk kører eget CMS og egne systemer.** Supertrends er ikke en del af den aktuelle plan. Det undersøges om Supertrends eller lignende eksterne motorer kan bidrage til specifikke formater (f.eks. trend-aggregering) på et senere tidspunkt — men primær tilgang er eget system baseret på direkte datakilder.
 
 **Y.dk's tekniske ansvar:**
-- Kildekobling — integrere nyhedskilder i Supertrends' datastruktur
-- Frontend og interface — udvikles af Y.dk
-- Landing page / platform for premium-kunder
-
-**Stadig åbent:**
-- On-demand briefs (ad hoc, brugerinitieret, 60 sek.) dækkes ikke af præferencebaseret automatisering — kræver sandsynligvis separat LLM-lag. Afklares med Tech Lead inden kravspec v1.0.
-- Rammeaftale med Supertrends: prissætning (fee/procent/hybrid) afklares efter kildeaftale er defineret.
-- API-dokumentation, rate limits og SLA: indhentes i teknisk opfølgning.
+- Eget CMS
+- Kildeidentifikation og -kobling — i gang
+- Frontend og interface
+- Overvågningssystem mod direkte offentlige endpoints
+- LLM-lag til on-demand briefs (beslutning afventer)
 
 ---
 
-## Go/no-go-kriterier for launch — invited beta (oktober 2026)
+## Go/no-go-kriterier for launch (1. november 2026)
 
 Fase 1 launcher kun hvis samtlige nedenstående er opfyldt:
 
@@ -607,8 +608,8 @@ Fase 1 launcher kun hvis samtlige nedenstående er opfyldt:
 | Opgave | Ansvarlig | Deadline |
 |---|---|---|
 | Redaktionelt koncept — forudsætning for features spec v1.0 | Lysdal + Dyrby | 22. juni 2026 |
-| Afklaring Q1–Q5 med Tech Lead (Supertrends-kapabilitet) | PM + Tech Lead | 30. juni 2026 |
-| Afklaring Q6 (community-platform) | Tech Lead | 30. juni 2026 |
+| Afklaring Q1 (TTS-service) | PM + Jesper | Snarest |
+| Afklaring Q3 + Q7 med tech (overvågning og trends) | PM + tech | Snarest |
 | Afklaring Q8 (app vs. PWA) | Tech Lead + PM | 30. juni 2026 |
 | Tier-feature-allokering — præcis indhold per tier | CEO + Commercial Lead + PM | 30. juni 2026 |
 | Artikel-deling: teknisk scope og Y.dk-bredde | Tech Lead + PM | 30. juni 2026 |

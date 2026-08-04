@@ -22,15 +22,20 @@
 - **Business subscribers (20. november):** 1.500
 - **Pris for Private abonnement (pr. måned):** 50 DKK
 
-**Business — 5-tier model (opdateret juni 2026):**
+**Business — 3-tier abonnementsmodel:**
 
 | Tier | Normalpris | Kampagnepris (deadline 20. nov.) |
 |---|---|---|
 | Erhverv | 500 kr/md | 3 måneder gratis |
 | Erhverv+ | 7.500 kr/år | 5.000 kr første år |
-| Erhverv Premium | 12.500 kr/år | 9.500 kr første år |
-| Partner | 25.000–75.000 kr/år | — |
-| API | 100.000–250.000 kr/år | — |
+| Premium | 12.500 kr/år | 9.500 kr første år |
+
+**Sekundære indtægtsstrømme (ikke abonnementstiers):**
+
+| Produkt | Prisniveau |
+|---|---|
+| Partner (events, brancheindblik, synlighed) | 25.000–75.000 kr/år |
+| API (enterprise nyhedsfeeds, CRM-integration) | 100.000–250.000 kr/år |
 
 - **ARR-baseline (1.500 × Erhverv run-rate):** 9M DKK/år
 - **ARR-opside (tier-opgradering til Erhverv+/Premium):** 11–14M DKK/år

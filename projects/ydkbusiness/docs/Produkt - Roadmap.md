@@ -135,7 +135,7 @@ Hvad der er med hvornår — og hvad der afventer næste fase.
 
 ### November 2026 — Paywall live og fuld lancering
 
-Paywall aktiveres 1. november for både Private og Business. Y Business-subscribers overgår fra invited beta til betalende abonnenter.
+Paywall aktiveres 20. november for både Private og Business. Y Business-subscribers overgår fra invited beta til betalende abonnenter.
 
 **Y.dk platform-trafik ved paywall-lancering (acquisition-grundlag):**
 
@@ -146,9 +146,23 @@ Paywall aktiveres 1. november for både Private og Business. Y Business-subscrib
 | PVV (Pageviews per visit) | 3 | Engagement-indikator |
 | Net Growth MoM (efter churn) | 2,5% | Platformvækst inden paywall |
 
-25.000 daglige besøg i september er det pool begge segmenter rekrutteres fra. Private-abonnementet (50 DKK/md) er lavtærskels-indgangen der bygger vaner og kan konvertere til Business (500 DKK/md) over tid. De to segmenter konkurrerer ikke — de forstærker hinanden i funnelen. Målet er 1.500 Business og 1.500 Private subscribers ved paywall 1. november.
+25.000 daglige besøg i september er det pool begge segmenter rekrutteres fra. Private-abonnementet (50 DKK/md) er lavtærskels-indgangen der bygger vaner og kan konvertere til Business (500 DKK/md) over tid. De to segmenter konkurrerer ikke — de forstærker hinanden i funnelen. Målet er 1.500 Business og 1.500 Private subscribers ved paywall 20. november.
+
+**Kritisk: To-trins konverteringsmodel er forudsætningen for målet**
+
+En kold paywall mod anonym trafik giver 0,20% konverteringsrate (Piano/INMA benchmark) — teknisk tilstrækkeligt ved fuld årsakkumulering, men med uacceptabel risikoprofil. Den anbefalede model:
+
+1. **Registration Wall** (aktiveres ved eller inden paywall): anonym → registreret e-mail-lead ved 3,5% konvertering = 26.250 leads over 12 måneder
+2. **E-mail-nurturing + direkte B2B-salg**: registreret → betalende ved 5,7% = 1.500–1.650 abonnenter
+
+Watch Medier (dansk case): 1.000–2.000 betalende virksomhedskonti på 12–18 måneder med opsøgende direktesalg til topledere. Direkte sammenlignelig model.
+
+Registration Wall skal besluttes og implementeres af Tech Lead inden paywall-lancering — ikke som en september-opgave.
+
+**Akvisitionsbudget (ikke budgetteret — se U6):** 1,95–3,55 mio. DKK afhængig af mix.
 
 **Nyt ved fuld lancering:**
+- Registration Wall aktiv (forudsætning)
 - Fuld acquisition-kampagne (LinkedIn, PR, partnerkanaler)
 - Forbedret onboarding baseret på beta-feedback
 - Virksomhedsabonnement med team-adgang (hvis besluttet)
@@ -184,7 +198,9 @@ Paywall aktiveres 1. november for både Private og Business. Y Business-subscrib
 | AI-kommunikationsbeslutning forsinkes | Medium | Blokerer UI-sprogbrug og kanalimplementering | Tag det som punkt 1 på fælles afklaringsmøde |
 | Juli: Tech Lead mangler input og stopper | Høj | Motor ikke konfigureret til august | Juni-leverancerne skal være selveksekverende — ingen åbne spørgsmål |
 | Beta-feedback kræver større justeringer | Medium | Forsinker 1. oktober | September har nul buffer — kun kritiske fixes går ind |
-| 1.500 abonnenter kræver acquisition-investering der ikke er budgetteret | Ukendt | Mål nås ikke år 1 | Afklar budget med Commercial Lead i august |
+| Ingen Registration Wall ved paywall-lancering | Høj | Kold paywall giver 0,20% konvertering — uacceptabel risikoprofil | Registration Wall besluttes og implementeres inden november |
+| Akvisitionsbudget ikke afklaret | Høj | 1.500-mål nås ikke uden 1,95–3,55 mio. DKK i acquisition | Afklar budget med Commercial Lead inden august-præsentation (se U6) |
+| Churn år 1: B2B-medier taber ~40% af abonnenter om året | Medium | ARR-mål kræver fastholdelsesplan fra dag 1 | Retention-strategi (morgenbrief-engagement, onboarding-kvalitet, progressive profiling) prioriteres i beta |
 
 ---
 
@@ -203,6 +219,7 @@ Paywall aktiveres 1. november for både Private og Business. Y Business-subscrib
 | Internationale versioner | Speculative — development track, ikke vedtaget endeligt |
 | Artikel-deling (tokeniserede links) | Directional — bygges af Y.dk, gælder hele Y.dk-platformen |
 | Karrierekanonen (jobspor) | Speculative — fase 2 |
+| Lukket community (forum) | Speculative — fase 2, scopedefinition og staffing afventer |
 | Community markedsplads | Speculative — fase 2+ |
 | Pay-per-view / micropayment | Speculative — fase 2+ |
 | Partner (sponsor/relation) | Directional — governance-model er udestående ⚠ |
@@ -219,3 +236,6 @@ Paywall aktiveres 1. november for både Private og Business. Y Business-subscrib
 | U3 | **Partner governance** — præcise grænser for kommerciel adgang vs. redaktionel uafhængighed. Skal i scope på sigt. | Udestående |
 | U4 | **Supertrends-prisforhandling** — platformens distributionsværdi for Supertrends. Afventer kildestruktur. | Afventer |
 | U5 | **Artikel-deling** — tokeniseret link-model gælder hele Y.dk, ikke kun Business. Teknisk scope afklares med Tech Lead. | Tænkes ind tidligt |
+| U6 | **Akvisitionsbudget** — 1.500 Business-abonnenter kræver 1,95–3,55 mio. DKK afhængig af mix (inbound/LinkedIn/direktesalg). Ingen linje i budget endnu. Commercial Lead afklarer inden august-præsentation. | Kritisk |
+| U7 | **Registration Wall** — forudsætning for konverteringsmålet. Kold paywall giver ~0,20% konvertering = uacceptabel risikoprofil. Tech Lead beslutter og implementerer Registration Wall inden november. | Kritisk |
+| U8 | **Community-scope** — fase 2, ikke fase 1. Scopedefinition, staffing-model og fastholdelsesrationale afklares separat inden næste roadmap-review. | Fase 2 |

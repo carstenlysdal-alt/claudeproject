@@ -41,6 +41,11 @@ I modsætning til Finans.dk og Retriever/Meltwater kombineret (20.000–55.000+ 
 leverer Y Business AI-produceret, redaktionelt verificeret intelligence fra
 5.000 kilder — samlet på én platform til under en femtedel af prisen.
 
+Erhverv+-abonnementet til 7.500 kr./år er under bagatelgrænsen (7.600 kr./år) og
+dermed skattefrit personalegode for modtageren og fradragsberettiget for virksomheden.
+Abonnementet inkluderer desuden 5.000 kr. i annonceringsværdi på platformen —
+nettoomkostningen for en virksomhed der ønsker eksponering mod Y Business' læsere er ca. 2.500 kr./år.
+
 Konkurrenterne løser delopgaver. Y Business samler beslutningslaget.
 
 Platformen skal hver dag hjælpe læseren med tre ting:
@@ -74,10 +79,11 @@ til SMV-priser med redaktionel dømmekraft som differentiator.
 
 ---
 
-## 3. Platformen — seks lag
+## 3. Platformen — syv lag
 
-En bruger logger ind og får adgang til seks integrerede lag.
-Alle lag er personaliserede på branche, marked og interesseprofil.
+En bruger logger ind og får adgang til syv integrerede lag.
+Lag 1–6 er personaliserede på branche, marked og interesseprofil.
+Lag 7 styrker retention og virksomhedens ROI på abonnementet.
 
 ### Lag 1 — Erhvervsnyheder
 
@@ -112,13 +118,15 @@ et marked, en konkurrent eller et reguleringsemne — inden et møde,
 en forhandling eller en beslutning. 1 side: baggrund, nøgletal,
 aktuelle nyheder, risici, muligheder.
 
-### Lag 5 — Abonnentfællesskab
+### Lag 5 — Abonnentfællesskab *(Fase 2 — ikke i oktober-launch)*
 
-Lukket, modereret forum for betalende abonnenter. Branchespecifikke rum
-og direkte adgang til redaktionen. Fastholdelsesmekanisme: SMV-ejere
-betaler i dag 12.000 kr./år for ejerledernetværk.
+Lukket, modereret forum for Erhverv+-abonnenter med branchespecifikke rum
+og direkte adgang til redaktionen. Udskydes til fase 2 — scopedefinition og
+staffing-model afklares inden launch. Research viser at ufaciliterede digitale
+fora hurtigt mister fastholdelsesværdi; community lanceres kun når ressourcer
+til aktiv facilitation er på plads.
 
-### Lag 6 — Leadgenerering
+### Lag 6 — Leadgenerering *(Fase 2 — ikke i oktober-launch)*
 
 Ingen konkurrent tilbyder dette. Overvågningssignaler omsættes automatisk
 til salgsmuligheder:
@@ -128,6 +136,23 @@ til salgsmuligheder:
 - Lederskifte → ny beslutningstager med nye prioriteter
 
 Suppleret af CVR-baseret virksomhedssøgning på branche, størrelse og geografi.
+
+### Lag 7 — Artikel-deling og brugsrettigheder
+
+Tre funktioner der styrker retention og virksomhedens ROI på abonnementet:
+
+**Artikel-deling:** Abonnenter kan dele et begrænset antal artikler bag betalingsmuren
+via tokeniserede links (Erhverv: 5/md · Erhverv+: 25/md · Premium: 100/md).
+
+**Brugsret til markedsføring:** Abonnenter må bruge artikler, hvori de eller deres
+virksomhed er nævnt, i egne kanaler — SoMe, nyhedsbreve, investor-materiale.
+(Erhverv+: ca. 5 artikler/år · Premium: ca. 20 artikler/år).
+
+**Marketing kick-back:** Erhverv+ og Premium inkluderer annonceringsværdi på platformen —
+bannerannoncer, nyhedsbrevsannonce eller sponsoreret artikel — til en samlet værdi
+af henholdsvis 5.000 kr. og 7.500 kr. pr. år. Nettoomkostning for Erhverv+:
+ca. 2.500 kr./år efter kick-back. Håndteres af Commercial Lead og påvirker
+ikke redaktionel prioritering.
 
 ---
 
@@ -263,34 +288,31 @@ Private er platform-driveren — Business er omsætningen.
 
 ## 7. Teknologisk fundament
 
-### Supertrends-platformen
+### Tech-stack
 
-Nyhedsmotoren er i drift i dag og crawler 5.000 kilder 24/7.
-Y Business er ikke et nyt teknologiprojekt — det konfigurerer og
-udvider eksisterende infrastruktur.
+Y Business bygger på eget CMS og eget nyhedsaggregerings-lag.
+Ingen ekstern platformspartner er en del af den aktuelle plan.
 
-Supertrends leverer: CMS, datastruktur, overvågningsmotor,
-AI-analyse, automatiserede briefs.
+Y Business bygger og ejer: CMS, frontend, interface, redaktionelt lag,
+personalisering, kildekobling og brugerrejse.
 
-Y Business bygger oven på: frontend, interface, redaktionelt lag,
-personalisering og brugerrejse.
+tech involveres i overvågnings- og intelligensarbejdet.
+Jesper (Tech Lead) har ansvar for specifikationer og udviklingsprioritering.
 
-### Offentlige datakilder (direkte API-integration)
+### Datakilder (direkte API-integration)
 
 Retsinformation, EUR-Lex, udbud.dk, Folketing ODA,
-CVR + XBRL, Danmarks Statistik, Via Ritzau API.
+CVR + XBRL, Danmarks Statistik, Via Ritzau.
 
-### Tre tekniske afklaringer (afsluttet juni 2026)
-
-Supertrends-møde 3. juni bekræftede platformens kapabiliteter.
-Se `output/supertrends-moedereferat.md`.
+Kildeidentifikation og -struktur er i gang.
+API-adgang og licenskrav afklares løbende.
 
 ### Åbne tekniske spørgsmål
 
-- On-demand briefs (60 sek.) — kræver LLM-lag?
-- Personovervågning (eksperter, analytikere) — feature-request til Supertrends
-- TTS-motor til lyd — ekstern service kræves
-- Rammeaftale Supertrends: fee-struktur afventer forhandling
+- TTS-motor til lyd — ekstern service kræves (ElevenLabs, Google TTS eller Azure)
+- On-demand briefs (60 sek.) — kræver separat LLM-lag (Claude/OpenAI API)
+- Medieovervågning i realtid — datakilder og teknisk løsning afklares med tech
+- Markedsovervågning (CVR-signaler, regnskaber, ansættelser) — datakilder afklares
 
 ---
 
@@ -302,7 +324,7 @@ Se `output/supertrends-moedereferat.md`.
 | Y.dk public launch (fri adgang) | 10. august 2026 | CEO + Commercial Lead |
 | Redaktionelt koncept og features spec v1.0 | 30. juni 2026 | PM + Lysdal/Dyrby |
 | UI-wireframes og go/no-go | 31. august 2026 | PM + Designer |
-| **Y Business launch (invited beta)** | **1. oktober 2026** | **PM + Tech Lead** |
+| **Y Business launch** | **1. november 2026** | **PM + Tech Lead + Jesper** |
 | Paywall live — Private og Business | 20. november 2026 | Tech Lead + Commercial Lead |
 | Y Rails — fuld produktlancering | 1. december 2026 | Tech Lead |
 

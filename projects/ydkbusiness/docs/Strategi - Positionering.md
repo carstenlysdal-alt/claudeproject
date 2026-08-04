@@ -2,7 +2,7 @@
 
 ## Statement
 
-For SMV-ejere og erhvervsledere i Danmark, der bruger tid og penge på at sy et kludetæppe af separate tjenester sammen, er Y.dk Business en AI-drevet erhvervsplatform, der leverer nyheder, markedsovervågning, trends, B2B-briefs, leadgenerering og lukket abonnentfællesskab i ét abonnement til 5.000 kr./år. I modsætning til Finans.dk og Retriever/Meltwater kombineret giver Y.dk Business AI-produceret, redaktionelt verificeret intelligence fra 5.000 kilder — samlet på én platform til under en femtedel af prisen.
+For SMV-ejere og erhvervsledere i Danmark, der bruger tid og penge på at sy et kludetæppe af separate tjenester sammen, er Y.dk Business en AI-drevet erhvervsintelligensplatform, der leverer nyheder, markedsovervågning, trends og B2B-briefs i ét abonnement til 7.500 kr./år (intro: 5.000 kr. år 1). I modsætning til Finans.dk og Retriever/Meltwater kombineret giver Y.dk Business AI-produceret, redaktionelt verificeret intelligence fra 5.000 kilder — samlet på én platform til under en femtedel af prisen.
 
 ---
 
@@ -19,7 +19,7 @@ For SMV-ejere og erhvervsledere i Danmark, der bruger tid og penge på at sy et 
 Handlingsorienteret erhvervsinformation plus de perspektiver og nuancer der går tabt i mainstream-medierne. Modpolen og kilden der mangler.
 
 **Q3 — Produktkategori**
-AI-drevet erhvervsnyhedstjeneste med integreret business intelligence-lag og lukket abonnentfællesskab. Nyheder som fundament. Markedsovervågning, trends, B2B-briefs og community som det lag der adskiller Y.dk Business fra alle andre erhvervsmedier.
+AI-drevet erhvervsnyhedstjeneste med integreret business intelligence-lag. Nyheder som fundament. Markedsovervågning, trends og B2B-briefs som det lag der adskiller Y.dk Business fra alle andre erhvervsmedier.
 
 **Q4 — Nøglefordel**
 Erhvervsnyheder og business intelligence i ét produkt til 5.000 kr./år — mod Finans.dk (4.500 kr./år) plus Retriever/Meltwater (24.000+ kr./år) = 28.500+ kr./år. Én platform erstatter hele stakken til 18% af prisen. Abonnementet er inden for bagatelgrænsen (7.600 kr./år) og dermed et skattefrit personalegode for modtageren — fradragsberettiget for virksomheden. Årsabonnenter får 5.000 kr. i platformsannoncering inkluderet: abonnementet er reelt omkostningsneutralt for virksomheder der ønsker eksponering mod Y.dk's erhvervslæsere.

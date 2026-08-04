@@ -7,9 +7,11 @@ for Y.dk rettet mod erhvervslæsere og SMV-ejere i hele Danmark.
 
 ## Positionering (låst)
 
-Y.dk Business er en AI-drevet erhvervsplatform der leverer nyheder,
-markedsovervågning, trends og B2B-briefs i ét abonnement til 5.000 kr./år.
-Erstatter kludetæppet af Børsen + LassoX + separate BI-tjenester.
+Y.dk Business er en AI-drevet erhvervsintelligensplatform der leverer nyheder,
+markedsovervågning, trends, B2B-briefs og leadgenerering i ét abonnement.
+Primærkonkurrenter: Finans.dk (4.500–7.200 kr./år), Retriever (15.000–50.000+ kr./år)
+og Meltwater (50.000–140.000+ kr./år) — Y Business samler og erstatter alle tre
+til 7.500 kr./år (intro: 5.000 kr. år 1).
 Konkurrerer ikke primært med erhvervsmedier — ejer en ubesat kategori
 for SMV-segmentet: AI-drevet erhvervsintelligens til SMV-priser.
 
@@ -45,10 +47,18 @@ og en teknologisk platform der skalerer.
 
 ## Kommercielle rammer (kontekst)
 
-Abonnementspris år 1: 5.000 kr./år
-Abonnentmål år 1: 1.500
-ARR ved målopfyldelse: 7,5M DKK
-Indhold: erhvervsnyheder + markedsovervågning + trends + B2B-briefs
+Tier-model:
+- Erhverv (indgang): 500 kr./md
+- Erhverv+ (anbefalet): 7.500 kr./år · intro: 5.000 kr. år 1
+- Premium: 12.500 kr./år · intro: 9.500 kr. år 1
+- Kampagne-deadline: 20. november 2026
+
+Abonnentmål år 1: 1.500 Business-abonnenter
+ARR-baseline: 9M DKK (1.500 × 500 kr./md run-rate)
+ARR-konceptmodel: 7,5M DKK (1.500 × 5.000 kr./år ved årsabonnement)
+ARR-opside: 11–14M DKK ved tier-opgradering
+
+Indhold: erhvervsnyheder + markedsovervågning + trends + B2B-briefs + leadgenerering + artikel-deling
 
 ## Nuværende fase
 
@@ -78,18 +88,13 @@ Spor 3 følger i måned 2-3.
 
 ## Teknisk udgangspunkt
 
-Nyhedsmotoren og Supertrends-infrastrukturen er i drift i dag på Y.dk.
-Y.dk Business konfigurerer og udvider den eksisterende motor — bygger ikke fra bunden.
-Redaktionskonceptet er den primære tekniske input til konfigurationen.
+Y.dk Business bygger eget CMS og eget system baseret på direkte datakilder.
+Supertrends er ikke del af den aktuelle plan — det undersøges om Supertrends
+kan bidrage til specifikke formater (f.eks. trend-aggregering) på sigt.
 
-## Supertrends — ejerskab og implikationer
-
-Supertrends (Lars Tvede) er del af ejerkredsen bag Y.dk Business. Platformen stilles
-til rådighed til nogenlunde kostpris — ikke en ekstern leverandør der skal prisevalueres.
-
-Supertrends behandles som given teknologisk infrastruktur. Spørgsmålet er ikke
-"kan vi have råd til den" men "hvad kan den præcist, og hvad mangler den" — så vi
-ved hvad der skal suppleres med ekstern tech (TTS, community-platform, nyheds-API'er).
+Jesper (Tech Lead) har ansvar for specifikationer og udviklingsprioritering.
+tech involveres i overvågnings- og intelligensarbejdet.
+Kildeidentifikation og -struktur er i gang.
 
 ## Leverancer
 
@@ -106,6 +111,12 @@ ved hvad der skal suppleres med ekstern tech (TTS, community-platform, nyheds-AP
 
 ## Nøgledokumenter
 
-- `Journalistisk-retning.md` — **autoritativt redaktionelt fundament** for hele Y, inkl. Business. Tre indholdspillarer: Understand / Challenge / Inspire. Definerer værdier, value proposition ("DU BESTEMMER SELV") og AI som kommende USP.
-- `docs/positioning-statement.md` — positioneringsstatement (låst fundament)
-- `docs/projekt-y-kontekst.md` — mission, team, SWOT, konkurrenter
+- `Journalistisk-retning.md` — autoritativt redaktionelt fundament for hele Y, inkl. Business.
+- `docs/Produktvision.md` — masterkonceptet: alle seks lag, kommerciel model, tech, lanceringsplan
+- `docs/Strategi - Positionering.md` — Geoffrey Moore-statement og konkurrentanalyse
+- `docs/Produkt - Kravspecifikation.md` — funktionelle krav, tech-spec, tier-adgang (Tech Lead)
+- `docs/Produkt - Roadmap.md` — PM-leverancer, milepæle, afhængigheder
+- `docs/Redaktion - Editorial-model.md` — pillars, segmenter, løfter, dogmer
+- `docs/Redaktion - AI-motorspecifikation.md` — AI-orkestrering, kildestruktur, outputformat
+- `docs/Redaktion - Formater-og-klummer.md` — signaturformater, klummer, kildetaksonomi
+- `møder/` — alle mødereferater
