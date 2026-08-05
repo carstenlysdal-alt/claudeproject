@@ -1144,7 +1144,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 .biz-upgrade-item{background:var(--tint);padding:11px 14px}
 .biz-upgrade-k{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--accent);letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
 .biz-upgrade-v{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4}
-.biz-status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.biz-status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:20px}
 .biz-status-box{padding:0 0 0 10px}
 .biz-status-box.s-green{border-left:2px solid var(--green)}
 .biz-status-box.s-amber{border-left:2px solid var(--amber)}
@@ -3439,9 +3439,9 @@ span.rm-stak {
 (function () {
   var stage = document.getElementById('stage');
   function scale() {
-    var r = Math.min(window.innerWidth / 1440, window.innerHeight / 900);
+    var r = Math.min(window.innerWidth / 1440, window.innerHeight / 980);
     var x = (window.innerWidth  - 1440 * r) / 2;
-    var y = (window.innerHeight - 900 * r) / 2;
+    var y = (window.innerHeight - 980 * r) / 2;
     stage.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
     var vt = document.getElementById('vt-fixed');
     if (vt) { vt.style.top = Math.max(0, y) + 'px'; vt.style.right = Math.max(0, x) + 'px'; }
@@ -3623,9 +3623,9 @@ span.rm-stak {
     var s = document.getElementById('stage');
     var offset = isDirty ? 52 : 0;
     var availH = window.innerHeight - offset;
-    var r = Math.min(window.innerWidth / 1440, availH / 900);
+    var r = Math.min(window.innerWidth / 1440, availH / 980);
     var x = (window.innerWidth  - 1440 * r) / 2;
-    var y = offset + (availH - 900 * r) / 2;
+    var y = offset + (availH - 980 * r) / 2;
     s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
     var vt = document.getElementById('vt-fixed');
     if (vt) { vt.style.top = Math.max(0, y) + 'px'; vt.style.right = Math.max(0, x) + 'px'; }
