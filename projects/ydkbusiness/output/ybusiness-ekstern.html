@@ -90,15 +90,15 @@ p { margin:0; text-wrap:pretty; }
 .section-intro { margin-top:var(--s4); color:var(--ink70); font-size:17px; line-height:1.65; max-width:72ch; }
 
 .proof-layout { display:grid; grid-template-columns:1.05fr .95fr; grid-template-areas:'brief alert' 'brief meeting'; gap:var(--s4); }
-.proof { background:var(--card); border:1px solid var(--line); padding:var(--s5); min-width:0; }
+.proof { background:var(--card); border:1px solid var(--line); padding:var(--s4); min-width:0; }
 .proof-brief { grid-area:brief; display:grid; grid-template-rows:auto 1fr auto; }
 .proof-alert { grid-area:alert; background:var(--accent10); border-color:var(--accent20); }
 .proof-meeting { grid-area:meeting; }
 .proof-meta { display:flex; justify-content:space-between; gap:var(--s4); padding-bottom:var(--s4); border-bottom:1px solid var(--line); font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
-.proof h3 { margin-top:var(--s5); font-family:var(--serif); font-size:27px; line-height:1.15; font-style:italic; }
+.proof h3 { margin-top:var(--s3); font-family:var(--serif); font-size:21px; line-height:1.15; font-style:italic; }
 .proof p { margin-top:var(--s3); color:var(--ink70); font-size:14px; line-height:1.55; }
 .brief-items { display:grid; gap:0; margin-top:var(--s5); }
-.brief-item { display:grid; grid-template-columns:34px 1fr; gap:var(--s3); padding:15px 0; border-top:1px solid var(--line2); }
+.brief-item { display:grid; grid-template-columns:34px 1fr; gap:var(--s3); padding:10px 0; border-top:1px solid var(--line2); }
 .brief-item span { font-family:var(--serif); color:var(--accent); font-size:18px; font-style:italic; }
 .brief-item strong { display:block; font-size:14px; line-height:1.4; }
 .brief-item small { display:block; margin-top:3px; color:var(--muted); font-size:12px; line-height:1.45; }
@@ -287,11 +287,12 @@ p { margin:0; text-wrap:pretty; }
     <nav class="primary-nav" aria-label="Primær navigation">
       <a href="#s1">Overblik</a>
       <a href="#s2">Hvorfor nu</a>
+      <a href="#s2d">Mekanik</a>
       <a href="#s2b">Produktet</a>
       <a href="#s2c">Beslutningslag</a>
       <a href="#s2e">Business AI</a>
-      <a href="#s2f">Stemmer</a>
       <a href="#s3">Pakker</a>
+      <a href="#s2f">Stemmer</a>
       <a href="#s4">Tillid</a>
       <a href="#s5">Vær med</a>
     </nav>
@@ -316,7 +317,7 @@ p { margin:0; text-wrap:pretty; }
         <p class="hero-lead">Nyheder, markedstrends, regulering, konkurrenter og Business AI samlet i ét personligt overblik — med redaktionel dømmekraft ovenpå.</p>
         <p class="hero-lead" style="margin-top:14px;font-size:16px;color:var(--muted);">Ét abonnement. Ét beslutningslag. Ikke bare mere information, men et bedre grundlag for at forstå, tvivle og handle.</p>
         <div class="hero-actions">
-          <a class="action-primary" href="#s2b">Se produktet</a>
+          <a class="action-primary" href="#s2d">Se produktet</a>
           <a class="action-secondary" href="#s5">Drøft beta eller samarbejde</a>
         </div>
       </div>
@@ -377,7 +378,7 @@ p { margin:0; text-wrap:pretty; }
       <a class="scroll-btn scroll-btn-up" href="#s1" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
-      <a class="scroll-btn scroll-btn-down" href="#s2b" aria-label="Næste sektion">
+      <a class="scroll-btn scroll-btn-down" href="#s2d" aria-label="Næste sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </nav>
@@ -423,7 +424,7 @@ p { margin:0; text-wrap:pretty; }
       </div>
     </section>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s2" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s2d" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
       <a class="scroll-btn scroll-btn-down" href="#s2c" aria-label="Næste sektion">
@@ -438,8 +439,8 @@ p { margin:0; text-wrap:pretty; }
       <div class="lens-inner">
         <div class="lens-controls" role="group" aria-label="Præsentationsperspektiv">
           <span class="lens-label">Vælg perspektiv</span>
-          <button class="lens-btn active" type="button" data-lens="company" aria-pressed="true">Virksomhed</button>
-          <button class="lens-btn" type="button" data-lens="partner" aria-pressed="false">Organisation</button>
+          <button class="lens-btn" type="button" data-lens="company" aria-pressed="false">Virksomhed</button>
+          <button class="lens-btn active" type="button" data-lens="partner" aria-pressed="true">Organisation</button>
           <button class="lens-btn" type="button" data-lens="support" aria-pressed="false">Udvikling</button>
         </div>
         <p class="lens-description" id="lens-description" aria-live="polite">Se, hvordan Y Business skaber overblik, reducerer risiko og styrker virksomhedens beslutningsgrundlag.</p>
@@ -466,7 +467,7 @@ p { margin:0; text-wrap:pretty; }
       <a class="scroll-btn scroll-btn-up" href="#s2b" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
-      <a class="scroll-btn scroll-btn-down" href="#s2d" aria-label="Næste sektion">
+      <a class="scroll-btn scroll-btn-down" href="#s2e" aria-label="Næste sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </nav>
@@ -483,7 +484,7 @@ p { margin:0; text-wrap:pretty; }
       </div>
       <div class="layer-grid">
         <article class="layer-card"><div class="layer-kicker">Medie</div><h3>Redaktionel dømmekraft og journalistisk standard.</h3><p>Indholdet skal forklare, hvem udviklingen betyder noget for — og hvorfor.</p></article>
-        <article class="layer-card"><div class="layer-kicker">Medie- og markedsovervågning</div><h3>Mediedækning, konkurrenter, regulering og markedssignaler.</h3><p>AI overvåger brand og branche i aviser og fagmedier, regulatory change og markedsbevægelser — og sorterer det til relevante alerts og ugentlig digest.</p></article>
+        <article class="layer-card"><div class="layer-kicker">Medie- og markedsovervågning</div><h3>Mediedækning · regulering · jobopslag · udbud · ledelsessignaler.</h3><p>AI overvåger brand og branche i aviser og fagmedier, regulatory change, offentlige udbud, jobopslag og lederskifter — sorteret til alerts og ugentlig digest. Erstatning for Retriever og Meltwater.</p></article>
         <article class="layer-card featured"><div class="layer-kicker">Beslutningslag</div><h3>Fra signal til relevans for rolle, branche og virksomhed.</h3><p>Redaktionen prioriterer, verificerer og forklarer, så brugeren kan forstå, tvivle og handle.</p></article>
       </div>
       <div class="triad-grid">
@@ -493,10 +494,10 @@ p { margin:0; text-wrap:pretty; }
       </div>
     </section>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s2c" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s2" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
-      <a class="scroll-btn scroll-btn-down" href="#s2e" aria-label="Næste sektion">
+      <a class="scroll-btn scroll-btn-down" href="#s2b" aria-label="Næste sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </nav>
@@ -527,10 +528,10 @@ p { margin:0; text-wrap:pretty; }
       </div>
     </div>
     <nav class="scroll-nav s5-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s2d" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s2c" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
-      <a class="scroll-btn scroll-btn-down" href="#s2f" aria-label="Næste sektion">
+      <a class="scroll-btn scroll-btn-down" href="#s3" aria-label="Næste sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </nav>
@@ -573,10 +574,10 @@ p { margin:0; text-wrap:pretty; }
       </div>
     </div>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s2e" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s3" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
-      <a class="scroll-btn scroll-btn-down" href="#s3" aria-label="Næste sektion">
+      <a class="scroll-btn scroll-btn-down" href="#s4" aria-label="Næste sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </nav>
@@ -626,10 +627,10 @@ p { margin:0; text-wrap:pretty; }
       <p style="margin-top:24px;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em;">Alle pakker kan justeres i beta efter behov, rettigheder og teknisk afklaring.</p>
     </section>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s2f" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s2e" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
-      <a class="scroll-btn scroll-btn-down" href="#s4" aria-label="Næste sektion">
+      <a class="scroll-btn scroll-btn-down" href="#s2f" aria-label="Næste sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </nav>
@@ -658,7 +659,7 @@ p { margin:0; text-wrap:pretty; }
       </div>
     </section>
     <nav class="scroll-nav" aria-label="Naviger sektioner">
-      <a class="scroll-btn scroll-btn-up" href="#s3" aria-label="Forrige sektion">
+      <a class="scroll-btn scroll-btn-up" href="#s2f" aria-label="Forrige sektion">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
       <a class="scroll-btn scroll-btn-down" href="#s5" aria-label="Næste sektion">
@@ -702,7 +703,7 @@ p { margin:0; text-wrap:pretty; }
 <script>
 (function () {
   /* ── Scroll-snap navigation ── */
-  var sections = ['s1','s2','s2b','s2c','s2d','s2e','s2f','s3','s4','s5'];
+  var sections = ['s1','s2','s2d','s2b','s2c','s2e','s3','s2f','s4','s5'];
   var current = 0;
   var locked = false;
 
@@ -826,6 +827,7 @@ p { margin:0; text-wrap:pretty; }
   buttons.forEach(function(btn) {
     btn.addEventListener('click', function() { renderLens(btn.getAttribute('data-lens')); });
   });
+  renderLens('partner');
 }());
 </script>
 <style>
