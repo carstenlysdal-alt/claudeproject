@@ -2,9 +2,9 @@
 
 ## Konklusion
 
-Y.dk Business er Danmarks første erhvervsintelligensplatform bygget til erhvervslivet uden for C25 — nyheder, markedsovervågning, trends, B2B-briefs og abonnentfællesskab i ét abonnement til 5.000 kr./år.
+Y.dk Business er Danmarks første erhvervsintelligensplatform bygget til erhvervslivet uden for C25 — nyheder, markedsovervågning, trends, B2B-briefs og leadgenerering i ét abonnement til 7.500 kr./år.
 
-Virksomheder, brancheorganisationer og erhvervsledere betaler i dag 20.000–50.000 kr./år for et kludetæppe af tjenester der ikke er skrevet til dem. Vi erstatter det hele til under en femtedel af prisen. Markedet er ubesat. Lancering: 1. oktober 2026.
+Virksomheder, brancheorganisationer og erhvervsledere betaler i dag 20.000–50.000 kr./år for et kludetæppe af tjenester der ikke er skrevet til dem. Vi erstatter det hele til under en femtedel af prisen. Markedet er ubesat. Business-launch: 1. november 2026.
 
 ---
 
@@ -13,7 +13,7 @@ Virksomheder, brancheorganisationer og erhvervsledere betaler i dag 20.000–50.
 Tre strukturelle forhold åbner markedet i dag:
 
 1. **Segmentet er overset.** Eksisterende erhvervsmedier skriver til kapitalmarkedet og C25. Virksomheder, brancheorganisationer og erhvervsledere uden for børsens søgelys betaler for produkter der ikke er skrevet til dem — og ved det.
-2. **AI ændrer cost-strukturen fundamentalt.** Supertrends-platformen crawler allerede 5.000 kilder 24/7. Det der tidligere krævede en stor redaktion og et enterprise-budget er nu tilgængeligt for det brede erhvervsliv — fra dag ét.
+2. **AI ændrer cost-strukturen fundamentalt.** Y Business overvåger 5.000 kilder 24/7. Det der tidligere krævede en stor redaktion og et enterprise-budget er nu tilgængeligt for det brede erhvervsliv — fra dag ét.
 3. **Mainstream-medier er ensrettede.** Der er et udækket behov for erhvervsindhold der systematisk bringer modpolen, nuancen og den kilde der mangler. Det er en konkurrencemæssig fordel for den læser der vil vide mere end sine konkurrenter.
 
 ---
@@ -42,11 +42,11 @@ Erhvervsledere bruger 2–5 timer/uge på informationssøgning. Typisk: 45 minut
 
 | Lag | Hvad brugeren får |
 |---|---|
-| **Erhvervsnyheder** | Personaliseret feed + morgenbrief kl. 06:00, tekst og lyd. Pro: C-level intelligence og AI & tech — strategiske analyser, datadrevet research og ekspertopinion til topledelsen |
-| **Markedsovervågning** | Konkurrenter, CVR-registret (ejerskiftekifter, ledelsesændringer, konkursbegæringer), regulering, EU-direktiver og offentlige udbud — alerts og ugentlig digest |
-| **Branchetrends** | Ugentlig trendrapport med trend-radar: Emerging / Peak / Fading |
-| **B2B-briefs** | On-demand situationsbriefs på under 60 sekunder — til møder, forhandlinger og beslutninger |
-| **Abonnentfællesskab** | Lukket, modereret forum med brancherum og direkte adgang til redaktionen |
+| **Feed og morgenbriefet** | Personaliseret feed + morgenbrief kl. 06:00, tekst og lyd — prioriteret efter rolle, branche og adfærd |
+| **Markedsovervågning** | Konkurrenter, CVR-registret (ledelsesændringer, regnskaber, ansættelser), regulering, EU-direktiver og offentlige udbud — alerts og ugentlig digest |
+| **Branchetrends** | Løbende identifikation af udviklinger på tværs af brancher med redaktionel vurdering af signalstyrke og konsekvens |
+| **B2B-briefs** | Situationsbrief til brug før møder, handler, kundedialoger og beslutninger — 1 side med baggrund, risici, muligheder og næste spørgsmål |
+| **Personalisering og alerts** | Brugerens personlige konfiguration: brancher, virksomheder, nøgleord og trigger-alerts ved relevante bevægelser |
 
 AI producerer. Mennesker verificerer. Skalaen fra teknologien — kvaliteten fra redaktionen.
 
@@ -60,12 +60,15 @@ Y.dk Business er ikke et neutralt informationsprodukt. Den redaktionelle DNA bri
 
 ## Forretningsmodel
 
-- **Pris:** 5.000 kr./år (årsplan) / 500 kr./md — konservativt prissat under nordisk SaaS-gennemsnit
-- **Skattefrit personalegode** inden for bagatelgrænsen (7.600 kr./år) — beslutningen placeres i HR og økonomi, ikke hos den individuelle leder
-- **Fradragsberettiget** for virksomheden — fjerner den personlige betalingsbarriere
-- **Årsplan inkluderer** 5.000 kr. i platformsannoncering — reelt omkostningsneutralt for annoncerende virksomheder
-- **Private-abonnenter** (50 kr./md) er akvisitionskanal til Business og bygger daglig platformstrafik. Business genererer 10× mere revenue pr. abonnent
-- **Platform i drift:** Y.dk når 25.000 daglige besøg i september 2026 — det er rekrutteringspoolen begge segmenter hentes fra
+| Tier | Pris | Intro år 1 |
+|---|---|---|
+| Erhverv | 500 kr./md | 3 måneder gratis ved tegning senest 20. november |
+| Erhverv+ | 7.500 kr./år | 5.000 kr. første år |
+| Premium | 12.500 kr./år | 9.500 kr. første år |
+
+- **Skattefrit personalegode:** Erhverv+ (7.500 kr./år) er under bagatelgrænsen (7.600 kr./år) — fradragsberettiget for virksomheden
+- **Kampagne-deadline:** 20. november 2026
+- **Sekundære indtægter:** Partner 25–75.000 kr./år · API 100–250.000 kr./år
 
 **Beviset er der:** Frihedsbrevet nåede 5.000 abonnenter til break-even og genererede 14,6M DKK i bruttoindtægt i 2023. Danskere betaler for kvalitetsindhold når det er relevant for dem.
 
@@ -75,12 +78,11 @@ Y.dk Business er ikke et neutralt informationsprodukt. Den redaktionelle DNA bri
 
 | Metrik | Mål | Tidspunkt |
 |---|---|---|
-| Soft launch | Inviteret beta | 1. oktober 2026 |
-| Paywall live | Fuld lancering | 1. november 2026 |
-| Business-abonnenter | 1.500 | November 2026 |
-| Private-abonnenter | 1.500 | November 2026 |
-| ARR — Business | 7,5M DKK | År 1 |
-| Andel på årsplan | 50% | År 1 |
+| Y.dk public launch | Business AI som spydspids · venteliste aktiveres | 10. august 2026 |
+| Business-launch | Hovedparten af erhvervsfunktioner klar | 1. november 2026 |
+| Paywall live | Konvertering til betalte abonnementer | 20. november 2026 |
+| Business-abonnenter | 1.500 | År 1 |
+| ARR — Business | 7,5–9M DKK | År 1 |
 
 ---
 
