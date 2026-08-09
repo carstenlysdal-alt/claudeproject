@@ -74,7 +74,7 @@ p { margin:0; text-wrap:pretty; }
 .shorthand-list li em { font-style:normal; font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); flex-shrink:0; }
 
 /* ── SECTIONS ── */
-.section { width:var(--page); margin:0 auto; padding:clamp(56px,10vh,112px) 0; }
+.section { width:var(--page); margin:0 auto; padding:clamp(32px,5vh,64px) 0; }
 .section-head { max-width:830px; margin-bottom:var(--s7); }
 .section h2 { font-family:var(--serif); font-size:clamp(34px,4vw,56px); line-height:1.06; letter-spacing:-.02em; font-style:italic; }
 .section-intro { margin-top:var(--s4); color:var(--ink70); font-size:17px; line-height:1.65; max-width:72ch; }
@@ -88,7 +88,7 @@ p { margin:0; text-wrap:pretty; }
 
 /* ── WHY GRID ── */
 .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
-.why-card { background:var(--card); padding:var(--s6); min-height:220px; display:flex; flex-direction:column; }
+.why-card { background:var(--card); padding:var(--s6); min-height:180px; display:flex; flex-direction:column; }
 .why-number { font-family:var(--serif); font-size:clamp(38px,4vw,58px); font-weight:700; font-style:italic; line-height:.95; color:var(--accent); letter-spacing:-.03em; }
 .why-card h3 { margin-top:var(--s4); font-size:16px; line-height:1.3; }
 .why-card p { margin-top:var(--s3); color:var(--ink70); font-size:13px; line-height:1.58; }
@@ -108,7 +108,7 @@ p { margin:0; text-wrap:pretty; }
 
 /* ── LAYER GRID ── */
 .layer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
-.layer-card { background:var(--card); padding:var(--s6); min-height:240px; }
+.layer-card { background:var(--card); padding:var(--s5); min-height:155px; }
 .layer-card.featured { background:var(--accent); color:#fff; }
 .layer-card.featured .status-badge { color:rgba(196,181,253,.7); border-color:rgba(196,181,253,.3); }
 .layer-kicker { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
@@ -190,7 +190,7 @@ p { margin:0; text-wrap:pretty; }
 
 /* ── TIMELINE ── */
 .timeline-list { border-top:1px solid var(--line); }
-.tl-row { display:grid; grid-template-columns:170px 1fr 150px; gap:var(--s4); padding:15px 0; border-bottom:1px solid var(--line); align-items:start; }
+.tl-row { display:grid; grid-template-columns:170px 1fr 150px; gap:var(--s4); padding:10px 0; border-bottom:1px solid var(--line); align-items:start; }
 .tl-date { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding-top:2px; }
 .tl-date.key { color:var(--accent); }
 .tl-item strong { display:block; font-size:14px; line-height:1.3; }
@@ -199,7 +199,7 @@ p { margin:0; text-wrap:pretty; }
 
 /* ── PROCESS ── */
 .process { display:grid; gap:1px; background:var(--line); border:1px solid var(--line); grid-template-columns:1fr 1fr; }
-.process-step { min-height:150px; padding:var(--s5); background:var(--card); }
+.process-step { min-height:120px; padding:var(--s5); background:var(--card); }
 .process-step.dark { background:var(--accent); color:#fff; }
 .process-step b { font-family:var(--mono); font-size:9px; letter-spacing:.1em; color:var(--accent); display:block; margin-bottom:var(--s4); }
 .process-step.dark b { color:rgba(255,255,255,.5); }
@@ -294,7 +294,7 @@ p { margin:0; text-wrap:pretty; }
     <div class="hero-copy">
       <div class="context-line">Internt dokument — Product Owner Onboarding</div>
       <h1>Y Business er en AI-drevet erhvervsintelligensplatform for virksomheder med 5–250 ansatte.</h1>
-      <p class="hero-lead">Platformen kombinerer originalt redaktionelt indhold, AI-drevet markedsovervågning, branchetrends, B2B-briefs og leadgenerering i ét abonnement — og erstatter det kludetæppe af separate tjenester, som professionelle i dag bruger 2–5 timer om ugen på at navigere i.</p>
+      <p class="hero-lead">Platformen kombinerer originalt redaktionelt indhold, AI-drevet medie- og markedsovervågning, branchetrends, B2B-briefs og leadgenerering i ét abonnement — og erstatter det kludetæppe af separate tjenester, som professionelle i dag bruger 2–5 timer om ugen på at navigere i.</p>
       <p class="hero-lead" style="margin-top:14px;font-size:16px;color:var(--muted);">Produktet stiller brugeren tre spørgsmål hver dag: <span style="color:var(--ink);font-style:italic;">Hvad skal jeg forstå? Hvad skal jeg tvivle på? Hvad kan jeg gøre?</span></p>
     </div>
     <div class="shorthand-panel">
@@ -349,27 +349,6 @@ p { margin:0; text-wrap:pretty; }
       </article>
     </div>
 
-    <div style="margin-top:var(--s7);">
-      <div class="section-eyebrow">Eksisterende alternativer — hvert løser problemet halvt</div>
-      <div class="value-list">
-        <div class="value-row">
-          <div class="value-key">Erhvervsmedier</div>
-          <div class="value-copy"><h3>Leverer nyheder — sjældent konsekvens, aldrig overvågning</h3><p>Finans.dk og Børsen dækker kapitalmarked og C25. SMV-ejerens spørgsmål om regulering, konkurrenter og branchemønstre besvares ikke systematisk.</p></div>
-        </div>
-        <div class="value-row">
-          <div class="value-key">Overvågning</div>
-          <div class="value-copy"><h3>Retriever og Meltwater leverer omtale — ingen redaktionel syntese</h3><p>Prissat til enterprise-markeder: 15.000–140.000+ kr./år. Rå signaler uden prioritering, fortolkning eller erhvervskonsekvens overfor brugeren.</p></div>
-        </div>
-        <div class="value-row">
-          <div class="value-key">Rådgivning</div>
-          <div class="value-copy"><h3>Konsulenthuse leverer analyse — til enterprise-priser og på projektbasis</h3><p>Ikke tilgængeligt som løbende arbejdsredskab for virksomheder med 5–250 ansatte. Ingen daglig rytme, ingen personalisering.</p></div>
-        </div>
-        <div class="value-row">
-          <div class="value-key">Nyhedsbreve</div>
-          <div class="value-copy"><h3>Branchenyhedsbreve leverer niche — ét separat abonnement per branche</h3><p>Fragmenterer i stedet for at samle. Brugeren skal selv sy det hele sammen og mister overblikket på tværs af brancher og emner.</p></div>
-        </div>
-      </div>
-    </div>
   </section>
   <nav class="scroll-nav" aria-label="Naviger sektioner">
     <a class="scroll-btn scroll-btn-up" href="#s1" aria-label="Forrige"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></a>
@@ -384,7 +363,7 @@ p { margin:0; text-wrap:pretty; }
       <div aria-hidden="true" class="section-bg-num">02</div>
       <div class="section-eyebrow">Produktarkitekturen</div>
       <h2>Syv integrerede lag — personaliseret på branche, marked og interesseprofil.</h2>
-      <p class="section-intro">Lag 1–4 og 7 er med ved launch 1. oktober 2026. Lag 5 og 6 er fase 2. Alle lag personaliseres løbende på baggrund af brugerens profil og adfærd.</p>
+      <p class="section-intro">Lag 1–4 og 7 er med ved launch 1. november 2026. Lag 5 og 6 er fase 2. Alle lag personaliseres løbende på baggrund af brugerens profil og adfærd.</p>
     </div>
 
     <div class="layer-grid">
@@ -392,71 +371,40 @@ p { margin:0; text-wrap:pretty; }
         <div class="status-badge f1">Fase 1</div>
         <div class="layer-kicker">Lag 1</div>
         <h3>Erhvervsnyheder</h3>
-        <p>Originalt redaktionelt indhold kombineret med AI-sorterede nyheder fra nationale og internationale medier. Personaliseret nyhedsfeed og morgenbrief kl. 06.00 i tekst og lyd. Vinklet mod konsekvens for virksomheder med 5–250 ansatte — ikke kapitalmarkedet.</p>
+        <p>Morgenbrief kl. 06.00. Originalt redaktionelt indhold og AI-sorterede nyheder vinklet mod konsekvens — ikke kapitalmarkedet. Business AI er spydspidsen.</p>
       </article>
       <article class="layer-card">
         <div class="status-badge f1">Fase 1</div>
         <div class="layer-kicker">Lag 2</div>
-        <h3>Markedsovervågning</h3>
-        <p>Overvågning af konkurrenter, nøgleord, brancher, regulering og offentlige udbud. Alerts ved vigtige ændringer. Ugentlig digest mandage. Obligatorisk kategori fra launch: regulatory change med direkte SMV-konsekvens.</p>
+        <h3>Medie- og markedsovervågning</h3>
+        <p>Mediedækning af brand og konkurrenter i aviser og fagmedier. Regulatory alerts med direkte SMV-konsekvens. Erstatning for Retriever og Meltwater. Ugentlig digest mandage.</p>
       </article>
       <article class="layer-card">
         <div class="status-badge f1">Fase 1</div>
         <div class="layer-kicker">Lag 3</div>
         <h3>Branchetrends</h3>
-        <p>Ugentlig AI-aggregeret trendanalyse for brugerens branche, koblet til Supertrends-datastruktur. Filtrerbart på tidshorisont: nu / 6 måneder / 1–3 år. Det der normalt kræver en dedikeret analytiker.</p>
+        <p>Ugentlig AI-aggregeret trendanalyse. Nu / 6 måneder / 1–3 år. Det der normalt kræver en dedikeret analytiker.</p>
       </article>
       <article class="layer-card">
         <div class="status-badge f1">Fase 1</div>
         <div class="layer-kicker">Lag 4</div>
         <h3>B2B-Briefs</h3>
-        <p>On-demand situationsbrief om virksomhed, marked, konkurrent eller reguleringsemne på under 60 sekunder. Ét A4-format: baggrund, nøgletal, aktuelle nyheder, risici, muligheder. Kræver separat LLM-lag — åbent spørgsmål U1.</p>
+        <p>On-demand situationsbrief inden mødet eller beslutningen. 60 sekunder. 1 side: baggrund, nøgletal, risici, muligheder.</p>
       </article>
       <article class="layer-card">
         <div class="status-badge f2">Fase 2</div>
         <div class="layer-kicker">Lag 5</div>
         <h3>Abonnentfællesskab</h3>
-        <p>Lukket, modereret forum for betalende abonnenter med branchespecifikke rum og direkte adgang til redaktionen. Udskydes: kræver aktiv facilitation fra dag ét for at fastholde fastholdelsesværdi. Scope og staffing-model afklares separat.</p>
+        <p>Lukket forum for betalende abonnenter med branchespecifikke rum. Kræver aktiv facilitation. Scope og staffing afklares separat.</p>
       </article>
       <article class="layer-card featured">
         <div class="status-badge f2">Fase 2</div>
         <div class="layer-kicker">Lag 6</div>
         <h3>Leadgenerering</h3>
-        <p>Overvågningssignaler omsættes automatisk til salgsmuligheder: reguleringsændring → virksomheder i scope; ekspansion → potentiel køber; lederskifte → ny beslutningstager. Suppleret af CVR-søgning på branche, størrelse og geografi. Ingen konkurrent tilbyder dette.</p>
+        <p>Markedssignaler omsættes til leads: regulering, ekspansion, lederskifte. CVR-søgning på branche og geografi. Ingen konkurrent tilbyder dette.</p>
       </article>
     </div>
-
-    <div class="wide-card">
-      <div class="wide-card-inner">
-        <div>
-          <div class="status-badge cx">Tværgående · Fase 1</div>
-          <div class="layer-kicker" style="margin-top:4px;">Lag 7</div>
-        </div>
-        <div>
-          <h3>Artikel-deling og brugsrettigheder</h3>
-          <p>Tokeniserede artikel-links (Erhverv: 5/md · Erhverv+: 25/md · Premium: 100/md). Brugsret til markedsføring i egne kanaler for artikler, hvori virksomheden nævnes. Marketing kick-back: annonceringsværdi på 5.000–7.500 kr./år medfølger Erhverv+ og Premium. Gælder hele Y.dk-platformen — teknisk scope afklares med Tech Lead (åbent spørgsmål U5).</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="arch-box">
-      <div class="arch-header">
-        <span>Y Business — Platformsarkitektur</span>
-        <span>Arkitekturstatus besluttet juni 2026</span>
-      </div>
-      <div class="arch-layers-row">
-        <div class="arch-cell"><b>Nyheder</b><small>Originalt + aggregeret · Morgenbrief · Nyhedsfeed</small></div>
-        <div class="arch-cell"><b>Overvågning</b><small>Konkurrenter · Regulering · Alerts · Ugentlig digest</small></div>
-        <div class="arch-cell"><b>Trends</b><small>Ugentlig brancheanalyse · AI-aggregeret</small></div>
-        <div class="arch-cell"><b>Briefs</b><small>On-demand · 60 sek. · LLM-lag (åbent)</small></div>
-        <div class="arch-cell dim"><b>Leads ²</b><small>Signal-baseret + CVR-søgning · Fase 2</small></div>
-      </div>
-      <div class="arch-pers">↑&nbsp;&nbsp;Personalisering — branche · virksomhed · marked · adfærd&nbsp;&nbsp;↑</div>
-      <div class="arch-tech-row">
-        <div class="arch-tech-cell"><b>Supertrends — CMS og overvågningsmotor</b><small>Y.dk bygger frontend og interface oven på Supertrends-platformen. Rammeaftale og prismodel afventes (åbent spørgsmål U4).</small></div>
-        <div class="arch-tech-cell"><b>Direkte API-kildelag</b><small>Retsinformation · EUR-Lex · udbud.dk · Folketing ODA · CVR + XBRL · Danmarks Statistik · Via Ritzau</small></div>
-      </div>
-    </div>
+    <p style="margin-top:var(--s3);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);">Lag 7 (tværgående): artikel-deling og brugsrettigheder — se kommerciel model</p>
   </section>
   <nav class="scroll-nav" aria-label="Naviger sektioner">
     <a class="scroll-btn scroll-btn-up" href="#s2" aria-label="Forrige"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></a>
@@ -501,21 +449,6 @@ p { margin:0; text-wrap:pretty; }
         <li><span>5</span><p><strong>Ingen personalisering uden redaktionel horisont.</strong> Vigtige signaler, risici og blinde vinkler bryder altid igennem — uanset brugerens præferencer.</p></li>
       </ul>
 
-      <div style="margin-top:var(--s7);">
-        <div class="section-eyebrow inv" style="margin-bottom:var(--s4);">Bærende formater ved launch</div>
-        <div class="format-row five">
-          <div class="format-cell"><b>Morgenbriefet</b><small>Dagligt kl. 06 · tekst og lyd · personaliseret</small></div>
-          <div class="format-cell"><b>Det betyder det</b><small>Konsekvens oversat direkte til din virksomhed</small></div>
-          <div class="format-cell"><b>Den blinde vinkel</b><small>Dokumenteret modfortælling mod dominerende narrativ</small></div>
-          <div class="format-cell"><b>Casen der virker</b><small>Metode, friktion og kopierbar læring fra praksis</small></div>
-          <div class="format-cell"><b>Signalradaren</b><small>Tidlige markedssignaler med tidshorisont</small></div>
-        </div>
-        <div class="format-row three">
-          <div class="format-cell"><b>Myten om</b><small>Erhvervslivets sejlivede misforståelser testet mod data og cases</small></div>
-          <div class="format-cell"><b>Før mødet</b><small>Ét A4 inden bestyrelse, forhandling eller kundmøde</small></div>
-          <div class="format-cell"><b>Før handlen</b><small>Due diligence-brief om virksomhed eller marked</small></div>
-        </div>
-      </div>
     </div>
   </div>
   <nav class="scroll-nav inv-nav" aria-label="Naviger sektioner">
@@ -530,7 +463,7 @@ p { margin:0; text-wrap:pretty; }
     <div class="section-head section-head-wrap">
       <div aria-hidden="true" class="section-bg-num">03</div>
       <div class="section-eyebrow">Kommerciel model</div>
-      <h2>Mål: 1.500 Business-abonnenter pr. 20. november 2026.</h2>
+      <h2>Mål: 1.500 Business-abonnenter ved åbning af paywall.</h2>
       <p class="section-intro">Tre abonnementsniveauer. Baseline-ARR ved målet: 9M DKK. Business genererer 10× mere revenue pr. abonnent end Private — Private er platform-driveren, Business er omsætningen.</p>
     </div>
 
@@ -540,7 +473,7 @@ p { margin:0; text-wrap:pretty; }
         <div class="package-price">500 kr. <small>pr. måned</small></div>
         <ul>
           <li>Personaliseret nyhedsfeed + morgenbrief (tekst)</li>
-          <li>Grundlæggende markedsovervågning</li>
+          <li>Grundlæggende medie- og markedsovervågning</li>
           <li>Artikel-deling: 5 links pr. måned</li>
         </ul>
       </article>
@@ -592,7 +525,7 @@ p { margin:0; text-wrap:pretty; }
             <tr><td>Børsen</td><td>ca. 7.200</td><td>Finansmarked, ikke SMV-relevant</td></tr>
             <tr><td>Retriever</td><td>15.000–50.000+</td><td>Overvågning, ingen journalistik</td></tr>
             <tr><td>Meltwater</td><td>50.000–140.000+</td><td>Enterprise-prissat, ingen nyheder</td></tr>
-            <tr class="us"><td>Y Business</td><td>7.500</td><td>Nyheder + overvågning + trends + briefs</td></tr>
+            <tr class="us"><td>Y Business</td><td>7.500</td><td>Nyheder + medie-/markedsovervågning + trends + briefs</td></tr>
           </tbody>
         </table>
       </div>
@@ -610,7 +543,7 @@ p { margin:0; text-wrap:pretty; }
     <div class="section-head section-head-wrap">
       <div aria-hidden="true" class="section-bg-num">04</div>
       <div class="section-eyebrow">Roadmap og ansvar</div>
-      <h2>Launch 1. oktober 2026. Paywall 20. november 2026.</h2>
+      <h2>Launch 1. november 2026. Paywall-dato fastsættes.</h2>
       <p class="section-intro">Y Business lanceres på en platform der allerede har kørt åbent beta siden 10. august. PM-engagementet løber 1. juni – 30. september. Juli er sommerferie — juni-leverancerne skal pakkes, så Tech Lead kan eksekvere selvstændigt hele juli.</p>
     </div>
 
@@ -639,13 +572,13 @@ p { margin:0; text-wrap:pretty; }
             <div class="tl-owner">PM + Designer</div>
           </div>
           <div class="tl-row">
-            <div class="tl-date key">1. okt. 2026</div>
-            <div class="tl-item"><strong>Y Business — invited beta launch</strong><p>Nyhedsfeed, morgenbrief, overvågning, trends, briefs (lag 1–4 + 7). Mål: NPS og kvalitativ feedback.</p></div>
+            <div class="tl-date key">1. nov. 2026</div>
+            <div class="tl-item"><strong>Y Business — launch</strong><p>Nyhedsfeed, morgenbrief, medie- og markedsovervågning, branchetrends, briefs (lag 1–4 + 7).</p></div>
             <div class="tl-owner">PM + Tech Lead</div>
           </div>
           <div class="tl-row">
-            <div class="tl-date key">20. nov. 2026</div>
-            <div class="tl-item"><strong>Paywall live — Private og Business</strong><p>Mål: 1.500 Business + 1.500 Private subscribers. Registration Wall er forudsætning (U7).</p></div>
+            <div class="tl-date" style="color:var(--muted);">Dato fastsættes</div>
+            <div class="tl-item"><strong>Paywall live — Private og Business</strong><p>Mål: 1.500 Business + 1.500 Private subscribers. Registration Wall er forudsætning (U7). Dato afklares.</p></div>
             <div class="tl-owner">Tech Lead + Commercial Lead</div>
           </div>
           <div class="tl-row">
@@ -681,19 +614,6 @@ p { margin:0; text-wrap:pretty; }
           </div>
         </div>
 
-        <div style="margin-top:var(--s7);">
-          <div class="section-eyebrow">Åbne spørgsmål</div>
-          <div class="q-list">
-            <div class="q-row"><div class="q-num">U1</div><div><span class="q-tag crit">Kritisk</span></div><div class="q-body"><strong>Redaktionelt koncept</strong><p>Lysdal + Dyrby leverer senest 22. juni. Forudsætning for al efterfølgende eksekvering.</p></div></div>
-            <div class="q-row"><div class="q-num">U2</div><div><span class="q-tag high">Høj</span></div><div class="q-body"><strong>Tier-feature-allocation</strong><p>Præcis feature-fordeling i Erhverv / Erhverv+ / Premium afklares efter U1.</p></div></div>
-            <div class="q-row"><div class="q-num">U3</div><div><span class="q-tag high">Udestående</span></div><div class="q-body"><strong>Partner governance</strong><p>Grænse for kommerciel adgang vs. redaktionel uafhængighed. Skal i scope.</p></div></div>
-            <div class="q-row"><div class="q-num">U4</div><div><span class="q-tag pend">Afventer</span></div><div class="q-body"><strong>Supertrends-prisforhandling</strong><p>Fee, procent eller hybrid. Afventer kildestruktur-afklaring med Lars Tvede.</p></div></div>
-            <div class="q-row"><div class="q-num">U5</div><div><span class="q-tag pend">Tidligt ind</span></div><div class="q-body"><strong>Artikel-deling scope</strong><p>Tokeniseret link-model gælder hele Y.dk-platformen. Teknisk scope afklares med Tech Lead.</p></div></div>
-            <div class="q-row"><div class="q-num">U6</div><div><span class="q-tag crit">Kritisk</span></div><div class="q-body"><strong>Akvisitionsbudget</strong><p>1.500 Business-abonnenter kræver 1,95–3,55M DKK. Ingen budgetlinje endnu. Commercial Lead afklarer inden august.</p></div></div>
-            <div class="q-row"><div class="q-num">U7</div><div><span class="q-tag crit">Kritisk</span></div><div class="q-body"><strong>Registration Wall</strong><p>Forudsætning for konverteringsmålet. Kold paywall giver ~0,20% konvertering — uacceptabel risikoprofil. Tech Lead beslutter og implementerer inden november.</p></div></div>
-            <div class="q-row"><div class="q-num">U8</div><div><span class="q-tag p2">Fase 2</span></div><div class="q-body"><strong>Community-scope</strong><p>Scope, staffing-model og fastholdelsesrationale afklares separat inden næste roadmap-review.</p></div></div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
