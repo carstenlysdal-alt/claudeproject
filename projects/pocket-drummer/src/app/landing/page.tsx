@@ -17,26 +17,27 @@ function useAppUrl() {
 }
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────
+// Fladt taktlinje-designsprog — samme palet/typografi som /prototype
 const T = {
-  bg:       '#0C0A07',
-  bg1:      '#131008',
-  bg2:      '#1A1512',
-  bg3:      '#1E1A13',
-  surface:  'rgba(255,255,255,0.04)',
-  border:   'rgba(255,255,255,0.07)',
-  border2:  'rgba(255,255,255,0.12)',
-  text:     '#EDE9E4',
-  text2:    '#A09890',
-  text3:    '#66615C',
-  accent:   '#E8703A',
-  accentB:  '#D4622E',
-  accentD:  'rgba(232,112,58,0.14)',
-  accentG:  'rgba(232,112,58,0.22)',
-  gold:     '#D4A96A',
-  goldD:    'rgba(212,169,106,0.12)',
-  head:     "'Plus Jakarta Sans', 'Outfit', system-ui, sans-serif",
-  body:     "'Inter', system-ui, sans-serif",
-  mono:     "'JetBrains Mono', monospace",
+  bg:       '#FBFAF6',
+  bg1:      '#FBFAF6',
+  bg2:      '#F4EFE8',
+  bg3:      '#EFEBE3',
+  surface:  '#FFFFFF',
+  border:   '#E1DACB',
+  border2:  '#DAD3C6',
+  text:     '#2B2723',
+  text2:    '#5C554C',
+  text3:    '#9A9184',
+  accent:   '#EE6C48',
+  accentB:  '#C95A3C',
+  accentD:  '#FCE9E1',
+  accentG:  'rgba(238,108,72,0.22)',
+  gold:     '#D69A34',
+  goldD:    'rgba(214,154,52,0.12)',
+  head:     "'Bricolage Grotesque', system-ui, sans-serif",
+  body:     "'Hanken Grotesk', system-ui, sans-serif",
+  mono:     "'IBM Plex Mono', monospace",
   ease:     'cubic-bezier(0.16, 1, 0.3, 1)',
 };
 
@@ -74,11 +75,9 @@ function LandingNav({ appUrl, m }: { appUrl: string; m: boolean }) {
     <nav style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
       height: 64,
-      background: scrolled ? 'rgba(12,10,7,0.94)' : 'rgba(12,10,7,0)',
-      backdropFilter: scrolled ? 'blur(20px)' : 'none',
-      WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-      borderBottom: `1px solid ${scrolled ? T.border : 'transparent'}`,
-      transition: `background 300ms ${T.ease}, border-color 300ms ${T.ease}`,
+      background: T.bg,
+      borderBottom: `2px solid ${scrolled ? T.text : 'transparent'}`,
+      transition: `border-color 300ms ${T.ease}`,
     }}>
       <div style={{
         maxWidth: 1200, margin: '0 auto',
@@ -114,7 +113,7 @@ function LandingNav({ appUrl, m }: { appUrl: string; m: boolean }) {
               fontFamily: T.body, fontSize: 13, fontWeight: 600, color: '#fff',
               background: T.accent, padding: '9px 20px', borderRadius: 10,
               textDecoration: 'none', letterSpacing: -0.1,
-              boxShadow: `0 4px 16px rgba(232,112,58,0.35)`,
+              boxShadow: `0 4px 16px rgba(238,108,72,0.35)`,
               transition: `background 150ms, transform 150ms ${T.ease}`,
               whiteSpace: 'nowrap',
             }}
@@ -178,13 +177,13 @@ function LevelSelector({ appUrl }: { appUrl: string }) {
               onClick={() => handleSelect(lv.id)}
               style={{
                 display: 'flex', alignItems: 'center', gap: 16,
-                background: active ? 'rgba(232,112,58,0.10)' : 'rgba(255,255,255,0.03)',
-                border: `1px solid ${active ? 'rgba(232,112,58,0.40)' : T.border2}`,
-                borderRadius: 14, padding: '14px 18px',
+                background: active ? T.accentD : 'transparent',
+                border: `1px solid ${active ? T.accent : T.border2}`,
+                borderRadius: 0, padding: '14px 18px',
                 cursor: 'pointer', textAlign: 'left', width: '100%',
                 transition: `all 150ms ${T.ease}`,
               }}
-              onMouseEnter={e => { if (!active) e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)'; }}
+              onMouseEnter={e => { if (!active) e.currentTarget.style.borderColor = T.text3; }}
               onMouseLeave={e => { if (!active) e.currentTarget.style.borderColor = T.border2; }}
             >
               {/* Level dots */}
@@ -193,8 +192,8 @@ function LevelSelector({ appUrl }: { appUrl: string }) {
                   <div key={d} style={{
                     width: 8, height: 8, borderRadius: '50%',
                     background: d <= lv.dots
-                      ? (active ? T.accent : 'rgba(255,255,255,0.45)')
-                      : 'rgba(255,255,255,0.10)',
+                      ? (active ? T.accent : T.text3)
+                      : T.border,
                     transition: `background 150ms`,
                   }} />
                 ))}
@@ -226,7 +225,7 @@ function LevelSelector({ appUrl }: { appUrl: string }) {
           fontFamily: T.head, fontSize: 15, fontWeight: 700,
           padding: '16px 28px', borderRadius: 14,
           textDecoration: 'none', letterSpacing: -0.2,
-          boxShadow: `0 8px 32px rgba(232,112,58,0.40)`,
+          boxShadow: `0 8px 32px rgba(238,108,72,0.40)`,
           transition: `background 150ms, transform 150ms ${T.ease}`,
         }}
         onMouseEnter={e => { e.currentTarget.style.background = T.accentB; e.currentTarget.style.transform = 'translateY(-2px)'; }}
@@ -256,10 +255,10 @@ function FeatureCard({ icon, title, body }: { icon: React.ReactNode; title: stri
       gap: 14,
       transition: `border-color 200ms ${T.ease}`,
     }}
-      onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(232,112,58,0.25)')}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(238,108,72,0.25)')}
       onMouseLeave={e => (e.currentTarget.style.borderColor = T.border)}
     >
-      <div style={{ width: 44, height: 44, borderRadius: 12, background: T.accentD, border: `1px solid rgba(232,112,58,0.2)`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ width: 44, height: 44, borderRadius: 12, background: T.accentD, border: `1px solid rgba(238,108,72,0.2)`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {icon}
       </div>
       <div>
@@ -308,7 +307,7 @@ export default function LandingPage() {
             {/* Eyebrow */}
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: T.accentD, border: `1px solid rgba(232,112,58,0.28)`,
+              background: T.accentD, border: `1px solid rgba(238,108,72,0.28)`,
               borderRadius: 20, padding: '6px 14px',
               marginBottom: 28,
             }}>
@@ -360,7 +359,7 @@ export default function LandingPage() {
             {/* Ambient glow */}
             <div style={{
               position: 'absolute', width: 400, height: 400, borderRadius: '50%',
-              background: `radial-gradient(circle, rgba(232,112,58,0.10) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, rgba(238,108,72,0.10) 0%, transparent 70%)`,
               filter: 'blur(30px)', pointerEvents: 'none',
             }} />
             <LevelSelector appUrl={appUrl} />
@@ -439,7 +438,7 @@ export default function LandingPage() {
                   { n: '03', title: 'Se fremgangen', body: 'Din streak vokser. Dit progression-map udfyldes. Du kan mærke og bevise, at du rykker dig.' },
                 ].map(step => (
                   <div key={step.n} style={{ display: 'flex', gap: 18, alignItems: 'flex-start' }}>
-                    <div style={{ width: 36, height: 36, borderRadius: 10, background: T.accentD, border: `1px solid rgba(232,112,58,0.2)`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: 10, background: T.accentD, border: `1px solid rgba(238,108,72,0.2)`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <span style={{ fontFamily: T.mono, fontSize: 11, fontWeight: 700, color: T.accent }}>{step.n}</span>
                     </div>
                     <div>
@@ -453,12 +452,12 @@ export default function LandingPage() {
 
             {/* Second level selector preview card */}
             <div style={{ display: m ? 'none' : 'flex', justifyContent: 'center', position: 'relative' }}>
-              <div style={{ position: 'absolute', width: 350, height: 350, borderRadius: '50%', background: `radial-gradient(circle, rgba(232,112,58,0.08) 0%, transparent 70%)`, filter: 'blur(20px)' }} />
+              <div style={{ position: 'absolute', width: 350, height: 350, borderRadius: '50%', background: `radial-gradient(circle, rgba(238,108,72,0.08) 0%, transparent 70%)`, filter: 'blur(20px)' }} />
               <div style={{
-                width: 320, borderRadius: 24,
-                background: T.bg2, border: `1px solid ${T.border2}`,
+                width: 320, borderRadius: 0,
+                background: T.surface, border: `1px solid ${T.border}`,
                 padding: '28px 24px',
-                boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                boxShadow: 'none',
               }}>
                 <div style={{ fontFamily: T.head, fontSize: 20, fontWeight: 800, color: T.text, letterSpacing: -0.5, marginBottom: 6 }}>Dag 7 · Grundrytmer</div>
                 <div style={{ fontFamily: T.body, fontSize: 13, color: T.text2, marginBottom: 20 }}>Din AI-coach har valgt 3 øvelser til i dag.</div>
@@ -471,8 +470,8 @@ export default function LandingPage() {
                         <span style={{ fontFamily: T.head, fontSize: 12, fontWeight: 600, color: T.text }}>{name}</span>
                         <span style={{ fontFamily: T.body, fontSize: 11, fontWeight: 600, color: T.accent }}>{pct}%</span>
                       </div>
-                      <div style={{ height: 3, background: 'rgba(255,255,255,0.08)', borderRadius: 2, overflow: 'hidden' }}>
-                        <div style={{ height: '100%', width: `${pct}%`, background: T.accent, borderRadius: 2, boxShadow: `0 0 6px rgba(232,112,58,0.3)` }} />
+                      <div style={{ height: 3, background: T.border, borderRadius: 0, overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: `${pct}%`, background: T.accent, borderRadius: 0, boxShadow: 'none' }} />
                       </div>
                     </div>
                   ))}
@@ -506,7 +505,7 @@ export default function LandingPage() {
             <div style={{ padding: m ? '32px 24px' : '52px 48px' }}>
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
-                background: T.accentD, border: `1px solid rgba(232,112,58,0.28)`,
+                background: T.accentD, border: `1px solid rgba(238,108,72,0.28)`,
                 borderRadius: 20, padding: '5px 14px', marginBottom: 22,
               }}>
                 <div style={{ width: 6, height: 6, borderRadius: '50%', background: T.accent, boxShadow: `0 0 8px ${T.accentG}` }} />
@@ -562,7 +561,7 @@ export default function LandingPage() {
                 fontFamily: T.head, fontSize: 14, fontWeight: 700,
                 padding: '15px 24px', borderRadius: 12,
                 textDecoration: 'none', letterSpacing: -0.1,
-                boxShadow: `0 6px 24px rgba(232,112,58,0.35)`,
+                boxShadow: `0 6px 24px rgba(238,108,72,0.35)`,
                 transition: `background 150ms, transform 150ms ${T.ease}`,
               }}
                 onMouseEnter={e => { e.currentTarget.style.background = T.accentB; e.currentTarget.style.transform = 'translateY(-2px)'; }}
@@ -596,7 +595,7 @@ export default function LandingPage() {
                 background: T.bg2, border: `1px solid ${T.border}`,
                 borderRadius: 24, padding: m ? '28px 20px' : '40px 40px', position: 'relative', overflow: 'hidden',
               }}>
-                <div style={{ position: 'absolute', top: -60, right: -60, width: 200, height: 200, borderRadius: '50%', background: 'rgba(232,112,58,0.08)', filter: 'blur(30px)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', top: -60, right: -60, width: 200, height: 200, borderRadius: '50%', background: 'rgba(238,108,72,0.08)', filter: 'blur(30px)', pointerEvents: 'none' }} />
 
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: T.goldD, border: `1px solid rgba(212,169,106,0.25)`, borderRadius: 20, padding: '5px 14px', marginBottom: 24 }}>
                   <svg width="10" height="10" viewBox="0 0 10 10" fill={T.gold}><path d="M5 0L6.12 3.38H9.51L6.82 5.47L7.94 8.85L5 6.76L2.06 8.85L3.18 5.47L0.49 3.38H3.88L5 0Z"/></svg>
@@ -633,7 +632,7 @@ export default function LandingPage() {
                   fontFamily: T.head, fontSize: 15, fontWeight: 700,
                   padding: '16px 32px', borderRadius: 14,
                   textDecoration: 'none', letterSpacing: -0.2,
-                  boxShadow: `0 8px 32px rgba(232,112,58,0.35)`,
+                  boxShadow: `0 8px 32px rgba(238,108,72,0.35)`,
                   transition: `background 150ms, transform 150ms ${T.ease}`,
                 }}
                   onMouseEnter={e => { e.currentTarget.style.background = T.accentB; e.currentTarget.style.transform = 'translateY(-2px)'; }}
@@ -662,7 +661,7 @@ export default function LandingPage() {
               fontFamily: T.head, fontSize: 16, fontWeight: 700,
               padding: '17px 32px', borderRadius: 16,
               textDecoration: 'none', letterSpacing: -0.2,
-              boxShadow: `0 8px 40px rgba(232,112,58,0.4)`,
+              boxShadow: `0 8px 40px rgba(238,108,72,0.4)`,
               width: m ? '100%' : 'auto',
               transition: `background 150ms, transform 150ms ${T.ease}`,
             }}

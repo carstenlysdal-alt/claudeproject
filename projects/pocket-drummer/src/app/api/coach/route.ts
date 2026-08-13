@@ -84,9 +84,48 @@ function fallbackResponse(userMessage: string): CoachResponse {
   };
 }
 
+const HISTORY_WINDOW = 12;
+const MAX_ATTEMPTS = 3;
+
+async function callDeepSeek(apiKey: string, history: CoachMessage[]): Promise<CoachResponse | null> {
+  const res = await fetch('https://api.deepseek.com/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'deepseek-chat',
+      temperature: 0.7,
+      max_tokens: 512,
+      response_format: { type: 'json_object' },
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        ...history,
+      ],
+    }),
+  });
+
+  if (!res.ok) throw new Error(`DeepSeek API ${res.status}`);
+
+  const data = await res.json();
+  const raw: string | undefined = data.choices?.[0]?.message?.content;
+
+  if (!raw || raw.trim().length === 0) return null;
+
+  try {
+    const parsed = JSON.parse(raw.trim());
+    if (!parsed.message || typeof parsed.message !== 'string' || parsed.message.trim().length === 0) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
 export async function POST(req: NextRequest) {
   const { messages }: { messages: CoachMessage[] } = await req.json();
   const apiKey = process.env.DEEPSEEK_API_KEY;
+  const history = messages.slice(-HISTORY_WINDOW);
 
   if (!apiKey) {
     const lastUserMsg = [...messages].reverse().find(m => m.role === 'user');
@@ -94,37 +133,12 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const res = await fetch('https://api.deepseek.com/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'deepseek-chat',
-        temperature: 0.7,
-        max_tokens: 512,
-        response_format: { type: 'json_object' },
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          ...messages,
-        ],
-      }),
-    });
-
-    if (!res.ok) throw new Error(`DeepSeek API ${res.status}`);
-
-    const data = await res.json();
-    const raw = data.choices[0].message.content.trim();
-
-    let parsed: CoachResponse;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      parsed = { message: raw };
+    for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+      const parsed = await callDeepSeek(apiKey, history);
+      if (parsed) return NextResponse.json(parsed);
     }
-
-    return NextResponse.json(parsed);
+    // Alle forsøg gav tomt/ugyldigt svar — vis en ærlig fejl, ikke rå JSON-fejl
+    return NextResponse.json({ message: 'AI\'en svarede ikke korrekt. Prøv igen.' });
   } catch (e) {
     console.error('Coach API error:', e);
     const lastUserMsg = [...messages].reverse().find(m => m.role === 'user');

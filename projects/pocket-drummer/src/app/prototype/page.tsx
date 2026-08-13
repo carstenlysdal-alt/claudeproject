@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { useAuth } from '@/lib/authContext';
 import { Language, useLanguage } from '@/lib/languageContext';
 import TiltCard from '@/components/TiltCard';
+import ReactMarkdown from 'react-markdown';
 
 
 // ─────────────────────────────────────────────────────────────
@@ -28,12 +29,16 @@ const tokens = (dark: boolean) => ({
   accentGlow: '0 8px 20px rgba(238,108,72,0.28)',
   good: '#3FAE86',
   goodSoft: dark ? 'rgba(63,174,134,0.18)' : '#E4F3EC',
+  warn: dark ? '#E0AC53' : '#D69A34',
   glassBackground: dark ? 'rgba(32,27,23,0.86)' : '#FFFFFF',
   glassBlur: dark ? 'blur(16px)' : 'none',
   navBackground: dark ? 'rgba(21,18,15,0.92)' : 'rgba(251,250,246,0.92)',
   navBorder: dark ? 'rgba(255,255,255,0.08)' : '#EEE9E1',
   navShadow: dark ? '0 -1px 0 rgba(255,255,255,0.06)' : '0 -8px 22px rgba(43,39,35,0.06)',
-  mono: 'var(--font-mono, monospace)',
+  // Fladt taktlinje-designsprog: hairline-skel, tyk taktstreg, dæmpede tick-marks
+  hairline: dark ? 'rgba(255,255,255,0.10)' : '#E1DACB',
+  tickMuted: dark ? 'rgba(255,255,255,0.14)' : '#D8CFC0',
+  mono: "'IBM Plex Mono', var(--font-mono, monospace)",
   font: '"Hanken Grotesk", var(--font-sans, sans-serif)',
   head: '"Bricolage Grotesque", var(--font-head, var(--font-title, sans-serif))',
   serif: '"Bricolage Grotesque", var(--font-head, var(--font-title, sans-serif))',
@@ -146,6 +151,10 @@ const IcAttach = (p: IcProps) => <Ic {...p}><path d="M21 11l-9 9a5 5 0 0 1-7-7l9
 const IcLoop = (p: IcProps) => <Ic {...p}><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></Ic>;
 const IcMin = (p: IcProps) => <Ic {...p}><path d="M5 12h14"/></Ic>;
 const IcUpload = (p: IcProps) => <Ic {...p}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></Ic>;
+const IcArrowRight = (p: IcProps) => <Ic {...p}><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></Ic>;
+const IcArrowLeft = (p: IcProps) => <Ic {...p}><path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/></Ic>;
+const IcSearch = (p: IcProps) => <Ic {...p}><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></Ic>;
+const IcHeart = (p: IcProps) => <Ic {...p}><path d="M12 20.5S3.5 15 3.5 8.8A4.8 4.8 0 0 1 12 5.7a4.8 4.8 0 0 1 8.5 3.1c0 6.2-8.5 11.7-8.5 11.7z"/></Ic>;
 
 function TabHome({ size = 24, color = 'currentColor', sw = 1.5 }) {
   return (
@@ -355,38 +364,46 @@ function SectionLabel({ children, t, color }: { children: React.ReactNode; t: Th
 function Card({ children, t, style = {}, onClick, padding = 18, className = '' }: { children: React.ReactNode; t: ThemeTokens; style?: React.CSSProperties; onClick?: () => void; padding?: number; className?: string }) {
   return (
     <div className={className} onClick={onClick} style={{
-      background: t.glassBackground,
-      backdropFilter: t.glassBlur,
-      WebkitBackdropFilter: t.glassBlur,
-      border: `1px solid ${t.border}`,
-      borderRadius: 20, padding, cursor: onClick ? 'pointer' : 'default',
-      transition: 'border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+      background: 'transparent',
+      border: `1px solid ${t.hairline}`,
+      borderRadius: 0, padding, cursor: onClick ? 'pointer' : 'default',
+      transition: 'border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
       ...style,
     }}>{children}</div>
   );
 }
 
+// Statustag — farvet prik + mono versaltekst, ingen pilleform (kun semantiske "IGANG"-lignende korte tags)
 function Pill({ children, t, tone = 'default' }: { children: React.ReactNode; t: ThemeTokens; tone?: 'default' | 'accent' | 'good' }) {
   const map = {
-    default: { bg: t.surface2, fg: t.textMuted },
-    accent: { bg: t.accentSoft, fg: t.accentText },
-    good: { bg: t.goodSoft, fg: t.good },
+    default: t.textMuted,
+    accent: t.accent,
+    good: t.good,
   };
-  const c = map[tone];
+  const fg = map[tone];
   return (
     <span style={{
-      display: 'inline-flex', alignItems: 'center', gap: 4,
-      background: c.bg, color: c.fg, padding: '4px 9px',
-      borderRadius: 999, fontSize: 11, fontWeight: 600,
-      fontFamily: t.font, letterSpacing: 0.2,
-    }}>{children}</span>
+      display: 'inline-flex', alignItems: 'center', gap: 5,
+      color: fg, fontSize: 10.5, fontWeight: 700,
+      fontFamily: t.mono, letterSpacing: 1, textTransform: 'uppercase',
+    }}>
+      <span style={{ width: 5, height: 5, borderRadius: '50%', background: fg, flexShrink: 0 }} />
+      {children}
+    </span>
   );
 }
 
-function Progress({ pct, t, h = 6, color }: { pct: number; t: ThemeTokens; h?: number; color?: string }) {
+// Signaturelement — taktlinje af tick-marks i stedet for en glat gradient-bjælke
+function Progress({ pct, t, h = 6, color, bars = 12 }: { pct: number; t: ThemeTokens; h?: number; color?: string; bars?: number }) {
+  const filled = Math.round((pct / 100) * bars);
   return (
-    <div style={{ width: '100%', height: h, background: t.surface2, borderRadius: 999, overflow: 'hidden' }}>
-      <div style={{ width: `${pct}%`, height: '100%', background: color || t.accent, borderRadius: 999 }} />
+    <div style={{ width: '100%', height: h, display: 'flex', alignItems: 'flex-end', gap: Math.max(2, h * 0.18) }}>
+      {Array.from({ length: bars }).map((_, i) => (
+        <span key={i} style={{
+          flex: 1, height: '100%',
+          background: i < filled ? (color || t.accent) : t.tickMuted,
+        }} />
+      ))}
     </div>
   );
 }
@@ -404,16 +421,16 @@ function CTA({ children, t, onClick, variant = 'primary', icon, className = '' }
       onTouchStart={() => setPressed(true)}
       onTouchEnd={() => setPressed(false)}
       style={{
-        width: '100%', padding: '16px 18px', borderRadius: 12,
-        background: isPrimary ? t.accent : 'transparent',
-        color: isPrimary ? '#fff' : t.text,
-        border: isPrimary ? 'none' : `1px solid ${t.borderStrong}`,
-        fontFamily: t.font, fontSize: 13, fontWeight: 700,
-        letterSpacing: 1.4, textTransform: 'uppercase',
+        width: '100%', padding: '16px 18px', borderRadius: 0,
+        background: isPrimary ? t.text : 'transparent',
+        color: isPrimary ? t.bg : t.text,
+        border: isPrimary ? 'none' : `1px solid ${t.hairline}`,
+        fontFamily: t.font, fontSize: 15, fontWeight: 700,
+        letterSpacing: 0.2, textTransform: 'none',
         cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-        boxShadow: isPrimary ? `0 8px 24px rgba(239,90,58,0.35), ${t.accentGlow}` : 'none',
-        transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-        transform: pressed ? 'scale(0.96)' : 'scale(1)',
+        boxShadow: 'none',
+        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+        transform: pressed ? 'scale(0.97)' : 'scale(1)',
       }}>
       {icon}{children}
     </button>
@@ -619,7 +636,7 @@ function OnboardingScreen({ t, onStart }: { t: ThemeTokens; dark: boolean; onSta
 // 2. Home Screen
 function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, isDesktop }: HomeScreenProps) {
   const { user } = useAuth();
-  const displayName = user ? user.displayName : 'Carsten';
+  const displayName = user ? (user.displayName || user.email?.split('@')[0] || 'dig') : 'Gæst';
   const { language, setLanguage, t: translate } = useLanguage();
 
   const dateLang = language === 'da' ? 'da-DK' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : 'es-ES';
@@ -638,36 +655,24 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
       id: 'practice',
       title: translate('practice') || 'Øvelser',
       desc: language === 'da' ? '312 i biblioteket' : '312 in library',
-      bg: t.goodSoft,
-      color: t.good,
-      icon: <TabPractice size={23} color={t.good} />,
       action: () => onSelectCategory('nodelære'),
     },
     {
       id: 'playalong',
       title: translate('playalong') || 'Play-along',
       desc: language === 'da' ? 'Spil med musik' : 'Play with music',
-      bg: t.accentSoft,
-      color: t.accent,
-      icon: <TabPlayalong size={23} color={t.accent} />,
       action: () => onSelectCategory('playalong'),
     },
     {
       id: 'kit',
       title: translate('kit') || 'Studio Kit',
       desc: language === 'da' ? 'Digitalt trommesæt' : 'Digital drum kit',
-      bg: dark ? 'rgba(123,111,176,0.20)' : '#EEEAF6',
-      color: '#7B6FB0',
-      icon: <TabKit size={23} color="#7B6FB0" />,
       action: () => onSelectCategory('grooves'),
     },
     {
       id: 'coach',
       title: 'AI Coach',
       desc: language === 'da' ? 'Spørg om alt' : 'Ask anything',
-      bg: dark ? 'rgba(214,154,52,0.20)' : '#FBEFD9',
-      color: '#D69A34',
-      icon: <IcSpark size={22} color="#D69A34" />,
       action: onOpenCoach,
     },
   ];
@@ -679,146 +684,138 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
     } : {
       padding: '8px 22px 40px', color: t.text, fontFamily: t.font,
     }}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 14, marginBottom: 20 }}>
-        <div>
-          <div style={{ fontSize: 14, color: t.textMuted, fontWeight: 500, marginBottom: 4 }}>{todayStr}</div>
-          <Display t={t} size={isDesktop ? 34 : 27} style={{ letterSpacing: -0.5 }}>
-            {greeting} {displayName}
-          </Display>
-          <div style={{ display: 'flex', gap: 6, marginTop: 10 }}>
-            {([
-              { code: 'da', flag: '🇩🇰' },
-              { code: 'en', flag: '🇬🇧' },
-              { code: 'de', flag: '🇩🇪' },
-              { code: 'es', flag: '🇪🇸' }
-            ] satisfies { code: Language; flag: string }[]).map(l => (
-              <button
-                key={l.code}
-                onClick={() => setLanguage(l.code)}
-                style={{
-                  background: language === l.code ? t.accentSoft : 'transparent',
-                  border: `1px solid ${language === l.code ? t.accent : t.border}`,
-                  borderRadius: 8, padding: '4px 6px',
-                  fontSize: 13, cursor: 'pointer', transition: 'all 0.15s', lineHeight: 1,
-                }}
-              >
-                {l.flag}
-              </button>
-            ))}
-          </div>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 14, marginBottom: 6 }}>
+        <div style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', color: t.textMuted }}>{todayStr}</div>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
+          <Display t={t} size={20}>{streak}</Display>
+          <span style={{ fontFamily: t.mono, fontSize: 10.5, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>
+            {language === 'da' ? 'dage i streg' : 'day streak'}
+          </span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <button onClick={() => setDark(!dark)} aria-label={dark ? 'Lys tilstand' : 'Mørk tilstand'} style={{
-            width: 40, height: 40, borderRadius: 12,
-            background: t.surface, border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 3px 12px rgba(43,39,35,.06)',
-          }}>
-            {dark ? <IcSun size={17} /> : <IcMoon size={17} />}
-          </button>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: t.surface, borderRadius: 999, padding: '8px 13px 8px 11px', boxShadow: '0 3px 12px rgba(43,39,35,.06)', border: `1px solid ${t.border}` }}>
-            <IcFlame size={18} color={t.accent} />
-            <span style={{ fontSize: 14, fontWeight: 800 }}>{streak}</span>
-          </div>
+      </div>
+      <Display t={t} size={isDesktop ? 34 : 27} style={{ letterSpacing: -0.5, marginBottom: 12 }}>
+        {greeting} {displayName}
+      </Display>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+        <div style={{ display: 'flex', gap: 6 }}>
+          {([
+            { code: 'da', flag: '🇩🇰' },
+            { code: 'en', flag: '🇬🇧' },
+            { code: 'de', flag: '🇩🇪' },
+            { code: 'es', flag: '🇪🇸' }
+          ] satisfies { code: Language; flag: string }[]).map(l => (
+            <button
+              key={l.code}
+              onClick={() => setLanguage(l.code)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                borderBottom: `2px solid ${language === l.code ? t.accent : 'transparent'}`,
+                borderRadius: 0, padding: '2px 4px 4px',
+                fontSize: 13, cursor: 'pointer', transition: 'all 0.15s', lineHeight: 1,
+                opacity: language === l.code ? 1 : 0.5,
+              }}
+            >
+              {l.flag}
+            </button>
+          ))}
         </div>
+        <button onClick={() => setDark(!dark)} aria-label={dark ? 'Lys tilstand' : 'Mørk tilstand'} style={{
+          width: 34, height: 34, borderRadius: 0,
+          background: 'transparent', border: `1px solid ${t.hairline}`, color: t.textMuted, cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          {dark ? <IcSun size={15} /> : <IcMoon size={15} />}
+        </button>
       </div>
 
       <div onClick={() => onSelectCategory('grooves')} style={{
-        background: dark ? 'linear-gradient(160deg,#382016 0%,#2B2520 100%)' : 'linear-gradient(160deg,#FDF0EA 0%,#FCE7DC 100%)',
-        borderRadius: 28,
-        padding: isDesktop ? '28px 32px' : '22px 22px 24px',
-        marginBottom: 22,
-        boxShadow: '0 10px 30px rgba(238,108,72,.10)',
+        borderTop: `2px solid ${t.text}`,
+        paddingTop: 16,
+        marginBottom: 30,
         cursor: 'pointer',
       }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: t.surface, borderRadius: 999, padding: '6px 12px', marginBottom: 16 }}>
-          <span style={{ width: 7, height: 7, borderRadius: '50%', background: t.accent, display: 'inline-block' }} />
-          <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.2, textTransform: 'uppercase', color: t.accent }}>
-            {language === 'da' ? 'I dag · Grundrytmer' : 'Today · Fundamentals'}
-          </span>
+        <div style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', color: t.accent, marginBottom: 10 }}>
+          {language === 'da' ? 'I dag · Grundrytmer' : 'Today · Fundamentals'}
         </div>
         <Display t={t} size={isDesktop ? 36 : 31} style={{ marginBottom: 8 }}>
-          {language === 'da' ? 'Grooves & fills' : 'Grooves & fills'}<br />
-          {language === 'da' ? 'del 1' : 'pt. 1'}
+          {language === 'da' ? 'Grooves & fills' : 'Grooves & fills'}
+          {' '}{language === 'da' ? 'del 1' : 'pt. 1'}
         </Display>
-        <p style={{ margin: '0 0 20px', fontSize: 14.5, lineHeight: 1.5, color: dark ? '#D4B0A0' : '#8A6F62', maxWidth: 320 }}>
+        <p style={{ margin: '0 0 18px', fontSize: 14.5, lineHeight: 1.55, color: t.textMuted, maxWidth: 320 }}>
           {language === 'da' ? 'Hi-hat mønstre med halvnoder over bastromme.' : 'Hi-hat patterns with half notes over bass drum.'}
         </p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
-          <div style={{ display: 'flex', gap: 5, flex: 1 }}>
-            {[0, 1, 2, 3, 4, 5, 6].map(i => (
-              <span key={i} style={{ flex: 1, height: 6, borderRadius: 3, background: i < 3 ? t.accent : dark ? '#52362D' : '#F3D3C4' }} />
-            ))}
-          </div>
-          <span style={{ fontSize: 13, fontWeight: 800, color: t.accentText }}>3/7</span>
+        <div style={{ marginBottom: 20 }}>
+          <Progress pct={(3 / 7) * 100} t={t} h={34} bars={7} />
         </div>
-        <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcPlay size={17} color="#fff" />}>
+        <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcPlay size={17} color={t.bg} />}>
           {language === 'da' ? 'Fortsæt lektion' : 'Continue lesson'}
         </CTA>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 13 }}>
-        <Display t={t} size={18}>{language === 'da' ? 'Kom hurtigt i gang' : 'Start quickly'}</Display>
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: isDesktop ? 'repeat(4, 1fr)' : '1fr 1fr', gap: 12, marginBottom: 26 }}>
-        {quickTiles.map(tile => (
-          <button key={tile.id} onClick={tile.action} style={{
-            background: t.surface,
-            border: `1px solid ${t.border}`,
-            borderRadius: 20,
-            padding: 16,
-            boxShadow: '0 4px 16px rgba(43,39,35,.05)',
-            textAlign: 'left',
-            cursor: 'pointer',
-            minHeight: 118,
-            fontFamily: t.font,
-          }}>
-            <div style={{ width: 42, height: 42, borderRadius: 13, background: tile.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
-              {tile.icon}
-            </div>
-            <div style={{ fontSize: 15, fontWeight: 800, color: t.text }}>{tile.title}</div>
+      <Display t={t} size={11} style={{
+        fontFamily: t.mono, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase',
+        color: t.textMuted, marginBottom: 2,
+      }}>
+        {language === 'da' ? 'Øv videre' : 'Keep practicing'}
+      </Display>
+      {quickTiles.map((tile, i) => (
+        <button key={tile.id} onClick={tile.action} style={{
+          background: 'transparent',
+          border: 'none',
+          borderBottom: `1px solid ${t.hairline}`,
+          padding: '16px 0',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 16,
+          width: '100%',
+          textAlign: 'left',
+          cursor: 'pointer',
+          fontFamily: t.font,
+        }}>
+          <span style={{ fontFamily: t.mono, fontSize: 12, fontWeight: 600, color: t.accent, width: 20, flexShrink: 0 }}>
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: t.text }}>{tile.title}</div>
             <div style={{ fontSize: 12.5, color: t.textMuted, marginTop: 2 }}>{tile.desc}</div>
-          </button>
-        ))}
-      </div>
+          </div>
+          <IcArrowRight size={16} color={t.textMuted} />
+        </button>
+      ))}
 
-      <Display t={t} size={18} style={{ marginBottom: 13 }}>
+      <div style={{ height: 26 }} />
+
+      <Display t={t} size={11} style={{
+        fontFamily: t.mono, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase',
+        color: t.textMuted, marginBottom: 10,
+      }}>
         {language === 'da' ? 'Fortsæt hvor du slap' : 'Continue where you left off'}
       </Display>
       <button onClick={() => onSelectCategory('nodelære')} style={{
-        background: t.surface,
-        border: `1px solid ${t.border}`,
-        borderRadius: 20,
-        padding: 14,
+        background: 'transparent',
+        border: 'none',
+        borderBottom: `1px solid ${t.hairline}`,
+        padding: '0 0 18px',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
         gap: 14,
         width: '100%',
-        boxShadow: '0 4px 16px rgba(43,39,35,.05)',
         textAlign: 'left',
         cursor: 'pointer',
         fontFamily: t.font,
-        marginBottom: 18,
+        marginBottom: 26,
       }}>
-        <div style={{
-          width: 54, height: 54, borderRadius: 15,
-          background: dark ? '#2B2520' : 'repeating-linear-gradient(135deg,#F1ECE4 0 7px,#F7F3EC 7px 14px)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-        }}>
-          <IcMetro size={22} color={t.textMuted} />
+        <div style={{ fontSize: 15, fontWeight: 700, color: t.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {language === 'da' ? 'Sekstendedele · timing' : 'Sixteenths · timing'}
         </div>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 15, fontWeight: 800, color: t.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            {language === 'da' ? 'Sekstendedele · timing' : 'Sixteenths · timing'}
-          </div>
-          <div style={{ fontSize: 12.5, color: t.textMuted, marginTop: 2 }}>
-            {language === 'da' ? 'Nodelære · 4 min tilbage' : 'Notation · 4 min left'}
-          </div>
+        <div style={{ fontFamily: t.mono, fontSize: 11.5, color: t.textMuted, flexShrink: 0 }}>
+          {language === 'da' ? 'Nodelære · 4 min tilbage' : 'Notation · 4 min left'}
         </div>
-        <IcChev size={18} color={t.textDim} />
       </button>
 
-      <Card t={t} padding={16} style={{ borderRadius: 20, boxShadow: '0 4px 16px rgba(43,39,35,.04)' }}>
+      <div style={{ padding: 16, borderTop: `1px solid ${t.hairline}` }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           <div style={{ fontSize: 12.5, color: t.text, lineHeight: 1.5 }}>
             <span style={{ fontWeight: 800 }}>{language === 'da' ? 'Denne uge' : 'This week'}</span>
@@ -829,7 +826,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
           </div>
           <div style={{ width: 64, flexShrink: 0 }}><Progress pct={xpPct} t={t} h={5} /></div>
         </div>
-      </Card>
+      </div>
     </div>
   );
 }
@@ -931,50 +928,47 @@ function PracticeScreen({ t, dark, onSelectCategory, isDesktop }: PracticeScreen
   return (
     <div style={{ color: t.text, fontFamily: t.font }}>
       <div style={{ padding: isDesktop ? '40px 48px 60px' : '8px 22px 40px', maxWidth: isDesktop ? 980 : undefined, margin: isDesktop ? '0 auto' : undefined }}>
-        <Display t={t} size={isDesktop ? 34 : 30} style={{ marginBottom: 4 }}>
+        <Display t={t} size={isDesktop ? 34 : 28} style={{ marginBottom: 4 }}>
           {language === 'da' ? 'Øvelser' : 'Exercises'}
         </Display>
-        <div style={{ fontSize: 13.5, color: t.textMuted, marginBottom: 18 }}>
-          {filtered.length} {language === 'da' ? 'øvelser' : 'exercises'} · 40 gratis
+        <div style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, letterSpacing: 1, color: t.textMuted, textTransform: 'uppercase', marginBottom: 20 }}>
+          {filtered.length} {language === 'da' ? 'øvelser' : 'exercises'} · 40 {language === 'da' ? 'gratis' : 'free'}
         </div>
 
-        <div style={{ position: 'relative', marginBottom: 16 }}>
-          <IcWave size={19} color={t.textDim} style={{ position: 'absolute', left: 15, top: 13, pointerEvents: 'none' }} />
+        <div style={{ position: 'relative', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10, borderBottom: `2px solid ${t.text}`, paddingBottom: 12 }}>
+          <IcSearch size={17} color={t.textMuted} />
           <input
             type="text"
-            placeholder={language === 'da' ? 'Søg efter teknik, groove...' : 'Search technique, groove...'}
+            placeholder={language === 'da' ? 'Søg efter teknik, groove…' : 'Search technique, groove…'}
             value={search}
             onChange={e => setSearch(e.target.value)}
             style={{
-              width: '100%', padding: '13px 42px 13px 45px', borderRadius: 15,
-              border: `1px solid ${t.border}`, background: t.surface,
-              color: t.text, fontSize: 15, outline: 'none', fontFamily: t.font,
+              flex: 1, padding: 0, border: 'none', background: 'transparent',
+              color: t.text, fontSize: 14.5, outline: 'none', fontFamily: t.font,
               boxSizing: 'border-box',
-              boxShadow: '0 3px 12px rgba(43,39,35,.05)',
             }}
           />
           {search && (
             <button onClick={() => setSearch('')} style={{
-              position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
               background: 'transparent', border: 'none', color: t.textMuted, cursor: 'pointer', fontSize: 14
             }}>✕</button>
           )}
         </div>
 
-        <div style={{ display: 'flex', gap: 9, marginBottom: 22, overflowX: 'auto', scrollbarWidth: 'none', paddingBottom: 2 }}>
+        <div style={{ display: 'flex', gap: 22, marginBottom: 6, overflowX: 'auto', scrollbarWidth: 'none' }}>
           {chips.map(chip => {
             const active = activeChip === chip.id;
             return (
               <button key={chip.id} onClick={() => setActiveChip(chip.id)} style={{
-                background: active ? t.text : t.surface,
-                color: active ? (dark ? '#2B2723' : '#fff') : t.text,
-                fontSize: 13,
-                fontWeight: 700,
-                padding: '9px 16px',
-                borderRadius: 999,
+                background: 'transparent',
+                color: active ? t.text : t.textMuted,
+                fontSize: 13.5,
+                fontWeight: active ? 700 : 500,
+                padding: '0 0 10px',
                 whiteSpace: 'nowrap',
-                border: active ? `1px solid ${t.text}` : `1px solid ${t.border}`,
-                boxShadow: active ? 'none' : 'inset 0 0 0 1px rgba(43,39,35,.02)',
+                border: 'none',
+                borderBottom: `2px solid ${active ? t.text : 'transparent'}`,
+                borderRadius: 0,
                 cursor: 'pointer',
                 fontFamily: t.font,
               }}>
@@ -984,48 +978,42 @@ function PracticeScreen({ t, dark, onSelectCategory, isDesktop }: PracticeScreen
           })}
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           {filtered.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '40px 20px', color: t.textMuted }}>
               <div style={{ fontSize: 13 }}>Ingen øvelser matcher &quot;{search}&quot;</div>
             </div>
           ) : filtered.map((ex, idx) => {
-            const levelTone = ex.level === 'Begynder'
-              ? { bg: t.goodSoft, color: t.good }
-              : ex.level === 'Mellemniveau'
-              ? { bg: dark ? 'rgba(214,154,52,0.18)' : '#FBEFD9', color: '#D69A34' }
-              : { bg: t.accentSoft, color: t.accent };
-            const iconBg = idx % 3 === 0 ? t.accentSoft : idx % 3 === 1 ? t.goodSoft : dark ? 'rgba(123,111,176,0.2)' : '#EEEAF6';
-            const iconColor = idx % 3 === 0 ? t.accent : idx % 3 === 1 ? t.good : '#7B6FB0';
+            const levelColor = ex.level === 'Begynder' ? t.good : ex.level === 'Mellemniveau' ? t.warn : t.accent;
             return (
               <button key={ex.id} onClick={() => onSelectCategory(ex.cat)} style={{
-                background: t.surface,
-                border: `1px solid ${t.border}`,
-                borderRadius: 20,
-                padding: 14,
+                background: 'transparent',
+                border: 'none',
+                borderBottom: `1px solid ${t.hairline}`,
+                padding: '18px 0',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: 14,
+                gap: 16,
                 width: '100%',
-                boxShadow: '0 4px 16px rgba(43,39,35,.05)',
                 textAlign: 'left',
                 fontFamily: t.font,
               }}>
-                <div style={{ width: 52, height: 52, borderRadius: 15, background: iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  {ex.cat === 'playalong' ? <TabPlayalong size={24} color={iconColor} /> : ex.cat === 'nodelære' ? <IcMetro size={24} color={iconColor} /> : <TabPractice size={24} color={iconColor} />}
-                </div>
+                <span style={{ fontFamily: t.head, fontWeight: 700, fontSize: 20, color: t.tickMuted, width: 28, flexShrink: 0 }}>
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: t.text, marginBottom: 5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ex.title}</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: levelTone.color, background: levelTone.bg, padding: '3px 9px', borderRadius: 999 }}>
-                      {getLevelLabel(ex.level)}
+                  <div style={{ fontSize: 15.5, fontWeight: 700, color: t.text, marginBottom: 5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ex.title}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 9, fontFamily: t.mono, fontSize: 11, letterSpacing: 0.5, color: t.textMuted }}>
+                    <span style={{ color: levelColor, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: levelColor, display: 'inline-block' }} />
+                      {getLevelLabel(ex.level).toUpperCase()}
                     </span>
-                    <span style={{ fontSize: 12, color: t.textMuted }}>· {ex.dur}</span>
-                    <span style={{ fontSize: 12, color: t.textMuted, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>· {getCategoryLabel(ex.cat)}</span>
+                    <span>· {ex.dur.toUpperCase()}</span>
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>· {getCategoryLabel(ex.cat)}</span>
                   </div>
                 </div>
-                <IcChev size={18} color={t.textDim} />
+                <IcArrowRight size={16} color={t.textMuted} />
               </button>
             );
           })}
@@ -1403,9 +1391,9 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
               const noPadding = Boolean(notationImageUrl);
               return (
             <div style={{
-              background: urlIsPdf ? 'transparent' : '#FAF8F5',
-              border: urlIsPdf ? 'none' : `1px solid ${t.border}`,
-              borderRadius: urlIsPdf ? 0 : 16,
+              background: urlIsPdf ? 'transparent' : t.surface2,
+              border: urlIsPdf ? 'none' : `1px solid ${t.hairline}`,
+              borderRadius: 0,
               padding: noPadding ? 0 : '14px 6px',
               margin: urlIsPdf ? '0 -16px 14px' : '0 0 14px',
               overflowX: noPadding ? 'hidden' : 'auto',
@@ -1453,40 +1441,30 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
         })()}
 
             {/* BPM + Play */}
-            <Card t={t} padding={14} style={{ marginBottom: 14 }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <button onClick={() => setBpm(Math.max(40, bpm - 4))} style={{ width: 32, height: 32, borderRadius: '50%', background: t.surface2, border: 'none', color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 18 }}>-</button>
-                  <div style={{ textAlign: 'center', minWidth: 56 }}>
-                    <div style={{ fontFamily: t.mono, fontSize: 22, fontWeight: 700, lineHeight: 1 }}>{bpm}</div>
-                    <div style={{ fontSize: 9, color: t.textMuted, letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>BPM</div>
-                  </div>
-                  <button onClick={() => setBpm(Math.min(220, bpm + 4))} style={{ width: 32, height: 32, borderRadius: '50%', background: t.surface2, border: 'none', color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 18 }}>+</button>
-                </div>
-                <button onClick={() => setPlaying(!playing)} style={{
-                  width: 54, height: 54, borderRadius: '50%', background: t.accent, border: 'none', color: '#fff',
-                  cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  boxShadow: '0 6px 20px rgba(232,112,58,0.4)',
-                }}>
-                  {playing ? <IcPause size={18} fill color="#fff" /> : <IcPlay size={18} fill color="#fff" />}
-                </button>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: `1px solid ${t.hairline}`, paddingTop: 16, marginBottom: 14 }}>
+              <div style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, letterSpacing: 1.2, textTransform: 'uppercase', color: t.textMuted }}>Tempo</div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
+                <button onClick={() => setBpm(Math.max(40, bpm - 4))} style={{ background: 'transparent', border: 'none', color: t.textMuted, cursor: 'pointer', display: 'flex' }}><IcMin size={15} /></button>
+                <span style={{ fontFamily: t.head, fontWeight: 700, fontSize: 26, letterSpacing: -0.5, color: t.text }}>
+                  {bpm}<span style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, color: t.textMuted, marginLeft: 4 }}>BPM</span>
+                </span>
+                <button onClick={() => setBpm(Math.min(220, bpm + 4))} style={{ background: 'transparent', border: 'none', color: t.textMuted, cursor: 'pointer', display: 'flex' }}><IcPlus size={15} /></button>
               </div>
-            </Card>
+            </div>
 
-            <div style={{ fontSize: 13, color: t.textMuted, lineHeight: 1.6, marginBottom: 20, textAlign: 'center', fontStyle: 'italic' }}>{exercise.sub}</div>
+            <div style={{ fontSize: 13, color: t.textMuted, lineHeight: 1.6, marginBottom: 20, textAlign: 'center' }}>{exercise.sub}</div>
 
             <button onClick={() => { onMarkDone(); onClose(); }} style={{
-              width: '100%', padding: '14px', borderRadius: 12, border: 'none', marginBottom: 10,
-              background: isCompleted ? t.goodSoft : t.accent, color: isCompleted ? t.good : '#fff',
-              fontFamily: t.font, fontSize: 14, fontWeight: 700, cursor: 'pointer',
+              width: '100%', padding: '15px', borderRadius: 0, border: 'none', marginBottom: 10,
+              background: isCompleted ? 'transparent' : t.text, color: isCompleted ? t.good : t.bg,
+              ...(isCompleted ? { border: `1px solid ${t.good}` } : {}),
+              fontFamily: t.font, fontSize: 15, fontWeight: 700, cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-              boxShadow: isCompleted ? 'none' : '0 6px 20px rgba(232,112,58,0.35)',
-              transition: 'all 0.2s',
             }}>
               {isCompleted ? <><IcCheck size={16} /> Gennemført</> : 'Marker som gennemført'}
             </button>
             <button onClick={() => { onOpenCoach(); onClose(); }} style={{
-              width: '100%', padding: '12px', borderRadius: 12, border: `1px solid ${t.border}`,
+              width: '100%', padding: '12px', borderRadius: 0, border: `1px solid ${t.hairline}`,
               background: 'transparent', color: t.textMuted, fontFamily: t.font, fontSize: 13, fontWeight: 500, cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
             }}>
@@ -1497,7 +1475,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
 
         {(tab === 'video' || isDesktopView) && (
           <div>
-            <div style={{ aspectRatio: '16/9', borderRadius: 16, overflow: 'hidden', background: '#000', border: `1px solid ${t.border}`, marginBottom: 16 }}>
+            <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden', background: t.text, marginBottom: 16 }}>
               <iframe width="100%" height="100%" src={videoUrl} title={exercise.title}
                 frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen style={{ width: '100%', height: '100%', border: '0' }} />
@@ -1505,11 +1483,11 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
             <Display t={t} size={18} style={{ marginBottom: 4 }}>{exercise.title}</Display>
             <div style={{ fontSize: 12, color: t.textMuted, marginBottom: 20 }}>{exercise.sub} · {exercise.level} · {exercise.dur}</div>
             <button onClick={() => { onMarkDone(); onClose(); }} style={{
-              width: '100%', padding: '14px', borderRadius: 12, border: 'none',
-              background: isCompleted ? t.goodSoft : t.accent, color: isCompleted ? t.good : '#fff',
-              fontFamily: t.font, fontSize: 14, fontWeight: 700, cursor: 'pointer',
+              width: '100%', padding: '15px', borderRadius: 0, border: 'none',
+              background: isCompleted ? 'transparent' : t.text, color: isCompleted ? t.good : t.bg,
+              ...(isCompleted ? { border: `1px solid ${t.good}` } : {}),
+              fontFamily: t.font, fontSize: 15, fontWeight: 700, cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-              boxShadow: isCompleted ? 'none' : '0 6px 20px rgba(232,112,58,0.35)',
             }}>
               {isCompleted ? <><IcCheck size={16} /> Gennemført</> : 'Marker som gennemført'}
             </button>
@@ -1522,36 +1500,29 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
         left: 0,
         right: 0,
         bottom: 0,
-        padding: '14px 22px calc(env(safe-area-inset-bottom) + 30px)',
-        background: t.navBackground,
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        borderTop: `1px solid ${t.navBorder}`,
+        padding: '18px 30px calc(env(safe-area-inset-bottom) + 30px)',
+        background: t.bg,
+        borderTop: `2px solid ${t.text}`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        boxShadow: t.navShadow,
       }}>
         <button aria-label="Loop" style={{
-          width: 52, height: 52, borderRadius: 16, background: t.surface2, border: 'none',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.text,
-          cursor: 'pointer',
+          background: 'transparent', border: 'none', color: t.textMuted, cursor: 'pointer', display: 'flex',
         }}>
-          <IcLoop size={22} />
+          <IcLoop size={20} />
         </button>
         <button onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Afspil'} style={{
-          width: 70, height: 70, borderRadius: '50%', background: t.accent, border: 'none',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff',
-          boxShadow: '0 10px 24px rgba(238,108,72,.4)', cursor: 'pointer',
-        }}>
-          {playing ? <IcPause size={28} fill color="#fff" /> : <IcPlay size={28} fill color="#fff" />}
-        </button>
-        <button aria-label="Næste" style={{
-          width: 52, height: 52, borderRadius: 16, background: t.surface2, border: 'none',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.text,
+          width: 62, height: 62, borderRadius: '50%', background: t.text, border: 'none',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.bg,
           cursor: 'pointer',
         }}>
-          <IcChev size={22} />
+          {playing ? <IcPause size={24} fill color={t.bg} /> : <IcPlay size={24} fill color={t.bg} />}
+        </button>
+        <button aria-label="Næste" style={{
+          background: 'transparent', border: 'none', color: t.textMuted, cursor: 'pointer', display: 'flex',
+        }}>
+          <IcArrowRight size={20} />
         </button>
       </div>
     </div>
@@ -1880,20 +1851,18 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
             { key: 'mangler', label: 'Mangler', count: missing, color: t.textMuted },
           ];
           return (
-            <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
+            <div style={{ display: 'flex', gap: 22, borderBottom: `1px solid ${t.hairline}`, marginBottom: 20, paddingBottom: 2 }}>
               {statuses.map(s => {
                 const active = statusFilter === s.key;
                 return (
                   <button key={s.key} onClick={() => setStatusFilter(s.key)} style={{
-                    flex: 1, padding: '8px 4px', borderRadius: 10,
-                    border: `1px solid ${active ? s.color : t.border}`,
-                    background: active ? (s.key === 'gennemfort' ? t.goodSoft : s.key === 'alle' ? t.accentSoft : t.surface2) : t.surface,
-                    color: active ? s.color : t.textMuted,
-                    fontFamily: t.font, fontSize: 11, fontWeight: 700, cursor: 'pointer',
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2,
-                    transition: 'all 0.2s',
+                    padding: '0 0 10px', border: 'none', borderBottom: `2px solid ${active ? t.text : 'transparent'}`,
+                    background: 'transparent',
+                    color: active ? t.text : t.textMuted,
+                    fontFamily: t.font, fontSize: 12.5, fontWeight: active ? 700 : 500, cursor: 'pointer',
+                    display: 'flex', alignItems: 'baseline', gap: 6,
                   }}>
-                    <span style={{ fontFamily: t.mono, fontSize: 16, fontWeight: 700, lineHeight: 1 }}>{s.count}</span>
+                    <span style={{ fontFamily: t.head, fontSize: 15, fontWeight: 700 }}>{s.count}</span>
                     <span>{s.label}</span>
                   </button>
                 );
@@ -1903,66 +1872,51 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
         })()}
 
         {/* Tag chips */}
-        <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 12, marginBottom: 20, scrollbarWidth: 'none' }}>
+        <div style={{ display: 'flex', gap: 18, overflowX: 'auto', paddingBottom: 12, marginBottom: 8, scrollbarWidth: 'none' }}>
           {categoryChips.map(chip => {
             const active = activeChip === chip;
             return (
               <button key={chip} onClick={() => setActiveChip(chip)} style={{
-                padding: '6px 12px', borderRadius: 999, border: `1px solid ${active ? t.accent : t.border}`,
-                background: active ? t.accentSoft : t.surface, color: active ? t.accent : t.textMuted,
-                fontFamily: t.font, fontSize: 11, fontWeight: 600, cursor: 'pointer',
-                whiteSpace: 'nowrap', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)'
+                padding: '0 0 8px', border: 'none', borderBottom: `2px solid ${active ? t.accent : 'transparent'}`,
+                background: 'transparent', color: active ? t.text : t.textMuted,
+                fontFamily: t.font, fontSize: 12.5, fontWeight: active ? 700 : 500, cursor: 'pointer',
+                whiteSpace: 'nowrap', borderRadius: 0,
               }}>{chip}</button>
             );
           })}
         </div>
 
         {/* Exercises List */}
-        <div style={{ fontSize: 11, fontWeight: 700, color: t.textMuted, letterSpacing: 1, textTransform: 'uppercase', marginBottom: 12 }}>
-          Lektioner & Øvelser ({filteredExercises.length})
+        <div style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, color: t.textMuted, letterSpacing: 1, textTransform: 'uppercase', marginBottom: 6 }}>
+          Lektioner & øvelser ({filteredExercises.length})
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           {filteredExercises.map((ex, idx) => {
             const key = `${category}_${ex.id}`;
             const done = isCompleted(key);
-            const thumbGrads = [
-              'radial-gradient(ellipse at 50% 40%, rgba(200,100,50,0.55) 0%, transparent 70%), #1A1008',
-              'radial-gradient(ellipse at 50% 40%, rgba(60,90,210,0.55) 0%, transparent 70%), #080C1A',
-              'radial-gradient(ellipse at 50% 40%, rgba(150,60,200,0.5) 0%, transparent 70%), #110818',
-              'radial-gradient(ellipse at 50% 40%, rgba(20,170,100,0.45) 0%, transparent 70%), #071A10',
-            ];
+            const levelColor = ex.level === 'Begynder' ? t.good : ex.level === 'Mellemniveau' ? t.warn : t.accent;
             return (
               <div key={ex.id} onClick={() => { markOpened(key); setSelectedExercise(ex as ExerciseItem); }} style={{
-                background: t.surface, border: `1px solid ${done ? t.accent + '60' : t.border}`,
-                borderRadius: 14, padding: '10px 12px', cursor: 'pointer',
-                display: 'flex', alignItems: 'center', gap: 12,
-                transition: 'background 120ms, border-color 150ms',
-              }}
-                onMouseDown={e => { e.currentTarget.style.background = t.surface2; }}
-                onMouseUp={e => { e.currentTarget.style.background = t.surface; }}
-                onMouseLeave={e => { e.currentTarget.style.background = t.surface; }}
-                onTouchStart={e => { e.currentTarget.style.background = t.surface2; }}
-                onTouchEnd={e => { e.currentTarget.style.background = t.surface; }}
-              >
-                {/* Gradient thumbnail */}
-                <div style={{ width: 64, height: 48, borderRadius: 8, overflow: 'hidden', flexShrink: 0, position: 'relative', background: thumbGrads[idx % thumbGrads.length] }}>
-                  <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {done
-                      ? <IcCheck size={14} color="rgba(78,222,163,0.9)" />
-                      : <IcPlay size={12} color="rgba(255,255,255,0.7)" fill />}
-                  </div>
-                </div>
+                background: 'transparent', border: 'none', borderBottom: `1px solid ${t.hairline}`,
+                padding: '16px 0', cursor: 'pointer',
+                display: 'flex', alignItems: 'center', gap: 16,
+              }}>
+                <span style={{ fontFamily: t.head, fontWeight: 700, fontSize: 18, color: done ? t.tickMuted : t.tickMuted, width: 24, flexShrink: 0 }}>
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
                 {/* Info */}
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontFamily: t.head, fontSize: 14, fontWeight: 700, color: done ? t.textMuted : t.text, letterSpacing: -0.2, marginBottom: 3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ex.title}</div>
-                  <div style={{ fontSize: 12, color: t.textMuted, display: 'flex', gap: 6, alignItems: 'center' }}>
-                    <span style={{ color: ex.level === 'Begynder' ? '#4edea3' : ex.level === 'Mellemniveau' ? t.textMuted : t.accent, fontWeight: 500 }}>{ex.level}</span>
-                    <span>·</span>
-                    <span>{ex.dur}</span>
+                  <div style={{ fontFamily: t.font, fontSize: 15, fontWeight: 700, color: done ? t.textMuted : t.text, marginBottom: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ex.title}</div>
+                  <div style={{ fontFamily: t.mono, fontSize: 11, letterSpacing: 0.5, color: t.textMuted, display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <span style={{ color: levelColor, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: levelColor, display: 'inline-block' }} />
+                      {ex.level.toUpperCase()}
+                    </span>
+                    <span>· {ex.dur.toUpperCase()}</span>
                   </div>
                 </div>
-                {done ? <IcCheck size={16} color={t.good} /> : <IcChev size={15} color={t.textDim} />}
+                {done ? <IcCheck size={16} color={t.good} /> : <IcArrowRight size={16} color={t.textMuted} />}
               </div>
             );
           })}
@@ -2128,7 +2082,7 @@ function TrackDetail({ t, trackId, onClose, onOpenLesson, onOpenCoach }: TrackDe
         padding: '12px 20px 30px', borderTop: `1px solid ${t.border}`,
         background: t.bg,
       }}>
-        <CTA t={t} onClick={() => onOpenLesson(`${track.id}-4`)} className="active-pulse" icon={<IcPlay size={13} fill color="#fff"/>}>
+        <CTA t={t} onClick={() => onOpenLesson(`${track.id}-4`)} className="active-pulse" icon={<IcPlay size={13} fill color={t.bg}/>}>
           {track.progress > 0 ? 'Fortsæt forløb' : 'Start forløb'}
         </CTA>
       </div>
@@ -2870,10 +2824,20 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
               background: m.role === 'user' ? t.accent : t.surface,
               color: m.role === 'user' ? '#fff' : t.text,
               border: m.role === 'ai' ? `1px solid ${t.border}` : 'none',
-              fontSize: 14, lineHeight: 1.5, whiteSpace: 'pre-wrap',
+              fontSize: 14, lineHeight: 1.5,
+              whiteSpace: m.role === 'user' ? 'pre-wrap' : 'normal',
               fontWeight: m.role === 'user' ? 500 : 400,
             }}>
-              {m.text}
+              {m.role === 'ai' ? (
+                <ReactMarkdown components={{
+                  p: ({ children }) => <p style={{ margin: '0 0 8px', whiteSpace: 'pre-wrap' }}>{children}</p>,
+                  ul: ({ children }) => <ul style={{ margin: '0 0 8px', paddingLeft: 18 }}>{children}</ul>,
+                  ol: ({ children }) => <ol style={{ margin: '0 0 8px', paddingLeft: 18 }}>{children}</ol>,
+                  li: ({ children }) => <li style={{ marginBottom: 2 }}>{children}</li>,
+                  strong: ({ children }) => <strong style={{ fontWeight: 700 }}>{children}</strong>,
+                  a: ({ children, href }) => <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: t.accent }}>{children}</a>,
+                }}>{m.text}</ReactMarkdown>
+              ) : m.text}
               {m.typing && <span style={{ marginLeft: 4, opacity: 0.5 }}>•••</span>}
             </div>
           </div>
@@ -3205,18 +3169,14 @@ function TabBar({ tab, onTab, t, dark, isMobile, selectedCategory, isAdmin, onSe
   return (
     <div style={{
       position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 150,
-      paddingBottom: isMobile ? 'calc(env(safe-area-inset-bottom) + 12px)' : 30,
-      paddingTop: 12, paddingLeft: 10, paddingRight: 10,
-      background: t.navBackground,
-      backdropFilter: 'blur(12px)',
-      WebkitBackdropFilter: 'blur(12px)',
-      borderTop: `1px solid ${t.navBorder}`,
-      boxShadow: t.navShadow,
+      paddingBottom: isMobile ? 'calc(env(safe-area-inset-bottom) + 16px)' : 30,
+      paddingTop: 16, paddingLeft: 24, paddingRight: 24,
+      background: t.bg,
+      borderTop: `2px solid ${t.text}`,
     }}>
-      <div style={{ display: 'flex', alignItems: 'flex-end', padding: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 0 }}>
         {tabs.map(tt => {
           const active = tt.id === 'playalong' ? selectedCategory === 'playalong' : (tab === tt.id && selectedCategory === null);
-          const Icon = tt.icon;
           return (
             <button key={tt.id} onClick={() => {
               if (tt.id === 'playalong') {
@@ -3226,22 +3186,12 @@ function TabBar({ tab, onTab, t, dark, isMobile, selectedCategory, isAdmin, onSe
                 onTab(tt.id);
               }
             }} style={{
-              flex: 1, background: 'transparent', border: 'none', cursor: 'pointer',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
+              background: 'transparent', border: 'none', cursor: 'pointer',
               padding: '4px 0', fontFamily: t.font,
-              color: active ? t.accent : t.textDim,
+              color: active ? t.text : t.textDim,
+              fontSize: 12, fontWeight: active ? 700 : 500, letterSpacing: 0.2,
               transition: 'color 0.2s cubic-bezier(0.16,1,0.3,1)',
-            }}>
-              <div style={{
-                width: 38, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                borderRadius: 12,
-                background: 'transparent',
-                transition: 'background 0.2s cubic-bezier(0.16,1,0.3,1)',
-              }}>
-                <Icon size={20} color={active ? t.accent : t.textDim} sw={active ? 2 : 1.5} />
-              </div>
-              <span style={{ fontSize: 10.5, fontWeight: active ? 800 : 600, letterSpacing: 0 }}>{tt.label}</span>
-            </button>
+            }}>{tt.label}</button>
           );
         })}
         {isAdmin && (
@@ -3291,7 +3241,7 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach, selectedCat
   return (
     <div style={{
       width: 80, flexShrink: 0, height: '100vh', position: 'sticky', top: 0,
-      background: t.surface2, borderRight: `1px solid ${t.border}`,
+      background: t.bg, borderRight: `2px solid ${t.text}`,
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       paddingTop: 20, paddingBottom: 16, zIndex: 10,
     }}>
@@ -3325,9 +3275,10 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach, selectedCat
               }
             }} style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
-              padding: '10px 4px', borderRadius: 12, border: 'none', cursor: 'pointer',
-              background: active ? t.accentSoft : 'transparent',
-              color: active ? t.accent : t.textDim,
+              padding: '10px 4px', borderRadius: 0, border: 'none', cursor: 'pointer',
+              borderLeft: `2px solid ${active ? t.accent : 'transparent'}`,
+              background: 'transparent',
+              color: active ? t.text : t.textDim,
               fontFamily: t.font, transition: 'all 0.18s',
               width: '100%',
             }}>
