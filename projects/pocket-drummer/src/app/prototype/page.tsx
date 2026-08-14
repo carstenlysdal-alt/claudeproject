@@ -1256,7 +1256,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
 
       {/* Header: back | title | X */}
       <div style={{ padding: '0 14px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${t.border}` }}>
-        <button onClick={onClose} style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={onClose} aria-label="Tilbage" style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <IcBack size={16} />
         </button>
         <div style={{ flex: 1, textAlign: 'center', padding: '0 10px' }}>
@@ -1280,7 +1280,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
               <IcUpload size={16} />
             </button>
           )}
-          <button onClick={onClose} style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, lineHeight: 1 }}>✕</button>
+          <button onClick={onClose} aria-label="Luk" style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, lineHeight: 1 }}>✕</button>
         </div>
       </div>
 
@@ -1826,7 +1826,7 @@ function MobileCategoryDetail({ t, dark, category, onClose, onOpenCoach }: Mobil
 
       {/* Header: back | title | X */}
       <div style={{ padding: '0 14px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${t.border}` }}>
-        <button onClick={onClose} style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={onClose} aria-label="Tilbage" style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <IcBack size={16} />
         </button>
         <div style={{ textAlign: 'center', flex: 1, padding: '0 10px' }}>
@@ -1975,7 +1975,7 @@ function TrackDetail({ t, trackId, onClose, onOpenLesson, onOpenCoach }: TrackDe
       <div style={{ height: 'var(--safe-top, 62px)' }} />
 
       <div style={{ padding: '0 16px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <button onClick={onClose} style={{
+        <button onClick={onClose} aria-label="Tilbage" style={{
           width: 38, height: 38, borderRadius: '50%', background: 'transparent',
           border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer',
           display: 'flex', alignItems: 'center', }}><IcBack size={16} /></button>
@@ -2144,7 +2144,7 @@ function LessonDetail({ t, dark, onClose, onOpenCoach }: LessonDetailProps) {
           border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxShadow: '0 3px 12px rgba(43,39,35,.06)',
-        }}><IcBack size={16} /></button>
+        }} aria-label="Tilbage"><IcBack size={16} /></button>
         <div style={{ textAlign: 'center', flex: 1, padding: '0 12px' }}>
           <div style={{ fontSize: 10, fontWeight: 700, color: t.textMuted, letterSpacing: 1.8, textTransform: 'uppercase' }}>Lektion 04</div>
           <Display t={t} size={16} style={{ marginTop: 2 }}>16-dele hi-hat</Display>
@@ -3245,9 +3245,12 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach, selectedCat
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       paddingTop: 20, paddingBottom: 16, zIndex: 10,
     }}>
-      {/* Logo */}
-      <div style={{ marginBottom: 28 }}>
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-label="Pocket Drummer">
+      {/* Logo — fører altid til Hjem, uanset auth-state */}
+      <button onClick={() => onTab('home')} aria-label="Gå til forsiden" style={{
+        marginBottom: 28, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer',
+        display: 'flex', lineHeight: 0,
+      }}>
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
           <circle cx="17" cy="7.2" r="3.1" stroke={t.accent} strokeWidth="2" />
           <path d="M12.6 13.2c1.7-1.8 7.1-1.8 8.8 0" stroke={t.accent} strokeWidth="2" strokeLinecap="round" />
           <path d="M14.2 15.2l-4.3 3.6M19.8 15.2l4.3 3.6" stroke={t.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -3257,7 +3260,7 @@ function DesktopRail({ tab, onTab, t, onSelectCategory, onOpenCoach, selectedCat
           <ellipse cx="17" cy="26.4" rx="6.4" ry="3.6" stroke={t.accent} strokeWidth="2" />
           <path d="M14.5 19.4c1.3.7 3.7.7 5 0" stroke={t.accent} strokeWidth="1.8" strokeLinecap="round" />
         </svg>
-      </div>
+      </button>
 
       {/* Nav items */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4, width: '100%', padding: '0 8px' }}>
@@ -3558,6 +3561,56 @@ export default function MobilePrototype() {
     }
   }, []);
 
+  // URL-synkroniseret navigation — så browserens frem/tilbage-knapper virker
+  // og fane/kategori/coach kan deep-linkes og genindlæses.
+  type Category = 'opvarmning' | 'nodelære' | 'grooves' | 'playalong';
+  useEffect(() => {
+    const applyFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      const urlTab = params.get('tab');
+      const urlCategory = params.get('category') as Category | null;
+      setTab(urlTab || 'home');
+      setSelectedCategory(urlCategory || null);
+      setCoachOpen(params.get('coach') === '1');
+    };
+    applyFromUrl();
+    window.addEventListener('popstate', applyFromUrl);
+    return () => window.removeEventListener('popstate', applyFromUrl);
+  }, []);
+
+  const pushNavUrl = (params: { tab?: string; category?: Category | null; coach?: boolean }) => {
+    const url = new URL(window.location.href);
+    if (params.tab !== undefined) url.searchParams.set('tab', params.tab);
+    if (params.category !== undefined) {
+      if (params.category) url.searchParams.set('category', params.category); else url.searchParams.delete('category');
+    }
+    if (params.coach !== undefined) {
+      if (params.coach) url.searchParams.set('coach', '1'); else url.searchParams.delete('coach');
+    }
+    window.history.pushState({}, '', url);
+  };
+
+  const navigateTab = (id: string) => {
+    setTab(id);
+    setSelectedCategory(null);
+    pushNavUrl({ tab: id, category: null });
+  };
+  const openCategory = (cat: Category) => {
+    setSelectedCategory(cat);
+    pushNavUrl({ category: cat });
+  };
+  const closeCategory = () => {
+    setSelectedCategory(null);
+    pushNavUrl({ category: null });
+  };
+  const openCoachOverlay = () => {
+    setCoachOpen(true);
+    pushNavUrl({ coach: true });
+  };
+  const closeCoachOverlay = () => {
+    setCoachOpen(false);
+    pushNavUrl({ coach: false });
+  };
 
   const t = tokens(dark);
   const scale = useFitScale(402, 874);
@@ -3586,9 +3639,9 @@ export default function MobilePrototype() {
         WebkitFontSmoothing: 'antialiased',
       }}>
         <DesktopRail
-          tab={tab} onTab={(t) => { setTab(t); setSelectedCategory(null); }} t={t}
-          onSelectCategory={(cat) => setSelectedCategory(cat)}
-          onOpenCoach={() => setCoachOpen(true)}
+          tab={tab} onTab={navigateTab} t={t}
+          onSelectCategory={openCategory}
+          onOpenCoach={openCoachOverlay}
           selectedCategory={selectedCategory}
           onOpenAdmin={() => setAdminOpen(true)}
         />
@@ -3600,13 +3653,13 @@ export default function MobilePrototype() {
           <div key={tab} className="tab-content-enter">
             {tab === 'home' && (
               <HomeScreen t={t} dark={dark} setDark={setDark}
-                onSelectCategory={(id) => setSelectedCategory(id)}
-                onOpenCoach={() => setCoachOpen(true)}
+                onSelectCategory={openCategory}
+                onOpenCoach={openCoachOverlay}
                 guestXp={guestXp} isDesktop />
             )}
             {tab === 'practice' && (
               <PracticeScreen t={t} dark={dark} isDesktop
-                onSelectCategory={(id) => setSelectedCategory(id)} />
+                onSelectCategory={openCategory} />
             )}
             {tab === 'kit' && (
               <StudioKitScreen t={t} dark={dark} />
@@ -3619,21 +3672,21 @@ export default function MobilePrototype() {
           {/* Overlays fill content area (not the rail) */}
           {selectedCategory && (
             <MobileCategoryDetail t={t} dark={dark} category={selectedCategory}
-              onClose={() => setSelectedCategory(null)}
-              onOpenCoach={() => { setSelectedCategory(null); setCoachOpen(true); }} />
+              onClose={closeCategory}
+              onOpenCoach={() => { closeCategory(); openCoachOverlay(); }} />
           )}
           {trackId && (
             <TrackDetail t={t} dark={dark} trackId={trackId}
               onClose={() => setTrackId(null)}
               onOpenLesson={(id: string) => setLessonId(id)}
-              onOpenCoach={() => { setTrackId(null); setCoachOpen(true); }} />
+              onOpenCoach={() => { setTrackId(null); openCoachOverlay(); }} />
           )}
           {lessonId && (
             <LessonDetail t={t} dark={dark} lessonId={lessonId}
               onClose={() => setLessonId(null)}
-              onOpenCoach={() => { setLessonId(null); setCoachOpen(true); }} />
+              onOpenCoach={() => { setLessonId(null); openCoachOverlay(); }} />
           )}
-          {coachOpen && <CoachScreen t={t} dark={dark} onClose={() => setCoachOpen(false)} />}
+          {coachOpen && <CoachScreen t={t} dark={dark} onClose={closeCoachOverlay} />}
           {adminOpen && user?.role === 'admin' && <AdminPanel t={t} onClose={() => setAdminOpen(false)} />}
           {!desktopReady && <div style={{ position: 'absolute', inset: 0, background: t.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}>
             <div style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 28, color: t.text }}>
@@ -3763,13 +3816,13 @@ export default function MobilePrototype() {
               <div key={tab} className="tab-content-enter">
                 {tab === 'home' && (
                   <HomeScreen t={t} dark={dark} setDark={setDark}
-                    onSelectCategory={(id) => setSelectedCategory(id)}
-                    onOpenCoach={() => setCoachOpen(true)}
+                    onSelectCategory={openCategory}
+                    onOpenCoach={openCoachOverlay}
                     guestXp={guestXp} />
                 )}
                 {tab === 'practice' && (
                   <PracticeScreen t={t} dark={dark}
-                    onSelectCategory={(id) => setSelectedCategory(id)} />
+                    onSelectCategory={openCategory} />
                 )}
                 {tab === 'kit' && (
                   <StudioKitScreen t={t} dark={dark} />
@@ -3781,17 +3834,17 @@ export default function MobilePrototype() {
             </div>
 
             {/* Tab bar */}
-            <TabBar tab={tab} onTab={setTab} t={t} dark={dark} isMobile={isMobile}
+            <TabBar tab={tab} onTab={navigateTab} t={t} dark={dark} isMobile={isMobile}
               selectedCategory={selectedCategory}
               isAdmin={user?.role === 'admin'}
-              onSelectCategory={(cat) => setSelectedCategory(cat)}
+              onSelectCategory={openCategory}
               onOpenAdmin={() => setAdminOpen(true)} />
 
             {/* Category detail overlay */}
             {selectedCategory && (
               <MobileCategoryDetail t={t} dark={dark} category={selectedCategory}
-                onClose={() => setSelectedCategory(null)}
-                onOpenCoach={() => { setSelectedCategory(null); setCoachOpen(true); }} />
+                onClose={closeCategory}
+                onOpenCoach={() => { closeCategory(); openCoachOverlay(); }} />
             )}
 
             {/* Track detail overlay */}
@@ -3799,19 +3852,19 @@ export default function MobilePrototype() {
               <TrackDetail t={t} dark={dark} trackId={trackId}
                 onClose={() => setTrackId(null)}
                 onOpenLesson={(id: string) => setLessonId(id)}
-                onOpenCoach={() => { setTrackId(null); setCoachOpen(true); }} />
+                onOpenCoach={() => { setTrackId(null); openCoachOverlay(); }} />
             )}
 
             {/* Lesson detail overlay */}
             {lessonId && (
               <LessonDetail t={t} dark={dark} lessonId={lessonId}
                 onClose={() => setLessonId(null)}
-                onOpenCoach={() => { setLessonId(null); setCoachOpen(true); }} />
+                onOpenCoach={() => { setLessonId(null); openCoachOverlay(); }} />
             )}
 
             {/* Coach overlay */}
             {coachOpen && (
-              <CoachScreen t={t} dark={dark} onClose={() => setCoachOpen(false)} />
+              <CoachScreen t={t} dark={dark} onClose={closeCoachOverlay} />
             )}
 
             {/* Pad view overlay */}
