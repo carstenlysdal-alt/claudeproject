@@ -824,7 +824,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
             {' · 72 min · '}
             <span style={{ fontWeight: 800 }}>{translate('level')} {level}</span>
           </div>
-          <div style={{ width: 64, flexShrink: 0 }}><Progress pct={xpPct} t={t} h={5} /></div>
+          <div style={{ width: 64, flexShrink: 0 }}><Progress pct={xpPct} t={t} h={5} bars={5} /></div>
         </div>
       </div>
     </div>
@@ -3182,7 +3182,6 @@ function TabBar({ tab, onTab, t, dark, isMobile, selectedCategory, isAdmin, onSe
               if (tt.id === 'playalong') {
                 onSelectCategory('playalong');
               } else {
-                onSelectCategory(null);
                 onTab(tt.id);
               }
             }} style={{
@@ -3564,13 +3563,17 @@ export default function MobilePrototype() {
   // URL-synkroniseret navigation — så browserens frem/tilbage-knapper virker
   // og fane/kategori/coach kan deep-linkes og genindlæses.
   type Category = 'opvarmning' | 'nodelære' | 'grooves' | 'playalong';
+  const VALID_TABS = ['home', 'practice', 'kit', 'profile'];
+  const VALID_CATEGORIES: Category[] = ['opvarmning', 'nodelære', 'grooves', 'playalong'];
   useEffect(() => {
     const applyFromUrl = () => {
       const params = new URLSearchParams(window.location.search);
       const urlTab = params.get('tab');
-      const urlCategory = params.get('category') as Category | null;
-      setTab(urlTab || 'home');
-      setSelectedCategory(urlCategory || null);
+      const urlCategory = params.get('category');
+      setTab(urlTab && VALID_TABS.includes(urlTab) ? urlTab : 'home');
+      setSelectedCategory(
+        urlCategory && (VALID_CATEGORIES as string[]).includes(urlCategory) ? (urlCategory as Category) : null
+      );
       setCoachOpen(params.get('coach') === '1');
     };
     applyFromUrl();
@@ -3593,7 +3596,10 @@ export default function MobilePrototype() {
   const navigateTab = (id: string) => {
     setTab(id);
     setSelectedCategory(null);
-    pushNavUrl({ tab: id, category: null });
+    setCoachOpen(false);
+    setTrackId(null);
+    setLessonId(null);
+    pushNavUrl({ tab: id, category: null, coach: false });
   };
   const openCategory = (cat: Category) => {
     setSelectedCategory(cat);
@@ -3610,6 +3616,11 @@ export default function MobilePrototype() {
   const closeCoachOverlay = () => {
     setCoachOpen(false);
     pushNavUrl({ coach: false });
+  };
+  const openCoachFromCategory = () => {
+    setSelectedCategory(null);
+    setCoachOpen(true);
+    pushNavUrl({ category: null, coach: true });
   };
 
   const t = tokens(dark);
@@ -3673,7 +3684,7 @@ export default function MobilePrototype() {
           {selectedCategory && (
             <MobileCategoryDetail t={t} dark={dark} category={selectedCategory}
               onClose={closeCategory}
-              onOpenCoach={() => { closeCategory(); openCoachOverlay(); }} />
+              onOpenCoach={openCoachFromCategory} />
           )}
           {trackId && (
             <TrackDetail t={t} dark={dark} trackId={trackId}
@@ -3844,7 +3855,7 @@ export default function MobilePrototype() {
             {selectedCategory && (
               <MobileCategoryDetail t={t} dark={dark} category={selectedCategory}
                 onClose={closeCategory}
-                onOpenCoach={() => { closeCategory(); openCoachOverlay(); }} />
+                onOpenCoach={openCoachFromCategory} />
             )}
 
             {/* Track detail overlay */}

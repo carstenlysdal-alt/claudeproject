@@ -87,7 +87,15 @@ function fallbackResponse(userMessage: string): CoachResponse {
 const HISTORY_WINDOW = 12;
 const MAX_ATTEMPTS = 3;
 
-async function callDeepSeek(apiKey: string, history: CoachMessage[]): Promise<CoachResponse | null> {
+// 'empty' er det eneste tilfælde der skal retries — DeepSeeks json_object-mode kan i sjældne
+// tilfælde returnere ren whitespace. 'text' er et brugbart, blot ikke-JSON-formateret svar,
+// og skal vises til brugeren i stedet for at blive kasseret.
+type CallResult =
+  | { status: 'ok'; data: CoachResponse }
+  | { status: 'text'; text: string }
+  | { status: 'empty' };
+
+async function callDeepSeek(apiKey: string, history: CoachMessage[]): Promise<CallResult> {
   const res = await fetch('https://api.deepseek.com/chat/completions', {
     method: 'POST',
     headers: {
@@ -111,14 +119,16 @@ async function callDeepSeek(apiKey: string, history: CoachMessage[]): Promise<Co
   const data = await res.json();
   const raw: string | undefined = data.choices?.[0]?.message?.content;
 
-  if (!raw || raw.trim().length === 0) return null;
+  if (!raw || raw.trim().length === 0) return { status: 'empty' };
 
   try {
     const parsed = JSON.parse(raw.trim());
-    if (!parsed.message || typeof parsed.message !== 'string' || parsed.message.trim().length === 0) return null;
-    return parsed;
+    if (!parsed.message || typeof parsed.message !== 'string' || parsed.message.trim().length === 0) {
+      return { status: 'text', text: raw.trim() };
+    }
+    return { status: 'ok', data: parsed };
   } catch {
-    return null;
+    return { status: 'text', text: raw.trim() };
   }
 }
 
@@ -134,10 +144,12 @@ export async function POST(req: NextRequest) {
 
   try {
     for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
-      const parsed = await callDeepSeek(apiKey, history);
-      if (parsed) return NextResponse.json(parsed);
+      const result = await callDeepSeek(apiKey, history);
+      if (result.status === 'ok') return NextResponse.json(result.data);
+      if (result.status === 'text') return NextResponse.json({ message: result.text });
+      // 'empty' — prøv igen
     }
-    // Alle forsøg gav tomt/ugyldigt svar — vis en ærlig fejl, ikke rå JSON-fejl
+    // Alle forsøg gav tomt svar — vis en ærlig fejl, ikke rå JSON-fejl
     return NextResponse.json({ message: 'AI\'en svarede ikke korrekt. Prøv igen.' });
   } catch (e) {
     console.error('Coach API error:', e);
