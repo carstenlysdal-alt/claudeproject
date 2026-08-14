@@ -102,7 +102,7 @@ interface TabBarProps {
   isMobile: boolean;
   selectedCategory: string | null;
   isAdmin?: boolean;
-  onSelectCategory: (cat: 'opvarmning' | 'nodelære' | 'grooves' | 'playalong' | null) => void;
+  onSelectCategory: (cat: 'opvarmning' | 'nodelære' | 'grooves' | 'playalong') => void;
   onOpenAdmin?: () => void;
 }
 
