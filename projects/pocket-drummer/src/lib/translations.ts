@@ -81,6 +81,9 @@ export const translations = {
     // Admin
     resetIntro: "Nulstil intro",
     adminPanel: "Gå til Admin-panel",
+    perfect: "Perfekt",
+    good: "Godt",
+    miss: "Forbi",
   },
   en: {
     greetingMorning: "Ready to level up",
@@ -135,6 +138,9 @@ export const translations = {
     jumpToTime: "Jump to timestamp",
     resetIntro: "Reset Intro",
     adminPanel: "Go to Admin Panel",
+    perfect: "Perfect",
+    good: "Good",
+    miss: "Miss",
   },
   de: {
     greetingMorning: "Bereit, dich zu verbessern",
@@ -189,6 +195,9 @@ export const translations = {
     jumpToTime: "Zum Zeitstempel springen",
     resetIntro: "Intro zurücksetzen",
     adminPanel: "Zum Admin-Bereich",
+    perfect: "Perfekt",
+    good: "Gut",
+    miss: "Verfehlt",
   },
   es: {
     greetingMorning: "Listo para mejorar",
@@ -243,6 +252,9 @@ export const translations = {
     jumpToTime: "Ir al minuto",
     resetIntro: "Reiniciar intro",
     adminPanel: "Ir al panel de administración",
+    perfect: "Perfecto",
+    good: "Bien",
+    miss: "Fallo",
   },
 };
 

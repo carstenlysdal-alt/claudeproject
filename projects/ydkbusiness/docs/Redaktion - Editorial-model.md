@@ -44,7 +44,40 @@ Det er Y Business' redaktionelle og kommercielle kerne.
 
 ---
 
-## 2. Målgruppehierarki
+## 2. De tre redaktionelle ben
+
+Y Business hviler på tre bærende ben. De er den øverste arkitektur —
+pillars, segmenter og formater lever under dem, ikke ved siden af dem.
+
+**Ben 1 · Business AI & teknologiimplementering**
+Konkret AI-implementering i virksomheder og organisationer — ikke
+teknologibeundring, men praksisnær journalistik om, hvad det kræver,
+hvad det koster, hvad det leverer, og hvad der ikke virker. Uddybet i §7.
+
+**Ben 2 · Det nordiske perspektiv**
+Danmark er linsen, men med systematisk blik mod Sverige, Norge, Finland,
+Færøerne, Island og Grønland som komparativt spejl og casekilde — samt
+global overvågning i sekundær rolle. De nordiske lande deler demografi,
+arbejdsmarkedsmodel, digitaliseringsmodenhed og regulatorisk rammeværk,
+hvilket gør dem til de mest relevante sammenligningsmarkeder for danske
+virksomheder. Mønstre i et nordisk naboland viser sig typisk i Danmark
+med 12-24 måneders forsinkelse — det gør nordisk signalspotting til en
+selvstændig disciplin, ikke bare et perspektiv man tilføjer.
+
+**Ben 3 · Kapital, investering og vækstperspektiv**
+Ikke børsjournalistik, ikke aktiekurser eller porteføljeanbefalinger.
+Ben 3 forbinder forretningsmæssig udvikling med kapitalstrømmene bag:
+privat kapital, venturekapital, impact-investering, vækstfinansiering og
+ejerskabsstrategier. Formatet giver et strategisk investeringsperspektiv
+til ledere der skal træffe beslutninger om vækst, opkøb, spin-offs og exit.
+
+Hver historie skal kunne placeres under mindst ét ben. De fleste formater
+kan trække på flere ben samtidig — Signalradaren og Casen der virker er
+typisk forankret i Ben 1+2, Klumme & Opinion kan trække på alle tre.
+
+---
+
+## 3. Målgruppehierarki
 
 Y Business skriver til mennesker i det private erhvervsliv, der tager beslutninger om forandring — i virksomheder, brancher og organisationer der allerede er midt i et skifte, eller som ved, at det er på vej. Det er ejere, ledere, strateger og praktikere, der ikke nøjes med at registrere, at noget sker. De vil vide, hvad det kræver af dem.
 
@@ -73,8 +106,8 @@ min drift, vil jeg hurtigt vide, om det kræver handling.
 - cases med kopierbar læring
 - korte overbliksbriefs
 
-**Primære formater:** Morgenbriefet, Det betyder det for din virksomhed,
-Casen der virker, Signalradaren, Før mødet
+**Primære formater:** Morgenbriefet, Konsekvensen, Casen der virker,
+Signalradaren, Signalet
 
 **Tone:** kort, konkret, respektfuld, uden finansjargon, uden konsulenttåge.
 
@@ -100,8 +133,8 @@ med ledelse eller bestyrelse.
 - blind spots i dominerende fortællinger
 - branche- og konkurrentperspektiver
 
-**Primære formater:** Mandag morgen, Den blinde vinkel, Signalradaren,
-Det betyder det for din virksomhed, Før mødet
+**Primære formater:** Mandag morgen (klumme), Blind Spot-artiklen, Signalradaren,
+Konsekvensen, Signalet
 
 **Tone:** analytisk, kompakt, datadrevet, skarp, uden managementfloskler.
 
@@ -126,8 +159,8 @@ realitetstjek og kopierbar læring.
 - founder-cases med friktion
 - konkrete læringer fra vækst og fejl
 
-**Primære formater:** Myten om, Den blinde vinkel, Casen der virker,
-Hvad virker?, Før mødet
+**Primære formater:** Blind Spot-artiklen, Casen der virker,
+Klumme & Opinion, Signalet
 
 **Tone:** direkte, energisk, anti-hype, læringsorienteret.
 
@@ -151,8 +184,8 @@ før konkurrenterne.
 - M&A-indikationer
 - valuation reality checks
 
-**Primære formater:** Signalradaren, Før handlen, Den blinde vinkel,
-Myten om, Mandag morgen
+**Primære formater:** Signalradaren, Signalet, Blind Spot-artiklen,
+Klumme & Opinion
 
 **Tone:** kort, datadrevet, skeptisk, signalorienteret.
 
@@ -176,8 +209,8 @@ hvad der virker i praksis.
 - employer branding
 - cases med metode, fejl og effekt
 
-**Primære formater:** Casen der virker, Hvad virker?, Før mødet,
-AI & tech for erhverv, Signalradaren
+**Primære formater:** Casen der virker, Klumme & Opinion, Signalet,
+Nyhedsartiklen, Signalradaren
 
 **Tone:** håndværksnær, kritisk, konkret, målelig, ikke buzzword-glad.
 
@@ -199,14 +232,14 @@ at bruge dem i mit arbejde.
 - korte mødebriefs
 - rollebaseret læring
 
-**Primære formater:** Morgenbriefet, Før mødet, Det betyder det for din
-virksomhed, AI & tech for erhverv, Hvad virker?
+**Primære formater:** Morgenbriefet, Signalet, Konsekvensen,
+Nyhedsartiklen, Klumme & Opinion
 
 **Tone:** forklarende, anvendelig, ikke elitær, ikke overstrategisk.
 
 ---
 
-## 3. Det redaktionelle løfte
+## 4. Det redaktionelle løfte
 
 Y Business lover læseren fem ting.
 
@@ -231,11 +264,14 @@ risici og blinde vinkler stadig bryder igennem.
 
 ---
 
-## 4. De tre pillars
+## 5. De tre pillars
 
 Pillars er ikke sektioner.
 
-De er redaktionelle arbejdsmetoder.
+De er redaktionelle arbejdsmetoder — og de virker under de tre ben (§2),
+ikke ved siden af dem. Et ben siger, hvilket territorium historien hører
+til (Business AI, Norden eller kapital/vækst). Pillar siger, hvilket greb
+journalistikken bruger til at behandle det territorium.
 
 Hver historie skal have én primær pillar.
 
@@ -310,7 +346,7 @@ og ændrede ansvarsfordelingen.*
 
 ---
 
-## 5. Redaktionelle funktioner
+## 6. Redaktionelle funktioner
 
 Pillars viser retningen.
 
@@ -330,7 +366,7 @@ Hver publicering skal have én primær funktion.
 
 ---
 
-## 6. Business AI — redaktionel linje
+## 7. Business AI — redaktionel linje (Ben 1)
 
 Y Business skal være det stærkeste medie i Danmark på business AI.
 
@@ -492,7 +528,81 @@ kompassætning: vi dækker det, ingen andre dækker — og vi kan dokumentere hu
 
 ---
 
-## 7. Klummer, kommentatorer og faste stemmer
+## 7B. Signalradaren som overvågningssystem
+
+Signalradaren er ikke en nyhedsfeature om noget, der allerede er sket. Det er
+et struktureret overvågningssystem, der afdækker tidlige mønstre, før de er
+blevet til mainstream nyhedsstof.
+
+Én Signalradar-artikel = ét dokumenteret tidligt mønster sammensat af mindst
+2-3 uafhængige observationer fra minimum to kildetyper, som tilsammen peger i
+samme retning — uden at nogen endnu har sat det store billede sammen.
+
+**Faste overvågningsdimensioner:**
+
+| Dimension | Spørgsmål |
+|---|---|
+| Teknologimodenhed | Hvornår er teknologien klar til bred adoption? Hvilke pilotprojekter dokumenterer det? |
+| Regulatorisk fremdrift | Hvad er under udarbejdelse i EU-Kommissionen, Folketing eller brancheorganisationer? |
+| Arbejdsmarkedet | Hvilke kompetencer stiger/falder i efterspørgsel? |
+| Kapitalflow | Hvad investerer fondene i nu — 18 måneder før det er bredt kendt? (Ben 3) |
+| Nordisk spejl | Er mønstret allerede etableret i et nordisk naboland? (Ben 2) |
+| Forbruger-/virksomhedsadfærd | Ændrer indkøbsmønstre, leverandørvalg eller organisationsstrukturer sig? |
+
+**Fast outputstruktur:** det samlede mønster → dokumenterede observationer →
+brødtekst og pullquote med drivkræfter og modargumenter → "Det betyder det
+for din virksomhed" (3-5 handlingsorienterede punkter) → Signalradar-profil
+(nøglesignal, modenhedsgrad, tidshorisont).
+
+---
+
+## 7C. Blind Spot — redaktionel kalibrering
+
+Y Business er et medie **for** AI, innovation og teknologisk transformation.
+Det præger tilgangen til Blind Spot.
+
+**Grundsætning: Blind Spot handler om at kvalificere og udvide den
+dominerende fortælling — ikke at modsige den.**
+
+Blind Spot bruges til at:
+- afdække underspillede dimensioner i en positiv AI-fortælling (f.eks.
+  implementeringsomkostninger i SMV-segmentet)
+- sætte fokus på aktører og sektorer der ikke er med i den dominerende
+  debat (f.eks. sundhedssektoren, den almene boligsektor, landbruget)
+- udfordre forenklede narrativer om, hvad der holder AI-udrulning tilbage
+- afdække magt- og interessestrukturer i den teknologiske omstilling
+
+**Blind Spot er ikke:**
+- et format der primært leder efter fejl, risici eller negative konsekvenser
+  af AI og automation
+- et format der signalerer skepsis over for den teknologiske forandrings
+  retning
+- et generelt "hul-i-osten"-format
+
+De seks blindheds-typer (dækningsblindhed, proportionalitetsblindhed,
+vinkelblindhed, kildeblindhed, konsekvensblindhed, spektrumblindhed) er
+uddybet i *Koncepter/AI-motor — Blind Spot signalmotor.md*.
+
+---
+
+## 7D. Automatiseringspotentialet (nyt format)
+
+Et systematisk format der screener manuelle processer i den offentlige og
+private sektor for AI- og automatiseringspotentiale, estimerede gevinster
+og organisatoriske barrierer. Sektorfokus: sundhedsvæsenet, den finansielle
+sektor, det offentlige, logistik og forsyningskæde.
+
+**Fast struktur:** den manuelle proces → volumen og ressourcer → AI-potentialet
+→ realiserede gevinster (nordiske eller internationale cases) → barrierer
+(regulatoriske, organisatoriske, tillidsbaserede) → næste skridt.
+
+Formatet er ikke et argument for ukritisk automatisering. Det er en
+kvalificeret kortlægning af, hvad der er muligt — med fuld transparens om
+barrierer, risici og menneskelige hensyn. Hører primært til Ben 1+3.
+
+---
+
+## 8. Klummer, kommentatorer og faste stemmer
 
 Klummeskribenter og kommentatorer er ikke pynt.
 
@@ -580,7 +690,7 @@ organisation og forretning.
 
 ---
 
-## 8. Redaktionelle protokoller
+## 9. Redaktionelle protokoller
 
 Y Business skal være en redaktionel praksis med tydelige regler.
 
@@ -658,7 +768,7 @@ vinkling eller kildevalg.
 
 ---
 
-## 9. Redaktionsmødets pitchmodel
+## 10. Redaktionsmødets pitchmodel
 
 Alle historier pitches efter samme model:
 
@@ -680,7 +790,7 @@ Hvis historien ikke kan mindst én af de tre ting, er den ikke Y Business.
 
 ---
 
-## 10. Stopliste
+## 11. Stopliste
 
 Y Business skriver ikke:
 
@@ -700,7 +810,7 @@ Y Business skriver ikke:
 
 ---
 
-## 11. Ugentlig feedback-loop
+## 12. Ugentlig feedback-loop
 
 Y Business skal lære hurtigt.
 
@@ -723,7 +833,7 @@ De skal styre produktudviklingen.
 
 ---
 
-## 12. De fem redaktionelle dogmer
+## 13. De fem redaktionelle dogmer
 
 **1. Ingen nyhed uden konsekvens**
 Hvis vi ikke kan forklare, hvem det betyder noget for, skal vi ikke skrive den.
@@ -744,7 +854,7 @@ risici og blinde vinkler, brugeren ikke selv har efterspurgt.
 
 ---
 
-## 13. Den redaktionelle motor
+## 14. Den redaktionelle motor
 
 ### AI gør det brede arbejde
 
@@ -771,3 +881,23 @@ Challenge-stof, opinion, konklusioner i analyser eller publicering.
 
 Y Business siger: AI overvåger markedet. Journalisterne afgør, hvad der
 betyder noget.
+
+### Research- og faktatjek-lag
+
+To motorkomponenter understøtter arbejdet uden at flytte redaktionel
+autoritet fra mennesker til AI:
+
+**Exa-research-motoren** kører 9 formattilpassede søgeprofiler, der
+dynamisk genererer skræddersyede søgninger til det aktuelle format —
+f.eks. VC-/fundingkilder til Ben 3, drifts- og reguleringstekster til
+Konsekvensen, modenhedssignaler til Signalradaren. Morgenbriefet,
+Overblikket, Signalradaren, Casen der virker og Klumme har hver deres
+faste enhedskrav (f.eks. minimum 2-3 uafhængige signaler til
+Signalradaren, navngiven debattør uden fiktive pseudonymer til Klumme).
+
+**Den redaktionelle faktatjekker** tester hver genereret artikel mod det
+rå kildemateriale på påstandsniveau og afgiver én af fire domme:
+grøn/verificeret, gul/tolkning, orange/uunderstøttet, rød/modstridende.
+Samlet score (0-100) og hallucinationsrisiko (lav/moderat/høj) følger med.
+Faktatjekkeren retter eller omskriver ikke selv — den dømmer og
+dokumenterer, redaktøren beslutter.

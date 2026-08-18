@@ -94,16 +94,15 @@ og C25.
 
 Kerneprodukter: personaliseret nyhedsfeed + morgenbrief kl. 06.00 (tekst + lyd).
 
-### Lag 2 — Markedsovervågning
+### Lag 2 — Medie- og markedsovervågning
 
-Erstatning for Retriever/Meltwater til SMV-priser. Brugeren opsætter
-overvågning på konkurrenter, nøgleord, brancher og regulering.
-Alerts ved vigtige ændringer. Ugentlig digest mandage.
+Erstatning for Retriever og Meltwater til SMV-priser. To spor:
 
-Obligatorisk kategori: regulering og erhvervspolitik med direkte
-SMV-konsekvens. Statsrelateret papirarbejde koster SMV-segmentet
-16,5 mia. DKK/år — regulatory overvågning er produktets stærkeste
-ROI-argument over for abonnenten.
+**Medieovervågning:** Op til 5 brugere modtager realtidsnotifikationer, når virksomhedens brand, produkter eller nøglepersoner nævnes i en af de 50.000 kilder der scannes — inkl. alle danske nyhedsmedier. Inkluderer månedlig PR impact-rapport. Integration: HubSpot · Slack · Salesforce.
+
+**Markedsovervågning:** Overvåger op til 5 brands med realtidsnotifikationer ved ændringer i CVR-registret — regnskaber, nye bestyrelsesmedlemmer, direktørskift, jobopslag og markedssignaler. Inkluderer offentlige udbud, regulering, EU-direktiver og erhvervspolitik med direkte SMV-konsekvens.
+
+Ugentlig digest mandage. Ekstra brands og brugere tilkøbes pr. enhed.
 
 ### Lag 3 — Branchetrends
 
@@ -142,7 +141,7 @@ Suppleret af CVR-baseret virksomhedssøgning på branche, størrelse og geografi
 Tre funktioner der styrker retention og virksomhedens ROI på abonnementet:
 
 **Artikel-deling:** Abonnenter kan dele et begrænset antal artikler bag betalingsmuren
-via tokeniserede links (Erhverv: 5/md · Erhverv+: 25/md · Premium: 100/md).
+via tokeniserede links (Erhverv: 5/md · Erhverv+: 10/md · Premium: 50/md).
 
 **Brugsret til markedsføring:** Abonnenter må bruge artikler, hvori de eller deres
 virksomhed er nævnt, i egne kanaler — SoMe, nyhedsbreve, investor-materiale.
@@ -193,7 +192,10 @@ Grundregel:
 
 ## 5. Det redaktionelle fundament
 
-Y Business' redaktionelle model bygger på tre pillars:
+Y Business' redaktionelle model hviler på tre bærende ben — Business AI &
+teknologiimplementering, det nordiske perspektiv, og kapital/investering/
+vækst (uddybet i `docs/Redaktion - Editorial-model.md` §2). Under de tre ben
+arbejder redaktionen med tre pillars som metode:
 
 **Understand** — konsekvensnær forklaring: ikke hvad der er sket,
 men hvad det betyder for læserens virksomhed.
@@ -318,23 +320,15 @@ API-adgang og licenskrav afklares løbende.
 
 ## 8. Lanceringsplan
 
-| Milepæl | Dato | Ejer |
+| Milepæl | Dato | Status |
 |---|---|---|
-| Y.dk internal soft launch | 10. juni 2026 | Tech Lead + Redaktion |
-| Y.dk public launch (fri adgang) | 10. august 2026 | CEO + Commercial Lead |
-| Redaktionelt koncept og features spec v1.0 | 30. juni 2026 | PM + Lysdal/Dyrby |
-| UI-wireframes og go/no-go | 31. august 2026 | PM + Designer |
-| **Y Business launch** | **1. november 2026** | **PM + Tech Lead + Jesper** |
-| Paywall live — Private og Business | 20. november 2026 | Tech Lead + Commercial Lead |
-| Y Rails — fuld produktlancering | 1. december 2026 | Tech Lead |
+| Y.dk public launch — Business AI som spydspids | 10. august 2026 | Gennemført |
+| Partnerdialog og behovsafdækning | August 2026 | I gang |
+| UI-wireframes og go/no-go | 31. august 2026 | Igangværende |
+| **Y Business launch** | **1. november 2026** | Planlagt |
+| Paywall live | 20. november 2026 | Planlagt |
 
-**Kritisk afhængighed:** Redaktionelt koncept skal være leveret inden
-30. juni, så Tech Lead kan konfigurere motoren selvstændigt i juli
-(PM er ikke tilgængelig). Ufuldstændige leverancer ved udgangen af juni
-= stilstand i juli = forsinkelse af 1. oktober.
-
-**Beta-mål:** 1.500 Business + 1.500 Private subscribers ved
-paywall-lancering 20. november 2026.
+**Beta-mål:** 1.500 Business-abonnenter ved paywall-lancering 20. november 2026.
 
 Fuldt roadmap: *Produkt — Roadmap.md*
 

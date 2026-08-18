@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useAuth } from '@/lib/authContext';
 import { Language, useLanguage } from '@/lib/languageContext';
+import { getUserPlan, JourneyProgress, UserPlan } from '@/lib/mockData';
 import TiltCard from '@/components/TiltCard';
 import ReactMarkdown from 'react-markdown';
 
@@ -59,10 +60,230 @@ interface ScreenProps {
 interface HomeScreenProps extends ScreenProps {
   setDark: (dark: boolean) => void;
   onSelectCategory: (cat: 'opvarmning' | 'nodelære' | 'grooves' | 'playalong') => void;
+  onSelectLevel: (level: TrainingLevel) => void;
   onOpenCoach: () => void;
   guestXp: number;
   isDesktop?: boolean;
 }
+
+type TrainingLevel = 'begynder' | 'oevet' | 'rutineret';
+type TechniqueProgram = 'enkeltslag' | 'dobbeltslag' | 'paradiddles' | 'mix';
+
+const TRAINING_LEVELS: Array<{
+  id: TrainingLevel;
+  number: string;
+}> = [
+  { id: 'begynder', number: '01' },
+  { id: 'oevet', number: '02' },
+  { id: 'rutineret', number: '03' },
+];
+
+const TECHNIQUE_PROGRAMS: Array<{
+  id: TechniqueProgram;
+  number: string;
+}> = [
+  { id: 'enkeltslag', number: '01' },
+  { id: 'dobbeltslag', number: '02' },
+  { id: 'paradiddles', number: '03' },
+  { id: 'mix', number: '04' },
+];
+
+interface PrototypeCopy {
+  guest: string;
+  greeting: string;
+  chooseLevel: string;
+  warmupTechnique: string;
+  levels: Record<TrainingLevel, { label: string; description: string }>;
+  techniques: Record<TechniqueProgram, { label: string; description: string }>;
+  focusAreas: string[];
+  libraryCount: string;
+  playWithMusic: string;
+  digitalKit: string;
+  askAnything: string;
+  todayFundamentals: string;
+  lessonTitle: string;
+  lessonDescription: string;
+  continueLesson: string;
+  keepPracticing: string;
+  dayStreak: string;
+  continueWhere: string;
+  timingTitle: string;
+  timingMeta: string;
+  thisWeek: string;
+  practiceDays: string;
+  chooseTechnique: string;
+  completed: string;
+  progressiveExercises: string;
+  backToTechniques: string;
+  backHome: string;
+  markCompleted: string;
+  askCoachExercise: string;
+  sheetMusic: string;
+  video: string;
+  close: string;
+  back: string;
+  next: string;
+  play: string;
+  pause: string;
+  loop: string;
+  loadingNotation: string;
+  notationError: string;
+  lightMode: string;
+  darkMode: string;
+  languageName: Record<Language, string>;
+  exercisesTitle: string;
+  exercisesUnit: string;
+  free: string;
+  searchExercises: string;
+  noExerciseMatches: string;
+  saveProgressDescription: string;
+  loginError: string;
+  signingIn: string;
+  askQuestion: string;
+  coachIntro: string;
+  coachStatus: string;
+  coachFallback: string;
+  coachOffline: string;
+  coachSuggestions: string[];
+  startJourney: string;
+  signInAndStartJourney: string;
+  continueJourney: string;
+  journeyHint: string;
+  journeySaving: string;
+  journeyLoginError: string;
+  continueHere: string;
+}
+
+const PROTOTYPE_COPY: Record<Language, PrototypeCopy> = {
+  da: {
+    guest: 'Gæst', greeting: 'Hej', chooseLevel: 'Vælg dit niveau', warmupTechnique: 'Opvarmning / teknik',
+    levels: {
+      begynder: { label: 'Begynder', description: 'Byg kontrol, puls og gode grundvaner.' },
+      oevet: { label: 'Øvet', description: 'Udvid tempo, dynamik og koordination.' },
+      rutineret: { label: 'Rutineret', description: 'Forfin teknik, flow og udholdenhed.' },
+    },
+    techniques: {
+      enkeltslag: { label: 'Enkeltslag', description: 'Skiftevis højre og venstre med jævn lyd.' },
+      dobbeltslag: { label: 'Dobbeltslag', description: 'To kontrollerede slag med hver hånd.' },
+      paradiddles: { label: 'Paradiddles', description: 'Kombinér enkeltslag og dobbeltslag.' },
+      mix: { label: 'Mix', description: 'Saml teknikkerne i en komplet opvarmning.' },
+    },
+    focusAreas: ['Kontrol', 'Jævn puls', 'Accenter', 'Dynamik', 'Udholdenhed', 'Tempo', 'Koordination', 'Fuld sekvens'],
+    libraryCount: '312 i biblioteket', playWithMusic: 'Spil med musik', digitalKit: 'Digitalt trommesæt', askAnything: 'Spørg om alt',
+    todayFundamentals: 'I dag · Grundrytmer', lessonTitle: 'Grooves & fills del 1', lessonDescription: 'Hi-hat-mønstre med halvnoder over bastromme.',
+    continueLesson: 'Fortsæt lektion', keepPracticing: 'Øv videre', dayStreak: 'dage i streg', continueWhere: 'Fortsæt hvor du slap',
+    timingTitle: 'Sekstendedele · timing', timingMeta: 'Nodelære · 4 min tilbage', thisWeek: 'Denne uge', practiceDays: 'øvedage',
+    chooseTechnique: 'Vælg teknikspor', completed: 'Gennemført', progressiveExercises: '8 progressive øvelser',
+    backToTechniques: 'Tilbage til teknikspor', backHome: 'Tilbage til forsiden', markCompleted: 'Marker som gennemført',
+    askCoachExercise: 'Spørg AI Coach om denne øvelse', sheetMusic: 'Noder', video: 'Video', close: 'Luk', back: 'Tilbage', next: 'Næste', play: 'Afspil', pause: 'Pause', loop: 'Gentag',
+    loadingNotation: 'Indlæser noder…', notationError: 'Kunne ikke hente noder. Upload via admin-knappen.',
+    lightMode: 'Lys tilstand', darkMode: 'Mørk tilstand', languageName: { da: 'Dansk', en: 'Engelsk', de: 'Tysk', es: 'Spansk' },
+    exercisesTitle: 'Øvelser', exercisesUnit: 'øvelser', free: 'gratis', searchExercises: 'Søg efter teknik, groove…', noExerciseMatches: 'Ingen øvelser matcher',
+    saveProgressDescription: 'Log ind med Google for at gemme dine øvelser, point og streak.', loginError: 'Fejl under login med Google. Prøv igen.', signingIn: 'Logger ind…', askQuestion: 'Stil et spørgsmål…',
+    coachIntro: 'Hej {name} 👋\nJeg er din AI Coach. Hvad øver du dig på for øjeblikket, og hvordan går det?', coachStatus: 'Online · husker dit niveau',
+    coachFallback: 'Noget gik galt. Prøv igen.', coachOffline: 'Jeg kan ikke nå serveren lige nu. Tjek din forbindelse og prøv igen.',
+    coachSuggestions: ['Hvad skal jeg øve i dag?', 'Hjælp med timing', 'Forklar paradiddle', 'Hjælp med fills'],
+    startJourney: 'Start min rejse', signInAndStartJourney: 'Log ind og start min rejse', continueJourney: 'Fortsæt min rejse',
+    journeyHint: 'Din rejse og dine fremskridt gemmes, så du altid kan fortsætte.', journeySaving: 'Gemmer din rejse…', journeyLoginError: 'Login mislykkedes. Prøv igen.',
+    continueHere: 'Fortsæt her',
+  },
+  en: {
+    guest: 'Guest', greeting: 'Hi', chooseLevel: 'Choose your level', warmupTechnique: 'Warm-up / technique',
+    levels: {
+      begynder: { label: 'Beginner', description: 'Build control, pulse, and strong fundamentals.' },
+      oevet: { label: 'Intermediate', description: 'Expand your tempo, dynamics, and coordination.' },
+      rutineret: { label: 'Advanced', description: 'Refine your technique, flow, and endurance.' },
+    },
+    techniques: {
+      enkeltslag: { label: 'Single strokes', description: 'Alternate right and left with an even sound.' },
+      dobbeltslag: { label: 'Double strokes', description: 'Play two controlled strokes with each hand.' },
+      paradiddles: { label: 'Paradiddles', description: 'Combine single and double strokes.' },
+      mix: { label: 'Mix', description: 'Bring the techniques together in a complete warm-up.' },
+    },
+    focusAreas: ['Control', 'Steady pulse', 'Accents', 'Dynamics', 'Endurance', 'Tempo', 'Coordination', 'Full sequence'],
+    libraryCount: '312 in the library', playWithMusic: 'Play with music', digitalKit: 'Digital drum kit', askAnything: 'Ask anything',
+    todayFundamentals: 'Today · Fundamentals', lessonTitle: 'Grooves & fills pt. 1', lessonDescription: 'Hi-hat patterns with half notes over the bass drum.',
+    continueLesson: 'Continue lesson', keepPracticing: 'Keep practicing', dayStreak: 'day streak', continueWhere: 'Continue where you left off',
+    timingTitle: 'Sixteenths · timing', timingMeta: 'Notation · 4 min left', thisWeek: 'This week', practiceDays: 'practice days',
+    chooseTechnique: 'Choose a technique track', completed: 'Completed', progressiveExercises: '8 progressive exercises',
+    backToTechniques: 'Back to technique tracks', backHome: 'Back to home', markCompleted: 'Mark as completed',
+    askCoachExercise: 'Ask AI Coach about this exercise', sheetMusic: 'Sheet music', video: 'Video', close: 'Close', back: 'Back', next: 'Next', play: 'Play', pause: 'Pause', loop: 'Loop',
+    loadingNotation: 'Loading sheet music…', notationError: 'Could not load the sheet music. Upload it with the admin button.',
+    lightMode: 'Light mode', darkMode: 'Dark mode', languageName: { da: 'Danish', en: 'English', de: 'German', es: 'Spanish' },
+    exercisesTitle: 'Exercises', exercisesUnit: 'exercises', free: 'free', searchExercises: 'Search techniques, grooves…', noExerciseMatches: 'No exercises match',
+    saveProgressDescription: 'Sign in with Google to save your exercises, points, and streak.', loginError: 'Google sign-in failed. Please try again.', signingIn: 'Signing in…', askQuestion: 'Ask a question…',
+    coachIntro: 'Hi {name} 👋\nI’m your AI Coach. What are you practicing right now, and how is it going?', coachStatus: 'Online · remembers your level',
+    coachFallback: 'Something went wrong. Please try again.', coachOffline: 'I can’t reach the server right now. Check your connection and try again.',
+    coachSuggestions: ['What should I practice today?', 'Help with timing', 'Explain paradiddles', 'Help with fills'],
+    startJourney: 'Start my journey', signInAndStartJourney: 'Sign in and start my journey', continueJourney: 'Continue my journey',
+    journeyHint: 'Your journey and progress are saved, so you can always continue.', journeySaving: 'Saving your journey…', journeyLoginError: 'Sign-in failed. Please try again.',
+    continueHere: 'Continue here',
+  },
+  de: {
+    guest: 'Gast', greeting: 'Hallo', chooseLevel: 'Wähle dein Niveau', warmupTechnique: 'Aufwärmen / Technik',
+    levels: {
+      begynder: { label: 'Anfänger', description: 'Baue Kontrolle, Pulsgefühl und gute Grundlagen auf.' },
+      oevet: { label: 'Fortgeschritten', description: 'Erweitere Tempo, Dynamik und Koordination.' },
+      rutineret: { label: 'Erfahren', description: 'Verfeinere Technik, Spielfluss und Ausdauer.' },
+    },
+    techniques: {
+      enkeltslag: { label: 'Einzelschläge', description: 'Rechts und links abwechselnd mit gleichmäßigem Klang.' },
+      dobbeltslag: { label: 'Doppelschläge', description: 'Zwei kontrollierte Schläge mit jeder Hand.' },
+      paradiddles: { label: 'Paradiddles', description: 'Kombiniere Einzel- und Doppelschläge.' },
+      mix: { label: 'Mix', description: 'Verbinde die Techniken zu einem kompletten Warm-up.' },
+    },
+    focusAreas: ['Kontrolle', 'Gleichmäßiger Puls', 'Akzente', 'Dynamik', 'Ausdauer', 'Tempo', 'Koordination', 'Komplette Sequenz'],
+    libraryCount: '312 in der Bibliothek', playWithMusic: 'Mit Musik spielen', digitalKit: 'Digitales Schlagzeug', askAnything: 'Alles fragen',
+    todayFundamentals: 'Heute · Grundlagen', lessonTitle: 'Grooves & Fills Teil 1', lessonDescription: 'Hi-Hat-Muster mit halben Noten über der Bassdrum.',
+    continueLesson: 'Lektion fortsetzen', keepPracticing: 'Weiterüben', dayStreak: 'Tage am Stück', continueWhere: 'Dort weitermachen, wo du aufgehört hast',
+    timingTitle: 'Sechzehntel · Timing', timingMeta: 'Notenlehre · noch 4 Min.', thisWeek: 'Diese Woche', practiceDays: 'Übungstage',
+    chooseTechnique: 'Technikpfad wählen', completed: 'Abgeschlossen', progressiveExercises: '8 aufbauende Übungen',
+    backToTechniques: 'Zurück zu den Technikpfaden', backHome: 'Zurück zur Startseite', markCompleted: 'Als abgeschlossen markieren',
+    askCoachExercise: 'KI-Coach zu dieser Übung fragen', sheetMusic: 'Noten', video: 'Video', close: 'Schließen', back: 'Zurück', next: 'Weiter', play: 'Abspielen', pause: 'Pause', loop: 'Wiederholen',
+    loadingNotation: 'Noten werden geladen…', notationError: 'Noten konnten nicht geladen werden. Über die Admin-Schaltfläche hochladen.',
+    lightMode: 'Heller Modus', darkMode: 'Dunkler Modus', languageName: { da: 'Dänisch', en: 'Englisch', de: 'Deutsch', es: 'Spanisch' },
+    exercisesTitle: 'Übungen', exercisesUnit: 'Übungen', free: 'kostenlos', searchExercises: 'Technik oder Groove suchen…', noExerciseMatches: 'Keine Übungen passen zu',
+    saveProgressDescription: 'Melde dich mit Google an, um Übungen, Punkte und deine Serie zu speichern.', loginError: 'Google-Anmeldung fehlgeschlagen. Bitte versuche es erneut.', signingIn: 'Anmeldung läuft…', askQuestion: 'Stelle eine Frage…',
+    coachIntro: 'Hallo {name} 👋\nIch bin dein KI-Coach. Was übst du gerade, und wie läuft es?', coachStatus: 'Online · merkt sich dein Niveau',
+    coachFallback: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.', coachOffline: 'Der Server ist gerade nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.',
+    coachSuggestions: ['Was soll ich heute üben?', 'Hilfe beim Timing', 'Paradiddles erklären', 'Hilfe bei Fills'],
+    startJourney: 'Meine Reise starten', signInAndStartJourney: 'Anmelden und meine Reise starten', continueJourney: 'Meine Reise fortsetzen',
+    journeyHint: 'Deine Reise und Fortschritte werden gespeichert, damit du jederzeit weitermachen kannst.', journeySaving: 'Deine Reise wird gespeichert…', journeyLoginError: 'Anmeldung fehlgeschlagen. Bitte versuche es erneut.',
+    continueHere: 'Hier weitermachen',
+  },
+  es: {
+    guest: 'Invitado', greeting: 'Hola', chooseLevel: 'Elige tu nivel', warmupTechnique: 'Calentamiento / técnica',
+    levels: {
+      begynder: { label: 'Principiante', description: 'Desarrolla control, pulso y buenos fundamentos.' },
+      oevet: { label: 'Intermedio', description: 'Amplía el tempo, la dinámica y la coordinación.' },
+      rutineret: { label: 'Avanzado', description: 'Perfecciona la técnica, la fluidez y la resistencia.' },
+    },
+    techniques: {
+      enkeltslag: { label: 'Golpes simples', description: 'Alterna derecha e izquierda con un sonido uniforme.' },
+      dobbeltslag: { label: 'Golpes dobles', description: 'Toca dos golpes controlados con cada mano.' },
+      paradiddles: { label: 'Paradiddles', description: 'Combina golpes simples y dobles.' },
+      mix: { label: 'Mix', description: 'Combina las técnicas en un calentamiento completo.' },
+    },
+    focusAreas: ['Control', 'Pulso estable', 'Acentos', 'Dinámica', 'Resistencia', 'Tempo', 'Coordinación', 'Secuencia completa'],
+    libraryCount: '312 en la biblioteca', playWithMusic: 'Toca con música', digitalKit: 'Batería digital', askAnything: 'Pregunta lo que quieras',
+    todayFundamentals: 'Hoy · Fundamentos', lessonTitle: 'Grooves y fills, parte 1', lessonDescription: 'Patrones de hi-hat con blancas sobre el bombo.',
+    continueLesson: 'Continuar lección', keepPracticing: 'Sigue practicando', dayStreak: 'días seguidos', continueWhere: 'Continúa donde lo dejaste',
+    timingTitle: 'Semicorcheas · tempo', timingMeta: 'Notación · quedan 4 min', thisWeek: 'Esta semana', practiceDays: 'días de práctica',
+    chooseTechnique: 'Elige una ruta técnica', completed: 'Completado', progressiveExercises: '8 ejercicios progresivos',
+    backToTechniques: 'Volver a las rutas técnicas', backHome: 'Volver al inicio', markCompleted: 'Marcar como completado',
+    askCoachExercise: 'Pregunta al Coach de IA sobre este ejercicio', sheetMusic: 'Partitura', video: 'Vídeo', close: 'Cerrar', back: 'Volver', next: 'Siguiente', play: 'Reproducir', pause: 'Pausa', loop: 'Repetir',
+    loadingNotation: 'Cargando partitura…', notationError: 'No se pudo cargar la partitura. Súbela con el botón de administración.',
+    lightMode: 'Modo claro', darkMode: 'Modo oscuro', languageName: { da: 'Danés', en: 'Inglés', de: 'Alemán', es: 'Español' },
+    exercisesTitle: 'Ejercicios', exercisesUnit: 'ejercicios', free: 'gratis', searchExercises: 'Busca técnica o groove…', noExerciseMatches: 'Ningún ejercicio coincide con',
+    saveProgressDescription: 'Inicia sesión con Google para guardar tus ejercicios, puntos y racha.', loginError: 'Error al iniciar sesión con Google. Inténtalo de nuevo.', signingIn: 'Iniciando sesión…', askQuestion: 'Haz una pregunta…',
+    coachIntro: 'Hola {name} 👋\nSoy tu Coach de IA. ¿Qué estás practicando ahora y cómo te va?', coachStatus: 'En línea · recuerda tu nivel',
+    coachFallback: 'Algo salió mal. Inténtalo de nuevo.', coachOffline: 'No puedo conectar con el servidor ahora. Comprueba tu conexión e inténtalo de nuevo.',
+    coachSuggestions: ['¿Qué debería practicar hoy?', 'Ayuda con el tempo', 'Explica los paradiddles', 'Ayuda con fills'],
+    startJourney: 'Empezar mi viaje', signInAndStartJourney: 'Iniciar sesión y empezar mi viaje', continueJourney: 'Continuar mi viaje',
+    journeyHint: 'Tu viaje y tu progreso se guardan para que siempre puedas continuar.', journeySaving: 'Guardando tu viaje…', journeyLoginError: 'No se pudo iniciar sesión. Inténtalo de nuevo.',
+    continueHere: 'Continuar aquí',
+  },
+};
 
 interface PracticeScreenProps extends ScreenProps {
   onSelectCategory: (cat: 'opvarmning' | 'nodelære' | 'grooves' | 'playalong') => void;
@@ -634,13 +855,13 @@ function OnboardingScreen({ t, onStart }: { t: ThemeTokens; dark: boolean; onSta
 }
 
 // 2. Home Screen
-function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, isDesktop }: HomeScreenProps) {
+function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenCoach, guestXp, isDesktop }: HomeScreenProps) {
   const { user } = useAuth();
-  const displayName = user ? (user.displayName || user.email?.split('@')[0] || 'dig') : 'Gæst';
   const { language, setLanguage, t: translate } = useLanguage();
+  const copy = PROTOTYPE_COPY[language];
+  const displayName = user ? (user.displayName || user.email?.split('@')[0] || copy.guest) : copy.guest;
 
   const dateLang = language === 'da' ? 'da-DK' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : 'es-ES';
-  const greeting = language === 'da' ? 'Hej' : language === 'en' ? 'Hi' : language === 'de' ? 'Hallo' : 'Hola';
   const todayRaw = new Date().toLocaleDateString(dateLang, { weekday: 'long', day: 'numeric', month: 'long' });
   const todayStr = todayRaw.charAt(0).toUpperCase() + todayRaw.slice(1);
 
@@ -654,28 +875,216 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
     {
       id: 'practice',
       title: translate('practice') || 'Øvelser',
-      desc: language === 'da' ? '312 i biblioteket' : '312 in library',
+      desc: copy.libraryCount,
+      icon: <TabPractice size={22} color={t.good} />,
+      iconColor: t.good,
       action: () => onSelectCategory('nodelære'),
     },
     {
       id: 'playalong',
       title: translate('playalong') || 'Play-along',
-      desc: language === 'da' ? 'Spil med musik' : 'Play with music',
+      desc: copy.playWithMusic,
+      icon: <TabPlayalong size={22} color={t.accent} />,
+      iconColor: t.accent,
       action: () => onSelectCategory('playalong'),
     },
     {
       id: 'kit',
       title: translate('kit') || 'Studio Kit',
-      desc: language === 'da' ? 'Digitalt trommesæt' : 'Digital drum kit',
+      desc: copy.digitalKit,
+      icon: <TabKit size={22} color="#7B6FB0" />,
+      iconColor: '#7B6FB0',
       action: () => onSelectCategory('grooves'),
     },
     {
       id: 'coach',
       title: 'AI Coach',
-      desc: language === 'da' ? 'Spørg om alt' : 'Ask anything',
+      desc: copy.askAnything,
+      icon: <IcSpark size={21} color={t.warn} />,
+      iconColor: t.warn,
       action: onOpenCoach,
     },
   ];
+
+  const levelSelector = (desktop: boolean) => (
+    <section style={{ marginTop: desktop ? 28 : 0, marginBottom: desktop ? 0 : 28 }} aria-labelledby={`level-heading-${desktop ? 'desktop' : 'mobile'}`}>
+      <div style={{
+        display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 16,
+        paddingBottom: 12, borderBottom: `2px solid ${t.text}`,
+      }}>
+        <Display t={t} size={desktop ? 20 : 17} style={{ letterSpacing: -0.2 }}>
+          <span id={`level-heading-${desktop ? 'desktop' : 'mobile'}`}>{copy.chooseLevel}</span>
+        </Display>
+        <span style={{ fontFamily: t.mono, fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1.2 }}>
+          {copy.warmupTechnique}
+        </span>
+      </div>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: desktop ? 'repeat(3, minmax(0, 1fr))' : '1fr',
+        borderBottom: `1px solid ${t.hairline}`,
+      }}>
+        {TRAINING_LEVELS.map((level, index) => (
+          <button key={level.id} type="button" onClick={() => onSelectLevel(level.id)} style={{
+            minHeight: desktop ? 132 : 82,
+            padding: desktop ? '22px 24px' : '16px 0',
+            background: 'transparent', color: t.text, border: 'none',
+            borderRight: desktop && index < TRAINING_LEVELS.length - 1 ? `1px solid ${t.hairline}` : 'none',
+            borderBottom: !desktop && index < TRAINING_LEVELS.length - 1 ? `1px solid ${t.hairline}` : 'none',
+            textAlign: 'left', cursor: 'pointer', fontFamily: t.font,
+            display: 'grid', gridTemplateColumns: '38px 1fr auto', alignItems: 'center', gap: 14,
+          }}>
+            <span style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 700, color: t.accent }}>{level.number}</span>
+            <span>
+              <span style={{ display: 'block', fontSize: desktop ? 20 : 17, fontWeight: 800, marginBottom: 4 }}>{copy.levels[level.id].label}</span>
+              <span style={{ display: 'block', fontSize: 12.5, lineHeight: 1.45, color: t.textMuted }}>{copy.levels[level.id].description}</span>
+            </span>
+            <IcArrowRight size={18} color={t.textMuted} />
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+
+  if (isDesktop) {
+    return (
+      <div style={{
+        width: '100%', minHeight: '100%', boxSizing: 'border-box',
+        padding: '80px clamp(32px, 4vw, 72px) 48px',
+        color: t.text, fontFamily: t.font,
+      }}>
+        <header style={{
+          display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
+          gap: 32, paddingBottom: 24, borderBottom: `2px solid ${t.text}`,
+        }}>
+          <div>
+            <div style={{
+              fontFamily: t.mono, fontSize: 11, fontWeight: 600, letterSpacing: 1.5,
+              textTransform: 'uppercase', color: t.textMuted, marginBottom: 10,
+            }}>{todayStr}</div>
+            <Display t={t} size={48}>{copy.greeting} {displayName}</Display>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+            <div style={{ display: 'flex', gap: 8 }}>
+              {([
+                { code: 'da', flag: '🇩🇰' },
+                { code: 'en', flag: '🇬🇧' },
+                { code: 'de', flag: '🇩🇪' },
+                { code: 'es', flag: '🇪🇸' },
+              ] satisfies { code: Language; flag: string }[]).map(l => (
+                <button key={l.code} onClick={() => setLanguage(l.code)} aria-label={copy.languageName[l.code]} aria-pressed={language === l.code} style={{
+                  width: 44, height: 44, background: 'transparent',
+                  border: `1px solid ${language === l.code ? t.text : t.hairline}`,
+                  color: t.text, fontSize: 16, cursor: 'pointer',
+                }}>{l.flag}</button>
+              ))}
+            </div>
+            <button onClick={() => setDark(!dark)} aria-label={dark ? copy.lightMode : copy.darkMode} style={{
+              width: 44, height: 44, background: 'transparent', border: `1px solid ${t.hairline}`,
+              color: t.textMuted, cursor: 'pointer', display: 'grid', placeItems: 'center',
+            }}>
+              {dark ? <IcSun size={17} /> : <IcMoon size={17} />}
+            </button>
+          </div>
+        </header>
+
+        {levelSelector(true)}
+
+        <main style={{
+          display: 'grid', gridTemplateColumns: 'minmax(0, 1.55fr) minmax(360px, 0.85fr)',
+          gap: 'clamp(32px, 4vw, 72px)', paddingTop: 32,
+        }}>
+          <section onClick={() => onSelectCategory('grooves')} style={{
+            minHeight: 'clamp(400px, 55vh, 620px)', padding: 'clamp(28px, 3vw, 52px)',
+            background: t.surface2, display: 'flex', flexDirection: 'column', cursor: 'pointer',
+          }}>
+            <div style={{
+              fontFamily: t.mono, fontSize: 11, fontWeight: 700, letterSpacing: 1.5,
+              textTransform: 'uppercase', color: t.accent,
+            }}>
+              {copy.todayFundamentals}
+            </div>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <Display t={t} size={64} style={{ maxWidth: 720, marginBottom: 20 }}>
+                {copy.lessonTitle}
+              </Display>
+              <p style={{ margin: 0, maxWidth: 560, color: t.textMuted, fontSize: 18, lineHeight: 1.6 }}>
+                {copy.lessonDescription}
+              </p>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(240px, 1fr) 240px', alignItems: 'end', gap: 28 }}>
+              <Progress pct={(3 / 7) * 100} t={t} h={44} bars={7} />
+              <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcPlay size={17} color={t.bg} />}>
+                {copy.continueLesson}
+              </CTA>
+            </div>
+          </section>
+
+          <aside style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+            <div style={{
+              display: 'flex', alignItems: 'baseline', justifyContent: 'space-between',
+              paddingBottom: 14, borderBottom: `2px solid ${t.text}`,
+            }}>
+              <Display t={t} size={18}>{copy.keepPracticing}</Display>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: t.mono, fontSize: 11, color: t.textMuted }}>
+                <IcFlame size={15} color={t.accent} />
+                {streak} {copy.dayStreak}
+              </span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', flex: 1 }}>
+              {quickTiles.map((tile, i) => (
+                <button key={tile.id} onClick={tile.action} style={{
+                  minHeight: 150, padding: 24, background: 'transparent', color: t.text,
+                  border: 'none', borderRight: i % 2 === 0 ? `1px solid ${t.hairline}` : 'none',
+                  borderBottom: i < 2 ? `1px solid ${t.hairline}` : 'none',
+                  textAlign: 'left', cursor: 'pointer', fontFamily: t.font,
+                  display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{
+                      width: 42, height: 42, display: 'grid', placeItems: 'center',
+                      border: `1px solid ${t.hairline}`, color: tile.iconColor,
+                    }}>{tile.icon}</span>
+                    <span style={{ fontFamily: t.mono, fontSize: 12, fontWeight: 700, color: t.accent }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 19, fontWeight: 800, marginBottom: 4 }}>{tile.title}</div>
+                    <div style={{ fontSize: 13, color: t.textMuted }}>{tile.desc}</div>
+                  </div>
+                  <IcArrowRight size={18} color={t.textMuted} />
+                </button>
+              ))}
+            </div>
+          </aside>
+        </main>
+
+        <footer style={{
+          display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
+          marginTop: 32, borderTop: `1px solid ${t.hairline}`,
+        }}>
+          <button onClick={() => onSelectCategory('nodelære')} style={{
+            padding: '24px 28px 24px 0', background: 'transparent', border: 'none',
+            borderRight: `1px solid ${t.hairline}`, textAlign: 'left', cursor: 'pointer', fontFamily: t.font,
+          }}>
+            <div style={{ fontFamily: t.mono, fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 8 }}>
+              {copy.continueWhere}
+            </div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: t.text }}>{copy.timingTitle}</div>
+          </button>
+          <div style={{ padding: 24, borderRight: `1px solid ${t.hairline}` }}>
+            <div style={{ fontFamily: t.mono, fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 8 }}>{copy.thisWeek}</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: t.accent }}>3 {copy.practiceDays} · 72 min</div>
+          </div>
+          <div style={{ padding: '24px 0 24px 24px' }}>
+            <div style={{ fontFamily: t.mono, fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 10 }}>{translate('level')} {level}</div>
+            <Progress pct={xpPct} t={t} h={12} bars={5} />
+          </div>
+        </footer>
+      </div>
+    );
+  }
 
   return (
     <div style={isDesktop ? {
@@ -686,15 +1095,16 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
     }}>
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 14, marginBottom: 6 }}>
         <div style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', color: t.textMuted }}>{todayStr}</div>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+          <IcFlame size={17} color={t.accent} />
           <Display t={t} size={20}>{streak}</Display>
           <span style={{ fontFamily: t.mono, fontSize: 10.5, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>
-            {language === 'da' ? 'dage i streg' : 'day streak'}
+            {copy.dayStreak}
           </span>
         </div>
       </div>
       <Display t={t} size={isDesktop ? 34 : 27} style={{ letterSpacing: -0.5, marginBottom: 12 }}>
-        {greeting} {displayName}
+        {copy.greeting} {displayName}
       </Display>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div style={{ display: 'flex', gap: 6 }}>
@@ -707,6 +1117,8 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
             <button
               key={l.code}
               onClick={() => setLanguage(l.code)}
+              aria-label={copy.languageName[l.code]}
+              aria-pressed={language === l.code}
               style={{
                 background: 'transparent',
                 border: 'none',
@@ -720,7 +1132,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
             </button>
           ))}
         </div>
-        <button onClick={() => setDark(!dark)} aria-label={dark ? 'Lys tilstand' : 'Mørk tilstand'} style={{
+        <button onClick={() => setDark(!dark)} aria-label={dark ? copy.lightMode : copy.darkMode} style={{
           width: 34, height: 34, borderRadius: 0,
           background: 'transparent', border: `1px solid ${t.hairline}`, color: t.textMuted, cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -729,6 +1141,8 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
         </button>
       </div>
 
+      {levelSelector(false)}
+
       <div onClick={() => onSelectCategory('grooves')} style={{
         borderTop: `2px solid ${t.text}`,
         paddingTop: 16,
@@ -736,20 +1150,19 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
         cursor: 'pointer',
       }}>
         <div style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', color: t.accent, marginBottom: 10 }}>
-          {language === 'da' ? 'I dag · Grundrytmer' : 'Today · Fundamentals'}
+          {copy.todayFundamentals}
         </div>
         <Display t={t} size={isDesktop ? 36 : 31} style={{ marginBottom: 8 }}>
-          {language === 'da' ? 'Grooves & fills' : 'Grooves & fills'}
-          {' '}{language === 'da' ? 'del 1' : 'pt. 1'}
+          {copy.lessonTitle}
         </Display>
         <p style={{ margin: '0 0 18px', fontSize: 14.5, lineHeight: 1.55, color: t.textMuted, maxWidth: 320 }}>
-          {language === 'da' ? 'Hi-hat mønstre med halvnoder over bastromme.' : 'Hi-hat patterns with half notes over bass drum.'}
+          {copy.lessonDescription}
         </p>
         <div style={{ marginBottom: 20 }}>
           <Progress pct={(3 / 7) * 100} t={t} h={34} bars={7} />
         </div>
         <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcPlay size={17} color={t.bg} />}>
-          {language === 'da' ? 'Fortsæt lektion' : 'Continue lesson'}
+          {copy.continueLesson}
         </CTA>
       </div>
 
@@ -757,7 +1170,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
         fontFamily: t.mono, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase',
         color: t.textMuted, marginBottom: 2,
       }}>
-        {language === 'da' ? 'Øv videre' : 'Keep practicing'}
+        {copy.keepPracticing}
       </Display>
       {quickTiles.map((tile, i) => (
         <button key={tile.id} onClick={tile.action} style={{
@@ -773,7 +1186,11 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
           cursor: 'pointer',
           fontFamily: t.font,
         }}>
-          <span style={{ fontFamily: t.mono, fontSize: 12, fontWeight: 600, color: t.accent, width: 20, flexShrink: 0 }}>
+          <span style={{
+            width: 42, height: 42, flexShrink: 0, display: 'grid', placeItems: 'center',
+            border: `1px solid ${t.hairline}`, color: tile.iconColor,
+          }}>{tile.icon}</span>
+          <span style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, color: t.accent, width: 18, flexShrink: 0 }}>
             {String(i + 1).padStart(2, '0')}
           </span>
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -790,7 +1207,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
         fontFamily: t.mono, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase',
         color: t.textMuted, marginBottom: 10,
       }}>
-        {language === 'da' ? 'Fortsæt hvor du slap' : 'Continue where you left off'}
+        {copy.continueWhere}
       </Display>
       <button onClick={() => onSelectCategory('nodelære')} style={{
         background: 'transparent',
@@ -798,8 +1215,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
         borderBottom: `1px solid ${t.hairline}`,
         padding: '0 0 18px',
         display: 'flex',
-        alignItems: 'baseline',
-        justifyContent: 'space-between',
+        alignItems: 'center',
         gap: 14,
         width: '100%',
         textAlign: 'left',
@@ -807,20 +1223,26 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onOpenCoach, guestXp, 
         fontFamily: t.font,
         marginBottom: 26,
       }}>
-        <div style={{ fontSize: 15, fontWeight: 700, color: t.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-          {language === 'da' ? 'Sekstendedele · timing' : 'Sixteenths · timing'}
+        <span style={{ width: 42, height: 42, flexShrink: 0, display: 'grid', placeItems: 'center', border: `1px solid ${t.hairline}` }}>
+          <IcMetro size={20} color={t.accent} />
+        </span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 15, fontWeight: 700, color: t.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {copy.timingTitle}
+          </div>
+          <div style={{ fontFamily: t.mono, fontSize: 11.5, color: t.textMuted, marginTop: 3 }}>
+            {copy.timingMeta}
+          </div>
         </div>
-        <div style={{ fontFamily: t.mono, fontSize: 11.5, color: t.textMuted, flexShrink: 0 }}>
-          {language === 'da' ? 'Nodelære · 4 min tilbage' : 'Notation · 4 min left'}
-        </div>
+        <IcArrowRight size={17} color={t.textMuted} />
       </button>
 
       <div style={{ padding: 16, borderTop: `1px solid ${t.hairline}` }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           <div style={{ fontSize: 12.5, color: t.text, lineHeight: 1.5 }}>
-            <span style={{ fontWeight: 800 }}>{language === 'da' ? 'Denne uge' : 'This week'}</span>
+            <span style={{ fontWeight: 800 }}>{copy.thisWeek}</span>
             {' · '}
-            <span style={{ fontWeight: 800, color: t.accent }}>3 {language === 'da' ? 'øvedage' : 'practice days'}</span>
+            <span style={{ fontWeight: 800, color: t.accent }}>3 {copy.practiceDays}</span>
             {' · 72 min · '}
             <span style={{ fontWeight: 800 }}>{translate('level')} {level}</span>
           </div>
@@ -878,6 +1300,7 @@ const practiceTracks = [
 function PracticeScreen({ t, dark, onSelectCategory, isDesktop }: PracticeScreenProps) {
   const [search, setSearch] = useState('');
   const { language, t: translate } = useLanguage();
+  const copy = PROTOTYPE_COPY[language];
   const [activeChip, setActiveChip] = useState<'Alle' | 'opvarmning' | 'nodelære' | 'grooves' | 'playalong'>('Alle');
 
   const allExercises = [
@@ -927,19 +1350,22 @@ function PracticeScreen({ t, dark, onSelectCategory, isDesktop }: PracticeScreen
 
   return (
     <div style={{ color: t.text, fontFamily: t.font }}>
-      <div style={{ padding: isDesktop ? '40px 48px 60px' : '8px 22px 40px', maxWidth: isDesktop ? 980 : undefined, margin: isDesktop ? '0 auto' : undefined }}>
+      <div style={{
+        width: '100%', boxSizing: 'border-box',
+        padding: isDesktop ? '80px clamp(32px, 4vw, 72px) 60px' : '8px 22px 40px',
+      }}>
         <Display t={t} size={isDesktop ? 34 : 28} style={{ marginBottom: 4 }}>
-          {language === 'da' ? 'Øvelser' : 'Exercises'}
+          {copy.exercisesTitle}
         </Display>
         <div style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, letterSpacing: 1, color: t.textMuted, textTransform: 'uppercase', marginBottom: 20 }}>
-          {filtered.length} {language === 'da' ? 'øvelser' : 'exercises'} · 40 {language === 'da' ? 'gratis' : 'free'}
+          {filtered.length} {copy.exercisesUnit} · 40 {copy.free}
         </div>
 
         <div style={{ position: 'relative', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10, borderBottom: `2px solid ${t.text}`, paddingBottom: 12 }}>
           <IcSearch size={17} color={t.textMuted} />
           <input
             type="text"
-            placeholder={language === 'da' ? 'Søg efter teknik, groove…' : 'Search technique, groove…'}
+            placeholder={copy.searchExercises}
             value={search}
             onChange={e => setSearch(e.target.value)}
             style={{
@@ -978,13 +1404,18 @@ function PracticeScreen({ t, dark, onSelectCategory, isDesktop }: PracticeScreen
           })}
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isDesktop ? 'repeat(auto-fit, minmax(min(420px, 100%), 1fr))' : '1fr',
+          columnGap: isDesktop ? 40 : 0,
+        }}>
           {filtered.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '40px 20px', color: t.textMuted }}>
-              <div style={{ fontSize: 13 }}>Ingen øvelser matcher &quot;{search}&quot;</div>
+              <div style={{ fontSize: 13 }}>{copy.noExerciseMatches} &quot;{search}&quot;</div>
             </div>
           ) : filtered.map((ex, idx) => {
             const levelColor = ex.level === 'Begynder' ? t.good : ex.level === 'Mellemniveau' ? t.warn : t.accent;
+            const iconColor = ex.cat === 'playalong' ? t.accent : ex.cat === 'nodelære' ? t.warn : ex.cat === 'grooves' ? t.good : '#7B6FB0';
             return (
               <button key={ex.id} onClick={() => onSelectCategory(ex.cat)} style={{
                 background: 'transparent',
@@ -999,7 +1430,13 @@ function PracticeScreen({ t, dark, onSelectCategory, isDesktop }: PracticeScreen
                 textAlign: 'left',
                 fontFamily: t.font,
               }}>
-                <span style={{ fontFamily: t.head, fontWeight: 700, fontSize: 20, color: t.tickMuted, width: 28, flexShrink: 0 }}>
+                <span style={{
+                  width: 44, height: 44, flexShrink: 0, display: 'grid', placeItems: 'center',
+                  border: `1px solid ${t.hairline}`,
+                }}>
+                  {ex.cat === 'playalong' ? <TabPlayalong size={22} color={iconColor} /> : ex.cat === 'nodelære' ? <IcMetro size={22} color={iconColor} /> : ex.cat === 'grooves' ? <TabKit size={22} color={iconColor} /> : <TabPractice size={22} color={iconColor} />}
+                </span>
+                <span style={{ fontFamily: t.head, fontWeight: 700, fontSize: 16, color: t.tickMuted, width: 22, flexShrink: 0 }}>
                   {String(idx + 1).padStart(2, '0')}
                 </span>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -1051,6 +1488,8 @@ interface ExerciseDetailPopupProps {
 }
 
 function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCompleted, onOpenCoach, isAdmin }: ExerciseDetailPopupProps) {
+  const { language } = useLanguage();
+  const copy = PROTOTYPE_COPY[language];
   const [tab, setTab] = React.useState<'noder' | 'video'>(exercise.notation ? 'noder' : 'video');
   const [isDesktopView, setIsDesktopView] = React.useState(false);
   const [bpm, setBpm] = React.useState(typeof exercise.bpm === 'number' ? exercise.bpm : 90);
@@ -1256,7 +1695,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
 
       {/* Header: back | title | X */}
       <div style={{ padding: '0 14px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${t.border}` }}>
-        <button onClick={onClose} aria-label="Tilbage" style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={onClose} aria-label={copy.back} style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <IcBack size={16} />
         </button>
         <div style={{ flex: 1, textAlign: 'center', padding: '0 10px' }}>
@@ -1280,7 +1719,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
               <IcUpload size={16} />
             </button>
           )}
-          <button onClick={onClose} aria-label="Luk" style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, lineHeight: 1 }}>✕</button>
+          <button onClick={onClose} aria-label={copy.close} style={{ width: 38, height: 38, borderRadius: '50%', background: 'transparent', border: `1px solid ${t.border}`, color: t.textMuted, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, lineHeight: 1 }}>✕</button>
         </div>
       </div>
 
@@ -1374,7 +1813,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
               fontFamily: t.font, fontSize: 13, fontWeight: 600, cursor: 'pointer',
               transition: 'color 0.15s, border-color 0.15s',
               textTransform: 'capitalize',
-            }}>{tt === 'noder' ? 'Noder' : 'Video'}</button>
+            }}>{tt === 'noder' ? copy.sheetMusic : copy.video}</button>
           ))}
         </div>
       )}
@@ -1427,9 +1866,9 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
               ) : notationXml ? (
                 <NotationRenderer xml={notationXml} accent={t.accent} />
               ) : notationLoading ? (
-                <div style={{ color: '#8a8580', fontSize: 13 }}>Indlæser noder…</div>
+                <div style={{ color: '#8a8580', fontSize: 13 }}>{copy.loadingNotation}</div>
               ) : notationError ? (
-                <div style={{ color: '#F25545', fontSize: 12, padding: '0 12px', textAlign: 'center' }}>Kunne ikke hente noder. Upload via admin-knappen.</div>
+                <div style={{ color: '#F25545', fontSize: 12, padding: '0 12px', textAlign: 'center' }}>{copy.notationError}</div>
               ) : !hasMedia ? (
                 <div style={{ width: '100%' }}>
                   <DrumNotation width={320} color="#16161a" accent={t.accent} active={playing ? beat : 99} />
@@ -1461,14 +1900,14 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
               fontFamily: t.font, fontSize: 15, fontWeight: 700, cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
             }}>
-              {isCompleted ? <><IcCheck size={16} /> Gennemført</> : 'Marker som gennemført'}
+              {isCompleted ? <><IcCheck size={16} /> {copy.completed}</> : copy.markCompleted}
             </button>
             <button onClick={() => { onOpenCoach(); onClose(); }} style={{
               width: '100%', padding: '12px', borderRadius: 0, border: `1px solid ${t.hairline}`,
               background: 'transparent', color: t.textMuted, fontFamily: t.font, fontSize: 13, fontWeight: 500, cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
             }}>
-              <IcSpark size={14} color={t.accent} /> Spørg AI Coach om denne øvelse
+              <IcSpark size={14} color={t.accent} /> {copy.askCoachExercise}
             </button>
           </div>
         )}
@@ -1489,7 +1928,7 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
               fontFamily: t.font, fontSize: 15, fontWeight: 700, cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
             }}>
-              {isCompleted ? <><IcCheck size={16} /> Gennemført</> : 'Marker som gennemført'}
+              {isCompleted ? <><IcCheck size={16} /> {copy.completed}</> : copy.markCompleted}
             </button>
           </div>
         )}
@@ -1507,24 +1946,276 @@ function ExerciseDetailPopup({ t, exercise, category, onClose, onMarkDone, isCom
         alignItems: 'center',
         justifyContent: 'space-between',
       }}>
-        <button aria-label="Loop" style={{
+        <button aria-label={copy.loop} style={{
           background: 'transparent', border: 'none', color: t.textMuted, cursor: 'pointer', display: 'flex',
         }}>
           <IcLoop size={20} />
         </button>
-        <button onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Afspil'} style={{
+        <button onClick={() => setPlaying(!playing)} aria-label={playing ? copy.pause : copy.play} style={{
           width: 62, height: 62, borderRadius: '50%', background: t.text, border: 'none',
           display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.bg,
           cursor: 'pointer',
         }}>
           {playing ? <IcPause size={24} fill color={t.bg} /> : <IcPlay size={24} fill color={t.bg} />}
         </button>
-        <button aria-label="Næste" style={{
+        <button aria-label={copy.next} style={{
           background: 'transparent', border: 'none', color: t.textMuted, cursor: 'pointer', display: 'flex',
         }}>
           <IcArrowRight size={20} />
         </button>
       </div>
+    </div>
+  );
+}
+
+function TechniqueProgramScreen({
+  t,
+  dark,
+  level,
+  technique,
+  isDesktop,
+  onSelectTechnique,
+  onBack,
+  onOpenCoach,
+  journey,
+  isLoggedIn,
+  journeySaving,
+  journeyError,
+  onStartJourney,
+  onOpenExercise,
+}: ScreenProps & {
+  level: TrainingLevel;
+  technique: TechniqueProgram | null;
+  isDesktop?: boolean;
+  onSelectTechnique: (technique: TechniqueProgram) => void;
+  onBack: () => void;
+  onOpenCoach: () => void;
+  journey: JourneyProgress | null;
+  isLoggedIn: boolean;
+  journeySaving: boolean;
+  journeyError: boolean;
+  onStartJourney: (technique: TechniqueProgram) => void;
+  onOpenExercise: (technique: TechniqueProgram, exerciseId: number) => void;
+}) {
+  const [selectedExercise, setSelectedExercise] = useState<ExerciseItem | null>(null);
+  const { markOpened, markCompleted, isCompleted } = useExerciseProgress();
+  const { language, setLanguage } = useLanguage();
+  const copy = PROTOTYPE_COPY[language];
+  const levelInfo = TRAINING_LEVELS.find(item => item.id === level) ?? TRAINING_LEVELS[0];
+  const techniqueInfo = TECHNIQUE_PROGRAMS.find(item => item.id === technique);
+  const localizedLevel = copy.levels[level];
+  const localizedTechnique = technique ? copy.techniques[technique] : null;
+  const activeJourney = journey?.level === level ? journey : null;
+
+  const iconFor = (id: TechniqueProgram, color: string, size = 22) => {
+    if (id === 'enkeltslag') return <TabPractice size={size} color={color} />;
+    if (id === 'dobbeltslag') return <IcWave size={size} color={color} />;
+    if (id === 'paradiddles') return <IcLoop size={size} color={color} />;
+    return <IcSpark size={size} color={color} />;
+  };
+
+  const baseBpm: Record<TrainingLevel, number> = { begynder: 60, oevet: 84, rutineret: 104 };
+  const exercises: ExerciseItem[] = techniqueInfo && localizedTechnique ? Array.from({ length: 8 }, (_, index) => ({
+    id: index + 1,
+    title: `${localizedTechnique.label} ${index + 1}`,
+    sub: `${copy.focusAreas[index]} · ${localizedLevel.label}`,
+    dur: `${5 + Math.floor(index / 2)} min`,
+    bpm: baseBpm[level] + index * 4,
+    level: localizedLevel.label,
+    tags: [localizedTechnique.label, copy.focusAreas[index]],
+  })) : [];
+
+  const exerciseKey = (exercise: ExerciseItem) => `program-${level}-${technique}-${exercise.id}`;
+  const completedCount = exercises.filter(exercise => isCompleted(exerciseKey(exercise))).length;
+
+  const openExercise = (exercise: ExerciseItem) => {
+    markOpened(exerciseKey(exercise));
+    if (technique) onOpenExercise(technique, exercise.id);
+    setSelectedExercise(exercise);
+  };
+
+  const handleJourneyAction = () => {
+    const targetTechnique = technique ?? activeJourney?.technique ?? 'enkeltslag';
+    onStartJourney(targetTechnique);
+    if (activeJourney?.technique === technique && activeJourney.lastExerciseId) {
+      const exercise = exercises.find(item => item.id === activeJourney.lastExerciseId);
+      if (exercise) openExercise(exercise);
+    }
+  };
+
+  return (
+    <div style={{
+      width: '100%', minHeight: '100%', boxSizing: 'border-box', color: t.text, fontFamily: t.font,
+      padding: isDesktop ? '80px clamp(32px, 4vw, 72px) 60px' : '8px 22px 40px',
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 18, marginBottom: 18 }}>
+        <button type="button" onClick={onBack} style={{
+          minWidth: 44, minHeight: 44, padding: 0,
+          background: 'transparent', border: `1px solid ${t.hairline}`, color: t.text,
+          display: 'inline-grid', placeItems: 'center', cursor: 'pointer',
+        }} aria-label={technique ? copy.backToTechniques : copy.backHome}>
+          <IcArrowLeft size={19} />
+        </button>
+        <div style={{ display: 'flex', gap: 6 }}>
+          {([
+            { code: 'da', flag: '🇩🇰' },
+            { code: 'en', flag: '🇬🇧' },
+            { code: 'de', flag: '🇩🇪' },
+            { code: 'es', flag: '🇪🇸' },
+          ] satisfies { code: Language; flag: string }[]).map(item => (
+            <button key={item.code} type="button" onClick={() => setLanguage(item.code)}
+              aria-label={copy.languageName[item.code]} aria-pressed={language === item.code} style={{
+                width: 36, height: 36, padding: 0, background: 'transparent', cursor: 'pointer',
+                border: `1px solid ${language === item.code ? t.text : t.hairline}`,
+                opacity: language === item.code ? 1 : 0.55, fontSize: 14,
+              }}>
+              {item.flag}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div style={{
+        display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24,
+        paddingBottom: 18, borderBottom: `2px solid ${t.text}`, marginBottom: 0,
+      }}>
+        <div>
+          <div style={{ fontFamily: t.mono, fontSize: 10.5, color: t.accent, textTransform: 'uppercase', letterSpacing: 1.4, marginBottom: 8 }}>
+            {levelInfo.number} · {localizedLevel.label} · {copy.warmupTechnique}
+          </div>
+          <Display t={t} size={isDesktop ? 42 : 28}>
+            {localizedTechnique ? localizedTechnique.label : copy.chooseTechnique}
+          </Display>
+        </div>
+        {techniqueInfo && (
+          <div style={{ textAlign: 'right', flexShrink: 0 }}>
+            <div style={{ fontFamily: t.head, fontWeight: 800, fontSize: isDesktop ? 28 : 21 }}>{completedCount}/8</div>
+            <div style={{ fontFamily: t.mono, fontSize: 9.5, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>{copy.completed}</div>
+          </div>
+        )}
+      </div>
+
+      {!techniqueInfo ? (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isDesktop ? 'repeat(2, minmax(0, 1fr))' : '1fr',
+        }}>
+          {TECHNIQUE_PROGRAMS.map((program, index) => (
+            <button key={program.id} type="button" onClick={() => onSelectTechnique(program.id)} style={{
+              minHeight: isDesktop ? 190 : 106,
+              padding: isDesktop ? '28px 30px' : '18px 0',
+              background: 'transparent', color: t.text, border: 'none',
+              borderRight: isDesktop && index % 2 === 0 ? `1px solid ${t.hairline}` : 'none',
+              borderBottom: `1px solid ${t.hairline}`,
+              display: 'grid', gridTemplateColumns: isDesktop ? '54px 1fr auto' : '48px 1fr auto',
+              alignItems: 'center', gap: 18, textAlign: 'left', cursor: 'pointer', fontFamily: t.font,
+            }}>
+              <span style={{
+                width: isDesktop ? 54 : 46, height: isDesktop ? 54 : 46,
+                display: 'grid', placeItems: 'center', border: `1px solid ${t.hairline}`,
+              }}>{iconFor(program.id, t.accent, isDesktop ? 25 : 21)}</span>
+              <span>
+                <span style={{ display: 'block', fontSize: isDesktop ? 23 : 17, fontWeight: 800, marginBottom: 5 }}>{copy.techniques[program.id].label}</span>
+                <span style={{ display: 'block', color: t.textMuted, fontSize: isDesktop ? 14 : 12.5, lineHeight: 1.5 }}>{copy.techniques[program.id].description}</span>
+                <span style={{ display: 'block', marginTop: 9, fontFamily: t.mono, fontSize: 10, color: t.accent, textTransform: 'uppercase', letterSpacing: 1 }}>{copy.progressiveExercises}</span>
+              </span>
+              <IcArrowRight size={18} color={t.textMuted} />
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isDesktop ? 'repeat(2, minmax(0, 1fr))' : '1fr',
+          columnGap: isDesktop ? 40 : 0,
+        }}>
+          {exercises.map((exercise, index) => {
+            const key = exerciseKey(exercise);
+            const done = isCompleted(key);
+            const isResumePoint = activeJourney?.technique === technique && activeJourney.lastExerciseId === exercise.id;
+            return (
+              <button key={key} type="button" onClick={() => openExercise(exercise)} style={{
+                minHeight: 88, padding: '16px 0', background: 'transparent', color: t.text,
+                border: 'none', borderBottom: `1px solid ${t.hairline}`,
+                borderLeft: isResumePoint ? `3px solid ${t.accent}` : '3px solid transparent',
+                display: 'grid', gridTemplateColumns: '44px 1fr auto', alignItems: 'center', gap: 16,
+                textAlign: 'left', cursor: 'pointer', fontFamily: t.font,
+                paddingLeft: isResumePoint ? 12 : 0,
+              }}>
+                <span style={{
+                  width: 44, height: 44, display: 'grid', placeItems: 'center',
+                  background: done ? t.goodSoft : 'transparent', border: `1px solid ${done ? t.good : t.hairline}`,
+                  color: done ? t.good : t.accent,
+                }}>
+                  {done ? <IcCheck size={19} color={t.good} /> : <span style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 700 }}>{String(index + 1).padStart(2, '0')}</span>}
+                </span>
+                <span>
+                  <span style={{ display: 'block', fontSize: 16, fontWeight: 800, marginBottom: 5 }}>{exercise.title}</span>
+                  <span style={{ display: 'block', fontFamily: t.mono, fontSize: 10.5, color: t.textMuted, letterSpacing: 0.4 }}>
+                    {exercise.sub.toUpperCase()} · {exercise.bpm} BPM · {exercise.dur.toUpperCase()}
+                  </span>
+                  {isResumePoint && (
+                    <span style={{ display: 'block', marginTop: 5, fontFamily: t.mono, fontSize: 9.5, color: t.accent, textTransform: 'uppercase', letterSpacing: 1 }}>
+                      {copy.continueHere}
+                    </span>
+                  )}
+                </span>
+                <IcArrowRight size={17} color={t.textMuted} />
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      <div style={{
+        marginTop: isDesktop ? 42 : 30,
+        paddingTop: isDesktop ? 28 : 22,
+        paddingBottom: isDesktop ? 8 : 22,
+        borderTop: `2px solid ${t.text}`,
+      }}>
+        <p style={{ margin: '0 0 14px', color: t.textMuted, fontSize: 13, lineHeight: 1.55, textAlign: 'center' }}>
+          {copy.journeyHint}
+        </p>
+        <button type="button"
+          disabled={journeySaving}
+          onClick={handleJourneyAction}
+          style={{
+            width: '100%', minHeight: 54, padding: '14px 20px',
+            border: 'none', background: journeySaving ? t.surface2 : t.text,
+            color: journeySaving ? t.textMuted : t.bg,
+            fontFamily: t.font, fontSize: 15, fontWeight: 800,
+            cursor: journeySaving ? 'wait' : 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+          }}>
+          {!isLoggedIn && !activeJourney && <IcLock size={17} color={journeySaving ? t.textMuted : t.bg} />}
+          {journeySaving
+            ? copy.journeySaving
+            : activeJourney
+              ? copy.continueJourney
+              : isLoggedIn
+                ? copy.startJourney
+                : copy.signInAndStartJourney}
+          {!journeySaving && <IcArrowRight size={17} color={t.bg} />}
+        </button>
+        {journeyError && (
+          <div role="alert" style={{ marginTop: 10, color: t.accent, fontSize: 12, textAlign: 'center' }}>
+            {copy.journeyLoginError}
+          </div>
+        )}
+      </div>
+
+      {selectedExercise && techniqueInfo && (
+        <ExerciseDetailPopup
+          t={t}
+          dark={dark}
+          exercise={selectedExercise}
+          category="opvarmning"
+          onClose={() => setSelectedExercise(null)}
+          onMarkDone={() => markCompleted(exerciseKey(selectedExercise))}
+          isCompleted={isCompleted(exerciseKey(selectedExercise))}
+          onOpenCoach={onOpenCoach}
+        />
+      )}
     </div>
   );
 }
@@ -2728,14 +3419,26 @@ interface CoachMessage {
 
 function CoachScreen({ t, onClose }: CoachScreenProps) {
   const { user } = useAuth();
-  const firstName = (user?.displayName || user?.email?.split('@')[0] || 'du').split(' ')[0];
+  const { language } = useLanguage();
+  const copy = PROTOTYPE_COPY[language];
+  const firstName = (user?.displayName || user?.email?.split('@')[0] || copy.guest).split(' ')[0];
+  const introMessage = copy.coachIntro.replace('{name}', firstName);
 
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<CoachMessage[]>([
-    { role: 'ai', text: `Hej ${firstName} 👋\nJeg er din AI Coach. Hvad øver du dig på for øjeblikket, og hvordan går det?` },
+    { role: 'ai', text: introMessage },
   ]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const previousLanguage = useRef(language);
+
+  useEffect(() => {
+    if (previousLanguage.current !== language) {
+      previousLanguage.current = language;
+      setMessages([{ role: 'ai', text: introMessage }]);
+      setInput('');
+    }
+  }, [introMessage, language]);
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -2764,24 +3467,19 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
       const res = await fetch('/api/coach', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
+        body: JSON.stringify({ messages: history, language }),
       });
       const data = await res.json();
-      const reply = data.message || 'Noget gik galt. Prøv igen.';
+      const reply = data.message || copy.coachFallback;
       setMessages([...next, { role: 'ai', text: reply }]);
     } catch {
-      setMessages([...next, { role: 'ai', text: 'Jeg kan ikke nå serveren lige nu. Tjek din forbindelse og prøv igen.' }]);
+      setMessages([...next, { role: 'ai', text: copy.coachOffline }]);
     } finally {
       setLoading(false);
     }
   };
 
-  const suggested = [
-    'Hvad skal jeg øve i dag?',
-    'Hjælp med timing',
-    'Forklar paradiddle',
-    'Hjælp med fills',
-  ];
+  const suggested = copy.coachSuggestions;
 
   return (
     <div style={{
@@ -2793,7 +3491,7 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
 
       <div style={{ padding: '4px 16px 14px', borderBottom: `1px solid ${t.border}` }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={onClose} style={{
+          <button onClick={onClose} aria-label={copy.back} style={{
             width: 38, height: 38, borderRadius: '50%', background: 'transparent',
             border: `1px solid ${t.border}`, color: t.text, cursor: 'pointer',
             display: 'flex', alignItems: 'center', }}><IcBack size={16} /></button>
@@ -2805,7 +3503,7 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
             <Display t={t} size={20} style={{ lineHeight: 1 }}>AI Coach</Display>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: t.good }} />
-              <span style={{ fontSize: 11, color: t.textMuted }}>Online · husker dit niveau</span>
+              <span style={{ fontSize: 11, color: t.textMuted }}>{copy.coachStatus}</span>
             </div>
           </div>
         </div>
@@ -2872,7 +3570,7 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && send()}
-            placeholder="Stil et spørgsmål…"
+            placeholder={copy.askQuestion}
             style={{
               flex: 1, border: 'none', outline: 'none', background: 'transparent',
               fontFamily: t.font, fontSize: 14, color: t.text, padding: '8px 0',
@@ -2896,6 +3594,7 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
 function ProfileScreen({ t, dark, setDark, guestXp }: ProfileScreenProps) {
   const { user, login, logout } = useAuth();
   const { language, setLanguage, t: translate } = useLanguage();
+  const copy = PROTOTYPE_COPY[language];
   const [loginLoading, setLoginLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -2905,7 +3604,7 @@ function ProfileScreen({ t, dark, setDark, guestXp }: ProfileScreenProps) {
     try {
       await login();
     } catch {
-      setErrorMsg(language === 'da' ? 'Fejl under login med Google. Prøv igen.' : 'Error during Google sign-in. Please try again.');
+      setErrorMsg(copy.loginError);
     } finally {
       setLoginLoading(false);
     }
@@ -2943,7 +3642,7 @@ function ProfileScreen({ t, dark, setDark, guestXp }: ProfileScreenProps) {
               {language === 'da' ? 'Gem dine fremskridt' : language === 'en' ? 'Save Your Progress' : language === 'de' ? 'Speichere deinen Fortschritt' : 'Guarda tu progreso'}
             </Display>
             <div style={{ fontSize: 12, color: t.textMuted, marginBottom: 20, lineHeight: 1.5 }}>
-              {language === 'da' ? 'Log ind med Google for at gemme dine øvelser, point og streak.' : 'Sign in with Google to save your exercises, points and streak.'}
+              {copy.saveProgressDescription}
             </div>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -2974,7 +3673,7 @@ function ProfileScreen({ t, dark, setDark, guestXp }: ProfileScreenProps) {
                   <path fill="#FBBC05" d="M3.96 10.74c-.18-.54-.28-1.12-.28-1.74s.1-1.2.28-1.74V4.96H.94A8.99 8.99 0 000 9c0 1.45.35 2.82.94 4.04l3.02-2.3z"/>
                   <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.4C13.46.97 11.41 0 9 0 5.48 0 2.42 1.97.94 4.96l3.02 2.3c.71-2.13 2.69-3.71 5.04-3.71z"/>
                 </svg>
-                {loginLoading ? (language === 'da' ? 'Logger ind...' : 'Signing in...') : translate('loginGoogle')}
+                {loginLoading ? copy.signingIn : translate('loginGoogle')}
               </button>
               {errorMsg && (
                 <div style={{ color: t.accent, fontSize: 11, fontWeight: 500, marginTop: 4 }}>{errorMsg}</div>
@@ -3169,14 +3868,17 @@ function TabBar({ tab, onTab, t, dark, isMobile, selectedCategory, isAdmin, onSe
   return (
     <div style={{
       position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 150,
-      paddingBottom: isMobile ? 'calc(env(safe-area-inset-bottom) + 16px)' : 30,
-      paddingTop: 16, paddingLeft: 24, paddingRight: 24,
-      background: t.bg,
+      paddingBottom: isMobile ? 'calc(env(safe-area-inset-bottom) + 10px)' : 24,
+      paddingTop: 10, paddingLeft: 8, paddingRight: 8,
+      background: t.navBackground,
+      backdropFilter: dark ? 'blur(16px)' : 'none',
+      WebkitBackdropFilter: dark ? 'blur(16px)' : 'none',
       borderTop: `2px solid ${t.text}`,
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'flex-end', padding: 0 }}>
         {tabs.map(tt => {
           const active = tt.id === 'playalong' ? selectedCategory === 'playalong' : (tab === tt.id && selectedCategory === null);
+          const Icon = tt.icon;
           return (
             <button key={tt.id} onClick={() => {
               if (tt.id === 'playalong') {
@@ -3185,12 +3887,24 @@ function TabBar({ tab, onTab, t, dark, isMobile, selectedCategory, isAdmin, onSe
                 onTab(tt.id);
               }
             }} style={{
+              flex: 1, minWidth: 0, minHeight: 52,
               background: 'transparent', border: 'none', cursor: 'pointer',
-              padding: '4px 0', fontFamily: t.font,
+              padding: '4px 2px', fontFamily: t.font,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3,
               color: active ? t.text : t.textDim,
-              fontSize: 12, fontWeight: active ? 700 : 500, letterSpacing: 0.2,
               transition: 'color 0.2s cubic-bezier(0.16,1,0.3,1)',
-            }}>{tt.label}</button>
+            }} aria-current={active ? 'page' : undefined}>
+              <span style={{
+                width: 38, height: 27, display: 'grid', placeItems: 'center',
+                borderBottom: `2px solid ${active ? t.accent : 'transparent'}`,
+              }}>
+                <Icon size={20} color={active ? t.accent : t.textDim} sw={active ? 2 : 1.5} />
+              </span>
+              <span style={{
+                maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                fontSize: 9.5, fontWeight: active ? 700 : 500, letterSpacing: 0.1,
+              }}>{tt.label}</span>
+            </button>
           );
         })}
         {isAdmin && (
@@ -3507,6 +4221,60 @@ function useFitScale(w: number, h: number, margin = 24) {
   return scale;
 }
 
+type PreviewMode = 'mobile' | 'desktop';
+
+function PreviewModeToggle({ mode, onChange }: {
+  mode: PreviewMode;
+  onChange: (mode: PreviewMode) => void;
+}) {
+  return (
+    <div
+      role="group"
+      aria-label="Skift preview-størrelse"
+      style={{
+        position: 'fixed',
+        top: 16,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 1000,
+        display: 'flex',
+        gap: 4,
+        padding: 4,
+        borderRadius: 14,
+        background: 'rgba(20, 18, 16, 0.9)',
+        border: '1px solid rgba(255,255,255,0.14)',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.28)',
+        backdropFilter: 'blur(14px)',
+      }}
+    >
+      {(['mobile', 'desktop'] as const).map((option) => {
+        const active = mode === option;
+        return (
+          <button
+            key={option}
+            type="button"
+            aria-pressed={active}
+            onClick={() => onChange(option)}
+            style={{
+              minHeight: 44,
+              padding: '0 16px',
+              border: 0,
+              borderRadius: 10,
+              background: active ? '#EE6C48' : 'transparent',
+              color: active ? '#fff' : 'rgba(255,255,255,0.72)',
+              font: '700 13px "Hanken Grotesk", sans-serif',
+              cursor: 'pointer',
+              transition: 'background 160ms ease, color 160ms ease',
+            }}
+          >
+            {option === 'mobile' ? 'Mobil' : 'Desktop'}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function MobilePrototype() {
   const [dark, setDark] = useState(false);
   const [tab, setTab] = useState('home');
@@ -3515,20 +4283,26 @@ export default function MobilePrototype() {
   const [coachOpen, setCoachOpen] = useState(false);
   const [onboarded, setOnboarded] = useState(false);
   const [desktopReady, setDesktopReady] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [isDesktopViewport, setIsDesktopViewport] = useState(false);
+  const [previewMode, setPreviewMode] = useState<PreviewMode | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<'opvarmning' | 'nodelære' | 'grooves' | 'playalong' | null>(null);
+  const [selectedLevel, setSelectedLevel] = useState<TrainingLevel | null>(null);
+  const [selectedTechnique, setSelectedTechnique] = useState<TechniqueProgram | null>(null);
+  const [journey, setJourney] = useState<JourneyProgress | null>(null);
+  const [journeySaving, setJourneySaving] = useState(false);
+  const [journeyError, setJourneyError] = useState(false);
   const [guestXp, setGuestXp] = useState(120);
   const [adminOpen, setAdminOpen] = useState(false);
 
-  const { user } = useAuth();
+  const { user, loading: authLoading, login, syncLearningPlan } = useAuth();
 
   useEffect(() => {
     const checkSize = () => {
       const mobile = window.innerWidth < 768;
       const desktop = window.innerWidth >= 1024;
-      setIsMobile(mobile);
-      setIsDesktop(desktop);
+      setIsMobileViewport(mobile);
+      setIsDesktopViewport(desktop);
       // Desktop springer onboarding over — det er et mobil-first flow
       if (desktop) setDesktopReady(true);
     };
@@ -3536,6 +4310,34 @@ export default function MobilePrototype() {
     window.addEventListener('resize', checkSize);
     return () => window.removeEventListener('resize', checkSize);
   }, []);
+
+  // Genoptag den seneste rejse, når lokal/cloud-synkronisering er færdig.
+  useEffect(() => {
+    if (authLoading) return;
+    const savedJourney = getUserPlan()?.journey;
+    const validLevel = savedJourney && TRAINING_LEVELS.some(item => item.id === savedJourney.level);
+    const validTechnique = savedJourney && TECHNIQUE_PROGRAMS.some(item => item.id === savedJourney.technique);
+    if (!savedJourney || !validLevel || !validTechnique) return;
+
+    const timeout = window.setTimeout(() => {
+      setJourney(savedJourney);
+      const params = new URLSearchParams(window.location.search);
+      const canResume = !params.has('level') && !params.has('category') && params.get('coach') !== '1'
+        && (!params.get('tab') || params.get('tab') === 'home');
+      if (!canResume) return;
+
+      setTab('home');
+      setSelectedLevel(savedJourney.level);
+      setSelectedTechnique(savedJourney.technique);
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', 'home');
+      url.searchParams.set('level', savedJourney.level);
+      url.searchParams.set('technique', savedJourney.technique);
+      window.history.replaceState({}, '', url);
+    }, 0);
+
+    return () => window.clearTimeout(timeout);
+  }, [authLoading, user?.uid]);
 
   // Initialize guest XP, onboarded status, and landing-page gate
   useEffect(() => {
@@ -3570,18 +4372,36 @@ export default function MobilePrototype() {
       const params = new URLSearchParams(window.location.search);
       const urlTab = params.get('tab');
       const urlCategory = params.get('category');
+      const urlView = params.get('view');
+      const urlLevel = params.get('level');
+      const urlTechnique = params.get('technique');
+      const validLevel = TRAINING_LEVELS.some(item => item.id === urlLevel)
+        ? urlLevel as TrainingLevel
+        : null;
+      const validTechnique = validLevel && TECHNIQUE_PROGRAMS.some(item => item.id === urlTechnique)
+        ? urlTechnique as TechniqueProgram
+        : null;
       setTab(urlTab && VALID_TABS.includes(urlTab) ? urlTab : 'home');
       setSelectedCategory(
         urlCategory && (VALID_CATEGORIES as string[]).includes(urlCategory) ? (urlCategory as Category) : null
       );
       setCoachOpen(params.get('coach') === '1');
+      setPreviewMode(urlView === 'mobile' || urlView === 'desktop' ? urlView : null);
+      setSelectedLevel(validLevel);
+      setSelectedTechnique(validTechnique);
     };
     applyFromUrl();
     window.addEventListener('popstate', applyFromUrl);
     return () => window.removeEventListener('popstate', applyFromUrl);
   }, []);
 
-  const pushNavUrl = (params: { tab?: string; category?: Category | null; coach?: boolean }) => {
+  const pushNavUrl = (params: {
+    tab?: string;
+    category?: Category | null;
+    coach?: boolean;
+    level?: TrainingLevel | null;
+    technique?: TechniqueProgram | null;
+  }) => {
     const url = new URL(window.location.href);
     if (params.tab !== undefined) url.searchParams.set('tab', params.tab);
     if (params.category !== undefined) {
@@ -3590,7 +4410,63 @@ export default function MobilePrototype() {
     if (params.coach !== undefined) {
       if (params.coach) url.searchParams.set('coach', '1'); else url.searchParams.delete('coach');
     }
+    if (params.level !== undefined) {
+      if (params.level) url.searchParams.set('level', params.level); else url.searchParams.delete('level');
+    }
+    if (params.technique !== undefined) {
+      if (params.technique) url.searchParams.set('technique', params.technique); else url.searchParams.delete('technique');
+    }
     window.history.pushState({}, '', url);
+  };
+
+  const planWithJourney = (progress: JourneyProgress): UserPlan => {
+    const current = getUserPlan();
+    return {
+      goal_id: current?.goal_id ?? `journey-${progress.level}`,
+      uge_start: current?.uge_start ?? new Date().toISOString().slice(0, 10),
+      fokustema: current?.fokustema ?? `Pocket Drummer · ${progress.level}`,
+      milepæl: current?.milepæl ?? 'Gennemfør dit første teknikspor',
+      øvelser: current?.øvelser ?? [],
+      journey: progress,
+    };
+  };
+
+  const saveJourneyLocation = async (
+    level: TrainingLevel,
+    technique: TechniqueProgram,
+    lastExerciseId?: number,
+    uidOverride?: string,
+  ) => {
+    const now = new Date().toISOString();
+    const currentJourney = getUserPlan()?.journey;
+    const progress: JourneyProgress = {
+      level,
+      technique,
+      lastExerciseId,
+      startedAt: currentJourney?.level === level ? currentJourney.startedAt : now,
+      updatedAt: now,
+    };
+    setJourney(progress);
+    await syncLearningPlan(planWithJourney(progress), uidOverride);
+  };
+
+  const startJourney = async (technique: TechniqueProgram) => {
+    if (!selectedLevel || journeySaving) return;
+    setJourneySaving(true);
+    setJourneyError(false);
+    try {
+      const uid = user?.uid || await login();
+      const lastExerciseId = journey?.level === selectedLevel && journey.technique === technique
+        ? journey.lastExerciseId
+        : undefined;
+      await saveJourneyLocation(selectedLevel, technique, lastExerciseId, uid);
+      setSelectedTechnique(technique);
+      pushNavUrl({ tab: 'home', level: selectedLevel, technique });
+    } catch {
+      setJourneyError(true);
+    } finally {
+      setJourneySaving(false);
+    }
   };
 
   const navigateTab = (id: string) => {
@@ -3599,15 +4475,52 @@ export default function MobilePrototype() {
     setCoachOpen(false);
     setTrackId(null);
     setLessonId(null);
-    pushNavUrl({ tab: id, category: null, coach: false });
+    setSelectedLevel(null);
+    setSelectedTechnique(null);
+    pushNavUrl({ tab: id, category: null, coach: false, level: null, technique: null });
   };
   const openCategory = (cat: Category) => {
+    setSelectedLevel(null);
+    setSelectedTechnique(null);
     setSelectedCategory(cat);
-    pushNavUrl({ category: cat });
+    pushNavUrl({ category: cat, level: null, technique: null });
   };
   const closeCategory = () => {
     setSelectedCategory(null);
     pushNavUrl({ category: null });
+  };
+  const openTrainingLevel = (level: TrainingLevel) => {
+    setTab('home');
+    setSelectedCategory(null);
+    setSelectedLevel(level);
+    const savedTechnique = journey?.level === level ? journey.technique : null;
+    setSelectedTechnique(savedTechnique);
+    setJourneyError(false);
+    pushNavUrl({ tab: 'home', category: null, level, technique: savedTechnique });
+  };
+  const openTechniqueProgram = (technique: TechniqueProgram) => {
+    setSelectedTechnique(technique);
+    pushNavUrl({ technique });
+    if (selectedLevel && journey?.level === selectedLevel) {
+      void saveJourneyLocation(
+        selectedLevel,
+        technique,
+        journey.technique === technique ? journey.lastExerciseId : undefined,
+      );
+    }
+  };
+  const recordJourneyExercise = (technique: TechniqueProgram, exerciseId: number) => {
+    if (!selectedLevel || journey?.level !== selectedLevel) return;
+    void saveJourneyLocation(selectedLevel, technique, exerciseId);
+  };
+  const backFromTechniqueProgram = () => {
+    if (selectedTechnique) {
+      setSelectedTechnique(null);
+      pushNavUrl({ technique: null });
+      return;
+    }
+    setSelectedLevel(null);
+    pushNavUrl({ level: null, technique: null });
   };
   const openCoachOverlay = () => {
     setCoachOpen(true);
@@ -3625,11 +4538,22 @@ export default function MobilePrototype() {
 
   const t = tokens(dark);
   const scale = useFitScale(402, 874);
+  const isDesktop = previewMode === 'desktop' || (previewMode === null && isDesktopViewport);
+  const isMobile = !isDesktop && isMobileViewport;
+  const effectivePreviewMode: PreviewMode = isDesktop ? 'desktop' : 'mobile';
+
+  const changePreviewMode = (mode: PreviewMode) => {
+    setPreviewMode(mode);
+    if (mode === 'desktop') setDesktopReady(true);
+    const url = new URL(window.location.href);
+    url.searchParams.set('view', mode);
+    window.history.replaceState({}, '', url);
+  };
 
   const contentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (contentRef.current) contentRef.current.scrollTop = 0;
-  }, [tab]);
+  }, [tab, selectedLevel, selectedTechnique]);
 
   const completeOnboarding = () => {
     try { localStorage.setItem('pocketdrummer-onboarded', '1'); } catch {}
@@ -3649,6 +4573,7 @@ export default function MobilePrototype() {
         background: t.bg, color: t.text, fontFamily: t.font,
         WebkitFontSmoothing: 'antialiased',
       }}>
+        <PreviewModeToggle mode={effectivePreviewMode} onChange={changePreviewMode} />
         <DesktopRail
           tab={tab} onTab={navigateTab} t={t}
           onSelectCategory={openCategory}
@@ -3662,9 +4587,20 @@ export default function MobilePrototype() {
           background: t.bg,
         }}>
           <div key={tab} className="tab-content-enter">
-            {tab === 'home' && (
+            {tab === 'home' && selectedLevel && (
+              <TechniqueProgramScreen
+                t={t} dark={dark} level={selectedLevel} technique={selectedTechnique}
+                isDesktop onSelectTechnique={openTechniqueProgram}
+                onBack={backFromTechniqueProgram} onOpenCoach={openCoachOverlay}
+                journey={journey} isLoggedIn={Boolean(user)}
+                journeySaving={journeySaving} journeyError={journeyError}
+                onStartJourney={startJourney} onOpenExercise={recordJourneyExercise}
+              />
+            )}
+            {tab === 'home' && !selectedLevel && (
               <HomeScreen t={t} dark={dark} setDark={setDark}
                 onSelectCategory={openCategory}
+                onSelectLevel={openTrainingLevel}
                 onOpenCoach={openCoachOverlay}
                 guestXp={guestXp} isDesktop />
             )}
@@ -3716,6 +4652,7 @@ export default function MobilePrototype() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#050505' }}>
+      <PreviewModeToggle mode={effectivePreviewMode} onChange={changePreviewMode} />
 
       {/* Main Studio Frame container */}
       <div style={isMobile ? {
@@ -3825,9 +4762,20 @@ export default function MobilePrototype() {
               paddingBottom: 'calc(var(--safe-bottom) + 100px)',
             }}>
               <div key={tab} className="tab-content-enter">
-                {tab === 'home' && (
+                {tab === 'home' && selectedLevel && (
+                  <TechniqueProgramScreen
+                    t={t} dark={dark} level={selectedLevel} technique={selectedTechnique}
+                    onSelectTechnique={openTechniqueProgram}
+                    onBack={backFromTechniqueProgram} onOpenCoach={openCoachOverlay}
+                    journey={journey} isLoggedIn={Boolean(user)}
+                    journeySaving={journeySaving} journeyError={journeyError}
+                    onStartJourney={startJourney} onOpenExercise={recordJourneyExercise}
+                  />
+                )}
+                {tab === 'home' && !selectedLevel && (
                   <HomeScreen t={t} dark={dark} setDark={setDark}
                     onSelectCategory={openCategory}
+                    onSelectLevel={openTrainingLevel}
                     onOpenCoach={openCoachOverlay}
                     guestXp={guestXp} />
                 )}

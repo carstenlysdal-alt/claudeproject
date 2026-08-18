@@ -50,6 +50,20 @@ Kilde: DA 2025 · SMVdanmark · Reuters Institute Digital News Report 2025
 
 ---
 
+# 01B — Tre redaktionelle ben
+
+Pillars og segmenter (02-03) lever under tre bærende ben — den øverste arkitektur.
+
+**Ben 1 · Business AI & teknologiimplementering** — konkret AI-implementering i virksomheder: hvad det kræver, koster og leverer.
+
+**Ben 2 · Det nordiske perspektiv** — Danmark er linsen, med Sverige, Norge, Finland, Færøerne, Island og Grønland som komparativt spejl. Mønstre i et nordisk naboland viser sig typisk i Danmark 12-24 måneder senere.
+
+**Ben 3 · Kapital, investering og vækstperspektiv** — ikke børsjournalistik, men det strategiske blik på hvad der tiltrækker eller skræmmer privat kapital, venturekapital og vækstfinansiering.
+
+Hver historie skal kunne placeres under mindst ét ben.
+
+---
+
 # 02 — Tre pillars — behov og metode
 
 ## Understand
@@ -136,11 +150,11 @@ Derfor er Y Business ikke ét statisk produkt. Feed, briefs og anbefalinger væg
 
 ## C-level
 
-### 50–250 ansatte
+### 50 ansatte og opefter · Business AI
 
-**Behov:** Hvad ændrer beslutningsrummet? Hvad er den velunderbyggede vinkel, der bryder med konsensus?
+**Behov:** Hvad ændrer beslutningsrummet? Hvad kræver AI-skiftet af min organisation? Hvad er vinklen, Børsen ikke tager?
 
-**Løfte:** Vi leverer vinklen, der ikke stod i Børsen — og grunden til, at konsensus undertiden er den dyreste antagelse, en leder med 140 ansatte kan gøre sig.
+**Løfte:** Vi leverer vinklen, der ikke stod i Børsen — og grunden til, at konsensus undertiden er den dyreste antagelse, en leder kan gøre sig.
 
 **Pillars:** Challenge · Understand
 
@@ -158,11 +172,11 @@ Derfor er Y Business ikke ét statisk produkt. Feed, briefs og anbefalinger væg
 
 ---
 
-## Kommunikations- og marketingfolk
+## Kommunikationschefen
 
 ### Fagligt defineret
 
-**Behov:** Hvad virker — og hvad viser data? Hvad skete der time for time i den krise, alle taler om?
+**Behov:** Hvordan ændrer teknologi spillereglerne for kommunikation?
 
 **Løfte:** Vi obducerer kriserne og AI-skiftet — ikke som trendstof, men som håndværksjournalistik med beslutning, måling, fejl og resultat.
 
@@ -170,11 +184,11 @@ Derfor er Y Business ikke ét statisk produkt. Feed, briefs og anbefalinger væg
 
 ---
 
-## Investorer og rådgivere
+## Rådgiveren
 
-### M&A, VC, revisor, advokat, bureau
+### Revisor · advokat · konsulent · VC
 
-**Behov:** Hvad ser markedet ikke endnu? Hvad peger på bevægelse, inden det bliver en pressemeddelelse?
+**Behov:** Hvad skal jeg se — og hvad ser kunden ikke endnu?
 
 **Løfte:** Vi leverer signalet, inden markedet kalder det en trend — lederskifter, reguleringsvinduer, sektorrotation og dealflow, før alle andre har sat navn på det.
 
@@ -182,121 +196,101 @@ Derfor er Y Business ikke ét statisk produkt. Feed, briefs og anbefalinger væg
 
 ---
 
-## Medarbejdere i større virksomheder
+## Faglig nøgleperson
 
-### 250+ ansatte
+### HR · økonomi · drift · compliance
 
-**Behov:** Hvad sker der i min branche — og hvad betyder det for mit arbejde, min rolle og mine prioriteter?
+**Behov:** Hvad kræver det, når nye krav skal omsættes til handling?
 
-**Løfte:** Sektornyheder, prioriteret og forklaret — klar inden mødet, ikke midt i det.
+**Løfte:** Regulering, compliance og branchekrav oversat til konkret drift og handling — klar inden mødet, ikke midt i det.
 
-**Pillar:** Understand
-
----
-
-# 04 — Otte formater
-
-## 01 · Brancheoverblikket — Orienteringen
-
-### “Hvad er sket i min branche siden sidst?”
-
-Ikke alt behøver en stor tese. Noget behøver bare at blive fundet, sorteret og leveret, før du åbner din første mail.
-
-Brancheoverblikket er personaliseret efter branche, region, emner og adfærd. Det er ikke et fælles opslagstavleprodukt. Det er brugerens eget “hvad er nyt her?” — kort, kontant og fri for pynt.
-
-**Pillar:** Understand · Dagligt / løbende
+**Pillar:** Understand · Inspire
 
 ---
 
-## 02 · Morgenbriefet — Vanen
+# 04 — Otte formater (plus Nyhedsartiklen og Signalet, jf. den kanoniske 10-formatoversigt i `Y-Business-Koncept.md` §6)
 
-### “Hvad skal jeg forstå, inden arbejdsdagen begynder?”
+## 00 · Knudepunktet — Overblikket
 
-5–7 prioriterede punkter · Tekst og lyd · Kl. 06.30
+Gratis · kontinuerligt · AI-drevet
 
-Morgenbriefet er ikke alt, der er sket. Det er det, der fortjener plads i hovedet, inden kalenderen tager resten af dagen som gidsel.
+Indgangen til platformen. Det personlige erhvervsoverblik tilgængeligt for alle brugere. Knudepunktet er det, alt andet udgår fra — skal føles komplet nok til at skabe vane og utilstrækkeligt nok til at drive opgradering. Konverteringsforudsætning for paywall 20. november.
 
-**Pillar:** Understand · Dagligt
-
----
-
-## 03 · Det betyder det — Nytten
-
-### “Hvad betyder det her konkret for min virksomhed?”
-
-Fast 6-punkt struktur · Ingen konklusion uden konsekvens
-
-Her skal nyheden gøre sig nyttig. Hvis den ikke kan forklare, hvem der rammes, hvad der kræves, og hvad det kan koste at vente, må den tilbage til værkstedet.
-
-**Pillar:** Understand · 2–3 × ugentligt
+**Adgang:** Gratis · Pillar: Understand
 
 ---
 
-## 04 · Den blinde vinkel — Kanten
+## 01 · Morgenbriefet — Habit-produkt
 
-### “Hvad overser den dominerende fortælling?”
+“Hvad skal jeg forstå i dag?”
 
-Challenge-protokol · Navngivet modkilde krævet
+Det primære habit-produkt. Koblet til feed, overvågning, personalisering og redaktionel prioritering — ikke bare et nyhedsbrev. Tekst og lyd. Kl. 06.00.
 
-Den blinde vinkel er ikke et temperament. Det er en disciplin. Den leder efter det, der mangler, før manglen bliver dyr.
-
-**Pillar:** Challenge · Ugentligt
+**Adgang:** Gratis med registrering · Pillar: Understand · Dagligt
 
 ---
 
-## 05 · Casen der virker — Læringen
+## 02 · Konsekvensen — Kerneformat (tidl. "Det betyder det for din virksomhed")
 
-### “Hvad kan andre bruge — og hvad kan de ikke kopiere?”
+“Hvad betyder det for min branche, min rolle eller min virksomhed?”
 
-Case-protokol · 7 trin · Ingen friktion = ingen publicering
+Oversætter nyheder, regulering, markedsbevægelser og Business AI til konkret konsekvens. Det format der direkte adskiller Y Business fra almindelige erhvervsnyheder.
 
-Casen skal ikke ligne en brochure, der har lært at gå oprejst. Den skal vise problemet, prisen, fejlen og den del af løsningen, andre faktisk kan bruge.
-
-**Pillar:** Inspire · Ugentligt
+**Adgang:** Abonnement · Pillar: Understand · 2–3 × ugentligt
 
 ---
 
-## 06 · Signalradaren — Forspringet
+## 03 · Signalradaren — Forspringet
 
-### “Hvad er ved at ske — og hvem ser det ikke endnu?”
+“Hvad skal jeg holde øje med, før alle andre taler om det?”
 
-Signal · Kilde · Styrke · Hvem påvirkes · Hvad overvåges
+Samler og viser tidlige signaler på markedsbevægelser på tværs af brancher, regulering og konkurrenter. Ikke en nyhedsstrøm — et overblik over svage signaler med mulig konsekvens.
 
-Signalradaren er for dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj.
+**Signalet** er et strukturelement inden i Signalradaren — ikke et selvstændigt format. Signalradaren viser mønstret. Signalet fortæller, hvad det betyder, og hvad der skal ageres på.
 
-**Pillar:** Understand · Challenge · Ugentligt + situationsbestemt
-
----
-
-## +3 · Situationsformater — Skalerbare
-
-### Myten om · Før mødet · Før handlen
-
-Aktiveres situationsbestemt fra launch · Alle tre pillars
-
-Når situationen kræver det, skifter journalistikken gear: en myte skal punkteres, et møde skal forberedes, en handel skal læses, før den bliver officiel.
-
-**Pillar:** Challenge · Inspire · Situationsbestemt
+**Adgang:** Abonnement · Pillar: Understand · Challenge · Ugentligt
 
 ---
 
-## 07 · Klummerne — Det AI ikke kan
+## 04 · Automatiseringspotentialet — Proces-screening (nyt)
 
-### “Den personlige vurdering, erfaringen og ansvaret — med navn under.”
+“Hvad kan automatiseres — og hvad koster det ikke at gøre det?”
 
-Et menneske med navn under. Tre faste skribenter med ansvar for vinklen — ikke for at spejle redaktionen, men for at udfordre den.
+Systematisk screening af manuelle processer i sundhed, finans, det offentlige og logistik: volumen, AI-potentiale, realiserede gevinster og barrierer. Ikke et argument for ukritisk automatisering — en kvalificeret kortlægning.
 
-AI kan opsummere. Den kan ikke have noget på spil.
+**Adgang:** Abonnement · Ben: 1+3 · Pillar: Inspire · Situationsbestemt
 
-Det er det format, du husker.
+---
 
-Og grunden til, at du kommer tilbage.
+## 05 · Blind Spot-artiklen — Challenge-format, kvalificerende (tidl. "Den blinde vinkel")
 
-— Mandag morgen · Understand
-— Den blinde vinkel · Challenge
-— Hvad virker? · Inspire
+“Hvad overser markedet, medierne eller virksomheden selv?”
 
-**Navngivet ophav — aldrig AI · Fast ugentlig**
+Kvalificerer og udvider den dominerende fortælling — modsiger den ikke. Y Business er et medie for AI og teknologisk transformation; formatet leder ikke efter fejl eller risici for deres egen skyld. Afgørende for platform-troværdighed. Navngivet modkilde krævet.
+
+**Adgang:** Abonnement · Pillar: Challenge · Ugentligt
+
+---
+
+## 06 · Casen der virker — Læringen
+
+“Hvad kan jeg lære af andre virksomheder?”
+
+Viser praktiske eksempler på hvad der faktisk virker i dansk erhvervsliv. Ikke succescases — ærlige praksiscases med friktion, forudsætninger og læring.
+
+**Adgang:** Abonnement · Pillar: Inspire · Ugentligt
+
+---
+
+## 07 · Klummer og stemmer — Det AI ikke kan
+
+Stemmelag · kant og meningsdannelse
+
+Stemmer man vil læse — også når man er uenig. Nationale og internationale stemmer med holdninger, indsigt og noget på spil. Ikke generiske ekspertcitater. Meninger man kan være enig eller uenig med.
+
+Fem klummegenrer: Udefra og ind · AI i maskinrummet · Markedets maskinrum · Modspørgsmålet · Det lærte vi.
+
+**Navngivet ophav — aldrig AI · Abonnement · 2–4 × månedligt**
 
 ---
 
@@ -334,7 +328,7 @@ Virksomheder investerer massivt i AI og høster produktivitetsgevinster.
 **Y Business skriver:**
 AI sparer ikke tid i virksomheder, der nægter at ændre arbejdet. Her er fejlen, de fleste begår — og de to organisationsændringer, der faktisk gør en forskel for en virksomhed med 80 ansatte.
 
-**Format:** Den blinde vinkel · C-level · Challenge
+**Format:** Blind Spot-artiklen · C-level · Challenge
 
 ---
 
@@ -354,36 +348,40 @@ Operationel geopolitik er ikke en makronyhed. Det er prisen på forsinkede lever
 
 ## Challenge-protokol — Dokumenteret modfortælling
 
-Seks spørgsmål skal besvares, inden en Challenge-historie publiceres.
+Challenge er ikke en holdning. Det er en efterprøvet modfortælling.
 
-Kanten er ikke attitude. Det er metode.
-
-1. Hvilken dominerende fortælling udfordrer vi?
-2. Hvad mangler konkret og dokumenteret?
-3. Hvilken dokumentation understøtter vores vinkel?
-4. Hvilken modkilde har vi — med navn?
-5. Hvem kan legitimt kritisere vores vinkel?
-6. Er dette en blind vinkel — eller blot vores egen holdning?
+1. Hvilken sandhed er ved at sætte sig? Hvad gentages i markedet, branchen, medierne eller blandt eksperterne?
+2. Hvad mangler i billedet? En kilde, en risiko, en pris, en gruppe, en interesse eller et datagrundlag?
+3. Hvad kan vi bevise? Hvilke data, dokumenter, cases eller kilder bærer vinklen?
+4. Hvem kan med rimelighed sige os imod? Har vi testet vores vinkel mod en stærk modkilde?
 
 **Grundregel:** Ingen Challenge uden dokumentation. En skarp vinkel uden belæg er bare en høj lyd.
 
 ---
 
-## Case-protokol — Friktion som redaktionelt krav
+## Inspire-protokol — Friktion og læring
 
-Inspire kræver friktion.
+Inspire er ikke en succeshistorie. Det er en ærlig fortælling om noget, der blev prøvet, fejlede, virkede — og kan lære andre noget.
 
-Den stærke case er ikke “sådan fik de succes”. Den er det mindre behagelige spørgsmål: hvad gik galt, hvad virkede, hvad kostede det, og hvad kan andre kopiere uden også at kopiere illusionen?
+1. Hvad var problemet? Hvad tvang virksomheden til at ændre noget?
+2. Hvad gjorde de konkret? Hvilken beslutning, proces, teknologi eller arbejdsgang blev ændret?
+3. Hvor gjorde det ondt? Hvad gik galt, kostede penge, tog tid eller mødte modstand?
+4. Hvad kan andre bruge? Hvad kan kopieres — og hvad kræver særlige rammer?
 
-1. Hvad var det konkrete problem?
-2. Hvad gjorde virksomheden — præcist?
-3. Hvad gik galt undervejs?
-4. Hvad virkede — og hvad kostede det?
-5. Hvad er begrænsningen, andre skal kende?
-6. Hvad er den kopierbare læring?
-7. Hvad er casevirksomhedens interesse i historien?
+**Grundregel:** Ingen Inspire uden friktion. En succeshistorie uden modstand er en pressemeddelelse.
 
-**Grundregel:** Ingen Inspire uden friktion. PR-prosa publiceres ikke. Den kan allerede læses gratis andre steder.
+---
+
+## Blind Spot-protokol — Sprækken i nyhedsbilledet
+
+Blind Spot er Y Business' dokumenterede modblik: en analyse af, hvad den dominerende fortælling overser — baseret på data, kilder og redaktionel modprøvning. Grundsætning: Blind Spot kvalificerer og udvider fortællingen, den modsiger den ikke.
+
+1. Hvad er signalet? Data, dokumenter, regnskaber, udbud, myndighedskilder eller markedsbevægelser?
+2. Hvad ser nyhedsbilledet ikke? Er sagen overset, underbelyst eller dækket gennem én for snæver fortælling?
+3. Hvorfor er hullet opstået? Beat-grænser, kildehierarki, timing, kompleksitet, lav klikværdi eller dominerende branchelogik?
+4. Hvem får konsekvensen? Hvilke virksomheder, roller, brancher eller beslutninger påvirkes af det, der ikke bliver set?
+
+**Grundregel:** Blind Spot er ikke en modholdning. Det er et dokumenteret hul.
 
 ---
 

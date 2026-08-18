@@ -235,6 +235,23 @@ hvilke sektorer dækkes i fase 1 (oktober 2026)?
 | SMVdanmark | SMV generelt | RSS |
 | Dansk Industri — analyseudgivelser | Makro og erhvervspolitik | PDF-download + AI-bearbejdning |
 
+### 1.6 Exa-research-motoren (formattilpasset søgning)
+
+Supplerer de faste kildelag (1.1–1.5) med on-demand, formattilpasset søgning
+via Exa. Ni søgeprofiler genererer dynamisk skræddersyede søgninger til det
+aktuelle format:
+
+- **Morgenbriefet:** håndhæver research af 3-6 selvstændige enheder (flerhistorie-krav)
+- **Overblikket:** håndhæver 4-6 kildepunkter (tidslinje, aktører, sektorstatus)
+- **Signalradaren:** håndhæver mindst 2-3 uafhængige signaler
+- **Casen der virker:** håndhæver reel virksomhed, leder og tal — inkl. nordiske cases
+- **Klumme:** håndhæver navngiven debattør uden fiktive pseudonymer
+- **Ben 3-formater** (kapital/investering): søger VC-/fundingkilder frem for driftskilder
+
+"Tilføj & søg næste enhed" akkumulerer uafhængige cases og signaler i
+kildematerialet uden at lukke søgefladen. Verificerede kilder og redaktionelt
+resumé injiceres direkte i genereringens kildegrundlag (trin 3, §2.1).
+
 ---
 
 ## 2. AI-orkestrering — produktionspipeline
@@ -295,20 +312,24 @@ Godkendt indhold distribueres til:
 
 ### 2.3 Primære sektorer — fase 1
 
-Motoren konfigureres til tolv sektorer ved launch:
+Motoren konfigureres til tolv sektorer ved launch. Hver sektor kobles til
+mindst ét af de tre redaktionelle ben (`Y-Business-Koncept.md` §2), så
+klassificeringen kan routes til korrekt vinkel — ikke kun korrekt branchetag.
 
-1. Handel og e-handel
-2. Byggeri og ejendom
-3. IT og teknologi
-4. Fødevarer og restauration
-5. Finans og forsikring
-6. Transport og logistik
-7. Sundhed og velfærd
-8. Industri og produktion
-9. Energi og bæredygtighed
-10. Marketing og kommunikation
-11. Landbrug og agro
-12. Rådgivning og jura
+| # | Sektor | Primært ben |
+|---|---|---|
+| 1 | Handel og e-handel | Ben 1 |
+| 2 | Byggeri og ejendom | Ben 1 |
+| 3 | IT og teknologi | Ben 1 |
+| 4 | Fødevarer og restauration | Ben 1+2 |
+| 5 | Finans og forsikring | Ben 3 |
+| 6 | Transport og logistik | Ben 1 |
+| 7 | Sundhed og velfærd | Ben 1 (Automatiseringspotentialet) |
+| 8 | Industri og produktion | Ben 1+2 |
+| 9 | Energi og bæredygtighed | Ben 2 |
+| 10 | Marketing og kommunikation | Ben 1 |
+| 11 | Landbrug og agro | Ben 2 |
+| 12 | Rådgivning og jura | Ben 3 |
 
 **[AFVENTER DYRBY]:** Er tolv sektorer det rigtige scope ved launch,
 eller reduceres til 6-8 sektorer for at sikre tilstrækkelig dybde per sektor?
@@ -487,6 +508,26 @@ i C-level-sektionen? DI-økonom? Erhvervsjurist? International analytiker?
 ---
 
 ## 4. Verificeringsmodel
+
+### 4.0 Forhold til Faktatjekkeren
+
+Niveau 0-3 (§4.2) afgør **hvem der skal godkende og hvornår** — den
+redaktionelle arbejdsgang. Den nye Redaktionelle Faktatjekker afgør **om en
+konkret påstand i teksten er dokumenteret** — et automatiseret lag under
+arbejdsgangen, ikke en erstatning for den.
+
+Faktatjekkeren tester hver genereret artikel mod det rå kildemateriale på
+påstandsniveau og afgiver én af fire domme: 🟢 `verificeret` (direkte
+understøttet), 🟡 `tolkning` (loyal journalistisk syntese), 🟠
+`uunderstoettet` (findes ikke i kilderne — hallucinationsrisiko), 🔴
+`modstridende` (i direkte modstrid med kildedata). Samlet score (0-100) og
+hallucinationsrisiko (lav/moderat/høj) følger med hver artikel.
+
+**Kobling til niveau-modellen:** indhold med én eller flere `modstridende`-
+domme eskaleres altid mindst til Niveau 2, uanset hvilket niveau formatet
+normalt tilhører. Indhold med `uunderstoettet`-domme kan ikke auto-publiceres
+(Niveau 0) — det nedgraderes til mindst Niveau 1. Faktatjekkeren retter eller
+omskriver ikke selv; den dømmer og dokumenterer, redaktøren beslutter.
 
 ### 4.1 Princip
 

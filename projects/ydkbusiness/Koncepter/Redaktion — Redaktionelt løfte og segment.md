@@ -45,15 +45,25 @@ Det er vores redaktionelle løfte.
 
 ## Sådan leverer vi løftet
 
-Y Business bygger på fire redaktionelle leverancer.
+Y Business bygger på ti redaktionelle formater, organiseret under tre bærende ben:
+Business AI & teknologiimplementering, det nordiske perspektiv og kapital,
+investering og vækst.
 
-**Overblikket** giver læseren det vigtigste fra erhvervslivet, markedet, reguleringen og AI-udviklingen — prioriteret efter rolle, branche og beslutningsbehov. Det er her, de store erhvervsnyheder, brancheoverblikket, morgenbriefet og “hvad skriver de andre?” samles i én brugbar indgang.
+**Overblikket og Nyhedsartiklen** giver læseren det vigtigste fra erhvervslivet, markedet, reguleringen og AI-udviklingen — prioriteret efter rolle, branche og beslutningsbehov. Det er her, de store erhvervsnyheder, brancheoverblikket, morgenbriefet og “hvad skriver de andre?” samles i én brugbar indgang.
 
-**Signalet** finder de tidlige tegn på forandring: nye markedsbevægelser, teknologiskifte, regulering, konkurrentadfærd, lederskifter, udbud og AI-udvikling, før de bliver åbenlyse for alle.
+**Morgenbriefet** samler dagens 3-6 vigtigste, indbyrdes selvstændige historier i én daglig vane kl. 06.00.
 
-**Den blinde vinkel** udfordrer de dominerende fortællinger og viser, hvad andre overser, hvem der ikke bliver hørt, hvilke omkostninger der skjules, og hvilke antagelser erhvervslivet risikerer at handle på.
+**Signalet og Signalradaren** finder de tidlige tegn på forandring: nye markedsbevægelser, teknologiskifte, regulering, konkurrentadfærd, lederskifter, udbud og AI-udvikling, før de bliver åbenlyse for alle. Signalradaren er det dybe, dokumenterede mønster; Signalet er den hurtige briefing.
 
-**Casen der virker** viser konkrete erfaringer fra virksomheder, ledere og praktikere — med metode, friktion, fejl og læring, så andre kan bruge det i praksis.
+**Konsekvensen** oversætter det vigtigste — regler, marked, teknologi — til, hvad det konkret betyder for din virksomhed.
+
+**Blind Spot-artiklen** kvalificerer og udvider de dominerende fortællinger og viser, hvad andre overser, hvem der ikke bliver hørt, hvilke omkostninger der skjules, og hvilke antagelser erhvervslivet risikerer at handle på — uden at modsige den grundlæggende positive fortælling om teknologisk fremskridt.
+
+**Casen der virker** viser konkrete erfaringer fra virksomheder, ledere og praktikere — dansk eller nordisk — med metode, friktion, fejl og læring, så andre kan bruge det i praksis.
+
+**Klumme & Opinion** giver personforankrede stemmer og holdning — det AI ikke kan producere.
+
+**Automatiseringspotentialet** screener manuelle processer i sundhed, finans, det offentlige og logistik for AI-potentiale, gevinster og barrierer.
 
 Tilsammen gør formaterne Y Business til mere end et nyhedsprodukt. Det er et redaktionelt beslutningsværktøj.
 
@@ -94,8 +104,8 @@ Redaktionelt betyder det:
 * Business AI skal være vores tydelige differentiering fra launch
 * overblik skal være en produktflade, ikke bare en artikeltype
 * morgenbriefet skal være en feature, der samler dagens vigtigste signaler
-* Blind Spot skal tænkes som et analyseværktøj, mens Den blinde vinkel er det journalistiske format
-* “Det betyder det for din virksomhed” skal være en metode i alt Understand-stof — ikke nødvendigvis et selvstændigt format
+* Blind Spot skal tænkes som et analyseværktøj, mens Blind Spot-artiklen (badge BS) og klummen Den blinde vinkel er de journalistiske formater — begge styret af grundsætningen: kvalificér og udvid, modsig ikke
+* Konsekvensen (tidl. “Det betyder det for din virksomhed”) skal være en metode i alt Understand-stof — ikke nødvendigvis kun et selvstændigt format
 * cases skal have friktion, metode og konkret læring
 * specialformater skal kun aktiveres, når de løser et klart brugerbehov
 * AI må overvåge, strukturere og foreslå — men redaktionen afgør, hvad der betyder noget
@@ -190,3 +200,21 @@ Y Business skal være stedet, hvor AI bliver oversat fra teknologinyhed til erhv
 Vi dækker ikke AI, fordi det er nyt.
 
 Vi dækker AI, når det ændrer noget.
+
+## De to andre ben: Norden og kapital
+
+Business AI er det første og tydeligste ben. Y Business hviler på to til.
+
+**Det nordiske perspektiv** betyder, at Danmark er linsen — men med systematisk
+blik mod Sverige, Norge, Finland, Færøerne, Island og Grønland som spejl og
+casekilde. Mønstre i et nordisk naboland viser sig typisk i Danmark 12-24
+måneder senere. Det gør nordisk signalspotting til en selvstændig disciplin,
+ikke bare en ekstra kildekreds.
+
+**Kapital, investering og vækstperspektiv** er ikke børsjournalistik. Det er
+det redaktionelle blik på, hvad der tiltrækker eller skræmmer privat kapital,
+venturekapital og vækstfinansiering i en given sektor eller teknologi — til
+gavn for de ledere, der skal træffe beslutninger om vækst, opkøb, spin-offs
+eller exit.
+
+De tre ben er beskrevet fuldt ud i *docs/Redaktion - Editorial-model.md* §2.

@@ -3,11 +3,11 @@
 ## Produktvision
 
 Y.dk Business er en AI-drevet erhvervsplatform, der leverer erhvervsnyheder,
-markedsovervågning, branchetrends, B2B-briefs og leadgenerering i ét samlet abonnement.
+medie- og markedsovervågning, branchetrends, B2B-briefs og leadgenerering i ét samlet abonnement.
 Produktet erstatter det kludetæppe af separate tjenester, som SMV-ejere
 og erhvervsledere i dag betaler for på tværs af flere udbydere.
 
-Prispunkt år 1: 5.000 kr./år. Ét login. Én platform.
+Prispunkt: 7.500 kr./år (Erhverv+) · intro 5.000 kr. første år. Ét login. Én platform.
 
 ---
 
@@ -41,7 +41,7 @@ ikke er skrevet til ham.
 | Situationsbriefs til møder og beslutninger | Intet — du researcher selv | ✓ On-demand på 60 sekunder |
 | Leadgenerering fra markedssignaler | LassoX — statiske CVR-data, 40.000–82.000 kr./år | ✓ Dynamiske signaler inkluderet |
 | Samlet overblik på ét sted | 3-5 separate tjenester og login | ✓ Ét login, én platform |
-| **Samlet pris** | **Finans.dk + Retriever: 20.000–55.000 kr./år** | **5.000 kr./år** |
+| **Samlet pris** | **Finans.dk + Retriever: 20.000–55.000 kr./år** | **7.500 kr./år · intro 5.000 kr. år 1** |
 
 Y.dk Business er ikke et salgsværktøj. Det er ikke et PR-overvågningsværktøj.
 Det er erhvervsintelligens — det du har brug for for at træffe bedre beslutninger,
@@ -121,10 +121,12 @@ organisationen redaktionelt medejerskab af en sektion, deres medlemmer har
 direkte interesse i, og Y Business en supplerende indtægtskilde ud over
 abonnementsmodellen.
 
-**Markedsovervågning**
-Systematisk overvågning af relevante kilder, konkurrenter, branche og
-marked — tilpasset den enkelte virksomheds profil. Erstatter LassoX
-og Meltwater for det segment, der ikke har råd til enterprise-løsninger.
+**Medie- og markedsovervågning**
+To spor i ét abonnement. Erstatter Retriever og Meltwater for det segment, der ikke har råd til enterprise-løsninger.
+
+*Medieovervågning:* Realtidsnotifikationer ved omtale af brand, produkter eller nøglepersoner på tværs af 50.000 kilder — inkl. alle danske nyhedsmedier. Månedlig PR impact-rapport. Integration med HubSpot, Slack og Salesforce.
+
+*Markedsovervågning:* CVR-signaler i realtid — regnskaber, direktørskift, nye bestyrelsesmedlemmer, ansættelser og jobopslag. Regulering, EU-direktiver og offentlige udbud med direkte SMV-konsekvens. Ugentlig digest mandage.
 
 **Branchetrends**
 AI-aggregeret trendanalyse på tværs af 5.000 kilder. Det Y leverer er
@@ -148,8 +150,10 @@ Signal-baseret leadgenerering er det ingen konkurrent tilbyder i dag.
 ## Redaktionel identitet
 
 Y.dk Business er ikke et neutralt informationsprodukt. Den redaktionelle
-DNA er en konkret del af værdileverancen og er forankret i Y's tre
-indholdspillarer — se `Journalistisk-retning.md`.
+DNA er en konkret del af værdileverancen og er forankret i tre bærende ben —
+Business AI & teknologiimplementering, det nordiske perspektiv og kapital/
+investering/vækst (`docs/Redaktion - Editorial-model.md` §2) — hvorunder
+Y's tre indholdspillarer arbejder som metode — se `Journalistisk-retning.md`.
 
 **Understand** — det aktuelle og vigtige med erhvervsperspektiv. Hvad
 sker der i dansk og international økonomi, regulering og politik der

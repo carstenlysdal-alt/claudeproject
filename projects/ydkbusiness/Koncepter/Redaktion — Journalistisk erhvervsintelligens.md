@@ -14,6 +14,24 @@ Y Business skal udfylde netop det hul.
 Ikke ved at lave "mere erhvervsstof".
 Men ved at lave bedre redigeret erhvervsintelligens.
 
+1B. De tre redaktionelle ben
+
+Y Business hviler på tre bærende ben. De er den øverste arkitektur — pillars, segmenter og signaturformater lever under dem.
+
+Ben 1 · Business AI & teknologiimplementering
+
+Konkret AI-implementering i virksomheder og organisationer. Ikke teknologibeundring — praksisnær journalistik om, hvad det kræver, koster og leverer.
+
+Ben 2 · Det nordiske perspektiv
+
+Danmark er linsen, men med systematisk blik mod Sverige, Norge, Finland, Færøerne, Island og Grønland som komparativt spejl og casekilde. Mønstre i et nordisk naboland viser sig typisk i Danmark 12-24 måneder senere — det gør nordisk signalspotting til en selvstændig disciplin.
+
+Ben 3 · Kapital, investering og vækstperspektiv
+
+Ikke børsjournalistik. Det redaktionelle blik på, hvad der tiltrækker eller skræmmer privat kapital, venturekapital og vækstfinansiering — til gavn for ledere der skal beslutte om vækst, opkøb, spin-offs eller exit.
+
+Hver historie skal kunne placeres under mindst ét ben. Signalradaren og Casen der virker trækker typisk på Ben 1+2. Klumme & Opinion kan trække på alle tre.
+
 2. De painpoints vi dækker
 
 Painpoint 1: Erhvervsmedierne er for langt fra virksomhedens hverdag
@@ -291,6 +309,8 @@ Vi fortæller ikke succeshistorier uden modstand. Vi viser metoden, friktionen o
 AI giver rækkevidde. Journalistikken giver dømmekraft.
 
 6. De tre pillars — rettet og strammet
+
+Pillars er redaktionelle arbejdsmetoder, ikke sektioner — og de virker under de tre ben (§1B), ikke ved siden af dem. Benet siger hvilket territorium historien hører til. Pillaren siger hvilket greb journalistikken bruger til at behandle det.
 
 Understand
 Hvad sker der — og hvad betyder det for min virksomhed?
@@ -576,7 +596,7 @@ Håndværksnær. Kritisk. Konkret. Målelig. Ikke buzzword-glad.
 Primær pillar: Challenge
 Sekundær pillar: Understand
 
-Dette segment er allerede informationsmættet. Det mangler ikke flere nyheder. Det mangler signaler, kontekst og narrativ-korrektion.
+Dette segment er allerede informationsmættet. Det mangler ikke flere nyheder. Det mangler signaler, kontekst og narrativ-korrektion. Segmentets kerneinteresse falder sammen med Ben 3 (kapital, investering og vækstperspektiv) — ikke børsjournalistik, men det strategiske blik på, hvad der tiltrækker eller skræmmer kapital i en sektor eller teknologi.
 
 Prioritér:
 
@@ -655,7 +675,7 @@ hvad kan du gøre?
 
 Pillar: Understand
 
-Det betyder det for din virksomhed
+Konsekvensen (badge 02, tidl. "Det betyder det for din virksomhed")
 
 Y Business' vigtigste konsekvensformat.
 
@@ -670,9 +690,9 @@ hvad mangler vi at vide?
 
 Pillar: Understand
 
-Den blinde vinkel
+Blind Spot-artiklen (badge BS, journalistisk beslægtet med klummen "Den blinde vinkel")
 
-Y Business' skarpeste Challenge-format.
+Y Business' skarpeste Challenge-format — men grundsætningen er skærpet: Blind Spot kvalificerer og udvider den dominerende fortælling, den modsiger den ikke. Y Business er et medie for AI og teknologisk transformation, ikke et sted for skepsis-jagt.
 
 Fast struktur:
 
@@ -685,7 +705,7 @@ hvorfor det betyder noget
 
 Pillar: Challenge
 
-Myten om …
+Myten om … (under revision — erstattes gradvist af Signalet og Automatiseringspotentialet, jf. den kanoniske 10-formatoversigt)
 
 Mythbuster-formatet.
 
@@ -760,6 +780,22 @@ mulig bevægelse
 blind vinkel
 
 Pillar: Challenge / Understand
+
+Nyt og opdateret siden sidst
+
+Den kanoniske 10-formatoversigt (badge-kodet, `Y-Business-Koncept.md` §6)
+tilføjer tre formater, der endnu ikke har fuld produktionsspec i dette
+dokument: Nyhedsartiklen (NY, klassisk nyhedsmotor), Overblikket (00,
+kurateret sektionslayout — platformens grundoplevelse, ikke en artikel) og
+Signalet (SIG, ét skarpt observationstegn plus modtræk — erstatter i praksis
+"Før mødet" og "Før handlen" som det hurtige, situationsbestemte format).
+Automatiseringspotentialet (AP) er et helt nyt format: systematisk
+proces-screening af manuelle arbejdsgange i sundhed, finans, det offentlige
+og logistik, hørende til Ben 1+3. Signalradaren er samtidig omdefineret som
+et struktureret overvågningssystem med seks faste dimensioner (teknologimodenhed,
+regulatorisk fremdrift, arbejdsmarked, kapitalflow, nordisk spejl,
+forbruger-/virksomhedsadfærd) — ikke kun "signal, kilde, styrke" som
+strukturen ovenfor angiver. Fuld detalje: `docs/Redaktion - Formater-og-klummer.md`.
 
 9. Redaktionel motor: sådan arbejder Y Business
 

@@ -21,6 +21,43 @@ Blind Spot spørger ikke, om de andre er gode nok. Det spørger, hvad deres nyhe
 
 ---
 
+## Redaktionel kalibrering — Y Business' position
+
+Dette dokument beskriver den generelle Blind Spot-motor: hvordan huller i
+konkurrentdækningen opdages, scores og præsenteres. Men Y Business bruger
+motoren med en specifik redaktionel kalibrering, som er strammere end den
+generiske "find hvad der mangler"-logik ovenfor.
+
+**Grundsætning: Blind Spot hos Y Business handler om at kvalificere og
+udvide den dominerende fortælling — ikke at modsige den.**
+
+Y Business er et medie *for* AI, innovation og teknologisk transformation.
+Redaktionen er ikke systemkritisk over for teknologien som sådan. Det
+præger, hvilke signaler fra motoren der bliver til publicerede historier.
+
+Blind Spot bruges hos Y Business til at:
+- afdække underspillede dimensioner i en positiv AI-fortælling (f.eks.
+  implementeringsomkostninger i SMV-segmentet)
+- sætte fokus på aktører og sektorer der ikke er med i den dominerende
+  debat (f.eks. sundhedssektoren, den almene boligsektor, landbruget)
+- udfordre forenklede narrativer om, hvad der holder AI-udrulning tilbage
+- afdække magt- og interessestrukturer i den teknologiske omstilling
+
+Blind Spot hos Y Business er **ikke**:
+- et format der primært leder efter fejl, risici eller negative konsekvenser
+  af AI og automation
+- et format der signalerer skepsis over for den teknologiske forandrings
+  retning
+- et generelt "hul-i-osten"-format, der publicerer ethvert signal motoren finder
+
+I praksis betyder det: et `consequence_gap`- eller `framing_gap`-signal, der
+udelukkende peger mod risiko eller skepsis uden en kvalificerende eller
+udvidende vinkel, går ikke videre til publicering — uanset scoren i
+Scoring-modulet. Journalisten vurderer signalet mod grundsætningen, før det
+vurderes mod `overall_blind_spot_score`.
+
+---
+
 ## Formål
 
 Blind Spot er et redaktionelt værktøj til journalister. Det hjælper med systematisk at identificere, hvad erhvervsmedierne ikke dækker — og forklarer, hvorfor hullet sandsynligvis er der.

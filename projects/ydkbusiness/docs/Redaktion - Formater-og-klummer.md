@@ -52,17 +52,33 @@ og betalingsvilje. De kræver redaktionel dom og navngivet ansvar.
 
 ---
 
-### Overblik: features og formater
+### Formatoversigt — de ti badge-kodede formater
 
-| Type | Format | Frekvens | Pillar | Primære segmenter |
+Kanonisk kilde: `Y-Business-Koncept.md` §6 (SN-DeepDive). Ben 1 = Business AI &
+teknologiimplementering, Ben 2 = Det nordiske perspektiv, Ben 3 = Kapital,
+investering og vækst.
+
+| Badge | Format | Ben | Primær funktion | Nordisk spejl? |
 |---|---|---|---|---|
-| **Feature** | Morgenbriefet | Dagligt kl. 06:00 | Understand | Alle |
-| **Feature** | Markedsovervågning | Løbende — alerts + ugentlig digest | — | SMV-ejere, C-level, rådgivere |
-| **Primært format** | Overblik *(Det betyder det for din virksomhed)* | 2-3x ugentligt | Understand | SMV-ejere, C-level, medarbejdere |
-| **Primært format** | Signaler *(Signalradaren inkl. Blind Spot)* | Ugentligt | Understand / Challenge | C-level, rådgivere, SMV-ejere |
-| **Primært format** | Cases *(Casen der virker / Sådan gjorde jeg)* | Ugentligt | Inspire | SMV-ejere, iværksættere, C-level |
-| **Situationsbestemt** | Den blinde vinkel (standalone) | Ad hoc | Challenge | C-level, rådgivere, iværksættere |
-| **Situationsbestemt** | Myten om, Før mødet, Før handlen, Workflow Deconstructed | Ad hoc | Challenge / Understand / Inspire | Varierer |
+| `NY` | Nyhedsartiklen | Alle | Understand | Ja |
+| `MB` | Morgenbriefet | Alle | Understand (flerhistorie) | Ja |
+| `00` | Overblikket | Alle | Understand (kurateret) | Ja |
+| `01` | Signalradaren | 1+2 | Challenge + Signal | Primært |
+| `02` | Konsekvensen *(tidl. "Det betyder det for din virksomhed")* | Alle | Understand + Guide | Ja |
+| `KD` | Casen der virker | 1+2 | Inspire | Primært |
+| `BS` | Blind Spot-artiklen *(tidl. omtalt som formatet "Den blinde vinkel" — se afgrænsning nedenfor)* | 1+2+3 | Challenge (kvalificering) | Ja |
+| `SIG` | Signalet | 1+2 | Signal (hurtig briefing) | Ja |
+| `03` | Klumme & Opinion | 1+2+3 | Challenge + Perspektiv | Nej |
+| `AP` | Automatiseringspotentialet (nyt) | 1+3 | Inspire + Guide | Primært |
+
+Morgenbriefet og markedsovervågning er samtidig produktfeatures — de skaber
+vanen og er altid til stede, uanset dagens øvrige produktion. De øvrige otte
+er redaktionelle formater, der kræver redaktionel dom og navngivet ansvar.
+
+**Navnekollision at holde styr på:** *Blind Spot-artiklen* (badge `BS`) er det
+selvstændige format. *Den blinde vinkel* lever videre som navnet på både
+klumme 1 (§6) og sub-modulet i Signalradaren (§2) — samme journalistiske
+disciplin, tre forskellige leverancer.
 
 ---
 
@@ -83,9 +99,9 @@ producere:
 
 ---
 
-## 2. Fem bærende formater
+## 2. Seks bærende formater
 
-### Morgenbriefet — skaber vanen
+### Morgenbriefet `MB` — skaber vanen
 
 Dagligt kl. 06.00. Kort, prioriteret og personaliseret.
 
@@ -112,7 +128,7 @@ Journalist/redaktør vælger, skærper vinkler og godkender.
 
 ---
 
-### Det betyder det for din virksomhed — skaber nytten
+### Konsekvensen `02` — skaber nytten (tidl. "Det betyder det for din virksomhed")
 
 Oversætter regler, økonomi, teknologi og marked til konkret
 virksomhedskonsekvens.
@@ -136,9 +152,14 @@ rente, energi, compliance, data- og rapporteringskrav.
 
 ---
 
-### Den blinde vinkel — skaber kanten
+### Blind Spot-artiklen `BS` — skaber kanten (formatnavn; klummen hedder fortsat "Den blinde vinkel")
 
 Finder den manglende kilde, skjulte omkostning eller ufortalte konsekvens.
+
+**Grundsætning:** Blind Spot kvalificerer og udvider den dominerende
+fortælling — det modsiger den ikke. Y Business er et medie *for* AI og
+teknologisk transformation; formatet er ikke et sted for skepsis-jagt eller
+risiko-fokus. Uddybet i *Koncepter/AI-motor — Blind Spot signalmotor.md*.
 
 **Pillar:** Challenge
 **Funktion:** Udfordre og korrigere
@@ -162,7 +183,7 @@ Bør ikke overlades til uerfaren produktion.
 
 ---
 
-### Casen der virker — skaber handlekraften
+### Casen der virker `KD` — skaber handlekraften
 
 Viser løsninger med metode, friktion, fejl og kopierbar læring.
 
@@ -176,6 +197,8 @@ linje er Y Business' svar på betalingsvilje i C-level- og SMV-segmentet.
 **Primære segmenter:** SMV-ejere, kommunikation/marketing, iværksættere, C-level
 **Kanaler:** Tekst, lydinterview
 **Frekvens:** 1 gang ugentligt
+**Nordisk spejl:** Primært — en svensk, norsk eller finsk case er lige så
+gyldig som en dansk, så længe læringen kan oversættes til dansk kontekst.
 
 Må aldrig blive ukritisk succesfortælling.
 
@@ -192,32 +215,33 @@ Må aldrig blive ukritisk succesfortælling.
 
 ---
 
-### Signalradaren — skaber forspringet
+### Signalradaren `01` — skaber forspringet
 
-Finder svage signaler, før de bliver mainstream.
+Et struktureret overvågningssystem, ikke en nyhedsfeature om noget der
+allerede er sket. Én Signalradar-artikel = ét dokumenteret tidligt mønster,
+sammensat af mindst 2-3 uafhængige signaler fra minimum to kildetyper, der
+tilsammen peger i samme retning.
 
-**Pillar:** Understand / Challenge
+**Pillar:** Understand / Challenge · **Ben:** 1+2
 **Funktion:** Varsle og perspektivere
 **Primære segmenter:** C-level, rådgivere, investorer, SMV-ejere
 **Kanaler:** Tekst, ugentlig lydbrief, grafisk video ved behov
 **Frekvens:** 1 gang ugentligt + situationsbestemt
 
-Typiske signaler: brancher under pres, nye udbud, lederskifter,
-regulatoriske deadlines, ændringer i kapitaltilførsel, nye teknologiadoptioner.
-
-Signalradaren er både et redaktionelt format og et personaliseringslag.
+**Faste overvågningsdimensioner** (mindst 2-3 skal dokumentere samme mønster):
+teknologimodenhed, regulatorisk fremdrift, arbejdsmarkedet, kapitalflow
+(Ben 3), nordisk spejl (Ben 2), forbruger-/virksomhedsadfærd.
 
 Brugeren skal kunne følge signaler efter: branche, geografi, virksomhedstype,
 regulering, konkurrenter, teknologi, lederskifter, udbud, kapital, eksport,
 kommunikation, AI.
 
 **Fast struktur:**
-1. Signalet
-2. Kilden
-3. Styrken
-4. Hvem påvirkes?
-5. Hvad kan det føre til?
-6. Hvad bør overvåges?
+1. Det samlede mønster
+2. De dokumenterede observationer
+3. Brødtekst & pullquote — drivkræfter, brancher der rammes først, modargumenter
+4. Det betyder det for din virksomhed — 3-5 handlingspunkter
+5. Signalradar-profil — nøglesignal, modenhedsgrad, tidshorisont
 
 #### Sub-modul: Blind spot
 
@@ -229,9 +253,10 @@ leverandørvilkår. DR dækker sjældent regulatorisk byrde for ejerledede
 virksomheder. Finans.dk prioriterer børsnoterede selskabers fortælling.
 Y Business identificerer hullet og forklarer, hvem der ikke høres.
 
-**Redaktionel regel:** Blind spot er ikke kontrarianism. Den kræver
-dokumentation for, hvad andre faktisk har skrevet — og en præcis begrundelse
-for, hvorfor hullet eksisterer.
+**Redaktionel regel:** Blind spot er ikke kontrarianism og ikke skepsis-jagt.
+Den kvalificerer og udvider den dominerende fortælling — den modsiger den
+ikke. Den kræver dokumentation for, hvad andre faktisk har skrevet — og en
+præcis begrundelse for, hvorfor hullet eksisterer.
 
 **Produktionsmodel:** AI overvåger et fast kildeset (Børsen, Berlingske/Finans,
 DR Nyheder, TV2 Business, Epn.dk, Altinget Erhverv) og leverer gap-analyse.
@@ -245,7 +270,55 @@ Journalist vurderer og skriver afsnittet.
 
 ---
 
-## 3. Tre skalerbare specialformater
+### Automatiseringspotentialet `AP` — skaber overblikket over det automatiserbare (nyt)
+
+Systematisk proces-screening af manuelle arbejdsgange i offentlig og privat
+sektor: hvad kan automatiseres, hvad koster det ikke at gøre det, og hvad
+står i vejen?
+
+**Pillar:** Inspire / Guide · **Ben:** 1+3
+**Sektorfokus:** Sundhedsvæsenet, den finansielle sektor, det offentlige,
+logistik og forsyningskæde
+**Frekvens:** Situationsbestemt
+
+**Fast struktur:**
+1. Den manuelle proces — hvad gøres i dag, og af hvem?
+2. Volumen og ressourcer — hvad koster processen i tid og penge?
+3. AI-potentialet — hvad kan automatiseres, og med hvilken teknologi?
+4. Realiserede gevinster — nordiske eller internationale cases
+5. Barrierer — regulatoriske, organisatoriske, tillidsbaserede
+6. Næste skridt — hvad skal der til for at komme i gang?
+
+**Redaktionel note:** Ikke et argument for ukritisk automatisering. En
+kvalificeret kortlægning af det mulige, med fuld transparens om barrierer,
+risici og menneskelige hensyn.
+
+---
+
+## 3. Andre nye/ajourførte formater — kort reference
+
+Tre formater fra den nye formatoversigt er endnu ikke udfoldet med fuld
+produktionsspec i dette dokument. De optræder i Overblikket-tabellen ovenfor
+og tilføjes her, når produktionsmodellen er afklaret:
+
+- **Nyhedsartiklen `NY`** — klassisk nyhedsmotor med "Hvad sker der", fakta
+  og "Det betyder det for dig". Alle segmenter, nordisk spejl.
+- **Overblikket `00`** — kurateret sektionslayout, ikke en lineær artikel:
+  fire faste kort (Dagens billede, Hovedkræfter, Tidslinje, Hvem rammes).
+  Platformens grundoplevelse — ikke en journalistisk skabelon.
+- **Signalet `SIG`** — ét skarpt observationstegn plus proaktive modtræk.
+  Hurtigere og smallere end Signalradaren; erstatter i praksis "Før mødet"
+  og "Før handlen" (§4) som det format, der dækker det akutte, situationsbestemte
+  behov.
+
+---
+
+## 4. Tre skalerbare specialformater (under revision)
+
+**Status:** Disse tre formater indgår ikke i den nye kanoniske
+10-formatoversigt (`Y-Business-Koncept.md` §6). De erstattes gradvist af
+Signalet `SIG` og Automatiseringspotentialet `AP`. Indholdet nedenfor bevares
+som produktionsreference, indtil migreringen er redaktionelt besluttet.
 
 Kører situationsbestemt fra launch. Skaleres, når redaktionen ser,
 hvilke segmenter der aktiverer dem mest.
@@ -328,7 +401,7 @@ jobrollen. Selve implementeringsanalysen og kilderne er menneskelige.
 
 ---
 
-## 4. Tekst, lyd og video
+## 5. Tekst, lyd og video
 
 Y Business producerer ikke tekst, lyd og video som tre separate universer.
 
@@ -374,7 +447,7 @@ eller ny forretningsrisiko.
 
 ---
 
-## 5. Klummer
+## 6. Klummer
 
 Signaturformaterne giver struktur og nytteværdi. Klummerne giver noget de
 ikke kan: en personforankret stemme, autoritet og holdning — det eneste
@@ -449,7 +522,7 @@ Eksempler: *"Sådan afskedigede jeg mit manuelle processlag og erstattede det me
 
 ---
 
-## 6. Kildekrav per format
+## 7. Kildekrav per format
 
 ### Morgenbriefet
 
@@ -501,7 +574,7 @@ Minimum:
 
 ---
 
-## 7. Kildemodel
+## 8. Kildemodel
 
 Tre kildegrupper med adskilte funktioner.
 
@@ -541,7 +614,7 @@ Tre kildegrupper med adskilte funktioner.
 
 ---
 
-## 8. AI's operative rolle
+## 9. AI's operative rolle
 
 AI er redaktionens research- og overvågningsmotor — ikke skribenten.
 

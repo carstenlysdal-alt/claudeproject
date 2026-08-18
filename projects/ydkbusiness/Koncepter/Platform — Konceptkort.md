@@ -43,7 +43,7 @@ Erhvervsledere bruger 2–5 timer/uge på informationssøgning. Typisk: 45 minut
 | Lag | Hvad brugeren får |
 |---|---|
 | **Feed og morgenbriefet** | Personaliseret feed + morgenbrief kl. 06:00, tekst og lyd — prioriteret efter rolle, branche og adfærd |
-| **Markedsovervågning** | Konkurrenter, CVR-registret (ledelsesændringer, regnskaber, ansættelser), regulering, EU-direktiver og offentlige udbud — alerts og ugentlig digest |
+| **Medie- og markedsovervågning** | Mediedækning (50.000 kilder), CVR-signaler (regnskaber, direktørskift, ansættelser, jobopslag), regulering, EU-direktiver og offentlige udbud — realtidsalerts og ugentlig digest. Erstatning for Retriever og Meltwater |
 | **Branchetrends** | Løbende identifikation af udviklinger på tværs af brancher med redaktionel vurdering af signalstyrke og konsekvens |
 | **B2B-briefs** | Situationsbrief til brug før møder, handler, kundedialoger og beslutninger — 1 side med baggrund, risici, muligheder og næste spørgsmål |
 | **Personalisering og alerts** | Brugerens personlige konfiguration: brancher, virksomheder, nøgleord og trigger-alerts ved relevante bevægelser |

@@ -18,13 +18,13 @@ import { UserPlan, getCompletedExercises, getUserPlan, saveUserPlan, setPremiumS
 interface AuthContextType {
   user: UserProfile | null;
   loading: boolean;
-  login: () => Promise<void>;
+  login: () => Promise<string>;
   signUpWithEmail: (email: string, password: string, displayName: string) => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   logout: () => Promise<void>;
   syncCompletedExercises: (completedIds: string[]) => Promise<void>;
-  syncLearningPlan: (plan: UserPlan) => Promise<void>;
+  syncLearningPlan: (plan: UserPlan, uidOverride?: string) => Promise<void>;
   syncPremiumStatus: (isPremium: boolean) => Promise<void>;
 }
 
@@ -125,7 +125,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async () => {
     setLoading(true);
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      return result.user.uid;
     } catch (err) {
       console.error('Google sign-in popup error:', err);
       throw err;
@@ -205,13 +206,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   // Sync learning plan
-  const syncLearningPlan = async (plan: UserPlan) => {
+  const syncLearningPlan = async (plan: UserPlan, uidOverride?: string) => {
     if (typeof window !== 'undefined') {
       saveUserPlan(plan);
     }
-    if (user) {
+    const targetUid = uidOverride || user?.uid;
+    if (targetUid) {
       try {
-        await firestoreService.saveLearningPlan(user.uid, plan);
+        await firestoreService.saveLearningPlan(targetUid, plan);
       } catch (err) {
         console.error('Error syncing learning plan:', err);
       }
