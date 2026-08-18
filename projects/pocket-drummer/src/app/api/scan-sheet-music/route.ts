@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { scanSheetMusic } from '@/lib/gemini';
+import { checkRateLimit, rateLimitResponse } from '@/lib/apiSecurity';
 
 export const maxDuration = 120;
 
@@ -7,6 +8,11 @@ const MAX_SCAN_FILE_SIZE_BYTES = 10 * 1024 * 1024;
 
 export async function POST(req: NextRequest) {
   try {
+    const rateLimit = checkRateLimit(req, { limit: 10, windowMs: 60000, prefix: 'scan-omr' });
+    if (!rateLimit.allowed) {
+      return rateLimitResponse(rateLimit.resetSeconds);
+    }
+
     const formData = await req.formData();
     const file = formData.get('file') as File | null;
     const systemPrompt = formData.get('systemPrompt') as string | null;

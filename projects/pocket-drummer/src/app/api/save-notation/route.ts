@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs';
+import { checkRateLimit, rateLimitResponse } from '@/lib/apiSecurity';
 
 export const runtime = 'nodejs';
 
 export async function POST(req: NextRequest) {
   try {
+    const rateLimit = checkRateLimit(req, { limit: 30, windowMs: 60000, prefix: 'save-not' });
+    if (!rateLimit.allowed) {
+      return rateLimitResponse(rateLimit.resetSeconds);
+    }
+
     const { filename, xml } = await req.json();
 
     if (!filename || typeof filename !== 'string') {

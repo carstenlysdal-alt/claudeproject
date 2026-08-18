@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { checkRateLimit, rateLimitResponse } from '@/lib/apiSecurity';
+
 type CoachLanguage = 'da' | 'en' | 'de' | 'es';
 
 const LANGUAGE_NAMES: Record<CoachLanguage, string> = {
@@ -19,6 +21,7 @@ PERSONLIGHED:
 - Varm og empatisk — spørg aktivt ind til hvordan øvningen går
 - Ros indsats og fremskridt oprigtigt, ikke generisk
 - Giv konkrete, handlingsrettede råd når brugeren har et problem
+- Tilpas altid dine svar til brugerens niveau og aktuelle øvelse
 - Stil opfølgningsspørgsmål for at forstå udfordringen bedre
 - Vær direkte og præcis — ingen lange udsvævende tekster
 
@@ -66,6 +69,17 @@ interface CoachAction {
 interface CoachResponse {
   message: string;
   action?: CoachAction;
+}
+
+export interface CoachUserContext {
+  level?: string | null;
+  technique?: string | null;
+  currentExercise?: string | null;
+  journey?: {
+    level?: string;
+    technique?: string;
+    lastExerciseId?: number;
+  } | null;
 }
 
 const FALLBACK_COPY: Record<CoachLanguage, {
@@ -130,7 +144,24 @@ type CallResult =
   | { status: 'text'; text: string }
   | { status: 'empty' };
 
-async function callDeepSeek(apiKey: string, history: CoachMessage[], language: CoachLanguage): Promise<CallResult> {
+async function callDeepSeek(
+  apiKey: string,
+  history: CoachMessage[],
+  language: CoachLanguage,
+  userContext?: CoachUserContext
+): Promise<CallResult> {
+  const contextLines: string[] = [];
+  if (userContext?.level) contextLines.push(`- Niveau: ${userContext.level}`);
+  if (userContext?.technique) contextLines.push(`- Valgt teknikfokus: ${userContext.technique}`);
+  if (userContext?.currentExercise) contextLines.push(`- Nuværende øvelse: ${userContext.currentExercise}`);
+  if (userContext?.journey) {
+    contextLines.push(`- Rejse-status: Niveau '${userContext.journey.level || 'begynder'}', Teknik '${userContext.journey.technique || 'enkeltslag'}', Sidste øvelses-trin: ${userContext.journey.lastExerciseId ?? 'start'}`);
+  }
+
+  const contextPrompt = contextLines.length > 0
+    ? `BRUGERENS REELLE DATA OG KONTEKST:\n${contextLines.join('\n')}\nHusk brugerens niveau og referér til deres aktuelle øvelse/teknik når relevant.`
+    : 'BRUGERENS KONTEKST: Ingen gemt historik endnu.';
+
   const res = await fetch('https://api.deepseek.com/chat/completions', {
     method: 'POST',
     headers: {
@@ -144,6 +175,7 @@ async function callDeepSeek(apiKey: string, history: CoachMessage[], language: C
       response_format: { type: 'json_object' },
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: contextPrompt },
         { role: 'system', content: `Svar udelukkende på ${LANGUAGE_NAMES[language]}. Alle tekster i JSON-svaret, inklusive action.label og action.description, skal være på ${LANGUAGE_NAMES[language]}.` },
         ...history,
       ],
@@ -169,8 +201,19 @@ async function callDeepSeek(apiKey: string, history: CoachMessage[], language: C
 }
 
 export async function POST(req: NextRequest) {
-  const body: { messages: CoachMessage[]; language?: string } = await req.json();
-  const messages = body.messages;
+  // Rate limiting pr. IP: max 25 requests pr. minut
+  const rateLimit = checkRateLimit(req, { limit: 25, windowMs: 60000, prefix: 'coach' });
+  if (!rateLimit.allowed) {
+    return rateLimitResponse(rateLimit.resetSeconds);
+  }
+
+  const body: {
+    messages: CoachMessage[];
+    language?: string;
+    userContext?: CoachUserContext;
+  } = await req.json();
+
+  const messages = body.messages || [];
   const language: CoachLanguage = body.language && ['da', 'en', 'de', 'es'].includes(body.language)
     ? body.language as CoachLanguage
     : 'da';
@@ -184,7 +227,7 @@ export async function POST(req: NextRequest) {
 
   try {
     for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
-      const result = await callDeepSeek(apiKey, history, language);
+      const result = await callDeepSeek(apiKey, history, language, body.userContext);
       if (result.status === 'ok') return NextResponse.json(result.data);
       if (result.status === 'text') return NextResponse.json({ message: result.text });
       // 'empty' — prøv igen
@@ -197,3 +240,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(fallbackResponse(lastUserMsg?.content || '', language));
   }
 }
+

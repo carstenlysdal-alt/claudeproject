@@ -62,12 +62,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             const finalPlan = dbPlan || localPlan;
 
             const isPremiumLocal = localStorage.getItem('pocketdrummer_premium_active') === 'true';
-            const finalPremium = profile.isPremium || isPremiumLocal;
+            // Firestore-profilen er facit for logged-in brugere (ikke lokal klient-state)
+            const finalPremium = typeof profile.isPremium === 'boolean' ? profile.isPremium : isPremiumLocal;
 
-            // Sync to Firestore
+            // Sync to Firestore (ekskluder isPremium så klienten ikke overskriver server-autoritet)
             await firestoreService.saveUserProfile(uid, {
-              completedExercises: mergedCompleted,
-              isPremium: finalPremium
+              completedExercises: mergedCompleted
             });
 
             if (finalPlan) {

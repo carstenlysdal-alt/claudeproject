@@ -28,7 +28,7 @@ Det ene job platformen løser: *Fortæl mig præcist hvad jeg skal øve i dag og
 
 - **North Star:** 30-dages retention
 - **Differentiering:** AI-lærer der husker brugeren og dennes fremskridt — på dansk
-- **Forretningsmodel:** Freemium. 10 gratis lektioner → premium til 50 kr./md (founding member-pris)
+- **Forretningsmodel:** Freemium. 7-dages fuld trial (1 AI-plan + fuld adgang) → derefter premium til 50 kr./md (founding member-pris)
 - **Distribution:** Web (primær), App Store (iOS), Google Play
 
 ---

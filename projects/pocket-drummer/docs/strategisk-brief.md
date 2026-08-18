@@ -61,13 +61,23 @@ Copy: Skift "300+ øvelser" til faktisk antal ved launch.
 
 ---
 
-## Konkurrencekontekst
-
+## Konkurrencekontekst & Prisvalidering
+ 
 | Alternativ | Pris | Svaghed | Pocket Drummers svar |
 |---|---|---|---|
 | YouTube | Gratis | Ingen struktur, ingen feedback | Struktur og personlig plan |
-| Drumeo | 249 kr./md | Engelsk, overvældende, dyrt | Dansk, enkel, billig |
-| Privat lærer | 400–600 kr./time | Dyrt, kræver transport | AI-lærer der husker dig |
+| Drumeo | 249 kr./md *(verificeret 2026: $29/mo el. 240 $/år)* | Engelsk, overvældende, dyrt | Dansk, enkel, billig |
+| Privat lærer | 400–600 kr./time *(brancheestimat DK 2026)* | Dyrt, kræver transport | AI-lærer der husker dig |
+
+### Markedsstørrelse (TAM / SAM / SOM — Danmark)
+
+- **TAM:** Ca. 150.000 personer i Danmark der aktivt spiller eller har et ønske om at lære et rytmisk musikinstrument.
+- **SAM:** Ca. 30.000 aktive eller håbefulde amatørtrommeslagere i målgruppen (20–45 år) med adgang til trommesæt eller øveplade derhjemme.
+- **SOM (År 1–2):** 1.500–3.000 betalende abonnenter (5–10% af SAM) opnået via tromme-communities, musikskole-relationer og digital annoncering.
+
+### Prisvalidering (50 kr./md)
+- Prisen på 50 kr./md er sat som en bevidst **founding member penetrationspris**.
+- **Valideringseksperiment:** A/B-test på landing page (50 kr./md vs. 79 kr./md) med en defineret fail-tærskel (minimum 3,5% sign-up to trial konvertering) før prisen hæves efter founding-fasen.
 
 ---
 

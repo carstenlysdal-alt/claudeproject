@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useAuth } from '@/lib/authContext';
 import { Language, useLanguage } from '@/lib/languageContext';
-import { getUserPlan, JourneyProgress, UserPlan } from '@/lib/mockData';
+import { getUserPlan, JourneyProgress, UserPlan, PlanExercise } from '@/lib/mockData';
 import TiltCard from '@/components/TiltCard';
 import ReactMarkdown from 'react-markdown';
 
@@ -64,6 +64,8 @@ interface HomeScreenProps extends ScreenProps {
   onOpenCoach: () => void;
   guestXp: number;
   isDesktop?: boolean;
+  journey?: JourneyProgress | null;
+  onStartJourneyTrack?: (level: TrainingLevel, tech: TechniqueProgram) => void;
 }
 
 type TrainingLevel = 'begynder' | 'oevet' | 'rutineret';
@@ -308,6 +310,10 @@ type StudioKitScreenProps = ScreenProps;
 
 interface CoachScreenProps extends ScreenProps {
   onClose: () => void;
+  selectedLevel?: TrainingLevel | null;
+  selectedTechnique?: TechniqueProgram | null;
+  journey?: JourneyProgress | null;
+  currentExerciseTitle?: string | null;
 }
 
 interface ProfileScreenProps extends ScreenProps {
@@ -855,7 +861,7 @@ function OnboardingScreen({ t, onStart }: { t: ThemeTokens; dark: boolean; onSta
 }
 
 // 2. Home Screen
-function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenCoach, guestXp, isDesktop }: HomeScreenProps) {
+function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenCoach, guestXp, isDesktop, journey, onStartJourneyTrack }: HomeScreenProps) {
   const { user } = useAuth();
   const { language, setLanguage, t: translate } = useLanguage();
   const copy = PROTOTYPE_COPY[language];
@@ -870,6 +876,36 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenC
   const streak = user?.streak !== undefined ? user.streak : 3;
   const xpPct = ((xp % 200) / 200) * 100;
   const contentMax = isDesktop ? 980 : undefined;
+
+  // Dagens anbefalede øvelse — udledt dynamisk af journey-state (P1.4)
+  const recLevel: TrainingLevel = journey?.level || 'begynder';
+  const recTechnique: TechniqueProgram = journey?.technique || 'enkeltslag';
+  const currentStepNumber = (journey?.lastExerciseId ?? 0) + 1;
+  const hasActiveJourney = Boolean(journey);
+
+  const recTag = hasActiveJourney
+    ? `${copy.levels[recLevel].label} · ${copy.continueHere}`
+    : `${copy.todayFundamentals}`;
+
+  const recTitle = hasActiveJourney
+    ? `${copy.levels[recLevel].label} · ${copy.techniques[recTechnique].label}`
+    : `${copy.levels.begynder.label} · ${copy.techniques.enkeltslag.label}`;
+
+  const recDescription = hasActiveJourney
+    ? `${copy.techniques[recTechnique].description} (Trin ${currentStepNumber} af 8 i dit personlige spor)`
+    : `${copy.techniques.enkeltslag.description} (Trin 1: Single Stroke Roll)`;
+
+  const recProgressPct = hasActiveJourney
+    ? Math.min(100, Math.max(14, (currentStepNumber / 8) * 100))
+    : 12.5;
+
+  const handleStartRecommended = () => {
+    if (onStartJourneyTrack) {
+      onStartJourneyTrack(recLevel, recTechnique);
+    } else {
+      onSelectLevel(recLevel);
+    }
+  };
 
   const quickTiles = [
     {
@@ -907,7 +943,7 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenC
   ];
 
   const levelSelector = (desktop: boolean) => (
-    <section style={{ marginTop: desktop ? 28 : 0, marginBottom: desktop ? 0 : 28 }} aria-labelledby={`level-heading-${desktop ? 'desktop' : 'mobile'}`}>
+    <section style={{ marginTop: desktop ? 28 : 20, marginBottom: desktop ? 0 : 28 }} aria-labelledby={`level-heading-${desktop ? 'desktop' : 'mobile'}`}>
       <div style={{
         display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 16,
         paddingBottom: 12, borderBottom: `2px solid ${t.text}`,
@@ -924,8 +960,8 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenC
         gridTemplateColumns: desktop ? 'repeat(3, minmax(0, 1fr))' : '1fr',
         borderBottom: `1px solid ${t.hairline}`,
       }}>
-        {TRAINING_LEVELS.map((level, index) => (
-          <button key={level.id} type="button" onClick={() => onSelectLevel(level.id)} style={{
+        {TRAINING_LEVELS.map((lvl, index) => (
+          <button key={lvl.id} type="button" onClick={() => onSelectLevel(lvl.id)} style={{
             minHeight: desktop ? 132 : 82,
             padding: desktop ? '22px 24px' : '16px 0',
             background: 'transparent', color: t.text, border: 'none',
@@ -934,10 +970,10 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenC
             textAlign: 'left', cursor: 'pointer', fontFamily: t.font,
             display: 'grid', gridTemplateColumns: '38px 1fr auto', alignItems: 'center', gap: 14,
           }}>
-            <span style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 700, color: t.accent }}>{level.number}</span>
+            <span style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 700, color: t.accent }}>{lvl.number}</span>
             <span>
-              <span style={{ display: 'block', fontSize: desktop ? 20 : 17, fontWeight: 800, marginBottom: 4 }}>{copy.levels[level.id].label}</span>
-              <span style={{ display: 'block', fontSize: 12.5, lineHeight: 1.45, color: t.textMuted }}>{copy.levels[level.id].description}</span>
+              <span style={{ display: 'block', fontSize: desktop ? 20 : 17, fontWeight: 800, marginBottom: 4 }}>{copy.levels[lvl.id].label}</span>
+              <span style={{ display: 'block', fontSize: 12.5, lineHeight: 1.45, color: t.textMuted }}>{copy.levels[lvl.id].description}</span>
             </span>
             <IcArrowRight size={18} color={t.textMuted} />
           </button>
@@ -988,34 +1024,36 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenC
           </div>
         </header>
 
-        {levelSelector(true)}
-
+        {/* Hero: Dagens Anbefalede Øvelse (Primær handling øverst) */}
         <main style={{
           display: 'grid', gridTemplateColumns: 'minmax(0, 1.55fr) minmax(360px, 0.85fr)',
           gap: 'clamp(32px, 4vw, 72px)', paddingTop: 32,
         }}>
-          <section onClick={() => onSelectCategory('grooves')} style={{
+          <section onClick={handleStartRecommended} style={{
             minHeight: 'clamp(400px, 55vh, 620px)', padding: 'clamp(28px, 3vw, 52px)',
             background: t.surface2, display: 'flex', flexDirection: 'column', cursor: 'pointer',
+            border: `1px solid ${t.hairline}`, position: 'relative',
           }}>
             <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
               fontFamily: t.mono, fontSize: 11, fontWeight: 700, letterSpacing: 1.5,
-              textTransform: 'uppercase', color: t.accent,
+              textTransform: 'uppercase', color: t.accent, marginBottom: 8,
             }}>
-              {copy.todayFundamentals}
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: t.accent }} />
+              {recTag}
             </div>
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <Display t={t} size={64} style={{ maxWidth: 720, marginBottom: 20 }}>
-                {copy.lessonTitle}
+              <Display t={t} size={54} style={{ maxWidth: 720, marginBottom: 20 }}>
+                {recTitle}
               </Display>
               <p style={{ margin: 0, maxWidth: 560, color: t.textMuted, fontSize: 18, lineHeight: 1.6 }}>
-                {copy.lessonDescription}
+                {recDescription}
               </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'minmax(240px, 1fr) 240px', alignItems: 'end', gap: 28 }}>
-              <Progress pct={(3 / 7) * 100} t={t} h={44} bars={7} />
-              <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcPlay size={17} color={t.bg} />}>
-                {copy.continueLesson}
+              <Progress pct={recProgressPct} t={t} h={44} bars={8} />
+              <CTA t={t} onClick={handleStartRecommended} icon={<IcPlay size={17} color={t.bg} />}>
+                {hasActiveJourney ? copy.continueJourney : copy.startJourney}
               </CTA>
             </div>
           </section>
@@ -1059,6 +1097,9 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenC
             </div>
           </aside>
         </main>
+
+        {/* Sekundær mulighed: Niveauvalg & skift */}
+        {levelSelector(true)}
 
         <footer style={{
           display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr',
@@ -1141,31 +1182,41 @@ function HomeScreen({ t, dark, setDark, onSelectCategory, onSelectLevel, onOpenC
         </button>
       </div>
 
-      {levelSelector(false)}
-
-      <div onClick={() => onSelectCategory('grooves')} style={{
-        borderTop: `2px solid ${t.text}`,
+      {/* Primær handling: Dagens anbefalede øvelse (Øverst for entydigt fokus) */}
+      <div onClick={handleStartRecommended} style={{
+        borderTop: `2px solid ${t.accent}`,
         paddingTop: 16,
-        marginBottom: 30,
+        marginBottom: 26,
+        background: t.surface2,
+        padding: 18,
         cursor: 'pointer',
       }}>
-        <div style={{ fontFamily: t.mono, fontSize: 11, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', color: t.accent, marginBottom: 10 }}>
-          {copy.todayFundamentals}
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          fontFamily: t.mono, fontSize: 11, fontWeight: 700, letterSpacing: 1.5,
+          textTransform: 'uppercase', color: t.accent, marginBottom: 8,
+        }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: t.accent }} />
+          {recTag}
         </div>
-        <Display t={t} size={isDesktop ? 36 : 31} style={{ marginBottom: 8 }}>
-          {copy.lessonTitle}
+        <Display t={t} size={isDesktop ? 36 : 28} style={{ marginBottom: 8 }}>
+          {recTitle}
         </Display>
-        <p style={{ margin: '0 0 18px', fontSize: 14.5, lineHeight: 1.55, color: t.textMuted, maxWidth: 320 }}>
-          {copy.lessonDescription}
+        <p style={{ margin: '0 0 16px', fontSize: 14.5, lineHeight: 1.55, color: t.textMuted }}>
+          {recDescription}
         </p>
-        <div style={{ marginBottom: 20 }}>
-          <Progress pct={(3 / 7) * 100} t={t} h={34} bars={7} />
+        <div style={{ marginBottom: 18 }}>
+          <Progress pct={recProgressPct} t={t} h={28} bars={8} />
         </div>
-        <CTA t={t} onClick={() => onSelectCategory('grooves')} icon={<IcPlay size={17} color={t.bg} />}>
-          {copy.continueLesson}
+        <CTA t={t} onClick={handleStartRecommended} icon={<IcPlay size={17} color={t.bg} />}>
+          {hasActiveJourney ? copy.continueJourney : copy.startJourney}
         </CTA>
       </div>
 
+      {/* Sekundær sektion: Vælg eller skift niveau */}
+      {levelSelector(false)}
+
+      {/* Tertiær sektion: Hurtig adgang */}
       <Display t={t} size={11} style={{
         fontFamily: t.mono, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase',
         color: t.textMuted, marginBottom: 2,
@@ -3417,7 +3468,7 @@ interface CoachMessage {
   typing?: boolean;
 }
 
-function CoachScreen({ t, onClose }: CoachScreenProps) {
+function CoachScreen({ t, onClose, selectedLevel, selectedTechnique, journey, currentExerciseTitle }: CoachScreenProps) {
   const { user } = useAuth();
   const { language } = useLanguage();
   const copy = PROTOTYPE_COPY[language];
@@ -3467,7 +3518,16 @@ function CoachScreen({ t, onClose }: CoachScreenProps) {
       const res = await fetch('/api/coach', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history, language }),
+        body: JSON.stringify({
+          messages: history,
+          language,
+          userContext: {
+            level: selectedLevel || journey?.level || null,
+            technique: selectedTechnique || journey?.technique || null,
+            currentExercise: currentExerciseTitle || null,
+            journey: journey || null,
+          }
+        }),
       });
       const data = await res.json();
       const reply = data.message || copy.coachFallback;
@@ -4421,12 +4481,33 @@ export default function MobilePrototype() {
 
   const planWithJourney = (progress: JourneyProgress): UserPlan => {
     const current = getUserPlan();
+    const defaultExercises: PlanExercise[] = progress.level === 'rutineret'
+      ? [
+          { exercise_id: 'ex-7', dag: 1, uge: 1, status: 'ikke startet' },
+          { exercise_id: 'ex-8', dag: 3, uge: 1, status: 'ikke startet' },
+          { exercise_id: 'ex-6', dag: 5, uge: 1, status: 'ikke startet' },
+          { exercise_id: 'ex-4', dag: 7, uge: 1, status: 'ikke startet' },
+        ]
+      : progress.level === 'oevet'
+      ? [
+          { exercise_id: 'ex-4', dag: 1, uge: 1, status: 'ikke startet' },
+          { exercise_id: 'ex-5', dag: 3, uge: 1, status: 'ikke startet' },
+          { exercise_id: 'ex-6', dag: 5, uge: 1, status: 'ikke startet' },
+          { exercise_id: 'ex-2', dag: 7, uge: 1, status: 'ikke startet' },
+        ]
+      : [
+          { exercise_id: 'ex-1', dag: 1, uge: 1, status: 'ikke startet' },
+          { exercise_id: 'ex-2', dag: 3, uge: 1, status: 'ikke startet' },
+          { exercise_id: 'ex-3', dag: 5, uge: 1, status: 'ikke startet' },
+          { exercise_id: 'ex-6', dag: 7, uge: 1, status: 'ikke startet' },
+        ];
+
     return {
       goal_id: current?.goal_id ?? `journey-${progress.level}`,
       uge_start: current?.uge_start ?? new Date().toISOString().slice(0, 10),
-      fokustema: current?.fokustema ?? `Pocket Drummer · ${progress.level}`,
-      milepæl: current?.milepæl ?? 'Gennemfør dit første teknikspor',
-      øvelser: current?.øvelser ?? [],
+      fokustema: current?.fokustema ?? `Pocket Drummer · ${progress.level} (${progress.technique})`,
+      milepæl: current?.milepæl ?? 'Gennemfør 8 progressive trin i dit teknikspor',
+      øvelser: current?.øvelser && current.øvelser.length > 0 ? current.øvelser : defaultExercises,
       journey: progress,
     };
   };
@@ -4601,7 +4682,12 @@ export default function MobilePrototype() {
               <HomeScreen t={t} dark={dark} setDark={setDark}
                 onSelectCategory={openCategory}
                 onSelectLevel={openTrainingLevel}
+                onStartJourneyTrack={(lvl, tech) => {
+                  openTrainingLevel(lvl);
+                  openTechniqueProgram(tech);
+                }}
                 onOpenCoach={openCoachOverlay}
+                journey={journey}
                 guestXp={guestXp} isDesktop />
             )}
             {tab === 'practice' && (
@@ -4633,7 +4719,16 @@ export default function MobilePrototype() {
               onClose={() => setLessonId(null)}
               onOpenCoach={() => { setLessonId(null); openCoachOverlay(); }} />
           )}
-          {coachOpen && <CoachScreen t={t} dark={dark} onClose={closeCoachOverlay} />}
+          {coachOpen && (
+            <CoachScreen
+              t={t}
+              dark={dark}
+              onClose={closeCoachOverlay}
+              selectedLevel={selectedLevel}
+              selectedTechnique={selectedTechnique}
+              journey={journey}
+            />
+          )}
           {adminOpen && user?.role === 'admin' && <AdminPanel t={t} onClose={() => setAdminOpen(false)} />}
           {!desktopReady && <div style={{ position: 'absolute', inset: 0, background: t.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}>
             <div style={{ fontFamily: t.serif, fontStyle: 'italic', fontSize: 28, color: t.text }}>
@@ -4776,7 +4871,12 @@ export default function MobilePrototype() {
                   <HomeScreen t={t} dark={dark} setDark={setDark}
                     onSelectCategory={openCategory}
                     onSelectLevel={openTrainingLevel}
+                    onStartJourneyTrack={(lvl, tech) => {
+                      openTrainingLevel(lvl);
+                      openTechniqueProgram(tech);
+                    }}
                     onOpenCoach={openCoachOverlay}
+                    journey={journey}
                     guestXp={guestXp} />
                 )}
                 {tab === 'practice' && (
@@ -4823,7 +4923,14 @@ export default function MobilePrototype() {
 
             {/* Coach overlay */}
             {coachOpen && (
-              <CoachScreen t={t} dark={dark} onClose={closeCoachOverlay} />
+              <CoachScreen
+                t={t}
+                dark={dark}
+                onClose={closeCoachOverlay}
+                selectedLevel={selectedLevel}
+                selectedTechnique={selectedTechnique}
+                journey={journey}
+              />
             )}
 
             {/* Pad view overlay */}
