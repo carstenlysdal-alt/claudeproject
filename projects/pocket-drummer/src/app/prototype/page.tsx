@@ -169,7 +169,7 @@ const PROTOTYPE_COPY: Record<Language, PrototypeCopy> = {
       mix: { label: 'Mix', description: 'Saml teknikkerne i en komplet opvarmning.' },
     },
     focusAreas: ['Kontrol', 'Jævn puls', 'Accenter', 'Dynamik', 'Udholdenhed', 'Tempo', 'Koordination', 'Fuld sekvens'],
-    libraryCount: '312 i biblioteket', playWithMusic: 'Spil med musik', digitalKit: 'Digitalt trommesæt', askAnything: 'Spørg om alt',
+    libraryCount: '15 i biblioteket', playWithMusic: 'Spil med musik', digitalKit: 'Digitalt trommesæt', askAnything: 'Spørg om alt',
     todayFundamentals: 'I dag · Grundrytmer', lessonTitle: 'Grooves & fills del 1', lessonDescription: 'Hi-hat-mønstre med halvnoder over bastromme.',
     continueLesson: 'Fortsæt lektion', keepPracticing: 'Øv videre', dayStreak: 'dage i streg', continueWhere: 'Fortsæt hvor du slap',
     timingTitle: 'Sekstendedele · timing', timingMeta: 'Nodelære · 4 min tilbage', thisWeek: 'Denne uge', practiceDays: 'øvedage',
@@ -201,7 +201,7 @@ const PROTOTYPE_COPY: Record<Language, PrototypeCopy> = {
       mix: { label: 'Mix', description: 'Bring the techniques together in a complete warm-up.' },
     },
     focusAreas: ['Control', 'Steady pulse', 'Accents', 'Dynamics', 'Endurance', 'Tempo', 'Coordination', 'Full sequence'],
-    libraryCount: '312 in the library', playWithMusic: 'Play with music', digitalKit: 'Digital drum kit', askAnything: 'Ask anything',
+    libraryCount: '15 in the library', playWithMusic: 'Play with music', digitalKit: 'Digital drum kit', askAnything: 'Ask anything',
     todayFundamentals: 'Today · Fundamentals', lessonTitle: 'Grooves & fills pt. 1', lessonDescription: 'Hi-hat patterns with half notes over the bass drum.',
     continueLesson: 'Continue lesson', keepPracticing: 'Keep practicing', dayStreak: 'day streak', continueWhere: 'Continue where you left off',
     timingTitle: 'Sixteenths · timing', timingMeta: 'Notation · 4 min left', thisWeek: 'This week', practiceDays: 'practice days',
@@ -233,7 +233,7 @@ const PROTOTYPE_COPY: Record<Language, PrototypeCopy> = {
       mix: { label: 'Mix', description: 'Verbinde die Techniken zu einem kompletten Warm-up.' },
     },
     focusAreas: ['Kontrolle', 'Gleichmäßiger Puls', 'Akzente', 'Dynamik', 'Ausdauer', 'Tempo', 'Koordination', 'Komplette Sequenz'],
-    libraryCount: '312 in der Bibliothek', playWithMusic: 'Mit Musik spielen', digitalKit: 'Digitales Schlagzeug', askAnything: 'Alles fragen',
+    libraryCount: '15 in der Bibliothek', playWithMusic: 'Mit Musik spielen', digitalKit: 'Digitales Schlagzeug', askAnything: 'Alles fragen',
     todayFundamentals: 'Heute · Grundlagen', lessonTitle: 'Grooves & Fills Teil 1', lessonDescription: 'Hi-Hat-Muster mit halben Noten über der Bassdrum.',
     continueLesson: 'Lektion fortsetzen', keepPracticing: 'Weiterüben', dayStreak: 'Tage am Stück', continueWhere: 'Dort weitermachen, wo du aufgehört hast',
     timingTitle: 'Sechzehntel · Timing', timingMeta: 'Notenlehre · noch 4 Min.', thisWeek: 'Diese Woche', practiceDays: 'Übungstage',
@@ -265,7 +265,7 @@ const PROTOTYPE_COPY: Record<Language, PrototypeCopy> = {
       mix: { label: 'Mix', description: 'Combina las técnicas en un calentamiento completo.' },
     },
     focusAreas: ['Control', 'Pulso estable', 'Acentos', 'Dinámica', 'Resistencia', 'Tempo', 'Coordinación', 'Secuencia completa'],
-    libraryCount: '312 en la biblioteca', playWithMusic: 'Toca con música', digitalKit: 'Batería digital', askAnything: 'Pregunta lo que quieras',
+    libraryCount: '15 en la biblioteca', playWithMusic: 'Toca con música', digitalKit: 'Batería digital', askAnything: 'Pregunta lo que quieras',
     todayFundamentals: 'Hoy · Fundamentos', lessonTitle: 'Grooves y fills, parte 1', lessonDescription: 'Patrones de hi-hat con blancas sobre el bombo.',
     continueLesson: 'Continuar lección', keepPracticing: 'Sigue practicando', dayStreak: 'días seguidos', continueWhere: 'Continúa donde lo dejaste',
     timingTitle: 'Semicorcheas · tempo', timingMeta: 'Notación · quedan 4 min', thisWeek: 'Esta semana', practiceDays: 'días de práctica',
@@ -4573,7 +4573,7 @@ export default function MobilePrototype() {
         background: t.bg, color: t.text, fontFamily: t.font,
         WebkitFontSmoothing: 'antialiased',
       }}>
-        <PreviewModeToggle mode={effectivePreviewMode} onChange={changePreviewMode} />
+        {previewMode && <PreviewModeToggle mode={effectivePreviewMode} onChange={changePreviewMode} />}
         <DesktopRail
           tab={tab} onTab={navigateTab} t={t}
           onSelectCategory={openCategory}
@@ -4652,7 +4652,7 @@ export default function MobilePrototype() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#050505' }}>
-      <PreviewModeToggle mode={effectivePreviewMode} onChange={changePreviewMode} />
+      {previewMode && <PreviewModeToggle mode={effectivePreviewMode} onChange={changePreviewMode} />}
 
       {/* Main Studio Frame container */}
       <div style={isMobile ? {
