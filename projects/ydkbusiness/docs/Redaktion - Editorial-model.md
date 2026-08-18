@@ -60,9 +60,18 @@ Færøerne, Island og Grønland som komparativt spejl og casekilde — samt
 global overvågning i sekundær rolle. De nordiske lande deler demografi,
 arbejdsmarkedsmodel, digitaliseringsmodenhed og regulatorisk rammeværk,
 hvilket gør dem til de mest relevante sammenligningsmarkeder for danske
-virksomheder. Mønstre i et nordisk naboland viser sig typisk i Danmark
-med 12-24 måneders forsinkelse — det gør nordisk signalspotting til en
-selvstændig disciplin, ikke bare et perspektiv man tilføjer.
+virksomheder. Det gør nordisk signalspotting til en selvstændig disciplin,
+ikke bare et perspektiv man tilføjer.
+
+Sverige er det primære spejl for AI-implementering i virksomheder og industri —
+drevet af en tung, globalt orienteret industristruktur (Wallenberg, Ericsson,
+Saab) der fremtvinger tidlig storskalateknologi. Norge er spejl for kapital og
+industriel omstilling: enorme mængder privat og statslig kapital søger mod
+tech og AI efter årtiers petroleumsdominans. Finland er laboratorium for
+offentlig digitalisering og sundhedsdata — og er ubestridt europæisk pioner
+på sekundær dataanvendelse og AI i velfærd.
+
+Fuld kildestruktur med redaktionel brug: *Redaktion - Nordiske-kilder.md*. Protokol for nordiske publiceringer: §7E.
 
 **Ben 3 · Kapital, investering og vækstperspektiv**
 Ikke børsjournalistik, ikke aktiekurser eller porteføljeanbefalinger.
@@ -546,7 +555,7 @@ samme retning — uden at nogen endnu har sat det store billede sammen.
 | Regulatorisk fremdrift | Hvad er under udarbejdelse i EU-Kommissionen, Folketing eller brancheorganisationer? |
 | Arbejdsmarkedet | Hvilke kompetencer stiger/falder i efterspørgsel? |
 | Kapitalflow | Hvad investerer fondene i nu — 18 måneder før det er bredt kendt? (Ben 3) |
-| Nordisk spejl | Er mønstret allerede etableret i et nordisk naboland? (Ben 2) |
+| Nordisk spejl | Er mønstret allerede etableret i et nordisk naboland? Primærkilder: AI Sweden (implementering), Breakit/Shifter (kapital), ETLA (arbejdsmarked), SOTE-ekosystemet (sundhed), Mannheimer Swartling (regulering). Fuld kildeliste: *Redaktion - Nordiske-kilder.md*. |
 | Forbruger-/virksomhedsadfærd | Ændrer indkøbsmønstre, leverandørvalg eller organisationsstrukturer sig? |
 
 **Fast outputstruktur:** det samlede mønster → dokumenterede observationer →
@@ -599,6 +608,110 @@ sektor, det offentlige, logistik og forsyningskæde.
 Formatet er ikke et argument for ukritisk automatisering. Det er en
 kvalificeret kortlægning af, hvad der er muligt — med fuld transparens om
 barrierer, risici og menneskelige hensyn. Hører primært til Ben 1+3.
+
+---
+
+## 7E. Det nordiske ben — redaktionel protokol (Ben 2)
+
+Ben 2 er ikke et geografisk perspektiv der tilføjes. Det er en disciplin med en
+præcis begrundelse: de nordiske lande deler demografi, arbejdsmarkedsmodel,
+digitaliseringsmodenhed og regulatorisk rammeværk med Danmark — og er konsekvent
+12-24 måneder foran på AI i den offentlige sektor, faglig opkvalificering og
+automatisering af administrative processer. Det gør nordisk signalspotting til
+Y Business' mest troværdige leadindikator.
+
+Sverige er det primære spejl for AI-implementering i virksomheder og det offentlige.
+Norge er spejl for kapital, energi og industriel AI. Finland er laboratorium for
+EdTech, sundhedsdata og offentlig digitalisering. Island, Færøerne og Grønland
+indgår situationsbestemt, primært i Ben 3-kontekst (naturressourcer, kapital, energi).
+
+### Tre krav til en nordisk publicering
+
+Ingen nordisk case, analyse eller signal publiceres, medmindre redaktionen kan
+svare bekræftende på alle tre:
+
+**1. Er der et dokumenterbart tidsmønster?**
+Er dette sket i et nordisk land 12-24 måneder før det typisk ville nå Danmark?
+Kravet er dokumentation — ikke antagelse. En identificeret fagforeningsaftale,
+lovgivning, offentlig aftale eller markedskontrakt i et nordisk land, der ligner
+noget der allerede diskuteres i Danmark, er nok. En dansk konsekvens der er
+hypotetisk, er ikke.
+
+**2. Er den danske konsekvens konkret?**
+Hvilken beslutning, forhandling, investering eller regulatorisk tilpasning er
+relevant for en dansk virksomhed nu? Svaret skal pege på et navngivet
+branche, en identificeret lederrolle eller en specifik driftssituation —
+ikke på erhvervslivet generelt.
+
+**3. Er kilden verificerbar på dansk?**
+Ikke udelukkende et nordisk medie. En navngivet person eller offentlig kilde
+der kan stå på siden, eller et dansk ekspertperspektiv der kan bekræfte mønstret,
+er krævet. En svagt understøttet nordisk observation plus ét dansk citat er
+ikke nok — dokumentationen skal bære historien, ikke udtalelsen.
+
+### Fastlagt overvågningsinfrastruktur
+
+Signalradaren (§7B) har "Nordisk spejl" som fast overvågningsdimension. Det
+nordiske spejl er ikke en ekstra kilde der indhentes ad hoc; det er en
+basiskomponent i overvågningssystemet. Kilderne er organiseret i seks
+dimensioner — her er den redaktionelle begrundelse for de vigtigste:
+
+**Teknologiimplementering — hvad virksomheder faktisk gør**
+AI Sweden (ai.se) er den mest robuste nordiske kilde til at forstå, hvordan AI
+forankres på strategisk ledelsesniveau. Med 160+ partnere og konkrete
+ROI-beregnere, use case-kataloger og lederrapporter (AI Sweden Leadership
+Report 2026) dokumenterer de, hvad tung industri — Ericsson, Saab, AstraZeneca
+— kræver af organisationer og ledelse. Etableringen af AI Factory-konsortiet
+(Wallenberg, SEB m.fl.) med on-premise AI-supercomputer er en
+infrastrukturindikator: når de svenske industrikonglomerater investerer i
+proprietær AI-infrastruktur, følger de store danske koncerner.
+
+**Regulering — hvornår compliance-krav rammer leverandørkæden**
+Mannheimer Swartling (mannheimerswartling.se) er den skarpeste nordiske kilde
+til AI Act's og CSDDD's konsekvenser for virksomheder. Deres ESG-analyser
+dokumenterer, hvornår store svenske virksomheder begynder at kræve
+AI-compliance af leverandører i kontrakterne — det pres forplanter sig direkte
+til det danske leverandørmarked. SCC Arbitration Institute's retningslinjer
+for AI i voldgift (2024) sætter præcedens for, hvad danske advokater og
+virksomheder må bruge AI til, når konflikter opstår.
+
+**Arbejdsmarked — empirisk modvægt til angloamerikanske jobtab-narrativer**
+ETLA (etla.fi) er det eneste nordiske institut med egentlig økonometri på AI
+og arbejdsmarked. Deres finding — at den nordiske model (ansættelsesbeskyttelse,
+fagforeninger) konsekvent afbøder teknologiske chok bedre end det amerikanske
+system — er det empiriske fundament til at udfordre McKinsey- og Goldman-rapporter
+i dansk kontekst. Arbetsmarknadens AI-råd kortlægger kompetencegab tæt på den
+svenske trepartsstruktur: deres diskussioner afspejler de krav, der snart lander
+i danske overenskomstforhandlinger.
+
+**Kapital — hvad pengene satser på nu**
+Breakit (breakit.se) og Shifter (shifter.no) overvåger dagligt venture-kapitalen
+i de nordiske tech-miljøer. De forretningsmodeller, der opnår kritisk masse og
+finansiering i Sverige og Norge i dag, definerer B2B-markedet om to til tre år.
+Shifter dokumenterer desuden det norske "kapitalgab" for scale-ups og statens
+rolle i innovationsfinansiering — en direkte spejling af den løbende danske
+debat om EIFO og Vækstfonden.
+
+**Offentlig sektor og sundhed — Finlands laboratorium**
+SOTE AI Ecosystem (digifinland.fi) med 290+ organisationer er det mest konkrete
+nordiske testbed for offentlig AI-implementering. Pilotresultater fra
+AI-journalisering, PET-scanning og psykiatri publiceres løbende. Når SOTE
+dokumenterer, at AI Act-kompleksiteten bremser innovation i medicinsk udstyr,
+er det en præcis forudsigelse af de kampe, danske regioner og Sundhedsministeriet
+vil føre. Finland koordinerer desuden TEHDAS2 — det europæiske framework for
+sekundær brug af sundhedsdata — og er dermed normsætter for hele EU.
+
+Komplet kildeliste med URLs og redaktionel brug per kilde: *Redaktion - Nordiske-kilder.md*.
+
+### Den nordiske protokol i pitchmodellen
+
+Ved nordisk pitch tilføjes et fjerde element til standardmodellen (§10):
+
+**Nordisk validering:** Hvad er evidensen for det 12-24 måneders mønster,
+hvem er de danske beslutningstagere der er i spil, og hvilken verificerbar
+kilde bærer den danske konsekvens?
+
+Mangler et af de fire svar, returneres pitchet til research.
 
 ---
 
