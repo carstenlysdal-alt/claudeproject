@@ -123,6 +123,59 @@ Vores journalistik bliver en øjenåbner, der udfordrer fastlåste dogmer og skj
 
 **Format:** Inspire
 
+## Redaktionel indholdsarkitektur — spor og strukturblokke
+
+De to første kernepiller er nu nedbrudt til konkrete produktionsspor. Hvert
+spor har sin egen kategoristruktur, formatpalette, kildebase og AI-lag.
+Inspire-sporet er endnu ikke specificeret på samme niveau.
+
+### Spor 1: Seneste Nyheder — "Understand"
+
+**Grundspørgsmål:** Hvad, hvem, hvornår, hvordan. Drevet af hastighed.
+
+**Kategorier:** Politik, International, Business (Tech, Succes)
+
+**Formater:** News Bullets, Liveblogs, Analyse
+
+**Kilder:** Ritzau, Reuters, EXA
+
+**Video:** Short Reel, Real Reel
+
+**Audio:** Briefing
+
+**Signal:** AI
+
+**Feature:** Poll, Henvisning, Fakta
+
+---
+
+### Spor 2: Værdi-historier — "Challenge"
+
+**Grundspørgsmål:** Hvad, hvorfor, hvad nu. Drevet af dybde, debat og egne
+vinkler.
+
+**Kategorier:** Islamisme, Skat, Klima, Tryghed, Køn, Bureaukrati, Sundhed,
+Kontrol, Danske værdier
+
+**Formater:** News Standard, MythBuster, Analyse, Opinion
+
+**Kilder:** Danske og internationale medier (EXA), sociale medier, N-0-kilder
+
+**Video:** Reel, Mini-doc
+
+**Audio:** Retold, Podcast
+
+**Topic:** Agent — AI + LLM + journalistik
+
+**Feature:** Fakta, Poll, X-Y-Z, Kommentarer
+
+---
+
+De to spor deler samme byggeblokke — kategorier, formater, kilder, video,
+audio, et AI-drevet lag og features — men fylder dem forskelligt ud efter
+pillar. Seneste Nyheder optimerer for hastighed og bredde. Værdi-historier
+optimerer for dybde, kildekritik og en tydelig egen vinkel.
+
 ## Produktionsformat
 
 AI-genereret indhold kan produceres i flere formater:
