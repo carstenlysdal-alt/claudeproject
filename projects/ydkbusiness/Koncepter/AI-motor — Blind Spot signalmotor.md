@@ -438,7 +438,7 @@ Systemets centrale output er et struktureret signalobjekt.
 ## Systemarkitektur
 
 ```
-[Supertrends + RSS + kildelister + nyhedskilder]
+[Eget system + RSS + kildelister + nyhedskilder]
         ↓
 [Ingestion og deduplikering]
         ↓

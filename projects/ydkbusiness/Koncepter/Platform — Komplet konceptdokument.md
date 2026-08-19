@@ -60,10 +60,10 @@ får nyheder der er skrevet til andre — og har ikke råd til dedikerede
 BI-løsninger som Meltwater eller Keystone.
 
 **2. AI-produktion ændrer cost-strukturen fundamentalt.**
-Y.dk har med Supertrends-platformen en fungerende teknologi der crawler
-5.000 kilder 24/7. Det muliggør en redaktionel dækning og et
-overvågningsprodukt der tidligere krævede en stor redaktion eller et
-enterprise-budget.
+Y.dk bygger eget CMS og eget system baseret på direkte datakilder — CVR,
+Retsinformation, EUR-Lex, udbud.dk og øvrige offentlige API'er. Det
+muliggør en redaktionel dækning og et overvågningsprodukt der tidligere
+krævede en stor redaktion eller et enterprise-budget.
 
 **3. Mainstream-medier er ensrettede.**
 Der er et reelt og udækket behov for erhvervsindhold der systematisk
@@ -278,8 +278,8 @@ Business genererer 10x mere revenue per abonnent end Private (500 DKK vs. 50 DKK
 
 ## Afhængigheder og risici
 
-**Supertrends-integration**
-Møde afholdt 3. juni 2026. Valg A bekræftet: Y bygger oven på Supertrends' infrastruktur. Partnerbrief sendt. Jens/Supertrends undersøger konkret, hvad platformen kan levere til dansk SMV-segment (kilder, motorkonfiguration, kapabiliteter). Features leveret af Supertrends brandes "Powered by Supertrends". Åbne udeståender: rammeaftale (afventer kildestruktur), kildekobling til nyheder og on-demand briefs (kræver sandsynligvis eksternt LLM-lag). Afhængighed af ekstern teknologi er en strukturel risiko, der kræver klare SLA-aftaler.
+**Teknologisk platform**
+Møde afholdt 3. juni 2026 pegede oprindeligt på et samarbejde med Supertrends (Valg A). Beslutningen er siden omgjort (august 2026): Supertrends er fravalgt. Y bygger eget CMS og eget system baseret på direkte datakilder (CVR, Retsinformation, EUR-Lex, udbud.dk m.fl.) — se `CLAUDE.md` og `docs/Redaktion - AI-motorspecifikation.md`. Historikken er bevaret i `output/supertrends-moedereferat.md`.
 
 **AI-kommunikation og troværdighed**
 Y's redaktionelle linje kommunikerer AI aktivt: "Vi er fronten af AI i mediebranchen — AI producerer, mennesker verificerer." Kun 10% af danskerne er i dag trygge ved AI-journalistik (RUC 2024). Den barriere håndteres ikke med tavshed, men med transparent kommunikation om verificeringsprocessen koblet til det redaktionelle lag. AI er en del af produktets identitet og markedsføres som styrke — ikke skjult som teknisk infrastruktur.
@@ -298,6 +298,5 @@ kommunikerer sig selv på redaktionel uafhængighed og faktabaseret indhold.
 | Redaktionelt koncept | Chefredaktør + PM | Ikke påbegyndt |
 | Kommerciel model | Commercial Lead + PM | Ikke påbegyndt |
 | Teknologisk platform | Tech Lead + PM | Ikke påbegyndt |
-| Supertrends — teknisk kapabilitetsrapport (dansk SMV-segment) | Jens/Supertrends | Igangsat juni 2026 |
 | Behovsafdækning hos erhvervsorganisationer: SMVdanmark, Dansk Erhverv, DI, IT-Branchen, Landbrug & Fødevarer, TEKNIQ | PM + Commercial Lead | Igangsat juni 2026 — møder i gang |
 | Stakeholder-præsentation | PM | Afventer øvrige leverancer |

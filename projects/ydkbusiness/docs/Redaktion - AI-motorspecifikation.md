@@ -164,20 +164,11 @@ af dette.
 
 ## 1. Kildestruktur
 
-Y.dk Business-motoren opererer med fem kildelag.
+Y.dk Business-motoren opererer med fem kildelag. Motoren bygger på eget CMS
+og egne systemer baseret på direkte datakilder — ingen ekstern
+crawling-infrastruktur (Supertrends er fravalgt, jf. CLAUDE.md).
 
-### 1.1 Supertrends-infrastruktur (primær motor)
-
-Supertrends crawler 5.000 globale og nationale kilder 24/7. Det er
-platformens primære signalkilde til branchetrends, international erhvervsudvikling
-og fremtidsscenarier. Supertrends-indhold brandes "Powered by Supertrends".
-
-**Konfiguration:** [AFVENTER KAPABILITETSRAPPORT FRA JENS/SUPERTRENDS]
-- Hvilke af de 5.000 kilder er relevante for dansk SMV-segment?
-- Kan kildeudvalg konfigureres per branche?
-- Leverer motoren klassificerede feeds eller rådata?
-
-### 1.2 Nationale nyhedskilder
+### 1.1 Nationale nyhedskilder
 
 | Kilde | Type | Integration | Prioritet |
 |---|---|---|---|
@@ -192,7 +183,7 @@ og fremtidsscenarier. Supertrends-indhold brandes "Powered by Supertrends".
 **Note:** Dagblade og erhvervsmedier aggregeres til kontekst og signaldetektion
 — ikke til genpublikation. Originalt indhold er Y's.
 
-### 1.3 Regulatoriske og offentlige datakilder
+### 1.2 Regulatoriske og offentlige datakilder
 
 Lovgivning, regulering og offentlige data er en central del af Y.dk Business'
 value proposition. Disse kilder er gratis og udgør en konkurrencemæssig fordel,
@@ -212,7 +203,7 @@ der ikke kræver partnerskab.
 **[AFVENTER DYRBY]:** Prioritering af regulatoriske kildelag —
 hvilke sektorer dækkes i fase 1 (oktober 2026)?
 
-### 1.4 Internationale nyhedskilder (C-level og branchetrends)
+### 1.3 Internationale nyhedskilder (C-level og branchetrends)
 
 | Kilde | Adgang | Note |
 |---|---|---|
@@ -224,7 +215,7 @@ hvilke sektorer dækkes i fase 1 (oktober 2026)?
 
 **[AFVENTER TECH LEAD]:** Reuters og AP — eksisterende aftaler på Y.dk-platformen?
 
-### 1.5 Brancheorganisationer og erhvervskilder
+### 1.4 Brancheorganisationer og erhvervskilder
 
 | Kilde | Segment | Integration |
 |---|---|---|
@@ -235,9 +226,9 @@ hvilke sektorer dækkes i fase 1 (oktober 2026)?
 | SMVdanmark | SMV generelt | RSS |
 | Dansk Industri — analyseudgivelser | Makro og erhvervspolitik | PDF-download + AI-bearbejdning |
 
-### 1.6 Exa-research-motoren (formattilpasset søgning)
+### 1.5 Exa-research-motoren (formattilpasset søgning)
 
-Supplerer de faste kildelag (1.1–1.5) med on-demand, formattilpasset søgning
+Supplerer de faste kildelag (1.1–1.4) med on-demand, formattilpasset søgning
 via Exa. Ni søgeprofiler genererer dynamisk skræddersyede søgninger til det
 aktuelle format:
 
@@ -263,9 +254,8 @@ INGESTION → KLASSIFICERING → GENERERING → VERIFICERING → DISTRIBUTION
 ```
 
 **Trin 1 — Ingestion**
-Alle kilder crawles kontinuerligt. Supertrends-infrastrukturen håndterer
-den tunge crawling. Regulatoriske og offentlige API'er polles med
-fastsatte intervaller (se afsnit 2.2).
+Alle kilder crawles kontinuerligt af egne systemer. Regulatoriske og
+offentlige API'er polles med fastsatte intervaller (se afsnit 2.2).
 
 **Trin 2 — Klassificering**
 Hvert inkommende signal klassificeres automatisk på:
@@ -306,7 +296,6 @@ Godkendt indhold distribueres til:
 | Regulatoriske myndigheder | 2x dagligt (06:00 + 14:00) | Bekendtgørelser udkommer typisk om morgenen |
 | Udbud.dk | Dagligt kl. 04:00 | Udbudsfrister er dagsspecifikke |
 | Statistik Danmark | Ugentligt + ved udgivelse | Indikatorudgivelser er planlagte |
-| Supertrends | Kontinuerligt (motorinternt) | Supertrends' eget crawl-interval |
 | Branchemedier / RSS | Hver 2. time | Tilstrækkeligt for ikke-breaking |
 | Internationale RSS | Hver 4. time | Relevans falder ikke med timing |
 
@@ -628,7 +617,7 @@ på motor-kapacitet? Skal vi specificere et minimum og et mål-niveau?
 | D3 | Morgenbrief — algoritmisk rangering vs. redaktionelt "highlight" | Produktionspipeline-design |
 | D4 | Kommentatornetværk til C-level sektionen | C-level indhold kan ikke specificeres endeligt |
 | D5 | Branchetrends — distribueret over ugen eller samlet fredag | Redaktionsplan og motorkonfiguration |
-| D6 | Produktionsvolumen — minimum vs. mål | SLA-aftale med Supertrends |
+| D6 | Produktionsvolumen — minimum vs. mål | Kapacitetsplanlægning for eget system |
 
 ---
 
@@ -640,7 +629,6 @@ på motor-kapacitet? Skal vi specificere et minimum og et mål-niveau?
 | T2 | TTS-integration — hvilken engine, og hvad er latency? | Lyd-format i morgenbrief og feed |
 | T3 | CVR-API — direkte adgang eller via tredjepart? | Markedsovervågning og leadgenerering |
 | T4 | Personaliserings-lag — hvad understøtter platformen i dag? | Morgenbrief og feed personalisering |
-| T5 | Supertrends kapabilitetsrapport — hvornår leveres den? | Kildestruktur afsnit 1.1 kan ikke lukkes |
 
 ---
 

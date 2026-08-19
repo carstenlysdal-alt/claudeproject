@@ -89,8 +89,9 @@ Spor 3 følger i måned 2-3.
 ## Teknisk udgangspunkt
 
 Y.dk Business bygger eget CMS og eget system baseret på direkte datakilder.
-Supertrends er ikke del af den aktuelle plan — det undersøges om Supertrends
-kan bidrage til specifikke formater (f.eks. trend-aggregering) på sigt.
+Supertrends er ude af planen — beslutning bekræftet. Platformen bruger
+udelukkende egne systemer og direkte datakilder (CVR, Retsinformation,
+EUR-Lex, RSS m.fl.), ikke ekstern crawling-infrastruktur.
 
 Jesper (Tech Lead) har ansvar for specifikationer og udviklingsprioritering.
 tech involveres i overvågnings- og intelligensarbejdet.

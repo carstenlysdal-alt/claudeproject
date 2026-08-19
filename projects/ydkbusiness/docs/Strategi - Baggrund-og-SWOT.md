@@ -18,13 +18,13 @@ Kerneredaktion: Det der mangler i dagens journalistik — modpolen, nuancen, den
 
 - **Michael Dyrby** — chefredaktør, årtiers erfaring fra BT og TV2
 - **Lars Seier Christensen** — hovedinvestor, finansierer langsigtede underskud
-- **Lars Tvede** — Supertrends-teknologi, AI der crawler 5.000 kilder
+- **Lars Tvede** — baggrund fra Supertrends; teknologien indgår ikke i den aktuelle platformsbeslutning
 - **Anders Samuelsen** — politisk og medieindsigt
 
 ## Teknologi
 
 - AI producerer indhold 24/7, redaktører verificerer og redigerer
-- Supertrends-platformen: fungerende model, ikke teoretisk
+- Eget CMS og eget system baseret på direkte datakilder — ikke ekstern crawling-infrastruktur
 - Personalisering: Netflix for nyheder — indhold tilpasset den individuelle bruger
 - Formater: tekst, lyd, video
 
@@ -47,7 +47,7 @@ Fase 2: Internationale læsere
 - Klar borgerlig identifikation i homogeniseret mediescene
 - Kompetente mediefolk (Dyrby, Juhl)
 - Dybe lommer (Seier) — kan køre underskud i årevis
-- Fungerende AI-teknologi (Supertrends)
+- Fungerende AI-teknologi bygget på eget system
 - First-mover i AI-journalistik i Danmark
 
 ### Svagheder

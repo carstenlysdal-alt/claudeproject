@@ -9,7 +9,7 @@
 
 ## Positioneringens status
 
-Positioneringen i `positioning-statement.md` er en **dokumenteret arbejdshypotese** — ikke en strategisk beslutning der er fredet for revision. Discovery kan og skal afkræfte den hvis data peger i en anden retning. Hvad vi er villige til at revidere: pris, features-prioritering, segmentering og kommunikationsplatform. Hvad der er strukturelt givet: Supertrends-infrastrukturen, Y.dk som platform og den redaktionelle DNA.
+Positioneringen i `positioning-statement.md` er en **dokumenteret arbejdshypotese** — ikke en strategisk beslutning der er fredet for revision. Discovery kan og skal afkræfte den hvis data peger i en anden retning. Hvad vi er villige til at revidere: pris, features-prioritering, segmentering og kommunikationsplatform. Hvad der er strukturelt givet: eget system som teknisk infrastruktur, Y.dk som platform og den redaktionelle DNA.
 
 ---
 

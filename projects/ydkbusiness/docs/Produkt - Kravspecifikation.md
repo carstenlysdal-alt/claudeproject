@@ -241,7 +241,7 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 
 ### Tekniske krav
 
-- Supertrends-motoren leverer trend-aggregering på tværs af 5.000 kilder
+- Eget system leverer trend-aggregering på tværs af de konfigurerede kildelag (se Redaktion - AI-motorspecifikation.md §1)
 - Trend-klassificering (Emerging / Peak / Fading) udføres af motor eller PM-defineret heuristik: [afklares — Q4]
 - Detaljeside kræver kildevisning — ikke blot trend-label
 
@@ -294,8 +294,8 @@ Overvågning bygger udelukkende på direkte offentlige endpoints — ingen melle
 
 ### Tekniske krav
 
-- On-demand brief-generering kræver separat LLM-lag (Claude/OpenAI API) — Supertrends understøtter ikke on-demand queries
-- Rådata til briefs hentes fra Supertrends API + Via Ritzau + udbud.dk efter emne
+- On-demand brief-generering kræver separat LLM-lag (Claude/OpenAI API) — eget system understøtter ikke on-demand queries direkte
+- Rådata til briefs hentes fra eget system + Via Ritzau + udbud.dk efter emne
 - TTS-motor: ekstern service (ElevenLabs, Google Cloud TTS eller Azure Neural TTS — beslutning afventer)
 - PDF-eksport: ikke fase 1
 
@@ -386,7 +386,7 @@ Primær differentiator mod LassoX: LassoX leverer statiske virksomhedsdata fra C
 **F6.1a — Ekspert- og personovervågning som leadsignal**
 - Nøglepersoner (eksperter, C-level, analytikere) overvåges for udtalelser og aktivitet
 - Relevante udtalelser om tech, AI og marked flagges som signal
-- Feature-request til Supertrends — afventer teknisk vurdering
+- Teknisk vurdering med Tech Lead af, hvordan eget system understøtter person- og ekspertovervågning
 
 ---
 
@@ -415,7 +415,7 @@ Primær differentiator mod LassoX: LassoX leverer statiske virksomhedsdata fra C
 
 ### Tekniske krav
 
-- Signal-matching bygger oven på Supertrends' overvågningsmotor + egne regulatory-API'er
+- Signal-matching bygger på eget overvågningssystem + egne regulatory-API'er
 - CVR-integration: direkte mod Erhvervsstyrelsens ElasticSearch API
 - Lead-data gemmes i brugerprofil og kan eksporteres
 
@@ -596,7 +596,7 @@ Opdateret efter platformsundersøgelse maj 2026. Spørgsmål der er besvaret af 
 
 ### Arkitekturstatus
 
-**Y.dk kører eget CMS og egne systemer.** Supertrends er ikke en del af den aktuelle plan. Det undersøges om Supertrends eller lignende eksterne motorer kan bidrage til specifikke formater (f.eks. trend-aggregering) på et senere tidspunkt — men primær tilgang er eget system baseret på direkte datakilder.
+**Y.dk kører eget CMS og egne systemer.** Supertrends er fravalgt — beslutning bekræftet august 2026. Platformen bygger udelukkende på eget system baseret på direkte datakilder.
 
 **Y.dk's tekniske ansvar:**
 - Eget CMS

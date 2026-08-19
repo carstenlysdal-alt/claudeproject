@@ -822,7 +822,7 @@ branchefeeds
 
 Det konkrete kildelag:
 
-Supertrends — realtidscrawl af 5.000 globale og nationale kilder, 24/7
+Eget system — realtidscrawl af nationale og udvalgte internationale kilder, 24/7
 CVR-API — direktørskifter, kapitalændringer, stiftelser og fusioner i realtid
 Erhvervsstyrelsen, Finanstilsynet, SKM, Konkurrence- og Forbrugerstyrelsen — regulatoriske feeds
 EU-Tidende og EUR-Lex — EU-forordninger og direktiver

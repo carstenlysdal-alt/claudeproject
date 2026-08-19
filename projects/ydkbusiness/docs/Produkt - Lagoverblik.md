@@ -50,20 +50,20 @@ og direkte adgang til redaktionen.
                  PERSONALISERING (branche · virksomhed · marked)
                                      ↑
           ┌──────────────────────────┴───────────────────────┐
-          │  SUPERTRENDS               OFFENTLIGE APIs        │
-          │  CMS + datastruktur        Retsinformation        │
-          │  Overvågningsmotor         EUR-Lex                │
-          │  AI-analyse                udbud.dk               │
-          │  Automatiserede briefs     Folketing ODA          │
-          │  "Powered by Supertrends"  CVR + XBRL             │
-          │                            Danmarks Statistik     │
-          │  Y.dk bygger:              Via Ritzau API         │
-          │  Frontend + interface      RSS (signalinput)      │
-          │  Redaktionelt lag                                 │
+          │  EGET SYSTEM                OFFENTLIGE APIs        │
+          │  CMS + datastruktur         Retsinformation        │
+          │  Overvågningsmotor          EUR-Lex                │
+          │  AI-analyse                 udbud.dk               │
+          │  Automatiserede briefs      Folketing ODA          │
+          │                             CVR + XBRL             │
+          │                             Danmarks Statistik     │
+          │  Y.dk bygger:               Via Ritzau API         │
+          │  Frontend + interface       RSS (signalinput)      │
+          │  Redaktionelt lag                                  │
           └──────────────────────────────────────────────────┘
 ```
 
-**Arkitekturstatus (besluttet juni 2026):** Supertrends leverer CMS, datastruktur og overvågningsmotor. Y.dk bygger frontend og interface oven på. Se `output/supertrends-moedereferat.md`.
+**Arkitekturstatus (opdateret august 2026):** Supertrends er fravalgt. Y.dk bygger eget CMS, egen datastruktur og egen overvågningsmotor oven på direkte datakilder. Se `CLAUDE.md`.
 
 ---
 
@@ -141,7 +141,7 @@ Det der normalt kræver en dedikeret analytiker.
 **Funktioner:**
 - Ugentlig trendrapport pr. branche
 - Trend-radar: hvad er på vej, hvad er ved at toppe
-- Kobling til konkrete virksomheder og markeder (Supertrends-lag)
+- Kobling til konkrete virksomheder og markeder (eget overvågningslag)
 - Filtrerbart på tidshorisont: nu / 6 måneder / 1-3 år
 
 **Brugerflow:**
@@ -269,7 +269,7 @@ To formuleringer bruges konsekvent i hver sin kontekst:
 - **Ekstern kommunikation til brugeren:** "AI producerer, mennesker verificerer" — kommunikerer skala og troværdighed. Vises i UI og kanalerne.
 - **Intern redaktionel regel:** "AI må foreslå. Redaktionen afgør." — den operationelle beslutningsregel for redaktion og motor.
 
-53% af danskerne er utrygge ved AI-journalistik. Barrieren håndteres med kompetent kommunikation om verificeringsprocessen — ikke med tavshed. "Powered by Supertrends" vises på relevante komponenter.
+53% af danskerne er utrygge ved AI-journalistik. Barrieren håndteres med kompetent kommunikation om verificeringsprocessen — ikke med tavshed.
 
 **Produktet kommunikeres altid som virksomhedsudgift.**
 Betalingsvillighed for personlige nyheder (35-54 år): 11-12%.
@@ -314,6 +314,5 @@ Platformen leverer værdi i indbakken fra dag 1 — brugeren konfigurerer ikke a
 | Spørgsmål | Påvirker | Status |
 |---|---|---|
 | On-demand briefs (ad hoc, 60 sek.) — kræver LLM-lag? | B2B-briefs | Åbent — afklares med Tech Lead |
-| Person- og ekspertovervågning — kan Supertrends understøtte det? | Overvågning + Leads | Åbent — feature-request sendt til Supertrends |
-| Rammeaftale Supertrends: fee, procent eller hybrid | Økonomi | Åbent — afventer kildeaftale |
+| Person- og ekspertovervågning — kan eget system understøtte det? | Overvågning + Leads | Åbent — teknisk vurdering med Tech Lead |
 | Designer-ressource til august | Design + UI | Åbent — CEO afklarer

@@ -83,7 +83,7 @@ Hvis redaktionelt koncept og features spec v1.0 ikke er fuldt pakket ved udgange
 |---|---|---|---|
 | 1-2 | UI-wireframes: onboarding, dashboard, morgenbrief | PM + Designer | Frontend-build |
 | 2-3 | UI-wireframes: overvågning, trends, B2B-briefs, community | PM + Designer | Frontend-build |
-| 3-4 | Teknologisk platform-spec (arkitektur, Supertrends-integration, skalering) | PM + Tech Lead | Backend-build |
+| 3-4 | Teknologisk platform-spec (arkitektur for eget system, skalering) | PM + Tech Lead | Backend-build |
 | 3-4 | Commercial Lead: acquisition-budget bekræftet, kanalvalg besluttet | PM + Commercial Lead | GTM-eksekvering |
 | 4 | Stakeholder-præsentation: concept + design + tech + GTM | PM | Go/no-go beslutning |
 | 4+ | Frontend-build påbegyndes — fortsætter ind i september | Tech Lead + Designer | Launch 1. oktober |
@@ -183,7 +183,6 @@ Registration Wall skal besluttes og implementeres af Tech Lead inden paywall-lan
 | Afhængighed | Risiko | Mitigation |
 |---|---|---|
 | Fælles afklaringsmøde uge 1 juni — tre beslutninger skal ud | Forsinkelse her forsinker hele kæden | Book mødet nu. Send beslutningsdokument som pre-read. |
-| Supertrends — Jens/Supertrends undersøger nu konkret hvad platformen kan levere til dansk SMV-segment | Features spec v1.0 lukkes når kapabilitetsrapport foreligger | Opfølgende teknisk møde med Tech Lead og Lars Tvede |
 | Designer ikke identificeret | August-leverancer i fare | CEO afklarer ressource inden udgangen af juni |
 | Redaktionelt koncept → tech-konfiguration | Tech kan ikke konfigurere motor uden det | Lever senest 30. juni |
 | Commercial Lead involveres for sent | GTM-brief i september = for lidt tid til acquisition | Bring Commercial Lead ind i august-præsentation |
@@ -234,7 +233,6 @@ Registration Wall skal besluttes og implementeres af Tech Lead inden paywall-lan
 | U1 | **Redaktionelt koncept** — forudsætning for alt. Lysdal + Dyrby leverer inden 22. juni. Ingen yderligere produktdrøftelser før det foreligger. | Kritisk |
 | U2 | **Tier-feature-allocation** — hvilke features ligger præcist i Erhverv / Erhverv+ / Premium. Afklares efter redaktionelt koncept. | Høj |
 | U3 | **Partner governance** — præcise grænser for kommerciel adgang vs. redaktionel uafhængighed. Skal i scope på sigt. | Udestående |
-| U4 | **Supertrends-prisforhandling** — platformens distributionsværdi for Supertrends. Afventer kildestruktur. | Afventer |
 | U5 | **Artikel-deling** — tokeniseret link-model gælder hele Y.dk, ikke kun Business. Teknisk scope afklares med Tech Lead. | Tænkes ind tidligt |
 | U6 | **Akvisitionsbudget** — 1.500 Business-abonnenter kræver 1,95–3,55 mio. DKK afhængig af mix (inbound/LinkedIn/direktesalg). Ingen linje i budget endnu. Commercial Lead afklarer inden august-præsentation. | Kritisk |
 | U7 | **Registration Wall** — forudsætning for konverteringsmålet. Kold paywall giver ~0,20% konvertering = uacceptabel risikoprofil. Tech Lead beslutter og implementerer Registration Wall inden november. | Kritisk |
