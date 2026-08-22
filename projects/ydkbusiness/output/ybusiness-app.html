@@ -73,7 +73,13 @@ h1,h2,h3 { text-wrap:balance; }
 
 .app-view { display:none; }
 .app-view.active { display:block; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.dash-nav-item:focus, .dash-nav-item:focus-visible,
+.vt-btn:focus, .vt-btn:focus-visible,
+.hub-node:focus, .hub-node:focus-visible,
+.back-btn:focus, .back-btn:focus-visible,
+button:focus, button:focus-visible {
+  outline: none !important;
+}
 
 /* ==== INTERN (scoped) ==== */
 
@@ -14662,12 +14668,14 @@ window.addEventListener('hashchange', function() {
 document.getElementById('navIntern').addEventListener('click', function(e) {
   var btn = e.target.closest('[data-target]');
   if (!btn) return;
+  if (btn.blur) btn.blur();
   var vEl = document.getElementById('view-intern');
   if (vEl && vEl._nav) vEl._nav(btn.getAttribute('data-target'));
 });
 document.getElementById('navRedaktion').addEventListener('click', function(e) {
   var btn = e.target.closest('[data-target]');
   if (!btn) return;
+  if (btn.blur) btn.blur();
   var vEl = document.getElementById('view-redaktion');
   if (vEl && vEl._nav) vEl._nav(btn.getAttribute('data-target'));
 });
