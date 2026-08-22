@@ -16,10 +16,20 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #FAFAF8; }
+.deck-viewport {
+  position: fixed; inset: 0; overflow: hidden;
+  background: linear-gradient(135deg, #FAFAF8, #F7F1E7, #FAF5EC, #F9F3EA, #FAFAF8);
+  background-size: 300% 300%;
+  animation: bg-flow 32s ease-in-out infinite;
+}
+@keyframes bg-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 .deck-stage { position: absolute; left: 0; top: 0; width: 1440px; height: 980px; overflow: hidden; transform-origin: 0 0; }
 img, video, canvas, svg { max-width: 100%; max-height: 100%; }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } .deck-viewport { animation: none; background-position: 0% 50%; } }
 
 /* === SCREENS === */
 .screen {
@@ -28,7 +38,7 @@ img, video, canvas, svg { max-width: 100%; max-height: 100%; }
   overflow: hidden; display: block;
   visibility: hidden; opacity: 0;
   pointer-events: none;
-  background: #FAFAF8;
+  background: transparent;
   transition: opacity 0.3s ease;
 }
 .screen.active { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
@@ -40,7 +50,7 @@ img, video, canvas, svg { max-width: 100%; max-height: 100%; }
   --card:      #FFFFFF;
   --ink:       #100C0C;
   --ink70:     #44413C;
-  --muted:     #7C7972;
+  --muted:     #6B6862;
   --faint:     #9C998F;
   --line:      #E4E2DD;
   --line2:     #ECEAE4;
@@ -52,6 +62,10 @@ img, video, canvas, svg { max-width: 100%; max-height: 100%; }
   --accent-10: rgba(54,19,82,0.08);
   --accent-20: rgba(54,19,82,0.15);
   --accent-30: rgba(54,19,82,0.25);
+
+  /* Produktlag-accenter (bruges via --pc/--nc/--lc/--ltl-color pr. instans) */
+  --layer-ai:  #7C3AED;
+  --layer-gtm: #2563EB;
 
   /* Semantik */
   --green:     #16A34A;
@@ -65,9 +79,19 @@ img, video, canvas, svg { max-width: 100%; max-height: 100%; }
   --sans:      'Schibsted Grotesk', system-ui, sans-serif;
   --serif:     'Playfair Display', Georgia, serif;
   --mono:      'JetBrains Mono', monospace;
+
+  /* Radius-skala (snappet fra tidligere ad hoc-værdier, maks. 2px afvigelse) */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+[data-target]:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
 
 h1, h2, h3, .hub-h1, .tile-h, .sec-title, .ibox-t, .risk-t, .cat-txt { text-wrap: balance; }
 p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
@@ -75,18 +99,18 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 
 /* === HEADER — Y Rating editorial style === */
 .dash-header {
-  position: absolute; top: 0; left: 0; right: 0; height: 68px;
+  position: fixed; top: 24px; left: 24px; right: 24px; height: 68px;
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
   padding: 0 52px;
   background: rgba(250, 250, 248, 0.97);
   border-bottom: 2px solid var(--line);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  z-index: 10;
+  z-index: 60;
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
 
-.dash-brand { display: flex; align-items: center; gap: 16px; }
+.dash-brand { display: flex; align-items: center; gap: 16px; white-space: nowrap; flex-shrink: 0; }
 
 .dash-brand-mark {
   font-family: var(--serif); font-size: 20px; font-weight: 700;
@@ -111,7 +135,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   color: var(--accent);
   background: var(--accent-10);
   border: 1px solid var(--accent-30);
-  padding: 3px 10px; border-radius: 4px;
+  padding: 4px 8px; border-radius: var(--radius-sm);
   font-weight: 700;
 }
 
@@ -130,7 +154,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   position: absolute; top: 68px; left: 0; right: 0; bottom: 0;
 }
 .hub-intro {
-  padding: 40px 56px 34px;
+  padding: 40px 56px 32px;
   background: var(--card);
   border-bottom: 1px solid var(--line);
   flex-shrink: 0;
@@ -138,7 +162,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .hub-eyebrow {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
   color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase;
-  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+  margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
 }
 .hub-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
 .hub-h1 {
@@ -177,16 +201,16 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .tile-num {
   font-family: var(--mono); font-size: 10px; font-weight: 500;
   color: var(--accent); opacity: 0.45; letter-spacing: 0.08em;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .tile-h {
   font-family: var(--serif); font-size: 22px; font-weight: 700;
-  color: var(--ink); line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.01em;
+  color: var(--ink); line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.01em;
 }
-.tile-pts { flex: 1; display: flex; flex-direction: column; gap: 11px; margin-bottom: 24px; }
+.tile-pts { flex: 1; display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
 .tile-pt {
   font-family: var(--sans); font-size: 13px; font-weight: 400;
-  color: var(--muted); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45;
+  color: var(--muted); display: flex; align-items: flex-start; gap: 8px; line-height: 1.45;
 }
 .tile-pt::before { content: '–'; color: var(--accent); flex-shrink: 0; opacity: 0.6; }
 .tile-cta {
@@ -258,7 +282,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .col { background: var(--card); padding: 24px 32px 44px; overflow-y: auto; position: relative; scrollbar-width: thin; scrollbar-color: var(--line2) transparent; }
 .col::-webkit-scrollbar { width: 4px; }
 .col::-webkit-scrollbar-track { background: transparent; }
-.col::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+.col::-webkit-scrollbar-thumb { background: var(--line); border-radius: var(--radius-xs); }
 .col::-webkit-scrollbar-thumb:hover { background: var(--accent-30); }
 
 /* === ANNOTATION BOXES === */
@@ -266,8 +290,8 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   position: absolute;
   background: #FFFBEA;
   border: 1.5px solid rgba(180,140,20,0.35);
-  border-radius: 4px;
-  padding: 6px 28px 6px 6px;
+  border-radius: var(--radius-sm);
+  padding: 4px 28px 4px 4px;
   min-height: 40px;
   z-index: 50;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06);
@@ -306,7 +330,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   background: none; border: none;
   font-size: 14px; line-height: 1;
   color: rgba(124,121,114,0.5);
-  cursor: pointer; padding: 1px 3px;
+  cursor: pointer; padding: 1px 4px;
   transition: color 0.15s;
   z-index: 51;
 }
@@ -316,7 +340,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   position: absolute;
   border: 2px dashed rgba(54,19,82,0.35);
   background: rgba(54,19,82,0.04);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   pointer-events: none;
   z-index: 100;
 }
@@ -325,17 +349,17 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .col-label {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
   color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase;
-  margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line2);
+  margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line2);
 }
 .col-label-sm {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
-  color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px;
+  color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px;
 }
 
 /* Info boxes */
 .ibox {
   background: var(--tint); border: 1px solid var(--line);
-  padding: 12px 16px; margin-bottom: 10px;
+  padding: 12px 16px; margin-bottom: 8px;
 }
 .ibox.green { background: var(--green-s); border-color: rgba(22,163,74,0.18); }
 .ibox.amber { background: var(--amber-s); border-color: rgba(180,83,9,0.15); }
@@ -349,19 +373,19 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .ibox-b { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.65; }
 .ibox-b strong { color: var(--ink); font-weight: 600; }
 .ibox-b p { margin: 0; }
-.ibox-b p + p { margin-top: 11px; }
+.ibox-b p + p { margin-top: 12px; }
 .col-compact .ibox-b { font-size: 12.5px; line-height: 1.6; }
 .commercial-priority-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-  margin-bottom: 18px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  margin-bottom: 16px;
 }
 .ibox.primary-value {
-  position: relative; margin-bottom: 0; padding: 24px 22px 20px;
+  position: relative; margin-bottom: 0; padding: 24px 20px 20px;
   background: var(--card); border: 1px solid var(--accent-20); border-top: 4px solid var(--accent);
   box-shadow: 0 8px 24px rgba(54,19,82,.08);
 }
 .ibox.primary-value::before {
-  content: 'Primær værdidriver'; display: block; margin-bottom: 10px;
+  content: 'Primær værdidriver'; display: block; margin-bottom: 8px;
   font-family: var(--mono); font-size: 8px; font-weight: 700;
   color: var(--accent); letter-spacing: .12em; text-transform: uppercase;
 }
@@ -371,38 +395,38 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 }
 .ibox.primary-value .ibox-b { font-size: 13px; line-height: 1.58; }
 .commercial-secondary-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-  margin-bottom: 14px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  margin-bottom: 12px;
 }
 .ibox.secondary-value {
-  margin-bottom: 0; padding: 14px 16px; background: var(--tint);
+  margin-bottom: 0; padding: 12px 16px; background: var(--tint);
   border-color: var(--line2);
 }
-.ibox.secondary-value .ibox-t { font-size: 12.5px; color: var(--ink70); margin-bottom: 7px; }
+.ibox.secondary-value .ibox-t { font-size: 12.5px; color: var(--ink70); margin-bottom: 8px; }
 .ibox.secondary-value .ibox-b { font-size: 11.5px; line-height: 1.48; color: var(--muted); }
-.ibox.secondary-value .chk { margin-top: 8px; gap: 5px; }
-.ibox.secondary-value .chk li { font-size: 11px; line-height: 1.35; color: var(--muted); gap: 6px; }
+.ibox.secondary-value .chk { margin-top: 8px; gap: 4px; }
+.ibox.secondary-value .chk li { font-size: 11px; line-height: 1.35; color: var(--muted); gap: 4px; }
 
 /* Checklist */
-.chk { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+.chk { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
 .chk li {
   font-family: var(--sans); font-size: 14px; font-weight: 400;
-  color: var(--ink70); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45;
+  color: var(--ink70); display: flex; align-items: flex-start; gap: 8px; line-height: 1.45;
 }
 .chk li::before { content: '✓'; color: var(--green); flex-shrink: 0; font-weight: 700; }
 .chk li strong { color: var(--ink); font-weight: 600; }
 
 /* Tables */
-.tbl { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
+.tbl { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
 .tbl th {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
   color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 9px 12px; text-align: left;
+  padding: 8px 12px; text-align: left;
   background: var(--tint);
   border-bottom: 2px solid var(--line);
 }
 .tbl td {
-  padding: 10px 12px; font-family: var(--sans); font-size: 13px; font-weight: 400;
+  padding: 8px 12px; font-family: var(--sans); font-size: 13px; font-weight: 400;
   color: var(--ink70); border-bottom: 1px solid var(--line2);
   vertical-align: top; line-height: 1.4;
 }
@@ -433,13 +457,13 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 }
 .rev-row.tot {
   color: var(--accent); font-weight: 700; font-size: 17px;
-  margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--accent-30);
+  margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--accent-30);
   font-family: var(--serif); font-style: italic;
 }
 
 /* Business model feature plot */
 .bm-plot {
-  margin: 34px 0 18px;
+  margin: 32px 0 16px;
   border: 1px solid var(--line);
   background: var(--card);
   position: relative;
@@ -448,7 +472,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   margin: 28px 0 8px;
 }
 .bm-toolline .col-label-sm { margin-bottom: 0; }
@@ -467,8 +491,8 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 7px 10px;
-  border-radius: 4px;
+  padding: 8px 8px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background 0.15s ease, transform 0.1s ease;
 }
@@ -483,7 +507,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   border-bottom: 1px solid var(--line);
 }
 .bm-plot-title {
-  padding: 15px 18px;
+  padding: 16px 16px;
   font-family: var(--serif);
   font-size: 17px;
   font-weight: 700;
@@ -494,7 +518,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 .bm-plot-tier {
   position: relative;
   min-height: 74px;
-  padding: 12px 8px 10px;
+  padding: 12px 8px 8px;
   border-left: 1px solid rgba(255,255,255,0.22);
   display: flex;
   flex-direction: column;
@@ -534,7 +558,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.86;
-  margin-top: 5px;
+  margin-top: 4px;
 }
 .bm-plot-normal {
   font-family: var(--mono);
@@ -543,7 +567,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   color: rgba(255,255,255,0.62);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin-top: 5px;
+  margin-top: 4px;
 }
 .bm-plot-rows { display: grid; }
 .bm-plot-row {
@@ -554,7 +578,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 }
 .bm-plot-row:last-child { border-bottom: none; }
 .bm-plot-feature {
-  padding: 10px 18px;
+  padding: 8px 16px;
   border-right: 1px solid var(--line2);
   display: flex;
   flex-direction: column;
@@ -568,7 +592,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
   line-height: 1.25;
 }
 .bm-plot-feature span {
-  margin-top: 3px;
+  margin-top: 4px;
   font-family: var(--sans);
   font-size: 11px;
   font-weight: 400;
@@ -618,7 +642,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   text-transform: uppercase;
   background: var(--amber-s);
   border: 1px solid rgba(180,83,9,0.2);
-  padding: 3px 6px;
+  padding: 4px 4px;
 }
 .bm-mini {
   font-family: var(--mono);
@@ -640,11 +664,11 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 .bm-plot-subrow:last-child { border-bottom: none; }
 .bm-plot-subfeat {
-  padding: 7px 18px 7px 28px;
+  padding: 8px 16px 8px 28px;
   border-right: 1px solid var(--line2);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 .bm-plot-subfeat::before {
   content: '+';
@@ -685,7 +709,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  padding: 10px 18px;
+  padding: 8px 16px;
   background: var(--tint);
   border-top: 1px solid var(--line);
   font-family: var(--sans);
@@ -701,7 +725,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   background: var(--card);
 }
 .bm-plot-b2b-item {
-  padding: 12px 18px;
+  padding: 12px 16px;
   border-right: 1px solid var(--line2);
 }
 .bm-plot-b2b-item:last-child { border-right: none; }
@@ -747,7 +771,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   color: var(--muted);
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 .bm-addon-v {
   font-family: var(--sans);
@@ -776,20 +800,20 @@ body.bm-editing .bm-plot-cell .bm-add {
 .drv-list { display: flex; flex-direction: column; }
 .drv {
   padding: 12px 0; border-bottom: 1px solid var(--line2);
-  display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: flex-start;
+  display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: flex-start;
 }
 .drv:first-child { border-top: 1px solid var(--line2); }
 .drv-n {
   font-family: var(--serif); font-size: 22px; font-weight: 600;
   color: var(--accent); opacity: 0.2; line-height: 1; font-style: italic;
 }
-.drv-t { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
+.drv-t { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
 .drv-d { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
 
 /* AI options */
 .ai-opt {
-  padding: 16px 18px; border: 1px solid var(--line);
-  margin-bottom: 10px; display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px 16px; border: 1px solid var(--line);
+  margin-bottom: 8px; display: flex; gap: 12px; align-items: flex-start;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 .ai-opt:hover { background: var(--tint); }
@@ -801,7 +825,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 .ai-opt.rec .ai-letter { opacity: 1; }
 .ai-t {
   font-family: var(--sans); font-size: 13px; font-weight: 700;
-  color: var(--muted); margin-bottom: 6px;
+  color: var(--muted); margin-bottom: 4px;
 }
 .ai-opt.rec .ai-t { color: var(--ink); }
 .ai-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.55; }
@@ -810,14 +834,14 @@ body.bm-editing .bm-plot-cell .bm-add {
   font-family: var(--mono); font-size: 9px; font-weight: 700;
   color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
   background: var(--card); border: 1px solid var(--accent-30);
-  padding: 2px 7px; display: inline-block; margin-bottom: 4px;
+  padding: 2px 8px; display: inline-block; margin-bottom: 4px;
 }
 
 /* Timeline */
 .tl { display: flex; flex-direction: column; }
 .tl-row {
   display: grid; grid-template-columns: 108px 1fr; gap: 12px;
-  padding: 9px 0; border-bottom: 1px solid var(--line2); align-items: flex-start;
+  padding: 8px 0; border-bottom: 1px solid var(--line2); align-items: flex-start;
 }
 .tl-row:first-child { border-top: 1px solid var(--line2); }
 .tl-d {
@@ -830,29 +854,29 @@ body.bm-editing .bm-plot-cell .bm-add {
 /* Product layers */
 .layers { display: flex; flex-direction: column; }
 .layer {
-  padding: 18px 0; border-bottom: 1px solid var(--line2);
-  display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: flex-start;
+  padding: 16px 0; border-bottom: 1px solid var(--line2);
+  display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: flex-start;
 }
 .layer:first-child { border-top: 1px solid var(--line2); }
 .layer-n {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
   color: var(--accent); opacity: 0.45; padding-top: 2px;
 }
-.layer-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+.layer-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
 .layer-d { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.55; }
 
 /* Scope grid */
-.scope-g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
-.scope-box { padding: 16px 18px; }
+.scope-g { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.scope-box { padding: 16px 16px; }
 .scope-box.in { background: var(--green-s); border: 1px solid rgba(22,163,74,0.18); }
 .scope-box.out { background: var(--red-s); border: 1px solid rgba(196,58,73,0.13); }
 .scope-hl {
   font-family: var(--mono); font-size: 9px; font-weight: 700;
-  letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 9px;
+  letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 8px;
 }
 .scope-box.in .scope-hl { color: var(--green); }
 .scope-box.out .scope-hl { color: var(--red); }
-.scope-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.scope-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .scope-list li {
   font-family: var(--sans); font-size: 13px; font-weight: 400;
   color: var(--ink70); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
@@ -862,15 +886,15 @@ body.bm-editing .bm-plot-cell .bm-add {
 .scope-group-label {
   font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--green);
   letter-spacing: 0.1em; text-transform: uppercase; list-style: none;
-  margin-top: 10px; margin-bottom: 0; padding: 0;
+  margin-top: 8px; margin-bottom: 0; padding: 0;
 }
 .scope-group-label::before { display: none; }
 .scope-group-label:first-child { margin-top: 0; }
 
 /* === BUSINESS CLARITY === */
 .status-chip {
-  display: inline-flex; align-items: center; gap: 6px;
-  width: fit-content; padding: 3px 7px; border: 1px solid var(--line);
+  display: inline-flex; align-items: center; gap: 4px;
+  width: fit-content; padding: 4px 8px; border: 1px solid var(--line);
   font-family: var(--mono); font-size: 8px; font-weight: 700;
   letter-spacing: .09em; text-transform: uppercase; white-space: nowrap;
   color: var(--muted); background: var(--tint);
@@ -881,35 +905,35 @@ body.bm-editing .bm-plot-cell .bm-add {
 .status-chip.pending { color: var(--amber); background: var(--amber-s); border-color: rgba(180,83,9,.22); }
 .status-chip.later { color: var(--muted); background: var(--tint); }
 .value-driver {
-  display: inline-block; margin-left: 7px; padding: 2px 6px;
+  display: inline-block; margin-left: 8px; padding: 2px 4px;
   font-family: var(--mono); font-size: 8px; font-weight: 700;
   color: var(--accent); letter-spacing: .08em; text-transform: uppercase;
   background: var(--accent-10); border: 1px solid var(--accent-20); vertical-align: 1px;
 }
 .commercial-thesis {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-  margin-bottom: 18px; background: var(--line); border: 1px solid var(--line);
+  margin-bottom: 16px; background: var(--line); border: 1px solid var(--line);
 }
-.thesis-item { background: var(--card); padding: 14px 15px; }
-.thesis-k { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--accent); letter-spacing: .11em; text-transform: uppercase; margin-bottom: 5px; }
+.thesis-item { background: var(--card); padding: 12px 16px; }
+.thesis-k { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--accent); letter-spacing: .11em; text-transform: uppercase; margin-bottom: 4px; }
 .thesis-v { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.35; }
 .funnel {
-  display: grid; grid-template-columns: repeat(4, 1fr); margin: 10px 0 14px;
+  display: grid; grid-template-columns: repeat(4, 1fr); margin: 8px 0 12px;
   border: 1px solid var(--line); background: var(--card);
 }
-.funnel-step { position: relative; padding: 13px 12px 12px 17px; border-right: 1px solid var(--line); min-height: 70px; }
+.funnel-step { position: relative; padding: 12px 12px 12px 16px; border-right: 1px solid var(--line); min-height: 70px; }
 .funnel-step:last-child { border-right: 0; }
 .funnel-step:not(:last-child)::after {
   content: '›'; position: absolute; right: -7px; top: 22px; z-index: 2;
   width: 14px; height: 22px; background: var(--card); color: var(--accent);
   font-family: var(--serif); font-size: 20px; line-height: 20px; text-align: center;
 }
-.funnel-n { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 5px; }
+.funnel-n { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
 .funnel-v { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.3; }
-.funnel-d { margin-top: 3px; font-family: var(--sans); font-size: 10.5px; color: var(--muted); line-height: 1.35; }
+.funnel-d { margin-top: 4px; font-family: var(--sans); font-size: 10.5px; color: var(--muted); line-height: 1.35; }
 .decision-strip {
-  display: grid; grid-template-columns: 104px 1fr auto; gap: 14px; align-items: center;
-  margin-top: 14px; padding: 12px 14px; background: var(--amber-s);
+  display: grid; grid-template-columns: 104px 1fr auto; gap: 12px; align-items: center;
+  margin-top: 12px; padding: 12px 12px; background: var(--amber-s);
   border-left: 3px solid var(--amber); border-top: 1px solid rgba(180,83,9,.16); border-bottom: 1px solid rgba(180,83,9,.16);
 }
 .decision-k { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--amber); letter-spacing: .1em; text-transform: uppercase; }
@@ -919,9 +943,9 @@ body.bm-editing .bm-plot-cell .bm-add {
 /* Warning box */
 .risk {
   background: var(--amber-s); border: 1px solid rgba(180,83,9,0.18);
-  padding: 18px 22px; margin-bottom: 16px;
+  padding: 16px 20px; margin-bottom: 16px;
 }
-.risk-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 7px; }
+.risk-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 8px; }
 .risk p { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink70); line-height: 1.6; }
 .risk p strong { color: var(--ink); font-weight: 600; }
 
@@ -987,7 +1011,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   color: var(--faint);
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  padding: 10px 18px 6px;
+  padding: 8px 16px 4px;
   background: var(--tint);
   border-bottom: 1px solid var(--line2);
 }
@@ -996,7 +1020,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   grid-template-columns: 1fr 1fr;
   gap: 0 16px;
   align-items: start;
-  padding: 11px 18px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--line2);
   background: var(--card);
 }
@@ -1078,7 +1102,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   display: flex;
   border-bottom: 2px solid var(--line);
   margin-bottom: 24px;
-  margin-top: 6px;
+  margin-top: 4px;
   flex-shrink: 0;
   gap: 0;
 }
@@ -1088,7 +1112,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--muted);
-  padding: 12px 22px 12px 0;
+  padding: 12px 20px 12px 0;
   margin-right: 4px;
   border: none;
   background: none;
@@ -1113,7 +1137,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 .biz-tab-panel { display: none; }
 .biz-tab-panel.biz-tab-active { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto; padding-bottom: 48px; scrollbar-width: thin; scrollbar-color: var(--line2) transparent; }
 .biz-tab-panel.biz-tab-active::-webkit-scrollbar { width: 4px; }
-.biz-tab-panel.biz-tab-active::-webkit-scrollbar-thumb { background: var(--line2); border-radius: 2px; }
+.biz-tab-panel.biz-tab-active::-webkit-scrollbar-thumb { background: var(--line2); border-radius: var(--radius-xs); }
 .biz-right-col .ltl-txt { font-size: 13px; line-height: 1.55; }
 .biz-right-col .ltl-lbl { font-size: 9.5px; }
 .biz-right-col .col-label-sm { font-size: 11px; letter-spacing: .14em; }
@@ -1125,52 +1149,52 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 
 /* === BIZ — Tese, Læsevejledning & Opgraderingslogik === */
-.biz-tese{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-.012em;margin-bottom:6px}
-.biz-tese-sub{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.65;margin-bottom:14px}
+.biz-tese{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-.012em;margin-bottom:4px}
+.biz-tese-sub{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.65;margin-bottom:12px}
 .biz-read-guide{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-bottom:16px}
-.biz-rg-item{background:var(--card);padding:13px 15px;display:flex;flex-direction:column}
+.biz-rg-item{background:var(--card);padding:12px 16px;display:flex;flex-direction:column}
 .biz-rg-item.rg-featured{background:var(--accent)}
-.biz-rg-price{font-family:var(--serif);font-size:19px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;margin-bottom:3px}
+.biz-rg-price{font-family:var(--serif);font-size:19px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;margin-bottom:4px}
 .biz-rg-item.rg-featured .biz-rg-price{color:#FAFAF8}
-.biz-rg-name{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+.biz-rg-name{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
 .biz-rg-item.rg-featured .biz-rg-name{color:rgba(196,181,253,.6)}
-.biz-rg-head{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:3px}
+.biz-rg-head{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:4px}
 .biz-rg-item.rg-featured .biz-rg-head{color:#FAFAF8}
 .biz-rg-desc{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4;flex:1}
 .biz-rg-item.rg-featured .biz-rg-desc{color:rgba(255,255,255,.72)}
 .biz-rg-tag{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-top:8px}
 .biz-rg-item.rg-featured .biz-rg-tag{color:#86EFAC}
 .biz-upgrade-band{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2)}
-.biz-upgrade-item{background:var(--tint);padding:11px 14px}
+.biz-upgrade-item{background:var(--tint);padding:12px 12px}
 .biz-upgrade-k{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--accent);letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
 .biz-upgrade-v{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4}
 .biz-status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:20px}
-.biz-status-box{padding:0 0 0 10px}
+.biz-status-box{padding:0 0 0 8px}
 .biz-status-box.s-green{border-left:2px solid var(--green)}
 .biz-status-box.s-amber{border-left:2px solid var(--amber)}
 .biz-status-box.s-muted{border-left:2px solid var(--line)}
-.biz-status-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:7px}
+.biz-status-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
 .biz-status-lbl.s-green{color:var(--green)}
 .biz-status-lbl.s-amber{color:var(--amber)}
 .biz-status-lbl.s-muted{color:var(--muted)}
 .biz-status-item{font-family:var(--sans);font-size:11px;color:var(--ink70);line-height:1.45;padding:2px 0}
 .biz-status-item:last-child{padding-bottom:0}
-.biz-kerne-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-bottom:22px}
-.biz-kerne-col{padding:13px 14px}
+.biz-kerne-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-bottom:20px}
+.biz-kerne-col{padding:12px 12px}
 .biz-kerne-col.core{background:var(--accent)}
 .biz-kerne-col.accel{background:var(--tint)}
-.biz-kerne-hdr{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:9px}
+.biz-kerne-hdr{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
 .biz-kerne-col.core .biz-kerne-hdr{color:rgba(196,181,253,.7)}
 .biz-kerne-col.accel .biz-kerne-hdr{color:var(--muted)}
-.biz-kerne-item{font-family:var(--sans);font-size:11.5px;line-height:1.35;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.biz-kerne-item{font-family:var(--sans);font-size:11.5px;line-height:1.35;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.08)}
 .biz-kerne-item:last-child{border-bottom:none}
 .biz-kerne-col.core .biz-kerne-item{color:rgba(255,255,255,.78)}
 .biz-kerne-col.accel .biz-kerne-item{color:var(--ink70);border-bottom-color:var(--line2)}
-.biz-kerne-note{font-family:var(--serif);font-size:11px;font-style:italic;margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
+.biz-kerne-note{font-family:var(--serif);font-size:11px;font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
 .biz-kerne-col.core .biz-kerne-note{color:rgba(255,255,255,.55)}
 .biz-kerne-col.accel .biz-kerne-note{border-top-color:var(--line2);color:var(--muted)}
-.biz-pvb{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-bottom:22px}
-.biz-pvb-col{padding:13px 14px}
+.biz-pvb{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-bottom:20px}
+.biz-pvb-col{padding:12px 12px}
 .biz-pvb-col.pvb-private{background:var(--tint)}
 .biz-pvb-col.pvb-business{background:var(--ink)}
 .biz-pvb-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
@@ -1182,10 +1206,10 @@ body.bm-editing .bm-plot-cell .bm-add {
 .biz-pvb-item{font-family:var(--sans);font-size:11px;line-height:1.35;padding:2px 0;color:var(--muted)}
 .biz-pvb-col.pvb-business .biz-pvb-item{color:rgba(255,255,255,.6)}
 .biz-scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-bottom:20px}
-.biz-scenario{background:var(--card);padding:13px 15px;display:flex;flex-direction:column}
+.biz-scenario{background:var(--card);padding:12px 16px;display:flex;flex-direction:column}
 .biz-scenario.sc-baseline{background:var(--accent)}
-.biz-sc-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.biz-sc-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+.biz-sc-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.biz-sc-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
 .biz-scenario.sc-baseline .biz-sc-lbl{color:rgba(196,181,253,.6)}
 .biz-sc-num{font-family:var(--serif);font-size:22px;font-weight:700;font-style:italic;line-height:1;letter-spacing:-.02em;margin-bottom:4px}
 .biz-scenario.sc-concept .biz-sc-num{color:var(--ink)}
@@ -1198,8 +1222,8 @@ body.bm-editing .bm-plot-cell .bm-add {
 
 /* === FEEDBACK === */
 .btn-feedback {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 5px 11px; border-radius: 6px;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 12px; border-radius: var(--radius-md);
   border: 1px solid var(--line); background: var(--tint);
   color: var(--ink70); font-family: var(--sans); font-size: 11px;
   font-weight: 500; cursor: pointer; letter-spacing: 0.01em;
@@ -1221,11 +1245,12 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 .vt-group {
   display: inline-flex; align-items: stretch;
-  border: 1px solid var(--line); background: var(--card);
+  background: var(--card); border-radius: var(--radius-lg);
+  box-shadow: 0 2px 10px rgba(54,19,82,.07), 0 1px 2px rgba(54,19,82,.06);
   min-height: 36px; overflow: hidden;
 }
 .vt-btn {
-  display: inline-flex; align-items: center; padding: 0 10px;
+  display: inline-flex; align-items: center; padding: 0 8px;
   font-family: var(--mono); font-size: 8px; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
   color: var(--muted); text-decoration: none;
@@ -1244,39 +1269,39 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 .fb-overlay.hidden { display: none; }
 .fb-modal {
-  background: var(--card); border-radius: 8px;
+  background: var(--card); border-radius: var(--radius-md);
   border: 1px solid var(--line); width: 100%; max-width: 560px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.18);
 }
 .fb-modal-head {
-  padding: 14px 16px; border-bottom: 1px solid var(--line);
+  padding: 12px 16px; border-bottom: 1px solid var(--line);
   display: flex; align-items: center; justify-content: space-between;
 }
 .fb-modal-title { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); }
 .fb-modal-close {
   background: none; border: none; cursor: pointer;
-  color: var(--muted); font-size: 16px; padding: 2px 6px;
-  line-height: 1; border-radius: 4px; font-family: var(--sans);
+  color: var(--muted); font-size: 16px; padding: 2px 4px;
+  line-height: 1; border-radius: var(--radius-sm); font-family: var(--sans);
 }
 .fb-modal-close:hover { background: var(--tint); color: var(--ink); }
-.fb-modal-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.fb-modal-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; }
 .fb-label {
   display: block; font-family: var(--mono); font-size: 10px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 5px;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px;
 }
 .fb-input, .fb-textarea {
-  width: 100%; padding: 7px 10px;
-  border: 1px solid var(--line); border-radius: 5px;
+  width: 100%; padding: 8px 8px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
   font-family: var(--sans); font-size: 12.5px; color: var(--ink);
   background: var(--tint); outline: none; transition: border-color 0.15s;
 }
 .fb-input:focus, .fb-textarea:focus { border-color: var(--accent-30); background: #fff; }
 .fb-textarea { resize: vertical; line-height: 1.6; }
-.fb-actions { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.fb-actions { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
 .fb-save-btn {
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex; align-items: center; gap: 4px;
   padding: 8px 16px; background: var(--accent); color: #fff;
-  border: none; border-radius: 6px; font-family: var(--sans);
+  border: none; border-radius: var(--radius-md); font-family: var(--sans);
   font-size: 12.5px; font-weight: 600; cursor: pointer;
   transition: opacity 0.15s;
 }
@@ -1307,28 +1332,29 @@ body.bm-editing .bm-plot-cell .bm-add {
 .hub-node {
   position: absolute; width: 168px; transform: translate(-50%, -50%);
   background: var(--card); border-top: 3px solid var(--nc);
-  cursor: pointer; padding: 11px 13px 10px;
+  border-radius: var(--radius-md); overflow: hidden;
+  cursor: pointer; padding: 12px 12px 8px;
   transition: box-shadow .22s ease, transform .15s cubic-bezier(.2,0,0,1); z-index: 2;
 }
 .hub-node::after { content: ''; position: absolute; inset: 0; background: var(--nc); opacity: .04; pointer-events: none; transition: opacity .2s; }
 .hub-node:hover { transform: translate(-50%,-50%) scale(1.09); box-shadow: 0 10px 36px var(--ns), 0 2px 8px rgba(0,0,0,.05); }
 .hub-node:hover::after { opacity: .10; }
 .hub-node:active { transform: translate(-50%,-50%) scale(.97); }
-.node-num { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--nc); opacity: .5; letter-spacing: .1em; margin-bottom: 5px; }
+.node-num { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--nc); opacity: .5; letter-spacing: .1em; margin-bottom: 4px; }
 
 /* === LABELED THREAD LIST (LTL) === */
-.ltl-list { position: relative; display: flex; flex-direction: column; gap: 0; padding-left: 20px; margin-bottom: 14px; }
+.ltl-list { position: relative; display: flex; flex-direction: column; gap: 0; padding-left: 20px; margin-bottom: 12px; }
 .ltl-list::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 8px; width: 1px; background: var(--line); }
-.ltl-item { position: relative; padding: 7px 0; border-top: 1px solid var(--line2); }
+.ltl-item { position: relative; padding: 8px 0; border-top: 1px solid var(--line2); }
 .ltl-item:first-child { border-top: none; padding-top: 2px; }
 .ltl-item::before { content: ''; position: absolute; left: -20px; top: 10px; width: 10px; height: 10px; border-radius: 50%; background: var(--card); border: 2px solid var(--ltl-color, var(--accent)); }
-.ltl-lbl { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ltl-color, var(--accent)); margin-bottom: 3px; }
+.ltl-lbl { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ltl-color, var(--accent)); margin-bottom: 4px; }
 .ltl-txt { font-family: var(--sans); font-size: 11.5px; color: var(--ink70); line-height: 1.4; }
 .node-h { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.25; letter-spacing: -.01em; margin-bottom: 8px; }
-.node-pts { display: flex; flex-direction: column; gap: 4px; margin-bottom: 9px; }
-.node-pt { font-family: var(--sans); font-size: 11.5px; color: var(--muted); display: flex; align-items: flex-start; gap: 5px; line-height: 1.4; }
+.node-pts { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+.node-pt { font-family: var(--sans); font-size: 11.5px; color: var(--muted); display: flex; align-items: flex-start; gap: 4px; line-height: 1.4; }
 .node-pt::before { content: '–'; color: var(--nc); flex-shrink: 0; opacity: .55; font-size: 11px; margin-top: 1px; }
-.node-cta { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--nc); letter-spacing: .12em; text-transform: uppercase; opacity: .65; display: flex; align-items: center; gap: 5px; }
+.node-cta { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--nc); letter-spacing: .12em; text-transform: uppercase; opacity: .65; display: flex; align-items: center; gap: 4px; }
 .node-cta::after { content: '→'; font-size: 11px; }
 
 /* === DARK COLUMN — brugt i s-biz (højre) og s-pos (venstre) === */
@@ -1370,16 +1396,16 @@ body.bm-editing .bm-plot-cell .bm-add {
 .layer-card {
   background: var(--card); border: 1px solid var(--line);
   border-top: 3px solid var(--lc, var(--accent));
-  padding: 14px 15px 12px;
+  padding: 12px 16px 12px;
   transition: box-shadow 0.18s ease;
 }
 .layer-card:hover { box-shadow: 0 2px 18px rgba(54,19,82,0.09); }
 .layer-card-n {
   font-family: var(--mono); font-size: 9px; font-weight: 700;
   color: var(--lc, var(--accent)); letter-spacing: 0.12em;
-  text-transform: uppercase; margin-bottom: 5px; opacity: 0.7;
+  text-transform: uppercase; margin-bottom: 4px; opacity: 0.7;
 }
-.layer-card-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 5px; line-height: 1.3; }
+.layer-card-t { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
 .layer-card-d { font-family: var(--sans); font-size: 11.5px; color: var(--muted); line-height: 1.5; }
 .layer-card-d strong { color: var(--ink70); font-weight: 600; }
 .layer-card.wide { grid-column: span 2; }
@@ -1387,7 +1413,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 /* === PARTNER CARDS — GTM === */
 .gtm-hero {
   display: flex; align-items: center; gap: 20px;
-  padding: 20px 24px; margin-bottom: 14px;
+  padding: 20px 24px; margin-bottom: 12px;
   background: var(--accent-10); border: 1px solid var(--accent-20);
 }
 .gtm-hero-num {
@@ -1395,25 +1421,25 @@ body.bm-editing .bm-plot-cell .bm-add {
   color: var(--accent); font-style: italic; line-height: 1;
   white-space: nowrap; flex-shrink: 0;
 }
-.gtm-hero-text { display: flex; flex-direction: column; gap: 3px; }
+.gtm-hero-text { display: flex; flex-direction: column; gap: 4px; }
 .gtm-hero-label { font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.3; }
 .gtm-hero-sub { font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
-.partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
 .partner-card {
   background: var(--card); border: 1px solid var(--line);
-  border-left: 3px solid var(--pc, #2563EB); padding: 12px 14px;
+  border-left: 3px solid var(--pc, var(--layer-gtm)); padding: 12px 12px;
 }
 .partner-card-badge {
   display: inline-block; font-family: var(--mono); font-size: 8px; font-weight: 700;
-  letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 6px;
-  margin-bottom: 4px; border-radius: 2px;
+  letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 4px;
+  margin-bottom: 4px; border-radius: var(--radius-xs);
 }
 .partner-badge-potential { background: var(--amber-s); color: var(--amber); border: 1px solid rgba(180,83,9,0.2); }
 .partner-badge-active { background: var(--green-s); color: var(--green); border: 1px solid rgba(22,163,74,0.2); }
-.partner-badge-sponsor { background: rgba(124,58,237,0.08); color: #7C3AED; border: 1px solid rgba(124,58,237,0.22); }
+.partner-badge-sponsor { background: rgba(124,58,237,0.08); color: var(--layer-ai); border: 1px solid rgba(124,58,237,0.22); }
 .partner-card-name { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; line-height: 1.2; }
-.partner-card-seg { font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 7px; }
-.partner-card-members { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--pc, #2563EB); font-style: italic; line-height: 1; margin-bottom: 3px; }
+.partner-card-seg { font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.partner-card-members { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--pc, var(--layer-gtm)); font-style: italic; line-height: 1; margin-bottom: 4px; }
 .partner-card-role { font-family: var(--sans); font-size: 11px; color: var(--muted); line-height: 1.4; }
 
 /* Konkurrenttabel — Y Business øverst med mørk accentbaggrund */
@@ -1431,7 +1457,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 .research-overlay.hidden { display: none; }
 .research-modal {
-  background: var(--card); border-radius: 10px;
+  background: var(--card); border-radius: var(--radius-lg);
   border: 1px solid var(--line); width: 100%; max-width: 900px;
   max-height: calc(100vh - 64px);
   display: flex; flex-direction: column;
@@ -1439,7 +1465,7 @@ body.bm-editing .bm-plot-cell .bm-add {
   overflow: hidden;
 }
 .rm-head {
-  padding: 14px 20px; border-bottom: 1px solid var(--line);
+  padding: 12px 20px; border-bottom: 1px solid var(--line);
   display: flex; align-items: center; justify-content: space-between;
   flex-shrink: 0; background: var(--card);
 }
@@ -1448,21 +1474,21 @@ body.bm-editing .bm-plot-cell .bm-add {
   font-family: var(--mono); font-size: 9px; font-weight: 700;
   letter-spacing: .1em; text-transform: uppercase;
   color: var(--accent); background: var(--accent-10);
-  border: 1px solid var(--accent-30); padding: 3px 8px; border-radius: 3px;
+  border: 1px solid var(--accent-30); padding: 4px 8px; border-radius: var(--radius-sm);
 }
 .rm-head-title { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); }
 .rm-head-close {
   background: none; border: none; cursor: pointer;
-  color: var(--muted); font-size: 16px; padding: 2px 7px;
-  line-height: 1; border-radius: 4px; font-family: var(--sans); transition: background .12s;
+  color: var(--muted); font-size: 16px; padding: 2px 8px;
+  line-height: 1; border-radius: var(--radius-sm); font-family: var(--sans); transition: background .12s;
 }
 .rm-head-close:hover { background: var(--tint); color: var(--ink); }
 .rm-body { overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
 
 /* Beachhead strip */
-.rm-beachhead { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.rm-beachhead { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .rm-bh-card {
-  border-radius: 6px; padding: 18px 20px;
+  border-radius: var(--radius-md); padding: 16px 20px;
   position: relative; display: flex; flex-direction: column; gap: 0;
 }
 .rm-bh-card.bh1 { background: var(--accent); }
@@ -1470,20 +1496,20 @@ body.bm-editing .bm-plot-cell .bm-add {
 .rm-bh-badge {
   font-family: var(--mono); font-size: 8.5px; font-weight: 700;
   letter-spacing: .14em; text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .rm-bh-card.bh1 .rm-bh-badge { color: rgba(196,181,253,.5); }
 .rm-bh-card.bh2 .rm-bh-badge { color: var(--accent); }
 .rm-bh-name {
   font-family: var(--sans); font-size: 12px; font-weight: 700;
-  margin-bottom: 10px; line-height: 1.2;
+  margin-bottom: 8px; line-height: 1.2;
 }
 .rm-bh-card.bh1 .rm-bh-name { color: rgba(250,250,248,.65); }
 .rm-bh-card.bh2 .rm-bh-name { color: var(--ink); }
 .rm-bh-jtbd {
   font-family: var(--serif); font-size: 15px; font-weight: 700;
   font-style: italic; line-height: 1.38; letter-spacing: -.01em;
-  flex: 1; margin-bottom: 14px;
+  flex: 1; margin-bottom: 12px;
 }
 .rm-bh-card.bh1 .rm-bh-jtbd { color: #FAFAF8; }
 .rm-bh-card.bh2 .rm-bh-jtbd { color: var(--ink); }
@@ -1495,7 +1521,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 .rm-bh-card.bh2 .rm-bh-vol { color: var(--muted); }
 .rm-bh-barrier {
   font-family: var(--mono); font-size: 9.5px; line-height: 1.45;
-  padding-top: 9px; border-top: 1px solid;
+  padding-top: 8px; border-top: 1px solid;
 }
 .rm-bh-card.bh1 .rm-bh-barrier { color: rgba(250,250,248,.4); border-top-color: rgba(255,255,255,.1); }
 .rm-bh-card.bh2 .rm-bh-barrier { color: var(--amber); border-top-color: var(--line); }
@@ -1512,9 +1538,9 @@ body.bm-editing .bm-plot-cell .bm-add {
 .rm-tbl th {
   text-align: left; font-family: var(--mono); font-size: 9px; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
-  padding: 5px 10px; border-bottom: 1px solid var(--line); background: var(--tint);
+  padding: 4px 8px; border-bottom: 1px solid var(--line); background: var(--tint);
 }
-.rm-tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line2); vertical-align: top; color: var(--ink70); line-height: 1.4; }
+.rm-tbl td { padding: 8px 8px; border-bottom: 1px solid var(--line2); vertical-align: top; color: var(--ink70); line-height: 1.4; }
 .rm-tbl tr.bh td { background: rgba(54,19,82,0.03); }
 .rm-tbl tr.bh td.rm-seg { color: var(--accent); font-weight: 700; }
 .rm-tbl td.rm-seg { font-weight: 600; color: var(--ink); }
@@ -1523,8 +1549,8 @@ body.bm-editing .bm-plot-cell .bm-add {
 .rm-bh-pill {
   display: inline-block; font-family: var(--mono); font-size: 8px; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
-  color: #fff; background: var(--accent); padding: 2px 6px; border-radius: 3px;
-  margin-right: 5px; vertical-align: middle;
+  color: #fff; background: var(--accent); padding: 2px 4px; border-radius: var(--radius-sm);
+  margin-right: 4px; vertical-align: middle;
 }
 .rm-wil-high { color: var(--green); font-weight: 600; font-size: 10px; }
 .rm-wil-med { color: var(--amber); font-weight: 600; font-size: 10px; }
@@ -1541,10 +1567,10 @@ body.bm-editing .bm-plot-cell .bm-add {
 /* Stats footer — editorial horizontal */
 .rm-stats {
   display: flex; flex-wrap: wrap; align-items: baseline;
-  padding-top: 14px; border-top: 1px solid var(--line); gap: 0;
+  padding-top: 12px; border-top: 1px solid var(--line); gap: 0;
 }
 .rm-stat {
-  display: flex; align-items: baseline; gap: 6px;
+  display: flex; align-items: baseline; gap: 4px;
   padding: 0 16px; border-right: 1px solid var(--line2);
 }
 .rm-stat:first-child { padding-left: 0; }
@@ -1559,14 +1585,14 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 .rm-sc {
   border: none; border-radius: 0;
-  padding: 16px 18px; display: flex; flex-direction: column; gap: 8px;
+  padding: 16px 16px; display: flex; flex-direction: column; gap: 8px;
   background: var(--card);
 }
 .rm-sc-bh { background: rgba(54,19,82,.03); }
 .rm-sc-eye {
   font-family: var(--mono); font-size: 8.5px; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase;
-  color: var(--muted); display: flex; align-items: center; gap: 6px;
+  color: var(--muted); display: flex; align-items: center; gap: 4px;
   opacity: .65;
 }
 .rm-sc-bh .rm-sc-eye { color: var(--accent); opacity: 1; }
@@ -1580,7 +1606,7 @@ body.bm-editing .bm-plot-cell .bm-add {
 }
 .rm-sc-meta {
   display: flex; align-items: center; gap: 0;
-  padding-top: 10px; border-top: 1px solid var(--line2);
+  padding-top: 8px; border-top: 1px solid var(--line2);
   margin-top: auto;
 }
 /* Standalone vol/stak in card meta */
@@ -1590,44 +1616,44 @@ span.rm-vol {
 }
 span.rm-stak {
   font-family: var(--mono); font-size: 10px; color: var(--muted);
-  padding-left: 9px; margin-left: 9px;
+  padding-left: 8px; margin-left: 8px;
   border-left: 1px solid var(--line2);
 }
 
 /* Sources modal */
 .src-overlay { position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:999999;display:flex;align-items:center;justify-content:center;padding:32px 24px; }
 .src-overlay.hidden { display:none; }
-.src-modal { background:var(--card);border-radius:10px;border:1px solid var(--line);width:100%;max-width:940px;max-height:calc(100vh - 64px);display:flex;flex-direction:column;box-shadow:0 24px 72px rgba(0,0,0,.22);overflow:hidden; }
-.src-head { padding:14px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--card); }
-.src-head-tag { font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-30);padding:3px 8px; }
+.src-modal { background:var(--card);border-radius:var(--radius-lg);border:1px solid var(--line);width:100%;max-width:940px;max-height:calc(100vh - 64px);display:flex;flex-direction:column;box-shadow:0 24px 72px rgba(0,0,0,.22);overflow:hidden; }
+.src-head { padding:12px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--card); }
+.src-head-tag { font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-30);padding:4px 8px; }
 .src-head-title { font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink); }
 .src-head-close { background:none;border:none;cursor:pointer;font-size:16px;color:var(--muted);padding:4px 8px; }
 .src-body { overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:20px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent; }
 .src-sec-lbl { font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px; }
-.src-stack { display:flex;flex-wrap:wrap;gap:5px; }
-.src-chip { font-family:var(--mono);font-size:8.5px;font-weight:700;padding:3px 8px;border:1px solid var(--line2);color:var(--ink70);letter-spacing:.04em; }
+.src-stack { display:flex;flex-wrap:wrap;gap:4px; }
+.src-chip { font-family:var(--mono);font-size:8.5px;font-weight:700;padding:4px 8px;border:1px solid var(--line2);color:var(--ink70);letter-spacing:.04em; }
 .src-chip.active { color:var(--green);border-color:rgba(22,163,74,.3);background:var(--green-s); }
-.src-cat-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:10px; }
-.src-cat { border:1px solid var(--line);padding:12px 14px; }
+.src-cat-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:8px; }
+.src-cat { border:1px solid var(--line);padding:12px 12px; }
 .src-cat-name { font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px; }
 .src-items { display:flex;flex-direction:column;gap:4px; }
 .src-item { display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid var(--line2); }
 .src-item:last-child { border-bottom:none; }
 .src-item-name { font-family:var(--sans);font-size:11.5px;color:var(--ink);flex:1; }
-.src-wave { font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.08em;padding:1px 5px;flex-shrink:0; }
+.src-wave { font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.08em;padding:1px 4px;flex-shrink:0; }
 .src-wave.w1 { color:var(--green);background:var(--green-s);border:1px solid rgba(22,163,74,.25); }
 .src-wave.w2 { color:var(--amber);background:var(--amber-s);border:1px solid rgba(180,83,9,.25); }
 .src-wave.w3 { color:var(--muted);background:var(--tint);border:1px solid var(--line2); }
-.src-legend { display:flex;gap:12px;padding-top:14px;border-top:1px solid var(--line); }
-.src-legend-item { display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.06em; }
+.src-legend { display:flex;gap:12px;padding-top:12px;border-top:1px solid var(--line); }
+.src-legend-item { display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.06em; }
 .drv-trigger {
   cursor: pointer; transition: background .15s;
-  border-radius: 6px; padding: 8px; margin: -8px;
+  border-radius: var(--radius-md); padding: 8px; margin: -8px;
 }
 .drv-trigger:hover { background: var(--accent-10); }
 
 /* Info popup */
-.info-wrap { position:relative; display:inline-flex; align-items:center; gap:5px; }
+.info-wrap { position:relative; display:inline-flex; align-items:center; gap:4px; }
 .info-icon {
   display:inline-flex; align-items:center; justify-content:center;
   width:14px; height:14px; border-radius:50%;
@@ -1643,7 +1669,7 @@ span.rm-stak {
   width:260px; background:var(--card);
   border:1px solid var(--accent-20); border-left:3px solid var(--accent);
   box-shadow:0 8px 24px rgba(54,19,82,.12);
-  padding:12px 14px;
+  padding:12px 12px;
 }
 .info-popup.active { display:block; }
 .info-popup-title {
@@ -1666,6 +1692,22 @@ span.rm-stak {
 </head>
 <body>
 <div class="deck-viewport">
+<header class="dash-header" id="mainHeader">
+  <div class="dash-brand">
+    <div class="dash-brand-mark">Y Business</div>
+    <div class="dash-divider"></div>
+    <div class="dash-brand-sub">Internt</div>
+  </div>
+  <nav class="dash-nav">
+    <button class="dash-nav-item" data-target="s-ty">That's Y</button>
+    <button class="dash-nav-item" data-target="s-biz">Business model</button>
+    <button class="dash-nav-item" data-target="s-prd">Produkt</button>
+    <button class="dash-nav-item" data-target="s-pos">Positionering</button>
+    <button class="dash-nav-item" data-target="s-gtm">Go-to-market</button>
+    <button class="dash-nav-item" data-target="s-ai">AI-motor &amp; Business AI</button>
+  </nav>
+  <div class="dash-actions"></div>
+</header>
 <div class="deck-stage" id="stage">
 
 <!-- ======================================================
@@ -1701,15 +1743,6 @@ span.rm-stak {
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
 
-  <header class="dash-header">
-    <div class="dash-brand">
-      <div class="dash-brand-mark">Y Business</div>
-      <div class="dash-divider"></div>
-    </div>
-    <div class="hub-header-rubrik">AI-drevet erhvervsintelligens — <em>overblik med konsekvens</em></div>
-    <div class="dash-meta">
-    </div>
-  </header>
 
   <div class="hub-body">
     <div class="hub-canvas">
@@ -1720,8 +1753,8 @@ span.rm-stak {
           <radialGradient id="glow-1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#361352" stop-opacity=".7"/><stop offset="100%" stop-color="#361352" stop-opacity="0"/></radialGradient>
           <radialGradient id="glow-2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#16A34A" stop-opacity=".7"/><stop offset="100%" stop-color="#16A34A" stop-opacity="0"/></radialGradient>
           <radialGradient id="glow-3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#D97706" stop-opacity=".7"/><stop offset="100%" stop-color="#D97706" stop-opacity="0"/></radialGradient>
-          <radialGradient id="glow-4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2563EB" stop-opacity=".7"/><stop offset="100%" stop-color="#2563EB" stop-opacity="0"/></radialGradient>
-          <radialGradient id="glow-5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7C3AED" stop-opacity=".7"/><stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glow-4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="var(--layer-gtm)" stop-opacity=".7"/><stop offset="100%" stop-color="var(--layer-gtm)" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glow-5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="var(--layer-ai)" stop-opacity=".7"/><stop offset="100%" stop-color="var(--layer-ai)" stop-opacity="0"/></radialGradient>
         </defs>
         <!-- Base orbit ring -->
         <ellipse cx="720" cy="386" rx="360" ry="240" stroke="rgba(54,19,82,.1)" stroke-width="1" fill="none"/>
@@ -1732,8 +1765,8 @@ span.rm-stak {
         <line x1="720" y1="386" x2="1032" y2="266"  stroke="#361352" stroke-opacity=".32" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.10s"/>
         <line x1="720" y1="386" x2="1032" y2="506"  stroke="#16A34A" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.20s"/>
         <line x1="720" y1="386" x2="720"  y2="626"  stroke="#D97706" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.30s"/>
-        <line x1="720" y1="386" x2="408"  y2="506"  stroke="#2563EB" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.40s"/>
-        <line x1="720" y1="386" x2="408"  y2="266"  stroke="#7C3AED" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.50s"/>
+        <line x1="720" y1="386" x2="408"  y2="506"  stroke="var(--layer-gtm)" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.40s"/>
+        <line x1="720" y1="386" x2="408"  y2="266"  stroke="var(--layer-ai)" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="5 5" style="animation-delay:.50s"/>
         <!-- Glow halos -->
         <circle cx="720"  cy="146" r="26" fill="url(#glow-1)" opacity=".7"><animate attributeName="opacity" values=".7;0;.7" dur="2.8s" begin="0s" repeatCount="indefinite"/><animate attributeName="r" values="18;30;18" dur="2.8s" begin="0s" repeatCount="indefinite"/></circle>
         <circle cx="1032" cy="266" r="20" fill="url(#glow-1)" opacity=".5"><animate attributeName="opacity" values=".5;0;.5" dur="3.2s" begin=".3s" repeatCount="indefinite"/><animate attributeName="r" values="12;22;12" dur="3.2s" begin=".3s" repeatCount="indefinite"/></circle>
@@ -1746,8 +1779,8 @@ span.rm-stak {
         <circle cx="1032" cy="266" r="4" fill="#361352" opacity=".7"/>
         <circle cx="1032" cy="506" r="4" fill="#16A34A" opacity=".8"/>
         <circle cx="720"  cy="626" r="4" fill="#D97706" opacity=".8"/>
-        <circle cx="408"  cy="506" r="4" fill="#2563EB" opacity=".8"/>
-        <circle cx="408"  cy="266" r="4" fill="#7C3AED" opacity=".8"/>
+        <circle cx="408"  cy="506" r="4" fill="var(--layer-gtm)" opacity=".8"/>
+        <circle cx="408"  cy="266" r="4" fill="var(--layer-ai)" opacity=".8"/>
       </svg>
 
       <!-- Rotating conic ring around center disc -->
@@ -1806,7 +1839,7 @@ span.rm-stak {
       </div>
 
       <!-- 04 Go-to-market — lower left -->
-      <div class="hub-node" data-target="s-gtm" style="left:408px;top:488px;--nc:#2563EB;--ns:rgba(37,99,235,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .46s both">
+      <div class="hub-node" data-target="s-gtm" style="left:408px;top:488px;--nc:var(--layer-gtm);--ns:rgba(37,99,235,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .46s both">
         <div class="node-num">04</div>
         <div class="node-h">Go-to-market</div>
         <div class="node-pts">
@@ -1817,7 +1850,7 @@ span.rm-stak {
       </div>
 
       <!-- 05 Business AI — upper left -->
-      <div class="hub-node" data-target="s-ai" style="left:408px;top:248px;--nc:#7C3AED;--ns:rgba(124,58,237,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .58s both">
+      <div class="hub-node" data-target="s-ai" style="left:408px;top:248px;--nc:var(--layer-ai);--ns:rgba(124,58,237,.18);animation:node-rise .6s cubic-bezier(.22,.61,.36,1) .58s both">
         <div class="node-num">05</div>
         <div class="node-h">Business AI</div>
         <div class="node-pts">
@@ -1851,80 +1884,67 @@ span.rm-stak {
 .ty-col.mrk{background:var(--tint)}
 .ty-col.sol{background:var(--accent)}
 .ty-col.biz{background:var(--card)}
-.ty-col-hdr{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.22em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:10px}
+.ty-col-hdr{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.22em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:8px}
 .ty-col-hdr::before{content:'';display:block;width:16px;height:1px;background:currentColor;opacity:.55}
 .ty-col.sol .ty-col-hdr{color:rgba(196,181,253,.5)}
 .ty-col.sol .ty-col-hdr::before{opacity:.28}
 .ty-pain{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}
 .ty-pain:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.ty-pain-num{font-family:var(--serif);font-size:44px;font-weight:700;color:var(--accent);line-height:.88;letter-spacing:-.03em;margin-bottom:5px}
-.ty-pain-unit{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;margin-bottom:10px;display:block}
+.ty-pain-num{font-family:var(--serif);font-size:44px;font-weight:700;color:var(--accent);line-height:.88;letter-spacing:-.03em;margin-bottom:4px}
+.ty-pain-unit{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;margin-bottom:8px;display:block}
 .ty-pain-txt{font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.65}
 .ty-src{margin-top:auto;padding-top:16px;font-family:var(--mono);font-size:9px;color:var(--muted);opacity:.45;letter-spacing:.04em}
-.ty-cat{font-family:var(--serif);font-size:24px;font-weight:700;color:#FAFAF8;line-height:1.08;letter-spacing:-.02em;margin-bottom:22px;font-style:italic}
+.ty-cat{font-family:var(--serif);font-size:24px;font-weight:700;color:#FAFAF8;line-height:1.08;letter-spacing:-.02em;margin-bottom:20px;font-style:italic}
 .ty-sol-item{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(250,250,248,.1)}
 .ty-sol-item:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
 .ty-sol-arr{font-family:var(--mono);font-size:12px;color:rgba(250,250,248,.3);margin-bottom:8px}
-.ty-sol-txt{font-family:var(--serif);font-size:14.5px;font-weight:600;color:#FAFAF8;line-height:1.35;letter-spacing:-.008em;margin-bottom:6px}
+.ty-sol-txt{font-family:var(--serif);font-size:14.5px;font-weight:600;color:#FAFAF8;line-height:1.35;letter-spacing:-.008em;margin-bottom:4px}
 .ty-sol-sub{font-family:var(--sans);font-size:11.5px;color:rgba(250,250,248,.52);line-height:1.55}
-.ty-vp{margin-top:32px;padding-top:18px;border-top:2px solid rgba(255,255,255,.15)}
-.ty-vp-txt{font-family:var(--serif);font-size:18px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.18;letter-spacing:-.015em;margin-bottom:7px}
+.ty-vp{margin-top:32px;padding-top:16px;border-top:2px solid rgba(255,255,255,.15)}
+.ty-vp-txt{font-family:var(--serif);font-size:18px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.18;letter-spacing:-.015em;margin-bottom:8px}
 .ty-vp-sub{font-family:var(--sans);font-size:11.5px;color:rgba(250,250,248,.5);line-height:1.55}
-.ty-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.ty-stat-cell{background:var(--tint);border:1px solid var(--line);padding:12px 14px}
+.ty-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.ty-stat-cell{background:var(--tint);border:1px solid var(--line);padding:12px 12px}
 .ty-stat-v{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-.02em;font-style:italic}
 .ty-stat-l{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
-.ty-biz-row{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line2);align-items:flex-start}
+.ty-biz-row{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line2);align-items:flex-start}
 .ty-biz-row:last-of-type{border-bottom:none}
 .ty-biz-k{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;opacity:.65;padding-top:2px}
 .ty-biz-v{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.5}
 .ty-biz-v strong{color:var(--ink);font-weight:700}
 .ty-biz-v em{font-family:var(--serif);font-style:italic;color:var(--accent);font-weight:600}
-.ty-biz-vp{margin-top:32px;padding:14px 16px;background:var(--accent-10);border:1px solid var(--accent-20)}
+.ty-biz-vp{margin-top:32px;padding:12px 16px;background:var(--accent-10);border:1px solid var(--accent-20)}
 /* LTL på mørk kolonnebaggrund — tråd og cirkler */
 .ty-col.sol .ltl-list::before { background: rgba(196,181,253,.28); }
 .ty-col.sol .ltl-item::before { background: var(--accent); }
 /* Negation list */
-.ty-neg-list{display:flex;flex-direction:column;gap:6px;margin-bottom:22px}
-.ty-neg-item{font-family:var(--serif);font-size:14px;font-weight:600;font-style:italic;color:var(--muted);line-height:1.4;display:flex;align-items:center;gap:10px;letter-spacing:-.005em}
+.ty-neg-list{display:flex;flex-direction:column;gap:4px;margin-bottom:20px}
+.ty-neg-item{font-family:var(--serif);font-size:14px;font-weight:600;font-style:italic;color:var(--muted);line-height:1.4;display:flex;align-items:center;gap:8px;letter-spacing:-.005em}
 .ty-neg-item::before{content:'–';font-family:var(--sans);font-style:normal;color:var(--accent);opacity:.45;flex-shrink:0}
 /* Trichotomy */
 .ty-triad{display:flex;flex-direction:column;margin-bottom:20px}
-.ty-triad-item{display:grid;grid-template-columns:104px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08);align-items:baseline}
+.ty-triad-item{display:grid;grid-template-columns:104px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);align-items:baseline}
 .ty-triad-item:first-child{border-top:1px solid rgba(255,255,255,.08)}
 .ty-triad-k{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.14em;text-transform:uppercase;padding-top:1px}
 .ty-triad-v{font-family:var(--serif);font-size:14px;font-weight:600;color:#FAFAF8;font-style:italic;line-height:1.3}
 /* Personas */
 .ty-persona-list{display:flex;flex-direction:column}
-.ty-persona{padding:11px 0;border-bottom:1px solid var(--line2);display:grid;grid-template-columns:144px 1fr;gap:8px;align-items:baseline}
+.ty-persona{padding:12px 0;border-bottom:1px solid var(--line2);display:grid;grid-template-columns:144px 1fr;gap:8px;align-items:baseline}
 .ty-persona:first-child{border-top:1px solid var(--line2)}
 .ty-persona-role{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);line-height:1.3}
 .ty-persona-desc{font-family:var(--sans);font-size:13px;color:var(--ink70);line-height:1.5}
 /* Closing grid */
 .ty-closing{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:28px}
-.ty-closing-item{background:var(--tint);padding:13px 15px}
-.ty-closing-k{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}
+.ty-closing-item{background:var(--tint);padding:12px 16px}
+.ty-closing-k{font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
 .ty-closing-v{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);font-style:italic;line-height:1.2}
 .ty-biz-vp-txt{font-family:var(--serif);font-size:13px;font-style:italic;font-weight:700;color:var(--accent);line-height:1.38;letter-spacing:-.008em}
 </style>
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
-  <header class="dash-header">
-    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
-    <nav class="dash-nav">
-      <button class="dash-nav-item nav-active" data-target="s-ty">That's Y</button>
-      <button class="dash-nav-item" data-target="s-biz">Business model</button>
-      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
-      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
-      <button class="dash-nav-item" data-target="s-gtm">Go-to-market</button>
-      <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
-    </nav>
-    <div class="dash-actions">
-    </div>
-  </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
-    <div class="sec-title">That's Y — platformen og løftet</div>
+    <h1 class="sec-title">That's Y — platformen og løftet</h1>
     <div class="sec-num">00 / 05</div>
   </div>
 
@@ -1933,30 +1953,30 @@ span.rm-stak {
 
       <!-- KOL 1: PLATFORMEN -->
       <div class="ty-col mrk">
-        <div style="padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:22px;">
-          <div style="font-family:var(--serif);font-size:30px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.028em;margin-bottom:10px;">Y Business overvåger erhvervslivet for dig.</div>
+        <div style="padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:20px;">
+          <div style="font-family:var(--serif);font-size:30px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.028em;margin-bottom:8px;">Y Business overvåger erhvervslivet for dig.</div>
           <div style="font-family:var(--sans);font-size:13px;color:var(--ink70);line-height:1.65;">Nyheder, markedstrends, regulering, konkurrenter og Business AI samlet i ét personligt overblik — med redaktionel dømmekraft ovenpå.</div>
         </div>
 
-        <div style="padding:14px 16px;background:var(--accent);margin-bottom:22px;">
+        <div style="padding:12px 16px;background:var(--accent);margin-bottom:20px;">
           <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;">Kategori</div>
           <div style="font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.22;letter-spacing:-.015em;">Redaktionel erhvervsintelligens for det private erhvervsliv.</div>
         </div>
 
         <div style="display:flex;flex-direction:column;border-top:1px solid var(--line);">
-          <div style="padding:14px 0;border-bottom:1px solid var(--line);">
+          <div style="padding:12px 0;border-bottom:1px solid var(--line);">
             <div style="font-family:var(--serif);font-size:34px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.03em;margin-bottom:4px;">99%</div>
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;margin-bottom:6px;">af danske virksomheder er SMV'er</div>
+            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px;">af danske virksomheder er SMV'er</div>
             <div style="font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.5;">Y Business er bygget til dem — ikke til C25 og de børsnoterede selskaber, der allerede har analyseafdelinger.</div>
           </div>
-          <div style="padding:14px 0;border-bottom:1px solid var(--line);">
+          <div style="padding:12px 0;border-bottom:1px solid var(--line);">
             <div style="font-family:var(--serif);font-size:34px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.03em;margin-bottom:4px;">46 mia.</div>
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;margin-bottom:6px;">kr. om året i administrative byrder</div>
+            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px;">kr. om året i administrative byrder</div>
             <div style="font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.5;">Regulering har konsekvenser — specielt for virksomheder uden compliancefunktion. Y Business holder øje med, hvad det kræver.</div>
           </div>
-          <div style="padding:14px 0;">
+          <div style="padding:12px 0;">
             <div style="font-family:var(--serif);font-size:34px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.03em;margin-bottom:4px;">2–5 t.</div>
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;margin-bottom:6px;">om ugen brugt på nyhedssortering</div>
+            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px;">om ugen brugt på nyhedssortering</div>
             <div style="font-family:var(--sans);font-size:12px;color:var(--ink70);line-height:1.5;">Y Business samler og prioriterer — så lederen bruger tiden på at handle, ikke på at sortere.</div>
           </div>
         </div>
@@ -1982,7 +2002,7 @@ span.rm-stak {
           </div>
         </div>
 
-        <div style="padding:13px 16px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.11); margin-bottom:20px;">
+        <div style="padding:12px 16px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.11); margin-bottom:20px;">
           <div style="font-family:var(--sans); font-size:12.5px; color:rgba(250,250,248,.7); line-height:1.65;">
             <span style="color:#fff; font-weight:600;">AI</span> overvåger, sorterer og finder mønstre.<br>
             <span style="color:#fff; font-weight:600;">Redaktionen</span> prioriterer, verificerer og forklarer.
@@ -2006,7 +2026,7 @@ span.rm-stak {
 
         <div class="ty-vp">
           <div class="ty-vp-txt">Brugeren får et beslutningsgrundlag — ikke bare en nyhedsstrøm.</div>
-          <div class="ty-vp-sub" style="margin-top:10px; display:flex; flex-direction:column; gap:4px;">
+          <div class="ty-vp-sub" style="margin-top:8px; display:flex; flex-direction:column; gap:4px;">
             <span>Hvad skal jeg forstå?</span>
             <span>Hvad skal jeg tvivle på?</span>
             <span>Hvad kan jeg gøre?</span>
@@ -2018,7 +2038,7 @@ span.rm-stak {
       <div class="ty-col biz">
         <div class="ty-col-hdr">Målgruppen</div>
 
-        <div style="font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.65; margin-bottom:22px;">Y Business er for mennesker i det private erhvervsliv, der skal handle på forandring.</div>
+        <div style="font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.65; margin-bottom:20px;">Y Business er for mennesker i det private erhvervsliv, der skal handle på forandring.</div>
 
         <div class="ty-persona-list">
           <div class="ty-persona">
@@ -2039,7 +2059,7 @@ span.rm-stak {
           </div>
         </div>
 
-        <div style="padding:14px 16px; background:var(--accent-10); border:1px solid var(--accent-20); margin-top:22px;">
+        <div style="padding:12px 16px; background:var(--accent-10); border:1px solid var(--accent-20); margin-top:20px;">
           <div style="font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.65;">Samme platform. Samme redaktionelle standard.<br><strong style="color:var(--ink);">Forskellige prioriteringer.</strong></div>
         </div>
 
@@ -2071,22 +2091,9 @@ span.rm-stak {
 <div class="screen" id="s-biz">
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
-  <header class="dash-header">
-    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
-    <nav class="dash-nav">
-      <button class="dash-nav-item" data-target="s-ty">That's Y</button>
-      <button class="dash-nav-item nav-active" data-target="s-biz">Business model</button>
-      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
-      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
-      <button class="dash-nav-item" data-target="s-gtm">Go-to-market</button>
-      <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
-    </nav>
-    <div class="dash-actions">
-    </div>
-  </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
-    <div class="sec-title">Business model & revenue</div>
+    <h1 class="sec-title">Business model & revenue</h1>
     <div class="sec-num">01 / 05</div>
   </div>
 
@@ -2127,13 +2134,13 @@ span.rm-stak {
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:16px;margin-bottom:16px;">
-        <div style="background:var(--ink);padding:18px 20px;">
-          <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;">Partner</div>
+        <div style="background:var(--ink);padding:16px 20px;">
+          <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;">Partner</div>
           <div style="font-family:var(--serif);font-size:22px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.02em;margin-bottom:8px;">25–75.000 kr/år</div>
           <div style="font-family:var(--sans);font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.55;">Sponsor/relation: events, brancheindblik, synlighed</div>
         </div>
-        <div style="background:var(--ink);padding:18px 20px;">
-          <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;">API</div>
+        <div style="background:var(--ink);padding:16px 20px;">
+          <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;">API</div>
           <div style="font-family:var(--serif);font-size:22px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.02em;margin-bottom:8px;">100–250.000 kr/år</div>
           <div style="font-family:var(--sans);font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.55;">Enterprise: nyhedsfeeds, alerts, data til CRM/intranet</div>
         </div>
@@ -2316,8 +2323,8 @@ span.rm-stak {
             <div class="biz-upgrade-v">Øger værdien per kunde.</div>
           </div>
         </div>
-        <div style="padding:18px 18px 0;">
-          <div class="col-label-sm" style="margin-bottom:14px;">Tilkøb</div>
+        <div style="padding:16px 16px 0;">
+          <div class="col-label-sm" style="margin-bottom:12px;">Tilkøb</div>
           <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:20px;">
             <div class="ltl-item">
               <div class="ltl-lbl">Ekstra bruger</div>
@@ -2338,7 +2345,7 @@ span.rm-stak {
           </div>
         </div>
       </div>
-      <div class="col-label-sm" style="margin-top:22px;margin-bottom:12px;">Beslutningsstatus</div>
+      <div class="col-label-sm" style="margin-top:20px;margin-bottom:12px;">Beslutningsstatus</div>
       <div class="biz-status-grid">
         <div class="biz-status-box s-green">
           <div class="biz-status-lbl s-green">Besluttet</div>
@@ -2407,7 +2414,7 @@ span.rm-stak {
 
     <div class="col ani col-compact biz-right-col" style="padding-bottom:80px; overflow-y:auto; min-height:0;">
 
-      <div class="col-label-sm" style="margin-bottom:14px;">Kerneprodukt vs. salgsacceleratorer</div>
+      <div class="col-label-sm" style="margin-bottom:12px;">Kerneprodukt vs. salgsacceleratorer</div>
       <div class="biz-kerne-split">
         <div class="biz-kerne-col core">
           <div class="biz-kerne-hdr">Kerneprodukt</div>
@@ -2483,54 +2490,41 @@ span.rm-stak {
 /* === S-POS === */
 #s-pos .sec-body{display:flex;flex-direction:column;overflow:hidden}
 #s-pos .sec-cols{flex:1;min-height:0;overflow:hidden}
-.pos-map{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--line);margin-bottom:22px}
-.pos-cell{padding:13px 15px;background:var(--tint);min-height:76px;display:flex;flex-direction:column}
+.pos-map{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--line);margin-bottom:20px}
+.pos-cell{padding:12px 16px;background:var(--tint);min-height:76px;display:flex;flex-direction:column}
 .pos-cell.yb{background:var(--accent)}
-.pos-cell-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+.pos-cell-lbl{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
 .pos-cell.yb .pos-cell-lbl{color:rgba(196,181,253,.6)}
 .pos-cell-actors{font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.45}
 .pos-cell.yb .pos-cell-actors{color:#FAFAF8;font-weight:600;font-size:14px}
 .pos-cell-note{font-family:var(--serif);font-size:11px;font-style:italic;color:rgba(255,255,255,.6);line-height:1.3;margin-top:auto;padding-top:8px}
 .partner-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-bottom:20px}
-.partner-col{padding:13px 14px}
+.partner-col{padding:12px 12px}
 .partner-col.can{background:var(--tint)}
 .partner-col.own{background:var(--accent)}
-.partner-col-hdr{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:9px}
+.partner-col-hdr{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
 .partner-col.can .partner-col-hdr{color:var(--muted)}
 .partner-col.own .partner-col-hdr{color:rgba(196,181,253,.6)}
-.partner-item{font-family:var(--sans);font-size:11.5px;line-height:1.35;padding:3px 0;border-bottom:1px solid}
+.partner-item{font-family:var(--sans);font-size:11.5px;line-height:1.35;padding:4px 0;border-bottom:1px solid}
 .partner-item:last-child{border-bottom:none}
 .partner-col.can .partner-item{color:var(--ink70);border-bottom-color:var(--line2)}
 .partner-col.own .partner-item{color:rgba(255,255,255,.78);border-bottom-color:rgba(255,255,255,.1)}
 .ai-spots{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-bottom:20px}
-.ai-spot{background:var(--tint);padding:13px 14px}
-.ai-spot-k{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
-.ai-spot-v{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:5px;letter-spacing:-.01em}
+.ai-spot{background:var(--tint);padding:12px 12px}
+.ai-spot-k{font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.ai-spot-v{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:4px;letter-spacing:-.01em}
 .ai-spot-d{font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4}
 .pos-foundations{flex-shrink:0;height:64px;display:grid;grid-template-columns:repeat(6,1fr);background:var(--accent);border-top:2px solid rgba(255,255,255,.07)}
-.pos-found-cell{padding:0 18px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(255,255,255,.08);gap:3px}
+.pos-found-cell{padding:0 16px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(255,255,255,.08);gap:4px}
 .pos-found-cell:last-child{border-right:none}
 .pos-found-lbl{font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.45);letter-spacing:.18em;text-transform:uppercase}
 .pos-found-v{font-family:var(--serif);font-size:11.5px;font-weight:700;color:#FAFAF8;font-style:italic;line-height:1.18;letter-spacing:-.01em}
 </style>
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
-  <header class="dash-header">
-    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
-    <nav class="dash-nav">
-      <button class="dash-nav-item" data-target="s-ty">That's Y</button>
-      <button class="dash-nav-item" data-target="s-biz">Business model</button>
-      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
-      <button class="dash-nav-item nav-active" data-target="s-pos">Positionering</button>
-      <button class="dash-nav-item" data-target="s-gtm">Go-to-market</button>
-      <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
-    </nav>
-    <div class="dash-actions">
-    </div>
-  </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
-    <div class="sec-title">Markedspositionering</div>
+    <h1 class="sec-title">Markedspositionering</h1>
     <div class="sec-num">03 / 05</div>
   </div>
 
@@ -2540,50 +2534,50 @@ span.rm-stak {
     <!-- VENSTRE KOLONNE -->
     <div class="col ani" style="overflow-y:auto; min-height:0; padding-bottom:88px;">
       <div class="col-label" style="margin-bottom:4px;">Positionen vi ejer</div>
-      <div style="font-family:var(--serif);font-size:18px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.2;letter-spacing:-.02em;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line2);">Redaktionel erhvervsintelligens for det private erhvervsliv</div>
-      <div style="padding:16px 18px; background:var(--accent); margin-bottom:18px;">
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.2;letter-spacing:-.02em;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line2);">Redaktionel erhvervsintelligens for det private erhvervsliv</div>
+      <div style="padding:16px 16px; background:var(--accent); margin-bottom:16px;">
         <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">SMV-markedet</div>
-        <div style="font-family:var(--serif);font-size:42px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.04em;margin-bottom:6px;">99%</div>
-        <div style="font-family:var(--sans);font-size:12px;color:rgba(250,250,248,.62);line-height:1.5;margin-bottom:14px;">af alle kommercielle selskaber i Danmark er SMV'er — uden egne analyseafdelinger, compliance-teams eller business intelligence-enheder.</div>
-        <div style="margin-top:10px;background:rgba(0,0,0,.15);border:1px solid rgba(196,181,253,.12);">
+        <div style="font-family:var(--serif);font-size:42px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1;letter-spacing:-.04em;margin-bottom:4px;">99%</div>
+        <div style="font-family:var(--sans);font-size:12px;color:rgba(250,250,248,.62);line-height:1.5;margin-bottom:12px;">af alle kommercielle selskaber i Danmark er SMV'er — uden egne analyseafdelinger, compliance-teams eller business intelligence-enheder.</div>
+        <div style="margin-top:8px;background:rgba(0,0,0,.15);border:1px solid rgba(196,181,253,.12);">
           <!-- Segment 1 -->
-          <div style="padding:11px 13px;border-bottom:1px solid rgba(255,255,255,.08);">
+          <div style="padding:12px 12px;border-bottom:1px solid rgba(255,255,255,.08);">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
               <div style="flex:1;min-width:0;">
                 <div style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,181,253,.45);margin-bottom:4px;">★ Beachhead 1</div>
                 <div style="font-family:var(--sans);font-size:12.5px;font-weight:700;color:#FAFAF8;line-height:1.2;letter-spacing:-.01em;margin-bottom:4px;">Erhvervsservice &amp; Rådgivning</div>
                 <div style="font-family:var(--mono);font-size:7.5px;color:rgba(196,181,253,.72);line-height:1.55;letter-spacing:.03em;">Informationsintensivt · abonnementsmodent · direkte betalingsvilje</div>
               </div>
-              <div style="text-align:right;flex-shrink:0;padding-top:14px;">
+              <div style="text-align:right;flex-shrink:0;padding-top:12px;">
                 <div style="font-family:var(--serif);font-size:19px;font-weight:700;font-style:italic;color:rgba(250,250,248,.78);line-height:1;letter-spacing:-.02em;">62.398</div>
                 <div style="font-family:var(--mono);font-size:6.5px;color:rgba(196,181,253,.6);letter-spacing:.07em;margin-top:2px;">virksomheder</div>
               </div>
             </div>
-            <div style="margin-top:9px;height:2px;background:rgba(255,255,255,.08);border-radius:1px;">
-              <div style="width:75%;height:100%;background:rgba(196,181,253,.5);border-radius:1px;"></div>
+            <div style="margin-top:8px;height:2px;background:rgba(255,255,255,.08);border-radius:var(--radius-xs);">
+              <div style="width:75%;height:100%;background:rgba(196,181,253,.5);border-radius:var(--radius-xs);"></div>
             </div>
           </div>
           <!-- Segment 2 -->
-          <div style="padding:11px 13px;">
+          <div style="padding:12px 12px;">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
               <div style="flex:1;min-width:0;">
                 <div style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,181,253,.45);margin-bottom:4px;">★ Beachhead 2</div>
                 <div style="font-family:var(--sans);font-size:12.5px;font-weight:700;color:#FAFAF8;line-height:1.2;letter-spacing:-.01em;margin-bottom:4px;">IT, Software &amp; SaaS</div>
                 <div style="font-family:var(--mono);font-size:7.5px;color:rgba(196,181,253,.72);line-height:1.55;letter-spacing:.03em;">Høj SaaS-modenhed · build-vs-buy løst · hurtigst til ROI</div>
               </div>
-              <div style="text-align:right;flex-shrink:0;padding-top:14px;">
+              <div style="text-align:right;flex-shrink:0;padding-top:12px;">
                 <div style="font-family:var(--serif);font-size:19px;font-weight:700;font-style:italic;color:rgba(250,250,248,.78);line-height:1;letter-spacing:-.02em;">20.514</div>
                 <div style="font-family:var(--mono);font-size:6.5px;color:rgba(196,181,253,.6);letter-spacing:.07em;margin-top:2px;">virksomheder</div>
               </div>
             </div>
-            <div style="margin-top:9px;height:2px;background:rgba(255,255,255,.08);border-radius:1px;">
-              <div style="width:25%;height:100%;background:rgba(196,181,253,.3);border-radius:1px;"></div>
+            <div style="margin-top:8px;height:2px;background:rgba(255,255,255,.08);border-radius:var(--radius-xs);">
+              <div style="width:25%;height:100%;background:rgba(196,181,253,.3);border-radius:var(--radius-xs);"></div>
             </div>
           </div>
         </div>
-        <div onclick="openResearchModal()" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;cursor:pointer;font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px dashed rgba(196,181,253,.22);padding-bottom:1px;transition:color .15s,border-color .15s" onmouseover="this.style.color='rgba(196,181,253,.85)';this.style.borderBottomColor='rgba(196,181,253,.55)'" onmouseout="this.style.color='rgba(196,181,253,.5)';this.style.borderBottomColor='rgba(196,181,253,.22)'">Se sektoranalyse — 7 brancher vurderet ↗</div>
+        <div onclick="openResearchModal()" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;cursor:pointer;font-family:var(--mono);font-size:7.5px;font-weight:700;color:rgba(196,181,253,.5);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px dashed rgba(196,181,253,.22);padding-bottom:1px;transition:color .15s,border-color .15s" onmouseover="this.style.color='rgba(196,181,253,.85)';this.style.borderBottomColor='rgba(196,181,253,.55)'" onmouseout="this.style.color='rgba(196,181,253,.5)';this.style.borderBottomColor='rgba(196,181,253,.22)'">Se sektoranalyse — 7 brancher vurderet ↗</div>
       </div>
-      <div class="col-label-sm" style="margin-bottom:10px;">Positioneringskort</div>
+      <div class="col-label-sm" style="margin-bottom:8px;">Positioneringskort</div>
       <div class="pos-map">
         <div class="pos-cell">
           <div class="pos-cell-lbl">Makro + uafhængig redaktion</div>
@@ -2593,7 +2587,7 @@ span.rm-stak {
           <div class="pos-cell-lbl">Operationel + uafhængig redaktion</div>
           <div class="pos-cell-actors">★ Y Business</div>
           <div class="pos-cell-note">Overvågning, Business AI og beslutningsværdi — ubesat felt.</div>
-          <div onclick="openSourcesModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:800;color:#FAFAF8;letter-spacing:.13em;text-transform:uppercase;background:rgba(196,181,253,.18);border:1px solid rgba(196,181,253,.42);border-radius:4px;padding:8px 12px;box-shadow:0 8px 22px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.08);transition:background .15s,border-color .15s,transform .15s,color .15s" onmouseover="this.style.background='rgba(196,181,253,.28)';this.style.borderColor='rgba(196,181,253,.72)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='rgba(196,181,253,.18)';this.style.borderColor='rgba(196,181,253,.42)';this.style.transform='translateY(0)'">Hvad vi overvåger ↗</div>
+          <div onclick="openSourcesModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:800;color:#FAFAF8;letter-spacing:.13em;text-transform:uppercase;background:rgba(196,181,253,.18);border:1px solid rgba(196,181,253,.42);border-radius:var(--radius-sm);padding:8px 12px;box-shadow:0 8px 22px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.08);transition:background .15s,border-color .15s,transform .15s,color .15s" onmouseover="this.style.background='rgba(196,181,253,.28)';this.style.borderColor='rgba(196,181,253,.72)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='rgba(196,181,253,.18)';this.style.borderColor='rgba(196,181,253,.42)';this.style.transform='translateY(0)'">Hvad vi overvåger ↗</div>
         </div>
         <div class="pos-cell">
           <div class="pos-cell-lbl">Makro + rådgivning</div>
@@ -2604,7 +2598,7 @@ span.rm-stak {
           <div class="pos-cell-actors">Meltwater · Retriever · Infomedia · Branchemedier</div>
         </div>
       </div>
-      <div class="col-label-sm" style="margin-bottom:10px;">Partnerlaget</div>
+      <div class="col-label-sm" style="margin-bottom:8px;">Partnerlaget</div>
       <div class="partner-split">
         <div class="partner-col can">
           <div class="partner-col-hdr">Partnere kan bidrage med</div>
@@ -2630,7 +2624,7 @@ span.rm-stak {
     <!-- HØJRE KOLONNE -->
     <div class="col ani" style="overflow-y:auto; min-height:0; padding-bottom:88px;">
       <div class="col-label">Den fragmenterede stack</div>
-      <div style="font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.6;margin-bottom:14px;">Virksomheder betaler allerede for erhvervsviden — men spredt. Y Business samler det vigtigste i ét redaktionelt beslutningslag.</div>
+      <div style="font-family:var(--sans);font-size:12.5px;color:var(--ink70);line-height:1.6;margin-bottom:12px;">Virksomheder betaler allerede for erhvervsviden — men spredt. Y Business samler det vigtigste i ét redaktionelt beslutningslag.</div>
       <table class="tbl" style="font-size:12px;">
         <thead><tr><th>Kategori</th><th>Prisniveau</th><th>Hvad det løser</th><th>Y Business' forskel</th></tr></thead>
         <tbody>
@@ -2722,22 +2716,9 @@ span.rm-stak {
 <div class="screen" id="s-gtm">
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
-  <header class="dash-header">
-    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
-    <nav class="dash-nav">
-      <button class="dash-nav-item" data-target="s-ty">That's Y</button>
-      <button class="dash-nav-item" data-target="s-biz">Business model</button>
-      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
-      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
-      <button class="dash-nav-item nav-active" data-target="s-gtm">Go-to-market</button>
-      <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
-    </nav>
-    <div class="dash-actions">
-    </div>
-  </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
-    <div class="sec-title">Go-to-market</div>
+    <h1 class="sec-title">Go-to-market</h1>
     <div class="sec-num">04 / 05</div>
   </div>
 
@@ -2759,21 +2740,21 @@ span.rm-stak {
         </div>
       </div>
 
-      <div class="col-label-sm" style="margin-bottom:10px;">Beachhead-segmenter</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-bottom:22px;">
-        <div style="background:var(--tint);padding:14px 15px;">
-          <div style="font-family:var(--serif);font-size:26px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.025em;margin-bottom:5px;">62.398</div>
+      <div class="col-label-sm" style="margin-bottom:8px;">Beachhead-segmenter</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-bottom:20px;">
+        <div style="background:var(--tint);padding:12px 16px;">
+          <div style="font-family:var(--serif);font-size:26px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.025em;margin-bottom:4px;">62.398</div>
           <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;">Erhvervsservice &amp; Rådgivning</div>
           <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4;">Informationsintensivt, abonnementsmodent og direkte betalingsvilje.</div>
         </div>
-        <div style="background:var(--tint);padding:14px 15px;">
-          <div style="font-family:var(--serif);font-size:26px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.025em;margin-bottom:5px;">20.514</div>
+        <div style="background:var(--tint);padding:12px 16px;">
+          <div style="font-family:var(--serif);font-size:26px;font-weight:700;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.025em;margin-bottom:4px;">20.514</div>
           <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;">IT/SaaS</div>
           <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.4;">Rettidig viden omsættes direkte til timer, salg og markedsposition.</div>
         </div>
       </div>
 
-      <div class="col-label-sm" style="margin-bottom:10px;">Mulige aktører — August</div>
+      <div class="col-label-sm" style="margin-bottom:8px;">Mulige aktører — August</div>
       <div class="ltl-list" style="--ltl-color:var(--muted); margin-bottom:20px;">
         <div class="ltl-item"><div class="ltl-lbl">Dansk Erhverv</div><div class="ltl-txt">18.000+ virksomheder · beta-rekruttering og distribution</div></div>
         <div class="ltl-item"><div class="ltl-lbl">SMVdanmark</div><div class="ltl-txt">15.000+ SMV'er · kernemålgruppe og beta</div></div>
@@ -2783,20 +2764,20 @@ span.rm-stak {
         <div class="ltl-item"><div class="ltl-lbl">Landbrug &amp; Fødevarer</div><div class="ltl-txt">Agri-segment · sektorspecifik distribution og regulatorisk dækning · mulig vertikal</div></div>
       </div>
 
-      <div class="col-label-sm" style="margin-bottom:10px;">Hvad vi skal have ud af august</div>
+      <div class="col-label-sm" style="margin-bottom:8px;">Hvad vi skal have ud af august</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);">
-        <div style="background:var(--tint);padding:13px 14px;">
-          <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:9px;">Partnerforståelse</div>
-          <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.55;display:flex;flex-direction:column;gap:5px;">
+        <div style="background:var(--tint);padding:12px 12px;">
+          <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;">Partnerforståelse</div>
+          <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.55;display:flex;flex-direction:column;gap:4px;">
             <div>Hvilke org. er distributionspartnere vs. kun kilder</div>
             <div>Prioriterede beachhead-segmenter</div>
             <div>Mulige beta-brugere og rekrutteringskanaler</div>
             <div>Mulige distributionskanaler og aftaleformer</div>
           </div>
         </div>
-        <div style="background:var(--tint);padding:13px 14px;">
-          <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:9px;">Produktvalidering</div>
-          <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.55;display:flex;flex-direction:column;gap:5px;">
+        <div style="background:var(--tint);padding:12px 12px;">
+          <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;">Produktvalidering</div>
+          <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.55;display:flex;flex-direction:column;gap:4px;">
             <div>Reelle medlemsbehov og informationsbehov</div>
             <div>Hvilke produktløfter der skal testes i beta</div>
             <div>Mulige cases og datakilder</div>
@@ -2853,77 +2834,64 @@ span.rm-stak {
 /* Kolonne 1: Redaktionelle formater */
 .prd-nav-wrap { height:100%; display:flex; flex-direction:column; overflow:hidden; padding:0; position:relative; }
 .prd-nav-wrap::after { content:''; position:absolute; bottom:0; left:0; right:0; height:56px; background:linear-gradient(to bottom, transparent, var(--card)); pointer-events:none; z-index:2; }
-.prd-nav-hdr { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.18em; text-transform:uppercase; padding:22px 28px 14px; border-bottom:2px solid var(--line); flex-shrink:0; }
+.prd-nav-hdr { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); letter-spacing:.18em; text-transform:uppercase; padding:20px 28px 12px; border-bottom:2px solid var(--line); flex-shrink:0; }
 .prd-layer-nav { flex:1; overflow-y:auto; display:flex; flex-direction:column; scrollbar-width:thin; scrollbar-color:var(--line2) transparent; padding-bottom:56px; }
 .prd-layer-nav::-webkit-scrollbar { width:3px; }
-.prd-layer-nav::-webkit-scrollbar-thumb { background:var(--line2); border-radius:2px; }
+.prd-layer-nav::-webkit-scrollbar-thumb { background:var(--line2); border-radius:var(--radius-xs); }
 .prd-layer-item { display:flex; align-items:stretch; cursor:pointer; border-bottom:1px solid var(--line2); transition:background .15s ease; }
 .prd-layer-item:hover { background:var(--tint); }
 .prd-layer-item.active { background:var(--tint); }
 .prd-layer-bar { width:4px; flex-shrink:0; background:transparent; transition:background .22s ease, width .2s ease; }
 .prd-layer-item.active .prd-layer-bar { background:var(--lc, var(--accent)); width:6px; }
-.prd-layer-inner { padding:9px 14px 9px 11px; flex:1; min-width:0; }
-.prd-layer-meta { display:flex; align-items:center; justify-content:space-between; margin-bottom:3px; }
+.prd-layer-inner { padding:8px 12px 8px 12px; flex:1; min-width:0; }
+.prd-layer-meta { display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
 .prd-layer-num { font-family:var(--mono); font-size:9px; font-weight:500; color:var(--muted); letter-spacing:.1em; line-height:1; opacity:.45; }
 .prd-layer-name { font-family:var(--serif); font-weight:700; color:var(--ink); letter-spacing:-.015em; line-height:1.18; font-size:14px; transition:font-size .28s cubic-bezier(.22,.61,.36,1); }
 .prd-layer-item.active .prd-layer-name { font-size:18px; }
-.prd-layer-driver { font-family:var(--mono); font-size:8px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lc,var(--accent)); margin-top:5px; max-height:0; overflow:hidden; opacity:0; transition:max-height .25s ease .06s, opacity .2s ease .08s; }
+.prd-layer-driver { font-family:var(--mono); font-size:8px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lc,var(--accent)); margin-top:4px; max-height:0; overflow:hidden; opacity:0; transition:max-height .25s ease .06s, opacity .2s ease .08s; }
 .prd-layer-item.active .prd-layer-driver { max-height:16px; opacity:1; }
-.prd-layer-desc { font-family:var(--sans); font-size:11.5px; color:var(--muted); line-height:1.45; margin-top:6px; max-height:0; overflow:hidden; opacity:0; transition:max-height .32s cubic-bezier(.22,.61,.36,1) .04s, opacity .22s ease .07s; }
+.prd-layer-desc { font-family:var(--sans); font-size:11.5px; color:var(--muted); line-height:1.45; margin-top:4px; max-height:0; overflow:hidden; opacity:0; transition:max-height .32s cubic-bezier(.22,.61,.36,1) .04s, opacity .22s ease .07s; }
 .prd-layer-item.active .prd-layer-desc { max-height:60px; opacity:1; }
 .prd-layer-ltl { max-height:0; overflow:hidden; opacity:0; transition:max-height .42s cubic-bezier(.22,.61,.36,1) .06s, opacity .25s ease .1s; margin-top:0; }
 .prd-layer-item.active .prd-layer-ltl { max-height:520px; opacity:1; margin-top:8px; }
 /* Status badges */
-.prd-status { display:inline-flex; align-items:center; gap:4px; font-family:var(--mono); font-size:7px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; padding:2px 6px; border:1px solid; flex-shrink:0; }
+.prd-status { display:inline-flex; align-items:center; gap:4px; font-family:var(--mono); font-size:7px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; padding:2px 4px; border:1px solid; flex-shrink:0; }
 .prd-status::before { content:''; display:block; width:5px; height:5px; border-radius:50%; flex-shrink:0; }
 .prd-status.green { color:var(--green); border-color:rgba(22,163,74,.28); background:var(--green-s); }
 .prd-status.green::before { background:var(--green); }
 .prd-status.amber { color:var(--amber); border-color:rgba(180,83,9,.28); background:var(--amber-s); }
 .prd-status.amber::before { background:var(--amber); }
-.prd-status.purple { color:#7C3AED; border-color:rgba(124,58,237,.22); background:rgba(124,58,237,.06); }
-.prd-status.purple::before { background:#7C3AED; }
+.prd-status.purple { color:var(--layer-ai); border-color:rgba(124,58,237,.22); background:rgba(124,58,237,.06); }
+.prd-status.purple::before { background:var(--layer-ai); }
 .prd-status.muted { color:var(--muted); border-color:var(--line); background:var(--tint); }
 .prd-status.muted::before { background:var(--muted); }
 /* Kolonne 2: Generiske produktlag */
 .prd-lyr-wrap { height:100%; display:flex; flex-direction:column; overflow:hidden; border-left:1px solid var(--line); }
-.prd-lyr-hdr { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--muted); letter-spacing:.18em; text-transform:uppercase; padding:22px 24px 14px; border-bottom:2px solid var(--line); flex-shrink:0; }
+.prd-lyr-hdr { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--muted); letter-spacing:.18em; text-transform:uppercase; padding:20px 24px 12px; border-bottom:2px solid var(--line); flex-shrink:0; }
 .prd-lyr-list { flex:1; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--line2) transparent; padding-bottom:56px; }
 .prd-lyr-list::-webkit-scrollbar { width:3px; }
-.prd-lyr-list::-webkit-scrollbar-thumb { background:var(--line2); border-radius:2px; }
-.prd-lyr-item { padding:11px 20px 13px 22px; border-bottom:1px solid var(--line2); }
+.prd-lyr-list::-webkit-scrollbar-thumb { background:var(--line2); border-radius:var(--radius-xs); }
+.prd-lyr-item { padding:12px 20px 12px 20px; border-bottom:1px solid var(--line2); }
 .prd-lyr-item.phase2 { background:var(--tint); opacity:.7; }
-.prd-lyr-head { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:5px; }
+.prd-lyr-head { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:4px; }
 .prd-lyr-name { font-family:var(--sans); font-size:13px; font-weight:700; color:var(--ink); line-height:1.2; }
-.prd-lyr-desc { font-family:var(--sans); font-size:11px; color:var(--ink70); line-height:1.5; margin-bottom:6px; }
+.prd-lyr-desc { font-family:var(--sans); font-size:11px; color:var(--ink70); line-height:1.5; margin-bottom:4px; }
 .prd-lyr-row { font-family:var(--mono); font-size:8px; letter-spacing:.04em; line-height:1.55; margin-bottom:2px; }
 .prd-lyr-row .k { color:var(--muted); opacity:.65; }
 .prd-lyr-row .v { color:var(--ink70); }
-.prd-lyr-fmts { font-family:var(--mono); font-size:8px; color:var(--accent); letter-spacing:.05em; margin-top:5px; }
+.prd-lyr-fmts { font-family:var(--mono); font-size:8px; color:var(--accent); letter-spacing:.05em; margin-top:4px; }
 /* Foundations bar */
 .prd-foundations { flex-shrink:0; height:64px; display:grid; grid-template-columns:repeat(6,1fr); background:var(--accent); border-top:2px solid rgba(255,255,255,.07); }
-.prd-found-cell { padding:0 18px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(255,255,255,.08); gap:3px; }
+.prd-found-cell { padding:0 16px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(255,255,255,.08); gap:4px; }
 .prd-found-cell:last-child { border-right:none; }
 .prd-found-lbl { font-family:var(--mono); font-size:8px; font-weight:700; color:rgba(196,181,253,.45); letter-spacing:.18em; text-transform:uppercase; }
 .prd-found-q { font-family:var(--serif); font-size:11.5px; font-weight:700; color:#FAFAF8; font-style:italic; line-height:1.18; letter-spacing:-.01em; }
 </style>
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
-  <header class="dash-header">
-    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
-    <nav class="dash-nav">
-      <button class="dash-nav-item" data-target="s-ty">That's Y</button>
-      <button class="dash-nav-item" data-target="s-biz">Business model</button>
-      <button class="dash-nav-item nav-active" data-target="s-prd">Produkt</button>
-      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
-      <button class="dash-nav-item" data-target="s-gtm">Go-to-market</button>
-      <button class="dash-nav-item" data-target="s-ai">AI-motor & Business AI</button>
-    </nav>
-    <div class="dash-actions">
-    </div>
-  </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
-    <div class="sec-title">Produkt — formater og produktlag</div>
+    <h1 class="sec-title">Produkt — formater og produktlag</h1>
     <div class="sec-num">02 / 05</div>
   </div>
 
@@ -2984,7 +2952,7 @@ span.rm-stak {
             </div>
           </div>
 
-          <div class="prd-layer-item" style="--lc:#2563EB">
+          <div class="prd-layer-item" style="--lc:var(--layer-gtm)">
             <div class="prd-layer-bar"></div>
             <div class="prd-layer-inner">
               <div class="prd-layer-meta"><div class="prd-layer-num">03 · FORSPRINGET</div></div>
@@ -2992,7 +2960,7 @@ span.rm-stak {
               <div class="prd-layer-driver">Overvågning møder journalistik</div>
               <div class="prd-layer-desc">Hvad skal jeg holde øje med, før alle andre taler om det?</div>
               <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:#2563EB">
+                <div class="ltl-list" style="--ltl-color:var(--layer-gtm)">
                   <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Samle og vise tidlige signaler på markedsbevægelser på tværs af brancher, regulering og konkurrenter.</div></div>
                   <div class="ltl-item"><div class="ltl-lbl">Tilspidsning</div><div class="ltl-txt">Ikke en nyhedsstrøm — et overblik over svage signaler med mulig konsekvens. Kræver datalag og signalovervågning.</div></div>
                   <div class="ltl-item"><div class="ltl-lbl">Overvågningsdimensioner</div><div class="ltl-txt">Teknologimodenhed · regulatorisk fremdrift · arbejdsmarked · kapitalflow · nordisk spejl (Ben 2) · forbruger-/virksomhedsadfærd</div></div>
@@ -3002,7 +2970,7 @@ span.rm-stak {
             </div>
           </div>
 
-          <div class="prd-layer-item" style="--lc:#2563EB">
+          <div class="prd-layer-item" style="--lc:var(--layer-gtm)">
             <div class="prd-layer-bar"></div>
             <div class="prd-layer-inner">
               <div class="prd-layer-meta"><div class="prd-layer-num">04</div></div>
@@ -3010,7 +2978,7 @@ span.rm-stak {
               <div class="prd-layer-driver">Bro mellem overvågning og journalistik</div>
               <div class="prd-layer-desc">Hvad skal jeg agere på, inden det bliver almenkendt?</div>
               <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:#2563EB">
+                <div class="ltl-list" style="--ltl-color:var(--layer-gtm)">
                   <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Fange tidlige tegn på ændringer i markedet og oversætte dem til handling.</div></div>
                   <div class="ltl-item"><div class="ltl-lbl">Tilspidsning</div><div class="ltl-txt">Ikke "trend" — "tidligt signal med mulig konsekvens." Signalradaren viser mønstret. Signalet fortæller, hvad det betyder. (Signalet er strukturelement i Signalradaren — ikke et selvstændigt format.)</div></div>
                 </div>
@@ -3051,7 +3019,7 @@ span.rm-stak {
             </div>
           </div>
 
-          <div class="prd-layer-item" style="--lc:#2563EB">
+          <div class="prd-layer-item" style="--lc:var(--layer-gtm)">
             <div class="prd-layer-bar"></div>
             <div class="prd-layer-inner">
               <div class="prd-layer-meta"><div class="prd-layer-num">07 · AP</div></div>
@@ -3059,7 +3027,7 @@ span.rm-stak {
               <div class="prd-layer-driver">Systematisk screeningformat · Ben 1+3</div>
               <div class="prd-layer-desc">Hvor er den manuelle proces, der er klar til AI — og hvad koster det ikke at gøre noget?</div>
               <div class="prd-layer-ltl">
-                <div class="ltl-list" style="--ltl-color:#2563EB">
+                <div class="ltl-list" style="--ltl-color:var(--layer-gtm)">
                   <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Screener manuelle processer i sundhed, finans, det offentlige og logistik for AI- og automatiseringspotentiale.</div></div>
                   <div class="ltl-item"><div class="ltl-lbl">Fast struktur</div><div class="ltl-txt">Processen → volumen og ressourcer → AI-potentialet → realiserede gevinster → barrierer → næste skridt. Ikke et argument for ukritisk automatisering.</div></div>
                 </div>
@@ -3143,34 +3111,34 @@ span.rm-stak {
     <div class="col ani" style="overflow-y:auto; padding-bottom:80px; min-height:0; border-left:1px solid var(--line);">
       <div class="col-label">Hvad mangler</div>
 
-      <div class="col-label-sm" style="margin-bottom:10px;">Launch-scope — 1. november</div>
-      <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:22px;">
+      <div class="col-label-sm" style="margin-bottom:8px;">Launch-scope — 1. november</div>
+      <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:20px;">
         <div class="ltl-item"><div class="ltl-lbl">Formater</div><div class="ltl-txt">Morgenbriefet · Det betyder det for din virksomhed · Signalradaren · Den blinde vinkel · Casen der virker</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Lag</div><div class="ltl-txt">Feed · Business AI · Medieovervågning · Markedsovervågning · Jobportal</div></div>
       </div>
 
-      <div class="col-label-sm" style="margin-bottom:10px;">I gang</div>
-      <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:22px;">
+      <div class="col-label-sm" style="margin-bottom:8px;">I gang</div>
+      <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:20px;">
         <div class="ltl-item"><div class="ltl-lbl">Kilder</div><div class="ltl-txt">Kildeidentifikation og -struktur — API-adgang og licenskrav afklares løbende med tech</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Overvågning</div><div class="ltl-txt">Datakilder og teknisk løsning for Medieovervågning og Markedsovervågning afklares med tech (Q7)</div></div>
       </div>
 
-      <div class="col-label-sm" style="margin-bottom:10px;">Afventer Mike-møde</div>
-      <div class="ltl-list" style="--ltl-color:var(--amber); margin-bottom:22px;">
+      <div class="col-label-sm" style="margin-bottom:8px;">Afventer Mike-møde</div>
+      <div class="ltl-list" style="--ltl-color:var(--amber); margin-bottom:20px;">
         <div class="ltl-item"><div class="ltl-lbl">Brugere</div><div class="ltl-txt">Antal brugere inkluderet pr. pakke · pris på ekstra bruger · 1 bruger eller virksomhedsadgang?</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Brands</div><div class="ltl-txt">Antal brands inkluderet · pris på ekstra brands · tæller CVR-nr. som én enhed?</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Jobportal</div><div class="ltl-txt">Ubegrænsede opslag år 1? · Op til 5/md? · Navn: Gratis jobopslag / Ledige jobs / Jobportal?</div></div>
       </div>
 
-      <div class="col-label-sm" style="margin-bottom:10px;">Fase 2</div>
-      <div class="ltl-list" style="--ltl-color:var(--muted); margin-bottom:22px;">
+      <div class="col-label-sm" style="margin-bottom:8px;">Fase 2</div>
+      <div class="ltl-list" style="--ltl-color:var(--muted); margin-bottom:20px;">
         <div class="ltl-item"><div class="ltl-lbl">Produktlag</div><div class="ltl-txt">Leadgenerering · on-demand briefs (kræver LLM-lag) · avanceret personalisering · AI-tjek · enterprise/API</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Platform</div><div class="ltl-txt">Community · avanceret teamfunktionalitet · internationalisering</div></div>
       </div>
 
-      <div class="decision-strip" style="display:block;padding:10px 14px;">
+      <div class="decision-strip" style="display:block;padding:8px 12px;">
         <div class="decision-k" style="margin-bottom:4px;">Kritisk afklaring</div>
-        <div class="decision-v" style="font-size:11px;margin-bottom:5px;">Overvågningsmodel: teknisk løsning for Medieovervågning og Markedsovervågning afklares med tech inden Business-launch 1. november.</div>
+        <div class="decision-v" style="font-size:11px;margin-bottom:4px;">Overvågningsmodel: teknisk løsning for Medieovervågning og Markedsovervågning afklares med tech inden Business-launch 1. november.</div>
         <div class="decision-meta">PM + tech</div>
       </div>
 
@@ -3212,77 +3180,64 @@ span.rm-stak {
 /* === S-AI: Business AI 3-kolonne === */
 .s-ai-wrap { display:grid; grid-template-columns:1.08fr .92fr 1fr; height:100%; }
 .s-ai-dark  { padding:44px 48px 80px; background:var(--accent); display:flex; flex-direction:column; overflow-y:auto; min-height:0; scrollbar-width:thin; scrollbar-color:rgba(196,181,253,.2) transparent; }
-.s-ai-mid   { padding:44px 42px 80px; background:var(--card); border-right:1px solid var(--line); display:flex; flex-direction:column; overflow-y:auto; min-height:0; }
-.s-ai-proto { padding:44px 34px 80px; background:#2D1369; display:flex; flex-direction:column; overflow-y:auto; min-height:0; scrollbar-width:thin; scrollbar-color:rgba(196,181,253,.2) transparent; }
+.s-ai-mid   { padding:44px 40px 80px; background:var(--card); border-right:1px solid var(--line); display:flex; flex-direction:column; overflow-y:auto; min-height:0; }
+.s-ai-proto { padding:44px 32px 80px; background:#2D1369; display:flex; flex-direction:column; overflow-y:auto; min-height:0; scrollbar-width:thin; scrollbar-color:rgba(196,181,253,.2) transparent; }
 /* Mørk kolonne */
-.bai-eyebrow { font-family:var(--mono); font-size:10px; font-weight:700; color:rgba(196,181,253,.58); letter-spacing:.22em; text-transform:uppercase; margin-bottom:22px; display:flex; align-items:center; gap:10px; }
+.bai-eyebrow { font-family:var(--mono); font-size:10px; font-weight:700; color:rgba(196,181,253,.58); letter-spacing:.22em; text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:8px; }
 .bai-eyebrow::before { content:''; display:block; width:16px; height:1px; background:currentColor; }
-.bai-hed { font-family:var(--serif); font-size:30px; font-weight:700; color:#FAFAF8; line-height:.98; letter-spacing:-.032em; margin-bottom:18px; }
+.bai-hed { font-family:var(--serif); font-size:30px; font-weight:700; color:#FAFAF8; line-height:.98; letter-spacing:-.032em; margin-bottom:16px; }
 .bai-sub  { font-family:var(--sans); font-size:12px; color:rgba(250,250,248,.72); line-height:1.65; margin-bottom:12px; }
-.bai-chain { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; margin:16px 0 18px; border:1px solid rgba(250,250,248,.14); background:rgba(250,250,248,.12); }
-.bai-chain-step { position:relative; min-height:52px; background:rgba(250,250,248,.055); display:flex; align-items:center; justify-content:center; text-align:center; padding:8px 6px; font-family:var(--mono); font-size:8.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(250,250,248,.78); line-height:1.35; }
+.bai-chain { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; margin:16px 0 16px; border:1px solid rgba(250,250,248,.14); background:rgba(250,250,248,.12); }
+.bai-chain-step { position:relative; min-height:52px; background:rgba(250,250,248,.055); display:flex; align-items:center; justify-content:center; text-align:center; padding:8px 4px; font-family:var(--mono); font-size:8.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(250,250,248,.78); line-height:1.35; }
 .bai-chain-step::after { content:'→'; position:absolute; right:-8px; top:50%; transform:translateY(-50%); z-index:2; color:rgba(196,181,253,.75); font-size:11px; }
 .bai-chain-step:last-child::after { display:none; }
 .bai-questions { padding-top:16px; border-top:1px solid rgba(250,250,248,.12); display:flex; flex-direction:column; gap:8px; }
 .bai-q { font-family:var(--serif); font-size:14px; font-weight:700; font-style:italic; color:#FAFAF8; line-height:1.28; }
-.bai-keyq { margin-top:auto; font-family:var(--serif); font-size:16px; font-weight:700; font-style:italic; color:#FAFAF8; line-height:1.15; letter-spacing:-.02em; padding-top:22px; border-top:1px solid rgba(250,250,248,.14); }
+.bai-keyq { margin-top:auto; font-family:var(--serif); font-size:16px; font-weight:700; font-style:italic; color:#FAFAF8; line-height:1.15; letter-spacing:-.02em; padding-top:20px; border-top:1px solid rgba(250,250,248,.14); }
 /* Midterkolonne */
-.ai-mid-hed  { font-family:var(--serif); font-size:20px; font-weight:700; color:var(--ink); line-height:1.1; letter-spacing:-.025em; margin-bottom:14px; }
-.ai-mid-body { font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.65; margin-bottom:18px; }
+.ai-mid-hed  { font-family:var(--serif); font-size:20px; font-weight:700; color:var(--ink); line-height:1.1; letter-spacing:-.025em; margin-bottom:12px; }
+.ai-mid-body { font-family:var(--sans); font-size:13px; color:var(--ink70); line-height:1.65; margin-bottom:16px; }
 .ikm-block   { margin-bottom:12px; border:1px solid var(--line); }
 .ikm-row     { display:grid; grid-template-columns:52px 1fr; }
-.ikm-tag     { padding:9px 10px; font-family:var(--mono); font-size:8.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; display:flex; align-items:center; border-right:1px solid var(--line); }
+.ikm-tag     { padding:8px 8px; font-family:var(--mono); font-size:8.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; display:flex; align-items:center; border-right:1px solid var(--line); }
 .ikm-tag.ikke { color:var(--muted); background:var(--tint); border-bottom:1px solid var(--line); }
 .ikm-tag.men  { color:var(--accent); background:var(--accent-10); }
-.ikm-txt      { padding:9px 12px; font-family:var(--sans); font-size:11.5px; line-height:1.45; }
+.ikm-txt      { padding:8px 12px; font-family:var(--sans); font-size:11.5px; line-height:1.45; }
 .ikm-txt.ikke { color:var(--muted); border-bottom:1px solid var(--line2); font-style:italic; }
 .ikm-txt.men  { color:var(--ink70); font-weight:500; }
 .ai-grundregel     { margin-top:auto; padding:12px 16px; background:var(--accent); }
-.ai-grundregel-lbl { font-family:var(--mono); font-size:8px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(196,181,253,.7); margin-bottom:5px; }
+.ai-grundregel-lbl { font-family:var(--mono); font-size:8px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(196,181,253,.7); margin-bottom:4px; }
 .ai-grundregel-txt { font-family:var(--serif); font-size:13px; font-weight:700; font-style:italic; line-height:1.28; color:#FAFAF8; }
 /* Proto kolonne (deep purple) */
-.sp-lbl  { font-family:var(--mono); font-size:9px; font-weight:700; color:rgba(196,181,253,.55); letter-spacing:.2em; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:7px; }
+.sp-lbl  { font-family:var(--mono); font-size:9px; font-weight:700; color:rgba(196,181,253,.55); letter-spacing:.2em; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
 .sp-lbl::before { content:''; display:block; width:5px; height:5px; border-radius:50%; background:rgba(196,181,253,.5); }
 .sp-hed  { font-family:var(--serif); font-size:18px; font-weight:700; color:#FAFAF8; line-height:1.15; letter-spacing:-.015em; margin-bottom:8px; }
-.sp-body { font-family:var(--sans); font-size:12px; color:rgba(250,250,248,.75); line-height:1.6; margin-bottom:14px; }
-.sponsor-chips { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
-.sponsor-chip  { font-family:var(--mono); font-size:8.5px; font-weight:700; letter-spacing:.07em; padding:3px 9px; border-radius:3px; }
+.sp-body { font-family:var(--sans); font-size:12px; color:rgba(250,250,248,.75); line-height:1.6; margin-bottom:12px; }
+.sponsor-chips { display:flex; gap:4px; flex-wrap:wrap; margin-bottom:16px; }
+.sponsor-chip  { font-family:var(--mono); font-size:8.5px; font-weight:700; letter-spacing:.07em; padding:4px 8px; border-radius:var(--radius-sm); }
 .sponsor-chip.primary   { color:#FAFAF8; background:rgba(196,181,253,.22); border:1px solid rgba(196,181,253,.38); }
 .sponsor-chip.secondary { color:rgba(196,181,253,.5); background:rgba(196,181,253,.07); border:1px solid rgba(196,181,253,.15); }
-.sp-item  { display:flex; gap:10px; align-items:flex-start; padding:9px 0; border-top:1px solid rgba(196,181,253,.13); }
+.sp-item  { display:flex; gap:8px; align-items:flex-start; padding:8px 0; border-top:1px solid rgba(196,181,253,.13); }
 .sp-ok    { font-family:var(--mono); font-size:11px; font-weight:700; color:#86EFAC; flex-shrink:0; width:16px; margin-top:1px; }
 .sp-lock  { font-family:var(--mono); font-size:11px; color:rgba(196,181,253,.45); flex-shrink:0; width:16px; margin-top:1px; font-weight:700; }
 .sp-t     { font-family:var(--sans); font-size:11.5px; color:rgba(250,250,248,.78); line-height:1.45; }
 .sp-t strong { color:#FAFAF8; }
-.sp-divider { height:1px; background:rgba(196,181,253,.12); margin:14px 0; }
-.ai-box       { padding-top:14px; border-top:1px solid rgba(196,181,253,.18); }
-.ai-box-title { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(196,181,253,.55); margin-bottom:10px; }
+.sp-divider { height:1px; background:rgba(196,181,253,.12); margin:12px 0; }
+.ai-box       { padding-top:12px; border-top:1px solid rgba(196,181,253,.18); }
+.ai-box-title { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(196,181,253,.55); margin-bottom:8px; }
 .ai-box-grid  { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.ai-box-lbl   { font-family:var(--mono); font-size:8.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(250,250,248,.55); margin-bottom:7px; }
-.ai-box-row   { position:relative; font-family:var(--sans); font-size:11px; color:rgba(250,250,248,.78); line-height:1.35; margin-bottom:5px; padding-left:12px; }
+.ai-box-lbl   { font-family:var(--mono); font-size:8.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(250,250,248,.55); margin-bottom:8px; }
+.ai-box-row   { position:relative; font-family:var(--sans); font-size:11px; color:rgba(250,250,248,.78); line-height:1.35; margin-bottom:4px; padding-left:12px; }
 .ai-box-row::before { content:''; position:absolute; left:0; top:.58em; width:5px; height:1px; background:rgba(196,181,253,.42); }
-.sp-rule   { margin-top:auto; padding:12px 14px; background:rgba(255,255,255,.05); border:1px solid rgba(196,181,253,.12); border-radius:3px; }
+.sp-rule   { margin-top:auto; padding:12px 12px; background:rgba(255,255,255,.05); border:1px solid rgba(196,181,253,.12); border-radius:var(--radius-sm); }
 .sp-rule p { font-family:var(--serif); font-size:13px; font-weight:700; color:rgba(196,181,253,.65); font-style:italic; line-height:1.38; }
 .sp-rule strong { color:#FAFAF8; }
 </style>
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
-  <header class="dash-header">
-    <div class="dash-brand"><div class="dash-brand-mark">Y Business</div></div>
-    <nav class="dash-nav">
-      <button class="dash-nav-item" data-target="s-ty">That's Y</button>
-      <button class="dash-nav-item" data-target="s-biz">Business model</button>
-      <button class="dash-nav-item" data-target="s-prd">Produkt</button>
-      <button class="dash-nav-item" data-target="s-pos">Positionering</button>
-      <button class="dash-nav-item" data-target="s-gtm">Go-to-market</button>
-      <button class="dash-nav-item nav-active" data-target="s-ai">AI-motor & Business AI</button>
-    </nav>
-    <div class="dash-actions">
-    </div>
-  </header>
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub">Oversigt</button>
-    <div class="sec-title">Business AI · AI-motor · Redaktionel kontrol</div>
+    <h1 class="sec-title">Business AI · AI-motor · Redaktionel kontrol</h1>
     <div class="sec-num">05 / 05</div>
   </div>
 
@@ -3390,21 +3345,21 @@ span.rm-stak {
         <div class="ai-box">
           <div class="ai-box-title">Status</div>
           <div style="margin-bottom:12px;">
-            <div class="ai-box-lbl" style="color:#86EFAC;margin-bottom:5px;">Besluttet</div>
+            <div class="ai-box-lbl" style="color:#86EFAC;margin-bottom:4px;">Besluttet</div>
             <div class="ai-box-row">Business AI som launch-spydspids</div>
             <div class="ai-box-row">Ingen Business AI uden forretningskonsekvens</div>
             <div class="ai-box-row">De tre redaktionelle ben (Business AI · Norden · Kapital)</div>
             <div class="ai-box-row">AI foreslår — redaktionen afgør</div>
           </div>
           <div style="margin-bottom:12px;">
-            <div class="ai-box-lbl" style="color:rgba(253,191,50,.8);margin-bottom:5px;">Under afklaring</div>
+            <div class="ai-box-lbl" style="color:rgba(253,191,50,.8);margin-bottom:4px;">Under afklaring</div>
             <div class="ai-box-row">Kildestruktur og datalag — i gang med tech</div>
             <div class="ai-box-row">Automatisering, alerts og on-demand briefs</div>
             <div class="ai-box-row">Kildevisning og redaktionelt workflow</div>
             <div class="ai-box-row">TTS/lyd og sproglag</div>
           </div>
           <div>
-            <div class="ai-box-lbl" style="margin-bottom:5px;">Fase 2</div>
+            <div class="ai-box-lbl" style="margin-bottom:4px;">Fase 2</div>
             <div class="ai-box-row">Premium AI-briefs</div>
             <div class="ai-box-row">Branchebaserede AI-radarer</div>
             <div class="ai-box-row">API og enterprise-lag</div>
@@ -3419,17 +3374,17 @@ span.rm-stak {
 
         <div class="ai-box">
           <div class="ai-box-title">De tre redaktionelle ben</div>
-          <div style="margin-bottom:10px;">
-            <div class="ai-box-lbl" style="margin-bottom:5px;">Ben 1 · Business AI</div>
+          <div style="margin-bottom:8px;">
+            <div class="ai-box-lbl" style="margin-bottom:4px;">Ben 1 · Business AI</div>
             <div class="ai-box-row">Implementering, ikke teknologibeundring — hvad det kræver, koster og leverer</div>
           </div>
-          <div style="margin-bottom:10px;">
-            <div class="ai-box-lbl" style="margin-bottom:5px;">Ben 2 · Norden</div>
+          <div style="margin-bottom:8px;">
+            <div class="ai-box-lbl" style="margin-bottom:4px;">Ben 2 · Norden</div>
             <div class="ai-box-row">Sverige (industri) · Norge (kapital) · Finland (offentlig sektor) — 12-24 måneder foran Danmark på AI-modenhed</div>
             <div class="ai-box-row">Nordisk publicering kræver: dokumenteret tidsmønster · konkret dansk konsekvens · verificerbar kilde</div>
           </div>
           <div>
-            <div class="ai-box-lbl" style="margin-bottom:5px;">Ben 3 · Kapital og vækst</div>
+            <div class="ai-box-lbl" style="margin-bottom:4px;">Ben 3 · Kapital og vækst</div>
             <div class="ai-box-row">Privat kapital, venture og ejerskabsstrategier — investeringsperspektiv for ledere, ikke børsjournalistik</div>
           </div>
         </div>
@@ -3477,13 +3432,17 @@ span.rm-stak {
 <script>
 (function () {
   var stage = document.getElementById('stage');
+  var PAD = 24, HEADER_H = 68;
   function scale() {
-    var r = Math.min(window.innerWidth / 1440, window.innerHeight / 980);
-    var x = (window.innerWidth  - 1440 * r) / 2;
-    var y = (window.innerHeight - 980 * r) / 2;
+    var headerBottom = PAD + HEADER_H;
+    var availW = window.innerWidth - PAD * 2;
+    var availH = window.innerHeight - headerBottom - PAD;
+    var r = Math.min(availW / 1440, availH / (980 - HEADER_H));
+    var x = (window.innerWidth - 1440 * r) / 2;
+    var y = headerBottom - HEADER_H * r;
     stage.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
     var vt = document.getElementById('vt-fixed');
-    if (vt) { vt.style.top = Math.max(0, y) + 'px'; vt.style.right = Math.max(0, x) + 'px'; }
+    if (vt) { vt.style.top = PAD + 'px'; vt.style.right = PAD + 'px'; }
   }
   scale();
   window.addEventListener('resize', scale);
@@ -3521,6 +3480,13 @@ span.rm-stak {
   }
   document.querySelectorAll('[data-target]').forEach(function (el) {
     el.addEventListener('click', function () { navigate(this.getAttribute('data-target')); });
+    if (!['BUTTON', 'A'].includes(el.tagName)) {
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'button');
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(this.getAttribute('data-target')); }
+      });
+    }
   });
 
   /* Header brand click → always back to hub */
@@ -3602,15 +3568,15 @@ span.rm-stak {
   saveBarLabel.textContent = 'Ændringer registreret — gem samlet når du er klar';
 
   var saveBarRight = document.createElement('div');
-  saveBarRight.style.cssText = 'display:flex;gap:10px;align-items:center;';
+  saveBarRight.style.cssText = 'display:flex;gap:8px;align-items:center;';
 
   var discardBtn = document.createElement('button');
   discardBtn.textContent = 'Kassér';
-  discardBtn.style.cssText = 'padding:7px 18px;border-radius:5px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);font-family:Schibsted Grotesk,sans-serif;font-size:12px;font-weight:600;cursor:pointer;';
+  discardBtn.style.cssText = 'padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);font-family:Schibsted Grotesk,sans-serif;font-size:12px;font-weight:600;cursor:pointer;';
 
   var saveBtn = document.createElement('button');
   saveBtn.textContent = 'Gem til fil';
-  saveBtn.style.cssText = 'padding:7px 20px;border-radius:5px;background:#fff;border:none;color:#361352;font-family:Schibsted Grotesk,sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:-0.01em;transition:transform 0.1s ease;';
+  saveBtn.style.cssText = 'padding:8px 20px;border-radius:var(--radius-sm);background:#fff;border:none;color:#361352;font-family:Schibsted Grotesk,sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:-0.01em;transition:transform 0.1s ease;';
   saveBtn.addEventListener('mousedown', function() { this.style.transform = 'scale(0.96)'; });
   saveBtn.addEventListener('mouseup',   function() { this.style.transform = ''; });
 
@@ -3625,7 +3591,7 @@ span.rm-stak {
   editToggle.innerHTML = '✏&nbsp;Rediger';
   editToggle.style.cssText = [
     'position:fixed', 'bottom:20px', 'right:20px', 'z-index:99998',
-    'padding:9px 18px', 'border-radius:8px',
+    'padding:9px 18px', 'border-radius:var(--radius-md)',
     'background:rgba(54,19,82,0.9)', 'border:none',
     'color:#fff', 'font-family:Schibsted Grotesk,sans-serif',
     'font-size:13px', 'font-weight:700', 'cursor:pointer',
@@ -3645,8 +3611,6 @@ span.rm-stak {
     isDirty = true;
     saveBar.style.opacity = '1';
     saveBar.style.pointerEvents = 'auto';
-    /* Skub stage ned så save-bar ikke dækker header */
-    document.getElementById('stage').style.top = '52px';
     rescaleStage();
   }
 
@@ -3654,20 +3618,24 @@ span.rm-stak {
     isDirty = false;
     saveBar.style.opacity = '0';
     saveBar.style.pointerEvents = 'none';
-    document.getElementById('stage').style.top = '0';
     rescaleStage();
   }
 
   function rescaleStage() {
     var s = document.getElementById('stage');
+    var pad = 24, headerH = 68;
     var offset = isDirty ? 52 : 0;
-    var availH = window.innerHeight - offset;
-    var r = Math.min(window.innerWidth / 1440, availH / 980);
-    var x = (window.innerWidth  - 1440 * r) / 2;
-    var y = offset + (availH - 980 * r) / 2;
+    var header = document.getElementById('mainHeader');
+    if (header) header.style.top = (pad + offset) + 'px';
+    var headerBottom = pad + offset + headerH;
+    var availW = window.innerWidth - pad * 2;
+    var availH = window.innerHeight - headerBottom - pad;
+    var r = Math.min(availW / 1440, availH / (980 - headerH));
+    var x = (window.innerWidth - 1440 * r) / 2;
+    var y = headerBottom - headerH * r;
     s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
     var vt = document.getElementById('vt-fixed');
-    if (vt) { vt.style.top = Math.max(0, y) + 'px'; vt.style.right = Math.max(0, x) + 'px'; }
+    if (vt) { vt.style.top = (pad + offset) + 'px'; vt.style.right = pad + 'px'; }
   }
 
   /* MutationObserver — opdager alle tekst-ændringer */
@@ -4233,7 +4201,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
       <!-- Brancheorg og pengeinstitutter -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
 
         <div class="src-cat">
           <div class="src-cat-name">Brancheorganisationer</div>
@@ -4343,32 +4311,32 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="src-cat" style="grid-column:span 2;">
           <div class="src-cat-name">Business AI, data og stemmer</div>
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
-            <div class="ltl-list" style="--ltl-color:#7C3AED;margin-bottom:0;padding-right:16px;">
-              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Danske AI-miljøer</div>
+            <div class="ltl-list" style="--ltl-color:var(--layer-ai);margin-bottom:0;padding-right:16px;">
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.6;">Danske AI-miljøer</div>
               <div class="ltl-item"><div class="ltl-lbl">CAISA</div><div class="ltl-txt">Nationalt AI-center — governance, ansvarlig anvendelse og konsekvenser for virksomheder.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Pioneer Centre for AI</div><div class="ltl-txt">Dansk AI-forskning med international tyngde — metode, bias, modeller og anvendelse.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">CBS Digitalization</div><div class="ltl-txt">AI som organisations-, ledelses- og forretningsmodelforandring.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Alexandra Instituttet</div><div class="ltl-txt">Anvendt AI, software, cybersikkerhed og SMV-nære cases.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">ELLIS Denmark</div><div class="ltl-txt">Forskningsradar og international forbindelse til avanceret AI.</div></div>
             </div>
-            <div class="ltl-list" style="--ltl-color:#7C3AED;margin-bottom:0;padding-right:16px;">
-              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Internationale AI-data</div>
+            <div class="ltl-list" style="--ltl-color:var(--layer-ai);margin-bottom:0;padding-right:16px;">
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.6;">Internationale AI-data</div>
               <div class="ltl-item"><div class="ltl-lbl">Stanford AI Index / HAI</div><div class="ltl-txt">Global reference på AI's økonomiske fodaftryk, privatsektor, produktivitet og arbejde.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Microsoft WorkLab</div><div class="ltl-txt">Work Trend Index — agents, ledelse, organisation og menneskelig handlekraft.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">OECD AI and Work</div><div class="ltl-txt">AI, arbejdsmarked, produktivitet, innovation og kompetencer.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">PwC AI Jobs Barometer</div><div class="ltl-txt">Jobs, skills, løn og produktivitet baseret på globale jobdata.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">MIT Sloan / HBR</div><div class="ltl-txt">Ledelse, strategi, innovation og praktisk AI-adoption i organisationer.</div></div>
             </div>
-            <div class="ltl-list" style="--ltl-color:#7C3AED;margin-bottom:0;padding-right:16px;">
-              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Governance, risiko og cyber</div>
+            <div class="ltl-list" style="--ltl-color:var(--layer-ai);margin-bottom:0;padding-right:16px;">
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.6;">Governance, risiko og cyber</div>
               <div class="ltl-item"><div class="ltl-lbl">European Commission / AI Act</div><div class="ltl-txt">Primær kilde til EU's AI-regulering og virksomhedskonsekvenser.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">NIST AI RMF</div><div class="ltl-txt">Praktisk sprog for AI-risiko, styring, vurdering og governance.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">ENISA / CFCS</div><div class="ltl-txt">Cybertrusler, NIS2, SME-risici, AI-sikkerhed og dansk beredskab.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Deloitte / BCG / McKinsey</div><div class="ltl-txt">Enterprise AI, skalering, ROI, operating models og barrierer i implementering.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Gartner / Forrester</div><div class="ltl-txt">CIO-agenda, hype cycles, enterprise software, CX og digital transformation.</div></div>
             </div>
-            <div class="ltl-list" style="--ltl-color:#7C3AED;margin-bottom:0;">
-              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Kritiske stemmer</div>
+            <div class="ltl-list" style="--ltl-color:var(--layer-ai);margin-bottom:0;">
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.6;">Kritiske stemmer</div>
               <div class="ltl-item"><div class="ltl-lbl">Brynjolfsson / Coyle / Mollick</div><div class="ltl-txt">Produktivitet, værdimåling og praktisk AI-adoption i arbejde og organisationer.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Schaake / Wachter / Chowdhury</div><div class="ltl-txt">AI-governance, EU-regulering, audit, fairness og ansvarlig AI.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Kapoor / Narayanan</div><div class="ltl-txt">Hype-check, metodekritik, bias, privacy og overdrevne AI-claims.</div></div>
@@ -4382,25 +4350,25 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="src-cat-name">Internationale erhvervskilder</div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;">
             <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;padding-right:16px;">
-              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Bureauer</div>
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.6;">Bureauer</div>
               <div class="ltl-item"><div class="ltl-lbl">Reuters Connect</div><div class="ltl-txt">Primær bureaukilde — breaking, geopolitik, makro.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">AP Media API</div><div class="ltl-txt">Bred bureaukilde — alternativ eller supplement.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">AFP API</div><div class="ltl-txt">Europæisk og international dækning.</div></div>
             </div>
             <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;padding-right:16px;">
-              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Erhvervsmedier</div>
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.6;">Erhvervsmedier</div>
               <div class="ltl-item"><div class="ltl-lbl">Bloomberg</div><div class="ltl-txt">Enterprise Terminal API — data, nyheder og analyser. Redistributionsaftale kræves.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Financial Times</div><div class="ltl-txt">FT Developer API — erhvervsnyheder og analyser. Kommerciel aftale.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Dow Jones Newswires</div><div class="ltl-txt">WSJ-feed — markeds- og erhvervsnyheder. Enterprise.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Handelsblatt</div><div class="ltl-txt">Tysk erhvervsdækning — vigtig for eksport-SMV'er mod DACH-markedet.</div></div>
             </div>
             <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;padding-right:16px;">
-              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">Fragt og energi</div>
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.6;">Fragt og energi</div>
               <div class="ltl-item"><div class="ltl-lbl">Baltic Exchange</div><div class="ltl-txt">Fragtrater — direkte relevant for eksport/import-SMV'er.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">Freightos / FBX</div><div class="ltl-txt">Container- og fragtsignaler.</div></div>
             </div>
             <div class="ltl-list" style="--ltl-color:var(--accent);margin-bottom:0;">
-              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;opacity:.6;">EU og sektor</div>
+              <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.6;">EU og sektor</div>
               <div class="ltl-item"><div class="ltl-lbl">EURACTIV</div><div class="ltl-txt">EU-politik, regulering og industripolitik.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">EUobserver</div><div class="ltl-txt">EU-økonomi og geopolitik. RSS på sektion- og forfatterniveau.</div></div>
               <div class="ltl-item"><div class="ltl-lbl">EMA / Labiotech</div><div class="ltl-txt">Life science og pharma-signaler.</div></div>

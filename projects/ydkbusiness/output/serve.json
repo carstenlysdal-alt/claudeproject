@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/ybusiness-dashboard.html" }
+    { "source": "/", "destination": "/ybusiness-app.html" }
   ]
 }

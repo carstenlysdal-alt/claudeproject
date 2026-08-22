@@ -68,7 +68,7 @@ investering og vækst.
 | `KD` | Casen der virker | 1+2 | Inspire | Primært |
 | `BS` | Blind Spot-artiklen *(tidl. omtalt som formatet "Den blinde vinkel" — se afgrænsning nedenfor)* | 1+2+3 | Challenge (kvalificering) | Ja |
 | `SIG` | Signalet | 1+2 | Signal (hurtig briefing) | Ja |
-| `03` | Klumme & Opinion | 1+2+3 | Challenge + Perspektiv | Nej |
+| `03` | Klumme & Opinion *(Den blinde vinkel · Mandag morgen — Casen der virker er `KD` ovenfor, ikke del af denne række)* | 1+2+3 | Challenge + Perspektiv | Nej (Den blinde vinkel) · Ja, under tre-krav (Mandag morgen) |
 | `AP` | Automatiseringspotentialet (nyt) | 1+3 | Inspire + Guide | Primært |
 
 Morgenbriefet og markedsovervågning er samtidig produktfeatures — de skaber
@@ -79,6 +79,13 @@ er redaktionelle formater, der kræver redaktionel dom og navngivet ansvar.
 selvstændige format. *Den blinde vinkel* lever videre som navnet på både
 klumme 1 (§6) og sub-modulet i Signalradaren (§2) — samme journalistiske
 disciplin, tre forskellige leverancer.
+
+**Nordisk spejl i klummerne — begrundelse:** Den blinde vinkel forbliver
+dansk-forankret. Formatets værdi er specifikt at afdække den danske blinde
+vinkel; en nordisk case ville fortynde selve pointen. Mandag morgen kan
+derimod bære et nordisk ledelsessignal under samme tre-krav som Signalradaren
+(se *Redaktion - Editorial-model.md* §7E), da formatet allerede er bygget til
+at levere "ugens vigtigste signal" uanset geografisk oprindelse.
 
 ---
 
@@ -422,7 +429,7 @@ Bruges til:
 - Morgenbriefet
 - Mandag morgen
 - Den blinde vinkel som kommentar
-- Hvad virker? som samtale
+- Casen der virker som samtale
 - Signalradaren som kort briefing
 - personaliserede overbliksbriefs
 
@@ -458,11 +465,11 @@ skaber betalingsvilje i C-level-segmentet og differentierer Y Business
 fra generalistmedier. Skribentprofilen afspejler det: AI-praktikere,
 teknologiledere og founders med erfaring fra organisation og implementation.
 
-| Klumme | Frekvens | Pillar | Primært segment |
-|---|---|---|---|
-| Den blinde vinkel | Ugentligt | Challenge | C-level, rådgivere, SMV-ejere, iværksættere |
-| Mandag morgen | Ugentligt (mandag) | Understand | C-level, SMV-ejere, medarbejdere, rådgivere |
-| Casen der virker *(Sådan gjorde jeg)* | Ugentligt | Inspire | SMV-ejere, iværksættere, C-level |
+| Klumme | Frekvens | Pillar | Primært segment | Nordisk spejl? |
+|---|---|---|---|---|
+| Den blinde vinkel | Ugentligt | Challenge | C-level, rådgivere, SMV-ejere, iværksættere | Nej — fortynder den danske pointe |
+| Mandag morgen | Ugentligt (mandag) | Understand | C-level, SMV-ejere, medarbejdere, rådgivere | Ja, under tre-krav (§7E) |
+| Casen der virker *(Sådan gjorde jeg)* | Ugentligt | Inspire | SMV-ejere, iværksættere, C-level | Primært — se `KD` ovenfor |
 
 ---
 

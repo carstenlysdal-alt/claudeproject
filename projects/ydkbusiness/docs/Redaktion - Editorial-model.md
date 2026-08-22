@@ -370,7 +370,7 @@ Hver publicering skal have én primær funktion.
 | Udfordre | Viser at den dominerende fortælling er utilstrækkelig | Challenge | Den blinde vinkel, Myten om |
 | Aflive | Tester erhvervslivets myter mod data og cases | Challenge | Myten om, Den blinde vinkel |
 | Anvise | Giver læseren mulige næste skridt | Understand / Inspire | Det betyder det, Før mødet, Casen der virker |
-| Lære | Giver kopierbar indsigt fra praksis | Inspire | Casen der virker, Hvad virker? |
+| Lære | Giver kopierbar indsigt fra praksis | Inspire | Casen der virker |
 | Forberede | Gør læseren klar til møde, bestyrelse, beslutning | Understand / Inspire | Før mødet, Signalradaren |
 
 ---
@@ -713,6 +713,24 @@ kilde bærer den danske konsekvens?
 
 Mangler et af de fire svar, returneres pitchet til research.
 
+### Nordisk fokus i klummerne
+
+Protokollen ovenfor er formatagnostisk, men klummerne (§8) kræver en
+eksplicit stillingtagen, fordi deres troværdighed hviler på en navngivet
+stemme snarere end på struktureret overvågning:
+
+- **Den blinde vinkel** forbliver dansk-forankret. Formatets værdi er
+  specifikt at afdække den danske blinde vinkel — hvad ingen andre skriver
+  om *i Danmark*. En nordisk case ville fortynde selve pointen, ikke
+  understøtte den.
+- **Mandag morgen** kan bære et nordisk ledelsessignal under de samme
+  tre krav som ovenfor. Formatet er allerede bygget til at levere "ugens
+  vigtigste signal" — et dokumenteret nordisk mønster med konkret dansk
+  konsekvens hører naturligt hjemme her.
+- **Casen der virker** (§8) har sin egen fuldgyldige regel som
+  signaturformat `KD`: nordisk spejl er *primært* — se
+  *Redaktion - Formater-og-klummer.md* §linje 68/200.
+
 ---
 
 ## 8. Klummer, kommentatorer og faste stemmer
@@ -751,14 +769,20 @@ Kernegreb: *Her er fortællingen alle gentager — og her er det, der mangler.*
 
 ---
 
-### Klumme 3: Hvad virker?
+### Klumme 3: Casen der virker *(tematisk linje: Sådan gjorde jeg)*
+
+*(Navn rettet til at matche dashboardet — output/yredaktion-dashboard.html
+S4/S5 og Redaktion - Formater-og-klummer.md, som er kanonisk kilde for dette
+format — fuld 7-trins struktur og skribentprofil ligger der. "Sådan gjorde
+jeg" er den tematiske linje, ikke formatets navn.)*
 
 **Pillar:** Inspire
 **Funktion:** Lære og anvise
 **Opgave:** Praktisk læring, metode og friktion fra virkeligheden
 **Skribentprofil:** Praktiker, founder, driftsleder, kommunikationschef eller
 transformationsleder med stærk caseforståelse
-**Frekvens:** Hver 14. dag
+**Frekvens:** Ugentligt
+**Nordisk spejl:** Primært — se *Redaktion - Formater-og-klummer.md*, badge `KD`
 
 Kernegreb: *Hvad virkede, hvad gik galt, og hvad kan andre kopiere?*
 

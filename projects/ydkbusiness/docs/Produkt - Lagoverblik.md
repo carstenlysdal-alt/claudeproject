@@ -92,7 +92,7 @@ Fuldt format-katalog: *Koncept — Indholdsformater.md*
 **Klummer (loyalitetsmotor — det format AI ikke kan producere):**
 - Mandag morgen (ugentligt) — ugens beslutningsbillede, skrevet af direktør eller strategirådgiver
 - Den blinde vinkel (ugentligt) — dokumenteret modfortælling, skrevet af erfaren erhvervsjournalist
-- Hvad virker? (hver 14. dag) — praktisk læring med friktion, skrevet af praktiker
+- Casen der virker (ugentligt) — praktisk læring med friktion, skrevet af praktiker
 
 **Erhverv+-indhold bag betalingsmur**
 To dedikerede sektioner med adgang kun for Erhverv+-abonnenter:
