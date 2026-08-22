@@ -5,7 +5,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const DIR = __dirname;
-const SERVE_FILE = process.env.SERVE_FILE || 'ybusiness-app.html';
+const SERVE_FILE = process.env.SERVE_FILE || 'ybusiness-master.html';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = 'carstenlysdal-alt/claudeproject';
