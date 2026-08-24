@@ -3303,6 +3303,11 @@ button:focus, button:focus-visible {
       background: var(--red-s)
     }
 
+    #view-redaktion .ai-n{
+      color: var(--accent);
+      background: var(--accent-10)
+    }
+
     /* ── S3 SEGMENTER ── */
     #view-redaktion .s3-wrap{
       height: 100%;
@@ -6233,6 +6238,44 @@ button:focus, button:focus-visible {
       border-radius: var(--radius-sm)
     }
 
+    /* ── MOBIL-MOCKUP AF MORGENBRIEFET (samme enhedssprog som S5's telefonmockups) ── */
+    #view-redaktion .mbp-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; padding:14px 0; overflow:hidden }
+    #view-redaktion .mbp-frame { width:272px; flex-shrink:0; background:#1C1C1E; border-radius:36px; border:3px solid #3A3A3C; box-shadow:0 2px 0 rgba(255,255,255,.06) inset, 0 20px 46px rgba(0,0,0,.25); position:relative; padding:10px }
+    #view-redaktion .mbp-island { position:absolute; top:15px; left:50%; transform:translateX(-50%); width:70px; height:17px; background:#000; border-radius:9px; z-index:15 }
+    #view-redaktion .mbp-screen { background:#FAFAF8; border-radius:26px; overflow-y:auto; height:552px; display:flex; flex-direction:column }
+    #view-redaktion .mbp-hd { background:#100C0C; padding:28px 15px 9px; display:flex; align-items:flex-start; justify-content:space-between; flex-shrink:0; border-bottom:3px solid #2563EB }
+    #view-redaktion .mbp-hd-brand { font-family:var(--serif); font-size:12.5px; font-weight:700; color:#FAFAF8; font-style:italic; letter-spacing:-.01em; line-height:1.2 }
+    #view-redaktion .mbp-hd-right { display:flex; flex-direction:column; align-items:flex-end; gap:3px }
+    #view-redaktion .mbp-hd-date { font-family:var(--mono); font-size:6px; color:rgba(250,250,248,.42); letter-spacing:.04em; white-space:nowrap }
+    #view-redaktion .mbp-hd-badge { font-family:var(--mono); font-size:5.5px; font-weight:700; color:var(--green); background:rgba(22,163,74,.18); border:1px solid rgba(22,163,74,.3); padding:1.5px 5px; border-radius:3px; letter-spacing:.08em; text-transform:uppercase }
+    #view-redaktion .mbp-progress { height:2px; background:rgba(0,0,0,.08); flex-shrink:0 }
+    #view-redaktion .mbp-progress-fill { height:100%; width:38%; background:linear-gradient(90deg,var(--accent),#2563EB) }
+    #view-redaktion .mbp-sec { padding:9px 15px; border-bottom:1px solid rgba(0,0,0,.07) }
+    #view-redaktion .mbp-sec:last-child { border-bottom:none }
+    #view-redaktion .mbp-sec.top { background:rgba(54,19,82,.07); padding:12px 15px }
+    #view-redaktion .mbp-sec.reg { background:rgba(217,119,6,.05); border-top:1px solid rgba(217,119,6,.15); border-bottom:1px solid rgba(217,119,6,.15) }
+    #view-redaktion .mbp-tag { display:inline-flex; align-items:center; font-family:var(--mono); font-size:6.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:2px 6px; border-radius:3px; margin-bottom:6px }
+    #view-redaktion .mbp-hdr-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px }
+    #view-redaktion .mbp-hdr-row .mbp-tag { margin-bottom:0 }
+    #view-redaktion .mbp-play { display:inline-flex; align-items:center; gap:3px; font-family:var(--mono); font-size:6.5px; font-weight:700; color:rgba(var(--bai-purple-rgb),.9); letter-spacing:.08em; text-transform:uppercase; background:none; border:none; cursor:pointer }
+    #view-redaktion .mbp-headline { font-family:var(--serif); font-size:12.5px; font-weight:700; color:#100C0C; line-height:1.28; letter-spacing:-.008em; margin-bottom:5px }
+    #view-redaktion .mbp-body-txt { font-family:var(--sans); font-size:8.5px; color:#44413C; line-height:1.5 }
+    #view-redaktion .mbp-item { font-family:var(--sans); font-size:8px; color:#100C0C; line-height:1.4; margin-bottom:6px }
+    #view-redaktion .mbp-item:last-child { margin-bottom:0 }
+    #view-redaktion .mbp-src { font-family:var(--mono); font-size:6px; color:#7C7972; margin-top:2px }
+    #view-redaktion .mbp-sig { font-family:var(--mono); font-size:6px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:3px }
+    #view-redaktion .mbp-sig.reg { color:#92400e }
+    #view-redaktion .mbp-sig.watch { color:#166534 }
+    #view-redaktion .mbp-sig-txt { font-family:var(--sans); font-size:8.5px; color:#100C0C; line-height:1.42; margin-bottom:3px }
+    #view-redaktion .mbp-sig-sub { font-family:var(--sans); font-size:7.5px; color:#7C7972; line-height:1.42 }
+    #view-redaktion .mbp-ft { padding:8px 15px; background:#F4F2EC; border-top:1px solid rgba(0,0,0,.07); flex-shrink:0; display:flex; align-items:center; justify-content:space-between }
+    #view-redaktion .mbp-ft-meta { font-family:var(--mono); font-size:5.5px; color:#7C7972; letter-spacing:.02em }
+    #view-redaktion .mbp-ft-ch { font-family:var(--mono); font-size:5.5px; color:var(--accent); letter-spacing:.02em }
+    #view-redaktion .mbp-home { position:absolute; bottom:6px; left:50%; transform:translateX(-50%); width:78px; height:4px; background:rgba(255,255,255,.22); border-radius:2px }
+    #view-redaktion .mbp-caption { text-align:center; margin-top:12px; flex-shrink:0 }
+    #view-redaktion .mbp-caption-name { font-family:var(--mono); font-size:11px; font-weight:700; color:var(--ink); letter-spacing:.08em; text-transform:uppercase }
+    #view-redaktion .mbp-caption-sub { font-family:var(--sans); font-size:10.5px; color:var(--muted); margin-top:2px }
+
     #view-redaktion .mb-hd{
       background: #100C0C;
       padding: 16px 20px 12px;
@@ -8930,6 +8973,7 @@ button:focus, button:focus-visible {
 
     #view-redaktion #s8 .s8-col{
       min-height: 0;
+      overflow-y: auto;
       border-radius: var(--radius-md);
       box-shadow: 0 2px 12px rgba(54, 19, 82, .08), 0 10px 38px rgba(54, 19, 82, .08)
     }
@@ -10097,6 +10141,7 @@ button:focus, button:focus-visible {
 </style>
 </head>
 <body>
+<script>var isEditing = false, isDirty = false;</script>
 <header class="dash-header" id="mainHeader">
   <div class="dash-brand" id="brandHome">
     <div class="dash-brand-mark">Y Business</div>
@@ -11154,7 +11199,8 @@ button:focus, button:focus-visible {
     <!-- KOL 1: REDAKTIONELLE FORMATER -->
     <div class="col ani" style="padding:0; overflow:hidden;">
       <div class="prd-nav-wrap">
-        <div class="prd-nav-hdr">Redaktionelle formater</div>
+        <div class="prd-nav-hdr" style="border-bottom:none;padding-bottom:6px">Redaktionelle formater</div>
+        <div style="padding:0 28px 14px;font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.5;border-bottom:2px solid var(--line)">Struktureret efter Y's produktionsspor — <span style="color:var(--accent);font-weight:600">Seneste Nyheder</span> (Understand) og <span style="color:var(--accent);font-weight:600">Værdi-historier</span> (Challenge).</div>
         <div class="prd-layer-nav" id="prdFmtNav">
 
           <div class="prd-layer-item active" style="--lc:var(--accent)">
@@ -12365,6 +12411,10 @@ button:focus, button:focus-visible {
                 <span class="pillar-ai-lbl">AI-produktion</span>
                 <span class="ai-tag ai-h">Høj</span>
               </div>
+              <div class="pillar-ai" style="margin-top:6px;padding-top:0;border-top:none">
+                <span class="pillar-ai-lbl">Y-spor</span>
+                <span class="ai-tag ai-n">Seneste Nyheder</span>
+              </div>
             </div>
 
             <!-- CHALLENGE -->
@@ -12407,6 +12457,10 @@ button:focus, button:focus-visible {
               <div class="pillar-ai">
                 <span class="pillar-ai-lbl">AI-produktion</span>
                 <span class="ai-tag ai-l">Lav — navngivet ophav krævet</span>
+              </div>
+              <div class="pillar-ai" style="margin-top:6px;padding-top:0;border-top:none">
+                <span class="pillar-ai-lbl">Y-spor</span>
+                <span class="ai-tag ai-n">Værdi-historier</span>
               </div>
             </div>
 
@@ -13310,82 +13364,67 @@ button:focus, button:focus-visible {
                 </div>
               </div>
               <!-- READ VIEW -->
-              <div id="mb-read-view" class="mb-frame" style="border:none;border-radius:0;box-shadow:none;flex:1">
-                <div class="mb-hd">
-                  <div class="mb-hd-brand">Y Business Morgenbriefet</div>
-                  <div class="mb-hd-right">
-                    <div class="mb-hd-date">Mandag 19. juni 2026 · kl. 06.30</div>
-                    <div class="mb-hd-badge">Gratis</div>
-                  </div>
-                </div>
-                <!-- Reading progress bar -->
-                <div class="mb-progress">
-                  <div class="mb-progress-fill"></div>
-                </div>
-                <div class="mb-body">
-                  <div class="mb-sec topvalg">
-                    <div class="mb-sec-tag tag-top">Topvalg</div>
-                    <div class="mb-topline">Nationalbanken advarer: Renten forbliver høj ind i 2027</div>
-                    <div class="mb-consequence">For virksomheder med variabelt forrentede lån stiger udgifterne med
-                      12–18 % fra september. Refinansiering bør planlægges nu — ikke i Q4, når alle andre gør det samme.
-                    </div>
-                  </div>
-                  <div class="mb-sec">
-                    <div class="mb-sec-tag tag-branch">Din branche og region</div>
-                    <div class="mb-items">
-                      <div class="mb-item">Byggebranchen: Boligsalg stiger 8 % på Sjælland — første stigning siden 2022
-                        <div class="mb-src">RealDania</div>
-                      </div>
-                      <div class="mb-item">Transport: Nye kørselstidsbegrænsninger træder i kraft 1. august<div
-                          class="mb-src">Vejdirektoratet</div>
-                      </div>
-                      <div class="mb-item">Handel: Detailsalg falder 3,2 % i juni — tredje måned i træk<div
-                          class="mb-src">Danmarks Statistik</div>
+              <div id="mb-read-view" class="mbp-wrap">
+                <div class="mbp-frame">
+                  <div class="mbp-island"></div>
+                  <div class="mbp-screen">
+                    <div class="mbp-hd">
+                      <div class="mbp-hd-brand">Y Business<br>Morgenbriefet</div>
+                      <div class="mbp-hd-right">
+                        <div class="mbp-hd-date">Man. 19. juni · 06.30</div>
+                        <div class="mbp-hd-badge">Gratis</div>
                       </div>
                     </div>
-                  </div>
-                  <div class="mb-sec reg-sec">
-                    <div class="mb-sec-hdr">
-                      <div class="mb-sec-tag tag-reg">Regulering og risiko</div>
-                      <button class="mb-play">
-                        <svg width="8" height="9" viewBox="0 0 8 9" fill="none">
-                          <path d="M1.5 1.2l5.5 3.3-5.5 3.3V1.2z" fill="rgba(var(--bai-purple-rgb),.92)" />
-                        </svg>
-                        Lyt
-                      </button>
+                    <div class="mbp-progress"><div class="mbp-progress-fill"></div></div>
+
+                    <div class="mbp-sec top">
+                      <div class="mbp-tag tag-top">Topvalg</div>
+                      <div class="mbp-headline">Nationalbanken advarer: Renten forbliver høj ind i 2027</div>
+                      <div class="mbp-body-txt">For virksomheder med variabelt forrentede lån stiger udgifterne med 12–18 % fra september. Refinansiering bør planlægges nu — ikke i Q4, når alle andre gør det samme.</div>
                     </div>
-                    <div class="mb-signal-block">
-                      <div class="mb-signal reg">Regulering</div>
-                      <div class="mb-signal-txt">Ny ESG-rapporteringspligt for virksomheder med 250+ ansatte · Deadline:
-                        1. januar 2027</div>
-                      <div class="mb-signal-sub">23.000 danske virksomheder rammes. Kun 14 % er forberedte, viser ny
-                        undersøgelse fra Dansk Erhverv.</div>
+
+                    <div class="mbp-sec">
+                      <div class="mbp-tag tag-branch">Din branche og region</div>
+                      <div class="mbp-item">Byggebranchen: Boligsalg stiger 8 % på Sjælland — første stigning siden 2022<div class="mbp-src">RealDania</div></div>
+                      <div class="mbp-item">Transport: Nye kørselstidsbegrænsninger træder i kraft 1. august<div class="mbp-src">Vejdirektoratet</div></div>
+                      <div class="mbp-item">Handel: Detailsalg falder 3,2 % i juni — tredje måned i træk<div class="mbp-src">Danmarks Statistik</div></div>
+                    </div>
+
+                    <div class="mbp-sec reg">
+                      <div class="mbp-hdr-row">
+                        <div class="mbp-tag tag-reg">Regulering og risiko</div>
+                        <button class="mbp-play">
+                          <svg width="7" height="8" viewBox="0 0 8 9" fill="none"><path d="M1.5 1.2l5.5 3.3-5.5 3.3V1.2z" fill="rgba(var(--bai-purple-rgb),.92)"/></svg>
+                          Lyt
+                        </button>
+                      </div>
+                      <span class="mbp-sig reg">Regulering</span>
+                      <div class="mbp-sig-txt">Ny ESG-rapporteringspligt for virksomheder med 250+ ansatte · Deadline: 1. januar 2027</div>
+                      <div class="mbp-sig-sub">23.000 danske virksomheder rammes. Kun 14 % er forberedte, viser ny undersøgelse fra Dansk Erhverv.</div>
+                    </div>
+
+                    <div class="mbp-sec">
+                      <div class="mbp-tag tag-blind">Blind vinkel</div>
+                      <div class="mbp-sig-txt">Mediefortællingen om grøn omstilling fokuserer på store selskaber.</div>
+                      <div class="mbp-sig-sub">SMV'ernes implementeringsomkostninger dækkes ikke — selv om de udgør 67 % af det samlede lovgivningssubjekt.</div>
+                    </div>
+
+                    <div class="mbp-sec">
+                      <div class="mbp-tag tag-watch">Hold øje med</div>
+                      <span class="mbp-sig watch">Signal</span>
+                      <div class="mbp-sig-txt">EU's AI Act trin 2 træder i kraft 2. august. Klassificeringen af din virksomheds AI-brug bestemmer, om du er i High-Risk-kategorien.</div>
+                    </div>
+
+                    <div class="mbp-ft">
+                      <div class="mbp-ft-meta">Klar 05.30 · AI-research 03.00–05.30</div>
+                      <div class="mbp-ft-ch">280 ord · 4 min</div>
                     </div>
                   </div>
-                  <div class="mb-sec">
-                    <div class="mb-sec-tag tag-blind">Blind vinkel</div>
-                    <div class="mb-signal-block">
-                      <div class="mb-signal-txt" style="font-size:11px;font-weight:400">Mediefortællingen om grøn
-                        omstilling fokuserer på store selskaber.</div>
-                      <div class="mb-signal-sub">SMV'ernes implementeringsomkostninger dækkes ikke — selv om de udgør 67
-                        % af det samlede lovgivningssubjekt.</div>
-                    </div>
-                  </div>
-                  <div class="mb-sec">
-                    <div class="mb-sec-tag tag-watch">Hold øje med</div>
-                    <div class="mb-signal-block">
-                      <div class="mb-signal watch">Signal</div>
-                      <div class="mb-signal-txt">EU's AI Act trin 2 træder i kraft 2. august. Klassificeringen af din
-                        virksomheds AI-brug bestemmer, om du er i High-Risk-kategorien.</div>
-                    </div>
-                  </div>
+                  <div class="mbp-home"></div>
                 </div>
-                <div class="mb-ft">
-                  <div class="mb-ft-meta">Klar til levering 05.30 · AI-research kl. 03.00–05.30</div>
-                  <div class="mb-ft-ch">
-                    <div class="mb-ch">Tekst · 280 ord</div>
-                    <div class="mb-ch">Lyd · v1.0 · 4 min · TTS</div>
-                  </div>
+                <div class="mbp-caption">
+                  <div class="mbp-caption-name">Morgenbriefet</div>
+                  <div class="mbp-caption-sub">Dagligt kl. 06.30 · Gratis med registrering</div>
                 </div>
               </div>
 
