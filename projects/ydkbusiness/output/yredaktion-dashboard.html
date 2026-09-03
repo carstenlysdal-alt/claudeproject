@@ -4461,7 +4461,8 @@
     .mbp-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; padding:14px 0; overflow:hidden }
     .mbp-frame { width:272px; flex-shrink:0; background:#1C1C1E; border-radius:36px; border:3px solid #3A3A3C; box-shadow:0 2px 0 rgba(255,255,255,.06) inset, 0 20px 46px rgba(0,0,0,.25); position:relative; padding:10px }
     .mbp-island { position:absolute; top:15px; left:50%; transform:translateX(-50%); width:70px; height:17px; background:#000; border-radius:9px; z-index:15 }
-    .mbp-screen { background:#FAFAF8; border-radius:26px; overflow-y:auto; height:552px; display:flex; flex-direction:column }
+    .mbp-screen { background:#FAFAF8; border-radius:26px; overflow-y:auto; height:552px; display:flex; flex-direction:column; scrollbar-width:none; -ms-overflow-style:none }
+    .mbp-screen::-webkit-scrollbar { display:none; width:0; height:0 }
     .mbp-hd { background:#100C0C; padding:28px 15px 9px; display:flex; align-items:flex-start; justify-content:space-between; flex-shrink:0; border-bottom:3px solid #2563EB }
     .mbp-hd-brand { font-family:var(--serif); font-size:12.5px; font-weight:700; color:#FAFAF8; font-style:italic; letter-spacing:-.01em; line-height:1.2 }
     .mbp-hd-right { display:flex; flex-direction:column; align-items:flex-end; gap:3px }
@@ -6859,13 +6860,15 @@
       }
     }
 
-    .fmtex-card::-webkit-scrollbar {
-      width: 4px
+    .fmtex-card {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
-    .fmtex-card::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, .16);
-      border-radius: var(--radius-xs)
+    .fmtex-card::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
     }
 
     .fmtex-p {
@@ -10064,7 +10067,7 @@
               <div id="mb-read-view" class="mbp-wrap">
                 <div class="mbp-frame">
                   <div class="mbp-island"></div>
-                  <div class="mbp-screen">
+                  <div class="mbp-screen" style="scrollbar-width:none;-ms-overflow-style:none;">
                     <div class="mbp-hd">
                       <div class="mbp-hd-brand">Y Business<br>Morgenbriefet</div>
                       <div class="mbp-hd-right">
