@@ -267,12 +267,7 @@
     }
 
     .accent-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--accent)
+      display: none;
     }
 
     .bg-grid {
@@ -8391,12 +8386,22 @@
                     beslutninger.</div>
                 </div>
 
-                <div class="s1-sol">
-                  <div class="s1-sol-arr">→</div>
-                  <div class="s1-sol-txt">Vores særlige styrke er Business AI — ikke som modelnavne og hype, men som
-                    virkelighed i virksomheder.</div>
-                  <div class="s1-sol-sub">Nye arbejdsgange, nye konkurrencevilkår, nye krav til ledelse — dér, hvor AI
-                    rammer forretningen.</div>
+                <div style="margin-top:14px;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-xs);">
+                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.7);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;">De tre redaktionelle ben</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div>
+                      <div style="font-family:var(--sans);font-size:11.5px;font-weight:700;color:#FAFAF8;">Ben 1 · Business AI</div>
+                      <div style="font-family:var(--sans);font-size:10.5px;color:rgba(250,250,248,.65);line-height:1.45;">Konkret implementering i driften — hvad det koster, kræver og ændrer.</div>
+                    </div>
+                    <div style="padding-top:6px;border-top:1px solid rgba(255,255,255,.08);">
+                      <div style="font-family:var(--sans);font-size:11.5px;font-weight:700;color:#93C5FD;">Ben 2 · Det nordiske spejl</div>
+                      <div style="font-family:var(--sans);font-size:10.5px;color:rgba(250,250,248,.65);line-height:1.45;">Sverige, Norge og Finland deler vores model, men er 12–24 mdr. foran på AI, industri og energi. Vores lead-indikator og case-kilde.</div>
+                    </div>
+                    <div style="padding-top:6px;border-top:1px solid rgba(255,255,255,.08);">
+                      <div style="font-family:var(--sans);font-size:11.5px;font-weight:700;color:#FAFAF8;">Ben 3 · Kapital &amp; vækst</div>
+                      <div style="font-family:var(--sans);font-size:10.5px;color:rgba(250,250,248,.65);line-height:1.45;">Kapitalstrømme, venture og ejerskabsstrategier bag forandringen.</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -8414,6 +8419,11 @@
                   <div class="s1-how-tag">Journalisten afgør</div>
                   <div class="s1-how-txt">Vinkel, prioritering, kildekritik og publicering er altid et journalistisk
                     ansvar. AI foreslår. Redaktionen afgør.</div>
+                </div>
+
+                <div class="s1-how-item">
+                  <div class="s1-how-tag" style="background:rgba(59,130,246,.25);color:#93C5FD;">Det nordiske spejl</div>
+                  <div class="s1-how-txt">Danmark er linsen, men Norden er spejlet. Vi overvåger Sverige, Norge og Finland systematisk for at fange cases, teknologi og markedsmønstre, før de rammer Danmark.</div>
                 </div>
 
                 <div class="s1-how-item">
@@ -8526,8 +8536,8 @@
                 konsekvens, den oversete gruppe eller den antagelse, som erhvervslivet er ved at gøre til sandhed uden
                 at have testet den.</p>
               <p class="pillar-desc">Challenge kan begynde i overvågningen: en historie fylder usædvanligt meget, en
-                kildegruppe går igen, et perspektiv mangler, et markedssignal bliver overset, en AI-fortælling lyder
-                lidt for glat.</p>
+                kildegruppe går igen, et perspektiv mangler, et markedssignal bliver overset, eller en nordisk erfaring
+                viser utilsigtede konsekvenser, som den danske debat endnu ikke har opdaget.</p>
               <div class="ltl-list" style="--ltl-color:var(--amber)">
                 <div class="ltl-item">
                   <div class="ltl-lbl">Mangel</div>
@@ -8544,6 +8554,10 @@
                 <div class="ltl-item">
                   <div class="ltl-lbl">Test</div>
                   <div class="ltl-txt">Hvilken antagelse bør testes?</div>
+                </div>
+                <div class="ltl-item">
+                  <div class="ltl-lbl">Nordisk spejl</div>
+                  <div class="ltl-txt">Hvad har Sverige/Finland allerede lært af dyrekøbte erfaringer?</div>
                 </div>
                 <div class="ltl-item">
                   <div class="ltl-lbl">Risiko</div>
@@ -8570,7 +8584,7 @@
               <p class="pillar-desc">Inspire er ikke feelgood. Det er praksisjournalistik.</p>
               <p class="pillar-desc">Det handler om virksomheder, ledere og specialister, der har prøvet noget i
                 virkeligheden. Ikke polerede succesfortællinger. Ikke leverandørcases med lak på. Men erfaringer med
-                metode, friktion, fejl og læring.</p>
+                metode, friktion, fejl og læring — fra danske SMV'er og fra nordiske virksomheder, der er 12–24 mdr. foran på AI og automatisering.</p>
               <p class="pillar-desc">En god Inspire-historie giver læseren noget at tage med videre. Ikke nødvendigvis
                 en opskrift. Men en måde at tænke på. Et greb. En advarsel. En erfaring, der kan bruges.</p>
               <div class="ltl-list" style="--ltl-color:var(--accent)">
@@ -8838,8 +8852,8 @@
               color: '#2563EB', tint: 'rgba(37,99,235,',
               lead: null,
               q: '"Hvad er ved at ændre vilkårene — før det bliver åbenlyst for alle?"',
-              desc: 'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder: markedsbevægelser, reguleringsudkast, udbud, lederskifter og teknologimønstre. Journalisten fortolker signalet, finder hullet i dækningen og trækker konsekvensen for den virksomhed, branche eller beslutning, læseren står med.',
-              insight: 'For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj. Blind Spot-disciplinen er infrastruktur bag formatet: systemet registrerer løbende hvad mediebilledet ikke dækker og hvad nyhedslogikken gør svært at se — og fodrer journalistens vinkelvalg uden at brugeren ser det.',
+              desc: 'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — med Det nordiske spejl (Ben 2) som fast lead-indikator: markedsbevægelser i Sverige, Norge og Finland 12–24 mdr. før Danmark, reguleringsudkast, udbud, lederskifter og teknologimønstre. Journalisten fortolker signalet, finder hullet i dækningen (Blind Spot) og trækker den direkte konsekvens for danske virksomheder.',
+              insight: 'For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj. Det nordiske spejl og Blind Spot-disciplinen er fast infrastruktur bag formatet: systemet registrerer mønstre i nabolandene og hvad mediebilledet overser — og fodrer journalistens vinkelvalg med dokumenterede forspring.',
               promise: ['Find signalet', 'Test modfortællingen', 'Navngiv hvem rammes', 'Oversæt til beslutning'],
               job: { a: 'Forstå', b: 'Hvad er ved at ske?', c: 'Tvivle', d: 'Hvad overser fortællingen?', e: 'Handle', f: 'Hvad bør vi holde øje med?' },
               regel: 'Redaktionel disciplin: find altid den manglende kilde, den skjulte omkostning eller den ufortalte konsekvens. Kræver navngivet modkilde.',
@@ -8856,7 +8870,7 @@
               kanaler: 'Tekst · Ugentlig lydbrief · Grafisk video ved behov',
               kernegreb: null, eksempler: null,
               emner: 'Business AI-adoption · Organisatorisk transformation · Lederskifter · Regulering og EU AI Act · Branche · Geografi · Virksomhedstype · Konkurrenter · Teknologi · Udbud · Kapital · Eksport · Kommunikation',
-              sources: 'Eurostat, OECD, World Bank (B-READY), patentdatabaser, eget overvågningssystem, medieovervågning og 15 primære erhvervsmedier.',
+              sources: 'Eurostat, OECD, World Bank (B-READY), patentdatabaser, nordiske datakilder (AI Sweden, ETLA, Mannheimer Swartling), eget overvågningssystem, medieovervågning og 15 primære erhvervsmedier.',
               special: {
                 type: 'note', lbl: 'Situationsbestemte vinkler',
                 desc: 'Myten om — afmonterer en udbredt antagelse med data og navngivet modkilde, hver 14. dag. Før mødet — 60-sekunders brief inden beslutning, møde eller forhandling. Før handlen — signal- og markedsbrief for rådgivere og C-level, viser bevægelser inden de bliver til pressemeddelelser. Alle tre er Signaler aktiveret af en specifik situation.'
@@ -8868,8 +8882,8 @@
               color: '#16A34A', tint: 'rgba(22,163,74,',
               lead: null,
               q: '"Hvad kan andre bruge — og hvad kan de ikke kopiere?"',
-              desc: 'En konkret virksomhed der har løst noget, andre står med — dokumenteret med tal, beslutninger, friktion og resultat. Tyngdepunktet er Business AI og forandring i praksis: hvad virksomheden gjorde, hvad der gik galt, hvad det kostede, og hvad andre faktisk kan bruge.',
-              insight: 'Viser metode, friktion, fejl og kopierbar læring. En succeshistorie uden modstand er en pressemeddelelse. Tematisk linje: Sådan gjorde jeg — cases fortalt i første person af founder, leder eller AI-praktiker. Det ingen andre dækker: implementeringens barske virkelighed frem for polerede succeshistorier.',
+              desc: 'En konkret virksomhed der har løst noget, andre står med — dokumenteret med tal, beslutninger, friktion og resultat. Tyngdepunktet er Business AI og forandring i praksis: hvad virksomheden gjorde, hvad der gik galt, hvad det kostede, og hvad andre kan kopiere. Formatet trækker systematisk på Det nordiske spejl (Ben 2): når svenske eller finske virksomheder er foran på teknologi eller procesomstilling, henter vi deres dyrekøbte læring hjem til danske ledere.',
+              insight: 'Viser metode, friktion, fejl og kopierbar læring fra danske virksomheder og nordiske naboer. En succeshistorie uden modstand er en pressemeddelelse. Tematisk linje: Sådan gjorde jeg — cases fortalt i første person af founder, leder eller AI-praktiker. Det ingen andre dækker: implementeringens barske virkelighed frem for polerede succeshistorier.',
               promise: ['Start med problemet', 'Vis friktionen', 'Dokumentér prisen', 'Udled kopierbar læring'],
               job: { a: 'Forstå', b: 'Hvad var det reelle problem?', c: 'Tvivle', d: 'Hvad skjuler succeshistorien?', e: 'Handle', f: 'Hvad kan kopieres i morgen?' },
               regel: 'Ingen case uden friktion. Ingen case uden navngivet ophav.',
@@ -8878,6 +8892,7 @@
                 'Hvad blev gjort?',
                 'Hvad gik galt?',
                 'Hvad virkede?',
+                'Nordisk læring — hvad har nabolandene erfaret, før det når Danmark?',
                 'Hvad kostede det?',
                 'Hvad kan andre kopiere?',
                 'Hvad kan andre ikke kopiere?',
@@ -8886,12 +8901,13 @@
               kanaler: 'Tekst · Lydinterview',
               kernegreb: '"Hvad besluttede jeg, hvad kostede det, og hvad kan du bruge?"',
               eksempler: [
+                '"Svensk industrigigant testede AI i produktionen: 3 fejl danske SMV\'er skal undgå"',
                 '"Sådan afskedigede jeg mit manuelle processlag og erstattede det med AI"',
                 '"Vi fejlede tre gange med AI-implementering. Her er, hvad der til sidst virkede"',
-                '"Jeg nåede til tops ved at lade data afgøre, hvad jeg ikke skulle bruge tid på"',
+                '"Finsk B2B-virksomhed automatiserede compliance med AI: Hvad det kostede og flyttede"',
               ],
               emner: null,
-              sources: 'Egne dybdegående SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.',
+              sources: 'Egne dybdegående SMV-interviews, nordiske casespejl (Sverige, Norge, Finland), regnskabsdata (LassoX) og driftsrapporter.',
               special: {
                 type: 'proto', lbl: 'Q&A · Protokol',
                 desc: 'Faste spørgsmål sendes til kilden inden produktion. Sikrer friktion, fejl og konkret resultat — aldrig kun succeshistorien. Variant: Workflow Deconstructed — dekonstruerer én specifik jobfunktion i én branche og viser præcis hvilke AI-workflows der ændrer den, med navngivne tal og dokumenterede implementeringserfaringer. Aktiveres situationsbestemt.'
@@ -9784,6 +9800,32 @@
 
             </div>
 
+            <!-- NORDISK PROTOKOL (BEN 2) -->
+            <div class="s6-nordic-proto" style="margin-top:20px;padding:16px 20px;background:rgba(37,99,235,.12);border:1px solid rgba(59,130,246,.35);border-radius:var(--radius-sm,4px);display:flex;align-items:flex-start;justify-content:space-between;gap:24px;">
+              <div style="max-width:300px;flex-shrink:0;">
+                <div style="font-family:var(--mono);font-size:8.5px;font-weight:700;color:#93C5FD;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;">Protokol · Ben 2</div>
+                <div style="font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.2;margin-bottom:6px;">Det nordiske spejl</div>
+                <p style="font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.75);line-height:1.55;margin:0;">Norden er vores 12–24 mdr. lead-indikator. Ingen nordisk case, analyse eller signal publiceres uden at opfylde samtlige tre krav:</p>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;flex:1;">
+                <div style="background:rgba(0,0,0,.3);padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:3px;">
+                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;margin-bottom:3px;">1 · Tidsmønster</div>
+                  <div style="font-family:var(--sans);font-size:11px;color:#FAFAF8;font-weight:600;margin-bottom:3px;">Dokumenteret forspring?</div>
+                  <div style="font-family:var(--sans);font-size:10px;color:rgba(250,250,248,.65);line-height:1.45;">Er mønstret opstået i Sverige, Norge eller Finland 12–24 mdr. før typisk dansk virkelighed? Kræver dokumentation, ikke antagelse.</div>
+                </div>
+                <div style="background:rgba(0,0,0,.3);padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:3px;">
+                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;margin-bottom:3px;">2 · Dansk konsekvens</div>
+                  <div style="font-family:var(--sans);font-size:11px;color:#FAFAF8;font-weight:600;margin-bottom:3px;">Konkret effekt i Danmark?</div>
+                  <div style="font-family:var(--sans);font-size:10px;color:rgba(250,250,248,.65);line-height:1.45;">Hvilken navngiven dansk branche, ejerleder eller driftssituation rammes herhjemme nu? Aldrig generel erhvervsretorik.</div>
+                </div>
+                <div style="background:rgba(0,0,0,.3);padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:3px;">
+                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;margin-bottom:3px;">3 · Verificerbar kilde</div>
+                  <div style="font-family:var(--sans);font-size:11px;color:#FAFAF8;font-weight:600;margin-bottom:3px;">Efterprøvbar forankring?</div>
+                  <div style="font-family:var(--sans);font-size:10px;color:rgba(250,250,248,.65);line-height:1.45;">Navngivet case, myndighedskontrakt eller dansk ekspert/praktiker der bekræfter og bærer historien.</div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -9841,6 +9883,10 @@
                   <div class="s7-vp-lbl">Læring</div>
                   <div class="s7-vp-txt"><strong>Hvad kan andre bruge?</strong> Hvad kan kopieres, hvad kan ikke, og
                     hvilke forudsætninger skal være på plads?</div>
+                </div>
+                <div class="s7-vp-item" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px;margin-top:4px;">
+                  <div class="s7-vp-lbl" style="color:#93C5FD;">Det nordiske spejl</div>
+                  <div class="s7-vp-txt"><strong>Hvor er nabolandene foran?</strong> Sverige er 12–24 mdr. foran på tung industri-AI (Wallenberg, Ericsson, Saab, AI Sweden). Finland er foran på offentlig digitalisering og sundhedsdata. Vi bringer deres dyrekøbte erfaringer hjem til danske ledere, før teknologien rammer herhjemme.</div>
                 </div>
               </div>
               <div class="s7-vp-myth"><strong>Tre faste historiemotorer</strong> Når AI går galt — løftet møder fejl,

@@ -153,7 +153,7 @@ button:focus, button:focus-visible {
 
 
 /* Aubergine accent bar — left edge */
-#view-intern .accent-bar{ position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); }
+#view-intern .accent-bar{ display: none; }
 
 /* Dot grid — very subtle */
 #view-intern .bg-grid{
@@ -2050,12 +2050,7 @@ button:focus, button:focus-visible {
     
 
     #view-redaktion .accent-bar{
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--accent)
+      display: none;
     }
 
     #view-redaktion .bg-grid{
@@ -10350,9 +10345,14 @@ button:focus, button:focus-visible {
           <div style="font-family:var(--sans);font-size:13px;color:var(--ink70);line-height:1.65;">Nyheder, markedstrends, regulering, konkurrenter og Business AI samlet i ét personligt overblik — med redaktionel dømmekraft ovenpå.</div>
         </div>
 
-        <div style="padding:12px 16px;background:var(--accent);margin-bottom:20px;">
+        <div style="padding:12px 16px;background:var(--accent);margin-bottom:12px;">
           <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;">Kategori</div>
           <div style="font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.22;letter-spacing:-.015em;">Redaktionel erhvervsintelligens for det private erhvervsliv.</div>
+        </div>
+
+        <div style="padding:10px 14px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);margin-bottom:20px;">
+          <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;">Det nordiske spejl</div>
+          <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.5;">Danmark er linsen — Norden er spejlet. Vi overvåger Sverige, Norge og Finland, der på AI, industri og energi er <strong>12–24 måneder foran</strong>, så danske ledere ser forandringen før den rammer herhjemme.</div>
         </div>
 
         <div style="display:flex;flex-direction:column;border-top:1px solid var(--line);">
@@ -10386,7 +10386,7 @@ button:focus, button:focus-visible {
           </div>
           <div class="ltl-item" style="padding:8px 0;">
             <div class="ltl-lbl">Medie- og markedsovervågning</div>
-            <div class="ltl-txt" style="color:rgba(250,250,248,.72);">Mediedækning af brand og konkurrenter · regulering og erhvervspolitik · jobopslag og ledelsessignaler · offentlige udbud · EU-direktiver.</div>
+            <div class="ltl-txt" style="color:rgba(250,250,248,.72);">Mediedækning af brand og konkurrenter · regulering og erhvervspolitik · jobopslag og ledelsessignaler · offentlige udbud · EU-direktiver · nordisk signalradar (Sverige, Norge og Finland som lead-indikator).</div>
           </div>
           <div class="ltl-item" style="padding:8px 0;">
             <div class="ltl-lbl">Beslutningslag</div>
@@ -10944,7 +10944,7 @@ button:focus, button:focus-visible {
         <div class="pos-cell yb">
           <div class="pos-cell-lbl">Operationel + uafhængig redaktion</div>
           <div class="pos-cell-actors">★ Y Business</div>
-          <div class="pos-cell-note">Overvågning, Business AI og beslutningsværdi — ubesat felt.</div>
+          <div class="pos-cell-note">Overvågning, Business AI, Det nordiske spejl og beslutningsværdi for SMV'er — ubesat felt.</div>
           <div onclick="openSourcesModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:800;color:#FAFAF8;letter-spacing:.13em;text-transform:uppercase;background:rgba(196,181,253,.18);border:1px solid rgba(196,181,253,.42);border-radius:var(--radius-sm);padding:8px 12px;box-shadow:0 8px 22px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.08);transition:background .15s,border-color .15s,transform .15s,color .15s" onmouseover="this.style.background='rgba(196,181,253,.28)';this.style.borderColor='rgba(196,181,253,.72)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='rgba(196,181,253,.18)';this.style.borderColor='rgba(196,181,253,.42)';this.style.transform='translateY(0)'">Hvad vi overvåger ↗</div>
         </div>
         <div class="pos-cell">
@@ -10990,7 +10990,7 @@ button:focus, button:focus-visible {
             <td class="str" style="font-size:12px;">Erhvervsmedier<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Børsen, Finans, Watch</div></td>
             <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">4.500–7.200 kr./år</td>
             <td style="font-size:12px;">Nyheder og aktualitet</td>
-            <td style="font-size:12px;">+ overvågning, Business AI, konsekvens</td>
+            <td style="font-size:12px;">+ overvågning, Business AI, Det nordiske spejl, konsekvens</td>
           </tr>
           <tr>
             <td class="str" style="font-size:12px;">Medieovervågning<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Meltwater, Retriever, Infomedia</div></td>
@@ -11043,7 +11043,7 @@ button:focus, button:focus-visible {
           <tr class="hl">
             <td class="str" style="color:var(--accent);font-style:italic;font-family:var(--serif);font-size:12px;">Y Business</td>
             <td class="hi" style="font-size:12px;">7.500 kr./år</td>
-            <td style="font-size:12px;">Nyheder + overvågning + trends + Business AI — samlet</td>
+            <td style="font-size:12px;">Nyheder + overvågning + trends + Business AI + Det nordiske spejl — samlet</td>
             <td style="color:var(--line);">—</td>
           </tr>
         </tbody>
@@ -11058,10 +11058,10 @@ button:focus, button:focus-visible {
   </div>
   <div class="pos-foundations">
     <div class="pos-found-cell"><div class="pos-found-lbl">Danmark</div><div class="pos-found-v">er et SMV-land</div></div>
+    <div class="pos-found-cell"><div class="pos-found-lbl">Norden</div><div class="pos-found-v">er 12–24 mdr. foran</div></div>
     <div class="pos-found-cell"><div class="pos-found-lbl">Informationsmarkedet</div><div class="pos-found-v">er fragmenteret</div></div>
     <div class="pos-found-cell"><div class="pos-found-lbl">Organisationerne</div><div class="pos-found-v">har virksomhederne</div></div>
     <div class="pos-found-cell"><div class="pos-found-lbl">Medierne</div><div class="pos-found-v">har journalistikken</div></div>
-    <div class="pos-found-cell"><div class="pos-found-lbl">Værktøjerne</div><div class="pos-found-v">har data</div></div>
     <div class="pos-found-cell"><div class="pos-found-lbl">Y Business</div><div class="pos-found-v">samler beslutningslaget</div></div>
   </div>
   <div class="pnum">Markedspositionering · 03/05</div>
@@ -11294,7 +11294,7 @@ button:focus, button:focus-visible {
               <div class="prd-layer-desc">Hvad overser markedet, medierne eller virksomheden selv?</div>
               <div class="prd-layer-ltl">
                 <div class="ltl-list" style="--ltl-color:var(--green)">
-                  <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Udfordre den oplagte fortælling.</div></div>
+                  <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Udfordre den oplagte fortælling — ofte ved at inddrage nordiske erfaringer, hvor konsekvenserne af nye krav (AI Act, CSDDD, ESG) allerede har vist sig i praksis.</div></div>
                   <div class="ltl-item"><div class="ltl-lbl">Tilspidsning</div><div class="ltl-txt">Viser at Y Business ikke kun opsummerer markedet — men udfordrer det. Afgørende for platform-troværdighed.</div></div>
                   <div class="ltl-item"><div class="ltl-lbl">Navneafgrænsning</div><div class="ltl-txt">To forskellige ting: "Den blinde vinkel" er klummen (fast stemme, ugentlig). Blind Spot-artiklen er selve formatet — og kvalificerer den dominerende fortælling snarere end at modsige den.</div></div>
                 </div>
@@ -11311,8 +11311,8 @@ button:focus, button:focus-visible {
               <div class="prd-layer-desc">Hvad kan jeg lære af andre virksomheder?</div>
               <div class="prd-layer-ltl">
                 <div class="ltl-list" style="--ltl-color:var(--amber)">
-                  <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Vise praktiske eksempler på hvad der faktisk virker i dansk erhvervsliv.</div></div>
-                  <div class="ltl-item"><div class="ltl-lbl">Tilspidsning</div><div class="ltl-txt">Ikke succescases. Ærlige praksiscases med friktion, forudsætninger og læring.</div></div>
+                  <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Vise praktiske eksempler på hvad der faktisk virker i dansk og nordisk erhvervsliv — med Sverige, Norge og Finland som spejl og læringskilde for danske virksomheder.</div></div>
+                  <div class="ltl-item"><div class="ltl-lbl">Tilspidsning</div><div class="ltl-txt">Ikke succescases. Ærlige praksiscases med friktion, forudsætninger og læring — fra danske SMV'er og nordiske naboer der er 12–24 mdr. foran.</div></div>
                 </div>
               </div>
             </div>
@@ -11496,6 +11496,11 @@ button:focus, button:focus-visible {
             <div class="bai-q" style="margin-bottom:8px;">Sådan ændrer AI arbejdet</div>
             <p class="bai-sub" style="margin-bottom:0;">Konkret ændring i mandagens arbejde. Ikke fremtidsord. Vi viser, hvordan AI ændrer salg, økonomi, HR, compliance, kundeservice, marketing og ledelse.</p>
           </div>
+          <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.1);">
+            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">04 · Nordisk forspring</div>
+            <div class="bai-q" style="margin-bottom:8px;">Lær af nabolandenes erfaringer</div>
+            <p class="bai-sub" style="margin-bottom:0;">Sverige er 12–24 mdr. foran på AI i tung industri (AI Sweden, Ericsson, Saab). Finland er foran på offentlig digitalisering og data. Vi overvåger deres erfaringer, så danske ledere ikke behøver gentage fejlene.</p>
+          </div>
         </div>
         <div class="bai-keyq">Vi dækker ikke kun hvad AI kan. Vi dækker hvad AI kræver.</div>
       </div>
@@ -11609,10 +11614,10 @@ button:focus, button:focus-visible {
             <div class="ai-box-lbl" style="margin-bottom:4px;">Ben 1 · Business AI</div>
             <div class="ai-box-row">Implementering, ikke teknologibeundring — hvad det kræver, koster og leverer</div>
           </div>
-          <div style="margin-bottom:8px;">
-            <div class="ai-box-lbl" style="margin-bottom:4px;">Ben 2 · Norden</div>
-            <div class="ai-box-row">Sverige (industri) · Norge (kapital) · Finland (offentlig sektor) — 12-24 måneder foran Danmark på AI-modenhed</div>
-            <div class="ai-box-row">Nordisk publicering kræver: dokumenteret tidsmønster · konkret dansk konsekvens · verificerbar kilde</div>
+          <div style="margin-bottom:8px;padding:8px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);border-radius:3px;">
+            <div class="ai-box-lbl" style="margin-bottom:4px;color:#93C5FD;font-weight:700;">Ben 2 · Det nordiske spejl</div>
+            <div class="ai-box-row" style="color:#FAFAF8;">Sverige (industri) · Norge (kapital) · Finland (offentlig sektor) — 12-24 måneder foran Danmark på AI-modenhed</div>
+            <div class="ai-box-row" style="color:rgba(250,250,248,.75);margin-top:2px;">Protokol (3 krav): dokumenteret tidsmønster · konkret dansk konsekvens · verificerbar kilde</div>
           </div>
           <div>
             <div class="ai-box-lbl" style="margin-bottom:4px;">Ben 3 · Kapital og vækst</div>
@@ -12292,12 +12297,22 @@ button:focus, button:focus-visible {
                     beslutninger.</div>
                 </div>
 
-                <div class="s1-sol">
-                  <div class="s1-sol-arr">→</div>
-                  <div class="s1-sol-txt">Vores særlige styrke er Business AI — ikke som modelnavne og hype, men som
-                    virkelighed i virksomheder.</div>
-                  <div class="s1-sol-sub">Nye arbejdsgange, nye konkurrencevilkår, nye krav til ledelse — dér, hvor AI
-                    rammer forretningen.</div>
+                <div style="margin-top:14px;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-xs);">
+                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.7);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;">De tre redaktionelle ben</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div>
+                      <div style="font-family:var(--sans);font-size:11.5px;font-weight:700;color:#FAFAF8;">Ben 1 · Business AI</div>
+                      <div style="font-family:var(--sans);font-size:10.5px;color:rgba(250,250,248,.65);line-height:1.45;">Konkret implementering i driften — hvad det koster, kræver og ændrer.</div>
+                    </div>
+                    <div style="padding-top:6px;border-top:1px solid rgba(255,255,255,.08);">
+                      <div style="font-family:var(--sans);font-size:11.5px;font-weight:700;color:#93C5FD;">Ben 2 · Det nordiske spejl</div>
+                      <div style="font-family:var(--sans);font-size:10.5px;color:rgba(250,250,248,.65);line-height:1.45;">Sverige, Norge og Finland deler vores model, men er 12–24 mdr. foran på AI, industri og energi. Vores lead-indikator og case-kilde.</div>
+                    </div>
+                    <div style="padding-top:6px;border-top:1px solid rgba(255,255,255,.08);">
+                      <div style="font-family:var(--sans);font-size:11.5px;font-weight:700;color:#FAFAF8;">Ben 3 · Kapital &amp; vækst</div>
+                      <div style="font-family:var(--sans);font-size:10.5px;color:rgba(250,250,248,.65);line-height:1.45;">Kapitalstrømme, venture og ejerskabsstrategier bag forandringen.</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -12315,6 +12330,11 @@ button:focus, button:focus-visible {
                   <div class="s1-how-tag">Journalisten afgør</div>
                   <div class="s1-how-txt">Vinkel, prioritering, kildekritik og publicering er altid et journalistisk
                     ansvar. AI foreslår. Redaktionen afgør.</div>
+                </div>
+
+                <div class="s1-how-item">
+                  <div class="s1-how-tag" style="background:rgba(59,130,246,.25);color:#93C5FD;">Det nordiske spejl</div>
+                  <div class="s1-how-txt">Danmark er linsen, men Norden er spejlet. Vi overvåger Sverige, Norge og Finland systematisk for at fange cases, teknologi og markedsmønstre, før de rammer Danmark.</div>
                 </div>
 
                 <div class="s1-how-item">
@@ -12427,8 +12447,7 @@ button:focus, button:focus-visible {
                 konsekvens, den oversete gruppe eller den antagelse, som erhvervslivet er ved at gøre til sandhed uden
                 at have testet den.</p>
               <p class="pillar-desc">Challenge kan begynde i overvågningen: en historie fylder usædvanligt meget, en
-                kildegruppe går igen, et perspektiv mangler, et markedssignal bliver overset, en AI-fortælling lyder
-                lidt for glat.</p>
+                kildegruppe går igen, et perspektiv mangler, et markedssignal bliver overset — eller en nordisk nabo (Sverige, Norge, Finland) har allerede afdækket utilsigtede konsekvenser og blind spots, som danske medier endnu overser.</p>
               <div class="ltl-list" style="--ltl-color:var(--amber)">
                 <div class="ltl-item">
                   <div class="ltl-lbl">Mangel</div>
@@ -12470,7 +12489,7 @@ button:focus, button:focus-visible {
               <div class="pillar-q">"Vi viser, hvad der virker — og hvad det kostede at få det til at virke."</div>
               <p class="pillar-desc">Inspire er ikke feelgood. Det er praksisjournalistik.</p>
               <p class="pillar-desc">Det handler om virksomheder, ledere og specialister, der har prøvet noget i
-                virkeligheden. Ikke polerede succesfortællinger. Ikke leverandørcases med lak på. Men erfaringer med
+                virkeligheden — i Danmark eller hos vores nordiske naboer, der er foran på teknologi og omstilling. Ikke polerede succesfortællinger. Ikke leverandørcases med lak på. Men erfaringer med
                 metode, friktion, fejl og læring.</p>
               <p class="pillar-desc">En god Inspire-historie giver læseren noget at tage med videre. Ikke nødvendigvis
                 en opskrift. Men en måde at tænke på. Et greb. En advarsel. En erfaring, der kan bruges.</p>
@@ -13137,6 +13156,32 @@ button:focus, button:focus-visible {
 
             </div>
 
+            <!-- NORDISK PROTOKOL (BEN 2) -->
+            <div class="s6-nordic-proto" style="margin-top:20px;padding:16px 20px;background:rgba(37,99,235,.12);border:1px solid rgba(59,130,246,.35);border-radius:var(--radius-sm,4px);display:flex;align-items:flex-start;justify-content:space-between;gap:24px;">
+              <div style="max-width:300px;flex-shrink:0;">
+                <div style="font-family:var(--mono);font-size:8.5px;font-weight:700;color:#93C5FD;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;">Protokol · Ben 2</div>
+                <div style="font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.2;margin-bottom:6px;">Det nordiske spejl</div>
+                <p style="font-family:var(--sans);font-size:11px;color:rgba(250,250,248,.75);line-height:1.55;margin:0;">Norden er vores 12–24 mdr. lead-indikator. Ingen nordisk case, analyse eller signal publiceres uden at opfylde samtlige tre krav:</p>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;flex:1;">
+                <div style="background:rgba(0,0,0,.3);padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:3px;">
+                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;margin-bottom:3px;">1 · Tidsmønster</div>
+                  <div style="font-family:var(--sans);font-size:11px;color:#FAFAF8;font-weight:600;margin-bottom:3px;">Dokumenteret forspring?</div>
+                  <div style="font-family:var(--sans);font-size:10px;color:rgba(250,250,248,.65);line-height:1.45;">Er mønstret opstået i Sverige, Norge eller Finland 12–24 mdr. før typisk dansk virkelighed? Kræver dokumentation, ikke antagelse.</div>
+                </div>
+                <div style="background:rgba(0,0,0,.3);padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:3px;">
+                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;margin-bottom:3px;">2 · Dansk konsekvens</div>
+                  <div style="font-family:var(--sans);font-size:11px;color:#FAFAF8;font-weight:600;margin-bottom:3px;">Konkret effekt i Danmark?</div>
+                  <div style="font-family:var(--sans);font-size:10px;color:rgba(250,250,248,.65);line-height:1.45;">Hvilken navngiven dansk branche, ejerleder eller driftssituation rammes herhjemme nu? Aldrig generel erhvervsretorik.</div>
+                </div>
+                <div style="background:rgba(0,0,0,.3);padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:3px;">
+                  <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;margin-bottom:3px;">3 · Verificerbar kilde</div>
+                  <div style="font-family:var(--sans);font-size:11px;color:#FAFAF8;font-weight:600;margin-bottom:3px;">Efterprøvbar forankring?</div>
+                  <div style="font-family:var(--sans);font-size:10px;color:rgba(250,250,248,.65);line-height:1.45;">Navngivet case, myndighedskontrakt eller dansk ekspert/praktiker der bekræfter og bærer historien.</div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -13194,6 +13239,10 @@ button:focus, button:focus-visible {
                   <div class="s7-vp-lbl">Læring</div>
                   <div class="s7-vp-txt"><strong>Hvad kan andre bruge?</strong> Hvad kan kopieres, hvad kan ikke, og
                     hvilke forudsætninger skal være på plads?</div>
+                </div>
+                <div class="s7-vp-item" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px;margin-top:4px;">
+                  <div class="s7-vp-lbl" style="color:#93C5FD;">Det nordiske spejl</div>
+                  <div class="s7-vp-txt"><strong>Hvor er nabolandene foran?</strong> Sverige er 12–24 mdr. foran på tung industri-AI (Wallenberg, Ericsson, Saab, AI Sweden). Finland er foran på offentlig digitalisering og sundhedsdata. Vi bringer deres dyrekøbte erfaringer hjem til danske ledere, før teknologien rammer herhjemme.</div>
                 </div>
               </div>
               <div class="s7-vp-myth"><strong>Tre faste historiemotorer</strong> Når AI går galt — løftet møder fejl,
@@ -15370,8 +15419,8 @@ document.addEventListener('click', function(e) {
               color: '#2563EB', tint: 'rgba(37,99,235,',
               lead: null,
               q: '"Hvad er ved at ændre vilkårene — før det bliver åbenlyst for alle?"',
-              desc: 'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder: markedsbevægelser, reguleringsudkast, udbud, lederskifter og teknologimønstre. Journalisten fortolker signalet, finder hullet i dækningen og trækker konsekvensen for den virksomhed, branche eller beslutning, læseren står med.',
-              insight: 'For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj. Blind Spot-disciplinen er infrastruktur bag formatet: systemet registrerer løbende hvad mediebilledet ikke dækker og hvad nyhedslogikken gør svært at se — og fodrer journalistens vinkelvalg uden at brugeren ser det.',
+              desc: 'AI scanner 5.000 kilder og identificerer svage signaler der endnu ikke er nyheder — med Det nordiske spejl (Ben 2) som fast lead-indikator: markedsbevægelser i Sverige, Norge og Finland 12–24 mdr. før Danmark, reguleringsudkast, udbud, lederskifter og teknologimønstre. Journalisten fortolker signalet, finder hullet i dækningen (Blind Spot) og trækker den direkte konsekvens for danske virksomheder.',
+              insight: 'For dem, der hellere vil opdage bevægelsen, mens den stadig ligner støj. Det nordiske spejl og Blind Spot-disciplinen er fast infrastruktur bag formatet: systemet registrerer mønstre i nabolandene og hvad mediebilledet overser — og fodrer journalistens vinkelvalg med dokumenterede forspring.',
               promise: ['Find signalet', 'Test modfortællingen', 'Navngiv hvem rammes', 'Oversæt til beslutning'],
               job: { a: 'Forstå', b: 'Hvad er ved at ske?', c: 'Tvivle', d: 'Hvad overser fortællingen?', e: 'Handle', f: 'Hvad bør vi holde øje med?' },
               regel: 'Redaktionel disciplin: find altid den manglende kilde, den skjulte omkostning eller den ufortalte konsekvens. Kræver navngivet modkilde.',
@@ -15388,7 +15437,7 @@ document.addEventListener('click', function(e) {
               kanaler: 'Tekst · Ugentlig lydbrief · Grafisk video ved behov',
               kernegreb: null, eksempler: null,
               emner: 'Business AI-adoption · Organisatorisk transformation · Lederskifter · Regulering og EU AI Act · Branche · Geografi · Virksomhedstype · Konkurrenter · Teknologi · Udbud · Kapital · Eksport · Kommunikation',
-              sources: 'Eurostat, OECD, World Bank (B-READY), patentdatabaser, eget overvågningssystem, medieovervågning og 15 primære erhvervsmedier.',
+              sources: 'Eurostat, OECD, World Bank (B-READY), patentdatabaser, nordiske datakilder (AI Sweden, ETLA, Mannheimer Swartling), eget overvågningssystem, medieovervågning og 15 primære erhvervsmedier.',
               special: {
                 type: 'note', lbl: 'Situationsbestemte vinkler',
                 desc: 'Myten om — afmonterer en udbredt antagelse med data og navngivet modkilde, hver 14. dag. Før mødet — 60-sekunders brief inden beslutning, møde eller forhandling. Før handlen — signal- og markedsbrief for rådgivere og C-level, viser bevægelser inden de bliver til pressemeddelelser. Alle tre er Signaler aktiveret af en specifik situation.'
@@ -15400,8 +15449,8 @@ document.addEventListener('click', function(e) {
               color: '#16A34A', tint: 'rgba(22,163,74,',
               lead: null,
               q: '"Hvad kan andre bruge — og hvad kan de ikke kopiere?"',
-              desc: 'En konkret virksomhed der har løst noget, andre står med — dokumenteret med tal, beslutninger, friktion og resultat. Tyngdepunktet er Business AI og forandring i praksis: hvad virksomheden gjorde, hvad der gik galt, hvad det kostede, og hvad andre faktisk kan bruge.',
-              insight: 'Viser metode, friktion, fejl og kopierbar læring. En succeshistorie uden modstand er en pressemeddelelse. Tematisk linje: Sådan gjorde jeg — cases fortalt i første person af founder, leder eller AI-praktiker. Det ingen andre dækker: implementeringens barske virkelighed frem for polerede succeshistorier.',
+              desc: 'En konkret virksomhed der har løst noget, andre står med — dokumenteret med tal, beslutninger, friktion og resultat. Tyngdepunktet er Business AI og forandring i praksis: hvad virksomheden gjorde, hvad der gik galt, hvad det kostede, og hvad andre kan kopiere. Formatet trækker systematisk på Det nordiske spejl (Ben 2): når svenske eller finske virksomheder er foran på teknologi eller procesomstilling, henter vi deres dyrekøbte læring hjem til danske ledere.',
+              insight: 'Viser metode, friktion, fejl og kopierbar læring fra danske virksomheder og nordiske naboer. En succeshistorie uden modstand er en pressemeddelelse. Tematisk linje: Sådan gjorde jeg — cases fortalt i første person af founder, leder eller AI-praktiker. Det ingen andre dækker: implementeringens barske virkelighed frem for polerede succeshistorier.',
               promise: ['Start med problemet', 'Vis friktionen', 'Dokumentér prisen', 'Udled kopierbar læring'],
               job: { a: 'Forstå', b: 'Hvad var det reelle problem?', c: 'Tvivle', d: 'Hvad skjuler succeshistorien?', e: 'Handle', f: 'Hvad kan kopieres i morgen?' },
               regel: 'Ingen case uden friktion. Ingen case uden navngivet ophav.',
@@ -15410,6 +15459,7 @@ document.addEventListener('click', function(e) {
                 'Hvad blev gjort?',
                 'Hvad gik galt?',
                 'Hvad virkede?',
+                'Nordisk læring — hvad har nabolandene erfaret, før det når Danmark?',
                 'Hvad kostede det?',
                 'Hvad kan andre kopiere?',
                 'Hvad kan andre ikke kopiere?',
@@ -15418,12 +15468,13 @@ document.addEventListener('click', function(e) {
               kanaler: 'Tekst · Lydinterview',
               kernegreb: '"Hvad besluttede jeg, hvad kostede det, og hvad kan du bruge?"',
               eksempler: [
+                '"Svensk industrigigant testede AI i produktionen: 3 fejl danske SMV\'er skal undgå"',
                 '"Sådan afskedigede jeg mit manuelle processlag og erstattede det med AI"',
                 '"Vi fejlede tre gange med AI-implementering. Her er, hvad der til sidst virkede"',
-                '"Jeg nåede til tops ved at lade data afgøre, hvad jeg ikke skulle bruge tid på"',
+                '"Finsk B2B-virksomhed automatiserede compliance med AI: Hvad det kostede og flyttede"',
               ],
               emner: null,
-              sources: 'Egne dybdegående SMV-interviews, regnskabsdata (LassoX) og driftsrapporter.',
+              sources: 'Egne dybdegående SMV-interviews, nordiske casespejl (Sverige, Norge, Finland), regnskabsdata (LassoX) og driftsrapporter.',
               special: {
                 type: 'proto', lbl: 'Q&A · Protokol',
                 desc: 'Faste spørgsmål sendes til kilden inden produktion. Sikrer friktion, fejl og konkret resultat — aldrig kun succeshistorien. Variant: Workflow Deconstructed — dekonstruerer én specifik jobfunktion i én branche og viser præcis hvilke AI-workflows der ændrer den, med navngivne tal og dokumenterede implementeringserfaringer. Aktiveres situationsbestemt.'

@@ -140,7 +140,7 @@ p, .ibox-b, .drv-d, .layer-d, .ai-d, .tl-t { text-wrap: pretty; }
 }
 
 /* Aubergine accent bar — left edge */
-.accent-bar { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); }
+.accent-bar { display: none; }
 
 /* Dot grid — very subtle */
 .bg-grid {
@@ -1958,9 +1958,14 @@ span.rm-stak {
           <div style="font-family:var(--sans);font-size:13px;color:var(--ink70);line-height:1.65;">Nyheder, markedstrends, regulering, konkurrenter og Business AI samlet i ét personligt overblik — med redaktionel dømmekraft ovenpå.</div>
         </div>
 
-        <div style="padding:12px 16px;background:var(--accent);margin-bottom:20px;">
+        <div style="padding:12px 16px;background:var(--accent);margin-bottom:12px;">
           <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;">Kategori</div>
           <div style="font-family:var(--serif);font-size:17px;font-weight:700;font-style:italic;color:#FAFAF8;line-height:1.22;letter-spacing:-.015em;">Redaktionel erhvervsintelligens for det private erhvervsliv.</div>
+        </div>
+
+        <div style="padding:10px 14px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);margin-bottom:20px;">
+          <div style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;">Det nordiske spejl</div>
+          <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink70);line-height:1.5;">Danmark er linsen — Norden er spejlet. Vi overvåger Sverige, Norge og Finland, der på AI, industri og energi er <strong>12–24 måneder foran</strong>, så danske ledere ser forandringen før den rammer herhjemme.</div>
         </div>
 
         <div style="display:flex;flex-direction:column;border-top:1px solid var(--line);">
@@ -1994,7 +1999,7 @@ span.rm-stak {
           </div>
           <div class="ltl-item" style="padding:8px 0;">
             <div class="ltl-lbl">Medie- og markedsovervågning</div>
-            <div class="ltl-txt" style="color:rgba(250,250,248,.72);">Mediedækning af brand og konkurrenter · regulering og erhvervspolitik · jobopslag og ledelsessignaler · offentlige udbud · EU-direktiver.</div>
+            <div class="ltl-txt" style="color:rgba(250,250,248,.72);">Mediedækning af brand og konkurrenter · regulering og erhvervspolitik · jobopslag og ledelsessignaler · offentlige udbud · EU-direktiver · nordisk signalradar (Sverige, Norge og Finland som lead-indikator).</div>
           </div>
           <div class="ltl-item" style="padding:8px 0;">
             <div class="ltl-lbl">Beslutningslag</div>
@@ -2586,7 +2591,7 @@ span.rm-stak {
         <div class="pos-cell yb">
           <div class="pos-cell-lbl">Operationel + uafhængig redaktion</div>
           <div class="pos-cell-actors">★ Y Business</div>
-          <div class="pos-cell-note">Overvågning, Business AI og beslutningsværdi — ubesat felt.</div>
+          <div class="pos-cell-note">Overvågning, Business AI, Det nordiske spejl og beslutningsværdi for SMV'er — ubesat felt.</div>
           <div onclick="openSourcesModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:800;color:#FAFAF8;letter-spacing:.13em;text-transform:uppercase;background:rgba(196,181,253,.18);border:1px solid rgba(196,181,253,.42);border-radius:var(--radius-sm);padding:8px 12px;box-shadow:0 8px 22px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.08);transition:background .15s,border-color .15s,transform .15s,color .15s" onmouseover="this.style.background='rgba(196,181,253,.28)';this.style.borderColor='rgba(196,181,253,.72)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='rgba(196,181,253,.18)';this.style.borderColor='rgba(196,181,253,.42)';this.style.transform='translateY(0)'">Hvad vi overvåger ↗</div>
         </div>
         <div class="pos-cell">
@@ -2632,7 +2637,7 @@ span.rm-stak {
             <td class="str" style="font-size:12px;">Erhvervsmedier<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Børsen, Finans, Watch</div></td>
             <td style="font-family:var(--mono);font-size:9.5px;white-space:nowrap;color:var(--ink70);">4.500–7.200 kr./år</td>
             <td style="font-size:12px;">Nyheder og aktualitet</td>
-            <td style="font-size:12px;">+ overvågning, Business AI, konsekvens</td>
+            <td style="font-size:12px;">+ overvågning, Business AI, Det nordiske spejl, konsekvens</td>
           </tr>
           <tr>
             <td class="str" style="font-size:12px;">Medieovervågning<div style="font-weight:400;color:var(--muted);font-size:10.5px;">Meltwater, Retriever, Infomedia</div></td>
@@ -2685,7 +2690,7 @@ span.rm-stak {
           <tr class="hl">
             <td class="str" style="color:var(--accent);font-style:italic;font-family:var(--serif);font-size:12px;">Y Business</td>
             <td class="hi" style="font-size:12px;">7.500 kr./år</td>
-            <td style="font-size:12px;">Nyheder + overvågning + trends + Business AI — samlet</td>
+            <td style="font-size:12px;">Nyheder + overvågning + trends + Business AI + Det nordiske spejl — samlet</td>
             <td style="color:var(--line);">—</td>
           </tr>
         </tbody>
@@ -2700,10 +2705,10 @@ span.rm-stak {
   </div>
   <div class="pos-foundations">
     <div class="pos-found-cell"><div class="pos-found-lbl">Danmark</div><div class="pos-found-v">er et SMV-land</div></div>
+    <div class="pos-found-cell"><div class="pos-found-lbl">Norden</div><div class="pos-found-v">er 12–24 mdr. foran</div></div>
     <div class="pos-found-cell"><div class="pos-found-lbl">Informationsmarkedet</div><div class="pos-found-v">er fragmenteret</div></div>
     <div class="pos-found-cell"><div class="pos-found-lbl">Organisationerne</div><div class="pos-found-v">har virksomhederne</div></div>
     <div class="pos-found-cell"><div class="pos-found-lbl">Medierne</div><div class="pos-found-v">har journalistikken</div></div>
-    <div class="pos-found-cell"><div class="pos-found-lbl">Værktøjerne</div><div class="pos-found-v">har data</div></div>
     <div class="pos-found-cell"><div class="pos-found-lbl">Y Business</div><div class="pos-found-v">samler beslutningslaget</div></div>
   </div>
   <div class="pnum">Markedspositionering · 03/05</div>
@@ -2996,7 +3001,7 @@ span.rm-stak {
               <div class="prd-layer-desc">Hvad overser markedet, medierne eller virksomheden selv?</div>
               <div class="prd-layer-ltl">
                 <div class="ltl-list" style="--ltl-color:var(--green)">
-                  <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Udfordre den oplagte fortælling.</div></div>
+                  <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Udfordre den oplagte fortælling — ofte ved at inddrage nordiske erfaringer, hvor konsekvenserne af nye krav (AI Act, CSDDD, ESG) allerede har vist sig i praksis.</div></div>
                   <div class="ltl-item"><div class="ltl-lbl">Tilspidsning</div><div class="ltl-txt">Viser at Y Business ikke kun opsummerer markedet — men udfordrer det. Afgørende for platform-troværdighed.</div></div>
                   <div class="ltl-item"><div class="ltl-lbl">Navneafgrænsning</div><div class="ltl-txt">To forskellige ting: "Den blinde vinkel" er klummen (fast stemme, ugentlig). Blind Spot-artiklen er selve formatet — og kvalificerer den dominerende fortælling snarere end at modsige den.</div></div>
                 </div>
@@ -3013,8 +3018,8 @@ span.rm-stak {
               <div class="prd-layer-desc">Hvad kan jeg lære af andre virksomheder?</div>
               <div class="prd-layer-ltl">
                 <div class="ltl-list" style="--ltl-color:var(--amber)">
-                  <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Vise praktiske eksempler på hvad der faktisk virker i dansk erhvervsliv.</div></div>
-                  <div class="ltl-item"><div class="ltl-lbl">Tilspidsning</div><div class="ltl-txt">Ikke succescases. Ærlige praksiscases med friktion, forudsætninger og læring.</div></div>
+                  <div class="ltl-item"><div class="ltl-lbl">Formål</div><div class="ltl-txt">Vise praktiske eksempler på hvad der faktisk virker i dansk og nordisk erhvervsliv — med Sverige, Norge og Finland som spejl og læringskilde for danske virksomheder.</div></div>
+                  <div class="ltl-item"><div class="ltl-lbl">Tilspidsning</div><div class="ltl-txt">Ikke succescases. Ærlige praksiscases med friktion, forudsætninger og læring — fra danske SMV'er og nordiske naboer der er 12–24 mdr. foran.</div></div>
                 </div>
               </div>
             </div>
@@ -3266,6 +3271,11 @@ span.rm-stak {
             <div class="bai-q" style="margin-bottom:8px;">Sådan ændrer AI arbejdet</div>
             <p class="bai-sub" style="margin-bottom:0;">Konkret ændring i mandagens arbejde. Ikke fremtidsord. Vi viser, hvordan AI ændrer salg, økonomi, HR, compliance, kundeservice, marketing og ledelse.</p>
           </div>
+          <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.1);">
+            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">04 · Nordisk forspring</div>
+            <div class="bai-q" style="margin-bottom:8px;">Lær af nabolandenes erfaringer</div>
+            <p class="bai-sub" style="margin-bottom:0;">Sverige er 12–24 mdr. foran på AI i tung industri (AI Sweden, Ericsson, Saab). Finland er foran på offentlig digitalisering og data. Vi overvåger deres erfaringer, så danske ledere ikke behøver gentage fejlene.</p>
+          </div>
         </div>
         <div class="bai-keyq">Vi dækker ikke kun hvad AI kan. Vi dækker hvad AI kræver.</div>
       </div>
@@ -3379,10 +3389,10 @@ span.rm-stak {
             <div class="ai-box-lbl" style="margin-bottom:4px;">Ben 1 · Business AI</div>
             <div class="ai-box-row">Implementering, ikke teknologibeundring — hvad det kræver, koster og leverer</div>
           </div>
-          <div style="margin-bottom:8px;">
-            <div class="ai-box-lbl" style="margin-bottom:4px;">Ben 2 · Norden</div>
-            <div class="ai-box-row">Sverige (industri) · Norge (kapital) · Finland (offentlig sektor) — 12-24 måneder foran Danmark på AI-modenhed</div>
-            <div class="ai-box-row">Nordisk publicering kræver: dokumenteret tidsmønster · konkret dansk konsekvens · verificerbar kilde</div>
+          <div style="margin-bottom:8px;padding:8px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);border-radius:3px;">
+            <div class="ai-box-lbl" style="margin-bottom:4px;color:#93C5FD;font-weight:700;">Ben 2 · Det nordiske spejl</div>
+            <div class="ai-box-row" style="color:#FAFAF8;">Sverige (industri) · Norge (kapital) · Finland (offentlig sektor) — 12-24 måneder foran Danmark på AI-modenhed</div>
+            <div class="ai-box-row" style="color:rgba(250,250,248,.75);margin-top:2px;">Protokol (3 krav): dokumenteret tidsmønster · konkret dansk konsekvens · verificerbar kilde</div>
           </div>
           <div>
             <div class="ai-box-lbl" style="margin-bottom:4px;">Ben 3 · Kapital og vækst</div>
