@@ -400,7 +400,7 @@ Vue, Svelte, Tailwind, shadcn/ui, SwiftUI, React Native, Flutter og HTML/CSS.
 Aktiveres automatisk når design skal omsættes til kode.
 Installeret globalt — ingen lokal opsætning nødvendig.
 
-**design-taste-frontend** *(flyttet til Pocket Drummer — se projects/pocket-drummer/.claude/skills/)*
+**design-taste-frontend** *(flyttet til Pocket Drummer — se `/Volumes/SSD Data/Gits/pocket-drummer/.claude/skills/`, eget repo)*
 
 ---
 
@@ -550,8 +550,6 @@ pm-platform/
 │           ├── redaktionelt-koncept/
 │           └── copywriting/          ← skill: redaktionel-tekst
 └── projects/
-    ├── pocket-drummer/
-    │   └── .claude/skills/      ← developer-skills (tdd, webapp-testing, vercel m.fl.)
     ├── ydkbusiness/             ← Y.dk Business-sektion
     │   ├── CLAUDE.md
     │   ├── docs/
@@ -568,6 +566,10 @@ pm-platform/
         ├── output/
         └── research/
 ```
+
+Pocket Drummer lever ikke under `projects/` — det er sit eget repo i
+`/Volumes/SSD Data/Gits/pocket-drummer/` med eget GitHub-repo
+(`carstenlysdal-alt/Pocket-Drummer`), egen CLAUDE.md og egne skills.
 
 ---
 
@@ -612,8 +614,9 @@ git pull origin main
 | Lokalt: projects/  | Drive-mappe |
 |--------------------|-------------|
 | ydkbusiness/       | YDK/        |
-| pocket-drummer/    | Pocket Drummer/ |
 | rating/            | Rating/     |
+
+Pocket Drummer synkroniserer separat fra sit eget repo, ikke via denne tabel — se `.claude/SETUP-NOTES.md`.
 
 Hvert nyt projekt får sin egen linje. Se `.claude/SETUP-NOTES.md` for cron-opsætning og tjekliste.
 

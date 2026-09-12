@@ -2,12 +2,6 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "pocket-drummer",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "projects/pocket-drummer"],
-      "port": 3000
-    },
-    {
       "name": "ybusiness-app",
       "runtimeExecutable": "node",
       "runtimeArgs": ["projects/ydkbusiness/output/server.js"],

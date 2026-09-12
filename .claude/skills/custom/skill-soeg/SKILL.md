@@ -27,7 +27,7 @@ Når denne skill aktiveres:
    - De 2-3 mest relevante enkelt-skills inden for bundlet
    - Ét linjers forklaring på hvorfor dette bundle passer
 
-4. **Spørg om projektkontekst** hvis svaret er tvetydigt — fx "Er det til ydkbusiness, pocket-drummer eller rating?"
+4. **Spørg om projektkontekst** hvis svaret er tvetydigt — fx "Er det til ydkbusiness eller rating?"
 
 ---
 
@@ -73,20 +73,9 @@ Brug: "Find det rigtige bundle", "Lav en prompt", "Eksekvér denne plan", "Lav e
 
 ---
 
-## Projektspecifikke skills — pocket-drummer
-
-Disse skills er kun installeret i `projects/pocket-drummer/`:
-
-| Skill | Hvornår |
-|---|---|
-| `design-taste-frontend` | Production-grade marketing sites og portfolios |
-| `sleek-design-mobile-apps` | Mobilapp-design og -polish |
-| `vercel-react-best-practices` | React/Next.js/Vercel best practices |
-| `tdd` | Test-drevet udvikling |
-| `webapp-testing` | End-to-end tests |
-| `improve-codebase-architecture` | Arkitektur-refaktorering |
-| `subagent-driven-development` | Komplekse parallelle opgaver |
-| `requesting-code-review` | Struktureret code review |
+Pocket Drummer er flyttet ud af denne platform til sit eget repo
+(`/Volumes/SSD Data/Gits/pocket-drummer/`) med egne projektspecifikke skills —
+ingen af dem er længere en del af claudeproject.
 
 ---
 

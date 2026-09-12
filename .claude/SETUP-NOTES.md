@@ -33,8 +33,11 @@ Projektmapper:
 | Lokalt: projects/  | Drive-mappe | Link |
 |--------------------|-------------|------|
 | ydkbusiness/       | YDK/        | https://drive.google.com/open?id=1ATVkes-f-nCr6eLfc9QkGIL7ZF6_gtq- |
-| pocket-drummer/           | Pocket Drummer/    | https://drive.google.com/drive/folders/1qIxAHMHfSOVWj9MaYsyx1AqXC5uZU9v0 |
 | newzy/             | Newzy/      | *(ikke oprettet endnu)* |
+
+Pocket Drummer er flyttet ud af `projects/` til sit eget repo
+(`/Volumes/SSD Data/Gits/pocket-drummer/`, GitHub: `carstenlysdal-alt/Pocket-Drummer`)
+og indgår ikke længere i denne Drive-mapping.
 
 ---
 
@@ -105,12 +108,9 @@ claudeproject/
     │       ├── markedsvalidering-indsigter.md
     │       ├── platformsundersoegelse-indsigter.md
     │       └── prompt-platformsundersoegelse.md
-    └── pocket-drummer/                       ← Pocket Drummer læringsplatform
-        ├── CLAUDE.md                  ← projektkontekst
-        ├── docs/
-        ├── output/
-        └── research/
 ```
+
+Pocket Drummer ligger ikke under `projects/` — eget repo i `/Volumes/SSD Data/Gits/pocket-drummer/`.
 
 **Forskel på .claude/skills/ og .agents/skills/:** `.claude/skills/` aktiveres af Claude Code CLI. `.agents/skills/` aktiveres af Agent SDK. Indholdet er identisk — begge skal opdateres ved tilføjelse af nye skills.
 
@@ -127,7 +127,7 @@ Begge skills er installeret globalt under `.claude/skills/` og aktiveres automat
 
 **Aktivering:** Begge skills aktiveres automatisk via trigger-tabellen i CLAUDE.md — ingen manuel `/kommando` nødvendig.
 
-Projekter med isolerede skill-mapper (som pocket-drummer) kan linke eller kopiere skills manuelt. Se trin 10 i tjeklisten nedenfor.
+Projekter med isolerede skill-mapper kan linke eller kopiere skills manuelt. Se trin 10 i tjeklisten nedenfor.
 
 ---
 
