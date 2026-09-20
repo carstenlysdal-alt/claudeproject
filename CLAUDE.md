@@ -400,8 +400,6 @@ Vue, Svelte, Tailwind, shadcn/ui, SwiftUI, React Native, Flutter og HTML/CSS.
 Aktiveres automatisk når design skal omsættes til kode.
 Installeret globalt — ingen lokal opsætning nødvendig.
 
-**design-taste-frontend** *(flyttet til Pocket Drummer — se `/Volumes/SSD Data/Gits/pocket-drummer/.claude/skills/`, eget repo)*
-
 ---
 
 ### LAG 3 — Custom skills
@@ -567,10 +565,6 @@ pm-platform/
         └── research/
 ```
 
-Pocket Drummer lever ikke under `projects/` — det er sit eget repo i
-`/Volumes/SSD Data/Gits/pocket-drummer/` med eget GitHub-repo
-(`carstenlysdal-alt/Pocket-Drummer`), egen CLAUDE.md og egne skills.
-
 ---
 
 ## GitHub Repository
@@ -615,8 +609,6 @@ git pull origin main
 |--------------------|-------------|
 | ydkbusiness/       | YDK/        |
 | rating/            | Rating/     |
-
-Pocket Drummer synkroniserer separat fra sit eget repo, ikke via denne tabel — se `.claude/SETUP-NOTES.md`.
 
 Hvert nyt projekt får sin egen linje. Se `.claude/SETUP-NOTES.md` for cron-opsætning og tjekliste.
 

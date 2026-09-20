@@ -11814,9 +11814,33 @@ button:focus, button:focus-visible {
 
 
 <!-- ======================================================
-     06 DANSK ERHVERV-MVP — partnerpilot, PM og strategi
+     06 DANSK ERHVERV-MVP — hvad vi leverer i de første skridt
      ====================================================== -->
 <div class="screen" id="s-de">
+  <style>
+    #s-de [data-step="1"]{ --sc:#15803D; --sct:rgba(21,128,61,.09); }
+    #s-de [data-step="2"]{ --sc:#1D4ED8; --sct:rgba(29,78,216,.08); }
+    #s-de [data-step="3"]{ --sc:#57534E; --sct:rgba(87,83,78,.09); }
+    #s-de .step-card .step-chip{ align-self:flex-start; max-width:100%; }
+    #s-de .step-chip{ display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sc); background:var(--sct); border:1px solid var(--sc); padding:4px 8px; border-radius:2px; white-space:nowrap; }
+    #s-de .step-chip::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--sc); flex-shrink:0; }
+    #s-de .stat-trio{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:20px; }
+    #s-de .stat-trio > div{ background:var(--tint); padding:14px 16px; }
+    #s-de .stat-trio .n{ font-family:var(--serif); font-size:32px; font-style:italic; font-weight:700; color:var(--accent); line-height:1; letter-spacing:-.02em; }
+    #s-de .stat-trio .l{ font-family:var(--sans); font-size:12px; color:var(--ink70); line-height:1.4; margin-top:8px; }
+    #s-de .step-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-bottom:22px; }
+    #s-de .step-card{ background:#fff; border:1px solid var(--line); border-top:4px solid var(--sc); padding:14px 14px 14px; display:flex; flex-direction:column; gap:10px; }
+    #s-de .step-card[data-step="1"]{ box-shadow:0 6px 18px rgba(21,128,61,.10); }
+    #s-de .step-card h3{ font-family:var(--serif); font-size:18px; font-style:italic; font-weight:700; color:var(--ink); line-height:1.15; }
+    #s-de .step-card ul{ list-style:none; display:flex; flex-direction:column; gap:7px; }
+    #s-de .step-card li{ font-family:var(--sans); font-size:12.5px; line-height:1.4; color:var(--ink70); padding-left:14px; position:relative; }
+    #s-de .step-card li::before{ content:''; position:absolute; left:0; top:.5em; width:6px; height:6px; background:var(--sc); }
+    #s-de .step-card li strong{ color:var(--ink); font-weight:600; }
+    #s-de .step-card .for{ margin-top:auto; padding-top:10px; border-top:1px dashed var(--line); font-family:var(--sans); font-size:11.5px; color:var(--muted); line-height:1.45; }
+    #s-de .fn-table td .step-chip{ margin-top:8px; }
+    #s-de .fn-table tr[data-step] td:first-child{ border-left:4px solid var(--sc); }
+    #s-de .col-label-sm{ margin-top:2px; }
+  </style>
   <div class="bg-grid"></div>
   <div class="accent-bar"></div>
   <div class="sec-hdr">
@@ -11830,45 +11854,71 @@ button:focus, button:focus-visible {
 
     <!-- VENSTRE KOLONNE -->
     <div class="col ani" style="overflow-y:auto; min-height:0; padding-bottom:88px;">
-      <div class="col-label">Definition</div>
+      <div class="col-label">Kort sagt</div>
 
-      <div class="ibox accent" style="margin-bottom:20px;">
-        <div class="ibox-t">Kernen</div>
+      <div class="ibox accent" style="margin-bottom:16px;">
+        <div class="ibox-t">Hvad det er</div>
         <div class="ibox-b">
-          <p>Y Business til Dansk Erhvervs medlemmer er et <strong>beslutningsværktøj</strong>, ikke endnu et erhvervsmedie. Medlemmet får hver morgen tre signaler om det, der er på vej, og en redaktionel forklaring på, hvad de betyder for netop deres virksomhed.</p>
-          <p>Dansk Erhvervs eget stof bliver vurderet af Ys redaktion og sendt til de medlemmer, det angår. Medlemmerne peger på emnerne. Redaktionen afgør konklusionerne.</p>
+          <p>Y Business til Dansk Erhvervs medlemmer er et værktøj, der hver morgen svarer på ét spørgsmål: <strong>er der noget på vej, der påvirker min virksomhed?</strong> Medlemmet får tre korte signaler, sorteret efter hvad der rammer netop dem, med en forklaring fra en redaktion.</p>
+          <p>Dansk Erhvervs egne analyser og artikler bliver læst, vurderet og sendt til de medlemmer, de handler om. Medlemmerne vælger selv emnerne. Redaktionen afgør konklusionerne.</p>
         </div>
       </div>
 
-      <div class="col-label-sm" style="margin-bottom:8px;">Problem og hypotese</div>
-      <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:20px;">
-        <div class="ltl-item"><div class="ltl-lbl">Problem</div><div class="ltl-txt">Medlemmerne samler selv regulering, marked og konkurrenter fra flere kilder. Dansk Erhvervs analyser og artikler når kun en del af dem.</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Hypotese</div><div class="ltl-txt">Får medlemmerne et personligt Morgensignal og Dansk Erhvervs stof i samme flow, bruger de Y Business ugentligt, og Dansk Erhverv ser værdi i rækkevidde og indsigt.</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Test</div><div class="ltl-txt">Et afgrænset pilotforløb skal bekræfte eller afkræfte hypotesen. Piloten er ikke et salg.</div></div>
+      <div class="stat-trio">
+        <div><div class="n">3</div><div class="l">funktioner fra dag ét i pilotstart</div></div>
+        <div><div class="n">2</div><div class="l">følger, når medlemmerne beder om dem</div></div>
+        <div><div class="n">1</div><div class="l">regel: emne ja, konklusion nej</div></div>
       </div>
 
-      <div class="col-label-sm" style="margin-bottom:8px;">MVP-scope · fem funktioner</div>
-      <table class="tbl">
-        <thead><tr><th>Funktion</th><th>Datagrundlag</th><th>Kompleksitet</th></tr></thead>
+      <div class="col-label-sm" style="margin-bottom:10px;">Hvad vi leverer, og hvornår</div>
+      <div class="step-grid">
+        <div class="step-card" data-step="1">
+          <span class="step-chip">Skridt 1 · pilotstart</span>
+          <h3>Tre ting fra dag ét</h3>
+          <ul>
+            <li><strong>Morgensignalet:</strong> tre signaler hver morgen, med regulering som fast punkt</li>
+            <li><strong>I samarbejde med Dansk Erhverv:</strong> jeres analyser og artikler, vurderet og målrettet</li>
+            <li><strong>Bed os holde øje:</strong> emnevalg og feedback på hvert signal</li>
+          </ul>
+          <div class="for">Dansk Erhverv får rækkevidde til eget stof og et anonymt billede af medlemmernes behov.</div>
+        </div>
+        <div class="step-card" data-step="2">
+          <span class="step-chip">Skridt 2 · ved behov</span>
+          <h3>Fordybelse</h3>
+          <ul>
+            <li><strong>Regulatorisk radar:</strong> EU, Folketinget og myndighederne som eget overblik, med frist og kilde</li>
+            <li><strong>Stemmer og klummer:</strong> 3-5 fagpersoner pr. emne, åbne for alle læsere</li>
+          </ul>
+          <div class="for">Dansk Erhverv får de emner, medlemmerne selv har bedt om, dækket af fagfolk.</div>
+        </div>
+        <div class="step-card" data-step="3">
+          <span class="step-chip">Senere</span>
+          <h3>Udvidelser</h3>
+          <ul>
+            <li>Netværk af flere bidragydere</li>
+            <li>Medlemmernes egne data som input</li>
+            <li>Personalisering, der lærer af adfærd</li>
+            <li>Betalte datatjenester</li>
+          </ul>
+          <div class="for">Kommer først, når efterspørgslen er dokumenteret.</div>
+        </div>
+      </div>
+
+      <div class="col-label-sm" style="margin-bottom:8px;">De fem funktioner</div>
+      <table class="tbl fn-table">
+        <thead><tr><th>Funktion</th><th>Hvad medlemmet får</th><th>Hvad der ligger bag</th></tr></thead>
         <tbody>
-          <tr><td class="str">1 · Morgensignalet</td><td>Morgenbrief-laget, der allerede er i launch-scope</td><td>Lav til middel</td></tr>
-          <tr><td class="str">2 · Regulatorisk radar</td><td>EUR-Lex, Retsinformation og Folketingets ODA</td><td>Middel</td></tr>
-          <tr><td class="str">3 · Stemmer og klummer efter ønske</td><td>3-5 fagpersoner pr. emne, rekrutteret ved efterspørgsel</td><td>Lav teknisk, høj redaktionel</td></tr>
-          <tr><td class="str">4 · I samarbejde med Dansk Erhverv</td><td>Dansk Erhvervs udgivelser, Ys vurdering og mærkning</td><td>Middel, kræver aftale om rettigheder</td></tr>
-          <tr><td class="str">5 · Bed os holde øje</td><td>Emnevalg og feedback pr. signal</td><td>Lav</td></tr>
+          <tr data-step="1"><td class="str">1 · Morgensignalet<br><span class="step-chip">Skridt 1</span></td><td>Tre korte signaler hver morgen om regulering, marked og konkurrenter</td><td>Ys morgenbrief, redaktionel vurdering og offentlige kilder</td></tr>
+          <tr data-step="2"><td class="str">2 · Regulatorisk radar<br><span class="step-chip">Skridt 2</span></td><td>Overblik over, hvad EU, Folketinget og myndighederne har på vej</td><td>EUR-Lex, Retsinformation og Folketingets åbne data</td></tr>
+          <tr data-step="2"><td class="str">3 · Stemmer og klummer<br><span class="step-chip">Skridt 2</span></td><td>Fagpersoner, der skriver fast om emner, medlemmerne har bedt om</td><td>3-5 rekrutterede fagpersoner pr. emne</td></tr>
+          <tr data-step="1"><td class="str">4 · I samarbejde med Dansk Erhverv<br><span class="step-chip">Skridt 1</span></td><td>Dansk Erhvervs analyser og artikler, vurderet og forklaret</td><td>Dansk Erhvervs udgivelser, Ys redaktion og en aftale om brug</td></tr>
+          <tr data-step="1"><td class="str">5 · Bed os holde øje<br><span class="step-chip">Skridt 1</span></td><td>Emnevalg, egne emner og feedback på hvert signal</td><td>Emnevalg i profilen. Redaktionen tilpasser dækningen.</td></tr>
         </tbody>
       </table>
 
-      <div class="ibox green" style="margin-bottom:20px;">
+      <div class="ibox green" style="margin-bottom:8px;">
         <div class="ibox-t" style="color:var(--green);">Bygget til at køre</div>
         <div class="ibox-b">Alle fem funktioner bygger på kilder og lag, der allerede er i arkitekturen eller i launch-scope. Grundlaget, overblik og businessjournalistik, er det samme som for alle andre læsere.</div>
-      </div>
-
-      <div class="col-label-sm" style="margin-bottom:8px;">Bevidst ikke med i første version</div>
-      <div class="ltl-list" style="--ltl-color:var(--muted);">
-        <div class="ltl-item"><div class="ltl-lbl">Netværk</div><div class="ltl-txt">Ikke 150 bidragydere. Tre til fem, hvor der er efterspørgsel.</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Data</div><div class="ltl-txt">Ikke medlemmernes egne strategidata og ikke betalte datatjenester som Lasso eller Meltwater, før behovet er dokumenteret.</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Personalisering</div><div class="ltl-txt">Emnevalg i første version. Adfærdslæring kommer senere.</div></div>
       </div>
     </div>
 
@@ -11879,55 +11929,56 @@ button:focus, button:focus-visible {
       <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:20px;">
         <div class="ltl-item"><div class="ltl-lbl">Dansk Erhverv</div><div class="ltl-txt">Eget stof får en journalistisk kanal. Medlemsfordel, der bruges hver dag. Anonymt billede af, hvad medlemmerne efterspørger.</div></div>
         <div class="ltl-item"><div class="ltl-lbl">Medlemmerne</div><div class="ltl-txt">Svar på, hvad der er på vej, uden selv at lede. Forklaring på konsekvensen. Indflydelse på, hvad Y undersøger.</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Y</div><div class="ltl-txt">Distribution til en stor medlemsbase (Dansk Erhverv: 18.000+ virksomheder, jf. Go-to-market), social proof og brugerindsigt. Salg til enkelte CVR-numre skalerer ikke alene.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Y</div><div class="ltl-txt">Distribution til en stor medlemsbase (Dansk Erhverv har 18.000+ virksomheder), social proof og brugerindsigt. Salg til enkelte CVR-numre skalerer ikke alene.</div></div>
       </div>
 
-      <div class="col-label-sm" style="margin-bottom:8px;">Designforslag · klikbar mockup</div>
-      <div style="border:1px solid var(--line);background:#231F20;margin-bottom:8px;">
-        <iframe src="ybusiness-dansk-erhverv-mvp.dc.html" title="Designforslag: Y Business til Dansk Erhverv" loading="lazy" style="display:block;width:100%;height:300px;border:0;"></iframe>
-      </div>
-      <a href="ybusiness-dansk-erhverv-mvp.dc.html" target="_blank" rel="noopener" style="display:inline-block;margin-bottom:20px;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">Åbn mockuppen i fuld størrelse →</a>
-
-      <div class="col-label-sm" style="margin-bottom:8px;">Pilot · succeskriterier (forslag)</div>
+      <div class="col-label-sm" style="margin-bottom:8px;">Problem og det vi tester</div>
       <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:20px;">
-        <div class="ltl-item"><div class="ltl-lbl">Primær</div><div class="ltl-txt">Andel pilotmedlemmer, der åbner Morgensignalet mindst én gang om ugen.</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Sekundær</div><div class="ltl-txt">Brug af Dansk Erhvervs lag, antal emner medlemmerne selv tilføjer og feedback-klik pr. signal.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Problem</div><div class="ltl-txt">Medlemmerne samler selv regulering, marked og konkurrenter fra flere kilder. Dansk Erhvervs analyser og artikler når kun en del af dem.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Det vi tester</div><div class="ltl-txt">Får medlemmerne et personligt Morgensignal og Dansk Erhvervs stof i samme flow, bruger de Y Business hver uge, og Dansk Erhverv får mere ud af sit eget indhold.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Sådan</div><div class="ltl-txt">Et lille hold medlemmer bruger produktet i en afgrænset periode. Piloten er ikke et salg.</div></div>
+      </div>
+
+      <div class="col-label-sm" style="margin-bottom:8px;">Sådan ved vi, at det virker</div>
+      <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:20px;">
+        <div class="ltl-item"><div class="ltl-lbl">Vigtigst</div><div class="ltl-txt">Hvor mange pilotmedlemmer åbner Morgensignalet mindst én gang om ugen.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Også</div><div class="ltl-txt">Hvor mange emner medlemmerne selv tilføjer, og hvor mange signaler de giver feedback på.</div></div>
         <div class="ltl-item"><div class="ltl-lbl">For Dansk Erhverv</div><div class="ltl-txt">Hvor mange af deres udgivelser der når medlemmer, og hvor mange der læser dem.</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Guardrail</div><div class="ltl-txt">Ingen påvirkning af konklusioner. Alt oprettet indhold er åbent for alle læsere.</div></div>
-        <div class="ltl-item"><div class="ltl-lbl">Talmål</div><div class="ltl-txt">Sættes sammen med Dansk Erhverv før start. Udgangspunktet er beta-målingerne under Go-to-market.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Grænse</div><div class="ltl-txt">Ingen påvirkning af konklusioner. Alt oprettet indhold er åbent for alle læsere.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Talmål</div><div class="ltl-txt">Sættes sammen med Dansk Erhverv før start.</div></div>
       </div>
 
       <div class="col-label-sm" style="margin-bottom:8px;">Risici og handling</div>
       <table class="tbl">
         <thead><tr><th>Risiko</th><th>Handling</th></tr></thead>
         <tbody>
-          <tr><td class="str">Teknik: kilder eller indtag halter</td><td>Start med færre kilder og udvalgte publikationer. Udvid løbende.</td></tr>
-          <tr><td class="str">Uafhængighed (U3)</td><td>Emne ja, konklusion nej. Mærkning. Alt åbent for alle.</td></tr>
-          <tr><td class="str">Rettigheder til indhold</td><td>Skriftlig aftale om brug, kreditering og videredistribution.</td></tr>
-          <tr><td class="str">Ingen intern ambassadør</td><td>Find én hos Dansk Erhverv. Brug mockuppen som dialog.</td></tr>
-          <tr><td class="str">Uafklaret pris</td><td>Ingen pris i oplægget. Test betalingsvilje i pilotet.</td></tr>
+          <tr><td class="str">Kilder eller indtag halter</td><td>Start med færre kilder og udvalgte publikationer. Udvid løbende.</td></tr>
+          <tr><td class="str">Indflydelse må ikke true uafhængigheden</td><td>Medlemmerne vælger emner, aldrig konklusioner. Samarbejdet er mærket. Alt er åbent for alle læsere.</td></tr>
+          <tr><td class="str">Rettigheder til Dansk Erhvervs indhold</td><td>Skriftlig aftale om brug, kreditering og videredistribution.</td></tr>
+          <tr><td class="str">Ingen kontaktperson hos Dansk Erhverv</td><td>Find én, der kan holde os opdateret på medlemmernes behov.</td></tr>
+          <tr><td class="str">Prisen er ikke afklaret</td><td>Ingen pris i oplægget. Betalingsvilje testes i pilotet.</td></tr>
           <tr><td class="str">Redaktionel kapacitet</td><td>Udvalgte publikationer og 3-5 stemmer pr. emne.</td></tr>
         </tbody>
       </table>
 
       <div class="ibox green" style="margin-bottom:16px;">
         <div class="ibox-t" style="color:var(--green);">Go til pilot, når</div>
-        <div class="ibox-b">Mindst tre af de fem funktioner er klar til pilotstart · Dansk Erhverv udpeger en ambassadør · reglen om emner og konklusioner er aftalt · rettigheder til Dansk Erhvervs indhold er på plads.</div>
+        <div class="ibox-b">De tre funktioner i skridt 1 er klar · Dansk Erhverv udpeger en kontaktperson · reglen om emner og konklusioner er aftalt · rettigheder til Dansk Erhvervs indhold er på plads.</div>
       </div>
 
       <div class="col-label-sm" style="margin-bottom:8px;">Næste skridt</div>
       <div class="tl">
         <div class="tl-row">
           <div class="tl-d" style="color:var(--green);">25. sep. (forslag)</div>
-          <div class="tl-t"><strong style="color:var(--green);">Beslutning om scope</strong><br>Torben tager stilling til den smalle første version. Ejer: PM.</div>
+          <div class="tl-t"><strong style="color:var(--green);">Beslutning om scope</strong><br>Ledelsen tager stilling til den smalle første version. Ejer: produktansvarlig.</div>
         </div>
         <div class="tl-row">
           <div class="tl-d">Uge 40 (forslag)</div>
-          <div class="tl-t"><strong>Oplæg til Dansk Erhverv</strong><br>Mockup og one-pager som dialog. Ejer: PM.</div>
+          <div class="tl-t"><strong>Oplæg til Dansk Erhverv</strong><br>Skriftligt oplæg som dialog. Ejer: produktansvarlig.</div>
         </div>
         <div class="tl-row">
           <div class="tl-d">Efter aftale</div>
-          <div class="tl-t"><strong>Pilotstart</strong><br>Et lille hold medlemmer får adgang. Omfang, periode og vilkår aftales med Dansk Erhverv. Ejer: PM.</div>
+          <div class="tl-t"><strong>Pilotstart</strong><br>Et lille hold medlemmer får skridt 1. Omfang, periode og vilkår aftales med Dansk Erhverv. Ejer: produktansvarlig.</div>
         </div>
       </div>
     </div>
@@ -14921,18 +14972,26 @@ document.getElementById('navRedaktion').addEventListener('click', function(e) {
   var stage = document.getElementById('stage-intern');
   var PAD = 24, HEADER_H = 68;
   function scale() {
-    var headerBottom = PAD + HEADER_H;
-    var availW = window.innerWidth - PAD * 2;
+    /* Bredde fra layout-viewporten (uden scrollbar), header-offset bevares i redigeringstilstand */
+    var W = document.documentElement.clientWidth || window.innerWidth;
+    var hdr = document.getElementById('mainHeader');
+    var offset = (hdr && hdr.style.top) ? Math.max(0, (parseFloat(hdr.style.top) || PAD) - PAD) : 0;
+    var headerBottom = PAD + offset + HEADER_H;
+    var availW = W - PAD * 2;
     var availH = window.innerHeight - headerBottom - PAD;
     var r = Math.min(availW / 1440, availH / (980 - HEADER_H));
-    var x = (window.innerWidth - 1440 * r) / 2;
+    var x = (W - 1440 * r) / 2;
     var y = headerBottom - HEADER_H * r;
     stage.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
     var vt = document.getElementById('vt-fixed');
-    if (vt) { vt.style.top = PAD + 'px'; vt.style.right = PAD + 'px'; }
+    if (vt) { vt.style.top = (PAD + offset) + 'px'; vt.style.right = PAD + 'px'; }
   }
   scale();
   window.addEventListener('resize', scale);
+  window.addEventListener('load', scale);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', scale);
+  if (window.ResizeObserver) new ResizeObserver(scale).observe(document.documentElement);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scale);
 }());
 
 (function () {
@@ -15117,10 +15176,11 @@ document.getElementById('navRedaktion').addEventListener('click', function(e) {
     var header = document.getElementById('mainHeader');
     if (header) header.style.top = (pad + offset) + 'px';
     var headerBottom = pad + offset + headerH;
-    var availW = window.innerWidth - pad * 2;
+    var W = document.documentElement.clientWidth || window.innerWidth;
+    var availW = W - pad * 2;
     var availH = window.innerHeight - headerBottom - pad;
     var r = Math.min(availW / 1440, availH / (980 - headerH));
-    var x = (window.innerWidth - 1440 * r) / 2;
+    var x = (W - 1440 * r) / 2;
     var y = headerBottom - headerH * r;
     s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + r + ')';
     var vt = document.getElementById('vt-fixed');
@@ -16076,7 +16136,7 @@ document.addEventListener('click', function(e) {
 
       var PAD = 24, HEADER_H = 68;
       function scale() {
-        var vw = window.innerWidth, vh = window.innerHeight;
+        var vw = document.documentElement.clientWidth || window.innerWidth, vh = window.innerHeight;
         var headerBottom = PAD + HEADER_H;
         var availW = vw - PAD * 2, availH = vh - headerBottom - PAD;
         var s = Math.min(availW / STAGE_W, availH / (STAGE_H - HEADER_H));
@@ -16089,6 +16149,10 @@ document.addEventListener('click', function(e) {
       }
       scale();
       window.addEventListener('resize', scale);
+      window.addEventListener('load', scale);
+      if (window.visualViewport) window.visualViewport.addEventListener('resize', scale);
+      if (window.ResizeObserver) new ResizeObserver(scale).observe(document.documentElement);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(scale);
 
       function navigate(id) {
         if (!id || id === current) return;
