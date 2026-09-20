@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Y Business × Dansk Erhverv | MVP-udkast</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700;800&display=swap" />
+  <style>
+    body { margin:0; background:#231F20; font-family:'Public Sans',sans-serif; }
+    a { color:#A5AFFF; text-decoration:none; }
+    a:hover { color:#fff; }
+    .om-chiprow { scrollbar-width:none; -ms-overflow-style:none; }
+    .om-chiprow::-webkit-scrollbar { display:none; height:0; }
+    ::selection { background:#4257F5; color:#EEEDED; }
+
+    .eyebrow { font:600 10px/1 'IBM Plex Mono',monospace; letter-spacing:0.12em; color:#A5AFFF; margin:0 0 12px; }
+    .eyebrow.lilla { color:#BA89EC; }
+    .eyebrow.koral { color:#FD5643; }
+    .eyebrow.dim { color:#A39CA0; }
+    .card { background:#322F32; border:1px solid #403C40; border-radius:10px; padding:24px; }
+    .panel { border:1px solid #403C40; border-radius:12px; padding:24px; }
+    .soft { background:#2A2729; border:1px solid #3A363A; border-radius:9px; padding:16px; }
+    .accent-panel { background:rgba(66,87,245,.12); border:1px solid #4257F5; border-radius:12px; padding:22px; }
+    .h1 { margin:0 0 8px; font:800 32px/1.12 'Public Sans',sans-serif; letter-spacing:-0.02em; }
+    .h2 { margin:0 0 16px; font:800 27px/1.15 'Public Sans',sans-serif; letter-spacing:-0.02em; text-wrap:pretty; }
+    .h3 { margin:0 0 10px; font:700 20px/1.2 'Public Sans',sans-serif; }
+    .h3s { margin:0; font:700 17px/1.2 'Public Sans',sans-serif; }
+    .body { margin:0; font:400 15px/1.55 'Public Sans',sans-serif; color:#A39CA0; }
+    .lead { margin:0; max-width:60ch; font:400 21px/1.5 'Public Sans',sans-serif; color:#A39CA0; }
+    .row { display:flex; align-items:center; gap:12px; }
+    .btn { display:inline-block; font:700 15px/1 'Public Sans',sans-serif; background:#4257F5; color:#EEEDED; padding:16px 24px; border-radius:7px; cursor:pointer; }
+    .btn:hover { background:#5468F7; }
+    .btn-ghost { display:inline-block; font:600 15px/1 'Public Sans',sans-serif; border:1px solid #56505A; color:#EEEDED; padding:16px 24px; border-radius:7px; cursor:pointer; }
+    .btn-ghost:hover { border-color:#4257F5; }
+    .pill { display:inline-block; font:700 11px/1 'Public Sans',sans-serif; padding:6px 9px; border-radius:999px; white-space:nowrap; }
+    .pill.lilla { color:#BA89EC; background:rgba(186,137,236,.14); }
+    .pill.indigo { color:#A5AFFF; background:rgba(66,87,245,.18); }
+    .pill.koral { color:#FD5643; background:rgba(253,86,67,.14); }
+    .tag { display:inline-block; font:600 11px/1 'Public Sans',sans-serif; color:#231F20; background:#A5AFFF; padding:5px 8px; border-radius:3px; white-space:nowrap; }
+    .link { font:600 13px/1 'Public Sans',sans-serif; color:#A5AFFF; cursor:pointer; }
+    .link:hover { color:#fff; }
+    .divider { border:0; border-top:1px solid #3A363A; margin:0; }
+    .listrow { display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid #3A363A; }
+    .listrow:last-child { border-bottom:0; }
+    .wrap { max-width:1200px; margin:0 auto; padding:36px 24px 72px; }
+    .wrap-narrow { max-width:760px; margin:0 auto; padding:56px 24px 72px; }
+    .wrap-mid { max-width:1100px; margin:0 auto; padding:56px 24px; }
+    .dash-grid { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); gap:22px; }
+    .dash-grid.de { grid-template-columns:minmax(0,3fr) minmax(0,2fr); }
+    .steps4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .cols2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .cols3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+    .stack { display:flex; flex-direction:column; gap:22px; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; }
+    .input { width:100%; box-sizing:border-box; background:#2A2729; border:1px solid #4E494E; border-radius:8px; padding:13px; font:400 14px/1 'Public Sans',sans-serif; color:#EEEDED; outline:none; }
+    .input:focus { border-color:#4257F5; }
+    .field { background:#2A2729; border:1px solid #403C40; border-radius:8px; padding:14px; font:500 15px/1 'Public Sans',sans-serif; }
+    .field small { display:block; margin-bottom:8px; font:600 10px/1 'IBM Plex Mono',monospace; letter-spacing:0.1em; color:#A39CA0; }
+    .bar { height:8px; border-radius:4px; background:#4257F5; }
+    @media print {
+      header, .demo-bar { display:none !important; }
+      body { background:#231F20 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    }
+    @media (max-width: 860px) {
+      .dash-grid, .dash-grid.de, .cols2, .cols3, .steps4 { grid-template-columns:minmax(0,1fr); }
+      .h1 { font-size:28px; }
+      .pitch-h1 { font-size:38px !important; }
+      .hide-sm { display:none !important; }
+    }
+  </style>
+</helmet>
+
+<div style="background:#231F20;min-height:100vh;font-family:'Public Sans',sans-serif;color:#EEEDED;padding-bottom:132px">
+
+  <div style="height:8px;background:linear-gradient(90deg,#4257F5 0%,#BA89EC 50%,#FD5643 100%)"></div>
+  <div style="background:#2A2729;border-bottom:1px solid #403C40">
+    <div style="max-width:1280px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;justify-content:center;gap:12px;font:600 10px/1.3 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A39CA0;text-align:center">
+      <span class="pill koral">EKSEMPELDATA</span>
+      <span>UDKAST TIL DIALOG · INTET HER ER ET PRODUKTLØFTE</span>
+    </div>
+  </div>
+
+  <header style="position:sticky;top:0;z-index:40;background:#231F20;border-bottom:1px solid #403C40">
+    <div style="max-width:1280px;margin:0 auto;padding:0 22px;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px">
+      <div style="display:flex;align-items:center">
+        <svg onClick="{{ nav.pitch }}" width="48" height="48" viewBox="0 0 48 48" style="display:block;flex:none;color:#EEEDED;cursor:pointer"><path d="M 24 0 C 10.746 0 0 10.746 0 24 C 0 37.254 10.746 48 24 48 C 37.254 48 48 37.254 48 24 C 48 10.746 37.254 0 24 0 Z M 35.853 16.83 L 27.189 32.079 C 26.352 33.579 25.374 34.68 24.261 35.385 C 23.148 36.087 21.714 36.441 19.962 36.441 L 16.413 36.441 C 16.26 36.441 16.134 36.318 16.134 36.165 L 16.134 32.919 C 16.134 32.766 16.26 32.643 16.413 32.643 L 19.419 32.643 C 19.728 32.643 20.004 32.607 20.247 32.538 C 21.054 32.274 21.639 31.521 21.639 30.633 C 21.639 30.297 21.555 29.979 21.405 29.7 L 13.692 16.854 C 13.677 16.833 13.665 16.806 13.665 16.779 C 13.665 16.704 13.728 16.641 13.803 16.641 C 13.803 16.641 20.313 16.641 20.316 16.641 C 20.421 16.641 20.514 16.704 20.559 16.791 L 25.305 25.392 L 29.727 16.815 L 29.754 16.761 C 29.805 16.689 29.886 16.641 29.982 16.641 C 29.982 16.641 35.724 16.641 35.727 16.641 C 35.802 16.641 35.865 16.704 35.865 16.779 C 35.865 16.797 35.862 16.815 35.853 16.83 Z" fill="currentColor" fill-rule="nonzero"></path></svg>
+      </div>
+      <nav class="hide-sm" style="display:flex;align-items:center;gap:26px;font:800 16px/1.3 'Public Sans',sans-serif;letter-spacing:0.04em">
+        <span style="color:#EAE8E5">POLITIK</span>
+        <span style="color:#EAE8E5">INTERNATIONAL</span>
+        <span style="color:#EAE8E5">BUSINESS</span>
+        <span onClick="{{ nav.dash }}" style="display:flex;align-items:center;gap:7px;color:#A5AFFF;cursor:pointer">YBUSINESS
+          <span style="font:700 9px/1 'Public Sans',sans-serif;letter-spacing:0.1em;color:#EEEDED;background:#4257F5;padding:3px 5px;border-radius:3px">PRO</span>
+        </span>
+      </nav>
+      <div style="display:flex;align-items:center;gap:10px;justify-content:flex-end">
+        <span onClick="{{ nav.dash }}" class="hide-sm" style="display:flex;align-items:center;gap:7px;background:#4257F5;color:#fff;font:700 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;padding:9px 13px;border-radius:999px;cursor:pointer;white-space:nowrap">MORGENSIGNALET</span>
+        <span onClick="{{ nav.join }}" style="font:600 12px/1 'Public Sans',sans-serif;padding:10px 14px;border:1px solid #4E494E;border-radius:999px;color:#EAE8E5;cursor:pointer;white-space:nowrap" style-hover="border-color:#4257F5">{{ accountLabel }}</span>
+      </div>
+    </div>
+    <sc-if value="{{ ybBar }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#2A2729;border-top:1px solid #403C40">
+        <div class="om-chiprow" style="max-width:1280px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:22px;overflow-x:auto;white-space:nowrap;font:700 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A39CA0">
+          <span style="color:#A5AFFF">YBUSINESS</span>
+          <sc-for list="{{ subnav }}" as="n" hint-placeholder-count="5">
+            <span onClick="{{ n.go }}" style="cursor:pointer;color:{{ n.color }}">{{ n.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+  </header>
+
+  <!-- 1 FORSIDE: SELLING ONE-PAGER -->
+  <sc-if value="{{ sPitch }}" hint-placeholder-val="{{ true }}">
+    <main>
+      <section style="border-bottom:1px solid #403C40;background:#2A2729">
+        <div style="max-width:1100px;margin:0 auto;padding:56px 24px 52px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+            <span style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;color:#EEEDED;background:#4257F5;padding:6px 9px;border-radius:3px">YBUSINESS × DANSK ERHVERV</span>
+            <span style="font:500 13px/1 'Public Sans',sans-serif;color:#A39CA0">Forslag til en første version</span>
+          </div>
+          <h1 class="pitch-h1" style="margin:0 0 24px;max-width:24ch;font:800 50px/1.05 'Public Sans',sans-serif;letter-spacing:-0.03em;text-wrap:pretty">Det, der rammer jeres medlemmer næste kvartal, ligger allerede i en høring</h1>
+          <p class="lead" style="margin-bottom:14px;font-size:19px">En vognmand og en grossist har samme morgen, men ikke samme problem. Et EU-forslag, en ny afgift, en konkurrent med nyt lager. Ingen af dem har tid til at læse det hele, og begge betaler, hvis de overser det ene, der gælder dem.</p>
+          <p class="lead" style="margin-bottom:14px;font-size:19px">Y Business læser for dem. Hver morgen får medlemmet tre signaler, sorteret efter hvad der rammer netop deres virksomhed, og en redaktionel forklaring på, hvad de skal stille op. AI finder signalerne. Journalister afgør, om de holder.</p>
+          <p class="lead" style="font-size:19px;color:#EEEDED">For Dansk Erhverv er kernen jeres eget stof. I udgiver analyser, rapporter og artikler, der fortjener flere læsere, end de får. Y bliver den journalistiske kanal, der får dem i brug: vurderet, forklaret og sendt til de medlemmer, det angår. Oveni får I en medlemsfordel og et løbende billede af, hvad medlemmerne efterspørger.</p>
+        </div>
+      </section>
+
+      <section class="wrap-mid" style="padding-bottom:36px">
+        <p class="eyebrow">HVAD DANSK ERHVERV FÅR</p>
+        <div class="cols3" style="margin-top:6px">
+          <div class="card" style="border-color:#BA89EC;background:#38323C">
+            <p style="margin:0 0 10px;font:800 26px/1 'Public Sans',sans-serif;color:#BA89EC">01</p>
+            <h3 class="h3">Jeres eget stof får en journalistisk kanal</h3>
+            <p class="body" style="font-size:14px;color:#DCD8D3">Godt stof forsvinder let i en indbakke. Y læser jeres analyser og artikler, vurderer dem, skriver hvad de betyder, og lægger dem ind i medlemmernes hverdag. Under jeres eget mærke: I samarbejde med Dansk Erhverv.</p>
+          </div>
+          <div class="card" style="border-color:#4257F5">
+            <p style="margin:0 0 10px;font:800 26px/1 'Public Sans',sans-serif;color:#A5AFFF">02</p>
+            <h3 class="h3">En medlemsfordel, man åbner hver morgen</h3>
+            <p class="body" style="font-size:14px">Medlemmet opretter sig med sin arbejdsmail og har første Morgensignal i indbakken dagen efter. Ingen opsætning, ingen kurser, ingen kortoplysninger.</p>
+          </div>
+          <div class="card" style="border-color:#FD5643">
+            <p style="margin:0 0 10px;font:800 26px/1 'Public Sans',sans-serif;color:#FD5643">03</p>
+            <h3 class="h3">Et løbende svar på, hvad medlemmerne mangler</h3>
+            <p class="body" style="font-size:14px">Medlemmerne vælger emner og siger, hvad de vil have mere af. I ser mønstret, samlet og anonymt, og kan bede os grave dybere. Traditionelle erhvervsmedier lader redaktionen alene bestemme, hvad der dækkes. Her får medlemmerne lov at pege.</p>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:22px;border-color:#BA89EC">
+          <p class="eyebrow lilla">EKSEMPEL · ÉN ANALYSE FRA DANSK ERHVERV, FLERE UDGAVER</p>
+          <p class="body" style="font-size:14px;margin-bottom:18px;color:#DCD8D3">Samme kilde, tilpasset dem, den rammer, og det sted, de læser. Journalistikken er Ys. Grundlaget er jeres.</p>
+          <div class="steps4">
+            <div class="soft"><p class="eyebrow">I MORGENSIGNALET</p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">Ét punkt i medlemmets tre: hvad analysen betyder for netop deres branche.</p></div>
+            <div class="soft"><p class="eyebrow">SOM BRIEF</p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">Analysen på to sider, klar til at læse før et møde.</p></div>
+            <div class="soft"><p class="eyebrow">SOM LYD</p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">De vigtigste konklusioner til bilen eller cyklen.</p></div>
+            <div class="soft"><p class="eyebrow">MED EN STEMME</p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">En fagperson, der svarer på, hvad den ikke siger.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:#2A2729;border-top:1px solid #403C40;border-bottom:1px solid #403C40">
+        <div class="wrap-mid" style="padding-top:40px;padding-bottom:40px">
+          <p class="eyebrow">HVAD MEDLEMMERNE FÅR · FEM FUNKTIONER</p>
+          <div class="cols2" style="gap:12px 36px;margin-top:8px">
+            <div class="listrow" style="border-bottom:1px solid #3A363A"><span style="font:800 15px/1.3 'Public Sans',sans-serif;color:#A5AFFF;min-width:22px">1</span><div><p style="margin:0 0 4px;font:700 16px/1.3 'Public Sans',sans-serif">Morgensignalet</p><p class="body" style="font-size:14px">Tre ting, der kan koste eller give penge i dag. Korte, forklarede og sorteret efter medlemmets virksomhed.</p></div></div>
+            <div class="listrow" style="border-bottom:1px solid #3A363A"><span style="font:800 15px/1.3 'Public Sans',sans-serif;color:#A5AFFF;min-width:22px">2</span><div><p style="margin:0 0 4px;font:700 16px/1.3 'Public Sans',sans-serif">Regulatorisk radar</p><p class="body" style="font-size:14px">Hvad EU, Folketinget og myndighederne har på vej, og hvem det rammer. Med frist og kilde.</p></div></div>
+            <div class="listrow" style="border-bottom:1px solid #3A363A"><span style="font:800 15px/1.3 'Public Sans',sans-serif;color:#A5AFFF;min-width:22px">3</span><div><p style="margin:0 0 4px;font:700 16px/1.3 'Public Sans',sans-serif">Stemmer og klummer efter ønske</p><p class="body" style="font-size:14px">Vil medlemmerne have mere om AI, finder vi tre til fem fagfolk, der skriver fast om det. Åbent for alle læsere.</p></div></div>
+            <div class="listrow" style="border-bottom:1px solid #3A363A"><span style="font:800 15px/1.3 'Public Sans',sans-serif;color:#A5AFFF;min-width:22px">4</span><div><p style="margin:0 0 4px;font:700 16px/1.3 'Public Sans',sans-serif">I samarbejde med Dansk Erhverv</p><p class="body" style="font-size:14px">Jeres analyser og artikler, læst og vurderet af Ys redaktion og sendt til de rette medlemmer.</p></div></div>
+            <div class="listrow" style="border-bottom:0"><span style="font:800 15px/1.3 'Public Sans',sans-serif;color:#A5AFFF;min-width:22px">5</span><div><p style="margin:0 0 4px;font:700 16px/1.3 'Public Sans',sans-serif">Bed os holde øje</p><p class="body" style="font-size:14px">Vælg emner, tilføj egne, og giv besked med ét klik, når et signal rammer ved siden af.</p></div></div>
+            <div class="listrow" style="border-bottom:0"><span style="font:800 15px/1.3 'Public Sans',sans-serif;color:#A39CA0;min-width:22px">+</span><div><p style="margin:0 0 4px;font:700 16px/1.3 'Public Sans',sans-serif">Grundlaget: Ys erhvervsjournalistik</p><p class="body" style="font-size:14px">Den almindelige dækning, som alle læsere får, også medlemmerne.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap-mid" style="padding-top:40px;padding-bottom:36px">
+        <div class="cols2" style="gap:36px">
+          <div>
+            <p class="eyebrow">SPILLEREGLEN</p>
+            <h3 class="h2" style="font-size:23px">Medlemmerne bestemmer, hvad vi kigger på. Redaktionen bestemmer, hvad vi konkluderer.</h3>
+            <p class="body" style="font-size:14px">Vil medlemmerne have mere om EU eller AI, sætter vi flere øjne på området. Konklusionerne kan ingen bestille, heller ikke Dansk Erhverv. Alt er åbent for alle læsere, og samarbejdet er altid mærket.</p>
+          </div>
+          <div>
+            <p class="eyebrow dim">FØRSTE VERSION ER EN SPEEDBÅD</p>
+            <div style="display:flex;flex-direction:column;gap:10px;font:500 14px/1.4 'Public Sans',sans-serif;color:#DCD8D3">
+              <div class="row" style="align-items:flex-start"><span style="color:#A39CA0">·</span><span>Vi bygger ikke et netværk på 150 bidragydere. Vi finder tre til fem, hvor der er efterspørgsel.</span></div>
+              <div class="row" style="align-items:flex-start"><span style="color:#A39CA0">·</span><span>Vi lover ikke avanceret personalisering eller adgang til medlemmernes egne strategier. Det kommer, når tilliden er der.</span></div>
+              <div class="row" style="align-items:flex-start"><span style="color:#A39CA0">·</span><span>Vi køber ikke dyre datatjenester, før nogen har brug for dem.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:rgba(66,87,245,.12);border-top:1px solid #4257F5;border-bottom:1px solid #4257F5">
+        <div class="wrap-mid" style="padding-top:40px;padding-bottom:40px">
+          <div class="cols2" style="gap:36px;align-items:start">
+            <div>
+              <p class="eyebrow">SÅDAN KOMMER VI I GANG</p>
+              <div style="display:flex;flex-direction:column;gap:12px;font:500 15px/1.4 'Public Sans',sans-serif">
+                <div style="display:flex;gap:12px"><span style="font-weight:800;color:#A5AFFF">1</span><span>Vi tilpasser udkastet sammen med jer.</span></div>
+                <div style="display:flex;gap:12px"><span style="font-weight:800;color:#A5AFFF">2</span><span>Et lille hold medlemmer får adgang og bruger produktet i en afgrænset periode.</span></div>
+                <div style="display:flex;gap:12px"><span style="font-weight:800;color:#A5AFFF">3</span><span>Bagefter sætter vi os sammen: Hvad gav værdi, og hvad skal fylde mere eller mindre?</span></div>
+              </div>
+              <p class="body" style="font-size:13px;margin-top:14px">Omfang, periode og vilkår aftaler vi i dialogen.</p>
+            </div>
+            <div>
+              <p class="eyebrow">TRE SPØRGSMÅL TIL JER</p>
+              <div style="display:flex;flex-direction:column;gap:12px;font:600 15px/1.4 'Public Sans',sans-serif">
+                <div style="display:flex;gap:12px"><span style="font-weight:800;color:#A5AFFF">01</span><span>Hvilken af de fem funktioner ville jeres medlemmer savne først?</span></div>
+                <div style="display:flex;gap:12px"><span style="font-weight:800;color:#A5AFFF">02</span><span>Hvad har vi overset, og hvad fylder for meget?</span></div>
+                <div style="display:flex;gap:12px"><span style="font-weight:800;color:#A5AFFF">03</span><span>Hvem hos jer kan holde os opdateret på, hvad medlemmerne spørger efter?</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap-mid" style="padding-top:36px;padding-bottom:36px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px">
+            <h3 class="h3" style="margin-bottom:6px">Se det, som medlemmet ser det</h3>
+            <p class="body" style="font-size:14px">Ni skærme, ét klik ad gangen. Alle signaler og tal er eksempeldata.</p>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <span onClick="{{ nav.join }}" class="btn">Se produktet som medlem</span>
+            <span onClick="{{ nav.deview }}" class="btn-ghost">Se det fra Dansk Erhverv</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+
+  <!-- 2 MEDLEMSINDGANG -->
+  <sc-if value="{{ sJoin }}" hint-placeholder-val="{{ false }}">
+    <main class="wrap-narrow">
+      <p class="eyebrow">MEDLEMSFORDEL</p>
+      <h1 class="h1">Som medlem af Dansk Erhverv får du adgang til Y Business</h1>
+      <p class="body" style="font-size:17px;margin-bottom:30px">Opret en gratis Y-konto med din arbejdsmail. Kontoen gælder på hele y.dk, og alt, du allerede har, følger med.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
+        <div class="field"><small>ARBEJDSMAIL</small>poul@nordjysk-fragt.dk</div>
+        <div class="field"><small>VIRKSOMHED</small>Nordjysk Fragt A/S</div>
+        <div class="field"><small>MEDLEMSKAB</small>Dansk Erhverv · tjekkes automatisk</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <span onClick="{{ nav.onboard }}" class="btn">Opret adgang</span>
+        <span class="body" style="font-size:14px">Ingen kortoplysninger. Vi tjekker medlemskabet mod Dansk Erhvervs medlemsliste.</span>
+      </div>
+      <div class="soft" style="margin-top:32px">
+        <p class="eyebrow dim">TIL DIALOGEN</p>
+        <p class="body" style="font-size:14px">Åbent spørgsmål: skal adgangen kontrolleres via medlemsnummer, mailadresse eller et link fra Dansk Erhverv? Registreringen giver også Y en direkte kontakt til medlemmet og et grundlag for at forstå, hvad vedkommende har brug for.</p>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- 3 ONBOARDING -->
+  <sc-if value="{{ sOnboard }}" hint-placeholder-val="{{ false }}">
+    <main class="wrap-narrow">
+      <div style="display:flex;gap:8px;align-items:center;font:600 12px/1 'Public Sans',sans-serif;color:#A39CA0;margin-bottom:26px">
+        <span style="color:#A5AFFF">1 Din branche</span><span>›</span><span style="color:#A5AFFF">2 Hvad vil du have mere af?</span><span>›</span><span>3 Rytme</span>
+      </div>
+      <h1 class="h1">Fem minutter, så er dit overblik klar</h1>
+      <p class="body" style="font-size:17px;margin-bottom:30px">Du sætter ikke noget op. Vælg branche og emner, så ligger det første Morgensignal i indbakken i morgen tidlig.</p>
+
+      <p class="eyebrow dim">DIN BRANCHE</p>
+      <div class="chips" style="margin-bottom:32px">
+        <sc-for list="{{ branchChips }}" as="b" hint-placeholder-count="5">
+          <span onClick="{{ b.toggle }}" style="font:600 14px/1 'Public Sans',sans-serif;padding:12px 16px;border-radius:999px;cursor:pointer;border:1px solid {{ b.border }};background:{{ b.bg }};color:{{ b.color }}">{{ b.label }}</span>
+        </sc-for>
+      </div>
+
+      <p class="eyebrow dim">HVAD VIL DU HAVE MERE AF?</p>
+      <div class="chips" style="margin-bottom:12px">
+        <sc-for list="{{ topicChips }}" as="t" hint-placeholder-count="8">
+          <span onClick="{{ t.toggle }}" style="font:600 14px/1 'Public Sans',sans-serif;padding:12px 16px;border-radius:999px;cursor:pointer;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }}">{{ t.label }}</span>
+        </sc-for>
+      </div>
+      <p class="body" style="font-size:14px;margin-bottom:32px">Mangler dit emne? Tilføj det under Bed os holde øje.</p>
+
+      <p class="eyebrow dim">RYTME</p>
+      <div class="chips" style="margin-bottom:36px">
+        <sc-for list="{{ rhythmChips }}" as="r" hint-placeholder-count="3">
+          <span onClick="{{ r.toggle }}" style="font:600 14px/1 'Public Sans',sans-serif;padding:12px 16px;border-radius:999px;cursor:pointer;border:1px solid {{ r.border }};background:{{ r.bg }};color:{{ r.color }}">{{ r.label }}</span>
+        </sc-for>
+      </div>
+
+      <span onClick="{{ nav.dash }}" class="btn">Se mit overblik</span>
+    </main>
+  </sc-if>
+
+  <!-- 4 DASHBOARD -->
+  <sc-if value="{{ sDash }}" hint-placeholder-val="{{ false }}">
+    <main class="wrap">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px">
+        <div>
+          <h1 class="h1" style="font-size:32px;margin-bottom:6px">Godmorgen, Poul</h1>
+          <p style="margin:0;font:500 14px/1.4 'Public Sans',sans-serif;color:#A39CA0">Mandag 21. september · {{ brancheLabel }} · medlem af Dansk Erhverv</p>
+        </div>
+        <span onClick="{{ nav.watch }}" style="font:600 13px/1 'Public Sans',sans-serif;border:1px solid #56505A;padding:11px 15px;border-radius:6px;cursor:pointer" style-hover="border-color:#4257F5">Justér mine emner</span>
+      </div>
+
+      <div class="dash-grid">
+        <div class="stack">
+          <section style="background:#4257F5;color:#EEEDED;border-radius:12px;padding:28px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap">
+              <div style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em">MORGENSIGNALET</div>
+              <div style="font:600 12px/1 'Public Sans',sans-serif">06.00 · 3 min · tekst og lyd</div>
+            </div>
+            <h2 class="h2" style="margin-bottom:18px">Tre ting kan påvirke din virksomhed i dag</h2>
+            <div style="display:flex;flex-direction:column;gap:14px;font:500 15px/1.4 'Public Sans',sans-serif">
+              <div style="display:flex;gap:12px"><span style="font-weight:800;opacity:.5">01</span><span><b>EU-regulering.</b> Et forslag om kørsel- og hviletider er sendt i høring. Det kan ændre, hvordan I planlægger ture. Høringsfrist om tre uger.</span></div>
+              <div style="display:flex;gap:12px"><span style="font-weight:800;opacity:.5">02</span><span><b>Markedssignal.</b> Dieselprisen stiger for tredje uge i træk. Det rammer de langsigtede fragtaftaler først.</span></div>
+              <div style="display:flex;gap:12px"><span style="font-weight:800;opacity:.5">03</span><span><b>Konkurrent.</b> En vognmand i Jylland har åbnet nyt lager i Aalborg. Det ændrer konkurrencen på ruten mod Frederikshavn.</span></div>
+            </div>
+            <div onClick="{{ nav.radar }}" style="margin-top:20px;font:700 13px/1 'Public Sans',sans-serif;cursor:pointer">Se hele radaren →</div>
+          </section>
+
+          <section class="panel">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;gap:12px;flex-wrap:wrap">
+              <h3 class="h3s">Overblik</h3>
+              <span class="pill indigo">Åbent for alle læsere</span>
+            </div>
+            <p class="body" style="font-size:14px;margin-bottom:8px">Dagens erhvervsjournalistik, udvalgt af redaktionen.</p>
+            <div>
+              <div class="listrow"><span class="tag">MARKED</span><span style="flex:1;font:500 15px/1.35 'Public Sans',sans-serif">Detailhandlen venter svagere efterår, viser ny måling fra brancheorganisationer</span><span style="font:500 12px/1 'Public Sans',sans-serif;color:#A39CA0;white-space:nowrap">i dag 06.10</span></div>
+              <div class="listrow"><span class="tag">POLITIK</span><span style="flex:1;font:500 15px/1.35 'Public Sans',sans-serif">Finansloven: hvad forligspartierne vil ændre for små og mellemstore virksomheder</span><span style="font:500 12px/1 'Public Sans',sans-serif;color:#A39CA0;white-space:nowrap">i dag 05.40</span></div>
+              <div class="listrow"><span class="tag">ANALYSE</span><span style="flex:1;font:500 15px/1.35 'Public Sans',sans-serif">Renten: hvad en uændret rente betyder for virksomhedernes lånefinansiering</span><span style="font:500 12px/1 'Public Sans',sans-serif;color:#A39CA0;white-space:nowrap">i går 17.20</span></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap">
+              <h3 class="h3s">Fra den regulatoriske radar</h3>
+              <span onClick="{{ nav.radar }}" class="link">Se alle</span>
+            </div>
+            <div class="cols2">
+              <sc-for list="{{ radarPreview }}" as="s" hint-placeholder-count="2">
+                <div class="soft">
+                  <div style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A5AFFF;margin-bottom:9px">{{ s.kind }}</div>
+                  <p style="margin:0 0 8px;font:500 15px/1.35 'Public Sans',sans-serif">{{ s.title }}</p>
+                  <p class="body" style="font-size:13px;line-height:1.4">{{ s.who }}</p>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+        </div>
+
+        <aside class="stack">
+          <section class="panel" style="padding:22px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+              <h3 style="margin:0;font:700 15px/1 'Public Sans',sans-serif">Dine emner</h3>
+              <span style="font:500 12px/1 'Public Sans',sans-serif;color:#A39CA0">{{ topicCount }}</span>
+            </div>
+            <div class="chips">
+              <sc-for list="{{ myTopics }}" as="w" hint-placeholder-count="4">
+                <span style="font:500 13px/1 'Public Sans',sans-serif;border:1px solid #4E494E;padding:9px 12px;border-radius:999px;color:#DCD8D3">{{ w.label }}</span>
+              </sc-for>
+            </div>
+            <div onClick="{{ nav.watch }}" class="link" style="margin-top:16px">Tilføj eller fjern emner</div>
+          </section>
+
+          <section class="accent-panel">
+            <p class="eyebrow">STEMMER OG KLUMMER</p>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <span onClick="{{ nav.voices }}" style="font:500 15px/1.35 'Public Sans',sans-serif;cursor:pointer">Stemmer om AI: ny månedlig serie</span>
+              <span onClick="{{ nav.voices }}" style="font:500 15px/1.35 'Public Sans',sans-serif;cursor:pointer">Den blinde vinkel: hvad debatten om transport overser</span>
+            </div>
+          </section>
+
+          <section class="panel" style="padding:22px;border-color:#BA89EC">
+            <p class="eyebrow lilla">I SAMARBEJDE MED DANSK ERHVERV</p>
+            <p style="margin:0 0 14px;font:500 15px/1.35 'Public Sans',sans-serif">Ny analyse fra Dansk Erhverv, vurderet af Y: hvad betyder den for dig?</p>
+            <span onClick="{{ nav.de }}" class="link" style="color:#BA89EC">Læs vurderingen</span>
+          </section>
+
+          <section class="panel" style="padding:22px">
+            <p class="eyebrow dim">FEEDBACK</p>
+            <p class="body" style="font-size:14px;margin-bottom:14px">Mangler der noget i dit overblik? Fortæl os det, så justerer vi.</p>
+            <span onClick="{{ nav.watch }}" class="btn-ghost" style="font-size:13px;padding:12px 16px">Bed os holde øje</span>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- 5 REGULATORISK RADAR -->
+  <sc-if value="{{ sRadar }}" hint-placeholder-val="{{ false }}">
+    <main class="wrap" style="max-width:1000px">
+      <p class="eyebrow">REGULATORISK RADAR</p>
+      <h1 class="h1">Hvad er på vej, og hvem rammer det?</h1>
+      <p class="body" style="font-size:17px;max-width:62ch;margin-bottom:28px">EU, Folketinget og myndighederne, sorteret efter hvor tæt de er på dig. Hvert signal har frist og offentlig kilde.</p>
+      <div class="stack" style="gap:14px">
+        <sc-for list="{{ radar }}" as="s" hint-placeholder-count="6">
+          <div class="card">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A5AFFF">{{ s.kind }}</span>
+                <span class="pill {{ s.pill }}">{{ s.status }}</span>
+              </div>
+              <span style="font:500 12px/1 'Public Sans',sans-serif;color:#A39CA0">{{ s.when }}</span>
+            </div>
+            <h3 class="h3" style="margin-bottom:12px">{{ s.title }}</h3>
+            <div class="cols2" style="gap:18px">
+              <div><p class="eyebrow dim" style="margin-bottom:6px">HVEM RAMMER DET</p><p class="body" style="font-size:14px">{{ s.who }}</p></div>
+              <div><p class="eyebrow dim" style="margin-bottom:6px">HVAD BETYDER DET FOR DIG</p><p class="body" style="font-size:14px">{{ s.means }}</p></div>
+            </div>
+            <p style="margin:14px 0 0;font:500 12px/1 'IBM Plex Mono',monospace;color:#6f6a70">KILDE: {{ s.source }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- 6 STEMMER OG KLUMMER -->
+  <sc-if value="{{ sVoices }}" hint-placeholder-val="{{ false }}">
+    <main class="wrap" style="max-width:1000px">
+      <p class="eyebrow">STEMMER OG KLUMMER</p>
+      <h1 class="h1">Fagpersoner, vi henter ind, fordi I beder om det</h1>
+      <p class="body" style="font-size:17px;max-width:62ch;margin-bottom:12px">Når medlemmerne efterspørger et emne, finder vi 3-5 relevante fagpersoner og beder dem levere fast. Indholdet er åbent for alle læsere og redaktionelt uafhængigt. Kun emnet er bestilt.</p>
+      <div style="margin-bottom:30px"><span class="pill lilla">Oprettet efter ønske · åbent for alle læsere</span></div>
+
+      <p class="eyebrow dim">STEMMER · EKSEMPEL: AI</p>
+      <div class="cols3" style="margin-bottom:34px">
+        <div class="card"><p class="eyebrow">MÅNEDLIG</p><p class="h3" style="margin-bottom:6px">AI i praksis</p><p class="body" style="font-size:14px">Direktør i en mellemstor handelsvirksomhed. Hvad virkede, hvad kostede, hvad ville hun gøre anderledes.</p></div>
+        <div class="card"><p class="eyebrow">MÅNEDLIG</p><p class="h3" style="margin-bottom:6px">AI og jura</p><p class="body" style="font-size:14px">Jurist med speciale i EU-ret. Hvad AI-reglerne kræver af små virksomheder, og hvornår.</p></div>
+        <div class="card"><p class="eyebrow">MÅNEDLIG</p><p class="h3" style="margin-bottom:6px">AI og medarbejderne</p><p class="body" style="font-size:14px">HR-chef. Hvordan man indfører AI uden at miste holdet undervejs.</p></div>
+      </div>
+
+      <p class="eyebrow dim">FASTE KLUMMER</p>
+      <div class="cols3">
+        <div class="card" style="border-color:#4257F5"><p class="eyebrow">UGENTLIG · MANDAG</p><p class="h3" style="margin-bottom:6px">Mandag morgen</p><p class="body" style="font-size:14px">Ugens beslutningsbillede, skrevet af en direktør eller strategirådgiver.</p></div>
+        <div class="card" style="border-color:#4257F5"><p class="eyebrow">UGENTLIG</p><p class="h3" style="margin-bottom:6px">Den blinde vinkel</p><p class="body" style="font-size:14px">Det, debatten overser, dokumenteret af en erfaren erhvervsjournalist.</p></div>
+        <div class="card" style="border-color:#4257F5"><p class="eyebrow">UGENTLIG</p><p class="h3" style="margin-bottom:6px">Casen der virker</p><p class="body" style="font-size:14px">Praktisk læring med friktion, skrevet af en praktiker.</p></div>
+      </div>
+
+      <div class="accent-panel" style="margin-top:34px;display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <p style="margin:0 0 6px;font:700 18px/1.25 'Public Sans',sans-serif">Mangler der et emne?</p>
+          <p class="body" style="font-size:14px;color:#DCD8D3">Peg på det, så tager vi fat i fagpersonerne.</p>
+        </div>
+        <span onClick="{{ nav.watch }}" class="btn">Bed os holde øje</span>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- 7 I SAMARBEJDE MED DANSK ERHVERV -->
+  <sc-if value="{{ sDE }}" hint-placeholder-val="{{ false }}">
+    <main class="wrap" style="max-width:1000px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+        <span class="pill lilla">I SAMARBEJDE MED DANSK ERHVERV</span>
+        <span style="font:500 13px/1 'Public Sans',sans-serif;color:#A39CA0">Mærket samarbejde. Vurderingen er Ys egen.</span>
+      </div>
+      <h1 class="h1" style="max-width:26ch">Dansk Erhvervs analyse, vurderet og forklaret</h1>
+      <p class="body" style="font-size:17px;max-width:62ch;margin-bottom:30px">Dansk Erhverv udgiver meget. Y læser det, vurderer det og sender det til de medlemmer, det angår.</p>
+
+      <div class="card" style="margin-bottom:22px">
+        <p class="eyebrow dim">SÅDAN FUNGERER DET</p>
+        <div class="steps4">
+          <div class="soft"><p class="eyebrow">01</p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">Dansk Erhverv udgiver en analyse eller artikel</p></div>
+          <div class="soft"><p class="eyebrow">02</p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">Y indtager den og kører den gennem vurderingsmaskinen</p></div>
+          <div class="soft"><p class="eyebrow">03</p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">Redaktionen tjekker og skriver, hvad den betyder</p></div>
+          <div class="soft"><p class="eyebrow">04</p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">Medlemmer med relevante emner får den i deres flow</p></div>
+        </div>
+      </div>
+
+      <section class="panel" style="border-color:#BA89EC">
+        <p class="eyebrow lilla">EKSEMPEL · ANALYSE FRA DANSK ERHVERV</p>
+        <h2 class="h2" style="font-size:24px">Transportbranchens omkostninger 2026: brændstof, løn og afgifter</h2>
+        <div class="cols2" style="gap:22px;margin-top:20px">
+          <div>
+            <p class="eyebrow dim">HVAD SIGER ANALYSEN</p>
+            <p class="body" style="font-size:14px">Omkostningerne stiger mest på løn og brændstof. Mindre vognmænd har svært ved at give det videre i priserne.</p>
+          </div>
+          <div>
+            <p class="eyebrow dim">HVAD BETYDER DET FOR DIG</p>
+            <p class="body" style="font-size:14px">Genforhandl fragtaftaler med brændstofklausul, før høringsfristen på hviletidsforslaget udløber.</p>
+          </div>
+        </div>
+        <hr class="divider" style="margin:20px 0" />
+        <p class="eyebrow">Y'S VURDERING</p>
+        <p class="body" style="font-size:14px;color:#DCD8D3">Analysen dækker de store vognmænd bedst. Tallene for virksomheder under ti biler hviler på et lille grundlag, og det bør læses med forbehold.</p>
+        <p style="margin:16px 0 0;font:500 12px/1 'IBM Plex Mono',monospace;color:#6f6a70">KILDE: DANSK ERHVERV · BEARBEJDET AF Y-REDAKTIONEN</p>
+      </section>
+    </main>
+  </sc-if>
+
+  <!-- 8 BED OS HOLDE ØJE -->
+  <sc-if value="{{ sWatch }}" hint-placeholder-val="{{ false }}">
+    <main class="wrap" style="max-width:900px">
+      <p class="eyebrow">BED OS HOLDE ØJE</p>
+      <h1 class="h1">Hvad vil du have mere af?</h1>
+      <p class="body" style="font-size:17px;max-width:62ch;margin-bottom:28px">Dit valg styrer, hvad Y overvåger, og hvilke stemmer og klummer vi opretter. Du bestemmer emnerne. Redaktionen bestemmer konklusionerne.</p>
+
+      <div class="chips" style="margin-bottom:22px">
+        <sc-for list="{{ topicChips }}" as="t" hint-placeholder-count="8">
+          <span onClick="{{ t.toggle }}" style="font:600 14px/1 'Public Sans',sans-serif;padding:12px 16px;border-radius:999px;cursor:pointer;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }}">{{ t.label }}</span>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center;max-width:520px;margin-bottom:34px">
+        <input class="input" type="text" placeholder="Tilføj dit eget emne, fx grønne afgifter" value="{{ ownTopic }}" onInput="{{ setOwn }}" onKeyDown="{{ ownKey }}" />
+        <span onClick="{{ addOwn }}" class="btn-ghost" style="padding:13px 18px;white-space:nowrap">Tilføj</span>
+      </div>
+
+      <section class="panel" style="margin-bottom:22px">
+        <h3 class="h3s" style="margin-bottom:6px">Giv feedback på dagens signaler</h3>
+        <p class="body" style="font-size:14px;margin-bottom:8px">Ét klik, så ved vi, hvad du vil have mere eller mindre af.</p>
+        <div>
+          <sc-for list="{{ feedbackItems }}" as="f" hint-placeholder-count="3">
+            <div class="listrow" style="align-items:center;flex-wrap:wrap">
+              <span style="flex:1;min-width:240px;font:500 15px/1.35 'Public Sans',sans-serif">{{ f.title }}</span>
+              <span onClick="{{ f.more }}" style="font:600 12px/1 'Public Sans',sans-serif;padding:9px 12px;border-radius:999px;cursor:pointer;border:1px solid {{ f.moreBorder }};background:{{ f.moreBg }};color:{{ f.moreColor }}">Mere af det</span>
+              <span onClick="{{ f.less }}" style="font:600 12px/1 'Public Sans',sans-serif;padding:9px 12px;border-radius:999px;cursor:pointer;border:1px solid {{ f.lessBorder }};background:{{ f.lessBg }};color:{{ f.lessColor }}">Mindre af det</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section class="accent-panel">
+        <p class="eyebrow">SÅDAN BRUGER VI DIT SVAR</p>
+        <p class="body" style="font-size:15px;color:#DCD8D3">{{ watchSummary }}</p>
+      </section>
+    </main>
+  </sc-if>
+
+  <!-- 9 SET FRA DANSK ERHVERV -->
+  <sc-if value="{{ sDEView }}" hint-placeholder-val="{{ false }}">
+    <main class="wrap" style="max-width:1000px">
+      <p class="eyebrow">SET FRA DANSK ERHVERV</p>
+      <h1 class="h1">Hvad jeres medlemmer beder om, og hvad det udløser</h1>
+      <p class="body" style="font-size:17px;max-width:62ch;margin-bottom:28px">Et anonymt, samlet billede af jeres medlemmer. Eksemplet viser, hvordan I kan se, hvad de mangler, uden at nogen har gættet behovet på forhånd.</p>
+
+      <div class="dash-grid de">
+        <section class="panel">
+          <p class="eyebrow dim">MEST EFTERSPURGTE EMNER · EKSEMPELDATA</p>
+          <div style="display:flex;flex-direction:column;gap:16px;margin-top:6px">
+            <sc-for list="{{ demand }}" as="d" hint-placeholder-count="6">
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:7px;font:600 14px/1 'Public Sans',sans-serif"><span>{{ d.label }}</span><span style="color:#A39CA0">{{ d.value }}%</span></div>
+                <div style="background:#3A363A;border-radius:4px"><div class="bar" style="width:{{ d.value }}%"></div></div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+        <div class="stack">
+          <section class="accent-panel">
+            <p class="eyebrow">UDLØST AF EFTERSPØRGSLEN</p>
+            <div style="display:flex;flex-direction:column;gap:12px;font:500 15px/1.35 'Public Sans',sans-serif">
+              <span>Stemmer om AI: tre fagpersoner</span>
+              <span>Den blinde vinkel: transportregulering</span>
+              <span>Regulatorisk radar: nyt fokus på arbejdskraftmobilitet i EU</span>
+            </div>
+          </section>
+          <section class="panel" style="border-color:#BA89EC">
+            <p class="eyebrow lilla">JERES STOF I BRUG · EKSEMPELDATA</p>
+            <div style="display:flex;flex-direction:column;gap:14px;font:500 14px/1.4 'Public Sans',sans-serif;color:#DCD8D3">
+              <div><p style="margin:0 0 4px;font:700 14px/1.3 'Public Sans',sans-serif;color:#EEEDED">Analysen om transportens omkostninger</p><span>Læst af 212 medlemmer. Gemt som brief af 48.</span></div>
+              <div><p style="margin:0 0 4px;font:700 14px/1.3 'Public Sans',sans-serif;color:#EEEDED">Notat om arbejdskraftmobilitet</p><span>Nået ud til 96 medlemmer med emnet på deres radar.</span></div>
+            </div>
+          </section>
+          <section class="panel" style="border-color:#BA89EC">
+            <p class="eyebrow lilla">GRÆNSEN</p>
+            <div style="display:flex;flex-direction:column;gap:12px;font:500 14px/1.45 'Public Sans',sans-serif;color:#DCD8D3">
+              <span>Medlemmerne påvirker emner, aldrig konklusioner.</span>
+              <span>Alt oprettet indhold er åbent for alle læsere.</span>
+              <span>Samarbejdet med Dansk Erhverv er altid mærket.</span>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- DEMO-BAR -->
+  <div class="demo-bar" style="position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(13,13,16,.96);border-top:1px solid #403C40;backdrop-filter:blur(8px)">
+    <div style="max-width:1400px;margin:0 auto;padding:10px 20px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px 14px">
+      <span style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;color:#A39CA0;white-space:nowrap;grid-column:1;grid-row:1">OPLÆG</span>
+      <div class="om-chiprow" style="display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;grid-column:2;grid-row:1">
+        <sc-for list="{{ flowA }}" as="s" hint-placeholder-count="2">
+          <span onClick="{{ s.go }}" style="font:600 11px/1 'IBM Plex Mono',monospace;padding:8px 11px;border-radius:999px;cursor:pointer;white-space:nowrap;border:1px solid {{ s.border }};color:{{ s.color }};background:{{ s.bg }}">{{ s.label }}</span>
+        </sc-for>
+      </div>
+      <span style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;color:#A39CA0;white-space:nowrap;grid-column:1;grid-row:2">MEDLEMMETS REJSE</span>
+      <div class="om-chiprow" style="display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;grid-column:2;grid-row:2">
+        <sc-for list="{{ flowB }}" as="s" hint-placeholder-count="7">
+          <span onClick="{{ s.go }}" style="font:600 11px/1 'IBM Plex Mono',monospace;padding:8px 11px;border-radius:999px;cursor:pointer;white-space:nowrap;border:1px solid {{ s.border }};color:{{ s.color }};background:{{ s.bg }}">{{ s.label }}</span>
+        </sc-for>
+      </div>
+      <span class="hide-sm" style="grid-column:3;grid-row:1 / span 2;justify-self:end;font:600 10px/1 'IBM Plex Mono',monospace;color:#A39CA0;border:1px solid #4E494E;padding:9px 11px;border-radius:999px;white-space:nowrap">Eksempeldata · udkast</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = {
+    screen: "pitch",
+    branche: "Transport og logistik",
+    rhythm: "Morgenbrief kl. 06.00",
+    topics: ["EU", "Transport", "Konkurrenter"],
+    custom: [],
+    ownTopic: "",
+    fb: {}
+  };
+
+  baseTopics = ["EU", "AI", "Energi", "Medarbejdere", "Eksport", "Konkurrenter", "Transport", "Skat og afgifter"];
+  brancher = ["Transport og logistik", "Handel", "Service", "Turisme", "Andet"];
+  rhythms = ["Morgenbrief kl. 06.00", "Ugentlig digest", "Kun ved vigtige ændringer"];
+
+  go(screen) {
+    return () => {
+      this.setState({ screen });
+      window.scrollTo(0, 0);
+    };
+  }
+
+  chip(label, screen) {
+    const active = this.state.screen === screen;
+    return {
+      label, go: this.go(screen),
+      bg: active ? "#4257F5" : "transparent",
+      color: active ? "#EEEDED" : "#DCD8D3",
+      border: active ? "#4257F5" : "#4E494E"
+    };
+  }
+
+  optionChip(label, on, toggle) {
+    return {
+      label, toggle,
+      bg: on ? "#4257F5" : "transparent",
+      color: on ? "#EEEDED" : "#DCD8D3",
+      border: on ? "#4257F5" : "#4E494E"
+    };
+  }
+
+  toggleTopic(label) {
+    return () => this.setState(st => ({
+      topics: st.topics.includes(label) ? st.topics.filter(t => t !== label) : [...st.topics, label]
+    }));
+  }
+
+  addOwn = () => {
+    const v = (this.state.ownTopic || "").trim();
+    if (!v) return;
+    this.setState(st => ({
+      custom: st.custom.includes(v) || this.baseTopics.includes(v) ? st.custom : [...st.custom, v],
+      topics: st.topics.includes(v) ? st.topics : [...st.topics, v],
+      ownTopic: ""
+    }));
+  };
+
+  setFb(key, val) {
+    return () => this.setState(st => ({ fb: { ...st.fb, [key]: st.fb[key] === val ? null : val } }));
+  }
+
+  renderVals() {
+    const s = this.state.screen;
+    const st = this.state;
+
+    const nav = {
+      pitch: this.go("pitch"), join: this.go("join"), onboard: this.go("onboard"),
+      dash: this.go("dash"), radar: this.go("radar"), voices: this.go("voices"),
+      de: this.go("de"), watch: this.go("watch"), deview: this.go("deview")
+    };
+
+    const inMember = ["dash", "radar", "voices", "de", "watch"].includes(s);
+    const subnavDefs = [
+      ["OVERBLIK", "dash"], ["REGULATORISK RADAR", "radar"], ["STEMMER OG KLUMMER", "voices"],
+      ["I SAMARBEJDE MED DANSK ERHVERV", "de"], ["BED OS HOLDE ØJE", "watch"]
+    ];
+    const subnav = subnavDefs.map(([label, sc]) => ({
+      label, go: this.go(sc), color: s === sc ? "#EEEDED" : "#A39CA0"
+    }));
+
+    const allTopics = [...this.baseTopics, ...st.custom];
+    const topicChips = allTopics.map(t => this.optionChip(t, st.topics.includes(t), this.toggleTopic(t)));
+    const myTopics = st.topics.map(t => ({ label: t }));
+
+    const radar = [
+      { kind: "EU", status: "Høring", pill: "koral", when: "Frist om 3 uger",
+        title: "Forslag om kørsel- og hviletider for erhvervschauffører",
+        who: "Vognmænd og virksomheder med egen fragt. Særligt dem med langdistanceruter.",
+        means: "Kan kræve ændret turplanlægning og flere chauffører pr. rute. Tal med jeres chauffører og fragtkunder nu.",
+        source: "EUR-LEX (EKSEMPEL)" },
+      { kind: "FOLKETINGET", status: "Til behandling", pill: "indigo", when: "1. behandling i oktober",
+        title: "Lovforslag om ændrede brændstofafgifter for erhvervskørsel",
+        who: "Virksomheder med tung kørsel og fragtaftaler uden brændstofklausul.",
+        means: "Kan flytte driftsomkostningerne. Gennemgå, hvilke aftaler der har prisregulering.",
+        source: "FOLKETINGET ODA (EKSEMPEL)" },
+      { kind: "MYNDIGHED", status: "Træder i kraft", pill: "lilla", when: "1. januar",
+        title: "Nye rapporteringskrav om virksomhedernes klimaaftryk",
+        who: "Virksomheder over en given størrelse og deres underleverandører.",
+        means: "Store kunder kan begynde at spørge jer om tal. Afklar, hvilke data I allerede har.",
+        source: "RETSINFORMATION (EKSEMPEL)" },
+      { kind: "EU", status: "Forslag", pill: "indigo", when: "Ingen dato endnu",
+        title: "Arbejdskraftmobilitet: nye regler for udstationering",
+        who: "Virksomheder med udenlandske medarbejdere eller chauffører.",
+        means: "Kan ændre dokumentationskrav. Vi følger sagen og melder, hvis den bliver konkret.",
+        source: "EUR-LEX (EKSEMPEL)" },
+      { kind: "HØRING", status: "Åben", pill: "koral", when: "Frist 2. oktober",
+        title: "Udkast til regler om vejafgifter for lastbiler",
+        who: "Alle med lastbiler over en given vægt.",
+        means: "Nu kan I nå at svare. Er det vigtigt for jer, kan vi følge sagen.",
+        source: "HØRINGSPORTALEN (EKSEMPEL)" },
+      { kind: "MYNDIGHED", status: "Vedtaget", pill: "lilla", when: "Gælder fra 1. oktober",
+        title: "Skærpede krav til dokumentation ved offentlige udbud",
+        who: "Leverandører, der byder på offentlige kontrakter.",
+        means: "Tilbud uden korrekt dokumentation kan blive afvist. Opdatér jeres bilag.",
+        source: "UDBUD.DK (EKSEMPEL)" }
+    ];
+
+    const feedbackSrc = [
+      { key: "f1", title: "EU: forslag om kørsel- og hviletider sendt i høring" },
+      { key: "f2", title: "Dieselprisen stiger for tredje uge i træk" },
+      { key: "f3", title: "Konkurrent åbner nyt lager i Aalborg" }
+    ];
+    const feedbackItems = feedbackSrc.map(f => {
+      const v = st.fb[f.key];
+      return {
+        title: f.title,
+        more: this.setFb(f.key, "more"), less: this.setFb(f.key, "less"),
+        moreBg: v === "more" ? "#4257F5" : "transparent", moreColor: v === "more" ? "#EEEDED" : "#DCD8D3", moreBorder: v === "more" ? "#4257F5" : "#4E494E",
+        lessBg: v === "less" ? "#FD5643" : "transparent", lessColor: v === "less" ? "#231F20" : "#DCD8D3", lessBorder: v === "less" ? "#FD5643" : "#4E494E"
+      };
+    });
+    const moreCount = Object.values(st.fb).filter(x => x === "more").length;
+    const lessCount = Object.values(st.fb).filter(x => x === "less").length;
+    const watchSummary = st.topics.length === 0
+      ? "Vælg mindst ét emne. Så kan vi begynde at holde øje for dig."
+      : "Vi overvåger " + st.topics.length + (st.topics.length === 1 ? " emne" : " emner") + " for dig: " + st.topics.join(", ") + ". Når flere medlemmer beder om det samme emne, opretter vi stemmer og klummer, som alle læsere kan bruge. Dine svar på signalerne (" + moreCount + " mere, " + lessCount + " mindre) justerer, hvad du ser først. Ingen svar ændrer journalistikkens konklusioner.";
+
+    return {
+      nav, subnav,
+      sPitch: s === "pitch", sJoin: s === "join", sOnboard: s === "onboard", sDash: s === "dash",
+      sRadar: s === "radar", sVoices: s === "voices", sDE: s === "de", sWatch: s === "watch", sDEView: s === "deview",
+      ybBar: inMember,
+      accountLabel: inMember ? "Poul · Min konto" : "Log ind",
+
+      brancheLabel: st.branche,
+      branchChips: this.brancher.map(b => this.optionChip(b, st.branche === b, () => this.setState({ branche: b }))),
+      rhythmChips: this.rhythms.map(r => this.optionChip(r, st.rhythm === r, () => this.setState({ rhythm: r }))),
+      topicChips, myTopics,
+      topicCount: st.topics.length + " valgt",
+
+      radar,
+      radarPreview: radar.slice(0, 2).map(r => ({ kind: r.kind, title: r.title, who: r.who })),
+
+      ownTopic: st.ownTopic,
+      setOwn: (e) => this.setState({ ownTopic: e.target.value }),
+      ownKey: (e) => { if (e.key === "Enter") this.addOwn(); },
+      addOwn: this.addOwn,
+      feedbackItems, watchSummary,
+
+      demand: [
+        { label: "EU-regulering", value: 78 },
+        { label: "AI", value: 64 },
+        { label: "Transport og logistik", value: 52 },
+        { label: "Arbejdskraft og mobilitet", value: 41 },
+        { label: "Energi og afgifter", value: 33 },
+        { label: "Eksport", value: 24 }
+      ],
+
+      flowA: [
+        this.chip("1 Oplæg", "pitch"),
+        this.chip("9 Set fra Dansk Erhverv", "deview")
+      ],
+      flowB: [
+        this.chip("2 Medlemsindgang", "join"),
+        this.chip("3 Onboarding", "onboard"),
+        this.chip("4 Morgensignal og overblik", "dash"),
+        this.chip("5 Regulatorisk radar", "radar"),
+        this.chip("6 Stemmer og klummer", "voices"),
+        this.chip("7 I samarbejde med DE", "de"),
+        this.chip("8 Bed os holde øje", "watch")
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
