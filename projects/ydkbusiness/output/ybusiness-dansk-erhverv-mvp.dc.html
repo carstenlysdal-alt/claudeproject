@@ -20,7 +20,7 @@
     .om-chiprow::-webkit-scrollbar { display:none; height:0; }
     ::selection { background:#4257F5; color:#EEEDED; }
 
-    .eyebrow { font:600 10px/1 'IBM Plex Mono',monospace; letter-spacing:0.12em; color:#A5AFFF; margin:0 0 12px; }
+    .eyebrow { font:600 11px/1 'IBM Plex Mono',monospace; letter-spacing:0.12em; color:#A5AFFF; margin:0 0 12px; }
     .eyebrow.lilla { color:#BA89EC; }
     .eyebrow.koral { color:#FD5643; }
     .eyebrow.dim { color:#A39CA0; }
@@ -44,6 +44,29 @@
     .pill.indigo { color:#A5AFFF; background:rgba(66,87,245,.18); }
     .pill.koral { color:#FD5643; background:rgba(253,86,67,.14); }
     .pill.green { color:#8FE8A8; background:rgba(31,157,90,.22); }
+    .stepchip { display:inline-block; margin-left:8px; font:700 11px/1 'IBM Plex Mono',monospace; letter-spacing:0.1em; text-transform:uppercase; padding:4px 6px; border-radius:2px; vertical-align:2px; white-space:nowrap; }
+    .stepchip[data-step="1"] { color:#8FE8A8; background:rgba(31,157,90,.22); }
+    .stepchip[data-step="2"] { color:#A5AFFF; background:rgba(66,87,245,.24); }
+    .kind { display:inline-flex; align-items:center; gap:6px; margin-right:8px; font:700 11px/1 'IBM Plex Mono',monospace; letter-spacing:0.08em; text-transform:uppercase; padding:5px 8px; border-radius:3px; background:rgba(14,16,60,.38); color:#fff; vertical-align:1px; white-space:nowrap; }
+    .kind::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--k,#fff); }
+    .kind[data-kind="regulering"] { --k:#FFD1A8; }
+    .kind[data-kind="marked"] { --k:#A8F0C6; }
+    .kind[data-kind="konkurrent"] { --k:#F0C9FF; }
+    .card[data-status] { border-left-width:4px; }
+    .card[data-status="hoering"] { border-left-color:#FD5643; }
+    .card[data-status="behandling"] { border-left-color:#4257F5; }
+    .card[data-status="kraft"] { border-left-color:#BA89EC; }
+    .card[data-status="forslag"] { border-left-color:#A39CA0; }
+    .opt { display:inline-flex; align-items:center; min-height:44px; padding:0 18px; border-radius:999px; cursor:pointer; font:600 14px/1 'Public Sans',sans-serif; }
+    .opt-sm { display:inline-flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; cursor:pointer; font:600 12px/1 'Public Sans',sans-serif; }
+    .skip { position:absolute; left:-9999px; top:8px; z-index:100; background:#4257F5; color:#fff; padding:10px 14px; border-radius:6px; font:700 14px/1 'Public Sans',sans-serif; }
+    .skip:focus { left:12px; color:#fff; }
+    main:focus { outline:none; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; } }
+    [role="button"]:focus-visible { outline:2px solid #A5AFFF; outline-offset:3px; }
+    .steps4 > .soft { position:relative; }
+    .steps4 > .soft:not(:last-child)::after { content:'→'; position:absolute; right:-14px; top:50%; transform:translateY(-50%); color:#A5AFFF; font:700 16px/1 'Public Sans',sans-serif; }
+    .callout { background:#2A2729; border:1px solid #3A363A; border-left:4px solid #BA89EC; border-radius:9px; padding:16px 18px; margin-top:20px; }
     .tag { display:inline-block; font:600 11px/1 'Public Sans',sans-serif; color:#231F20; background:#A5AFFF; padding:5px 8px; border-radius:3px; white-space:nowrap; }
     .link { font:600 13px/1 'Public Sans',sans-serif; color:#A5AFFF; cursor:pointer; }
     .link:hover { color:#fff; }
@@ -63,7 +86,7 @@
     .input { width:100%; box-sizing:border-box; background:#2A2729; border:1px solid #4E494E; border-radius:8px; padding:13px; font:400 14px/1 'Public Sans',sans-serif; color:#EEEDED; outline:none; }
     .input:focus { border-color:#4257F5; }
     .field { background:#2A2729; border:1px solid #403C40; border-radius:8px; padding:14px; font:500 15px/1 'Public Sans',sans-serif; }
-    .field small { display:block; margin-bottom:8px; font:600 10px/1 'IBM Plex Mono',monospace; letter-spacing:0.1em; color:#A39CA0; }
+    .field small { display:block; margin-bottom:8px; font:600 11px/1 'IBM Plex Mono',monospace; letter-spacing:0.1em; color:#A39CA0; }
     .bar { height:8px; border-radius:4px; background:#4257F5; }
     @media print {
       header, .demo-bar { display:none !important; }
@@ -74,15 +97,17 @@
       .h1 { font-size:28px; }
       .pitch-h1 { font-size:38px !important; }
       .hide-sm { display:none !important; }
+      .steps4 > .soft::after { display:none !important; }
     }
   </style>
 </helmet>
 
 <div style="background:#231F20;min-height:100vh;font-family:'Public Sans',sans-serif;color:#EEEDED;padding-bottom:132px">
+  <a href="#main" class="skip">Spring til indhold</a>
 
   <div style="height:8px;background:linear-gradient(90deg,#4257F5 0%,#BA89EC 50%,#FD5643 100%)"></div>
   <div style="background:#2A2729;border-bottom:1px solid #403C40">
-    <div style="max-width:1280px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;justify-content:center;gap:12px;font:600 10px/1.3 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A39CA0;text-align:center">
+    <div style="max-width:1280px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;justify-content:center;gap:12px;font:600 11px/1.3 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A39CA0;text-align:center">
       <span class="pill koral">EKSEMPELDATA</span>
       <span>UDKAST TIL DIALOG · INTET HER ER ET PRODUKTLØFTE</span>
     </div>
@@ -91,27 +116,27 @@
   <header style="position:sticky;top:0;z-index:40;background:#231F20;border-bottom:1px solid #403C40">
     <div style="max-width:1280px;margin:0 auto;padding:0 22px;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px">
       <div style="display:flex;align-items:center">
-        <svg onClick="{{ nav.pitch }}" width="48" height="48" viewBox="0 0 48 48" style="display:block;flex:none;color:#EEEDED;cursor:pointer"><path d="M 24 0 C 10.746 0 0 10.746 0 24 C 0 37.254 10.746 48 24 48 C 37.254 48 48 37.254 48 24 C 48 10.746 37.254 0 24 0 Z M 35.853 16.83 L 27.189 32.079 C 26.352 33.579 25.374 34.68 24.261 35.385 C 23.148 36.087 21.714 36.441 19.962 36.441 L 16.413 36.441 C 16.26 36.441 16.134 36.318 16.134 36.165 L 16.134 32.919 C 16.134 32.766 16.26 32.643 16.413 32.643 L 19.419 32.643 C 19.728 32.643 20.004 32.607 20.247 32.538 C 21.054 32.274 21.639 31.521 21.639 30.633 C 21.639 30.297 21.555 29.979 21.405 29.7 L 13.692 16.854 C 13.677 16.833 13.665 16.806 13.665 16.779 C 13.665 16.704 13.728 16.641 13.803 16.641 C 13.803 16.641 20.313 16.641 20.316 16.641 C 20.421 16.641 20.514 16.704 20.559 16.791 L 25.305 25.392 L 29.727 16.815 L 29.754 16.761 C 29.805 16.689 29.886 16.641 29.982 16.641 C 29.982 16.641 35.724 16.641 35.727 16.641 C 35.802 16.641 35.865 16.704 35.865 16.779 C 35.865 16.797 35.862 16.815 35.853 16.83 Z" fill="currentColor" fill-rule="nonzero"></path></svg>
+        <svg role="button" tabindex="0" aria-label="Y Business, til forsiden" onClick="{{ nav.pitch }}" width="48" height="48" viewBox="0 0 48 48" style="display:block;flex:none;color:#EEEDED;cursor:pointer"><path d="M 24 0 C 10.746 0 0 10.746 0 24 C 0 37.254 10.746 48 24 48 C 37.254 48 48 37.254 48 24 C 48 10.746 37.254 0 24 0 Z M 35.853 16.83 L 27.189 32.079 C 26.352 33.579 25.374 34.68 24.261 35.385 C 23.148 36.087 21.714 36.441 19.962 36.441 L 16.413 36.441 C 16.26 36.441 16.134 36.318 16.134 36.165 L 16.134 32.919 C 16.134 32.766 16.26 32.643 16.413 32.643 L 19.419 32.643 C 19.728 32.643 20.004 32.607 20.247 32.538 C 21.054 32.274 21.639 31.521 21.639 30.633 C 21.639 30.297 21.555 29.979 21.405 29.7 L 13.692 16.854 C 13.677 16.833 13.665 16.806 13.665 16.779 C 13.665 16.704 13.728 16.641 13.803 16.641 C 13.803 16.641 20.313 16.641 20.316 16.641 C 20.421 16.641 20.514 16.704 20.559 16.791 L 25.305 25.392 L 29.727 16.815 L 29.754 16.761 C 29.805 16.689 29.886 16.641 29.982 16.641 C 29.982 16.641 35.724 16.641 35.727 16.641 C 35.802 16.641 35.865 16.704 35.865 16.779 C 35.865 16.797 35.862 16.815 35.853 16.83 Z" fill="currentColor" fill-rule="nonzero"></path></svg>
       </div>
       <nav class="hide-sm" style="display:flex;align-items:center;gap:26px;font:800 16px/1.3 'Public Sans',sans-serif;letter-spacing:0.04em">
         <span style="color:#EAE8E5">POLITIK</span>
         <span style="color:#EAE8E5">INTERNATIONAL</span>
         <span style="color:#EAE8E5">BUSINESS</span>
-        <span onClick="{{ nav.dash }}" style="display:flex;align-items:center;gap:7px;color:#A5AFFF;cursor:pointer">YBUSINESS
-          <span style="font:700 9px/1 'Public Sans',sans-serif;letter-spacing:0.1em;color:#EEEDED;background:#4257F5;padding:3px 5px;border-radius:3px">PRO</span>
+        <span role="button" tabindex="0" onClick="{{ nav.dash }}" style="display:flex;align-items:center;gap:7px;color:#A5AFFF;cursor:pointer">YBUSINESS
+          <span style="font:700 10px/1 'Public Sans',sans-serif;letter-spacing:0.1em;color:#EEEDED;background:#4257F5;padding:3px 5px;border-radius:3px">PRO</span>
         </span>
       </nav>
       <div style="display:flex;align-items:center;gap:10px;justify-content:flex-end">
-        <span onClick="{{ nav.dash }}" class="hide-sm" style="display:flex;align-items:center;gap:7px;background:#4257F5;color:#fff;font:700 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;padding:9px 13px;border-radius:999px;cursor:pointer;white-space:nowrap">MORGENSIGNALET</span>
-        <span onClick="{{ nav.join }}" style="font:600 12px/1 'Public Sans',sans-serif;padding:10px 14px;border:1px solid #4E494E;border-radius:999px;color:#EAE8E5;cursor:pointer;white-space:nowrap" style-hover="border-color:#4257F5">{{ accountLabel }}</span>
+        <span role="button" tabindex="0" onClick="{{ nav.dash }}" class="hide-sm" style="display:flex;align-items:center;gap:7px;background:#4257F5;color:#fff;font:700 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;padding:9px 13px;border-radius:999px;cursor:pointer;white-space:nowrap">MORGENSIGNALET</span>
+        <span role="button" tabindex="0" onClick="{{ nav.join }}" style="font:600 12px/1 'Public Sans',sans-serif;padding:10px 14px;border:1px solid #4E494E;border-radius:999px;color:#EAE8E5;cursor:pointer;white-space:nowrap" style-hover="border-color:#4257F5">{{ accountLabel }}</span>
       </div>
     </div>
     <sc-if value="{{ ybBar }}" hint-placeholder-val="{{ false }}">
       <div style="background:#2A2729;border-top:1px solid #403C40">
-        <div class="om-chiprow" style="max-width:1280px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:22px;overflow-x:auto;white-space:nowrap;font:700 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A39CA0">
+        <div class="om-chiprow" style="max-width:1280px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:22px;overflow-x:auto;white-space:nowrap;font:700 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A39CA0">
           <span style="color:#A5AFFF">YBUSINESS</span>
           <sc-for list="{{ subnav }}" as="n" hint-placeholder-count="5">
-            <span onClick="{{ n.go }}" style="cursor:pointer;color:{{ n.color }}">{{ n.label }}</span>
+            <span role="button" tabindex="0" onClick="{{ n.go }}" style="cursor:pointer;color:{{ n.color }}">{{ n.label }}</span>
           </sc-for>
         </div>
       </div>
@@ -120,11 +145,11 @@
 
   <!-- 1 FORSIDE: SELLING ONE-PAGER -->
   <sc-if value="{{ sPitch }}" hint-placeholder-val="{{ true }}">
-    <main>
+    <main id="main" tabindex="-1">
       <section style="border-bottom:1px solid #403C40;background:#2A2729">
         <div style="max-width:1100px;margin:0 auto;padding:56px 24px 52px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap">
-            <span style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;color:#EEEDED;background:#4257F5;padding:6px 9px;border-radius:3px">YBUSINESS × DANSK ERHVERV</span>
+            <span style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;color:#EEEDED;background:#4257F5;padding:6px 9px;border-radius:3px">YBUSINESS × DANSK ERHVERV</span>
             <span style="font:500 13px/1 'Public Sans',sans-serif;color:#A39CA0">Forslag til en første version</span>
           </div>
           <h1 class="pitch-h1" style="margin:0 0 24px;max-width:24ch;font:800 50px/1.05 'Public Sans',sans-serif;letter-spacing:-0.03em;text-wrap:pretty">Det, der rammer jeres medlemmer næste kvartal, ligger allerede i en høring</h1>
@@ -139,17 +164,17 @@
         <div class="cols3" style="margin-top:6px">
           <div class="card" style="border-color:#BA89EC;background:#38323C">
             <p style="margin:0 0 10px;font:800 26px/1 'Public Sans',sans-serif;color:#BA89EC">01</p>
-            <h3 class="h3">Jeres eget stof får en journalistisk kanal</h3>
+            <h2 class="h3">Jeres eget stof får en journalistisk kanal</h2>
             <p class="body" style="font-size:14px;color:#DCD8D3">Godt stof forsvinder let i en indbakke. Y læser jeres analyser og artikler, vurderer dem, skriver hvad de betyder, og lægger dem ind i medlemmernes hverdag. Under jeres eget mærke: I samarbejde med Dansk Erhverv.</p>
           </div>
           <div class="card" style="border-color:#4257F5">
             <p style="margin:0 0 10px;font:800 26px/1 'Public Sans',sans-serif;color:#A5AFFF">02</p>
-            <h3 class="h3">En medlemsfordel, man åbner hver morgen</h3>
+            <h2 class="h3">En medlemsfordel, man åbner hver morgen</h2>
             <p class="body" style="font-size:14px">Medlemmet opretter sig med sin arbejdsmail og har første Morgensignal i indbakken dagen efter. Ingen opsætning, ingen kurser, ingen kortoplysninger.</p>
           </div>
           <div class="card" style="border-color:#FD5643">
             <p style="margin:0 0 10px;font:800 26px/1 'Public Sans',sans-serif;color:#FD5643">03</p>
-            <h3 class="h3">Et løbende svar på, hvad medlemmerne mangler</h3>
+            <h2 class="h3">Et løbende svar på, hvad medlemmerne mangler</h2>
             <p class="body" style="font-size:14px">Medlemmerne vælger emner og siger, hvad de vil have mere af. I ser mønstret, samlet og anonymt, og kan bede os grave dybere. Traditionelle erhvervsmedier lader redaktionen alene bestemme, hvad der dækkes. Her får medlemmerne lov at pege.</p>
           </div>
         </div>
@@ -185,17 +210,17 @@
         <div class="cols3" style="margin-top:6px">
           <div class="card" style="border-color:#1F9D5A;border-top-width:4px">
             <p style="margin:0 0 12px"><span class="pill green">Skridt 1 · pilotstart</span></p>
-            <h3 class="h3">Tre ting fra dag ét</h3>
+            <h2 class="h3">Tre ting fra dag ét</h2>
             <p class="body" style="font-size:14px">Morgensignalet med regulering som fast punkt. Jeres eget stof, vurderet og målrettet. Og "Bed os holde øje", hvor medlemmerne vælger emner og giver feedback.</p>
           </div>
           <div class="card" style="border-color:#4257F5;border-top-width:4px">
             <p style="margin:0 0 12px"><span class="pill indigo">Skridt 2 · ved behov</span></p>
-            <h3 class="h3">Fordybelse</h3>
+            <h2 class="h3">Fordybelse</h2>
             <p class="body" style="font-size:14px">Regulatorisk radar som eget overblik med frist og kilde. Stemmer og klummer, når medlemmerne beder om dem.</p>
           </div>
           <div class="card" style="border-top-width:4px">
             <p style="margin:0 0 12px"><span class="pill" style="color:#A39CA0;background:rgba(163,156,160,.16)">Senere</span></p>
-            <h3 class="h3">Udvidelser</h3>
+            <h2 class="h3">Udvidelser</h2>
             <p class="body" style="font-size:14px">Flere bidragydere, medlemmernes egne data, personalisering og betalte datatjenester. Først når efterspørgslen er dokumenteret.</p>
           </div>
         </div>
@@ -205,7 +230,7 @@
         <div class="cols2" style="gap:36px">
           <div>
             <p class="eyebrow">SPILLEREGLEN</p>
-            <h3 class="h2" style="font-size:23px">Medlemmerne bestemmer, hvad vi kigger på. Redaktionen bestemmer, hvad vi konkluderer.</h3>
+            <h2 class="h2" style="font-size:23px">Medlemmerne bestemmer, hvad vi kigger på. Redaktionen bestemmer, hvad vi konkluderer.</h2>
             <p class="body" style="font-size:14px">Vil medlemmerne have mere om EU eller AI, sætter vi flere øjne på området. Konklusionerne kan ingen bestille, heller ikke Dansk Erhverv. Alt er åbent for alle læsere, og samarbejdet er altid mærket.</p>
           </div>
           <div>
@@ -246,12 +271,12 @@
       <section class="wrap-mid" style="padding-top:36px;padding-bottom:36px">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap">
           <div style="flex:1;min-width:260px">
-            <h3 class="h3" style="margin-bottom:6px">Se det, som medlemmet ser det</h3>
+            <h2 class="h3" style="margin-bottom:6px">Se det, som medlemmet ser det</h2>
             <p class="body" style="font-size:14px">Ni skærme, ét klik ad gangen. Alle signaler og tal er eksempeldata.</p>
           </div>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <span onClick="{{ nav.join }}" class="btn">Se produktet som medlem</span>
-            <span onClick="{{ nav.deview }}" class="btn-ghost">Se det fra Dansk Erhverv</span>
+            <span role="button" tabindex="0" onClick="{{ nav.join }}" class="btn">Se produktet som medlem</span>
+            <span role="button" tabindex="0" onClick="{{ nav.deview }}" class="btn-ghost">Se det fra Dansk Erhverv</span>
           </div>
         </div>
       </section>
@@ -260,7 +285,7 @@
 
   <!-- 2 MEDLEMSINDGANG -->
   <sc-if value="{{ sJoin }}" hint-placeholder-val="{{ false }}">
-    <main class="wrap-narrow">
+    <main id="main" tabindex="-1" class="wrap-narrow">
       <p class="eyebrow">MEDLEMSFORDEL</p>
       <h1 class="h1">Som medlem af Dansk Erhverv får du adgang til Y Business</h1>
       <p class="body" style="font-size:17px;margin-bottom:30px">Opret en gratis Y-konto med din arbejdsmail. Kontoen gælder på hele y.dk, og alt, du allerede har, følger med.</p>
@@ -269,8 +294,14 @@
         <div class="field"><small>VIRKSOMHED</small>Nordjysk Fragt A/S</div>
         <div class="field"><small>MEDLEMSKAB</small>Dansk Erhverv · tjekkes automatisk</div>
       </div>
+      <p class="eyebrow dim" style="margin-top:6px">DET FÅR DU FRA FØRSTE MORGEN</p>
+      <div class="cols3" style="margin-bottom:28px;gap:12px">
+        <div class="soft"><p class="eyebrow">MORGENSIGNALET <span class="stepchip" data-step="1">Skridt 1</span></p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">Tre signaler hver morgen kl. 06.00</p></div>
+        <div class="soft"><p class="eyebrow">DANSK ERHVERV <span class="stepchip" data-step="1">Skridt 1</span></p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">Dansk Erhvervs analyser, vurderet og forklaret</p></div>
+        <div class="soft"><p class="eyebrow">DINE EMNER <span class="stepchip" data-step="1">Skridt 1</span></p><p style="margin:0;font:600 14px/1.4 'Public Sans',sans-serif">Du vælger emner og giver feedback</p></div>
+      </div>
       <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-        <span onClick="{{ nav.onboard }}" class="btn">Opret adgang</span>
+        <span role="button" tabindex="0" onClick="{{ nav.onboard }}" class="btn">Opret adgang</span>
         <span class="body" style="font-size:14px">Ingen kortoplysninger. Vi tjekker medlemskabet mod Dansk Erhvervs medlemsliste.</span>
       </div>
       <div class="soft" style="margin-top:32px">
@@ -282,7 +313,7 @@
 
   <!-- 3 ONBOARDING -->
   <sc-if value="{{ sOnboard }}" hint-placeholder-val="{{ false }}">
-    <main class="wrap-narrow">
+    <main id="main" tabindex="-1" class="wrap-narrow">
       <div style="display:flex;gap:8px;align-items:center;font:600 12px/1 'Public Sans',sans-serif;color:#A39CA0;margin-bottom:26px">
         <span style="color:#A5AFFF">1 Din branche</span><span>›</span><span style="color:#A5AFFF">2 Hvad vil du have mere af?</span><span>›</span><span>3 Rytme</span>
       </div>
@@ -292,14 +323,14 @@
       <p class="eyebrow dim">DIN BRANCHE</p>
       <div class="chips" style="margin-bottom:32px">
         <sc-for list="{{ branchChips }}" as="b" hint-placeholder-count="5">
-          <span onClick="{{ b.toggle }}" style="font:600 14px/1 'Public Sans',sans-serif;padding:12px 16px;border-radius:999px;cursor:pointer;border:1px solid {{ b.border }};background:{{ b.bg }};color:{{ b.color }}">{{ b.label }}</span>
+          <span role="button" tabindex="0" onClick="{{ b.toggle }}" class="opt" style="border:1px solid {{ b.border }};background:{{ b.bg }};color:{{ b.color }}">{{ b.label }}</span>
         </sc-for>
       </div>
 
       <p class="eyebrow dim">HVAD VIL DU HAVE MERE AF?</p>
       <div class="chips" style="margin-bottom:12px">
         <sc-for list="{{ topicChips }}" as="t" hint-placeholder-count="8">
-          <span onClick="{{ t.toggle }}" style="font:600 14px/1 'Public Sans',sans-serif;padding:12px 16px;border-radius:999px;cursor:pointer;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }}">{{ t.label }}</span>
+          <span role="button" tabindex="0" onClick="{{ t.toggle }}" class="opt" style="border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }}">{{ t.label }}</span>
         </sc-for>
       </div>
       <p class="body" style="font-size:14px;margin-bottom:32px">Mangler dit emne? Tilføj det under Bed os holde øje.</p>
@@ -307,39 +338,39 @@
       <p class="eyebrow dim">RYTME</p>
       <div class="chips" style="margin-bottom:36px">
         <sc-for list="{{ rhythmChips }}" as="r" hint-placeholder-count="3">
-          <span onClick="{{ r.toggle }}" style="font:600 14px/1 'Public Sans',sans-serif;padding:12px 16px;border-radius:999px;cursor:pointer;border:1px solid {{ r.border }};background:{{ r.bg }};color:{{ r.color }}">{{ r.label }}</span>
+          <span role="button" tabindex="0" onClick="{{ r.toggle }}" class="opt" style="border:1px solid {{ r.border }};background:{{ r.bg }};color:{{ r.color }}">{{ r.label }}</span>
         </sc-for>
       </div>
 
-      <span onClick="{{ nav.dash }}" class="btn">Se mit overblik</span>
+      <span role="button" tabindex="0" onClick="{{ nav.dash }}" class="btn">Se mit overblik</span>
     </main>
   </sc-if>
 
   <!-- 4 DASHBOARD -->
   <sc-if value="{{ sDash }}" hint-placeholder-val="{{ false }}">
-    <main class="wrap">
+    <main id="main" tabindex="-1" class="wrap">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px">
         <div>
           <h1 class="h1" style="font-size:32px;margin-bottom:6px">Godmorgen, Poul</h1>
           <p style="margin:0;font:500 14px/1.4 'Public Sans',sans-serif;color:#A39CA0">Mandag 21. september · {{ brancheLabel }} · medlem af Dansk Erhverv</p>
         </div>
-        <span onClick="{{ nav.watch }}" style="font:600 13px/1 'Public Sans',sans-serif;border:1px solid #56505A;padding:11px 15px;border-radius:6px;cursor:pointer" style-hover="border-color:#4257F5">Justér mine emner</span>
+        <span role="button" tabindex="0" onClick="{{ nav.watch }}" style="font:600 13px/1 'Public Sans',sans-serif;border:1px solid #56505A;padding:11px 15px;border-radius:6px;cursor:pointer" style-hover="border-color:#4257F5">Justér mine emner</span>
       </div>
 
       <div class="dash-grid">
         <div class="stack">
           <section style="background:#4257F5;color:#EEEDED;border-radius:12px;padding:28px">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap">
-              <div style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em">MORGENSIGNALET</div>
+              <div style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em">MORGENSIGNALET · SKRIDT 1</div>
               <div style="font:600 12px/1 'Public Sans',sans-serif">06.00 · 3 min · tekst og lyd</div>
             </div>
             <h2 class="h2" style="margin-bottom:18px">Tre ting kan påvirke din virksomhed i dag</h2>
             <div style="display:flex;flex-direction:column;gap:14px;font:500 15px/1.4 'Public Sans',sans-serif">
-              <div style="display:flex;gap:12px"><span style="font-weight:800;opacity:.5">01</span><span><b>EU-regulering.</b> Et forslag om kørsel- og hviletider er sendt i høring. Det kan ændre, hvordan I planlægger ture. Høringsfrist om tre uger.</span></div>
-              <div style="display:flex;gap:12px"><span style="font-weight:800;opacity:.5">02</span><span><b>Markedssignal.</b> Dieselprisen stiger for tredje uge i træk. Det rammer de langsigtede fragtaftaler først.</span></div>
-              <div style="display:flex;gap:12px"><span style="font-weight:800;opacity:.5">03</span><span><b>Konkurrent.</b> En vognmand i Jylland har åbnet nyt lager i Aalborg. Det ændrer konkurrencen på ruten mod Frederikshavn.</span></div>
+              <div style="display:flex;gap:12px"><span style="font-weight:800;opacity:.5">01</span><span><span class="kind" data-kind="regulering">EU-regulering</span>Et forslag om kørsel- og hviletider er sendt i høring. Det kan ændre, hvordan I planlægger ture. Høringsfrist om tre uger.</span></div>
+              <div style="display:flex;gap:12px"><span style="font-weight:800;opacity:.5">02</span><span><span class="kind" data-kind="marked">Markedssignal</span>Dieselprisen stiger for tredje uge i træk. Det rammer de langsigtede fragtaftaler først.</span></div>
+              <div style="display:flex;gap:12px"><span style="font-weight:800;opacity:.5">03</span><span><span class="kind" data-kind="konkurrent">Konkurrent</span>En vognmand i Jylland har åbnet nyt lager i Aalborg. Det ændrer konkurrencen på ruten mod Frederikshavn.</span></div>
             </div>
-            <div onClick="{{ nav.radar }}" style="margin-top:20px;font:700 13px/1 'Public Sans',sans-serif;cursor:pointer">Se hele radaren →</div>
+            <div role="button" tabindex="0" onClick="{{ nav.radar }}" style="margin-top:20px;font:700 13px/1 'Public Sans',sans-serif;cursor:pointer">Se hele radaren →</div>
           </section>
 
           <section class="panel">
@@ -357,13 +388,13 @@
 
           <section class="panel">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap">
-              <h3 class="h3s">Fra den regulatoriske radar</h3>
-              <span onClick="{{ nav.radar }}" class="link">Se alle</span>
+              <h3 class="h3s">Fra den regulatoriske radar <span class="stepchip" data-step="2">Skridt 2</span></h3>
+              <span role="button" tabindex="0" onClick="{{ nav.radar }}" class="link">Se alle</span>
             </div>
             <div class="cols2">
               <sc-for list="{{ radarPreview }}" as="s" hint-placeholder-count="2">
                 <div class="soft">
-                  <div style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A5AFFF;margin-bottom:9px">{{ s.kind }}</div>
+                  <div style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A5AFFF;margin-bottom:9px">{{ s.kind }}</div>
                   <p style="margin:0 0 8px;font:500 15px/1.35 'Public Sans',sans-serif">{{ s.title }}</p>
                   <p class="body" style="font-size:13px;line-height:1.4">{{ s.who }}</p>
                 </div>
@@ -383,27 +414,27 @@
                 <span style="font:500 13px/1 'Public Sans',sans-serif;border:1px solid #4E494E;padding:9px 12px;border-radius:999px;color:#DCD8D3">{{ w.label }}</span>
               </sc-for>
             </div>
-            <div onClick="{{ nav.watch }}" class="link" style="margin-top:16px">Tilføj eller fjern emner</div>
+            <div role="button" tabindex="0" onClick="{{ nav.watch }}" class="link" style="margin-top:16px">Tilføj eller fjern emner</div>
           </section>
 
           <section class="accent-panel">
-            <p class="eyebrow">STEMMER OG KLUMMER</p>
+            <p class="eyebrow">STEMMER OG KLUMMER <span class="stepchip" data-step="2">Skridt 2</span></p>
             <div style="display:flex;flex-direction:column;gap:12px">
-              <span onClick="{{ nav.voices }}" style="font:500 15px/1.35 'Public Sans',sans-serif;cursor:pointer">Stemmer om AI: ny månedlig serie</span>
-              <span onClick="{{ nav.voices }}" style="font:500 15px/1.35 'Public Sans',sans-serif;cursor:pointer">Den blinde vinkel: hvad debatten om transport overser</span>
+              <span role="button" tabindex="0" onClick="{{ nav.voices }}" style="font:500 15px/1.35 'Public Sans',sans-serif;cursor:pointer">Stemmer om AI: ny månedlig serie</span>
+              <span role="button" tabindex="0" onClick="{{ nav.voices }}" style="font:500 15px/1.35 'Public Sans',sans-serif;cursor:pointer">Den blinde vinkel: hvad debatten om transport overser</span>
             </div>
           </section>
 
           <section class="panel" style="padding:22px;border-color:#BA89EC">
-            <p class="eyebrow lilla">I SAMARBEJDE MED DANSK ERHVERV</p>
+            <p class="eyebrow lilla">I SAMARBEJDE MED DANSK ERHVERV <span class="stepchip" data-step="1">Skridt 1</span></p>
             <p style="margin:0 0 14px;font:500 15px/1.35 'Public Sans',sans-serif">Ny analyse fra Dansk Erhverv, vurderet af Y: hvad betyder den for dig?</p>
-            <span onClick="{{ nav.de }}" class="link" style="color:#BA89EC">Læs vurderingen</span>
+            <span role="button" tabindex="0" onClick="{{ nav.de }}" class="link" style="color:#BA89EC">Læs vurderingen</span>
           </section>
 
           <section class="panel" style="padding:22px">
-            <p class="eyebrow dim">FEEDBACK</p>
+            <p class="eyebrow dim">FEEDBACK <span class="stepchip" data-step="1">Skridt 1</span></p>
             <p class="body" style="font-size:14px;margin-bottom:14px">Mangler der noget i dit overblik? Fortæl os det, så justerer vi.</p>
-            <span onClick="{{ nav.watch }}" class="btn-ghost" style="font-size:13px;padding:12px 16px">Bed os holde øje</span>
+            <span role="button" tabindex="0" onClick="{{ nav.watch }}" class="btn-ghost" style="font-size:13px;padding:12px 16px">Bed os holde øje</span>
           </section>
         </aside>
       </div>
@@ -412,27 +443,28 @@
 
   <!-- 5 REGULATORISK RADAR -->
   <sc-if value="{{ sRadar }}" hint-placeholder-val="{{ false }}">
-    <main class="wrap" style="max-width:1000px">
+    <main id="main" tabindex="-1" class="wrap" style="max-width:1000px">
       <p class="eyebrow">REGULATORISK RADAR</p>
       <div style="margin-bottom:14px"><span class="pill indigo">Skridt 2 · vises som retning</span></div>
       <h1 class="h1">Hvad er på vej, og hvem rammer det?</h1>
       <p class="body" style="font-size:17px;max-width:62ch;margin-bottom:28px">EU, Folketinget og myndighederne, sorteret efter hvor tæt de er på dig. Hvert signal har frist og offentlig kilde.</p>
+      <p class="body" style="font-size:13px;margin-bottom:16px">Farven i venstre kant viser, hvor tæt det er på dig: rød er åben frist, blå er til behandling, lilla er vedtaget eller træder i kraft, grå er et forslag.</p>
       <div class="stack" style="gap:14px">
         <sc-for list="{{ radar }}" as="s" hint-placeholder-count="6">
-          <div class="card">
+          <div class="card" data-status="{{ s.stat }}">
             <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px">
               <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                <span style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A5AFFF">{{ s.kind }}</span>
+                <span style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#A5AFFF">{{ s.kind }}</span>
                 <span class="pill {{ s.pill }}">{{ s.status }}</span>
               </div>
               <span style="font:500 12px/1 'Public Sans',sans-serif;color:#A39CA0">{{ s.when }}</span>
             </div>
-            <h3 class="h3" style="margin-bottom:12px">{{ s.title }}</h3>
+            <h2 class="h3" style="margin-bottom:12px">{{ s.title }}</h2>
             <div class="cols2" style="gap:18px">
               <div><p class="eyebrow dim" style="margin-bottom:6px">HVEM RAMMER DET</p><p class="body" style="font-size:14px">{{ s.who }}</p></div>
               <div><p class="eyebrow dim" style="margin-bottom:6px">HVAD BETYDER DET FOR DIG</p><p class="body" style="font-size:14px">{{ s.means }}</p></div>
             </div>
-            <p style="margin:14px 0 0;font:500 12px/1 'IBM Plex Mono',monospace;color:#6f6a70">KILDE: {{ s.source }}</p>
+            <p style="margin:14px 0 0;font:500 12px/1 'IBM Plex Mono',monospace;color:#A39CA0">KILDE: {{ s.source }}</p>
           </div>
         </sc-for>
       </div>
@@ -441,7 +473,7 @@
 
   <!-- 6 STEMMER OG KLUMMER -->
   <sc-if value="{{ sVoices }}" hint-placeholder-val="{{ false }}">
-    <main class="wrap" style="max-width:1000px">
+    <main id="main" tabindex="-1" class="wrap" style="max-width:1000px">
       <p class="eyebrow">STEMMER OG KLUMMER</p>
       <div style="margin-bottom:14px"><span class="pill indigo">Skridt 2 · vises som retning</span></div>
       <h1 class="h1">Fagpersoner, vi henter ind, fordi I beder om det</h1>
@@ -467,16 +499,17 @@
           <p style="margin:0 0 6px;font:700 18px/1.25 'Public Sans',sans-serif">Mangler der et emne?</p>
           <p class="body" style="font-size:14px;color:#DCD8D3">Peg på det, så tager vi fat i fagpersonerne.</p>
         </div>
-        <span onClick="{{ nav.watch }}" class="btn">Bed os holde øje</span>
+        <span role="button" tabindex="0" onClick="{{ nav.watch }}" class="btn">Bed os holde øje</span>
       </div>
     </main>
   </sc-if>
 
   <!-- 7 I SAMARBEJDE MED DANSK ERHVERV -->
   <sc-if value="{{ sDE }}" hint-placeholder-val="{{ false }}">
-    <main class="wrap" style="max-width:1000px">
+    <main id="main" tabindex="-1" class="wrap" style="max-width:1000px">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
         <span class="pill lilla">I SAMARBEJDE MED DANSK ERHVERV</span>
+        <span class="stepchip" data-step="1" style="margin-left:0">Skridt 1</span>
         <span style="font:500 13px/1 'Public Sans',sans-serif;color:#A39CA0">Mærket samarbejde. Vurderingen er Ys egen.</span>
       </div>
       <h1 class="h1" style="max-width:26ch">Dansk Erhvervs analyse, vurderet og forklaret</h1>
@@ -505,41 +538,43 @@
             <p class="body" style="font-size:14px">Genforhandl fragtaftaler med brændstofklausul, før høringsfristen på hviletidsforslaget udløber.</p>
           </div>
         </div>
-        <hr class="divider" style="margin:20px 0" />
-        <p class="eyebrow">Y'S VURDERING</p>
-        <p class="body" style="font-size:14px;color:#DCD8D3">Analysen dækker de store vognmænd bedst. Tallene for virksomheder under ti biler hviler på et lille grundlag, og det bør læses med forbehold.</p>
-        <p style="margin:16px 0 0;font:500 12px/1 'IBM Plex Mono',monospace;color:#6f6a70">KILDE: DANSK ERHVERV · BEARBEJDET AF Y-REDAKTIONEN</p>
+        <div class="callout">
+          <p class="eyebrow lilla">Y'S VURDERING</p>
+          <p class="body" style="font-size:14px;color:#EEEDED">Analysen dækker de store vognmænd bedst. Tallene for virksomheder under ti biler hviler på et lille grundlag, og det bør læses med forbehold.</p>
+        </div>
+        <p style="margin:16px 0 0;font:500 12px/1 'IBM Plex Mono',monospace;color:#A39CA0">KILDE: DANSK ERHVERV · BEARBEJDET AF Y-REDAKTIONEN</p>
       </section>
     </main>
   </sc-if>
 
   <!-- 8 BED OS HOLDE ØJE -->
   <sc-if value="{{ sWatch }}" hint-placeholder-val="{{ false }}">
-    <main class="wrap" style="max-width:900px">
+    <main id="main" tabindex="-1" class="wrap" style="max-width:900px">
       <p class="eyebrow">BED OS HOLDE ØJE</p>
+      <div style="margin-bottom:14px"><span class="pill green">Skridt 1</span></div>
       <h1 class="h1">Hvad vil du have mere af?</h1>
       <p class="body" style="font-size:17px;max-width:62ch;margin-bottom:28px">Dit valg styrer, hvad Y overvåger, og hvilke stemmer og klummer vi opretter. Du bestemmer emnerne. Redaktionen bestemmer konklusionerne.</p>
 
       <div class="chips" style="margin-bottom:22px">
         <sc-for list="{{ topicChips }}" as="t" hint-placeholder-count="8">
-          <span onClick="{{ t.toggle }}" style="font:600 14px/1 'Public Sans',sans-serif;padding:12px 16px;border-radius:999px;cursor:pointer;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }}">{{ t.label }}</span>
+          <span role="button" tabindex="0" onClick="{{ t.toggle }}" class="opt" style="border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }}">{{ t.label }}</span>
         </sc-for>
       </div>
 
       <div style="display:flex;gap:10px;align-items:center;max-width:520px;margin-bottom:34px">
         <input class="input" type="text" placeholder="Tilføj dit eget emne, fx grønne afgifter" value="{{ ownTopic }}" onInput="{{ setOwn }}" onKeyDown="{{ ownKey }}" />
-        <span onClick="{{ addOwn }}" class="btn-ghost" style="padding:13px 18px;white-space:nowrap">Tilføj</span>
+        <span role="button" tabindex="0" onClick="{{ addOwn }}" class="btn-ghost" style="padding:13px 18px;white-space:nowrap">Tilføj</span>
       </div>
 
       <section class="panel" style="margin-bottom:22px">
-        <h3 class="h3s" style="margin-bottom:6px">Giv feedback på dagens signaler</h3>
+        <h2 class="h3s" style="margin-bottom:6px">Giv feedback på dagens signaler</h2>
         <p class="body" style="font-size:14px;margin-bottom:8px">Ét klik, så ved vi, hvad du vil have mere eller mindre af.</p>
         <div>
           <sc-for list="{{ feedbackItems }}" as="f" hint-placeholder-count="3">
             <div class="listrow" style="align-items:center;flex-wrap:wrap">
               <span style="flex:1;min-width:240px;font:500 15px/1.35 'Public Sans',sans-serif">{{ f.title }}</span>
-              <span onClick="{{ f.more }}" style="font:600 12px/1 'Public Sans',sans-serif;padding:9px 12px;border-radius:999px;cursor:pointer;border:1px solid {{ f.moreBorder }};background:{{ f.moreBg }};color:{{ f.moreColor }}">Mere af det</span>
-              <span onClick="{{ f.less }}" style="font:600 12px/1 'Public Sans',sans-serif;padding:9px 12px;border-radius:999px;cursor:pointer;border:1px solid {{ f.lessBorder }};background:{{ f.lessBg }};color:{{ f.lessColor }}">Mindre af det</span>
+              <span role="button" tabindex="0" onClick="{{ f.more }}" class="opt-sm" style="border:1px solid {{ f.moreBorder }};background:{{ f.moreBg }};color:{{ f.moreColor }}">Mere af det</span>
+              <span role="button" tabindex="0" onClick="{{ f.less }}" class="opt-sm" style="border:1px solid {{ f.lessBorder }};background:{{ f.lessBg }};color:{{ f.lessColor }}">Mindre af det</span>
             </div>
           </sc-for>
         </div>
@@ -554,7 +589,7 @@
 
   <!-- 9 SET FRA DANSK ERHVERV -->
   <sc-if value="{{ sDEView }}" hint-placeholder-val="{{ false }}">
-    <main class="wrap" style="max-width:1000px">
+    <main id="main" tabindex="-1" class="wrap" style="max-width:1000px">
       <p class="eyebrow">SET FRA DANSK ERHVERV</p>
       <h1 class="h1">Hvad jeres medlemmer beder om, og hvad det udløser</h1>
       <p class="body" style="font-size:17px;max-width:62ch;margin-bottom:28px">Et anonymt, samlet billede af jeres medlemmer. Eksemplet viser, hvordan I kan se, hvad de mangler, uden at nogen har gættet behovet på forhånd.</p>
@@ -573,7 +608,7 @@
         </section>
         <div class="stack">
           <section class="accent-panel">
-            <p class="eyebrow">UDLØST AF EFTERSPØRGSLEN</p>
+            <p class="eyebrow">UDLØST AF EFTERSPØRGSLEN · SKRIDT 2</p>
             <div style="display:flex;flex-direction:column;gap:12px;font:500 15px/1.35 'Public Sans',sans-serif">
               <span>Stemmer om AI: tre fagpersoner</span>
               <span>Den blinde vinkel: transportregulering</span>
@@ -603,19 +638,19 @@
   <!-- DEMO-BAR -->
   <div class="demo-bar" style="position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(13,13,16,.96);border-top:1px solid #403C40;backdrop-filter:blur(8px)">
     <div style="max-width:1400px;margin:0 auto;padding:10px 20px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px 14px">
-      <span style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;color:#A39CA0;white-space:nowrap;grid-column:1;grid-row:1">OPLÆG</span>
+      <span style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;color:#A39CA0;white-space:nowrap;grid-column:1;grid-row:1">OPLÆG</span>
       <div class="om-chiprow" style="display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;grid-column:2;grid-row:1">
         <sc-for list="{{ flowA }}" as="s" hint-placeholder-count="2">
-          <span onClick="{{ s.go }}" style="font:600 11px/1 'IBM Plex Mono',monospace;padding:8px 11px;border-radius:999px;cursor:pointer;white-space:nowrap;border:1px solid {{ s.border }};color:{{ s.color }};background:{{ s.bg }}">{{ s.label }}</span>
+          <span role="button" tabindex="0" aria-current="{{ s.cur }}" onClick="{{ s.go }}" style="font:600 11px/1 'IBM Plex Mono',monospace;padding:8px 11px;border-radius:999px;cursor:pointer;white-space:nowrap;border:1px solid {{ s.border }};color:{{ s.color }};background:{{ s.bg }}">{{ s.label }}</span>
         </sc-for>
       </div>
-      <span style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;color:#A39CA0;white-space:nowrap;grid-column:1;grid-row:2">MEDLEMMETS REJSE</span>
+      <span style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;color:#A39CA0;white-space:nowrap;grid-column:1;grid-row:2">MEDLEMMETS REJSE</span>
       <div class="om-chiprow" style="display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;grid-column:2;grid-row:2">
         <sc-for list="{{ flowB }}" as="s" hint-placeholder-count="7">
-          <span onClick="{{ s.go }}" style="font:600 11px/1 'IBM Plex Mono',monospace;padding:8px 11px;border-radius:999px;cursor:pointer;white-space:nowrap;border:1px solid {{ s.border }};color:{{ s.color }};background:{{ s.bg }}">{{ s.label }}</span>
+          <span role="button" tabindex="0" aria-current="{{ s.cur }}" onClick="{{ s.go }}" style="font:600 11px/1 'IBM Plex Mono',monospace;padding:8px 11px;border-radius:999px;cursor:pointer;white-space:nowrap;border:1px solid {{ s.border }};color:{{ s.color }};background:{{ s.bg }}">{{ s.label }}</span>
         </sc-for>
       </div>
-      <span class="hide-sm" style="grid-column:3;grid-row:1 / span 2;justify-self:end;font:600 10px/1 'IBM Plex Mono',monospace;color:#A39CA0;border:1px solid #4E494E;padding:9px 11px;border-radius:999px;white-space:nowrap">Eksempeldata · udkast</span>
+      <span class="hide-sm" style="grid-column:3;grid-row:1 / span 2;justify-self:end;font:600 11px/1 'IBM Plex Mono',monospace;color:#A39CA0;border:1px solid #4E494E;padding:9px 11px;border-radius:999px;white-space:nowrap">Eksempeldata · udkast</span>
     </div>
   </div>
 </div>
@@ -632,6 +667,17 @@ class Component extends DCLogic {
     fb: {}
   };
 
+  _kb = (() => {
+    if (typeof document === "undefined" || window.__ybKb) return null;
+    window.__ybKb = true;
+    document.addEventListener("keydown", (e) => {
+      if ((e.key === "Enter" || e.key === " ") && e.target && e.target.getAttribute && e.target.getAttribute("role") === "button") {
+        e.preventDefault(); e.target.click();
+      }
+    });
+    return true;
+  })();
+
   baseTopics = ["EU", "AI", "Energi", "Medarbejdere", "Eksport", "Konkurrenter", "Transport", "Skat og afgifter"];
   brancher = ["Transport og logistik", "Handel", "Service", "Turisme", "Andet"];
   rhythms = ["Morgenbrief kl. 06.00", "Ugentlig digest", "Kun ved vigtige ændringer"];
@@ -640,13 +686,14 @@ class Component extends DCLogic {
     return () => {
       this.setState({ screen });
       window.scrollTo(0, 0);
+      setTimeout(() => { const m = document.querySelector("main"); if (m) m.focus({ preventScroll: true }); }, 80);
     };
   }
 
   chip(label, screen) {
     const active = this.state.screen === screen;
     return {
-      label, go: this.go(screen),
+      label, go: this.go(screen), cur: active ? "page" : "false",
       bg: active ? "#4257F5" : "transparent",
       color: active ? "#EEEDED" : "#DCD8D3",
       border: active ? "#4257F5" : "#4E494E"
@@ -738,6 +785,9 @@ class Component extends DCLogic {
         source: "UDBUD.DK (EKSEMPEL)" }
     ];
 
+    const statMap = { "Høring": "hoering", "Åben": "hoering", "Til behandling": "behandling", "Træder i kraft": "kraft", "Vedtaget": "kraft", "Forslag": "forslag" };
+    radar.forEach(r => { r.stat = statMap[r.status] || "forslag"; });
+
     const feedbackSrc = [
       { key: "f1", title: "EU: forslag om kørsel- og hviletider sendt i høring" },
       { key: "f2", title: "Dieselprisen stiger for tredje uge i træk" },
@@ -791,16 +841,16 @@ class Component extends DCLogic {
 
       flowA: [
         this.chip("1 Oplæg", "pitch"),
-        this.chip("9 Set fra Dansk Erhverv", "deview")
+        this.chip("9 Set fra DE", "deview")
       ],
       flowB: [
-        this.chip("2 Medlemsindgang", "join"),
+        this.chip("2 Indgang", "join"),
         this.chip("3 Onboarding", "onboard"),
-        this.chip("4 Morgensignal og overblik", "dash"),
-        this.chip("5 Regulatorisk radar", "radar"),
-        this.chip("6 Stemmer og klummer", "voices"),
-        this.chip("7 I samarbejde med DE", "de"),
-        this.chip("8 Bed os holde øje", "watch")
+        this.chip("4 Dashboard", "dash"),
+        this.chip("5 Radar", "radar"),
+        this.chip("6 Stemmer", "voices"),
+        this.chip("7 DE-laget", "de"),
+        this.chip("8 Emner", "watch")
       ]
     };
   }
