@@ -223,6 +223,8 @@ Registration Wall skal besluttes og implementeres af Tech Lead inden paywall-lan
 | Pay-per-view / micropayment | Speculative — fase 2+ |
 | Partner (sponsor/relation) | Directional — governance-model er udestående ⚠ |
 | API (enterprise/data) | Speculative — fase 2 |
+| Y Business AI Monitor (egen database over danske AI-implementeringer) | Speculative — fase 2, kræver database/datamodel og Tech Lead-scoping |
+| AI Lab (redaktionen tester selv AI-påstande) | Speculative — fase 2, kræver redaktionel testkapacitet og metodestandard |
 
 ---
 

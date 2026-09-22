@@ -393,7 +393,17 @@ Y Business ejer et andet spørgsmål:
 
 **Hvad kræver det af organisationen, ledelsen og processerne?**
 
-AI-implementering er et ledelses- og driftsproblem, før det er et teknologiproblem.
+Det er en hypotese, redaktionen arbejder ud fra — ikke et svar, der er
+besluttet på forhånd. Business AI arbejder undersøgende: påstand →
+dokumentation → modargument → konsekvens → hvad ved vi endnu ikke?
+Redaktionen skal ikke vide på forhånd, om AI skaber produktivitet, erstatter
+job, forbedrer kvalitet eller gør virksomheder mere konkurrencedygtige. Det
+er det, journalistikken dokumenterer.
+
+**Redaktionelt løfte: Vi tror ikke på AI-påstande. Vi undersøger dem.**
+
+Eksternt formuleret: *Vi følger pengene, måler effekten, udfordrer hypen og
+viser de virksomheder, der får AI til at virke.*
 
 ### Det redaktionelle filter
 
@@ -426,20 +436,110 @@ udkast — er historisk set indgangsbilletten til vidensprofessioner. Når AI
 overtager det, mangler virksomheder en model for, hvordan fremtidens erfarne
 specialister overhovedet opbygges.
 
-### Myter der skal udfordres løbende
+Disse tre spørgsmål er FRONTIER-materiale — se de fire indholdsspor nedenfor.
 
-Business AI er præget af sejlivede misforståelser, der systematisk spænder ben
-for implementering. Y Business udfordrer dem systematisk med dokumentation.
+### Fire indholdsspor
+
+Business AI dækkes gennem fire komplementære spor. Hvert spor er Ben 1's
+operationalisering af de tre pillars (§5) — ikke en ny, sideordnet struktur.
+Alle større Business AI-historier prøves desuden mod Business AI-protokollen
+(§9): hvad er påstanden, hvad er dokumentationen, hvad taler imod, hvad er
+konsekvensen, hvad ved vi endnu ikke.
+
+**PROOF · Virker det faktisk? (Understand-pillaren anvendt på Ben 1)**
+
+Testes: hvilken konkret effekt AI har skabt, om effekten kan dokumenteres,
+investeringens størrelse, tidsforbrug før effekt, og hvem der fik gevinsten.
+Flytter dækningen fra intentioner og pressemeddelelser til dokumenteret
+effekt. Bygger videre på §7D Automatiseringspotentialet.
+
+Formater: **AI-regnskabet** (gennemgår økonomien i konkrete AI-projekter —
+*"Virksomheden siger, AI har frigivet 12.000 arbejdstimer. Hvad kostede
+projektet — og hvad blev timerne brugt til?"*), **Påstanden** (en udbredt
+AI-påstand undersøges systematisk, fx: gør Copilot medarbejdere mere
+produktive? Fjerner AI behovet for juniorstillinger?).
+
+Tre faste påstande, der løbende testes under PROOF:
 
 **"AI tager vores jobs."** Realiteten: AI tager ikke jobs — men virksomheder
 og medarbejdere der integrerer AI, udkonkurrerer dem der tøver.
 
 **"AI er et IT-projekt."** Realiteten: Størstedelen af AI-initiativer fejler
-af organisatoriske, ikke tekniske årsager. Forandringsledelse er forudsætningen,
-ikke infrastrukturen.
+af organisatoriske, ikke tekniske årsager. Forandringsledelse er
+forudsætningen, ikke infrastrukturen.
 
 **"Mere data giver bedre AI."** Realiteten: Datakvalitet og konsistens er
 vigtigere end volumen. Massive dataprojekter strander, fordi dette overses.
+
+**CHALLENGE · Hvad fortæller AI-fortællingen ikke? (Challenge-pillaren anvendt på Ben 1)**
+
+Samme pillar som §5's Challenge, ikke en ny disciplin. Formålet er ikke at
+være anti-AI, men kritisk over for overdrevne, udokumenterede eller
+interessebårne fortællinger: hype, leverandørinteresser, skjulte
+omkostninger, fejlslagne implementeringer, jobeffekter, afhængighed af
+teknologileverandører.
+
+Grundregel: Y Business er begejstret for mulighederne uden at være
+imponeret af påstandene.
+
+Formater: **Det virkede ikke** (AI-projekter der blev lukket, reduceret
+eller aldrig leverede den lovede effekt), **Følg pengene** (hvem tjener på
+AI-transformationen — virksomheden, leverandøren, konsulenten,
+medarbejderen?), **AI under lup** (en større AI-fortælling undersøges
+kritisk).
+
+**PRACTICE · Hvordan får virksomheder AI til at virke? (Inspire-pillaren anvendt på Ben 1)**
+
+Samme pillar som §5's Inspire, prøvet mod Case-protokollen (§9). En
+succeshistorie skal dokumentere problem, udgangspunkt, teknologi,
+implementering, organisatoriske ændringer, friktion, investering, resultat,
+begrænsninger og hvad andre realistisk kan lære.
+
+Eksempel: *"De sparer nu 1.800 timer om året med AI. Det tog 14 måneder,
+tre fejlslagne forsøg og en komplet ændring af arbejdsgangen."* Succesen
+bliver mere troværdig, fordi friktionen dokumenteres med.
+
+Formater: **Det virkede** (dokumenterede danske AI-cases), **Sådan gjorde
+de** (dybe implementeringshistorier med metode og resultater), **Fra pilot
+til drift** (hvad kræver det at komme fra prototype til stabil drift?).
+
+**FRONTIER · Hvad er ved at ændre sig?**
+
+Det eneste af de fire spor uden et direkte match i §5's pillar-system —
+det fremadrettede blik på Business AI. Ikke klassisk trendjournalistik, men
+journalistik om udviklinger der kan ændre virksomheder, markeder og
+arbejdsformer: AI-agenter, nye organisationsformer, automatisering af
+vidensarbejde, nye prismodeller, AI-native virksomheder.
+
+Spørgsmålet FRONTIER stiller: *Hvis denne udvikling fortsætter, hvad ændrer
+den så konkret i virksomhedernes økonomi, organisation og
+konkurrenceevne?* De tre spørgsmål ingen har besvaret (ovenfor) er
+FRONTIER-materiale.
+
+Format: **AI-skiftet** (longitudinale historier, hvor Y Business følger de
+samme virksomheder over tid).
+
+### Redaktionelle principper — det nye
+
+De fleste principper fra Business AI 2.0-konceptet findes allerede i
+modellen under andre navne: friktion som journalistik (Inspire-reglen),
+successer og fiaskoer skal dokumenteres (Case-protokol, "Det virkede
+ikke"), usikkerhed er legitim ("hvad ved vi endnu ikke"). Fire principper
+er reelt nye og tilføjes her:
+
+**Organisation før demo.** En fungerende demonstration er ikke det samme
+som en fungerende virksomhedsløsning.
+
+**Økonomi skal med.** AI-investeringer kobles så vidt muligt til
+omkostninger, gevinster og alternativer — jf. AI-regnskabet.
+
+**Interessen bag påstanden skal være synlig.** Leverandører, konsulenter,
+investorer og virksomheder har forskellige økonomiske interesser i
+AI-fortællingen. Den interesse skal fremgå af historien.
+
+**Y skal kunne ændre konklusion.** Når evidensen ændrer sig, skal
+journalistikken kunne gøre det samme. En tidligere konklusion er ikke en
+låst position.
 
 ### Prioriterede undertemaer
 
@@ -478,7 +578,7 @@ kildesøgning og vinkelprioritering.
   via dialog med AI forskyder magten over produktudvikling ud til designere og
   forretningsudviklere.
 
-### Spor 1: Forudsætningerne
+### Arbejdsspor 1: Forudsætningerne
 
 Hvad kræver succesfuld AI-implementering?
 
@@ -488,7 +588,7 @@ og etiske rammer.
 
 **Intern regel: Ingen AI-dækning uden organisatorisk eller forretningsmæssig konsekvens.**
 
-### Spor 2: Stemmerne
+### Arbejdsspor 2: Stemmerne
 
 Hvad siger de globale AI-meningsdannere — nationalt, internationalt
 og fra Silicon Valley — og hvad betyder det konkret for danske
@@ -502,7 +602,7 @@ samme skridt.*
 
 Succeserne vises med metode, friktion og begrænsning — aldrig som glorificering.
 
-### Spor 3: Hullet i konkurrenternes dækning
+### Arbejdsspor 3: Hullet i konkurrenternes dækning
 
 Konkurrentanalysen dokumenterer en strukturel polarisering i det danske B2B-medielandskab:
 på den ene side interesseorganisationerne, på den anden de traditionelle erhvervsmedier.
@@ -733,6 +833,32 @@ stemme snarere end på struktureret overvågning:
 
 ---
 
+## 7F. Y Business AI Monitor og AI Lab (fremtidige kapaciteter)
+
+To initiativer rækker ud over content-opdatering og er ikke en del af
+launch — de flages her, så de ikke går tabt, men lover intet før de er
+Tech Lead-scopet. Status: **Speculative — fase 2**, jf. Produkt - Roadmap.md.
+
+**Y Business AI Monitor.** En løbende egen database over konkrete danske
+AI-implementeringer — virksomhed, branche, use case, investeringsniveau,
+implementeringstid, dokumenteret effekt, jobeffekt, status. Grundlaget for
+PROOF-sporets AI-regnskaber, og på sigt for egne benchmarks, analyser og
+historier som *"Vi har analyseret 127 danske AI-projekter. Her skaber AI
+dokumenterbare gevinster."* Det er en redaktionel fordel, der er vanskelig
+for konkurrenterne at kopiere, fordi den kræver vedvarende egen research,
+ikke kun aggregering. Kræver database, datamodel og research-bemanding —
+afklares med Tech Lead.
+
+**AI Lab.** Redaktionen tester selv konkrete AI-påstande, produkter og
+arbejdsgange med transparent metode — fx: kan en AI-agent håndtere 500
+kundemails, og hvor ofte laver den fejl? Hver test skal beskrive metode,
+datasæt, omkostninger, tidsforbrug, fejlrate og begrænsninger. AI Lab
+supplerer PROOF og CHALLENGE med egen evidens frem for kun at referere
+andres. Kræver en fast testmetode og redaktionel testkapacitet — ikke
+en del af launch.
+
+---
+
 ## 8. Klummer, kommentatorer og faste stemmer
 
 Klummeskribenter og kommentatorer er ikke pynt.
@@ -857,6 +983,25 @@ Før en Inspire-case publiceres, skal redaktionen have:
 7. Klar deklaration af casevirksomhedens interesse
 
 Hvis casen ikke har friktion, er den ikke Y Business.
+
+### Business AI-protokol (Ben 1)
+
+Før en større Business AI-historie publiceres — uanset hvilket af de fire
+indholdsspor (§7) den hører under — skal redaktionen kunne svare på:
+
+1. Hvad er påstanden, og hvem siger den — virksomheden selv, en leverandør,
+   en forsker, en konsulent, en investor eller en medarbejder?
+2. Hvad er dokumentationen — økonomiske resultater, produktivitetsdata,
+   kvalitetsmålinger, tidsmålinger, før/efter-sammenligninger?
+3. Hvad taler imod — hvilke begrænsninger, alternative forklaringer eller
+   negative effekter findes?
+4. Hvad er konsekvensen — for økonomien, arbejdspladserne, organisationen,
+   kunderne, konkurrencen?
+5. Hvad ved vi endnu ikke?
+
+Jo større påstand, desto stærkere dokumentation. Usikkerhed skal siges
+tydeligt, ikke skjules — og konklusionen skal kunne ændres, når evidensen
+gør det.
 
 ### AI-deklaration
 

@@ -320,6 +320,44 @@ og tilføjes her, når produktionsmodellen er afklaret:
 
 ---
 
+## 3B. Business AI-formater (Ben 1) — kort reference
+
+Otte formater knyttet til Business AI 2.0-konceptet (*Redaktion -
+Editorial-model.md* §7, fire indholdsspor). Kort reference-stil som §3 —
+fulde produktionsspecs udfoldes, når produktionsmodellen er afklaret.
+`Myten om …` (§4 nedenfor) er ikke en del af denne gruppe — det er et
+platformbredt format under egen udfasning, ikke Business-AI-specifikt.
+
+**PROOF-sporet:**
+- **AI-regnskabet** — gennemgår investering, omkostning og dokumenteret
+  effekt i ét konkret AI-projekt. Situationsbestemt, ikke fast frekvens.
+- **Påstanden** — tester én udbredt AI-påstand systematisk mod
+  dokumentation. Hver 14. dag.
+
+**CHALLENGE-sporet:**
+- **Det virkede ikke** — AI-projekter der blev lukket, reduceret eller
+  aldrig leverede den lovede effekt. Situationsbestemt.
+- **Følg pengene** — kortlægger hvem der reelt tjener på en given
+  AI-transformation. Situationsbestemt.
+- **AI under lup** — kritisk analyse af én større AI-fortælling,
+  teknologi eller leverandør. Situationsbestemt.
+
+**PRACTICE-sporet:**
+- **Det virkede** — dokumenterede danske AI-cases, prøvet mod
+  Case-protokollen. Ugentligt.
+- **Fra pilot til drift** — følger én implementering fra prototype til
+  stabil drift. Situationsbestemt, flerdelt.
+
+**FRONTIER-sporet:**
+- **AI-skiftet** — longitudinal historie, hvor redaktionen følger de
+  samme virksomheder over tid. Kvartalsvis opfølgning.
+
+AI Lab og Y Business AI Monitor (*Editorial-model.md* §7F) er ikke egne
+formater, men kilde- og evidensgrundlag for formaterne ovenfor —
+henholdsvis redaktionens egne test og redaktionens egen database.
+
+---
+
 ## 4. Tre skalerbare specialformater (under revision)
 
 **Status:** Disse tre formater indgår ikke i den nye kanoniske

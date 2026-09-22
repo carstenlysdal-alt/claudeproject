@@ -1617,7 +1617,8 @@ button:focus, button:focus-visible {
 #view-intern .src-head-tag{ font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-10);border:1px solid var(--accent-30);padding:4px 8px; }
 #view-intern .src-head-title{ font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink); }
 #view-intern .src-head-close{ background:none;border:none;cursor:pointer;font-size:16px;color:var(--muted);padding:4px 8px; }
-#view-intern .src-body{ overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:20px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent; }
+#view-intern .src-body{ overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:20px;scrollbar-width:none;-ms-overflow-style:none; }
+#view-intern .src-body::-webkit-scrollbar{ display:none;width:0;height:0; }
 #view-intern .src-sec-lbl{ font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px; }
 #view-intern .src-stack{ display:flex;flex-wrap:wrap;gap:4px; }
 #view-intern .src-chip{ font-family:var(--mono);font-size:8.5px;font-weight:700;padding:4px 8px;border:1px solid var(--line2);color:var(--ink70);letter-spacing:.04em; }
@@ -1707,7 +1708,8 @@ button:focus, button:focus-visible {
 
 /* === THAT'S Y === */
 #view-intern .ty-cols{display:grid;grid-template-columns:repeat(3,1fr);height:100%;gap:1px;background:var(--line)}
-#view-intern .ty-col{padding:36px 44px 52px;display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(54,19,82,.15) transparent}
+#view-intern .ty-col{padding:36px 44px 52px;display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+#view-intern .ty-col::-webkit-scrollbar{display:none;width:0;height:0}
 #view-intern .ty-col.mrk{background:var(--tint)}
 #view-intern .ty-col.sol{background:var(--accent)}
 #view-intern .ty-col.biz{background:var(--card)}
@@ -1864,9 +1866,12 @@ button:focus, button:focus-visible {
 
 /* === S-AI: Business AI 3-kolonne === */
 #view-intern .s-ai-wrap{ display:grid; grid-template-columns:1.08fr .92fr 1fr; height:100%; }
-#view-intern .s-ai-dark{ padding:44px 48px 80px; background:var(--accent); display:flex; flex-direction:column; overflow-y:auto; min-height:0; scrollbar-width:thin; scrollbar-color:rgba(196,181,253,.2) transparent; }
-#view-intern .s-ai-mid{ padding:44px 40px 80px; background:var(--card); border-right:1px solid var(--line); display:flex; flex-direction:column; overflow-y:auto; min-height:0; }
-#view-intern .s-ai-proto{ padding:44px 32px 80px; background:#2D1369; display:flex; flex-direction:column; overflow-y:auto; min-height:0; scrollbar-width:thin; scrollbar-color:rgba(196,181,253,.2) transparent; }
+#view-intern .s-ai-dark{ padding:44px 48px 80px; background:var(--accent); display:flex; flex-direction:column; overflow-y:auto; min-height:0; scrollbar-width:none; -ms-overflow-style:none; }
+#view-intern .s-ai-dark::-webkit-scrollbar{ display:none; width:0; height:0; }
+#view-intern .s-ai-mid{ padding:44px 40px 80px; background:var(--card); border-right:1px solid var(--line); display:flex; flex-direction:column; overflow-y:auto; min-height:0; scrollbar-width:none; -ms-overflow-style:none; }
+#view-intern .s-ai-mid::-webkit-scrollbar{ display:none; width:0; height:0; }
+#view-intern .s-ai-proto{ padding:44px 32px 80px; background:#2D1369; display:flex; flex-direction:column; overflow-y:auto; min-height:0; scrollbar-width:none; -ms-overflow-style:none; }
+#view-intern .s-ai-proto::-webkit-scrollbar{ display:none; width:0; height:0; }
 /* Mørk kolonne */
 #view-intern .bai-eyebrow{ font-family:var(--mono); font-size:10px; font-weight:700; color:rgba(196,181,253,.58); letter-spacing:.22em; text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:8px; }
 #view-intern .bai-eyebrow::before{ content:''; display:block; width:16px; height:1px; background:currentColor; }
@@ -7819,8 +7824,13 @@ button:focus, button:focus-visible {
       display: flex;
       flex-direction: column;
       gap: 20px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--line2) transparent;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    #view-redaktion .rd-src-body::-webkit-scrollbar{
+      display: none;
+      width: 0;
+      height: 0;
     }
 
     #view-redaktion .rd-src-sec-lbl{
@@ -11602,24 +11612,24 @@ button:focus, button:focus-visible {
         <p class="bai-sub">Ikke modelnavne, hype og teknologisnak. Men AI som konkret forandring i virksomheder: arbejdsgange, ledelse, ansvar, risiko, compliance og forretningsmodeller.</p>
         <div style="display:flex;flex-direction:column;flex:1;">
           <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.1);">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">01</div>
-            <div class="bai-q" style="margin-bottom:8px;">Når AI går galt</div>
-            <p class="bai-sub" style="margin-bottom:0;">Fejl, friktion, legacy-systemer, dårlige data og projekter der ikke skalerer. Vinklet uden at sælge løsningen — for at spare andre for de samme fejl.</p>
+            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">PROOF</div>
+            <div class="bai-q" style="margin-bottom:8px;">Virker det faktisk?</div>
+            <p class="bai-sub" style="margin-bottom:0;">Effekt, investering og tidsforbrug dokumenteret. Flytter dækningen fra intentioner og pressemeddelelser til dokumenteret effekt. Format: AI-regnskabet, Påstanden.</p>
           </div>
           <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.1);">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">02</div>
-            <div class="bai-q" style="margin-bottom:8px;">Hvad virker faktisk?</div>
-            <p class="bai-sub" style="margin-bottom:0;">Vi tester leverandørløfter og spørger, om AI-værktøjer faktisk skaber den lovede effekt. Ærlige vurderinger der kan spare dyre fejlkøb.</p>
+            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">CHALLENGE</div>
+            <div class="bai-q" style="margin-bottom:8px;">Hvad fortæller fortællingen ikke?</div>
+            <p class="bai-sub" style="margin-bottom:0;">Hype, leverandørinteresser, skjulte omkostninger, fejlslagne implementeringer. Begejstret for mulighederne uden at være imponeret af påstandene. Format: Det virkede ikke, Følg pengene.</p>
           </div>
           <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.1);">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">03</div>
-            <div class="bai-q" style="margin-bottom:8px;">Sådan ændrer AI arbejdet</div>
-            <p class="bai-sub" style="margin-bottom:0;">Konkret ændring i mandagens arbejde. Ikke fremtidsord. Vi viser, hvordan AI ændrer salg, økonomi, HR, compliance, kundeservice, marketing og ledelse.</p>
+            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:rgba(196,181,253,.55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">PRACTICE</div>
+            <div class="bai-q" style="margin-bottom:8px;">Hvordan lykkes det?</div>
+            <p class="bai-sub" style="margin-bottom:0;">Problem, metode, friktion, resultat, begrænsning — aldrig kun succesen. Format: Det virkede, Fra pilot til drift.</p>
           </div>
           <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.1);">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">04 · Nordisk forspring</div>
-            <div class="bai-q" style="margin-bottom:8px;">Historier og læring fra Danmark og Norden</div>
-            <p class="bai-sub" style="margin-bottom:0;">Vi dækker primært danske virksomheders virkelighed og orienterer bredt, men spejler os aktivt i nabolandene: vi skriver historier og vinkler fra Danmark såvel som svensk industri (AI Sweden, Ericsson, Saab) og finsk digitalisering. Vi formidler erfaringerne, så danske ledere kan lære af både hjemlige pionerer og naboernes forspring.</p>
+            <div style="font-family:var(--mono);font-size:8px;font-weight:700;color:#93C5FD;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;">FRONTIER</div>
+            <div class="bai-q" style="margin-bottom:8px;">Hvad er ved at ændre sig?</div>
+            <p class="bai-sub" style="margin-bottom:0;">AI-agenter, nye organisationsformer, forretningsmodeller — før de er blevet konsensus. Eneste spor uden match i Understand/Challenge/Inspire. Format: AI-skiftet.</p>
           </div>
         </div>
         <div class="bai-keyq">Vi dækker ikke kun hvad AI kan. Vi dækker hvad AI kræver.</div>
@@ -11719,6 +11729,8 @@ button:focus, button:focus-visible {
             <div class="ai-box-row">Premium AI-briefs</div>
             <div class="ai-box-row">Branchebaserede AI-radarer</div>
             <div class="ai-box-row">API og enterprise-lag</div>
+            <div class="ai-box-row">Y Business AI Monitor — egen database over danske AI-implementeringer</div>
+            <div class="ai-box-row">AI Lab — redaktionen tester selv AI-påstande</div>
           </div>
         </div>
 
@@ -13534,7 +13546,9 @@ button:focus, button:focus-visible {
               <p class="s7-bai-sub">AI lover fart, effektivitet og nye muligheder. Men i virksomhederne opstår værdien
                 ikke i modellen alene. Den opstår — eller forsvinder — i arbejdet, dataene, ledelsen, kontrollen,
                 kulturen, kundekontakten og ansvaret.</p>
-              <p class="s7-bai-sub">Det er dér, Y Business går ind.</p>
+              <p class="s7-bai-sub"><strong>Y Business undersøger, hvad AI faktisk gør ved erhvervslivet.</strong>
+                Vi følger pengene, måler effekten, udfordrer hypen og viser de virksomheder, der får det til at
+                virke.</p>
               <p class="s7-bai-sub" style="margin-top:4px;">En historie fortjener kun plads hos os, når den rammer
                 alle tre lag:</p>
               <div class="s7-bai-questions">
@@ -13543,32 +13557,34 @@ button:focus, button:focus-visible {
                 <div class="s7-bai-question">Økonomisk incitament — hvem sparer, og hvis omsætning trues?</div>
                 <div class="s7-bai-question">Organisatorisk friktion — hvad forhindrer det i praksis?</div>
               </div>
-              <div class="s7-bai-keyq">Ikke hvad AI kan. Hvad AI kræver.</div>
+              <div class="s7-bai-keyq">Vi tror ikke på AI-påstande. Vi undersøger dem.</div>
             </div>
 
             <div class="s7-right">
-              <div class="s7-hed-r">Vi dækker AI, når det ændrer noget.</div>
-              <p class="s7-vp-body">Ikke modelnavne, hype og teknologisnak. Men AI som konkret forandring i
-                virksomheder: arbejdsgange, ledelse, ansvar, risiko, compliance og forretningsmodeller.</p>
+              <div class="s7-hed-r">Fire spor. Ét spørgsmål.</div>
+              <p class="s7-vp-body">Ikke modelnavne, hype og teknologisnak. Business AI dækkes gennem fire
+                komplementære spor — hvert et redaktionelt greb på samme spørgsmål: hvad gør AI faktisk ved
+                erhvervslivet?</p>
               <div class="s7-vp-list">
                 <div class="s7-vp-item">
-                  <div class="s7-vp-lbl">01 · Når AI går galt</div>
-                  <div class="s7-vp-txt">Fejl, friktion, legacy-systemer, dårlige data og projekter der ikke skalerer
-                    — vinklet uden at sælge løsningen.</div>
+                  <div class="s7-vp-lbl">PROOF · Virker det faktisk?</div>
+                  <div class="s7-vp-txt">Effekt, investering og tidsforbrug dokumenteret — ikke intentioner og
+                    pressemeddelelser.</div>
                 </div>
                 <div class="s7-vp-item">
-                  <div class="s7-vp-lbl">02 · Hvad virker faktisk?</div>
-                  <div class="s7-vp-txt">Vi tester leverandørløfter og spørger, om AI-værktøjer faktisk skaber den
-                    lovede effekt.</div>
+                  <div class="s7-vp-lbl">CHALLENGE · Hvad fortæller fortællingen ikke?</div>
+                  <div class="s7-vp-txt">Hype, leverandørinteresser, skjulte omkostninger og fejlslagne
+                    implementeringer.</div>
                 </div>
                 <div class="s7-vp-item">
-                  <div class="s7-vp-lbl">03 · Sådan ændrer AI arbejdet</div>
-                  <div class="s7-vp-txt">Konkret ændring i mandagens arbejde — i salg, økonomi, HR, compliance,
-                    kundeservice, marketing og ledelse.</div>
+                  <div class="s7-vp-lbl">PRACTICE · Hvordan lykkes det?</div>
+                  <div class="s7-vp-txt">Metode og friktion fra virksomheder der får AI til at virke — aldrig uden
+                    begrænsningerne.</div>
                 </div>
                 <div class="s7-vp-item" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px;margin-top:4px;">
-                  <div class="s7-vp-lbl" style="color:#93C5FD;">04 · Nordisk forspring</div>
-                  <div class="s7-vp-txt"><strong>Hvor er nabolandene foran?</strong> Sverige er 12–24 mdr. foran på tung industri-AI (Wallenberg, Ericsson, Saab, AI Sweden), og Finland er foran på digitalisering og data. Vi spejler deres erfaringer direkte over i dansk erhvervspraksis.</div>
+                  <div class="s7-vp-lbl" style="color:#93C5FD;">FRONTIER · Hvad er ved at ændre sig?</div>
+                  <div class="s7-vp-txt">AI-agenter, nye organisationsformer og forretningsmodeller — før de er
+                    blevet konsensus.</div>
                 </div>
               </div>
             </div>
@@ -13577,8 +13593,26 @@ button:focus, button:focus-visible {
               <div class="s7-proto-lbl">Journalistikkens opgave</div>
               <div class="s7-proto-hed">Vi går ind i hypen — og kommer ud med konsekvensen.</div>
               <p class="s7-proto-sub">AI-landskabet er fuldt af løfter, leverandørpåstande, cases, kritik og
-                modstridende perspektiver. Y Business' opgave er ikke at gentage hypen. Opgaven er at undersøge den,
-                trykprøve den og oversætte det, der holder, til konkret værdi for virksomheder.</p>
+                modstridende perspektiver. Hver historie prøves mod fem spørgsmål, før den publiceres:</p>
+              <div class="s7-proto-item">
+                <div class="s7-proto-t"><strong>Påstanden</strong> Hvad hævdes konkret, og hvem siger det?</div>
+              </div>
+              <div class="s7-proto-item">
+                <div class="s7-proto-t"><strong>Dokumentationen</strong> Findes økonomiske resultater,
+                  produktivitetsdata, før/efter-tal?</div>
+              </div>
+              <div class="s7-proto-item">
+                <div class="s7-proto-t"><strong>Det, der taler imod</strong> Hvilke begrænsninger eller
+                  modstridende effekter findes?</div>
+              </div>
+              <div class="s7-proto-item">
+                <div class="s7-proto-t"><strong>Konsekvensen</strong> Hvad betyder det for økonomi, arbejdspladser
+                  og konkurrence?</div>
+              </div>
+              <div class="s7-proto-item">
+                <div class="s7-proto-t"><strong>Det vi endnu ikke ved</strong> Usikkerhed siges tydeligt — den
+                  skjules ikke.</div>
+              </div>
               <div class="s7-ikm-block">
                 <div class="s7-ikm-row">
                   <div class="s7-ikm-tag ikke">Ikke</div>
@@ -13588,17 +13622,6 @@ button:focus, button:focus-visible {
                   <div class="s7-ikm-tag men">Men</div>
                   <div class="s7-ikm-txt men">Gevinsten kommer først, når virksomheden ændrer mødekultur,
                     adgangsstyring og hvem der har ansvar for outputtet.</div>
-                </div>
-              </div>
-              <div class="s7-ikm-block">
-                <div class="s7-ikm-row">
-                  <div class="s7-ikm-tag ikke">Ikke</div>
-                  <div class="s7-ikm-txt ikke">Ny AI-model lover hurtigere og billigere kundedialog.</div>
-                </div>
-                <div class="s7-ikm-row">
-                  <div class="s7-ikm-tag men">Men</div>
-                  <div class="s7-ikm-txt men">Automatisering af kundeservice flytter fejl, dokumentation og
-                    klageansvar tættere på ledelsen.</div>
                 </div>
               </div>
               <div class="s7-proto-rule">
