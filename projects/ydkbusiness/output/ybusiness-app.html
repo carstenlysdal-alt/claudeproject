@@ -4906,8 +4906,14 @@ button:focus, button:focus-visible {
     /* ── S7 AI OG REDAKTION ── */
     #view-redaktion .s7-wrap{
       display: grid;
-      grid-template-columns: 1.55fr 1fr 0.62fr;
+      grid-template-rows: minmax(0, 1fr) auto;
       height: 100%
+    }
+
+    #view-redaktion #s7 .s7-maincols{
+      display: grid;
+      grid-template-columns: 1.55fr 1fr 0.62fr;
+      min-height: 0
     }
 
     #view-redaktion .s7-bai{
@@ -5521,8 +5527,11 @@ button:focus, button:focus-visible {
     }
 
     #view-redaktion .s7-wrap{
-      grid-template-columns: 1.08fr .92fr 1fr;
       background: var(--card)
+    }
+
+    #view-redaktion #s7 .s7-maincols{
+      grid-template-columns: 1.08fr .92fr 1fr
     }
 
     #view-redaktion .s7-bai{
@@ -5841,6 +5850,112 @@ button:focus, button:focus-visible {
       width: 5px;
       height: 1px;
       background: rgba(var(--bai-purple-rgb), .42)
+    }
+
+    /* ── S7 Ikke/Men-protokol (protocol-kolonne, mørk lilla) ── */
+    #view-redaktion #s7 .s7-ikm-block{
+      margin-bottom: 10px;
+      border: 1px solid rgba(var(--bai-purple-rgb), .18);
+      border-radius: var(--radius-sm);
+      overflow: hidden
+    }
+
+    #view-redaktion #s7 .s7-ikm-row{
+      display: grid;
+      grid-template-columns: 44px 1fr
+    }
+
+    #view-redaktion #s7 .s7-ikm-tag{
+      padding: 6px 8px;
+      font-family: var(--mono);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center
+    }
+
+    #view-redaktion #s7 .s7-ikm-tag.ikke{
+      color: rgba(var(--bai-purple-rgb), .5);
+      background: rgba(255, 255, 255, .04);
+      border-bottom: 1px solid rgba(var(--bai-purple-rgb), .14)
+    }
+
+    #view-redaktion #s7 .s7-ikm-tag.men{
+      color: #FAFAF8;
+      background: rgba(var(--bai-purple-rgb), .22)
+    }
+
+    #view-redaktion #s7 .s7-ikm-txt{
+      padding: 6px 10px;
+      font-family: var(--sans);
+      font-size: 10.5px;
+      line-height: 1.4
+    }
+
+    #view-redaktion #s7 .s7-ikm-txt.ikke{
+      color: rgba(250, 250, 248, .55);
+      font-style: italic;
+      border-bottom: 1px solid rgba(var(--bai-purple-rgb), .1)
+    }
+
+    #view-redaktion #s7 .s7-ikm-txt.men{
+      color: rgba(250, 250, 248, .88);
+      font-weight: 500
+    }
+
+    /* ── S7 "Det ingen andre spørger om" — fuld-bredde bånd under de 3 kolonner ── */
+    #view-redaktion #s7 .s7-original{
+      padding: 18px 32px;
+      background: rgba(180, 83, 9, .09);
+      border-top: 2px solid var(--amber);
+      display: grid;
+      grid-template-columns: 1.05fr repeat(3, 1fr);
+      gap: 28px;
+      align-items: start
+    }
+
+    #view-redaktion #s7 .s7-original-lbl{
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 6px
+    }
+
+    #view-redaktion #s7 .s7-original-hed{
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 6px
+    }
+
+    #view-redaktion #s7 .s7-original-sub{
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.45
+    }
+
+    #view-redaktion #s7 .s7-original-t{
+      font-family: var(--sans);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px
+    }
+
+    #view-redaktion #s7 .s7-original-d{
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--ink70);
+      line-height: 1.45
     }
 
     /* ── S4 PAYWALL BAND ── */
@@ -8725,6 +8840,7 @@ button:focus, button:focus-visible {
     #view-redaktion #s6 .s6-proto-grid{
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      grid-row: 2;
       gap: 12px;
       min-height: 0
     }
@@ -13410,6 +13526,8 @@ button:focus, button:focus-visible {
         <div class="sec-body">
           <div class="s7-wrap">
 
+            <div class="s7-maincols">
+
             <div class="s7-bai">
               <div class="s7-bai-eyebrow">Business AI · Det redaktionelle knudepunkt</div>
               <div class="s7-bai-hed">Når AI rammer forretningen</div>
@@ -13417,50 +13535,42 @@ button:focus, button:focus-visible {
                 ikke i modellen alene. Den opstår — eller forsvinder — i arbejdet, dataene, ledelsen, kontrollen,
                 kulturen, kundekontakten og ansvaret.</p>
               <p class="s7-bai-sub">Det er dér, Y Business går ind.</p>
-              <div class="s7-bai-chain" aria-hidden="true">
-                <div class="s7-chain-step">Signalet</div>
-                <div class="s7-chain-step">Virksomheden</div>
-                <div class="s7-chain-step">Menneskerne</div>
-                <div class="s7-chain-step">Dømmekraften</div>
-                <div class="s7-chain-step">Outputtet</div>
-              </div>
+              <p class="s7-bai-sub" style="margin-top:4px;">En historie fortjener kun plads hos os, når den rammer
+                alle tre lag:</p>
               <div class="s7-bai-questions">
-                <div class="s7-bai-question">Hvad ændrer AI konkret for virksomheden?</div>
-                <div class="s7-bai-question">Hvem har mærket det, prøvet det eller fejlet med det?</div>
-                <div class="s7-bai-question">Hvad kan dokumenteres — og hvad holder ikke under kritisk læsning?</div>
-                <div class="s7-bai-question">Hvad bør en leder, ejer eller specialist tage alvorligt?</div>
+                <div class="s7-bai-question">Teknologisk kapabilitet — hvad muliggør teknologien, ifølge
+                  dokumentationen?</div>
+                <div class="s7-bai-question">Økonomisk incitament — hvem sparer, og hvis omsætning trues?</div>
+                <div class="s7-bai-question">Organisatorisk friktion — hvad forhindrer det i praksis?</div>
               </div>
               <div class="s7-bai-keyq">Ikke hvad AI kan. Hvad AI kræver.</div>
             </div>
 
             <div class="s7-right">
-              <div class="s7-hed-r">Det redaktionelle løfte</div>
-              <p class="s7-vp-body">Y Business hjælper virksomheder med at skelne mellem AI-hype og AI-konsekvens.
-                Kernen er ikke: Hvad kan AI? Kernen er: Hvad kræver AI af virksomheden?</p>
+              <div class="s7-hed-r">Vi dækker AI, når det ændrer noget.</div>
+              <p class="s7-vp-body">Ikke modelnavne, hype og teknologisnak. Men AI som konkret forandring i
+                virksomheder: arbejdsgange, ledelse, ansvar, risiko, compliance og forretningsmodeller.</p>
               <div class="s7-vp-list">
                 <div class="s7-vp-item">
-                  <div class="s7-vp-lbl">Friktion</div>
-                  <div class="s7-vp-txt"><strong>Hvor møder AI virkeligheden?</strong> Hvad går galt i implementeringen,
-                    og hvilke arbejdsgange, data eller beslutninger står i vejen?</div>
+                  <div class="s7-vp-lbl">01 · Når AI går galt</div>
+                  <div class="s7-vp-txt">Fejl, friktion, legacy-systemer, dårlige data og projekter der ikke skalerer
+                    — vinklet uden at sælge løsningen.</div>
                 </div>
                 <div class="s7-vp-item">
-                  <div class="s7-vp-lbl">Ansvar</div>
-                  <div class="s7-vp-txt"><strong>Hvem ejer beslutningen?</strong> Når AI bruges i drift, rådgivning
-                    eller kundekontakt — hvem hæfter, når systemet tager fejl?</div>
+                  <div class="s7-vp-lbl">02 · Hvad virker faktisk?</div>
+                  <div class="s7-vp-txt">Vi tester leverandørløfter og spørger, om AI-værktøjer faktisk skaber den
+                    lovede effekt.</div>
                 </div>
                 <div class="s7-vp-item">
-                  <div class="s7-vp-lbl">Læring</div>
-                  <div class="s7-vp-txt"><strong>Hvad kan andre bruge?</strong> Hvad kan kopieres, hvad kan ikke, og
-                    hvilke forudsætninger skal være på plads?</div>
+                  <div class="s7-vp-lbl">03 · Sådan ændrer AI arbejdet</div>
+                  <div class="s7-vp-txt">Konkret ændring i mandagens arbejde — i salg, økonomi, HR, compliance,
+                    kundeservice, marketing og ledelse.</div>
                 </div>
                 <div class="s7-vp-item" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px;margin-top:4px;">
-                  <div class="s7-vp-lbl" style="color:#93C5FD;">Det nordiske spejl</div>
-                  <div class="s7-vp-txt"><strong>Hvor er nabolandene foran?</strong> Vi dækker primært danske virksomheder og orienterer bredt, men skriver perspektiver og historier på tværs af Danmark og nabolandene: Sverige er 12–24 mdr. foran på tung industri-AI (Wallenberg, Ericsson, Saab, AI Sweden), og Finland er foran på digitalisering og data. Vi spejler deres erfaringer direkte over i dansk erhvervspraksis.</div>
+                  <div class="s7-vp-lbl" style="color:#93C5FD;">04 · Nordisk forspring</div>
+                  <div class="s7-vp-txt"><strong>Hvor er nabolandene foran?</strong> Sverige er 12–24 mdr. foran på tung industri-AI (Wallenberg, Ericsson, Saab, AI Sweden), og Finland er foran på digitalisering og data. Vi spejler deres erfaringer direkte over i dansk erhvervspraksis.</div>
                 </div>
               </div>
-              <div class="s7-vp-myth"><strong>Tre faste historiemotorer</strong> Når AI går galt — løftet møder fejl,
-                friktion eller uklart ansvar. Hvad virker faktisk? — reel læring, ikke pæne cases. Sådan ændrer AI
-                arbejdet — opgaver, roller, kompetencer og magtforhold.</div>
             </div>
 
             <div class="s7-protocol">
@@ -13469,21 +13579,27 @@ button:focus, button:focus-visible {
               <p class="s7-proto-sub">AI-landskabet er fuldt af løfter, leverandørpåstande, cases, kritik og
                 modstridende perspektiver. Y Business' opgave er ikke at gentage hypen. Opgaven er at undersøge den,
                 trykprøve den og oversætte det, der holder, til konkret værdi for virksomheder.</p>
-              <div class="s7-proto-item">
-                <div class="s7-proto-t"><strong>Hypen</strong> Hvad holder ved nærmere eftersyn — og hvad er
-                  markedsføring?</div>
+              <div class="s7-ikm-block">
+                <div class="s7-ikm-row">
+                  <div class="s7-ikm-tag ikke">Ikke</div>
+                  <div class="s7-ikm-txt ikke">Copilot kan øge produktiviteten i danske virksomheder.</div>
+                </div>
+                <div class="s7-ikm-row">
+                  <div class="s7-ikm-tag men">Men</div>
+                  <div class="s7-ikm-txt men">Gevinsten kommer først, når virksomheden ændrer mødekultur,
+                    adgangsstyring og hvem der har ansvar for outputtet.</div>
+                </div>
               </div>
-              <div class="s7-proto-item">
-                <div class="s7-proto-t"><strong>Perspektiverne</strong> Hvad siger praktikerne, forskerne, kritikerne og
-                  dem, der selv har prøvet, fejlet eller fået det til at virke?</div>
-              </div>
-              <div class="s7-proto-item">
-                <div class="s7-proto-t"><strong>Nuancerne</strong> Hvad virker faktisk — og under hvilke forudsætninger?
-                  Hvad er reglen, og hvad er undtagelsen?</div>
-              </div>
-              <div class="s7-proto-item">
-                <div class="s7-proto-t"><strong>Oversættelsen</strong> Hvad betyder det konkret for drift, ledelse,
-                  ansvar, risiko og beslutninger i en dansk virksomhed?</div>
+              <div class="s7-ikm-block">
+                <div class="s7-ikm-row">
+                  <div class="s7-ikm-tag ikke">Ikke</div>
+                  <div class="s7-ikm-txt ikke">Ny AI-model lover hurtigere og billigere kundedialog.</div>
+                </div>
+                <div class="s7-ikm-row">
+                  <div class="s7-ikm-tag men">Men</div>
+                  <div class="s7-ikm-txt men">Automatisering af kundeservice flytter fejl, dokumentation og
+                    klageansvar tættere på ledelsen.</div>
+                </div>
               </div>
               <div class="s7-proto-rule">
                 <p>Ingen Business AI-historie uden forretningskonsekvens.</p>
@@ -13500,7 +13616,7 @@ button:focus, button:focus-visible {
                     <div class="s7-ai-box-row">Personalisere efter branche, rolle og adfærd</div>
                   </div>
                   <div>
-                    <div class="s7-ai-box-lbl">Redaktionen afgør</div>
+                    <div class="s7-ai-box-lbl">Redaktionen ejer</div>
                     <div class="s7-ai-box-row">Vinkel og prioritering</div>
                     <div class="s7-ai-box-row">Kildekritik og verificering</div>
                     <div class="s7-ai-box-row">Challenge-konklusionen</div>
@@ -13508,6 +13624,32 @@ button:focus, button:focus-visible {
                     <div class="s7-ai-box-row">Publicering og ansvar</div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            </div>
+
+            <div class="s7-original">
+              <div class="s7-original-intro">
+                <div class="s7-original-lbl">Det vi selv bringer</div>
+                <div class="s7-original-hed">Det ingen andre spørger om.</div>
+                <p class="s7-original-sub">Dansk erhvervsjournalistik har ikke taget ejerskab over disse spørgsmål.
+                  Det har vi.</p>
+              </div>
+              <div class="s7-original-item">
+                <div class="s7-original-t">Ansvar i det agentiske system</div>
+                <p class="s7-original-d">Når en AI-agent med fuldmagt til at handle eller rådgive fejler eller
+                  lækker data — hvem bærer ansvaret? Virksomhederne mangler svar.</p>
+              </div>
+              <div class="s7-original-item">
+                <div class="s7-original-t">Den digitale underleverandørfælde</div>
+                <p class="s7-original-d">Når techgiganterne ejer infrastrukturen og høster dataene, risikerer danske
+                  industrivirksomheder at blive rene underleverandører.</p>
+              </div>
+              <div class="s7-original-item">
+                <div class="s7-original-t">Talentpipelinens kollaps</div>
+                <p class="s7-original-d">Juniorarbejde var indgangsbilletten til vidensfag. Når AI overtager det,
+                  mangler vi en model for fremtidens specialister.</p>
               </div>
             </div>
 
