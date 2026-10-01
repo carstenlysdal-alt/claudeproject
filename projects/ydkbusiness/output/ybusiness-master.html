@@ -10280,6 +10280,7 @@ button:focus, button:focus-visible {
     <button class="dash-nav-item" data-target="s-gtm">Go-to-market</button>
     <button class="dash-nav-item" data-target="s-ai">AI-motor &amp; Business AI</button>
     <button class="dash-nav-item" data-target="s-de">Dansk Erhverv</button>
+    <button class="dash-nav-item" data-target="s-di">DI</button>
   </nav>
   <nav class="dash-nav" id="navRedaktion" style="display:none">
     <button class="dash-nav-item" data-target="s1">That's Y</button>
@@ -11981,7 +11982,7 @@ button:focus, button:focus-visible {
   <div class="sec-hdr">
     <button class="back-btn" data-target="hub-intern">Oversigt</button>
     <h1 class="sec-title">Dansk Erhverv-MVP</h1>
-    <div class="sec-num">06 / 06</div>
+    <div class="sec-num">06 / 07</div>
   </div>
 
   <div class="sec-body">
@@ -12142,7 +12143,209 @@ button:focus, button:focus-visible {
 
     </div>
   </div>
-  <div class="pnum">Dansk Erhverv-MVP · 06/06</div>
+  <div class="pnum">Dansk Erhverv-MVP · 06/07</div>
+</div>
+
+<div class="screen" id="s-di">
+  <style>
+    #s-di [data-step="1"]{ --sc:#15803D; --sct:rgba(21,128,61,.09); }
+    #s-di [data-step="2"]{ --sc:#1D4ED8; --sct:rgba(29,78,216,.08); }
+    #s-di [data-step="3"]{ --sc:#57534E; --sct:rgba(87,83,78,.09); }
+    #s-di .step-card .step-chip{ align-self:flex-start; max-width:100%; }
+    #s-di .step-chip{ display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sc); background:var(--sct); border:1px solid var(--sc); padding:4px 8px; border-radius:2px; white-space:nowrap; }
+    #s-di .step-chip::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--sc); flex-shrink:0; }
+    #s-di .stat-trio{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:20px; }
+    #s-di .stat-trio > div{ background:var(--tint); padding:14px 16px; }
+    #s-di .stat-trio .n{ font-family:var(--serif); font-size:32px; font-style:italic; font-weight:700; color:var(--accent); line-height:1; letter-spacing:-.02em; }
+    #s-di .stat-trio .l{ font-family:var(--sans); font-size:12px; color:var(--ink70); line-height:1.4; margin-top:8px; }
+    #s-di .step-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-bottom:22px; }
+    #s-di .step-card{ background:#fff; border:1px solid var(--line); border-top:4px solid var(--sc); padding:14px 14px 14px; display:flex; flex-direction:column; gap:10px; }
+    #s-di .step-card[data-step="1"]{ box-shadow:0 6px 18px rgba(21,128,61,.10); }
+    #s-di .step-card h2{ font-family:var(--serif); font-size:18px; font-style:italic; font-weight:700; color:var(--ink); line-height:1.15; }
+    #s-di .step-card ul{ list-style:none; display:flex; flex-direction:column; gap:7px; }
+    #s-di .step-card li{ font-family:var(--sans); font-size:12.5px; line-height:1.4; color:var(--ink70); padding-left:14px; position:relative; }
+    #s-di .step-card li::before{ content:''; position:absolute; left:0; top:.5em; width:6px; height:6px; background:var(--sc); }
+    #s-di .step-card li strong{ color:var(--ink); font-weight:600; }
+    #s-di .step-card .for{ margin-top:auto; padding-top:10px; border-top:1px dashed var(--line); font-family:var(--sans); font-size:11.5px; color:var(--muted); line-height:1.45; }
+    #s-di .fn-table td .step-chip{ margin-top:8px; }
+    #s-di .fn-table tr[data-step] td:first-child{ border-left:4px solid var(--sc); }
+    #s-di .col-label-sm{ margin-top:2px; }
+    #s-di .dp-card{ display:flex; align-items:center; gap:16px; background:#fff; border:1px solid var(--line); padding:12px 16px 12px 12px; margin-bottom:20px; }
+    #s-di .dp-thumb{ flex:0 0 auto; width:150px; height:96px; display:block; border:1px solid var(--line); }
+    #s-di .dp-txt{ min-width:0; display:flex; flex-direction:column; gap:6px; }
+    #s-di .dp-txt h2{ font-family:var(--serif); font-size:16px; font-style:italic; font-weight:700; color:var(--ink); line-height:1.2; }
+    #s-di .dp-txt p{ font-family:var(--sans); font-size:12.5px; line-height:1.45; color:var(--ink70); }
+    #s-di .dp-txt a{ align-self:flex-start; font-family:var(--mono); font-size:9.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px; }
+    #s-di .dp-txt a:hover{ opacity:.7; }
+  </style>
+  <div class="bg-grid"></div>
+  <div class="accent-bar"></div>
+  <div class="sec-hdr">
+    <button class="back-btn" data-target="hub-intern">Oversigt</button>
+    <h1 class="sec-title">DI-MVP</h1>
+    <div class="sec-num">07 / 07</div>
+  </div>
+
+  <div class="sec-body">
+    <div class="sec-cols">
+
+    <!-- VENSTRE KOLONNE -->
+    <div class="col ani" style="overflow-y:auto; min-height:0; padding-bottom:88px;">
+      <div class="col-label">Kort sagt</div>
+
+      <div class="ibox accent" style="margin-bottom:16px;">
+        <div class="ibox-t">Hvad det er</div>
+        <div class="ibox-b">
+          <p>Y Business til DI's medlemmer er et lag oveni det, DI allerede leverer. Hver morgen får medlemmet tre signaler om sit eget marked: <strong>regulering, eksportmarkeder og udbud</strong>. Dertil kommer uafhængig journalistik om leverandører, råvarer, kapital og byrder.</p>
+          <p>Vi skriver ikke om det, DI allerede dækker. Hvor DI har svaret, peger vi på DI. Medlemmerne vælger emner, redaktionen afgør konklusionerne. Signaler om konkurrenter og kunder bygges kun, hvis medlemmerne beder om dem.</p>
+        </div>
+      </div>
+
+      <div class="stat-trio">
+        <div><div class="n">4</div><div class="l">funktioner fra dag ét i pilotstart</div></div>
+        <div><div class="n">3</div><div class="l">dokumenterede behov: regulering, eksport, udbud</div></div>
+        <div><div class="n">1</div><div class="l">regel: emne ja, konklusion nej</div></div>
+      </div>
+
+      <div class="col-label-sm" style="margin-bottom:10px;">Hvad vi leverer, og hvornår</div>
+      <div class="step-grid">
+        <div class="step-card" data-step="1">
+          <span class="step-chip">Skridt 1 · pilotstart</span>
+          <h2>Fire ting fra dag ét</h2>
+          <ul>
+            <li><strong>Morgensignalet:</strong> tre signaler om medlemmets marked</li>
+            <li><strong>Radar:</strong> regulering, eksportmarkeder og udbud med frist og kilde</li>
+            <li><strong>Udefra:</strong> ét stykke uafhængig journalistik om ugen</li>
+            <li><strong>Bed os holde øje:</strong> emnevalg, feedback og test af konkurrentsignaler</li>
+          </ul>
+          <div class="for">DI får en medlemsfordel uden drift og et anonymt billede af medlemmernes behov.</div>
+        </div>
+        <div class="step-card" data-step="2">
+          <span class="step-chip">Skridt 2 · ved behov</span>
+          <h2>Fordybelse</h2>
+          <ul>
+            <li><strong>I samarbejde med DI:</strong> DI's analyser oversat til branche og størrelse</li>
+            <li><strong>Konkurrent- og kundesignaler:</strong> kun hvis testen viser efterspørgsel</li>
+            <li>Flere Udefra-serier efter medlemmernes ønsker</li>
+          </ul>
+          <div class="for">DI får flere læsere til eget stof uden at konkurrere om det.</div>
+        </div>
+        <div class="step-card" data-step="3">
+          <span class="step-chip">Senere</span>
+          <h2>Udvidelser</h2>
+          <ul>
+            <li>Feed til intranet eller CRM</li>
+            <li>Medlemmernes egne data som input</li>
+            <li>Betalte datatjenester</li>
+          </ul>
+          <div class="for">Kommer først, når efterspørgslen er dokumenteret.</div>
+        </div>
+      </div>
+
+      <div class="col-label-sm" style="margin-bottom:8px;">De fem funktioner</div>
+      <table class="tbl fn-table">
+        <thead><tr><th>Funktion</th><th>Hvad medlemmet får</th><th>Hvad der ligger bag</th></tr></thead>
+        <tbody>
+          <tr data-step="1"><td class="str">1 · Morgensignalet<br><span class="step-chip">Skridt 1</span></td><td>Tre korte signaler hver morgen, sorteret efter branche, eksportmarkeder og størrelse</td><td>Ys morgenbrief, redaktionel vurdering og offentlige kilder</td></tr>
+          <tr data-step="1"><td class="str">2 · Radar over dit marked<br><span class="step-chip">Skridt 1</span></td><td>Regulering, eksportmarkeder og udbud samlet, med frist og kilde</td><td>EUR-Lex, Folketinget, handelsstatistik, udbud.dk og TED. Datakilder afventer rapport.</td></tr>
+          <tr data-step="1"><td class="str">3 · Udefra<br><span class="step-chip">Skridt 1</span></td><td>Uafhængig journalistik om leverandører, råvarer, kapital, byrder og Norden</td><td>Ys redaktion og nordiske kilder</td></tr>
+          <tr data-step="2"><td class="str">4 · I samarbejde med DI<br><span class="step-chip">Skridt 2</span></td><td>DI's analyser oversat til branche og størrelse, med Ys vurdering</td><td>DI's udgivelser, Ys redaktion og en aftale om brug</td></tr>
+          <tr data-step="1"><td class="str">5 · Bed os holde øje<br><span class="step-chip">Skridt 1</span></td><td>Emnevalg, egne emner, feedback og afstemning om konkurrent- og kundesignaler</td><td>Emnevalg i profilen. Redaktionen tilpasser dækningen.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ibox" style="margin-bottom:8px;">
+        <div class="ibox-t">Hvad research viser, og hvad den ikke viser</div>
+        <div class="ibox-b">DI leverer ikke løbende virksomhedsspecifik markedsinformation ifølge den offentlige tjenesteoversigt (indikation). Regulering, eksportmarkedsindsigt og synlighed af udbud er dokumenterede SMV-behov (indikation, EU- og danske kilder). Behov for konkurrent- og kundeovervågning er ikke dokumenteret og testes i piloten.</div>
+      </div>
+    </div>
+
+    <!-- HØJRE KOLONNE -->
+    <div class="col ani" style="overflow-y:auto; min-height:0; padding-bottom:88px;">
+      <div class="col-label">Hvorfor det kan sælges</div>
+
+      <div class="ltl-list" style="--ltl-color:var(--green); margin-bottom:20px;">
+        <div class="ltl-item"><div class="ltl-lbl">DI</div><div class="ltl-txt">En ny medlemsfordel, der dækker et hul i tilbuddet. Ingen drift. Passer ind i DI's model for medlemsfordele. Anonymt billede af, hvad medlemmerne vil vide mere om.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Medlemmerne</div><div class="ltl-txt">Svar på, hvad der er på vej i deres marked, uden selv at lede. Forklaring på konsekvensen. Indflydelse på, hvad Y undersøger.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Y</div><div class="ltl-txt">Distribution til en stor medlemsbase (DI har over 20.000 medlemsvirksomheder), social proof og brugerindsigt. Prisen er ikke afklaret: Erhverv+ koster 7.500 kr./år, DI's minimumskontingent er 6.184 kr.</div></div>
+      </div>
+
+      <div class="col-label-sm" style="margin-bottom:8px;">Designforslag</div>
+      <div class="dp-card">
+        <svg class="dp-thumb" viewBox="0 0 150 96" role="img" aria-label="Miniature af den klikbare mockup til DI">
+          <defs><linearGradient id="dp-g2" x1="0" x2="1"><stop offset="0" stop-color="#4257F5"/><stop offset=".5" stop-color="#BA89EC"/><stop offset="1" stop-color="#FD5643"/></linearGradient></defs>
+          <rect width="150" height="96" fill="#231F20"/>
+          <rect width="150" height="3" fill="url(#dp-g2)"/>
+          <circle cx="12" cy="14" r="5" fill="#EEEDED"/>
+          <rect x="34" y="12" width="14" height="3" rx="1.5" fill="#6B6862"/><rect x="52" y="12" width="14" height="3" rx="1.5" fill="#6B6862"/><rect x="70" y="12" width="14" height="3" rx="1.5" fill="#A5AFFF"/>
+          <rect x="10" y="28" width="92" height="6" rx="1.5" fill="#EEEDED"/><rect x="10" y="38" width="70" height="6" rx="1.5" fill="#EEEDED"/>
+          <rect x="10" y="50" width="104" height="2.5" rx="1" fill="#6B6862"/><rect x="10" y="56" width="88" height="2.5" rx="1" fill="#6B6862"/>
+          <rect x="10" y="68" width="30" height="8" rx="2" fill="#4257F5"/>
+          <rect x="10" y="82" width="38" height="10" fill="#322F32"/><rect x="10" y="82" width="38" height="2" fill="#FFD1A8"/>
+          <rect x="56" y="82" width="38" height="10" fill="#322F32"/><rect x="56" y="82" width="38" height="2" fill="#A8F0C6"/>
+          <rect x="102" y="82" width="38" height="10" fill="#322F32"/><rect x="102" y="82" width="38" height="2" fill="#A5E3FF"/>
+        </svg>
+        <div class="dp-txt">
+          <h2>Klikbar mockup</h2>
+          <p>Ni skærme: medlemmets rejse fra første morgen, samt et overblik til DI med afstemning og målepunkter. Alle signaler er eksempeldata.</p>
+          <a href="ybusiness-di-mvp.dc.html" target="_blank" rel="noopener">Åbn i stort format →</a>
+        </div>
+      </div>
+
+      <div class="col-label-sm" style="margin-bottom:8px;">Problem og det vi tester</div>
+      <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:20px;">
+        <div class="ltl-item"><div class="ltl-lbl">Problem</div><div class="ltl-txt">Medlemmerne samler selv regulering, eksportmarkeder og udbud fra mange kilder. DI giver rådgivning, netværk og analyser, men ikke et løbende billede af den enkelte virksomheds marked.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Det vi tester</div><div class="ltl-txt">Åbner medlemmerne Morgensignalet hver uge, siger de "mere af det" til signalerne, og vil de have signaler om konkurrenter og kunder.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Sådan</div><div class="ltl-txt">Foreslået: 100-200 medlemsvirksomheder i 8-12 uger. Piloten er ikke et salg.</div></div>
+      </div>
+
+      <div class="col-label-sm" style="margin-bottom:8px;">Sådan ved vi, at det virker</div>
+      <div class="ltl-list" style="--ltl-color:var(--accent); margin-bottom:20px;">
+        <div class="ltl-item"><div class="ltl-lbl">Tilmelding</div><div class="ltl-txt">Hvor mange af de inviterede medlemmer opretter sig.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Brug</div><div class="ltl-txt">Hvor mange åbner Morgensignalet mindst én gang om ugen.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Relevans</div><div class="ltl-txt">Andel "mere af det" mod "mindre af det" på signalerne.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Efterspørgsel</div><div class="ltl-txt">Hvilke emner medlemmerne beder om, og hvor mange der siger ja til konkurrent- og kundesignaler.</div></div>
+        <div class="ltl-item"><div class="ltl-lbl">Talmål</div><div class="ltl-txt">Sættes sammen med DI før start.</div></div>
+      </div>
+
+      <div class="col-label-sm" style="margin-bottom:8px;">Risici og handling</div>
+      <table class="tbl">
+        <thead><tr><th>Risiko</th><th>Handling</th></tr></thead>
+        <tbody>
+          <tr class="str-row"><td class="str">DI ser Y som konkurrent til DI Business</td><td>Peg på DI's originaler. Skriv ikke om det, DI dækker. Find sponsor hos DI Digital eller AI-taskforcen.</td></tr>
+          <tr><td class="str">Behov for konkurrentsignaler er udokumenteret</td><td>Test med afstemning og 5-8 interviews, før noget bygges.</td></tr>
+          <tr><td class="str">Uafhængighed over for DI's politiske stemme</td><td>Medlemmerne vælger emner, aldrig konklusioner. Samarbejdet er mærket. Alt er åbent for alle læsere.</td></tr>
+          <tr><td class="str">Rettigheder, brug af DI's navn og medlemsdata</td><td>Læs DI's vilkår. Skriftlig aftale. DI bekræfter kun medlemskab.</td></tr>
+          <tr><td class="str">Datakilder og pris ikke afklaret</td><td>Afventer rapport om datakilder, konkurrenter og priser.</td></tr>
+          <tr><td class="str">Prisen overstiger de mindste medlemmers kontingent</td><td>Gratis pilot og en medlemspris aftalt med DI.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ibox green" style="margin:20px 0 16px;">
+        <div class="ibox-t" style="color:var(--green);">Go til pilot, når</div>
+        <div class="ibox-b">Datakilderne til radaren er afklaret · DI udpeger en kontaktperson og en sponsor · reglen om emner og konklusioner er aftalt · DI's vilkår og rettigheder er på plads.</div>
+      </div>
+
+      <div class="col-label-sm" style="margin-bottom:8px;">Næste skridt (forslag)</div>
+      <div class="tl">
+        <div class="tl-row">
+          <div class="tl-d" style="color:var(--green);">9. okt. (forslag)</div>
+          <div class="tl-t"><strong style="color:var(--green);">Samtale med DI og læsning af vilkår</strong><br>Mål, ejerskab, medlemsfordele, rettigheder. Ejer: Carsten.</div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-d">16. okt. (forslag)</div>
+          <div class="tl-t"><strong>5-8 interviews med industriledere</strong><br>Om deres eget marked, ikke om DI. Ejer: Carsten.</div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-d">Efter datakilderapport</div>
+          <div class="tl-t"><strong>Oplæg til DI</strong><br>Justér mockuppen og skriv skriftligt oplæg. Ejer: produktansvarlig.</div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+  <div class="pnum">DI-MVP · 07/07</div>
 </div>
 
 <!-- SOURCES MODAL -->
