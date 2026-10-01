@@ -1,5 +1,7 @@
 # Deep research-prompt: Y Business × DI
 
+Status 1. oktober 2026: erstattet af `DI-deep-research-prompts-v2.md`. Denne version kortlægger DI's rapporter, hvilket ikke længere er formålet. Bevares som reference.
+
 Kædet prompt i to trin. Trin 1 er en scrape-specifikation til dig. Trin 2 er selve deep research-prompten, som modtager scrape-resultatet. Prompten er skrevet modelneutralt (XML-sektioner) og kører i Claude Research, ChatGPT Deep Research og Gemini Deep Research. Dækker gap 1, 2 (kun offentlige kilder) og 5 i `DI-research-brief.md`. Gap 3 og 4 kræver dialog med DI og interviews.
 
 Tilpasning: i Gemini kan modul D udelades, hvis den finder for lidt. I ChatGPT bør scrape-filen vedhæftes som fil, ikke indsat i teksten.
