@@ -8969,6 +8969,38 @@
                 ],
               },
             },
+            {
+              num: '04', eyebrow: '04 · Partner', name: 'Y × DI',
+              func: 'Analytisk lag til industri', freq: 'Pilot: ti artikler på otte uger', tier: 'paid', tierLabel: 'Partner', pillars: 'Challenge · Understand · Inspire',
+              color: '#0D9488', tint: 'rgba(13,148,136,',
+              lead: 'Y som lag oven på Dansk Industri.',
+              q: '"Hvad kan en industriel læser få her, som en brancheorganisation ikke selv kan skrive?"',
+              desc: 'Fem artikelformater i en boks til DI\'s medlemmer. Y skriver kun det, en interesseorganisation ikke selv kan skrive. DI er kontekst og aldrig enkeltkilde. DI kan pege på emner. Y konkluderer.',
+              insight: null,
+              promise: null,
+              job: { a: 'Forstå', b: 'Hvad måler tallet egentlig?', c: 'Tvivle', d: 'Hvem har regnet, og hvad udelades?', e: 'Handle', f: 'Hvad skal jeg spørge min leverandør om?' },
+              regel: 'Redaktionel disciplin: Interessen bag en påstand fremgår. Ingen DI-ansat skriver. Et menneske godkender hver artikel.',
+              struktur: [
+                'Påstanden — én påstand testet mod kilder uden om afsenderen',
+                'Blind Spot — dokumenteret overset vinkel, tavs part eller skjult pris',
+                'Perspektivrapporten — rapport løftet fra landsgennemsnit til branche og størrelse',
+                'Applied AI-casen — AI i drift med pris, friktion og kopierbar læring',
+                'Nordisk spejl — dokumenteret tidsforspring, sammenlignet på samme måling',
+              ],
+              segmenter: 'Industriledere · SMV-ejere i DI\'s medlemskreds',
+              kanaler: 'Boks hos DI · Arkiv hos Y · CMS-tekst',
+              kernegreb: '"Y skriver kun det, DI ikke selv kan."',
+              eksempler: null, emner: null,
+              sources: 'Eurostat, Danmarks Statistik, EUR-Lex og nordiske datakilder (SCB, SSB, AI Sweden).',
+              special: {
+                type: 'extlink', lbl: 'Mockup · forside og fem artikler',
+                desc: 'Forside og fem artikler i Y\'s sponsorformat med skjult info-boks om relevans, kategori og betydning for DI.',
+                links: [
+                  { lbl: 'Åbn mockup', href: 'ybusiness-di-artikler.html' },
+                  { lbl: 'Offentlig version', href: 'https://sndeepdive.web.app/mockups/ybusiness-di-artikler.html' },
+                ],
+              },
+            },
           ];
 
 
@@ -9030,6 +9062,13 @@
               + '<div class="sv-regel-lbl">Redaktionel regel</div>'
               + '<div class="sv-regel-txt">Ingen stemme uden funktion. En stemme skal ikke med, fordi personen er kendt — men fordi personen kan hjælpe Y Business med at forklare, teste, udfordre eller konkretisere en udvikling, som betyder noget for virksomheder.</div>'
               + '</div>';
+            if (s.type === 'extlink') return '<div class="s4-note" style="background:' + bg + '">'
+              + '<div class="s4-note-lbl" style="color:' + f.color + '">' + s.lbl + '</div>'
+              + '<div class="s4-note-txt">' + s.desc + '</div></div>'
+              + '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px">'
+              + s.links.map(function (l) {
+                return '<a href="' + l.href + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;padding:8px 12px;background:' + f.tint + '0.08);border:1px solid ' + f.tint + '0.3);border-radius:var(--radius-xs);font-family:var(--mono);font-size:9px;font-weight:700;color:' + f.color + ';letter-spacing:.12em;text-transform:uppercase;text-decoration:none">' + l.lbl + ' →</a>';
+              }).join('') + '</div>';
             return '';
           }
 
@@ -9048,7 +9087,7 @@
               + '<span class="s4-fi-name">' + f.name + '</span>'
               + '<span class="s4-fi-func">' + f.freq + '</span>'
               + '<span class="s4-fi-tier ' + f.tier + '" style="color:' + (f.tier === 'free' ? '#A75D46' : f.color) + ';border-color:' + (f.tier === 'free' ? 'rgba(167,93,70,.4)' : f.color + '55') + '">'
-              + (f.tier === 'free' ? 'Gratis' : 'Abonnement')
+              + (f.tierLabel || (f.tier === 'free' ? 'Gratis' : 'Abonnement'))
               + '</span>'
               + '</div>';
             item.addEventListener('click', function () { goTo(i); });
