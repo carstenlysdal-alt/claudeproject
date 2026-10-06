@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="da" data-y-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Y Business × DI | Artikelmockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* ──────────────────────────────────────────────────────────────────────────
+   Tokens — y.dk designsystem (SN-DeepDive/DESIGN.md). Mørk er standard.
+   Gradient findes kun i signaturbåndet. Mint er kun til kilde/proveniens.
+   ────────────────────────────────────────────────────────────────────────── */
+:root {
+  color-scheme: dark;
+  --ydk-bg: #221F21;
+  --ydk-surface: #2C2829;
+  --ydk-surface-2: #383335;
+  --ydk-border: #403B3D;
+  --ydk-text: #EEEDEA;
+  --ydk-muted: #AAA4A6;
+  --ydk-indigo: #5761EC;
+  --ydk-coral: #EA624D;
+  --ydk-mint: #8FE8A8;
+  --ydk-indigo-text: #AAB0FF;
+  --ydk-coral-text: #FF9A86;
+  --ydk-mint-text: #8FE8A8;
+  --ydk-focus: #AAB0FF;
+  --ydk-radius-s: 10px;
+  --ydk-radius-m: 18px;
+  --ydk-radius-l: 28px;
+  --ydk-radius-pill: 999px;
+  --ydk-font: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --ydk-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+:root[data-y-theme="light"] {
+  color-scheme: light;
+  --ydk-bg: #F4F2F1;
+  --ydk-surface: #FFFFFF;
+  --ydk-surface-2: #EBE8E7;
+  --ydk-border: #DCD8D7;
+  --ydk-text: #1C1A1B;
+  --ydk-muted: #625D5F;
+  --ydk-indigo: #4C58E8;
+  --ydk-coral: #E2593F;
+  --ydk-mint: #1F9D5A;
+  --ydk-indigo-text: #3E49C7;
+  --ydk-coral-text: #B13B28;
+  --ydk-mint-text: #13713F;
+  --ydk-focus: #3E49C7;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ydk-bg);
+  color: var(--ydk-text);
+  font-family: var(--ydk-font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--ydk-focus); outline-offset: 3px; border-radius: 4px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+h1, h2, h3, p, ul, figure { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+.ribbon { height: 5px; width: 100%; background: linear-gradient(90deg, #5761EC, #C86B8E, #EA624D, #C86B8E, #5761EC); }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+.mono {
+  font-family: var(--ydk-mono);
+  font-weight: 600;
+  font-size: 11.5px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ydk-muted);
+}
+.mono.indigo { color: var(--ydk-indigo-text); }
+.mono.coral { color: var(--ydk-coral-text); }
+.mono.mint { color: var(--ydk-mint-text); }
+
+/* ── Topbar ── */
+.topbar { border-bottom: 1px solid var(--ydk-border); background: var(--ydk-bg); }
+.topbar-in { display: flex; align-items: center; gap: 14px; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; }
+.logo { width: 36px; height: 36px; flex: 0 0 36px; display: inline-grid; place-items: center; border-radius: 50%; background: var(--ydk-text); color: var(--ydk-bg); font-weight: 800; font-size: 17px; line-height: 1; }
+.brand { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+.draft-pill { display: inline-flex; align-items: center; min-height: 28px; padding: 0 12px; border: 1px solid var(--ydk-border); border-radius: var(--ydk-radius-pill); }
+.theme-btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--ydk-border); background: var(--ydk-surface); color: var(--ydk-muted); transition: border-color 120ms ease, color 120ms ease, transform 120ms ease; }
+.theme-btn:hover { border-color: var(--ydk-indigo-text); color: var(--ydk-text); }
+.theme-btn:active { transform: scale(0.96); }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px; padding-bottom: 16px; }
+.tab { min-height: 44px; padding: 0 16px; border-radius: var(--ydk-radius-pill); border: 1px solid var(--ydk-border); background: transparent; color: var(--ydk-muted); font-weight: 600; font-size: 14px; transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, transform 120ms ease; }
+.tab:hover { color: var(--ydk-text); border-color: var(--ydk-indigo-text); }
+.tab:active { transform: scale(0.96); }
+.tab[aria-selected="true"] { background: var(--ydk-indigo); border-color: var(--ydk-indigo); color: #fff; }
+:root[data-y-theme="light"] .tab[aria-selected="true"] { color: #fff; }
+
+/* ── Billeder ── */
+.media { position: relative; overflow: hidden; background: var(--ydk-surface-2); border: 1px solid var(--ydk-border); }
+.media > svg, .media > img { width: 100%; height: 100%; object-fit: cover; }
+.ratio-16x9 { aspect-ratio: 16 / 9; }
+.ratio-4x3 { aspect-ratio: 4 / 3; }
+.caption { margin-top: 10px; font-size: 13px; line-height: 1.45; color: var(--ydk-muted); }
+.il-neutral { fill: var(--ydk-border); }
+.il-neutral-2 { fill: var(--ydk-surface); }
+.il-line { stroke: var(--ydk-muted); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.il-coral { fill: var(--ydk-coral); }
+.il-coral-line { stroke: var(--ydk-coral); fill: none; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.il-indigo { fill: var(--ydk-indigo); }
+.il-bg { fill: var(--ydk-surface-2); }
+
+/* ── Forside ── */
+/* Produktbeslutning (afviger fra DESIGN.md): forsiden følger Y's lyse forside og har en lilla partnerflade til DI.
+   Lilla og de lyse kort i boksen er DI's partnerflade og skifter ikke med temaet. Sæt det officielle DI-logo ind i .di-logo. */
+:root { --di-purple: #3A0058; --di-card: #EAE8E7; --di-card-text: #1C1A1B; --di-card-muted: #5A5557; }
+.front { padding-top: 24px; padding-bottom: 56px; }
+.top { display: block; }
+.top .media { border-radius: var(--ydk-radius-m); aspect-ratio: 2 / 1; }
+.credit { position: absolute; left: 14px; bottom: 12px; padding: 4px 9px; border-radius: 6px; background: rgba(0,0,0,.62); color: #fff; font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; line-height: 1.4; }
+.top-text { padding-top: 22px; display: grid; gap: 14px; max-width: 920px; }
+.top h1 { font-weight: 800; font-size: clamp(34px, 5vw, 54px); line-height: 1.03; letter-spacing: -0.025em; text-wrap: balance; }
+.top:hover h1 { color: var(--ydk-indigo-text); }
+.byline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14px; }
+.byline .logo { width: 32px; height: 32px; flex-basis: 32px; font-size: 15px; }
+.byline strong { font-weight: 700; }
+.byline span { color: var(--ydk-muted); }
+.dek { font-size: 17px; line-height: 1.55; color: var(--ydk-muted); font-style: italic; text-wrap: pretty; max-width: 62ch; }
+
+.band { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 28px; align-items: center; margin: 40px 0; padding: 28px 0; border-top: 1px solid var(--ydk-border); border-bottom: 1px solid var(--ydk-border); }
+.band .media { border-radius: var(--ydk-radius-s); aspect-ratio: 4 / 3; }
+.band-text { display: grid; gap: 12px; }
+.band h2 { font-weight: 800; font-size: clamp(26px, 3.2vw, 36px); line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
+.band:hover h2 { color: var(--ydk-indigo-text); }
+.band .dek { font-style: normal; font-size: 16px; }
+
+.di-box { background: var(--di-purple); color: #fff; border-radius: var(--ydk-radius-l); padding: 28px; }
+.di-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.di-head-l { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.di-pill { display: inline-flex; align-items: center; min-height: 28px; padding: 0 12px; background: #fff; color: var(--di-purple); border-radius: 4px; font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; }
+.di-excl { display: inline-flex; align-items: center; gap: 8px; font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: #fff; }
+.di-excl::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+.di-logo { width: 70px; height: 52px; display: grid; place-items: center; background: #fff; color: var(--di-purple); border-radius: 8px; font-weight: 800; font-size: 26px; letter-spacing: -0.04em; }
+.di-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.di-card { display: flex; flex-direction: column; gap: 10px; background: var(--di-card); color: var(--di-card-text); border-radius: 10px; padding: 18px 18px 20px; transition: transform 120ms ease, box-shadow 120ms ease; }
+.di-card:hover { box-shadow: 0 0 0 2px #fff; }
+.di-card:focus-visible { outline-color: #fff; }
+.di-card .kick { font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--di-card-muted); }
+.di-card h3 { font-weight: 700; font-size: 19px; line-height: 1.22; letter-spacing: -0.005em; text-wrap: balance; }
+
+.label-block { margin-top: 32px; display: grid; gap: 8px; padding: 20px 24px; border: 1px solid var(--ydk-border); border-radius: var(--ydk-radius-m); background: var(--ydk-surface); }
+.label-block p { font-size: 14px; line-height: 1.5; color: var(--ydk-muted); max-width: 72ch; }
+
+/* ── Artikel ── */
+.article-wrap { padding-top: 32px; padding-bottom: 64px; }
+.article { background: var(--ydk-surface); border: 1px solid var(--ydk-border); border-radius: var(--ydk-radius-m); padding: 40px; }
+.article-label { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--ydk-border); border-radius: var(--ydk-radius-pill); }
+.label-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 24px; }
+.info-btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--ydk-border); background: transparent; color: var(--ydk-muted); transition: border-color 120ms ease, color 120ms ease, background-color 120ms ease, transform 120ms ease; }
+.info-btn svg { width: 18px; height: 18px; }
+.info-btn:hover, .info-btn[aria-expanded="true"] { border-color: var(--ydk-indigo-text); color: var(--ydk-indigo-text); }
+.info-btn:active { transform: scale(0.96); }
+.info-panel { flex: 1 1 100%; max-width: 68ch; border: 1px solid var(--ydk-border); border-left: 3px solid var(--ydk-indigo); border-radius: var(--ydk-radius-s); background: var(--ydk-bg); padding: 20px 22px 22px; }
+.info-panel[hidden] { display: none; }
+.info-panel dl { margin: 14px 0 0; display: grid; gap: 4px; }
+.info-panel dt { margin-top: 12px; }
+.info-panel dt:first-child { margin-top: 0; }
+.info-panel dd { margin: 0; font-size: 15px; line-height: 1.6; text-wrap: pretty; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ydk-indigo); flex: 0 0 6px; }
+.article .eyebrow { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.article h1 { font-weight: 800; font-size: clamp(30px, 4.2vw, 42px); line-height: 1.07; letter-spacing: -0.025em; text-wrap: balance; max-width: 22ch; }
+@media (min-width: 900px) { .article h1 { max-width: 26ch; } }
+.article .dek { margin-top: 16px; }
+.meta { margin-top: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+.meta .sep { opacity: .5; }
+.article-media { margin-top: 28px; }
+.article-media .media { border-radius: var(--ydk-radius-s); }
+.body { margin-top: 32px; max-width: 68ch; display: grid; gap: 22px; font-size: 16px; line-height: 1.65; text-wrap: pretty; }
+.body h2 { margin-top: 40px; margin-bottom: -4px; font-weight: 700; font-size: clamp(21px, 2.4vw, 24px); line-height: 1.2; letter-spacing: -0.015em; text-wrap: balance; }
+
+/* Hvad sker der? */
+.aside-box { border: 1px solid var(--ydk-border); border-radius: var(--ydk-radius-s); background: var(--ydk-bg); padding: 24px 26px 26px; }
+.body > .aside-box, .body > .chart { margin: 14px 0; }
+.body > .aside-box + h2, .body > .chart + h2 { margin-top: 56px; }
+.aside-head { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.aside-head svg { width: 14px; height: 14px; flex: 0 0 14px; }
+.aside-box ul { display: grid; gap: 12px; }
+.aside-box li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.55; }
+.aside-box li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ydk-indigo); margin-top: 9px; flex: 0 0 6px; }
+.aside-box .grp { margin: 22px 0 6px; }
+.aside-box .grp:first-of-type { margin-top: 0; }
+.aside-box .src { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--ydk-border); display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; font-size: 13.5px; line-height: 1.5; color: var(--ydk-muted); }
+.tag-source { display: inline-flex; align-items: center; min-height: 24px; padding: 0 10px; border-radius: var(--ydk-radius-pill); border: 1px solid var(--ydk-mint-text); color: var(--ydk-mint-text); font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* Chart */
+.chart { border: 1px solid var(--ydk-border); border-radius: var(--ydk-radius-s); background: var(--ydk-bg); padding: 24px 26px; }
+.chart h3 { font-weight: 700; font-size: 16px; line-height: 1.3; margin-bottom: 14px; }
+.chart-row { display: grid; gap: 12px; grid-template-columns: minmax(64px, 24%) 1fr auto; align-items: center; margin: 12px 0; font-size: 14px; }
+.track { height: 10px; border-radius: 5px; background: var(--ydk-surface-2); overflow: hidden; }
+.fill { display: block; height: 100%; border-radius: 5px; background: var(--ydk-coral); transform-origin: left; animation: grow 500ms ease-out both; }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.chart-row .v { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ydk-text); }
+.chart .src { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; font-size: 13.5px; color: var(--ydk-muted); }
+
+.article-foot { margin-top: 32px; max-width: 68ch; display: grid; gap: 12px; padding-top: 20px; border-top: 1px solid var(--ydk-border); }
+.article-foot p { font-size: 14px; line-height: 1.55; color: var(--ydk-muted); }
+.article-foot .src { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+.article-nav { margin-top: 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.ghost { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--ydk-border); border-radius: var(--ydk-radius-pill); background: transparent; font-weight: 600; font-size: 14px; color: var(--ydk-text); transition: border-color 120ms ease, transform 120ms ease; }
+.ghost:hover { border-color: var(--ydk-indigo-text); }
+.ghost:active { transform: scale(0.96); }
+
+@media (max-width: 860px) {
+  .band { grid-template-columns: 1fr; gap: 16px; }
+  .di-cards { grid-template-columns: 1fr; }
+  .di-box { padding: 20px; }
+  .top .media { aspect-ratio: 16 / 10; }
+  .article { padding: 24px 20px; }
+  .wrap { padding: 0 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="ribbon" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="topbar-in">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">y</span>
+        <span class="mono">Y Business × DI</span>
+        <span class="mono draft-pill">Mockup · udkast</span>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Skift mellem mørk og lys visning" title="Skift mellem mørk og lys visning"></button>
+    </div>
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Visninger"></nav>
+  </div>
+</header>
+
+<main id="view" class="wrap" tabindex="-1"></main>
+<noscript><p class="wrap">Mockuppen kræver JavaScript.</p></noscript>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════════════
+   INDSTILLINGER
+   ════════════════════════════════════════════════════════════════════════════ */
+
+// Mærkning. Y har endnu ikke vedtaget en mærkningspolitik (partner-governance U3).
+// Ordlyden er derfor en konstant, jf. SPONSOR_LABEL_DEFAULT / SPONSOR_INDEPENDENCE_LINE i AI library.
+const SPONSOR_LABEL = 'Uafhængig journalistik fra Y Business, vist i samarbejde med DI';
+const INDEPENDENCE_LINE = 'Mærket samarbejde. DI kan pege på emner. Vurderingen er Ys egen.';
+const AI_DECLARATION = 'AI-deklaration: Artiklen er udarbejdet med AI-støtte og kræver redaktionel godkendelse, før den publiceres.';
+const MOCK_DATE = '6. oktober 2026';
+
+// Forsiden. Ændr rækkefølgen her.
+// hero = tophistorien, band = historien mellem top og DI-boks, box = de tre enheder i den lilla boks.
+const FRONT = { hero: 3, band: 2, box: [1, 4, 5] };
+
+// Billeder. Rigtige fotos fra Unsplash (Unsplash-licensen, via Unsplash's eget CDN). SVG'en er reserve, hvis et foto ikke kan hentes.
+// Udskift et foto ved at ændre `src`, `credit`, `caption` og `alt`. Fotos skal være mindst 1000 px på den korte led og have rettigheder, jf. sponsorformatet.
+// Fotografnavne og licens er læst fra Unsplash-siderne den 6. oktober 2026 og skal kontrolleres af redaktionen, før noget publiceres.
+const IMAGES = {
+  1: { type: 'photo', src: 'https://images.unsplash.com/photo-1758518729829-162d6bf27b5e?auto=format&fit=crop&w=1600&q=80', alt: 'Et forretningsteam gennemgår rapporter og diagrammer ved et møde.', credit: 'Vitaly Gariev / Unsplash', caption: 'Foto: Vitaly Gariev / Unsplash',
+    fallbackSvg: `<svg viewBox="0 0 800 450" role="img" aria-label="" preserveAspectRatio="xMidYMid slice"><rect class="il-bg" width="800" height="450"/><rect class="il-neutral" x="130" y="230" width="110" height="170" rx="10"/><rect class="il-coral" x="270" y="170" width="110" height="230" rx="10"/><rect class="il-neutral" x="410" y="90" width="110" height="310" rx="10"/><rect class="il-neutral" x="550" y="60" width="110" height="340" rx="10"/><path class="il-line" d="M100 400H700" stroke-dasharray="2 10"/><circle class="il-indigo" cx="325" cy="140" r="10"/></svg>` },
+  2: { type: 'photo', src: 'https://images.unsplash.com/photo-1773126378587-d30f7a716b14?auto=format&fit=crop&w=1600&q=80', alt: 'En række farvede skibscontainere under en overdækning.', credit: '雙 film / Unsplash', caption: 'Foto: 雙 film / Unsplash',
+    fallbackSvg: `<svg viewBox="0 0 800 450" role="img" aria-label="" preserveAspectRatio="xMidYMid slice"><rect class="il-bg" width="800" height="450"/><path class="il-line" d="M200 225H400M400 225H590" stroke-dasharray="3 12"/><circle class="il-neutral-2" cx="190" cy="225" r="110"/><circle class="il-neutral" cx="190" cy="225" r="74"/><circle class="il-neutral-2" cx="420" cy="225" r="72"/><circle class="il-neutral" cx="420" cy="225" r="46"/><circle class="il-coral" cx="620" cy="225" r="38"/><path class="il-line" d="M570 168l54-30M570 282l54 30" /></svg>` },
+  3: { type: 'photo', src: 'https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?auto=format&fit=crop&w=1600&q=80', alt: 'Nærbillede af en blå industrirobot, der arbejder på et samlebånd i en produktionshal.', credit: 'Homa Appliances / Unsplash', caption: 'Foto: Homa Appliances / Unsplash',
+    fallbackSvg: `<svg viewBox="0 0 800 450" role="img" aria-label="" preserveAspectRatio="xMidYMid slice"><rect class="il-bg" width="800" height="450"/><rect class="il-coral" x="120" y="86" width="560" height="52" rx="26"/><rect class="il-neutral" x="120" y="166" width="478" height="52" rx="26"/><rect class="il-neutral" x="120" y="246" width="520" height="52" rx="26"/><rect class="il-neutral" x="120" y="326" width="264" height="52" rx="26"/><path class="il-line" d="M120 60V400" stroke-dasharray="2 10"/><circle class="il-indigo" cx="706" cy="112" r="12"/></svg>` },
+  4: { type: 'photo', src: 'https://images.unsplash.com/photo-1716194583732-0b9874234218?auto=format&fit=crop&w=1600&q=80', alt: 'Automatiseret produktionslinje med transportbånd i en fabrikshal.', credit: 'Homa Appliances / Unsplash', caption: 'Foto: Homa Appliances / Unsplash',
+    fallbackSvg: `<svg viewBox="0 0 800 450" role="img" aria-label="" preserveAspectRatio="xMidYMid slice"><rect class="il-bg" width="800" height="450"/><rect class="il-neutral" x="60" y="268" width="680" height="22" rx="11"/><rect class="il-neutral-2" x="110" y="190" width="96" height="78" rx="12"/><rect class="il-neutral-2" x="270" y="190" width="96" height="78" rx="12"/><rect class="il-coral" x="430" y="190" width="96" height="78" rx="12"/><rect class="il-neutral-2" x="590" y="190" width="96" height="78" rx="12"/><path class="il-line" d="M478 130v36M430 100h96l-20 30h-56z"/><circle class="il-indigo" cx="478" cy="88" r="9"/></svg>` },
+  5: { type: 'photo', src: 'https://images.unsplash.com/photo-1717386255773-a456c611dc4e?auto=format&fit=crop&w=1600&q=80', alt: 'Touchskærm på et betjeningspanel på en industrimaskine.', credit: 'Homa Appliances / Unsplash', caption: 'Foto: Homa Appliances / Unsplash',
+    fallbackSvg: `<svg viewBox="0 0 800 450" role="img" aria-label="" preserveAspectRatio="xMidYMid slice"><rect class="il-bg" width="800" height="450"/><path class="il-line" d="M90 330C230 316 340 302 460 292S640 262 720 250"/><path class="il-coral-line" d="M90 330C230 300 340 250 460 200S640 120 720 96"/><path class="il-line" d="M610 60V400" stroke-dasharray="3 12"/><circle class="il-indigo" cx="610" cy="147" r="10"/></svg>` },
+};
+
+/* ════════════════════════════════════════════════════════════════════════════
+   ARTIKLER — ordret fra generatorens output (:::-syntaks).
+   Boksene markeret [TILFØJET] mangler i den genererede tekst og er bygget af tal,
+   der allerede står i samme artikel. Fjern dem ved at slette blokken.
+   Kildelinjen "Ukendt kilde, 09.30" fra generatoren er erstattet af de kilder, artiklen selv nævner.
+   Formatkoder (til redaktionspanelet, ikke vist): 1 DI·RP · 2 DI·BS · 3 DI·NS · 4 DI·AI · 5 DI·PÅ
+   ════════════════════════════════════════════════════════════════════════════ */
+const ARTICLES = {
+1: {
+  tab: 'AI-brug',
+  kicker: 'AI-brug i Danmark',
+  headline: 'Fire tal, fire svar: Hvor mange danske virksomheder bruger egentlig AI?',
+  manchet: '72, 37,6, 81 og 42 procent. Tallene modsiger ikke hinanden — de besvarer fire forskellige spørgsmål.',
+  kilder: 'Dansk Industri, Siemens, Eurostat, Danmarks Statistik',
+  info: { relevans: 'Fire tal for AI-brug bruges i debatten, som om de måler det samme. Artiklen stiller dem side om side med definitioner og population, så en leder kan se, hvad hvert tal faktisk siger.', kategori: 'Perspektivrapport · Understand · Ben 1: Business AI', forDI: "Tre af tallene stammer fra DI's egne undersøgelser. Artiklen gør dem lettere at bruge for medlemmerne og viser, hvor de kan sammenlignes med Eurostat." },
+  body: `:::bullets Hvad sker der?
+- Fire opgørelser spænder fra 37,6 til 81 procent for dansk AI-brug.
+- DI's 72 procent dækker kun generativ AI, ikke drift og produktion.
+- Siemens måler smallere: 37,6 procent af industrien bruger industriel AI.
+- Eurostat giver Danmark EU-rekord med 42,03 procent mod 19,95 i snit.
+:::
+
+72 procent. 37,6 procent. 81 procent. 42,03 procent.
+
+Fire tal om danske virksomheders brug af kunstig intelligens. Læst hurtigt ligner de fire bud på svaret på det samme spørgsmål: Hvor mange virksomheder bruger AI?
+
+Det er de ikke.
+
+## Fire tal, fire forskellige spørgsmål
+
+Bag tallene gemmer sig forskellige virksomhedstyper, forskellige teknologier og forskellige krav til, hvad en virksomhed skal gøre, før den bliver registreret som AI-bruger.
+
+:::factbox De fire AI-tal
+## Hvad måles der
+- 72 pct. dækker brug af generativ AI og bygger på 239 svar fra DI-medlemmer i 2025.
+- 37,6 pct. dækker danske industrivirksomheder, der aktivt arbejder med industriel AI.
+- 81 pct. dækker AI i enhver form, inklusive medarbejderes ad hoc-brug, i en survey med 7.150 virksomheder.
+## Det fælles benchmark
+- Eurostat tæller en virksomhed som AI-bruger, hvis den anvender mindst én defineret AI-teknologi.
+- På den definition brugte 42,03 pct. af danske virksomheder med mindst ti ansatte AI i 2025.
+- Danmarks Statistik målte 28 pct. blandt danske virksomheder med mindst ti ansatte i 2024.
+- Kilde: Dansk Industri, Siemens, Eurostat, Danmarks Statistik
+:::
+
+Det bliver tydeligt, når man stiller dem ved siden af den officielle europæiske statistik. Her brugte 42 procent af danske virksomheder med mindst ti ansatte mindst én AI-teknologi i 2025. Det var den højeste andel i EU.
+
+Dermed findes der nu mindst fire relevante tal for dansk erhvervslivs AI-brug. De spænder fra 37,6 til 81 procent.
+
+:::chart bar
+caption: Andel virksomheder med AI i 2025. Kilde: Eurostat
+Danmark: 42.03
+Finland: 37.82
+Sverige: 35.04
+EU: 19.95
+:::
+
+Forskellen ligger først og fremmest i definitionen.
+
+## 72 procent: ordet generativ
+
+Det højeste profilerede tal kom fra Dansk Industri i 2025. I DI's Future of Work-undersøgelse svarede 72 procent af virksomhederne, at de brugte generativ AI. Undersøgelsen blev sendt til 1.252 DI-medlemmer på tværs af brancher, og 239 virksomheder svarede mellem 1. og 11. april 2025.
+
+Her er det afgørende ord generativ.
+
+Undersøgelsen handler om teknologi som ChatGPT og andre systemer, der kan producere blandt andet tekst og billeder. Den måler ikke nødvendigvis, om AI er integreret i virksomhedens produktion, produkter eller centrale forretningsprocesser.
+
+Samtidig er de 72 procent et medlemssurvey hos DI. Det er ikke en repræsentativ optælling af samtlige danske virksomheder.
+
+DI sammenligner selv med en undersøgelse fra 2024, hvor 43 procent af mellemstore og store virksomheder svarede, at de anvendte generativ AI. Men organisationen gør samtidig opmærksom på, at populationen blev udvidet i 2025. Begrænser man 2025-resultatet til samme population som året før, er andelen 80 procent.
+
+Selv inden for én undersøgelsesrække kan et procenttal altså ændre betydning, hvis man ikke holder populationen fast.
+
+## 37,6 procent: industriel AI
+
+Et andet tal kom fra Siemens i foråret 2026 og blev videreformidlet af DI Digital. Her lød konklusionen, at 37,6 procent af danske industrivirksomheder aktivt arbejder med industriel AI. I 2024 skulle andelen have været 21 procent.
+
+På overfladen er udviklingen klar: fra omtrent hver femte virksomhed til mere end hver tredje på to år.
+
+Men tallet kan ikke sættes direkte ved siden af DI's 72 procent.
+
+For det første omfatter Siemens-undersøgelsen industrivirksomheder. For det andet handler den om industriel AI. En medarbejder, der anvender ChatGPT til at skrive et referat, kan være nok til at få virksomheden med i en bred undersøgelse af generativ AI, uden at virksomheden derfor arbejder med industriel AI i eksempelvis produktion, automatisering eller vedligeholdelse.
+
+Der er også en vigtig metodisk begrænsning. Siemens betegner selv 2026-rapporten som den anden analyse og skriver, at andelen er steget fra 21 til 37,6 procent. Men de offentligt tilgængelige sider oplyser ikke den præcise spørgsmålsformulering, respondentantallet eller en detaljeret operationalisering af, hvornår en virksomhed tæller som en virksomhed, der aktivt arbejder med industriel AI. Den fulde rapport ligger bag en registrering.
+
+Det kan derfor ikke ud fra det offentlige materiale fastslås, om de 21 og 37,6 procent er målt på præcis samme population og med uændret definition.
+
+Det gør ikke tallet forkert. Det betyder, at tidsserien ikke kan efterprøves fuldt ud udefra.
+
+## 81 procent: fra ad hoc til systematisk
+
+I september 2026 kom endnu en DI-analyse. Her er AI-brug ikke først og fremmest opdelt efter teknologi, men efter hvor systematisk teknologien er taget ind i virksomheden.
+
+81 procent af virksomhederne anvender ifølge analysen AI i en eller anden form. Men hos 45 procent består brugen alene i, at enkelte medarbejdere anvender AI ad hoc. 25 procent bruger AI systematisk i udvalgte afdelinger, mens 10 procent bruger teknologien systematisk i stort set hele virksomheden.
+
+Analysen bygger på en DI-survey fra juni 2026 med svar fra 7.150 unikke virksomheder.
+
+De 81 procent er derfor heller ikke et alternativt mål for Siemens' 37,6 procent. En virksomhed, hvor en medarbejder lejlighedsvis bruger et AI-værktøj, tæller med blandt de 81 procent. Det fortæller noget om teknologiens udbredelse, men noget andet end et mål for systematisk eller industriel anvendelse.
+
+Ser man alene på de virksomheder, hvor AI bruges systematisk i mindst udvalgte afdelinger, er andelen 35 procent.
+
+Pludselig ligger DI's tal langt tættere på Siemens' 37,6 procent. Det betyder stadig ikke, at de to tal er direkte sammenlignelige. Men det viser, hvor meget resultatet ændrer sig, når tærsklen for AI-bruger flyttes.
+
+## Eurostat: den fælles målestok
+
+Skal Danmark sammenlignes med andre lande, er Eurostats statistik et stærkere udgangspunkt. Her tæller en virksomhed som AI-bruger, hvis den anvender mindst én af en række nærmere definerede AI-teknologier. Populationen består af virksomheder med mindst ti ansatte i de brancher, som indgår i den harmoniserede europæiske virksomhedsundersøgelse.
+
+På den definition brugte 42,03 procent af de danske virksomheder AI i 2025. Finland lå på 37,82 procent og Sverige på 35,04 procent. EU-gennemsnittet var 19,95 procent.
+
+Danmarks Statistik målte året før 28 procent blandt danske virksomheder med mindst ti ansatte. Eurostats tilsvarende tal var 27,6 procent.
+
+Det giver en forholdsvis ren tidsserie og et internationalt benchmark. Men selv Eurostats definition ændrer sig over tid i takt med teknologien. I 2025 omfattede opgørelsen blandt andet analyse af skrevet sprog, generering af billeder, video og lyd, generering af tekst og tale samt forskellige former for machine learning og automatisering.
+
+Der findes med andre ord ikke ét naturgivent mål for, om en virksomhed bruger AI.
+
+Tallene modsiger altså ikke nødvendigvis hinanden. De besvarer forskellige spørgsmål.
+
+Det ene handler om, hvor langt generativ AI er nået ind på arbejdspladserne. Det andet om industriel AI. Det tredje skelner mellem sporadisk og systematisk brug. Eurostat spørger efter konkrete teknologier og gør det på en population, der kan sammenlignes mellem landene.
+
+## Hvilken skelnen tæller for lederen
+
+Derfor er spørgsmålet Hvor mange danske virksomheder bruger AI? mindre præcist, end det lyder.
+
+For en virksomhedsleder er den mere interessante skelnen måske en anden: Er AI et værktøj, som enkelte medarbejdere har åbent i browseren, eller er teknologien blevet en del af virksomhedens arbejdsgange og drift?
+
+Begge virksomheder kan tælle som AI-brugere. De befinder sig bare to vidt forskellige steder.`
+},
+2: {
+  tab: 'Leverandørkrav',
+  kicker: 'Krav til leverandører',
+  headline: 'For lille til EU-reglerne, men stor nok til regningen: Kunden sender kravet videre',
+  manchet: 'Mellemstore danske underleverandører slipper for EU-rapportering, men møder kravene i kontrakterne fra store kunder.',
+  kilder: 'Epinion for Danmarks Erhvervsfremmebestyrelse (2023), CSDDD, NIS2',
+  info: { relevans: 'Debatten om regelbyrde handler om, hvem der er omfattet af en forordning. Artiklen viser den part, der sjældent nævnes: underleverandøren, som møder kravet i en kontrakt.', kategori: 'Blind Spot · Challenge · Ben 1: Business AI og teknologiimplementering', forDI: "DI's medlemmer er både store kunder og små underleverandører. Artiklen giver begge sider et konkret billede af, hvor kravene flytter hen, og hvad kontrakterne kan komme til at indeholde." },
+  body: `:::bullets Hvad sker der?
+- 36 procent af SMV'erne mødte allerede bæredygtighedskrav fra kunder i 2023.
+- CSDDD giver store kunder ret til at kræve kontraktlige garantier af leverandører.
+- NIS2-vejledningen oplister cybersikkerhedskrav, der kan havne i aftaler.
+- Kravet kommer ikke fra myndigheden, men fra den store kunde.
+:::
+
+En dansk underleverandør kan være for lille til selv at være omfattet af et EU-krav. Alligevel kan virksomheden ende med at skulle dokumentere, at den lever op til det. Ikke over for en myndighed. Over for kunden.
+
+Det er en forskel, der let forsvinder i debatten om virksomhedernes voksende regelbyrde. For konsekvenserne af reguleringen afhænger ikke kun af, hvilke virksomheder der står nævnt i en forordning. De afhænger også af, hvilke garantier de omfattede virksomheder har brug for fra deres leverandører.
+
+## Regningen lander hos underleverandøren
+
+Fænomenet begyndte ikke med AI. Epinion gennemførte i 2023 en undersøgelse for Danmarks Erhvervsfremmebestyrelse blandt 3.504 små og mellemstore virksomheder. 56 procent svarede, at mindst én aktør efterspurgte dokumentation for eller stillede krav til virksomhedens bæredygtighed. Ser man alene på kunderne, var andelen 36 procent. Kun 42 procent af de virksomheder, der allerede oplevede krav, vurderede, at de i høj eller meget høj grad kunne leve op til dem.
+
+:::factbox Kundekrav til SMV'er [TILFØJET]
+## Undersøgelsen
+- Epinion for Danmarks Erhvervsfremmebestyrelse, 2023.
+- 3.504 små og mellemstore virksomheder.
+## Resultater
+- 56 pct. svarede, at mindst én aktør stillede krav om dokumentation for bæredygtighed.
+- 36 pct. mødte kravet alene fra kunder.
+- 42 pct. af dem, der oplevede krav, kunne i høj eller meget høj grad leve op til dem.
+- Kilde: Epinion for Danmarks Erhvervsfremmebestyrelse, 2023
+:::
+
+I EU's due diligence-regler, CSDDD, står der direkte, at en virksomhed kan søge kontraktlige garantier fra en direkte forretningspartner om, at partneren efterlever virksomhedens code of conduct. Kravet kan føres videre ned gennem kæden.
+
+På cybersikkerhedsområdet er sammenhængen tilsvarende. EU's NIS2-regime kræver, at omfattede virksomheder forholder sig til sikkerheden i deres forsyningskæder. I den europæiske implementeringsvejledning fremgår en liste over forhold, der kan skrives ind i aftaler med leverandører. Det gælder konkrete cybersikkerhedskrav, krav til uddannelse og certificeringer.
+
+Det, der starter som en complianceforpligtelse hos en stor kunde, kan ende som en klausul i indkøbsaftalen hos en virksomhed, der ikke selv er direkte omfattet.`
+},
+3: {
+  tab: 'AI i Europa',
+  kicker: 'AI i Europa',
+  headline: 'Danmark er Europas AI-mester – men industrien halter efter',
+  manchet: '42 procent af danske virksomheder bruger AI. I industrien er forspringet til Sverige skrumpet til 5,8 procentpoint.',
+  kilder: 'Digitaliseringsministeriets Redegørelse om Danmarks Digitale Udvikling 2026, Danmarks Statistik, SCB og Statistisk sentralbyrå',
+  info: { relevans: 'Danmark kaldes ofte digital frontløber. Artiklen sammenligner med Sverige, Norge og EU på samme måling og viser, hvor forspringet i industrien er skrumpet.', kategori: 'Nordisk spejl · Understand · Ben 2: Det nordiske perspektiv', forDI: "Industri er DI's kerne. Artiklen viser, hvordan dansk industri står over for nabolandene, og peger på, hvem der får AI fra udbredelse til drift." },
+  body: `:::bullets Hvad sker der?
+- 42 procent af danske virksomheder bruger AI – det er EU's højeste andel.
+- I fremstillingsindustrien falder dansk andel til 38,6 procent.
+- Sverige følger tæt efter med 32,8 procent i industrien.
+- Norge accelererer: 48 procent af virksomhederne brugte AI i 2026.
+:::
+
+Danmark har Europas største andel af virksomheder, der bruger kunstig intelligens. I 2025 anvendte 42 procent af danske virksomheder med mindst ti ansatte mindst én AI-teknologi. Det er nummer ét i EU, hvor gennemsnittet lå på 20 procent.
+
+Men når man isolerer fremstillingsindustrien, bliver billedet et andet. Her brugte 38,6 procent af de danske fremstillingsvirksomheder AI mod 32,8 procent i Sverige. Forskellen er 5,8 procentpoint mod syv procentpoint på tværs af hele erhvervslivet.
+
+Og Danmark er ikke nummer ét i Europa på industrien. Belgien lå en anelse højere med omkring 39,8 procent. Det ændrer betydningen af ordet frontløber, som ellers er blevet en fast del af fortællingen om dansk digitalisering.
+
+## Sverige haler ind i produktionen
+
+Sverige er tæt på i produktionen, og svensk industri står ikke stille. Året før var det svenske industrital 19,2 procent. Det svarer til en stigning på 13,6 procentpoint på ét år. Samtidig har AI Sweden samlet store industrivirksomheder som AstraZeneca, Volvo Lastvagnar, Saab og Ericsson omkring konkrete udviklingsprojekter.
+
+:::factbox AI-brug i Norden
+## Mod europæisk gennemsnit
+- EU-gennemsnittet for AI-brug blandt virksomheder var 20 procent i 2025.
+- I fremstillingsindustrien lå EU-gennemsnittet på 17,3 procent.
+## Svensk acceleration
+- Svensk industris AI-brug steg fra 19,2 procent i 2024 til 32,8 procent i 2025.
+- AI Sweden samler AstraZeneca, Volvo Lastvagnar, Saab og Ericsson om udviklingsprojekter.
+- Et projekt om generative multiagentsystemer omfattede omkring 40 organisationer.
+## Norsk brancheforskel
+- Norges industrital samler industri med energi, vand og renovation og kan ikke sammenlignes direkte.
+- Kilde: Danmarks Statistik, SCB og Statistisk sentralbyrå
+:::
+
+"Danmark har flere digitale førerpositioner, men ikke dem alle," lyder det i Digitaliseringsministeriets redegørelse om Danmarks digitale udvikling 2026.
+
+## Norge viser, hvor hurtigt det kan flytte sig
+
+Norge viser, hvor hurtigt placeringerne kan flytte sig. Ifølge Statistisk sentralbyrå brugte 48 procent af norske virksomheder AI i 2026 mod omkring tre ud af ti året før. Spørgsmålet er derfor ikke, hvem der først fik flest virksomheder til at krydse feltet "vi bruger AI" – men hvem der får teknologien fra udbredelse til drift.`
+},
+4: {
+  tab: 'AI i produktionen',
+  kicker: 'AI i produktionen',
+  headline: 'Grundfos høstede 11 procent mere produktion med AI – men regningen gemmes væk',
+  manchet: 'Nordiske industrivirksomheder viser gerne AI-gevinsterne frem. Den fulde business case mangler næsten altid.',
+  kilder: 'De offentliggjorte cases hos Grundfos (via Almetra), Nexans, Junckers (via No Zebra) og Hoff, OECD',
+  info: { relevans: 'Industrivirksomheder viser AI-gevinster frem, men sjældent regningen. Artiklen gennemgår fire nordiske cases og de fem poster, en case skal oplyse, før en anden virksomhed kan bruge den.', kategori: 'Applied AI-casen · Inspire · Ben 1: Business AI', forDI: 'Casene, medlemmerne møder, kommer ofte fra leverandører og organisationer. Artiklen giver en tjekliste, medlemmerne kan stille til enhver case, også dem, der deles af DI.' },
+  body: `:::bullets Hvad sker der?
+- Grundfos fik 11 procent højere gennemløb med AI-videoanalyse på produktionslinjen.
+- Kameraer, software og årlig drift er ikke oplyst i den offentlige case.
+- Junckers er eneste case med et beløb: 150.000 kroner til en contentmotor.
+- Ingen nordiske virksomheder beskriver åbent et fejlslagent AI-projekt med tal.
+:::
+
+Grundfos har offentliggjort et konkret resultat af AI-arbejde i produktionen. Efter tre måneders brug af AI-baseret videoanalyse på en manuel produktionslinje steg gennemløbet med 11 procent. Det oplyser leverandøren Almetra ifølge den offentliggjorte case.
+
+Samtidig kunne Grundfos holde produktionen kørende med 14 procent færre arbejdstimer på linjen og flytte medarbejdere til andre opgaver.
+
+Det lyder som præcis den information, en anden industrivirksomhed har brug for, hvis den overvejer samme teknologi. Men kun indtil man forsøger at stille regnestykket op.
+
+## Gevinsten står klart, regningen mangler
+
+Hvad kostede kameraerne? Hvad kostede softwaren? Hvor mange interne timer gik med? Hvad koster løsningen om året?
+
+De oplysninger findes ikke i den offentlige case. Man kan se gevinsten. Man kan ikke se business casen.
+
+Mønsteret går igen på tværs af de nordiske AI-projekter, der er blevet offentliggjort. Hos Grundfos, den svenske kabelproducent Nexans, trægulvsproducenten Junckers og den norske virksomhed Hoff er der ikke et eneste sted, hvor en udenforstående kan rekonstruere hele investeringen fra start til drift.
+
+:::factbox Fire nordiske cases [TILFØJET]
+## Grundfos
+- 11 pct. højere gennemløb efter tre måneder.
+- 14 pct. færre arbejdstimer på linjen.
+- Kameraer på ni arbejdsstationer.
+## Nexans
+- Omkring 200 energimålere.
+- Samarbejde med RISE og Chalmers siden 2021.
+## Junckers
+- 150.000 kr. til en contentmotor.
+- 117 landingssider og 66 pct. mere organisk trafik ifølge bureauet.
+- 2,3 mio. kr. er en beregnet fremtidig værdi, ikke en realiseret besparelse.
+## Hoff
+- Pilot med generativ AI i produktionen. Ingen investering eller gevinst offentliggjort.
+- Kilde: De offentliggjorte cases hos Grundfos, Nexans, Junckers og Hoff
+:::
+
+Det er ikke ensbetydende med, at virksomhederne skjuler udgifter eller problemer. Det betyder kun, at de ikke fremgår af det offentlige materiale. Og det gør en afgørende forskel, hvis en industrileder vil bruge casene som beslutningsgrundlag.
+
+## Grundfos: AI fandt mønstrene, linjen skulle ændres
+
+På Grundfos' manuelle produktionslinje var meget allerede optimeret. Virksomheden havde gennemført kaizen-forløb, arbejdet med 5S og forbedret produktionsflowet.
+
+Men produktionssystemerne havde et hul. Registreringen af korte stop var delvist afhængig af medarbejdernes egne indtastninger. Kvalitets- og kassationsdata kunne vise, at noget var gået galt, men ikke altid hvorfor.
+
+Grundfos monterede derfor kameraer på ni arbejdsstationer og koblede dem til et AI-system fra Almetra. Systemet fulgte bevægelser af medarbejdere, materialer og værktøjer gennem produktionen.
+
+AI'en fandt blandt andet vogne, der satte sig fast, uhensigtsmæssig placering af materialer, unødvendig ventetid, processer der blev sprunget over, og variationer i cyklustider.
+
+Grundfos ændrede derefter layout, arbejdsfordeling, emballering, mærkning og værktøjer.
+
+Pointen er, at gevinsten ikke kom fra AI-systemet alene. AI'en fandt mønstrene. Produktivitetsforbedringen krævede ændringer ude på linjen. Men den offentliggjorte case gør det ikke muligt at beregne, hvad hele forløbet kostede.
+
+## Nexans: flere års arbejde med data
+
+Hos Nexans i svenske Grimsås begyndte vejen til industriel AI med noget langt mindre spektakulært: datainfrastruktur.
+
+Virksomheden havde indført et Manufacturing Execution System og installeret omkring 200 energimålere. Men data skulle stadig identificeres, forbindes og forstås, før de kunne bruges til avanceret analyse.
+
+Samarbejdet med RISE og Chalmers begyndte i 2021. Først blev datagrundlaget kortlagt og integreret. Derefter blev analyseværktøjer udviklet. Samtidig arbejdede virksomheden med kompetencer, forandringsledelse og opbygningen af en datakultur.
+
+Nexans inddrog ikke kun AI-specialister, men også forskere med viden om organisation, arbejdsgange og menneskelig adfærd. Casen dokumenterer dermed en omkostning, der ikke nødvendigvis står på en softwarefaktura: flere års organisatorisk arbejde.
+
+Men heller ikke her er den samlede økonomi offentlig. Hvad integration, medarbejdertid, forskning, software og implementering har kostet tilsammen, vides ikke.
+
+## Junckers: næsten et regnestykke
+
+Junckers er den nærmeste undtagelse. Trægulvsproducenten brugte 150.000 kroner på en AI-baseret contentmotor udviklet med bureauet No Zebra.
+
+På få uger producerede systemet 117 landingssider. Den organiske trafik steg ifølge bureauet 66 procent. Junckers vurderede desuden, at tilsvarende trafik ville have kostet omkring 400.000 kroner om året, hvis den skulle være købt gennem Google Ads.
+
+Her findes altså noget, der ligner et regnestykke. Men heller ikke Junckers-casen er en komplet business case.
+
+Det fremgår eksempelvis, at mennesker fortsat skal vælge opgaver, gennemgå tekster og kvalitetssikre oversættelser. Hvad den arbejdstid koster, fremgår ikke.
+
+De 2,3 millioner kroner, som bruges som tal for værdien ved fuld skalering, er desuden ikke en realiseret besparelse. Det er en beregnet fremtidig værdi. Junckers er derfor den mest økonomisk gennemsigtige af de fundne cases. Men selv her mangler dele af regnestykket.
+
+## Hoff: en pilot er ikke en case
+
+Hos norske Hoff bliver generativ AI afprøvet direkte i produktionen. Virksomheden tester en løsning, hvor operatører kan stille spørgsmål til fabrikkens produktionsdata, dokumenter og historik i almindeligt sprog.
+
+Hvis en produktionslinje eksempelvis kører langsommere end normalt, skal systemet kunne søge på tværs af data og pege på mulige årsager.
+
+Men casen er stadig en pilot. Der er endnu ikke offentliggjort investeringsbeløb, tilbagebetalingstid, dokumenteret produktivitetsgevinst eller driftsomkostning.
+
+Hoff illustrerer dermed en anden fejl, der let opstår i AI-debatten: at en pilot bliver omtalt som en case, før der findes et resultat.
+
+## Den skjulte skævhed
+
+Der findes langt flere cases end de fire. Volvo, ABB, Danfoss og en række andre nordiske industrivirksomheder har offentliggjort eksempler på brug af AI.
+
+Men når kriteriet skærpes til, at en case skal indeholde oplysninger om mindst nogle af følgende forhold – investering, implementeringstid, interne arbejdstimer, dataklargøring, integration, fejl, forkastede piloter eller løbende omkostninger – bliver antallet hurtigt mindre.
+
+Det gør den offentlige AI-litteratur asymmetrisk. Gevinsten bliver opgjort. Regningen bliver langt sjældnere.
+
+Den største blinde vinkel er ikke engang omkostningerne ved de projekter, der lykkedes. Det er projekterne, der ikke gjorde.
+
+I den gennemgåede nordiske dokumentation er det svært at finde større industrivirksomheder, der åbent beskriver et AI-projekt, hvor de oplyser, hvor meget der blev investeret, hvad der gik galt, hvorfor projektet blev lukket, og hvor stor en del af investeringen der gik tabt.
+
+Der findes forskning om vanskeligheder ved industriel AI og om overgangen fra pilot til skalering. OECD peger blandt andet på datakvalitet, kompetencemangel, omkostninger og integration med eksisterende systemer som centrale barrierer i fremstillingsindustrien.
+
+Men der mangler offentlige virksomhedsregnskaber over de konkrete fejlslagne projekter. Det betyder, at virksomheder, der skal investere nu, typisk får adgang til resultaterne fra den ene side af fordelingen. Vinderne.
+
+## Fem spørgsmål, en case skal besvare
+
+Hvis en industrivirksomhed skal kunne bruge en case som andet end inspiration, er et effektmål ikke nok. Der skal mindst være svar på fem spørgsmål.
+
+Hvad kostede teknologien – software, hardware og leverandører? Hvad kostede implementeringen – integration, dataklargøring og eksterne konsulenter? Hvor mange interne ressourcer blev brugt – ledelse, produktion, it og træning? Hvad koster løsningen i drift – licenser, vedligeholdelse, overvågning og kvalitetssikring? Og hvad skete der med de forsøg, der ikke virkede?
+
+Den femte post findes næsten aldrig i de offentlige cases.
+
+:::factbox Regningen i fem poster [TILFØJET]
+## Hvad en case skal oplyse
+- Teknologien: software, hardware og leverandører.
+- Implementeringen: integration, dataklargøring og eksterne konsulenter.
+- Interne ressourcer: ledelse, produktion, it og træning.
+- Drift: licenser, vedligeholdelse, overvågning og kvalitetssikring.
+- Forsøg, der ikke virkede.
+- Kilde: Artiklens gennemgang af de nordiske cases
+:::
+
+Grundfos' 11 procent højere gennemløb er interessant. Junckers' 66 procent mere organiske trafik er interessant. Nexans' flerårige arbejde med produktionsdata er interessant.
+
+## Case og business case
+
+Men de tre tal besvarer forskellige spørgsmål. Ingen af dem fortæller alene, om den samme investering giver mening i en anden virksomhed.
+
+Derfor er det mest opsigtsvækkende fund i de nordiske AI-cases ikke nødvendigvis, hvor meget virksomhederne har vundet. Det er, hvor lidt offentlig information der findes om, hvad det krævede at nå dertil.
+
+For industriledere er det måske den vigtigste forskel mellem en AI-case og en business case. Den første viser, at noget virkede. Den anden viser, om det kan betale sig at gøre det igen.`
+},
+5: {
+  tab: 'DI-analyse',
+  kicker: 'DI-analyse',
+  headline: 'Dansk Industri: AI-virksomheder voksede 6,5 procent mere — men tallene beviser ikke, at AI skabte væksten',
+  manchet: 'Dansk Industris nye analyse viser markant højere omsætningsvækst hos virksomheder med systematisk AI-brug, men måler teknologien efter vækstperioden.',
+  kilder: 'Dansk Industri, september 2026',
+  info: { relevans: "DI's analyse af AI og vækst er blevet citeret bredt. Artiklen forklarer, hvad tallet viser og ikke viser, når AI-brug måles efter vækstperioden.", kategori: 'Påstanden · Challenge · Ben 1: Business AI', forDI: "Analysen er DI's egen, og DI skriver selv, at resultatet er en sammenhæng og ikke en kausal effekt. Artiklen bygger på den afgrænsning og gør den let at huske for medlemmerne." },
+  body: `:::bullets Hvad sker der?
+- Systematiske AI-brugere havde 6,5 procent højere omsætningsvækst fra 2021 til 2025.
+- Hos de mest intensive AI-brugere var forskellen 13,3 procent.
+- AI-brugen blev først målt i 2026 — efter vækstperioden sluttede.
+- Dansk Industri kalder selv resultatet en sammenhæng, ikke en kausal effekt.
+:::
+
+Danske virksomheder, der bruger kunstig intelligens systematisk, havde fra 2021 til 2025 en omsætningsvækst, der var 6,5 procent højere end sammenlignelige virksomheder uden systematisk AI-brug. Hos de mest intensive brugere er forskellen 13,3 procent. Det viser en analyse fra Dansk Industri, der kombinerer spørgeskemaer blandt 7.150 virksomheder med registerdata fra Danmarks Statistik.
+
+Analysen vægter kontrolgruppen, så virksomhederne ligner hinanden på en række observerbare karakteristika, og følger deres udvikling med 2021 som referenceår. Men der er et afgørende forbehold: Omsætningen måles frem til 2025, mens virksomhedernes AI-brug først måles i juni 2026.
+
+## AI-brugen blev målt bagefter
+
+"Analysen viser derfor udviklingen blandt virksomheder, der senere anvender AI – ikke udviklingen fra deres præcise implementeringstidspunkt," skriver Dansk Industri i analysen.
+
+Dansk Industri understreger selv, at resultatet ikke er et bevis på, at AI har skabt væksten.
+
+:::chart bar
+caption: Højere omsætningsvækst 2021-2025 mod kontrolgruppe, pct. Kilde: Dansk Industri [TILFØJET]
+Systematisk AI-brug: 6.5
+Intensiv AI-brug: 13.3
+:::
+
+"Resultaterne fortolkes derfor som en tydelig sammenhæng mellem systematisk AI-anvendelse og højere omsætningsvækst – ikke som en entydig kausal effekt," skriver Dansk Industri.
+
+Analysen finder heller ikke tegn på, at AI har løftet produktiviteten målt som værditilvækst per medarbejder. Beskæftigelsen voksede omtrent lige så meget som omsætningen.
+
+:::factbox Analysen i tal [TILFØJET]
+## Resultat
+- 6,5 pct. højere omsætningsvækst 2021-2025 for systematiske AI-brugere.
+- 13,3 pct. forskel hos de mest intensive brugere.
+- Ingen tegn på højere produktivitet, målt som værditilvækst per medarbejder.
+## Metode
+- Spørgeskemaer blandt 7.150 virksomheder kombineret med registerdata fra Danmarks Statistik.
+- Omsætning målt frem til 2025. AI-brug målt i juni 2026.
+- Kilde: Dansk Industri, september 2026
+:::`
+},
+};
+
+/* ════════════════════════════════════════════════════════════════════════════
+   PARSER — genskaber splitArticleBlocks/parseBlock fra SN-DeepDive/y-test-lab/bulletsBlock.ts
+   ════════════════════════════════════════════════════════════════════════════ */
+function parseBody(src) {
+  const lines = String(src).replace(/\r\n/g, '\n').split('\n');
+  const blocks = [];
+  let para = [];
+  const flush = () => { const t = para.join(' ').trim(); if (t) blocks.push({ type: 'p', text: t }); para = []; };
+  const ITEM = /^\s*[-•*]\s+/;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const open = line.match(/^\s*:::\s*(bullets|factbox|chart)\b[ \t]*(.*)$/i);
+    if (open) {
+      flush();
+      const kind = open[1].toLowerCase();
+      const arg = (open[2] || '').trim();
+      const inner = [];
+      let j = i + 1;
+      for (; j < lines.length; j++) { if (/^\s*:::\s*$/.test(lines[j])) break; inner.push(lines[j]); }
+      i = j;
+      if (kind === 'bullets') {
+        blocks.push({ type: 'bullets', title: arg || 'Hvad sker der?', items: inner.filter(l => l.trim()).map(l => l.replace(ITEM, '').trim()) });
+      } else if (kind === 'factbox') {
+        const tagged = /\s*\[TILFØJET\]\s*$/.exec(arg);
+        const title = arg.replace(/\s*\[TILFØJET\]\s*$/, '').trim();
+        const groups = []; let source = '';
+        for (const l of inner.map(x => x.trim()).filter(Boolean)) {
+          const g = l.match(/^#{2,3}\s+(.+)$/);
+          if (g) { groups.push({ group: g[1].trim(), items: [] }); continue; }
+          const text = l.replace(ITEM, '').trim();
+          const s = text.match(/^kilde(?:r)?\s*:\s*(.+)$/i);
+          if (s) { source = s[1].trim(); continue; }
+          if (!groups.length) groups.push({ group: '', items: [] });
+          groups[groups.length - 1].items.push(text);
+        }
+        blocks.push({ type: 'factbox', title, groups, source, added: !!tagged });
+      } else {
+        let caption = ''; const data = [];
+        for (const l of inner.map(x => x.trim()).filter(Boolean)) {
+          const c = l.match(/^caption\s*:\s*(.*)$/i);
+          if (c) { caption = c[1].trim(); continue; }
+          const m = l.match(/^(.+?)\s*:\s*(-?\d[\d.,]*)\s*%?\s*$/);
+          if (m) { const v = Number(m[2].replace(/,(?=\d{1,2}$)/, '.')); if (Number.isFinite(v)) data.push({ label: m[1].trim(), value: v, text: m[2] }); }
+        }
+        const added = /\[TILFØJET\]/.test(caption);
+        caption = caption.replace(/\s*\[TILFØJET\]\s*/, ' ').trim();
+        blocks.push({ type: 'chart', caption, data, added });
+      }
+      continue;
+    }
+    if (/^##\s+/.test(line)) { flush(); blocks.push({ type: 'h2', text: line.replace(/^##\s+/, '').trim() }); continue; }
+    if (!line.trim()) { flush(); continue; }
+    para.push(line.trim());
+  }
+  flush();
+  return blocks;
+}
+
+// Rytmetjek: afstand mellem bokse, mellemrubrikker og afsnit. Kører ved indlæsning og skriver advarsler i konsollen.
+// Regler: 1) mindst to afsnit mellem to bokse (de to første bokse efter "Hvad sker der?" tæller med),
+// 2) en mellemrubrik må ikke stå lige op ad en boks, 3) højst 380 ord afsnit i træk uden mellemrubrik eller boks,
+// 4) intet afsnit over 100 ord, 5) artikler over 450 ord har mindst to mellemrubrikker.
+function rhythmWarnings(blocks) {
+  const warn = [];
+  const isBox = b => b.type === 'bullets' || b.type === 'factbox' || b.type === 'chart';
+  const words = t => t.split(/\s+/).filter(Boolean).length;
+  let lastBox = -99, paras = 0, run = 0, total = 0, h2s = 0;
+  blocks.forEach((b, i) => {
+    if (isBox(b)) {
+      if (lastBox >= 0 && paras < 2) warn.push(`bokse for tæt (blok ${lastBox} og ${i})`);
+      if (blocks[i - 1] && blocks[i - 1].type === 'h2') warn.push(`mellemrubrik lige før boks (blok ${i})`);
+      if (blocks[i + 1] && blocks[i + 1].type === 'h2') warn.push(`mellemrubrik lige efter boks (blok ${i})`);
+      lastBox = i; paras = 0; run = 0;
+    } else if (b.type === 'h2') { h2s++; run = 0; paras = Math.max(paras, 0); }
+    else {
+      const w = words(b.text); total += w; paras++; run += w;
+      if (w > 100) warn.push(`afsnit på ${w} ord (blok ${i})`);
+      if (run > 380) warn.push(`${run} ord i træk uden mellemrubrik eller boks (blok ${i})`);
+    }
+  });
+  if (total > 450 && h2s < 2) warn.push(`${total} ord men kun ${h2s} mellemrubrikker`);
+  return warn;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   RENDER
+   ════════════════════════════════════════════════════════════════════════════ */
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v == null || v === false) continue;
+    if (k === 'class') e.className = v;
+    else if (k === 'text') e.textContent = v;
+    else e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const kid of kids.flat()) if (kid != null) e.append(kid.nodeType ? kid : document.createTextNode(kid));
+  return e;
+}
+const fmtNum = s => String(s).replace('.', ',');
+const wordsOf = a => (a.headline + ' ' + a.manchet + ' ' + a.body).split(/\s+/).filter(Boolean).length;
+const readMinutes = a => Math.max(1, Math.round(wordsOf(a) / 190));
+
+function iconSvg(path, extra) {
+  const s = document.createElementNS(NS, 'svg');
+  s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('fill', 'none'); s.setAttribute('stroke', 'currentColor');
+  s.setAttribute('stroke-width', '2'); s.setAttribute('stroke-linecap', 'round'); s.setAttribute('stroke-linejoin', 'round');
+  s.setAttribute('aria-hidden', 'true');
+  s.innerHTML = path;
+  return s;
+}
+const ICON_ZAP = '<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>';
+const ICON_INFO = '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>';
+
+function svgFrom(markup, alt) {
+  const tpl = document.createElement('template');
+  tpl.innerHTML = markup.trim();
+  const svg = tpl.content.firstChild;
+  svg.setAttribute('aria-label', alt);
+  return svg;
+}
+function mediaFor(id, ratioClass) {
+  const img = IMAGES[id];
+  const wrap = el('div', { class: `media ${ratioClass}` });
+  const photo = el('img', { src: img.src, alt: img.alt, loading: id === FRONT.hero ? 'eager' : 'lazy', decoding: 'async' });
+  // Reserve: kan fotoet ikke hentes, vises illustrationen i stedet.
+  photo.addEventListener('error', () => { if (img.fallbackSvg) photo.replaceWith(svgFrom(img.fallbackSvg, img.alt)); }, { once: true });
+  wrap.append(photo);
+  return wrap;
+}
+function captionFor(id) {
+  return el('p', { class: 'caption', text: IMAGES[id].caption });
+}
+
+function renderBullets(b) {
+  return el('aside', { class: 'aside-box', 'aria-label': b.title },
+    el('header', { class: 'aside-head mono indigo' }, iconSvg(ICON_ZAP), el('span', { text: b.title })),
+    el('ul', {}, b.items.map(t => el('li', { text: t }))));
+}
+function renderFactbox(b) {
+  const head = el('header', { class: 'aside-head mono indigo' }, iconSvg(ICON_INFO),
+    el('span', { text: 'Faktaboks' + (b.title ? ' · ' + b.title : '') }));
+  const parts = [head];
+  for (const g of b.groups) {
+    if (g.group) parts.push(el('p', { class: 'mono grp', text: g.group }));
+    parts.push(el('ul', {}, g.items.map(t => el('li', { text: t }))));
+  }
+  if (b.source) parts.push(el('p', { class: 'src' }, el('span', { class: 'tag-source', text: 'Kilde' }), el('span', { text: b.source })));
+  return el('aside', { class: 'aside-box', 'aria-label': 'Faktaboks' + (b.title ? ' ' + b.title : '') }, parts);
+}
+function renderChart(b) {
+  const max = Math.max(...b.data.map(d => Math.abs(d.value)), 0) || 1;
+  const si = b.caption.search(/\bKilde\s*:/i);
+  const title = (si >= 0 ? b.caption.slice(0, si) : b.caption).trim().replace(/[.:]\s*$/, '');
+  const source = si >= 0 ? b.caption.slice(si).replace(/^Kilde\s*:\s*/i, '').trim() : '';
+  const summary = title + ': ' + b.data.map(d => `${d.label} ${fmtNum(d.text)}`).join(', ');
+  const rows = b.data.map(d => el('div', { class: 'chart-row' },
+    el('span', { text: d.label }),
+    el('span', { class: 'track', 'aria-hidden': 'true' }, el('span', { class: 'fill', style: `width:${Math.max(2, Math.abs(d.value) / max * 100).toFixed(1)}%` })),
+    el('span', { class: 'v', text: fmtNum(d.text) })));
+  return el('figure', { class: 'chart', role: 'group', 'aria-label': summary },
+    el('h3', { text: title }), rows,
+    source ? el('p', { class: 'src' }, el('span', { class: 'tag-source', text: 'Kilde' }), el('span', { text: source })) : null);
+}
+
+const INFO_HEADINGS = ['Hvorfor er historien relevant?', 'Y-kategori', 'Hvorfor giver den mening for Dansk Industri?'];
+function infoRow(a, id) {
+  const panelId = 'info-' + id;
+  const btn = el('button', { class: 'info-btn', type: 'button', 'aria-expanded': 'false', 'aria-controls': panelId, 'aria-label': 'Redaktionel note: relevans, kategori og betydning for DI', title: 'Redaktionel note' }, iconSvg(ICON_INFO));
+  const panel = el('div', { class: 'info-panel', id: panelId, role: 'note', hidden: true },
+    el('p', { class: 'mono indigo', text: 'Redaktionel note til DI · vises kun i mockuppen, ikke for læserne' }),
+    el('dl', {},
+      el('dt', { class: 'mono', text: INFO_HEADINGS[0] }), el('dd', { text: a.info.relevans }),
+      el('dt', { class: 'mono', text: INFO_HEADINGS[1] }), el('dd', { text: a.info.kategori }),
+      el('dt', { class: 'mono', text: INFO_HEADINGS[2] }), el('dd', { text: a.info.forDI })));
+  const toggle = open => { btn.setAttribute('aria-expanded', open ? 'true' : 'false'); panel.hidden = !open; };
+  btn.addEventListener('click', () => toggle(panel.hidden));
+  panel.addEventListener('keydown', e => { if (e.key === 'Escape') { toggle(false); btn.focus(); } });
+  btn.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+  return el('div', { class: 'label-row' },
+    el('p', { class: 'article-label mono' }, el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', { text: SPONSOR_LABEL })),
+    btn, panel);
+}
+
+function renderArticle(id) {
+  const a = ARTICLES[id];
+  const blocks = parseBody(a.body);
+  const body = el('div', { class: 'body' });
+  for (const b of blocks) {
+    if (b.type === 'bullets') body.append(renderBullets(b));
+    else if (b.type === 'factbox') body.append(renderFactbox(b));
+    else if (b.type === 'chart') body.append(renderChart(b));
+    else if (b.type === 'h2') body.append(el('h2', { text: b.text }));
+    else body.append(el('p', { text: b.text }));
+  }
+  const ids = Object.keys(ARTICLES).map(Number);
+  const idx = ids.indexOf(Number(id));
+  const prev = ids[idx - 1], next = ids[idx + 1];
+  return el('div', { class: 'article-wrap' },
+    el('article', { class: 'article' },
+      infoRow(a, id),
+      el('p', { class: 'eyebrow mono indigo' }, el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', { text: a.kicker })),
+      el('h1', { text: a.headline }),
+      el('p', { class: 'dek', text: a.manchet }),
+      el('div', { class: 'meta mono' },
+        el('span', { text: MOCK_DATE }), el('span', { class: 'sep', 'aria-hidden': 'true', text: '·' }),
+        el('span', { text: `ca. ${readMinutes(a)} min læsetid` }), el('span', { class: 'sep', 'aria-hidden': 'true', text: '·' }),
+        el('span', { class: 'coral', text: 'Mærket samarbejde' })),
+      el('figure', { class: 'article-media' }, mediaFor(id, 'ratio-16x9'), captionFor(id)),
+      body,
+      el('footer', { class: 'article-foot' },
+        el('p', { class: 'src' }, el('span', { class: 'tag-source', text: 'Kilde' }), el('span', { text: a.kilder })),
+        el('p', { text: INDEPENDENCE_LINE }),
+        el('p', { text: AI_DECLARATION }))),
+    el('div', { class: 'article-nav' },
+      prev ? el('a', { class: 'ghost', href: '#a' + prev, text: '← ' + ARTICLES[prev].tab }) : el('a', { class: 'ghost', href: '#forside', text: '← Forside' }),
+      next ? el('a', { class: 'ghost', href: '#a' + next, text: ARTICLES[next].tab + ' →' }) : el('a', { class: 'ghost', href: '#forside', text: 'Forside →' })));
+}
+
+function renderFront() {
+  const h = ARTICLES[FRONT.hero];
+  const hImg = IMAGES[FRONT.hero];
+  const hMedia = mediaFor(FRONT.hero, '');
+  hMedia.append(el('span', { class: 'credit', text: 'Foto · ' + hImg.credit }));
+  const hero = el('a', { class: 'top', href: '#a' + FRONT.hero, 'aria-label': h.headline },
+    hMedia,
+    el('div', { class: 'top-text' },
+      el('span', { class: 'mono indigo', text: h.kicker + ' · I dag' }),
+      el('h1', { text: h.headline }),
+      el('p', { class: 'dek', text: h.manchet }),
+      el('div', { class: 'byline' }, el('span', { class: 'logo', 'aria-hidden': 'true', text: 'y' }),
+        el('strong', { text: 'Af Y Business' }), el('span', { text: `${readMinutes(h)} min. læsning` }))));
+
+  const bd = ARTICLES[FRONT.band];
+  const band = el('a', { class: 'band', href: '#a' + FRONT.band, 'aria-label': bd.headline },
+    mediaFor(FRONT.band, ''),
+    el('div', { class: 'band-text' },
+      el('span', { class: 'mono indigo', text: bd.kicker }),
+      el('h2', { text: bd.headline }),
+      el('p', { class: 'dek', text: bd.manchet }),
+      el('span', { class: 'mono', text: `${readMinutes(bd)} min. læsning` })));
+
+  const box = el('section', { class: 'di-box', 'aria-labelledby': 'diTitle' },
+    el('div', { class: 'di-head' },
+      el('div', { class: 'di-head-l' },
+        el('h2', { id: 'diTitle', class: 'di-pill', text: 'DI · Industri og AI' }),
+        el('span', { class: 'di-excl', text: 'Eksklusivt indhold for DI\u2019s medlemmer' })),
+      el('span', { class: 'di-logo', 'aria-label': 'DI (pladsholder for logo)', text: 'Di.' })),
+    el('div', { class: 'di-cards' }, FRONT.box.map(id => {
+      const a = ARTICLES[id];
+      return el('a', { class: 'di-card', href: '#a' + id },
+        el('span', { class: 'kick', text: `${a.kicker} · ${readMinutes(a)} min.` }),
+        el('h3', { text: a.headline }));
+    })));
+
+  const label = el('section', { class: 'label-block' },
+    el('span', { class: 'mono', text: SPONSOR_LABEL }),
+    el('p', { text: INDEPENDENCE_LINE }),
+    el('p', { text: AI_DECLARATION }));
+  return el('div', { class: 'front' }, hero, band, box, label);
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   NAVIGATION, TEMA
+   ════════════════════════════════════════════════════════════════════════════ */
+const VIEWS = ['forside', ...Object.keys(ARTICLES).map(k => 'a' + k)];
+function viewLabel(v) { return v === 'forside' ? 'Forside' : `${v.slice(1)} · ${ARTICLES[v.slice(1)].tab}`; }
+
+function buildTabs() {
+  const tabs = document.getElementById('tabs');
+  tabs.replaceChildren(...VIEWS.map(v => el('button', { class: 'tab', type: 'button', role: 'tab', id: 'tab-' + v, 'data-view': v, text: viewLabel(v) })));
+  tabs.addEventListener('click', e => { const b = e.target.closest('.tab'); if (b) location.hash = '#' + b.dataset.view; });
+  tabs.addEventListener('keydown', e => {
+    const i = VIEWS.indexOf(currentView());
+    let n = i;
+    if (e.key === 'ArrowRight') n = (i + 1) % VIEWS.length;
+    else if (e.key === 'ArrowLeft') n = (i - 1 + VIEWS.length) % VIEWS.length;
+    else if (e.key === 'Home') n = 0;
+    else if (e.key === 'End') n = VIEWS.length - 1;
+    else return;
+    e.preventDefault();
+    location.hash = '#' + VIEWS[n];
+    setTimeout(() => document.getElementById('tab-' + VIEWS[n]).focus(), 0);
+  });
+}
+function currentView() { const h = location.hash.replace('#', ''); return VIEWS.includes(h) ? h : 'forside'; }
+function show() {
+  const v = currentView();
+  document.querySelectorAll('.tab').forEach(t => {
+    const on = t.dataset.view === v;
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+    t.setAttribute('tabindex', on ? '0' : '-1');
+  });
+  const main = document.getElementById('view');
+  main.setAttribute('role', 'tabpanel');
+  main.setAttribute('aria-labelledby', 'tab-' + v);
+  main.replaceChildren(v === 'forside' ? renderFront() : renderArticle(v.slice(1)));
+  document.title = (v === 'forside' ? 'Forside' : ARTICLES[v.slice(1)].headline) + ' | Y Business × DI';
+  window.scrollTo(0, 0);
+}
+
+const THEME_KEY = 'y-business-theme';
+function applyTheme(mode) {
+  if (mode === 'light') document.documentElement.setAttribute('data-y-theme', 'light');
+  else document.documentElement.removeAttribute('data-y-theme');
+  const btn = document.getElementById('themeBtn');
+  btn.replaceChildren(iconSvg(mode === 'light'
+    ? '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>'
+    : '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'));
+  btn.firstChild.setAttribute('width', '18'); btn.firstChild.setAttribute('height', '18');
+  btn.firstChild.setAttribute('stroke-width', '1.5');
+}
+function initTheme() {
+  // Standard er lys, fordi det følger Y's forside i screenshot. Valget huskes.
+  let mode = 'light';
+  try { if (localStorage.getItem(THEME_KEY) === 'dark') mode = 'dark'; } catch (e) {}
+  applyTheme(mode);
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    mode = mode === 'dark' ? 'light' : 'dark';
+    applyTheme(mode);
+    try { localStorage.setItem(THEME_KEY, mode); } catch (e) {}
+  });
+}
+
+buildTabs();
+initTheme();
+window.addEventListener('hashchange', show);
+show();
+
+// Rytmetjek af alle artikler (se rhythmWarnings). Resultatet ligger også i window.__rhythm.
+window.__rhythm = {};
+for (const k of Object.keys(ARTICLES)) {
+  const w = rhythmWarnings(parseBody(ARTICLES[k].body));
+  window.__rhythm[k] = w;
+  if (w.length) console.warn(`Artikel ${k}: ${w.join(' | ')}`);
+}
+</script>
+</body>
+</html>
