@@ -1350,9 +1350,10 @@ const PRO = {
 
 /* ── Kategorier under Business: International, Danmark, AI. En historie kan høre til flere. ── */
 const BCAT = {
-  international: { label: 'International', ids: [1, 4, 5, 6, 7, 8] },
-  danmark:       { label: 'Danmark',       ids: [3, 2, 7, 10] },
-  ai:            { label: 'AI',            ids: [1, 2, 4, 6, 9] },
+  // Første id er sektionens tophistorie. Ingen to sektioner (eller forsiden: BFRONT.hero og mint) må dele tophistorie.
+  international: { label: 'International', ids: [8, 1, 4, 5, 6, 7] },
+  danmark:       { label: 'Danmark',       ids: [7, 3, 2, 10] },
+  ai:            { label: 'AI',            ids: [9, 1, 2, 4, 6] },
 };
 const catsOf = id => Object.keys(BCAT).filter(k => BCAT[k].ids.includes(Number(id)));
 
