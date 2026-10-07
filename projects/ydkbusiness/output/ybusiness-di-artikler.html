@@ -421,7 +421,6 @@ a.sn-i:hover { color: var(--h-ink); }
 .bc-head { display: grid; gap: 10px; margin: 0 0 32px; padding-bottom: 24px; border-bottom: 1px solid var(--b-line); }
 .bc-head .bf-mono { color: #857E88; font-size: 10px; letter-spacing: .14em; }
 .bc-head h1 { margin: 0; font-weight: 800; font-size: clamp(36px, 5vw, 56px); line-height: 1.02; letter-spacing: -.03em; }
-.bc-head p { margin: 0; max-width: 60ch; font-size: 17px; line-height: 1.5; opacity: .75; }
 .bc-card { display: grid; gap: 14px; min-width: 0; transition: opacity 120ms ease; }
 .bc-card:hover h2, .bc-card:hover h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
 .bc-ph { display: block; aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; background: var(--b-panel); }
@@ -1351,9 +1350,9 @@ const PRO = {
 
 /* ── Kategorier under Business: International, Danmark, AI. En historie kan høre til flere. ── */
 const BCAT = {
-  international: { label: 'International', dek: 'Virksomheder, regler og markeder uden for Danmark.', ids: [1, 4, 5, 6, 7, 8] },
-  danmark:       { label: 'Danmark',       dek: 'Regler, tilsyn og beslutninger, der rammer danske virksomheder.', ids: [3, 2, 7, 10] },
-  ai:            { label: 'AI',            dek: 'Hvordan AI ændrer risiko, regler og forretning.', ids: [1, 2, 4, 6, 9] },
+  international: { label: 'International', ids: [1, 4, 5, 6, 7, 8] },
+  danmark:       { label: 'Danmark',       ids: [3, 2, 7, 10] },
+  ai:            { label: 'AI',            ids: [1, 2, 4, 6, 9] },
 };
 const catsOf = id => Object.keys(BCAT).filter(k => BCAT[k].ids.includes(Number(id)));
 
@@ -1372,8 +1371,7 @@ function renderCategory(key) {
   return el('div', { class: 'bf bc' },
     el('header', { class: 'bc-head' },
       el('span', { class: 'bf-mono', text: 'BUSINESS' }),
-      el('h1', { text: c.label }),
-      el('p', { text: `${c.dek} ${c.ids.length} ${c.ids.length === 1 ? 'historie' : 'historier'}.` })),
+      el('h1', { text: c.label })),
     card(first, true),
     rest.length ? el('div', { class: 'bc-grid' }, rest.map(id => card(id, false))) : null);
 }
