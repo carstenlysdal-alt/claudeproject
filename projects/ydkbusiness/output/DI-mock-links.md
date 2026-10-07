@@ -16,7 +16,7 @@ Opdateret 7. oktober 2026.
 
 ## Husk
 
-- Pro-sidens fire historier (dronen og tre kort) har kun overskrift, manchet og foto. Teksten mangler, og siderne er mærket som pladsholdere.
+- De tre byggerikort på Pro-siden har mock-tekster med opdigtede tal, citater og eksempler. De er mærket som mock-tekst og skal erstattes, før noget bruges som journalistik. Dronehistorien har kun overskrift, manchet og foto og er mærket som pladsholder.
 - Siden åbner på Business-forsiden. DI-siden ligger på `#forside`, Pro-siden på `#pro`, og kategorierne på `#international`, `#danmark` og `#ai`.
 
 - Fotografnavne og licens på Unsplash-fotos er læst af et værktøj og skal kontrolleres, før mockuppen deles bredt.
