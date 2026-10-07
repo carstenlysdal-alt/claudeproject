@@ -282,7 +282,7 @@ main.wide { max-width: 1280px; padding: 0 22px; }
 .bf-dots i { width: 8px; height: 8px; border-radius: 50%; background: #C7C3BE; }
 .bf-dots i.on { width: 50px; border-radius: 999px; background: var(--b-ink); }
 .bf-hero { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 560px; padding: 20px; border-radius: 16px; overflow: hidden; color: #fff; background: #1D1B2B; }
-.bf-hero > svg, .bf-wide > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bf-hero > svg, .bf-wide > svg, .bf-hero > img, .bf-wide > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .bf-hero::after, .bf-wide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(26,23,25,0) 45%, rgba(26,23,25,.88)); }
 .bf-hero-text, .bf-wide-text { position: relative; z-index: 1; }
 .bf-kick { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; font-weight: 600; font-size: 10px; letter-spacing: .12em; }
@@ -291,7 +291,7 @@ main.wide { max-width: 1280px; padding: 0 22px; }
 .bf-list { display: flex; flex-direction: column; gap: 30px; }
 .bf-li { display: grid; grid-template-columns: 113px minmax(0, 1fr); gap: 20px; align-items: start; }
 .bf-thumb { display: block; aspect-ratio: 1 / 1; border-radius: 6px; overflow: hidden; background: var(--b-panel); }
-.bf-thumb svg { width: 100%; height: 100%; }
+.bf-thumb svg, .bf-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .bf-li-t { display: grid; gap: 8px; }
 .bf-li-t strong { font-weight: 700; font-size: 18px; line-height: 1.3; letter-spacing: -.01em; text-wrap: pretty; }
 .bf-li:hover strong, .bf-mint:hover h2 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
@@ -1067,7 +1067,7 @@ function renderArticle(id, grp) {
         el('span', { text: `ca. ${readMinutes(a)} min læsetid` }), metaTail),
       el('figure', { class: 'article-media' },
         isB ? artMedia(id, 'ratio-16x9') : mediaFor(id, 'ratio-16x9'),
-        isB ? el('p', { class: 'caption', text: ART_CAPTION }) : captionFor(id)),
+        isB ? el('p', { class: 'caption', text: bCaption(id) }) : captionFor(id)),
       body,
       el('footer', { class: 'article-foot' },
         el('p', { class: 'src' }, el('span', { class: 'tag-source', text: 'Kilde' }), el('span', { text: a.kilder })),
@@ -1132,10 +1132,9 @@ const BARTICLES = {
 /* ════════════════════════════════════════════════════════════════════════════
    BUSINESS — den åbne erhvervsside for alle læsere (ikke Pro, ikke DI).
    Fem artikler fra PDF'erne, ordret i :::-syntaks. Forsidegrid efter commercial-mockuppen.
-   Illustrationerne er pladsholdere. Udskift dem med fotos (mindst 1000 px på den korte led, med rettigheder), før noget publiceres.
+   Fotos: se BPHOTO. Tegningerne i ART er reserve, hvis et foto ikke kan hentes.
    ════════════════════════════════════════════════════════════════════════════ */
 const BUSINESS_DATE = '7. oktober 2026';
-const ART_CAPTION = 'Illustration: pladsholder for foto';
 
 // Forsiden. Ændr rækkefølgen her.
 // mint = tekstkortet, hero = det store billedkort, list = små historier til højre, wide = det brede billedkort, tal = dagens tal.
@@ -1179,8 +1178,24 @@ const ART = {
 function artSvg(id, dy, dx) {
   return svgFrom(`<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="">${ART[id](`${dx || 0},${dy || 0}`)}</svg>`, BARTICLES[id].desc);
 }
+// Rigtige fotos fra Unsplash (Unsplash-licensen, ikke Unsplash+). Fotograf og licens er læst fra Unsplash-siderne den 7. oktober 2026
+// og skal kontrolleres af redaktionen, før noget publiceres. Tegningerne ovenfor er reserve, hvis et foto ikke kan hentes.
+const BPHOTO = {
+  1: { photo: 'photo-1691435828932-911a7801adfb', by: 'Albert Stoynov', page: 'dyUp7WPu5q4', alt: 'Nærbillede af netværkskabler i et serverskab.' },
+  2: { photo: 'photo-1608817576203-3c27ed168bd2', by: 'Christian Lue', page: '8Yw6tsB8tnc', alt: 'EU-flag med gule stjerner på blå bund.' },
+  3: { photo: 'photo-1707902665498-a202981fb5ac', by: 'Jakub Żerdzicki', page: 'LNnmSumlwO4', alt: 'En person med notesbog og lommeregner ved et skrivebord med en bærbar computer.' },
+  4: { photo: 'photo-1599250300435-b9693f21830d', by: 'Erik Mclean', page: 'J0ZD8r_ClGg', alt: 'Oplyste menutavler i en burgerrestaurant.' },
+  5: { photo: 'photo-1634673970798-a15ae56f6c65', by: 'Robin LE MEE', page: 'yvKr1_36NQo', alt: 'En grå Porsche parkeret foran en bygning.' },
+};
+function bPhoto(id, w) {
+  const p = BPHOTO[id];
+  const img = el('img', { src: `https://images.unsplash.com/${p.photo}?auto=format&fit=crop&w=${w}&q=80`, alt: p.alt, loading: 'lazy', decoding: 'async' });
+  img.addEventListener('error', () => img.replaceWith(artSvg(id, 0)), { once: true });
+  return img;
+}
+const bCaption = id => `Foto: ${BPHOTO[id].by} / Unsplash`;
 function artMedia(id, ratioClass) {
-  return el('div', { class: `media ${ratioClass}` }, artSvg(id));
+  return el('div', { class: `media ${ratioClass}` }, bPhoto(id, 1400));
 }
 const BOLT = '<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>';
 
@@ -1207,7 +1222,7 @@ function renderBusinessFront() {
 
   const h = BARTICLES[BFRONT.hero];
   const hero = el('a', { class: 'bf-hero', href: href(BFRONT.hero), 'aria-label': h.headline },
-    artSvg(BFRONT.hero, -110),
+    bPhoto(BFRONT.hero, 900),
     el('div', { class: 'bf-hero-text' },
       el('span', { class: 'bf-mono bf-kick' }, el('i', { 'aria-hidden': 'true' }), `${h.kicker.toUpperCase()} · ${mins(BFRONT.hero).toUpperCase()}`),
       el('h2', { text: h.front || h.headline })));
@@ -1215,13 +1230,13 @@ function renderBusinessFront() {
   const list = el('div', { class: 'bf-list' }, BFRONT.list.map(id => {
     const a = BARTICLES[id];
     return el('a', { class: 'bf-li', href: href(id) },
-      el('span', { class: 'bf-thumb' }, artSvg(id, 0)),
+      el('span', { class: 'bf-thumb' }, bPhoto(id, 300)),
       el('span', { class: 'bf-li-t' }, el('span', { class: 'bf-mono', text: `${a.kicker.toUpperCase()} · ${mins(id).toUpperCase()}` }), el('strong', { text: a.headline })));
   }));
 
   const w = BARTICLES[BFRONT.wide];
   const wide = el('a', { class: 'bf-wide', href: href(BFRONT.wide), 'aria-label': w.headline },
-    artSvg(BFRONT.wide, -40, 200),
+    bPhoto(BFRONT.wide, 1400),
     el('div', { class: 'bf-wide-text' },
       el('span', { class: 'bf-mono bf-kick' }, el('i', { 'aria-hidden': 'true' }), `${w.kicker.toUpperCase()} · ${mins(BFRONT.wide).toUpperCase()}`),
       el('h2', { text: w.headline })));
@@ -1350,7 +1365,7 @@ function buildTabs() {
     setTimeout(() => document.getElementById('tab-' + VIEWS[n]).focus(), 0);
   });
 }
-function currentView() { const h = location.hash.replace('#', ''); return VIEWS.includes(h) ? h : 'forside'; }
+function currentView() { const h = location.hash.replace('#', ''); return VIEWS.includes(h) ? h : 'business'; }
 function show() {
   const v = currentView();
   const b = isBView(v);
