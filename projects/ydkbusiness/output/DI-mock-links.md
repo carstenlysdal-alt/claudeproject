@@ -1,12 +1,12 @@
 # Y × DI-mock: links og filer
 
-Opdateret 6. oktober 2026.
+Opdateret 7. oktober 2026.
 
 ## Online
 
 | Hvad | Link | Må deles med |
 |---|---|---|
-| Artikelsiden: forside og fem artikler i Y's sponsorformat | https://sndeepdive.web.app/mockups/ybusiness-di-artikler.html | DI og eksterne. Uden login, markeret noindex. |
+| Hele rejsen: Business (fem artikler), Business Pro på byggeri og Business Pro kun for DI. Mockup-menuen skjules bag knappen nederst til venstre | https://sndeepdive.web.app/mockups/ybusiness-di-artikler.html | DI og eksterne. Uden login, markeret noindex. |
 | Hele dashboardet med fanen DI-mock | https://sndeepdive.web.app/75836d729e295551/#dimock | Kun internt. Indeholder fanen Intern med priser og pakker. Uden login, men adressen er ikke gættelig, og et videresendt link giver adgang. |
 
 ## Som filer
