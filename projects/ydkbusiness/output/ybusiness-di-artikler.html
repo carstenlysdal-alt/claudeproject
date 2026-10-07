@@ -367,6 +367,7 @@ a.sn-i:hover { color: var(--h-ink); }
 .pr-by > span:first-child { display: inline-flex; align-items: center; }
 .pr-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 22px; align-items: start; }
 .pr-card { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.pr-card:hover h3, .pr-hero:hover h1 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
 .pr-card .pr-ph { height: 150px; border-radius: 10px; background-size: cover; background-position: center; }
 .pr-card .pr-k { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 600; font-size: 10px; letter-spacing: .1em; color: var(--pr-kick); }
 .pr-card h3 { margin: 0; font-weight: 700; font-size: 20px; line-height: 1.22; text-wrap: pretty; overflow-wrap: anywhere; }
@@ -1340,9 +1341,9 @@ const PRO = {
   dek: 'En sjællandsk entreprenør lader hver morgen droner og kameraer holde byggepladsen op mod BIM-modellen. Før gik byggelederen runden med tegningerne under armen. Nu melder systemet afvigelserne, før de bliver støbt fast – og sparer ifølge firmaet ni timer om ugen.',
   by: 'Carsten Lysdal', min: 8,
   cards: [
-    { img: 'c1', k: 'Byggeri & AI', h: 'Tømreren sparede 11 timer om ugen – uden en eneste robot', p: 'Tilbud, mails, KS og fakturaer: Vi fulgte et firma med otte ansatte i fire uger før og efter AI.' },
-    { img: 'c2', k: 'Regulering', h: 'Nu strammes grebet om arbejdstiden på byggepladsen. Så meget kan det koste dig', p: 'Y Business har fanget et nyt lovudkast i høring. Kontrollen skærpes, og bøderne stiger.' },
-    { img: 'hero', k: 'Tilbudsgivning', h: 'Menneske mod AI: hvem finder flest problematiske krav i et rigtigt udbud?', p: 'Vi gav begge parter 240 sider udbudsmateriale og seks timer.' },
+    { short: 'Tømrer', img: 'c1', k: 'Byggeri & AI', h: 'Tømreren sparede 11 timer om ugen – uden en eneste robot', p: 'Tilbud, mails, KS og fakturaer: Vi fulgte et firma med otte ansatte i fire uger før og efter AI.' },
+    { short: 'Arbejdstid', img: 'c2', k: 'Regulering', h: 'Nu strammes grebet om arbejdstiden på byggepladsen. Så meget kan det koste dig', p: 'Y Business har fanget et nyt lovudkast i høring. Kontrollen skærpes, og bøderne stiger.' },
+    { short: 'Udbud', img: 'hero', k: 'Tilbudsgivning', h: 'Menneske mod AI: hvem finder flest problematiske krav i et rigtigt udbud?', p: 'Vi gav begge parter 240 sider udbudsmateriale og seks timer.' },
   ],
   diPhotos: [3, 2], diRows: [1, 4, 5],
 };
@@ -1377,6 +1378,30 @@ function renderCategory(key) {
     rest.length ? el('div', { class: 'bc-grid' }, rest.map(id => card(id, false))) : null);
 }
 
+// Undersider til Pro-forsiden. Teksten mangler endnu: siden viser overskrift, manchet og foto fra forsiden og siger det åbent.
+function renderProStub(n) {
+  const d = n === 0 ? { k: PRO.kicker, h: PRO.headline, p: PRO.dek, img: 'hero' } : PRO.cards[n - 1];
+  const ids = [0, 1, 2, 3];
+  const name = i => i === 0 ? 'Dronen' : PRO.cards[i - 1].short;
+  const prev = ids[n - 1], next = ids[n + 1];
+  return el('div', { class: 'article-wrap' },
+    el('article', { class: 'article' },
+      el('div', { class: 'label-row' }, el('p', { class: 'article-label mono' }, el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', { text: 'Y Business Pro · Byggeri' }))),
+      el('p', { class: 'eyebrow mono indigo' }, el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', { text: d.k })),
+      el('h1', { text: d.h }),
+      el('p', { class: 'dek', text: d.p }),
+      el('div', { class: 'meta mono' }, el('span', { text: PRO.time }), el('span', { class: 'sep', 'aria-hidden': 'true', text: '·' }), el('span', { class: 'coral', text: 'Pladsholder' })),
+      el('figure', { class: 'article-media' }, el('div', { class: 'media ratio-16x9' }, el('img', { src: PRO_IMG[d.img], alt: '' })), el('p', { class: 'caption', text: 'Foto: Arkiv / Unsplash' })),
+      el('div', { class: 'body' },
+        el('aside', { class: 'aside-box', 'aria-label': 'Pladsholder' },
+          el('header', { class: 'aside-head mono indigo' }, iconSvg(ICON_INFO), el('span', { text: 'Pladsholder' })),
+          el('p', { text: 'Teksten til denne artikel er ikke skrevet endnu. Overskrift, manchet og foto er fra Pro-forsiden.' }))),
+      el('footer', { class: 'article-foot' }, el('p', { text: AI_DECLARATION }))),
+    el('div', { class: 'article-nav' },
+      prev !== undefined ? el('a', { class: 'ghost', href: '#p' + prev, text: '← ' + name(prev) }) : el('a', { class: 'ghost', href: '#pro', text: '← Forside' }),
+      next !== undefined ? el('a', { class: 'ghost', href: '#p' + next, text: name(next) + ' →' }) : el('a', { class: 'ghost', href: '#pro', text: 'Forside →' })));
+}
+
 // active: '' (Business, alle), en kategori, 'byggeri' eller 'di'.
 function renderSectorNav(active) {
   const dim = t => el('span', { class: 'sn-i dim', title: 'Ikke med i mockuppen', text: t });
@@ -1391,7 +1416,7 @@ function renderSectorNav(active) {
 
 function renderPro() {
   const photo = (key, extra) => ({ style: `background-image: linear-gradient(rgba(26,23,25,.12), rgba(26,23,25,.12)), url("${PRO_IMG[key]}")`, ...extra });
-  const hero = el('article', { class: 'pr-hero' },
+  const hero = el('a', { class: 'pr-hero', href: '#p0', 'aria-label': PRO.headline },
     el('div', { class: 'pr-photo', style: `background-image: url("${PRO_IMG.hero}")`, role: 'img', 'aria-label': 'Droneoptagelse af en byggeplads med kran og fundamenter.' },
       el('span', { class: 'pr-credit', text: 'FOTO · ARKIV / UNSPLASH' })),
     el('div', {},
@@ -1401,7 +1426,7 @@ function renderPro() {
       el('div', { class: 'pr-by' },
         el('span', {}, el('span', { class: 'pr-av', 'aria-hidden': 'true', text: 'CL' }), el('strong', { text: 'Af ' + PRO.by })),
         el('span', { text: PRO.min + ' min. læsning' }))));
-  const cards = el('div', { class: 'pr-cards' }, PRO.cards.map(c => el('article', { class: 'pr-card' },
+  const cards = el('div', { class: 'pr-cards' }, PRO.cards.map((c, i) => el('a', { class: 'pr-card', href: '#p' + (i + 1) },
     el('div', { class: 'pr-ph', role: 'img', 'aria-label': '', style: `background-image: linear-gradient(rgba(26,23,25,.12), rgba(26,23,25,.12)), url("${PRO_IMG[c.img]}")` }),
     el('div', { class: 'pr-k', text: c.k.toUpperCase() }), el('h3', { text: c.h }), el('p', { text: c.p }))));
   const mins = id => `${readMinutes(ARTICLES[id])} min.`;
@@ -1428,13 +1453,15 @@ function renderPro() {
    NAVIGATION, TEMA
    ════════════════════════════════════════════════════════════════════════════ */
 const DI_IDS = Object.keys(ARTICLES), B_IDS = Object.keys(BARTICLES);
-const VIEWS = ['business', ...Object.keys(BCAT), ...B_IDS.map(k => 'b' + k), 'pro', 'forside', ...DI_IDS.map(k => 'a' + k)];
+const VIEWS = ['business', ...Object.keys(BCAT), ...B_IDS.map(k => 'b' + k), 'pro', 'p0', 'p1', 'p2', 'p3', 'forside', ...DI_IDS.map(k => 'a' + k)];
 const isCat = v => Object.prototype.hasOwnProperty.call(BCAT, v);
 const isBView = v => v === 'business' || isCat(v) || /^b\d/.test(v);
 const isDiView = v => v === 'forside' || /^a\d/.test(v);
+const isProView = v => v === 'pro' || /^p\d/.test(v);
 function viewLabel(v) {
   if (v === 'business' || v === 'pro' || v === 'forside') return 'Forside';
   if (isCat(v)) return BCAT[v].label;
+  if (/^p\d/.test(v)) { const i = Number(v.slice(1)); return `${i === 0 ? 'Dronen' : PRO.cards[i - 1].short}`; }
   const A = v[0] === 'b' ? BARTICLES : ARTICLES;
   return `${v.slice(1)} · ${A[v.slice(1)].tab}`;
 }
@@ -1446,7 +1473,7 @@ function buildTabs() {
     views.map(v => el('button', { class: 'tab', type: 'button', role: 'tab', id: 'tab-' + v, 'data-view': v, text: viewLabel(v) })));
   tabs.replaceChildren(
     grp('Business (alle læsere)', VIEWS.filter(isBView)),
-    grp('Business Pro · byggeri', ['pro']),
+    grp('Business Pro · byggeri', VIEWS.filter(isProView)),
     grp('Business Pro · kun DI', VIEWS.filter(isDiView)));
   tabs.addEventListener('click', e => { const b = e.target.closest('.tab'); if (b) location.hash = '#' + b.dataset.view; });
   tabs.addEventListener('keydown', e => {
@@ -1474,15 +1501,15 @@ function show() {
   const navB = document.getElementById('nav-business'), navP = document.getElementById('nav-pro');
   if (b) { navB.setAttribute('aria-current', 'page'); navP.removeAttribute('aria-current'); }
   else { navP.setAttribute('aria-current', 'page'); navB.removeAttribute('aria-current'); }
-  document.getElementById('sn').replaceChildren(renderSectorNav(b ? (isCat(v) ? v : '') : v === 'pro' ? 'byggeri' : 'di'));
+  document.getElementById('sn').replaceChildren(renderSectorNav(b ? (isCat(v) ? v : '') : isProView(v) ? 'byggeri' : 'di'));
   const main = document.getElementById('view');
   main.setAttribute('role', 'tabpanel');
   main.setAttribute('aria-labelledby', 'tab-' + v);
   main.className = 'wrap' + (v === 'business' || isCat(v) ? ' wide' : '');
   const A = b ? BARTICLES : ARTICLES;
-  main.replaceChildren(v === 'business' ? renderBusinessFront() : isCat(v) ? renderCategory(v) : v === 'pro' ? renderPro() : v === 'forside' ? renderFront() : renderArticle(v.slice(1), v[0]));
-  const name = v === 'business' ? 'Business' : isCat(v) ? 'Business · ' + BCAT[v].label : v === 'pro' ? 'Business Pro · Byggeri' : v === 'forside' ? 'Forside' : A[v.slice(1)].headline;
-  document.title = name + (b || v === 'pro' ? ' | Y' : ' | Y Business × DI');
+  main.replaceChildren(v === 'business' ? renderBusinessFront() : isCat(v) ? renderCategory(v) : v === 'pro' ? renderPro() : /^p\d/.test(v) ? renderProStub(Number(v.slice(1))) : v === 'forside' ? renderFront() : renderArticle(v.slice(1), v[0]));
+  const name = /^p\d/.test(v) ? (v === 'p0' ? PRO.headline : PRO.cards[Number(v.slice(1)) - 1].h) : v === 'business' ? 'Business' : isCat(v) ? 'Business · ' + BCAT[v].label : v === 'pro' ? 'Business Pro · Byggeri' : v === 'forside' ? 'Forside' : A[v.slice(1)].headline;
+  document.title = name + (b || isProView(v) ? ' | Y' : ' | Y Business × DI');
   window.scrollTo(0, 0);
 }
 

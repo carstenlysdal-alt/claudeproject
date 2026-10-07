@@ -16,6 +16,9 @@ Opdateret 7. oktober 2026.
 
 ## Husk
 
+- Pro-sidens fire historier (dronen og tre kort) har kun overskrift, manchet og foto. Teksten mangler, og siderne er mærket som pladsholdere.
+- Siden åbner på Business-forsiden. DI-siden ligger på `#forside`, Pro-siden på `#pro`, og kategorierne på `#international`, `#danmark` og `#ai`.
+
 - Fotografnavne og licens på Unsplash-fotos er læst af et værktøj og skal kontrolleres, før mockuppen deles bredt.
 - Mærkningen "Uafhængig journalistik fra Y Business, vist i samarbejde med DI" er en arbejdsformulering. Y har ikke vedtaget en mærkningspolitik.
 - Rettes mockuppen, skal den lægges online igen. Kopiér filen til `SN-DeepDive/public/mockups/` og kør `firebase deploy --only hosting`.
