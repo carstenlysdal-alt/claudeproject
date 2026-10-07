@@ -413,6 +413,26 @@ a.sn-i:hover { color: var(--h-ink); }
   .mock-panel .tab-grp-l { min-width: 0; width: 100%; }
 }
 
+/* ── Kategorisider ── */
+.bc { padding-top: 8px; }
+.bc-head { display: grid; gap: 10px; margin: 0 0 32px; padding-bottom: 24px; border-bottom: 1px solid var(--b-line); }
+.bc-head .bf-mono { color: #857E88; font-size: 10px; letter-spacing: .14em; }
+.bc-head h1 { margin: 0; font-weight: 800; font-size: clamp(36px, 5vw, 56px); line-height: 1.02; letter-spacing: -.03em; }
+.bc-head p { margin: 0; max-width: 60ch; font-size: 17px; line-height: 1.5; opacity: .75; }
+.bc-card { display: grid; gap: 14px; min-width: 0; transition: opacity 120ms ease; }
+.bc-card:hover h2, .bc-card:hover h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+.bc-ph { display: block; aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; background: var(--b-panel); }
+.bc-ph img { width: 100%; height: 100%; object-fit: cover; }
+.bc-t { display: grid; gap: 10px; align-content: start; }
+.bc-t h2, .bc-t h3 { margin: 0; font-weight: 800; letter-spacing: -.02em; text-wrap: pretty; }
+.bc-t h3 { font-size: 22px; line-height: 1.2; }
+.bc-t h2 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; }
+.bc-t p { margin: 0; font-size: 15px; line-height: 1.5; opacity: .75; text-wrap: pretty; }
+.bc-card.lead { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px; align-items: center; margin-bottom: 40px; }
+.bc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+.cat-link:hover { border-color: var(--ydk-indigo-text); color: var(--ydk-indigo-text); }
+@media (max-width: 860px) { .bc-card.lead { grid-template-columns: 1fr; gap: 16px; } .bc-grid { grid-template-columns: 1fr; gap: 28px; } }
+
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 </style>
 </head>
@@ -1071,7 +1091,7 @@ function renderArticle(id, grp) {
   const metaTail = isB ? [] : [el('span', { class: 'sep', 'aria-hidden': 'true', text: '·' }), el('span', { class: 'coral', text: 'Mærket samarbejde' })];
   return el('div', { class: 'article-wrap' },
     el('article', { class: 'article' },
-      isB ? el('div', { class: 'label-row' }, el('p', { class: 'article-label mono' }, el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', { text: 'Y Business · Business' })))
+      isB ? el('div', { class: 'label-row' }, el('p', { class: 'article-label mono' }, el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', { text: 'Y Business · Business' })), catsOf(id).map(k => el('a', { class: 'article-label mono cat-link', href: '#' + k, text: BCAT[k].label })))
           : infoRow(a, id),
       el('p', { class: 'eyebrow mono indigo' }, el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', { text: a.kicker })),
       el('h1', { text: a.headline }),
@@ -1296,13 +1316,43 @@ const PRO = {
   diPhotos: [3, 2], diRows: [1, 4, 5],
 };
 
-// active: '' (Business, alle), 'byggeri' eller 'di'.
+
+/* ── Kategorier under Business: International, Danmark, AI. En historie kan høre til flere. ── */
+const BCAT = {
+  international: { label: 'International', dek: 'Virksomheder, regler og markeder uden for Danmark.', ids: [1, 4, 5] },
+  danmark:       { label: 'Danmark',       dek: 'Regler, tilsyn og beslutninger, der rammer danske virksomheder.', ids: [3, 2] },
+  ai:            { label: 'AI',            dek: 'Hvordan AI ændrer risiko, regler og forretning.', ids: [1, 2, 4] },
+};
+const catsOf = id => Object.keys(BCAT).filter(k => BCAT[k].ids.includes(Number(id)));
+
+function renderCategory(key) {
+  const c = BCAT[key];
+  const card = (id, lead) => {
+    const a = BARTICLES[id];
+    return el('a', { class: 'bc-card' + (lead ? ' lead' : ''), href: '#b' + id },
+      el('span', { class: 'bc-ph' }, bPhoto(id, lead ? 1000 : 600)),
+      el('span', { class: 'bc-t' },
+        el('span', { class: 'bf-mono', text: `${a.kicker.toUpperCase()} · ${readMinutes(a)} MIN.` }),
+        el(lead ? 'h2' : 'h3', { text: a.headline }),
+        el('p', { text: a.manchet })));
+  };
+  const [first, ...rest] = c.ids;
+  return el('div', { class: 'bf bc' },
+    el('header', { class: 'bc-head' },
+      el('span', { class: 'bf-mono', text: 'BUSINESS' }),
+      el('h1', { text: c.label }),
+      el('p', { text: `${c.dek} ${c.ids.length} ${c.ids.length === 1 ? 'historie' : 'historier'}.` })),
+    card(first, true),
+    rest.length ? el('div', { class: 'bc-grid' }, rest.map(id => card(id, false))) : null);
+}
+
+// active: '' (Business, alle), en kategori, 'byggeri' eller 'di'.
 function renderSectorNav(active) {
   const dim = t => el('span', { class: 'sn-i dim', title: 'Ikke med i mockuppen', text: t });
   const chevron = svgFrom('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>', '');
   return el('div', { class: 'sn-in' },
     el('a', { class: 'sn-l', href: '#business', text: 'BUSINESS' }),
-    dim('International'), dim('Danmark'), dim('AI'),
+    Object.keys(BCAT).map(k => el('a', { class: 'sn-i', href: '#' + k, 'aria-current': active === k ? 'page' : null, text: BCAT[k].label })),
     el('a', { class: 'sn-i', href: '#pro', 'aria-current': active === 'byggeri' ? 'page' : null }, 'Byggeri', el('span', { class: 'sn-tag pro', text: 'PRØV PRO+' }), chevron),
     el('a', { class: 'sn-i', href: '#forside', title: 'Eksklusivt indhold for DI\u2019s medlemmer', 'aria-current': active === 'di' ? 'page' : null }, 'DI', el('span', { class: 'sn-tag di', text: 'KUN FOR DI-MEDLEMMER' })),
     el('span', { class: 'sn-pro', title: 'Ikke med i mockuppen' }, 'Mit yBusiness Pro', el('i', { text: 'SE MERE' })));
@@ -1347,11 +1397,13 @@ function renderPro() {
    NAVIGATION, TEMA
    ════════════════════════════════════════════════════════════════════════════ */
 const DI_IDS = Object.keys(ARTICLES), B_IDS = Object.keys(BARTICLES);
-const VIEWS = ['business', ...B_IDS.map(k => 'b' + k), 'pro', 'forside', ...DI_IDS.map(k => 'a' + k)];
-const isBView = v => v === 'business' || /^b\d/.test(v);
+const VIEWS = ['business', ...Object.keys(BCAT), ...B_IDS.map(k => 'b' + k), 'pro', 'forside', ...DI_IDS.map(k => 'a' + k)];
+const isCat = v => Object.prototype.hasOwnProperty.call(BCAT, v);
+const isBView = v => v === 'business' || isCat(v) || /^b\d/.test(v);
 const isDiView = v => v === 'forside' || /^a\d/.test(v);
 function viewLabel(v) {
   if (v === 'business' || v === 'pro' || v === 'forside') return 'Forside';
+  if (isCat(v)) return BCAT[v].label;
   const A = v[0] === 'b' ? BARTICLES : ARTICLES;
   return `${v.slice(1)} · ${A[v.slice(1)].tab}`;
 }
@@ -1391,14 +1443,14 @@ function show() {
   const navB = document.getElementById('nav-business'), navP = document.getElementById('nav-pro');
   if (b) { navB.setAttribute('aria-current', 'page'); navP.removeAttribute('aria-current'); }
   else { navP.setAttribute('aria-current', 'page'); navB.removeAttribute('aria-current'); }
-  document.getElementById('sn').replaceChildren(renderSectorNav(b ? '' : v === 'pro' ? 'byggeri' : 'di'));
+  document.getElementById('sn').replaceChildren(renderSectorNav(b ? (isCat(v) ? v : '') : v === 'pro' ? 'byggeri' : 'di'));
   const main = document.getElementById('view');
   main.setAttribute('role', 'tabpanel');
   main.setAttribute('aria-labelledby', 'tab-' + v);
-  main.className = 'wrap' + (v === 'business' ? ' wide' : '');
+  main.className = 'wrap' + (v === 'business' || isCat(v) ? ' wide' : '');
   const A = b ? BARTICLES : ARTICLES;
-  main.replaceChildren(v === 'business' ? renderBusinessFront() : v === 'pro' ? renderPro() : v === 'forside' ? renderFront() : renderArticle(v.slice(1), v[0]));
-  const name = v === 'business' ? 'Business' : v === 'pro' ? 'Business Pro · Byggeri' : v === 'forside' ? 'Forside' : A[v.slice(1)].headline;
+  main.replaceChildren(v === 'business' ? renderBusinessFront() : isCat(v) ? renderCategory(v) : v === 'pro' ? renderPro() : v === 'forside' ? renderFront() : renderArticle(v.slice(1), v[0]));
+  const name = v === 'business' ? 'Business' : isCat(v) ? 'Business · ' + BCAT[v].label : v === 'pro' ? 'Business Pro · Byggeri' : v === 'forside' ? 'Forside' : A[v.slice(1)].headline;
   document.title = name + (b || v === 'pro' ? ' | Y' : ' | Y Business × DI');
   window.scrollTo(0, 0);
 }
