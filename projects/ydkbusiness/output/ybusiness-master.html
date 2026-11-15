@@ -10298,8 +10298,9 @@ button:focus, button:focus-visible {
     <button class="dash-nav-item" data-target="s8">Morgen</button>
   </nav>
   <nav class="dash-nav" id="navDimock" style="display:none">
-    <a class="dash-nav-item" href="https://sndeepdive.web.app/mockups/ybusiness-di-artikler.html" target="_blank" rel="noopener">Offentligt link ↗</a>
-    <a class="dash-nav-item" href="ybusiness-di-artikler.html" target="_blank" rel="noopener">Åbn lokalt ↗</a>
+    <a class="dash-nav-item" href="ybusiness-di-artikler.html#business" target="_blank" rel="noopener">Business ↗</a>
+    <a class="dash-nav-item" href="ybusiness-di-artikler.html#pro" target="_blank" rel="noopener">Business Pro ↗</a>
+    <a class="dash-nav-item" href="ybusiness-di-artikler.html#forside" target="_blank" rel="noopener">DI ↗</a>
   </nav>
   <nav class="dash-nav" id="navEkstern" style="display:none">
     <a class="dash-nav-item" href="#s1-ek">Overblik</a>
@@ -10318,7 +10319,7 @@ button:focus, button:focus-visible {
       <button class="vt-btn vt-active" id="vtIntern" onclick="showView('intern')">Intern</button>
       <button class="vt-btn" id="vtEkstern" onclick="showView('ekstern')">Ekstern</button>
       <button class="vt-btn" id="vtRedaktion" onclick="showView('redaktion')">Redaktionelt koncept</button>
-      <button class="vt-btn" id="vtDimock" onclick="showView('dimock')">DI-mock</button>
+      <button class="vt-btn" id="vtDimock" onclick="showView('dimock')">DI-mockup</button>
     </div>
   </div>
 </header>
@@ -14876,7 +14877,7 @@ Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
   #view-dimock .dimock { padding: 112px 24px 24px; max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; min-height: 100vh; box-sizing: border-box; }
   #view-dimock .dimock-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; padding: 12px 16px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); }
   #view-dimock .dimock-l { display: flex; align-items: center; gap: 8px 14px; flex-wrap: wrap; min-width: 0; }
-  #view-dimock .dimock-lbl { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  #view-dimock .dimock-lbl { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); white-space: normal; }
   #view-dimock .dimock-url { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; overflow-wrap: anywhere; }
   #view-dimock .dimock-url:hover { text-decoration: underline; }
   #view-dimock .dimock-r { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -14887,18 +14888,18 @@ Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
   #view-dimock .dimock-frame { flex: 1 1 auto; width: 100%; min-height: 720px; height: calc(100vh - 220px); border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; }
   @media (max-width: 720px) { #view-dimock .dimock { padding: 108px 12px 12px; } #view-dimock .dimock-frame { min-height: 600px; } }
 </style>
-<section class="dimock" aria-label="DI-mock">
+<section class="dimock" aria-label="DI-mockup">
   <div class="dimock-bar">
     <div class="dimock-l">
-      <span class="dimock-lbl">DI-mock · offentligt link</span>
-      <a class="dimock-url" id="dimockUrl" href="https://sndeepdive.web.app/mockups/ybusiness-di-artikler.html" target="_blank" rel="noopener">https://sndeepdive.web.app/mockups/ybusiness-di-artikler.html</a>
+      <span class="dimock-lbl">DI-mockup · Business, Business Pro og DI</span>
+      <a class="dimock-url" id="dimockUrl" href="https://sndeepdive.web.app/mockups/ybusiness-di-artikler.html" target="_blank" rel="noopener">Åbn den samlede mockup ↗</a>
     </div>
     <div class="dimock-r">
       <button type="button" class="dimock-btn" id="dimockCopy">Kopiér link</button>
-      <a class="dimock-btn" href="https://sndeepdive.web.app/mockups/ybusiness-di-artikler.html" target="_blank" rel="noopener">Åbn i nyt vindue ↗</a>
+      <a class="dimock-btn" href="ybusiness-di-artikler.html" target="_blank" rel="noopener">Åbn i nyt vindue ↗</a>
     </div>
   </div>
-  <iframe class="dimock-frame" title="DI-mock: forside og fem artikler i Y's sponsorformat" src="ybusiness-di-artikler.html" loading="lazy"></iframe>
+  <iframe class="dimock-frame" title="DI-mockup: Business, Business Pro med branchevalg og eksklusivt DI-indhold" src="ybusiness-di-artikler.html" loading="lazy"></iframe>
 </section>
 <script>
   (function () {
@@ -14906,7 +14907,7 @@ Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
     var url = document.getElementById('dimockUrl').href;
     btn.addEventListener('click', function () {
       function done(ok) {
-        if (!ok) { var el = document.getElementById('dimockUrl'); var sel = window.getSelection(); if (sel && el) { sel.removeAllRanges(); var r = document.createRange(); r.selectNodeContents(el); sel.addRange(r); } }
+        if (!ok) { var el = document.getElementById('dimockUrl'); var sel = window.getSelection(); if (sel && el) { el.textContent = url; sel.removeAllRanges(); var r = document.createRange(); r.selectNodeContents(el); sel.addRange(r); } }
         btn.textContent = ok ? 'Kopieret' : 'Linket er markeret · tryk Cmd+C'; setTimeout(function () { btn.textContent = 'Kopiér link'; }, 2400);
       }
       try { navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); }); } catch (e) { done(false); }
@@ -15316,7 +15317,7 @@ Tilf&#248;j IKKE information du ikke har f&#229;et. Marker usikkerhed eksplicit.
 
 <script>
 var __currentView = 'intern';
-var __subs = { intern: 'Internt', redaktion: 'Redaktionelt koncept', ekstern: 'Ekstern præsentation', dimock: 'DI-mock' };
+var __subs = { intern: 'Internt', redaktion: 'Redaktionelt koncept', ekstern: 'Ekstern præsentation', dimock: 'DI-mockup' };
 
 function showView(name) {
   if (name === __currentView) return;
@@ -16216,11 +16217,11 @@ document.addEventListener('click', function(e) {
               eksempler: null, emner: null,
               sources: 'Eurostat, Danmarks Statistik, EUR-Lex og nordiske datakilder (SCB, SSB, AI Sweden).',
               special: {
-                type: 'extlink', lbl: 'Mockup · forside og fem artikler',
-                desc: 'Forside og fem artikler i Y\'s sponsorformat med skjult info-boks om relevans, kategori og betydning for DI.',
+                type: 'extlink', lbl: 'DI-mockup · Business, Business Pro og DI',
+                desc: 'Klikbar mockup med nyhedsgrid på Business og Business Pro, Byggeri som branchevalg og syv DI-artikler. DI-boksen fremhæver en eksklusiv rapport og international opinion.',
                 links: [
                   { lbl: 'Åbn mockup', href: 'ybusiness-di-artikler.html' },
-                  { lbl: 'Offentlig version', href: 'https://sndeepdive.web.app/mockups/ybusiness-di-artikler.html' },
+                  { lbl: 'DI-mockup i masterkonceptet', href: '#dimock' },
                 ],
               },
             },
