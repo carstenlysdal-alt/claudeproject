@@ -552,6 +552,24 @@ a.sn-i:hover { color: var(--h-ink); }
  .chart-row .v { grid-column: 2; grid-row: 1 / 3; }
 }
 
+/* DI-caseformater: billedfortælling, forsøgsdata og materialestudie. */
+:is(.front, .pr-di) .di-card { padding: 0; gap: 0; overflow: hidden; }
+.di-case-content { display: flex; flex: 1; flex-direction: column; gap: 16px; padding: 24px; }
+.di-case-photo { position: relative; }
+.di-case-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.di-case-photo figcaption { position: absolute; inset: auto 0 0; padding: 24px 14px 10px; background: linear-gradient(transparent, rgba(0,0,0,.75)); color: #fff; font-size: 10px; line-height: 1.4; }
+.di-case-stat { padding: 28px 24px 0; color: #360259; }
+.di-case-value { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; line-height: 1; }
+.di-case-value strong { font-size: clamp(56px, 6vw, 88px); font-weight: 800; letter-spacing: -.04em; }
+.di-case-value span { font-size: 28px; font-weight: 600; }
+.di-case-stat p { margin-top: 12px; max-width: 34ch; font-size: 13px; line-height: 1.5; }
+:is(.front, .pr-di) .di-card--metric { background: #F4E9E2; }
+:is(.front, .pr-di) .di-card--signal { background: #DDD8F0; }
+.di-card--signal .di-case-stat { padding-bottom: 24px; border-bottom: 1px solid rgba(54,2,89,.16); }
+.di-card--signal .di-case-value strong { font-size: clamp(56px, 6vw, 76px); }
+.di-case-illustration { padding: 24px 24px 0; color: #7433C9; }
+.di-case-illustration svg { width: 100%; height: 130px; }
+
 </style>
 </head>
 <body>
@@ -1035,6 +1053,36 @@ function renderArticle(id, grp) {
       next ? el('a', { class: 'ghost', href: p + next, text: A[next].tab + ' →' }) : el('a', { class: 'ghost', href: home, text: 'Forside →' })));
 }
 
+const DI_CASE_PRESENTATION = {
+  '1': { type: 'metric', value: '6 → 3', unit: '%', caption: 'Standardafvigelse i produktkvaliteten i Arlas forsøg', dek: 'Mere ensartet kvalitet giver mulighed for højere produktion eller lavere energiforbrug ved samme produktion.' },
+  '2': { type: 'photo', dek: 'Fire måneders afprøvning gav ingen energibesparelse. En DTU-afhandling viser, hvorfor teknologien ikke leverede som forventet.' },
+  '3': { type: 'signal', value: '14', unit: 'timer', caption: 'Op til 14 timers tidligere varsling af isdannelse i test', dek: 'Ringsted Forsyning investerer nu i en videreudvikling af modellen, der skal opdage problemerne tidligere.' },
+  '4': { type: 'photo', dek: 'Tre prototyper skal finde fejl i tilbud, genbruge erfaringer og gøre store dokumentmængder lettere at arbejde med.' },
+  '5': { type: 'illustration', dek: 'Et dansk projekt har udviklet en AI-understøttet metode til at kortlægge materialer. Næste skridt er data, som hele branchen kan bruge.' }
+};
+function renderDiCase(id) {
+  const a = ARTICLES[id], presentation = DI_CASE_PRESENTATION[id];
+  const card = el('a', { class: 'di-card di-card--' + presentation.type, href: '#a' + id });
+  if (presentation.type === 'photo') {
+    card.append(el('figure', { class: 'di-case-photo' },
+      el('img', { src: IMAGES[id].src, alt: IMAGES[id].alt, loading: 'lazy' }),
+      el('figcaption', { text: IMAGES[id].caption })));
+  } else if (presentation.value) {
+    card.append(el('div', { class: 'di-case-stat' },
+      el('div', { class: 'di-case-value' },
+        el('strong', { text: presentation.value }), el('span', { text: presentation.unit })),
+      el('p', { text: presentation.caption })));
+  } else {
+    card.append(el('div', { class: 'di-case-illustration', 'aria-hidden': 'true' }, svgFrom('<svg viewBox="0 0 360 160" fill="none"><g stroke="currentColor" stroke-width="2"><path d="M30 115 110 70 190 115 110 160Z"/><path d="M110 70V35L190 80V115M30 115V80L110 35M30 80 110 125 190 80M110 125V160"/><path d="m170 50 70-40 90 50-70 40Z"/><path d="M170 50v35l90 50 70-40V60M260 100v35"/><path d="M214 28 303 78M76 53l88 49"/></g></svg>', '')));
+  }
+  card.append(el('div', { class: 'di-case-content' },
+    el('span', { class: 'kick', text: a.kicker }),
+    el('h3', { text: a.headline }),
+    el('p', { class: 'di-card-dek', text: presentation.dek }),
+    el('span', { class: 'di-card-read', text: `${readMinutes(a)} min. læsning · Læs historien →` })));
+  return card;
+}
+
 function renderFront() {
   const h = ARTICLES[FRONT.hero];
   const hImg = IMAGES[FRONT.hero];
@@ -1064,14 +1112,7 @@ function renderFront() {
         el('h2', { id: 'diTitle', class: 'di-pill', text: 'DI · Industri og AI' }),
         el('span', { class: 'di-excl', text: 'Eksklusivt indhold for DI\u2019s medlemmer' })),
       el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' }))),
-    el('div', { class: 'di-cards' }, FRONT.box.map(id => {
-      const a = ARTICLES[id];
-      return el('a', { class: 'di-card', href: '#a' + id },
-        el('span', { class: 'kick', text: a.kicker }),
-        el('h3', { text: a.headline }),
-        el('p', { class: 'di-card-dek', text: a.manchet }),
-        el('span', { class: 'di-card-read', text: `${readMinutes(a)} min. læsning · Læs historien →` }));
-    })));
+    el('div', { class: 'di-cards' }, FRONT.box.map(renderDiCase)));
 
   const label = el('section', { class: 'label-block' },
     el('span', { class: 'mono', text: SPONSOR_LABEL }),
@@ -1535,14 +1576,7 @@ function renderPro() {
         el('div', { class: 'di-head-l' },
           el('h2', { id: 'prDiCasesTitle', class: 'di-pill', text: 'Virksomhederne i praksis' }),
           el('span', { class: 'di-excl', text: 'Eksklusivt indhold for DI’s medlemmer' }))),
-      el('div', { class: 'di-cards' }, PRO.diRows.map(id => {
-        const a = ARTICLES[id];
-        return el('a', { class: 'di-card', href: '#a' + id },
-          el('span', { class: 'kick', text: a.kicker }),
-          el('h3', { text: a.headline }),
-          el('p', { class: 'di-card-dek', text: a.manchet }),
-          el('span', { class: 'di-card-read', text: `${readMinutes(a)} min. læsning · Læs historien →` }));
-      }))));
+      el('div', { class: 'di-cards' }, PRO.diRows.map(renderDiCase))));
   return el('div', { class: 'bf pro-page' }, hero, cards, di, feature);
 }
 
