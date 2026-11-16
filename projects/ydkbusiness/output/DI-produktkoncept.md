@@ -1,4 +1,4 @@
-# Y Business × DI — produktkoncept, version 1
+# Business Pro × DI — produktkoncept, version 1
 
 Internt arbejdsdokument til Carsten. Erstatter `DI-historiebud.md` som udgangspunkt. Bygger på deep research (medlemmer, tilbud, distribution) og den manuelle gennemlæsning af danskindustri.dk den 1. oktober 2026. Datakilde- og konkurrentrapporten mangler stadig.
 
