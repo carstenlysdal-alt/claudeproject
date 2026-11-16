@@ -110,7 +110,7 @@ function handleFeedback(req, res) {
 
       const file = await githubGet(FEEDBACK_PATH);
       const current = Buffer.from(file.content, 'base64').toString('utf8');
-      const label = src || 'Y Business dashboard';
+      const label = src || 'Business Pro dashboard';
       await githubPut(FEEDBACK_PATH, current + entry, file.sha, `feedback: bemærkning fra ${label}`);
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
