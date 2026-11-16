@@ -400,6 +400,9 @@ a.sn-i:hover { color: var(--h-ink); }
 .pr-di-flow-in { min-height: 0; overflow: hidden; }
 .pr-di-flow.is-open .pr-di-flow-in { padding-top: 40px; }
 .pr-di-flow-in > .pr-di-all { margin-top: 24px; }
+.pr-di .di-head { margin-bottom: 0; }
+.pr-di .di-head .pr-di-toggle { margin-top: 0; }
+.pr-di-flow.pr-di-cases.is-open .pr-di-flow-in { padding-top: 24px; }
 @media (prefers-reduced-motion: reduce) { .pr-di-flow, .pr-di-toggle svg { transition: none; } }
 .pr-di-photos { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 32px; margin-bottom: 40px; align-items: start; }
 .pr-di-card { display: flex; flex-direction: column; min-width: 0; color: var(--b-ink); }
@@ -1641,12 +1644,25 @@ function renderPro() {
       el('figure', { class: 'di-lead-media' }, el('img', { src: IMAGES[id].src, alt: IMAGES[id].alt, loading: 'lazy' }), el('figcaption', { class: 'di-lead-credit', text: IMAGES[id].caption })),
       el('div', {}, el('span', { class: 'k', text: a.kicker }), el('h3', { text: a.headline }), el('p', { text: a.manchet }), diLeadFooter(a, Number(id) === 7)));
   }));
+  // Casene er foldet sammen inde i den udfoldede DI-sektion og åbnes på eget klik.
+  const casesPanel = el('div', { class: 'pr-di-flow pr-di-cases', id: 'prDiCases', inert: true },
+    el('div', { class: 'pr-di-flow-in' }, el('div', { class: 'di-cards' }, PRO.diRows.map(renderDiCase))));
+  const casesLabel = el('span', { text: 'Vis casene' });
+  const casesToggle = el('button', { class: 'pr-di-toggle', type: 'button', 'aria-expanded': 'false', 'aria-controls': 'prDiCases' }, casesLabel, chev.cloneNode(true));
+  casesToggle.addEventListener('click', () => {
+    const open = casesToggle.getAttribute('aria-expanded') !== 'true';
+    casesToggle.setAttribute('aria-expanded', String(open));
+    casesLabel.textContent = open ? 'Skjul casene' : 'Vis casene';
+    casesPanel.classList.toggle('is-open', open);
+    casesPanel.toggleAttribute('inert', !open);
+  });
   const diBox = el('section', { class: 'di-box', 'aria-labelledby': 'prDiCasesTitle' },
     el('div', { class: 'di-head' },
       el('div', { class: 'di-head-l' },
         el('h2', { id: 'prDiCasesTitle', class: 'di-pill', text: 'Virksomhederne i praksis' }),
-        el('span', { class: 'di-excl', text: 'Eksklusivt indhold for DI\u2019s medlemmer' }))),
-    el('div', { class: 'di-cards' }, PRO.diRows.map(renderDiCase)));
+        el('span', { class: 'di-excl', text: 'Eksklusivt indhold for DI\u2019s medlemmer' })),
+      casesToggle),
+    casesPanel);
   // Foldud: Business viser kun salgsafsnittet. Hele DI-flowet bor på DI-siden og åbnes her på brugerens eget klik.
   const diFlow = el('div', { class: 'pr-di-flow', id: 'prDiFlow', inert: true },
     el('div', { class: 'pr-di-flow-in' }, diPhotos, diBox,
