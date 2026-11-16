@@ -397,6 +397,31 @@ a.sn-i:hover { color: var(--h-ink); }
 .pr-di .di-edition .pr-di-toggle { margin-top: 12px; transition: margin-top 320ms cubic-bezier(.2,.7,.2,1), background-color 160ms ease-out; }
 .pr-di:not(.is-open) .di-edition .pr-di-toggle { margin-top: 28px; }
 .pr-di.is-open .pr-di-sell { grid-template-rows: 0fr; opacity: 0; }
+/* Åben tilstand: overskriften står på én linje i en slank topbjælke, og hele DI-universet ligger i den lilla ramme. */
+.pr-di.is-open { background: var(--di-purple); border-radius: 12px; }
+.pr-di.is-open .di-edition { align-items: center; gap: 16px; margin: 0; padding: 14px 24px; border-radius: 12px 12px 0 0; }
+.pr-di.is-open .di-edition > div:first-child { flex: 1 1 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 20px; min-width: 0; }
+.pr-di.is-open .di-edition h2 { order: 1; margin: 0; font-size: 22px; line-height: 1.2; }
+.pr-di.is-open .di-edition .di-excl { order: 2; }
+.pr-di.is-open .pr-di-sell { display: none; }
+.pr-di.is-open .di-edition .pr-di-toggle { order: 3; margin: 0 0 0 auto; }
+.pr-di.is-open .di-edition .di-logo { flex-basis: 44px; width: 44px; height: auto; }
+.pr-di.is-open .di-edition .di-logo img { width: 32px; }
+.pr-di.is-open .di-edition { display: flex; min-height: 0; }
+.pr-di.is-open .di-edition > div:first-child { max-width: none; }
+.pr-di.is-open .di-edition h2 { letter-spacing: -.02em; text-wrap: nowrap; }
+.pr-di.is-open .di-edition .di-excl { min-height: 0; max-width: none; }
+.pr-di.is-open .di-edition .di-logo { position: static; align-self: center; margin: 0; height: auto; }
+@media (max-width: 520px) {
+  .pr-di.is-open .di-edition { padding: 14px 16px; }
+  .pr-di.is-open .di-edition h2 { font-size: 20px; }
+  .pr-di.is-open .di-edition .di-excl { display: none; }
+  .pr-di.is-open .di-edition .pr-di-toggle { margin-left: 0; }
+  .pr-di.is-open > .pr-di-flow > .pr-di-flow-in { padding: 20px 16px; }
+}
+.pr-di.is-open > .pr-di-flow { margin: 0 4px 4px; background: var(--ydk-bg); border-radius: 0 0 8px 8px; }
+.pr-di.is-open > .pr-di-flow > .pr-di-flow-in { padding: 28px; }
+.pr-di.is-open .pr-di-photos { padding-top: 0; border-top: 0; }
 .pr-di-toggle { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; margin-top: 12px; padding: 0 22px; border: 0; border-radius: 8px; background: #fff; color: var(--di-purple); font: 700 15px/1 inherit; font-family: inherit; cursor: pointer; transition: background-color 160ms ease-out; }
 .pr-di-toggle:hover { background: #EDE6F2; }
 .pr-di-toggle:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
