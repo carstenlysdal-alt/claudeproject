@@ -116,7 +116,7 @@
         el('div', { class: 'report-cover', 'aria-hidden': 'true' }, el('small', { text: 'Y Business Pro' }), el('strong', { text: construction ? 'BYG\nGERI' : 'UDSYN' }), el('small', { text: 'Rapport · Demo' })),
         el('div', {}, mono('Eksempelrapport · Demoindhold'), el('h3', { text: construction ? 'Robotter på byggepladsen. Skal vi med nu?' : 'AI, kapital og konkurrence: Hvad flytter erhvervslivet?' }),
           el('p', { text: construction ? 'Et interaktivt rapportuddrag med spørgsmål til din næste teknologiinvestering.' : 'Et rapportuddrag med perspektiver på investeringer, teknologi og de næste beslutninger.' }),
-          btn(isPro() ? 'Åbn rapportuddrag →' : 'Se rapporten ' + '· Business Pro', () => isPro() ? openReport(construction) : openPaywall({ title: 'Brancherapporter', target: '#pro-overblik?f=rapporter', report: true }), true))));
+          btn(isPro() ? 'Åbn rapportuddrag →' : 'Se rapporten ' + '· Business Pro', () => isPro() ? openReport(construction) : openPaywall({ title: 'Brancherapporter', sector, report: true }), true))));
   }
   const TOOL_INFO = {
     brief: { tab: 'Morgenbrief', title: 'Dagens vigtigste. Før dit første møde.', text: 'Et redaktionelt overblik over historierne, der har betydning for din virksomhed og din branche.', label: 'Morgenbrief · 06.00' },
@@ -166,6 +166,7 @@
       b.append(...pill.childNodes); pill.replaceWith(b);
     });
     const hero = original.querySelector('.bf-hero');
+    original.querySelector('.bf-mint-top').append(badge());
     const oldHeading = hero.querySelector('h1'), newHeading = el('h2', { text: oldHeading.textContent });
     newHeading.className = 'business-hero-title'; oldHeading.replaceWith(newHeading);
     original.querySelector('.bf-more').remove();
@@ -198,14 +199,14 @@
     const finance = spec ? spec.finance : ['b6', 'b8', 'b9'];
     const analysis = spec ? spec.analysis : ['b3', 'b1', 'b2'];
     const sections = [];
-    if (filter === 'alle') sections.push(el('section', { class: 'curation-grid', 'aria-label': sector ? 'Byggeriets vigtigste historier' : 'Business Pro · Redaktionens udvalgte' }, card(lead, { lead: true }), el('div', { class: 'curation-side' }, related.map(key => card(key)))));
+    if (filter === 'alle') sections.push(el('section', { class: 'curation-grid', 'aria-label': sector ? 'Byggeriets vigtigste historier' : 'Business Pro · Redaktionens udvalgte' }, card(lead, { lead: true, description: false }), el('div', { class: 'curation-side' }, related.map(key => card(key, { description: false })))));
     if (filter === 'alle') sections.push(markets(!!sector));
     if (filter === 'alle' || filter === 'finans') sections.push(el('section', { class: 'content-section' }, moduleHeader('Finans', sector ? 'Kapital, investeringer og opgaver i byggeriet' : 'Pengene og de virksomheder, der flytter dem'), el('div', { class: 'card-grid' }, finance.map(key => card(key)))));
     if (filter === 'alle' || filter === 'analyse') sections.push(el('section', { class: 'content-section' }, moduleHeader('Analyse', sector ? 'Teknologi og metoder under faglig lup' : 'Forstå konsekvenserne bag overskrifterne'), el('div', { class: 'card-grid' }, analysis.map(key => card(key)))));
     if (filter === 'alle' || filter === 'rapporter') sections.push(reportModule(sector));
     if (filter === 'alle' || filter === 'vaerktoejer') sections.push(toolsModule(sector));
     sections.push(diTeaser(filter !== 'alle'));
-    return el('div', { class: 'platform-page' }, intro(sector ? 'Byggeri' : 'Business', sector ? 'Business Pro · Redaktionens vigtigste historier til din branche.' : 'Redaktionens vigtigste historier. På tværs af erhvervslivet.', true), curation, categories, ...sections);
+    return el('div', { class: 'platform-page curated-page' }, intro(sector ? 'Byggeri' : 'Business', sector ? 'Business Pro · Redaktionens vigtigste historier til din branche.' : 'Redaktionens vigtigste historier. På tværs af erhvervslivet.', true), curation, categories, ...sections);
   }
   function proLanding() {
     const values = [
@@ -461,6 +462,7 @@
     const anchor = e.target.closest('a[href^="#"]');
     if (anchor && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey && e.button === 0) {
       const target = anchor.getAttribute('href'), key = target.slice(1);
+      if (target === '#view') { e.preventDefault(); document.getElementById('view').focus(); document.getElementById('view').scrollIntoView(); return; }
       if (locked(key)) {
         e.preventDefault(); const a = story(key);
         if (a.di) openLogin({ di: true, target }); else openPaywall({ title: a.fullTitle, target });
