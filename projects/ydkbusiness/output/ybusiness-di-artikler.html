@@ -689,6 +689,13 @@ a.sn-i:hover { color: var(--h-ink); }
 </head>
 <body>
 <a class="skip-link" href="#view">Spring til indhold</a>
+<div class="mockdock" id="mockdock">
+  <button class="mock-btn mono" id="mockBtn" type="button" aria-expanded="false" aria-controls="mockPanel">Mockup · udkast</button>
+  <div class="mock-panel" id="mockPanel" hidden inert>
+    <a class="tab tab-ext" href="https://ybuisness-commercial-production.up.railway.app/" target="_blank" rel="noopener">Y forside ↗</a>
+    <nav class="tabs" id="tabs" aria-label="Alle forsider og artikler"></nav>
+  </div>
+</div>
 <div class="demo-bar">
   <div class="demo-inner">
     <span class="demo-caption"><b>Interaktiv demo</b> · Se oplevelsen som</span>
@@ -703,14 +710,15 @@ a.sn-i:hover { color: var(--h-ink); }
   <div class="ysite-in">
     <div><a class="ysite-logo" href="#business" aria-label="Y, til Business-forsiden"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M 24 0 C 10.746 0 0 10.746 0 24 C 0 37.254 10.746 48 24 48 C 37.254 48 48 37.254 48 24 C 48 10.746 37.254 0 24 0 Z M 35.853 16.83 L 27.189 32.079 C 26.352 33.579 25.374 34.68 24.261 35.385 C 23.148 36.087 21.714 36.441 19.962 36.441 L 16.413 36.441 C 16.26 36.441 16.134 36.318 16.134 36.165 L 16.134 32.919 C 16.134 32.766 16.26 32.643 16.413 32.643 L 19.419 32.643 C 19.728 32.643 20.004 32.607 20.247 32.538 C 21.054 32.274 21.639 31.521 21.639 30.633 C 21.639 30.297 21.555 29.979 21.405 29.7 L 13.692 16.854 C 13.677 16.833 13.665 16.806 13.665 16.779 C 13.665 16.704 13.728 16.641 13.803 16.641 C 13.803 16.641 20.313 16.641 20.316 16.641 C 20.421 16.641 20.514 16.704 20.559 16.791 L 25.305 25.392 L 29.727 16.815 L 29.754 16.761 C 29.805 16.689 29.886 16.641 29.982 16.641 C 29.982 16.641 35.724 16.641 35.727 16.641 C 35.802 16.641 35.865 16.704 35.865 16.779 C 35.865 16.797 35.862 16.815 35.853 16.83 Z" fill="currentColor" fill-rule="nonzero"/></svg></a></div>
     <nav class="ysite-nav" aria-label="Hovedmenu">
-      <a class="ysite-link global-link" href="https://ybuisness-commercial-production.up.railway.app/" data-global="Politik">Politik</a>
-      <a class="ysite-link global-link" href="https://ybuisness-commercial-production.up.railway.app/" data-global="Internationalt">Internationalt</a>
-      <a class="ysite-link" id="nav-business" href="#business">Business</a>
-      <a class="ysite-link pro" id="nav-pro" href="#pro">Pro</a>
+      <a class="ysite-link global-link" href="https://ybuisness-commercial-production.up.railway.app/" data-global="Politik">POLITIK</a>
+      <a class="ysite-link global-link" href="https://ybuisness-commercial-production.up.railway.app/" data-global="International">INTERNATIONAL</a>
+      <a class="ysite-link" id="nav-business" href="#business">BUSINESS</a>
+      <a class="ysite-link pro" id="nav-pro" href="#pro" aria-label="Business Pro">BUSINESS <span class="pro-tag">PRO</span></a>
     </nav>
     <div class="ysite-r">
-      <a class="ysite-cta" id="platform-cta" href="#pro">Oplev Business Pro</a>
+      <a class="ysite-cta" id="platform-cta" href="#pro">Prøv Pro+ | 0 kr. første måned</a>
       <button class="header-login" id="platform-login" type="button">Log ind</button>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Skift til lys visning"></button>
       <button class="ysite-menu" id="platform-menu" type="button" aria-label="Åbn menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 9h14M5 15h14"/></svg></button>
     </div>
   </div>

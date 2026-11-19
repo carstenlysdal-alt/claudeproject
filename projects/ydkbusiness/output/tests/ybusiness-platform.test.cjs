@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const { readFileSync } = require('node:fs');
 const path = require('node:path');
 const { JSDOM } = require('jsdom');
+const { createHash } = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const html = readFileSync(path.join(root, 'ybusiness-di-artikler.html'), 'utf8');
 const articles = html.match(/<script>([\s\S]*?)<\/script>/)[1];
@@ -22,7 +23,7 @@ function setup(t, initial = '#business') {
     this.dispatchEvent(new w.Event('close'));
   };
   w.addEventListener('error', e => errors.push(e.error || e.message));
-  w.eval(articles + '\n' + platform);
+  w.eval(articles + '\n' + platform + '\nwindow.__testContent = { business: BARTICLES, di: ARTICLES, pro: PRO };');
   t.after(() => { dom.window.close(); assert.deepEqual(errors, [], 'No runtime errors'); });
   const $ = selector => d.querySelector(selector);
   const $$ = selector => [...d.querySelectorAll(selector)];
@@ -48,7 +49,60 @@ test('Business preserves original content and shows premium status', t => {
   assert($('main').textContent.includes('Agenter brød ud'));
   assert($('main').textContent.includes('Porsche'));
   assert($('.bf-mint .access-label .lock-icon'));
-  assert.deepEqual($$('.ysite-nav a').map(a => a.textContent.trim()), ['Politik', 'Internationalt', 'Business', 'Pro']);
+  assert.deepEqual($$('.ysite-nav a').map(a => a.textContent.trim()), ['POLITIK', 'INTERNATIONAL', 'BUSINESS', 'BUSINESS PRO']);
+  assert($('.bf-more'));
+  for (let id = 1; id <= 11; id++) assert($(`main a[href="#b${id}"]`), `Business story ${id} remains discoverable`);
+});
+
+test('All 23 original article records keep their complete text and metadata', t => {
+  const { w } = setup(t);
+  const data = w.__testContent;
+  const current = {
+    ...Object.fromEntries(Object.entries(data.business).map(([id, a]) => ['b' + id, a])),
+    ...Object.fromEntries(Object.entries(data.di).map(([id, a]) => ['a' + id, a])),
+    p0: { h: data.pro.headline, k: data.pro.kicker, p: data.pro.dek, body: data.pro.body, kilder: data.pro.kilder },
+    ...Object.fromEntries(data.pro.cards.map((a, i) => ['p' + (i + 1), a]))
+  };
+  const original = JSON.parse(readFileSync(path.join(__dirname, 'original-content.json'), 'utf8'));
+  assert.equal(Object.keys(current).length, 23);
+  for (const [key, hash] of Object.entries(original.articles)) {
+    assert.equal(createHash('sha256').update(JSON.stringify(current[key])).digest('hex'), hash, `Original article ${key} must not change`);
+  }
+});
+
+test('Original header, category links and complete article picker remain available', t => {
+  const { $, $$, click } = setup(t);
+  assert($('#themeBtn'));
+  assert.equal($('#platform-cta').textContent, 'Prøv Pro+ | 0 kr. første måned');
+  assert.deepEqual($$('.sn-categories a').map(a => a.textContent), ['International', 'Danmark', 'AI']);
+  assert($('#mockPanel').hidden);
+  click('#mockBtn');
+  assert(!$('#mockPanel').hidden);
+  const articleLinks = $$('#tabs a').filter(a => /^#[abp]\d+$/.test(a.getAttribute('href')));
+  assert.equal(articleLinks.length, 23);
+  click('#mockBtn');
+  assert($('#mockPanel').hidden);
+});
+
+test('Original DI previews retain both lead stories, all five cases and both disclosures', t => {
+  const { $, $$, click } = setup(t);
+  assert.equal($$('.preserved-di .pr-di-photos .pr-di-card').length, 2);
+  assert.equal($$('.preserved-di .di-cards .di-card').length, 5);
+  click('.preserved-di .di-edition .pr-di-toggle');
+  assert($('#prDiFlow').classList.contains('is-open'));
+  click('.preserved-di .di-box .pr-di-toggle');
+  assert($('#prDiCases').classList.contains('is-open'));
+});
+
+test('Original theme control switches between dark and light without changing content', t => {
+  const { $, click, d } = setup(t);
+  const content = $('main').textContent;
+  assert.equal(d.documentElement.getAttribute('data-y-theme'), 'dark');
+  click('#themeBtn');
+  assert.equal(d.documentElement.getAttribute('data-y-theme'), 'light');
+  click('#themeBtn');
+  assert.equal(d.documentElement.getAttribute('data-y-theme'), 'dark');
+  assert.equal($('main').textContent, content);
 });
 
 test('Premium click opens paywall; direct URL shows teaser; downgrade removes full text', async t => {

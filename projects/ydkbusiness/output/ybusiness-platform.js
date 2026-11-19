@@ -14,6 +14,46 @@
   const btn = (text, action, primary = false) => el('button', { type: 'button', class: primary ? 'cta-primary' : 'cta-secondary', text, onclick: action });
   const link = (text, href, primary = false) => el('a', { class: primary ? 'cta-primary' : 'cta-secondary', href, text });
   const chevron = () => iconSvg('<path d="m6 9 6 6 6-6"/>');
+  const ARTICLE_GROUPS = [
+    { label: 'Business (alle læsere)', views: ['business', ...Object.keys(BCAT), ...Object.keys(BARTICLES).map(id => 'b' + id)] },
+    { label: 'Business Pro · Byggeri', views: ['pro-overblik', 'byggeri', ...['p0', ...PRO.cards.map((_, i) => 'p' + (i + 1))]] },
+    { label: 'Business Pro · Kun DI', views: ['forside', ...Object.keys(ARTICLES).map(id => 'a' + id)] }
+  ];
+  function articlePickerLabel(view) {
+    if (view === 'business' || view === 'forside') return 'Forside';
+    if (view === 'pro-overblik') return 'Alle brancher';
+    if (view === 'byggeri') return 'Byggeri · Forside';
+    if (BCAT[view]) return BCAT[view].label;
+    if (view[0] === 'b') return `${view.slice(1)} · ${BARTICLES[view.slice(1)].tab}`;
+    if (view[0] === 'a') return `${view.slice(1)} · ${ARTICLES[view.slice(1)].tab}`;
+    const n = Number(view.slice(1));
+    return n === 0 ? 'Aarsleff' : PRO.cards[n - 1].short;
+  }
+  function initArticlePicker() {
+    const panel = document.getElementById('mockPanel'), toggle = document.getElementById('mockBtn');
+    const set = open => { toggle.setAttribute('aria-expanded', String(open)); panel.hidden = !open; panel.inert = !open; };
+    document.getElementById('tabs').replaceChildren(...ARTICLE_GROUPS.map(group => el('div', { class: 'tab-grp' },
+      el('span', { class: 'mono tab-grp-l', text: group.label }),
+      group.views.map(view => el('a', { class: 'tab', 'data-view': view, href: '#' + view, text: articlePickerLabel(view) })))));
+    toggle.addEventListener('click', () => set(panel.hidden));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { set(false); toggle.focus(); } });
+    document.getElementById('tabs').addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+    set(false);
+  }
+  function initTheme() {
+    const button = document.getElementById('themeBtn');
+    let theme = 'dark';
+    try { if (localStorage.getItem('y-business-theme') === 'light') theme = 'light'; } catch (_) {}
+    const apply = () => {
+      document.documentElement.setAttribute('data-y-theme', theme);
+      button.setAttribute('aria-label', theme === 'dark' ? 'Skift til lys visning' : 'Skift til mørk visning');
+      button.replaceChildren(iconSvg(theme === 'dark'
+        ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/>'
+        : '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>'));
+    };
+    button.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; apply(); try { localStorage.setItem('y-business-theme', theme); } catch (_) {} });
+    apply();
+  }
   function lock(open = false) {
     const svg = iconSvg(`<rect x="5" y="10" width="14" height="11" rx="2"/><path d="${open ? 'M8 10V6a4 4 0 0 1 7-2' : 'M8 10V6a4 4 0 0 1 8 0v4'}"/>`);
     svg.classList.add('lock-icon'); return svg;
@@ -98,6 +138,15 @@
       moduleHeader(construction ? 'Byggeriet i tal' : 'Markederne kort', 'Illustrative demodata · Ingen livekurser', controls), grid);
   }
   function diTeaser(compact = false) {
+    if (!compact) {
+      // Bevar begge oprindelige DI-historier, alle fem cases og de to foldud.
+      const preserved = renderPro().querySelector('.pr-di');
+      preserved.classList.add('preserved-di');
+      preserved.append(el('div', { class: 'di-access-row' },
+        el('p', { text: 'Er du DI-medlem? Få adgang til endnu flere fordele.' }),
+        access === 'di' ? link('Åbn dit DI-univers →', '#forside', true) : btn('Log ind og verificér dit DI-medlemskab →', () => openLogin({ di: true, target: '#forside' }), true)));
+      return preserved;
+    }
     return el('section', { class: 'di-teaser', 'aria-label': 'Dansk Industri' },
       el('div', { class: 'di-teaser-head' }, el('div', {}, mono('Dansk Industri · Medlemsindsigt'),
         el('h2', { text: 'Industriens næste træk' }),
@@ -169,16 +218,18 @@
     original.querySelector('.bf-mint-top').append(badge());
     const oldHeading = hero.querySelector('h1'), newHeading = el('h2', { text: oldHeading.textContent });
     newHeading.className = 'business-hero-title'; oldHeading.replaceWith(newHeading);
-    original.querySelector('.bf-more').remove();
+    const more = original.querySelector('.bf-more'); more.remove();
+    more.querySelectorAll('a').forEach(a => {
+      const key = a.getAttribute('href').slice(1);
+      if (story(key)?.premium) a.querySelector('.bc-t').append(badge());
+    });
     const people = original.querySelector('.bf-people'); people.remove();
     const peopleLinks = people.querySelector('.bf-people-links');
     peopleLinks.replaceChildren(btn('Mød redaktionen →', openEditorial), btn('Sådan bruger vi AI →', openEditorial));
     // Bevar originalens hovedhistorie, analyseboks, nyheder, Porsche-bånd og dagens tal.
     const businessRows = el('section', { class: 'bf', 'aria-label': 'Dagens historier' }, ...original.childNodes);
-    const moreKeys = ['b6', 'b7', 'b8', 'b9', 'b10', 'b11'];
     return el('div', { class: 'platform-page' }, intro('Business', 'Nyhederne. Perspektivet. Dit næste træk.'), topics,
-      businessRows, promo(), markets(),
-      el('section', { class: 'content-section' }, moduleHeader('Virksomheder & verden', 'Nyheder, analyser og eksklusive historier', el('a', { class: 'text-link', href: '#international', text: 'Internationalt →' })), el('div', { class: 'card-grid' }, moreKeys.map(key => card(key)))),
+      businessRows, promo(), markets(), more,
       diTeaser(), toolsModule(null),
       el('section', { class: 'branch-feature' }, photo(story('p0')), el('div', {}, mono('Brancher · Byggeri'), el('h2', { text: 'Tættere på det, der bygger Danmark.' }), el('p', { text: 'Følg de vigtigste byggerihistorier, investeringer og teknologier. Samme Business Pro. Kurateret til din branche.' }), link('Udforsk Byggeri →', '#byggeri', true))),
       reportModule(null), people);
@@ -199,7 +250,10 @@
     const finance = spec ? spec.finance : ['b6', 'b8', 'b9'];
     const analysis = spec ? spec.analysis : ['b3', 'b1', 'b2'];
     const sections = [];
-    if (filter === 'alle') sections.push(el('section', { class: 'curation-grid', 'aria-label': sector ? 'Byggeriets vigtigste historier' : 'Business Pro · Redaktionens udvalgte' }, card(lead, { lead: true, description: false }), el('div', { class: 'curation-side' }, related.map(key => card(key, { description: false })))));
+    if (filter === 'alle') {
+      sections.push(el('section', { class: 'curation-grid', 'aria-label': sector ? 'Byggeriets vigtigste historier' : 'Business Pro · Redaktionens udvalgte' }, card(lead, { lead: true, description: false }), el('div', { class: 'curation-side' }, related.map(key => card(key, { description: false })))));
+      sections.push(el('div', { class: 'curation-summary' }, el('p', { text: story(lead).dek }), sector ? el('p', { class: 'story-meta', text: `Af ${PRO.by} · ${PRO.time} · ${PRO.min} min. læsning` }) : null));
+    }
     if (filter === 'alle') sections.push(markets(!!sector));
     if (filter === 'alle' || filter === 'finans') sections.push(el('section', { class: 'content-section' }, moduleHeader('Finans', sector ? 'Kapital, investeringer og opgaver i byggeriet' : 'Pengene og de virksomheder, der flytter dem'), el('div', { class: 'card-grid' }, finance.map(key => card(key)))));
     if (filter === 'alle' || filter === 'analyse') sections.push(el('section', { class: 'content-section' }, moduleHeader('Analyse', sector ? 'Teknologi og metoder under faglig lup' : 'Forstå konsekvenserne bag overskrifterne'), el('div', { class: 'card-grid' }, analysis.map(key => card(key)))));
@@ -253,9 +307,10 @@
     const proPage = ['pro', 'pro-overblik', 'byggeri', 'mit-pro', 'forside'].includes(r.name) || /^[pa]\d/.test(r.name);
     navB.toggleAttribute('aria-current', !proPage); navP.toggleAttribute('aria-current', proPage);
     if (!proPage) navB.setAttribute('aria-current', 'page'); else navP.setAttribute('aria-current', 'page');
-    navP.replaceChildren(lock(isPro()), 'Pro');
+    navP.replaceChildren(el('span', { class: 'nav-pro-name', text: 'BUSINESS' }), ' ', el('span', { class: 'pro-tag', text: 'PRO' }), lock(isPro()));
     const login = document.getElementById('platform-login'); login.textContent = access === 'free' ? 'Log ind' : 'Min konto';
-    const cta = document.getElementById('platform-cta'); cta.textContent = isPro() ? 'Mit Business Pro →' : 'Oplev Business Pro'; cta.href = isPro() ? '#mit-pro' : '#pro';
+    const cta = document.getElementById('platform-cta'); cta.textContent = isPro() ? 'Mit Business Pro →' : 'Prøv Pro+ | 0 kr. første måned'; cta.href = isPro() ? '#mit-pro' : '#pro';
+    document.querySelectorAll('#tabs [data-view]').forEach(a => { if (a.dataset.view === r.name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     const branchDetails = el('details', { class: 'sn-branches' },
       el('summary', { class: 'sn-i' }, 'Brancher', chevron()),
       el('div', { class: 'sn-branch-menu' }, el('p', { text: 'Business Pro · Vælg din branche' }),
@@ -263,10 +318,12 @@
         el('a', { href: '#pro-overblik', text: 'Alle brancher →' })));
     document.getElementById('sn').replaceChildren(el('nav', { class: 'sn-in', 'aria-label': 'Business-navigation' },
       el('a', { class: 'sn-l', href: '#business', text: 'BUSINESS' }),
-      el('a', { class: 'sn-i', href: '#business', 'aria-current': r.name === 'business' ? 'page' : null, text: 'Overblik' }), branchDetails,
+      el('a', { class: 'sn-i', href: '#business', 'aria-current': r.name === 'business' ? 'page' : null, text: 'Overblik' }),
+      el('div', { class: 'sn-categories', role: 'group', 'aria-label': 'Business-kategorier' }, Object.entries(BCAT).map(([key, category]) => el('a', { class: 'sn-i', href: '#' + key, 'aria-current': r.name === key ? 'page' : null, text: category.label }))),
+      branchDetails,
       el('a', { class: 'sn-i', href: '#pro-overblik', 'aria-current': ['pro-overblik', 'byggeri'].includes(r.name) ? 'page' : null, text: 'Business Pro' }),
       el('a', { class: 'sn-i', href: '#forside', 'aria-current': r.name === 'forside' ? 'page' : null }, 'DI-medlem', lock(access === 'di')),
-      el('span', { class: 'sn-state', text: access === 'di' ? 'DEMO · DI-MEDLEMSKAB VERIFICERET' : isPro() ? 'DEMO · PRO-ADGANG AKTIV' : 'UAFHÆNGIG ERHVERVSJOURNALISTIK' })));
+      el('a', { class: 'sn-i sn-account', href: '#mit-pro', text: 'Mit Business Pro →' })));
   }
   function footer() {
     return el('footer', { class: 'platform-footer' }, el('strong', { text: 'y business' }),
@@ -286,7 +343,7 @@
     } else if (r.name === 'mit-pro') {
       content = isPro() ? el('div', { class: 'platform-page' }, intro('Mit Business', 'Demo · Din virksomhed: Enemærke & Petersen A/S · Byggeri', true), promo(), toolsModule('byggeri'), reportModule('byggeri'), diTeaser(true)) : el('div', { class: 'platform-page' }, intro('Mit Business', 'Morgenbrief, overvågning og signaler til dit arbejde.', true), toolsModule('byggeri'), promo()); title = 'Mit Business Pro';
     } else if (Object.hasOwn(BCAT, r.name)) {
-      content = el('div', { class: 'platform-page' }, intro('Business · ' + BCAT[r.name].label, 'Udvalgte historier fra den eksisterende mockup.'), el('section', { class: 'card-grid' }, BCAT[r.name].ids.map(id => card('b' + id))), promo()); title = 'Business · ' + BCAT[r.name].label;
+      content = el('div', { class: 'platform-page' }, renderCategory(r.name), promo()); title = 'Business · ' + BCAT[r.name].label;
     } else if (story(r.name)) {
       const a = story(r.name); title = a.fullTitle;
       if (locked(r.name)) content = teaserPage(r.name);
@@ -445,8 +502,11 @@
     openDialog('Y · Redaktionelt ansvar', el('div', {}, el('h2', { text: 'Menneskerne bag perspektivet.' }), el('p', { text: 'Hos Y er det redaktører, der vælger historierne, vurderer kilderne og redigerer indholdet før udgivelse. Vi bruger AI i arbejdet. Det journalistiske ansvar er vores.' }), mono('Michael Dyrby · Chefredaktør · Fra den eksisterende mockup')));
   }
   function openMenu() {
-    const links = [['Business', '#business'], ['Business Pro · Produkt og adgang', '#pro'], ['Business Pro · Redaktionelt overblik', '#pro-overblik'], ['Byggeri', '#byggeri'], ['DI-medlem', '#forside'], ['Mit Business Pro', '#mit-pro']];
-    openDialog('Y · Navigation', el('nav', { class: 'mobile-menu-links', 'aria-label': 'Alle demoens sider' }, links.map(([text, href]) => el('a', { href, text, onclick: closeDialog }))));
+    const links = [['Business', '#business'], ['International', '#international'], ['Danmark', '#danmark'], ['AI', '#ai'], ['Business Pro · Produkt og adgang', '#pro'], ['Business Pro · Redaktionelt overblik', '#pro-overblik'], ['Byggeri', '#byggeri'], ['DI-medlem', '#forside'], ['Mit Business Pro', '#mit-pro']];
+    openDialog('Y · Navigation', el('div', {}, el('nav', { class: 'mobile-menu-links', 'aria-label': 'Alle demoens sider' },
+      ['Politik', 'International'].map(text => el('a', { href: SERVICE_URL, target: '_blank', rel: 'noopener', text: text + ' · Y-servicedemo ↗' })),
+      links.map(([text, href]) => el('a', { href, text, onclick: closeDialog }))),
+      el('div', { class: 'cta-row' }, btn(isPro() ? 'Min konto' : 'Log ind', () => document.getElementById('platform-login').click()))));
   }
   document.querySelectorAll('[data-access]').forEach(b => b.addEventListener('click', () => { closeDialog(); setAccess(b.dataset.access); }));
   document.getElementById('platform-login').addEventListener('click', () => {
@@ -477,6 +537,8 @@
     if (e.key === 'Escape' && branches) { branches.open = false; branches.querySelector('summary').focus(); }
   });
   window.addEventListener('hashchange', () => { if (dialog.open) closeDialog(); render({ scroll: true }); });
+  initArticlePicker();
+  initTheme();
   render();
   // Read-only state for regression checks and presentation diagnostics.
   window.YBusinessDemo = Object.freeze({ getState: () => ({ access, ...route() }) });

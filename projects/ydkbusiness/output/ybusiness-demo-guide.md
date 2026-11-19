@@ -2,6 +2,8 @@
 
 Opdateret 19. november 2026. Videreudvikling af `ybusiness-di-artikler.html` med de vedlagte Y-designtokens. Eksisterende historier, billeder og DI-artikler er bevaret.
 
+Den oprindelige header-menu er bevaret: **POLITIK | INTERNATIONAL | BUSINESS | BUSINESS PRO**. International, Danmark og AI ligger igen i Business-undermenuen. Den gamle artikelvælger åbnes med **Mockup · udkast** nederst til venstre og indeholder alle 23 oprindelige artikler. “Flere nyheder” og DI's to foldud med to hovedhistorier og fem cases er også bevaret. Tema-knappen skifter mellem mørk og lys visning.
+
 ## Åbn demoen
 
 Åbn `ybusiness-di-artikler.html` i en browser. Behold disse filer i samme mappe:
@@ -24,7 +26,7 @@ PORT=3108 SERVE_FILE=ybusiness-di-artikler.html node server.js
 ## Et kort præsentationsforløb
 
 1. Start på **Business** som **Ikke-abonnent**. Vis de eksisterende nyheder, analysen, Pro-banneret, markedstal, DI-indgangen og værktøjspreviews.
-2. Vælg **Pro** i hovedmenuen. Landingssiden forklarer produktet og viser eksempelpakkerne fra den eksisterende servicedemo.
+2. Vælg **BUSINESS PRO** i hovedmenuen. Landingssiden forklarer produktet og viser eksempelpakkerne fra den eksisterende servicedemo.
 3. Vælg **Business Pro** i undermenuen. Forsiden viser en bred redaktionel kuratering, som også kan opdages uden abonnement.
 4. Vælg **Brancher → Byggeri**. Aarsleff-historien og øvrige byggerisager prioriteres i det samme layout. Finans, Analyse, Brancherapporter og Værktøjer følger branchen. **Alle brancher** vender tilbage til den brede forside.
 5. Klik en låst historie eller et værktøj. Gennemgå betalingsmuren og det simulerede abonnementsflow. Adgang fører tilbage til den valgte historie, rapport eller det valgte værktøj.
@@ -63,6 +65,6 @@ npm ci
 npm test
 ```
 
-Testene dækker adgangsskift, betalingsmur, login, DI-verifikation, branchekuratering, filtre, værktøjer, genoptagelse af valgt indhold og alle visninger i de tre adgangstilstande. Desktop og mobil kontrolleres desuden visuelt i browseren.
+De 17 tests dækker adgangsskift, betalingsmur, login, DI-verifikation, branchekuratering, filtre, værktøjer, genoptagelse af valgt indhold og alle visninger i de tre adgangstilstande. De kontrollerer også, at alle 23 artikeltekster med metadata er identiske med Git-version `e9d038b` fra før redesignet, og at den oprindelige menu, artikelvælger, “Flere nyheder” og DI-foldud findes. Desktop og mobil kontrolleres desuden visuelt i browseren.
 
 Ved publicering skal alle fire runtimefiler ovenfor lægges i samme mappe. De ældre dashboard-ZIP-filer og kopier i andre mapper opdateres ikke automatisk ved et Git-push.
