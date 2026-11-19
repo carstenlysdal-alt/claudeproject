@@ -1,0 +1,196 @@
+/* =========================================================
+   Y.dk – designtokens udtrukket fra y.dk (nov. 2026)
+   Mørkt tema er standard. Sitet bygger på Tailwind v4 + Next.js.
+   Skrifttyper (Google Fonts): Public Sans, IBM Plex Mono, Alice
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Alice&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  /* ---------- Skrifttyper ---------- */
+  --font-public-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-ibm-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-alice: "Alice", ui-serif, Georgia, serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* ---------- Overflader og tekst (mørkt tema) ---------- */
+  --background-primary: #231f20;   /* body-baggrund */
+  --foreground: #eeeded;
+  --text-primary: #eeeded;
+  --text-secondary: #d7d6d7;
+  --text-tertiary: #c0bcc0;
+  --text-muted: #eeeded80;
+  --text-photo: #989498;
+  --text-post-paragraph: #ccc9c6;  /* brødtekst i artikler */
+  --text-post-muted: #9a9695;
+
+  --surface-active: #322f32;
+  --surface-elevated: #403c40;
+  --surface-pill: #403c40;
+  --surface-pills-bar: #322f32;
+  --surface-menu-footer: #322f32;
+  --surface-thumb: #231f20;
+  --surface-toggle: #403c40;
+  --surface-related: #6e686e;
+  --surface-inverse: #322f32;
+  --surface-action: #403c40;
+  --image-placeholder: #322f32;
+
+  --divider: #403c40;
+  --divider-menu-footer: #4f4a4f;
+  --anchor-border: #6e686e;
+
+  /* CTA / aktive piller (inverteret) */
+  --surface-cta: #eeeded;
+  --text-on-cta: #eeeded;
+  --surface-pill-active: #eeeded;
+  --text-pill-active: #221c1c;
+
+  /* ---------- Accentfarver ---------- */
+  --live-green: #6fee9c;
+  --surface-live-pill: #2e3e33;
+  --border-live-pill: #7add9d;
+  --live-accent: #fc7373;
+  --video-accent: #fd5643;
+  --audio-accent: #4257f5;
+  --guide: #a970ff;
+  --quiz-highlight: #2f3357;
+
+  /* ---------- Status ---------- */
+  --info-bg: hsl(215, 100%, 6%);   --info-border: hsl(223, 43%, 17%);   --info-text: hsl(216, 87%, 65%);
+  --success-bg: hsl(150, 100%, 6%); --success-border: hsl(147, 100%, 12%); --success-text: hsl(150, 86%, 65%);
+  --warning-bg: hsl(64, 100%, 6%);  --warning-border: hsl(60, 100%, 9%);  --warning-text: hsl(46, 87%, 65%);
+  --error-bg: hsl(358, 76%, 10%);   --error-border: hsl(357, 89%, 16%);   --error-text: hsl(358, 100%, 81%);
+
+  /* ---------- Typografiskala (px → rem) ---------- */
+  --text-9: .5625rem;  --text-10: .625rem;  --text-11: .6875rem; --text-13: .8125rem;
+  --text-22: 1.375rem; --text-28: 1.75rem;  --text-32: 2rem;     --text-34: 2.125rem;
+  --text-36: 2.25rem;  --text-40: 2.5rem;   --text-64: 4rem;
+
+  /* ---------- Letter-spacing ---------- */
+  --tracking-title-hero: -1.44px;
+  --tracking-desktop-hero: -2.56px;
+  --tracking-desktop-h1: -1.6px;
+  --tracking-desktop-h3: -.96px;
+  --tracking-title-large: -1.36px;
+  --tracking-title-medium: -1.12px;
+  --tracking-title-list: -.64px;
+  --tracking-title-md: -.56px;
+  --tracking-title-sm: -.44px;
+  --tracking-title-xs: -.36px;
+  --tracking-display: -.8px;
+  --tracking-nav-desktop: -.48px;
+  --tracking-caps: .8px;            /* versaler i mono-labels */
+  --tracking-desktop-label: .96px;
+  --tracking-pill: .36px;
+  --tracking-pill-active: .33px;
+
+  /* ---------- Linjehøjde ---------- */
+  --leading-nav: 1.3;
+  --leading-article: 1.2;
+  --leading-post-hero: 1.1;
+  --leading-caption: 1.4;
+  --leading-related: 1.6;
+
+  /* ---------- Rum, radius, layout ---------- */
+  --spacing: .25rem;                /* Tailwind-basis: 4px */
+  --radius-card: 12px;              /* artikelkort (rounded-xl) */
+  --radius-md: 8px;
+  --radius-toggle-pill: 3.75rem;
+  --radius-full: 9999px;            /* piller */
+  --header-h: 4.5rem;
+  --container-7xl: 80rem;
+
+  /* Breakpoints */
+  --bp-sm: 640px; --bp-md: 768px; --bp-lg: 1024px; --bp-xl: 1280px;
+}
+
+/* =========================================================
+   Basis
+   ========================================================= */
+html { color-scheme: dark; }
+body {
+  margin: 0;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+a { color: inherit; text-decoration: none; }
+
+/* =========================================================
+   Typografi-komponenter
+   ========================================================= */
+.ydk-hero-title {                         /* h2 på forsiden */
+  font: 700 36px/1.2 var(--font-public-sans);
+  letter-spacing: var(--tracking-title-hero);
+  color: var(--text-primary);
+}
+@media (min-width: 768px) {
+  .ydk-hero-title { font-size: 56px; line-height: 1.2; letter-spacing: -2.24px; }
+}
+
+.ydk-card-title {                         /* h3 i kort */
+  font: 600 1rem/var(--leading-nav) var(--font-public-sans);
+  letter-spacing: -.32px;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ydk-label {                              /* mono-label / kategori */
+  font: 500 var(--text-13)/1.5 var(--font-ibm-mono);
+  letter-spacing: .78px;
+  text-transform: uppercase;
+}
+
+.ydk-article-body {
+  color: var(--text-post-paragraph);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   Komponenter
+   ========================================================= */
+.ydk-card {                               /* <article> */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;                              /* gap-4 */
+  min-width: 0;
+  border-radius: var(--radius-card);
+}
+
+.ydk-pill {                               /* filter-pille */
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 2.5rem; padding: 0 1rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-pill);
+  color: var(--text-primary);
+  font-size: .875rem; letter-spacing: var(--tracking-pill);
+  cursor: pointer;
+}
+.ydk-pill[aria-pressed="true"], .ydk-pill--active {
+  background: var(--surface-pill-active);
+  color: var(--text-pill-active);
+  letter-spacing: var(--tracking-pill-active);
+}
+
+.ydk-pill--live {                         /* "Live"-pille */
+  background: var(--surface-live-pill);
+  border: 1px solid var(--border-live-pill);
+  padding: 0 1rem 0 .75rem;
+  gap: .5rem;
+}
+
+.ydk-nav {
+  display: flex; align-items: center; gap: 1.25rem; padding: 0 1.5rem;
+  height: var(--header-h);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-nav-desktop);
+  line-height: var(--leading-nav);
+}
+@media (min-width: 1280px) { .ydk-nav { gap: 2rem; } }
+
+.ydk-divider { border: 0; border-top: 1px solid var(--divider); }

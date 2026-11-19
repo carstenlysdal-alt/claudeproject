@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="da" data-y-theme="light">
+<html lang="da">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Business Pro × DI | Artikelmockup</title>
+<title>Business | Y</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+
 <style>
 /* ──────────────────────────────────────────────────────────────────────────
    Tokens — y.dk designsystem (SN-DeepDive/DESIGN.md). Mørk er standard.
@@ -684,37 +684,46 @@ a.sn-i:hover { color: var(--h-ink); }
 }
 
 </style>
+<link rel="stylesheet" href="ydk-tokens.css">
+<link rel="stylesheet" href="ybusiness-platform.css">
 </head>
 <body>
-<div class="mockdock" id="mockdock">
-  <button class="mock-btn mono" id="mockBtn" type="button" aria-expanded="false" aria-controls="mockPanel">Mockup · udkast</button>
-  <div class="mock-panel" id="mockPanel" inert>
-    <a class="tab tab-ext" href="https://ybuisness-commercial-production.up.railway.app/" target="_blank" rel="noopener" title="Y generelt forside: åbner commercial-mockuppen i et nyt faneblad">Y forside ↗</a>
-    <nav class="tabs" id="tabs" role="tablist" aria-label="Visninger"></nav>
+<a class="skip-link" href="#view">Spring til indhold</a>
+<div class="demo-bar">
+  <div class="demo-inner">
+    <span class="demo-caption"><b>Interaktiv demo</b> · Se oplevelsen som</span>
+    <div class="demo-switch" role="group" aria-label="Vælg brugerstatus i demoen">
+      <button type="button" data-access="free" aria-pressed="true">Ikke-abonnent</button>
+      <button type="button" data-access="pro" aria-pressed="false">Business Pro</button>
+      <button type="button" data-access="di" aria-pressed="false">DI-medlem</button>
+    </div>
   </div>
 </div>
-<div class="ribbon" aria-hidden="true"></div>
-
 <header class="ysite" id="ysite">
   <div class="ysite-in">
-    <div><a class="ysite-logo" href="#business" aria-label="Business Pro, til Business-forsiden"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M 24 0 C 10.746 0 0 10.746 0 24 C 0 37.254 10.746 48 24 48 C 37.254 48 48 37.254 48 24 C 48 10.746 37.254 0 24 0 Z M 35.853 16.83 L 27.189 32.079 C 26.352 33.579 25.374 34.68 24.261 35.385 C 23.148 36.087 21.714 36.441 19.962 36.441 L 16.413 36.441 C 16.26 36.441 16.134 36.318 16.134 36.165 L 16.134 32.919 C 16.134 32.766 16.26 32.643 16.413 32.643 L 19.419 32.643 C 19.728 32.643 20.004 32.607 20.247 32.538 C 21.054 32.274 21.639 31.521 21.639 30.633 C 21.639 30.297 21.555 29.979 21.405 29.7 L 13.692 16.854 C 13.677 16.833 13.665 16.806 13.665 16.779 C 13.665 16.704 13.728 16.641 13.803 16.641 C 13.803 16.641 20.313 16.641 20.316 16.641 C 20.421 16.641 20.514 16.704 20.559 16.791 L 25.305 25.392 L 29.727 16.815 L 29.754 16.761 C 29.805 16.689 29.886 16.641 29.982 16.641 C 29.982 16.641 35.724 16.641 35.727 16.641 C 35.802 16.641 35.865 16.704 35.865 16.779 C 35.865 16.797 35.862 16.815 35.853 16.83 Z" fill="currentColor" fill-rule="nonzero"/></svg></a></div>
+    <div><a class="ysite-logo" href="#business" aria-label="Y, til Business-forsiden"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M 24 0 C 10.746 0 0 10.746 0 24 C 0 37.254 10.746 48 24 48 C 37.254 48 48 37.254 48 24 C 48 10.746 37.254 0 24 0 Z M 35.853 16.83 L 27.189 32.079 C 26.352 33.579 25.374 34.68 24.261 35.385 C 23.148 36.087 21.714 36.441 19.962 36.441 L 16.413 36.441 C 16.26 36.441 16.134 36.318 16.134 36.165 L 16.134 32.919 C 16.134 32.766 16.26 32.643 16.413 32.643 L 19.419 32.643 C 19.728 32.643 20.004 32.607 20.247 32.538 C 21.054 32.274 21.639 31.521 21.639 30.633 C 21.639 30.297 21.555 29.979 21.405 29.7 L 13.692 16.854 C 13.677 16.833 13.665 16.806 13.665 16.779 C 13.665 16.704 13.728 16.641 13.803 16.641 C 13.803 16.641 20.313 16.641 20.316 16.641 C 20.421 16.641 20.514 16.704 20.559 16.791 L 25.305 25.392 L 29.727 16.815 L 29.754 16.761 C 29.805 16.689 29.886 16.641 29.982 16.641 C 29.982 16.641 35.724 16.641 35.727 16.641 C 35.802 16.641 35.865 16.704 35.865 16.779 C 35.865 16.797 35.862 16.815 35.853 16.83 Z" fill="currentColor" fill-rule="nonzero"/></svg></a></div>
     <nav class="ysite-nav" aria-label="Hovedmenu">
-      <span class="ysite-link dim" title="Ikke med i mockuppen">POLITIK</span>
-      <span class="ysite-link dim" title="Ikke med i mockuppen">INTERNATIONAL</span>
-      <a class="ysite-link" id="nav-business" href="#business">BUSINESS</a>
-      <a class="ysite-link pro" id="nav-pro" href="#pro" title="Business Pro">BUSINESS <span class="pro-tag">PRO</span><span class="pro-dot" aria-hidden="true"></span></a>
+      <a class="ysite-link global-link" href="https://ybuisness-commercial-production.up.railway.app/" data-global="Politik">Politik</a>
+      <a class="ysite-link global-link" href="https://ybuisness-commercial-production.up.railway.app/" data-global="Internationalt">Internationalt</a>
+      <a class="ysite-link" id="nav-business" href="#business">Business</a>
+      <a class="ysite-link pro" id="nav-pro" href="#pro">Pro</a>
     </nav>
     <div class="ysite-r">
-      <a class="ysite-cta" href="#pro">Prøv Pro+ | 0 kr. første måned</a>
-      <button class="theme-btn" id="themeBtn" type="button" aria-label="Skift mellem mørk og lys visning" title="Skift mellem mørk og lys visning"></button>
-      <button class="ysite-menu" type="button" aria-label="Menu (ikke med i mockuppen)" title="Ikke med i mockuppen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 9h14M5 15h14"/></svg></button>
+      <a class="ysite-cta" id="platform-cta" href="#pro">Oplev Business Pro</a>
+      <button class="header-login" id="platform-login" type="button">Log ind</button>
+      <button class="ysite-menu" id="platform-menu" type="button" aria-label="Åbn menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 9h14M5 15h14"/></svg></button>
     </div>
   </div>
 </header>
 <div class="sn" id="sn"></div>
-
-<main id="view" class="wrap" tabindex="-1"></main>
-<noscript><p class="wrap">Mockuppen kræver JavaScript.</p></noscript>
+<main id="view" class="wrap wide" tabindex="-1"></main>
+<noscript><p class="wrap">Den interaktive mockup kræver JavaScript.</p></noscript>
+<div id="route-announcement" class="visually-hidden" role="status" aria-live="polite"></div>
+<div id="platform-toast" class="toast" role="status" hidden></div>
+<dialog class="platform-dialog" id="platform-dialog" aria-labelledby="platform-dialog-label">
+  <div class="dialog-head"><span id="platform-dialog-label">Business Pro</span><button class="dialog-close" id="platform-dialog-close" type="button" aria-label="Luk dialog">×</button></div>
+  <div class="dialog-body" id="platform-dialog-body"></div>
+</dialog>
 
 <script>
 /* ════════════════════════════════════════════════════════════════════════════
@@ -1721,130 +1730,8 @@ function renderPro() {
   return el('div', { class: 'bf pro-page' }, hero, cards, di, feature);
 }
 
-/* ════════════════════════════════════════════════════════════════════════════
-   NAVIGATION, TEMA
-   ════════════════════════════════════════════════════════════════════════════ */
-const DI_IDS = Object.keys(ARTICLES), B_IDS = Object.keys(BARTICLES);
-const VIEWS = ['business', ...Object.keys(BCAT), ...B_IDS.map(k => 'b' + k), 'pro', 'p0', ...PRO.cards.map((_, i) => 'p' + (i + 1)), 'forside', ...DI_IDS.map(k => 'a' + k)];
-const isCat = v => Object.prototype.hasOwnProperty.call(BCAT, v);
-const isBView = v => v === 'business' || isCat(v) || /^b\d/.test(v);
-const isDiView = v => v === 'forside' || /^a\d/.test(v);
-const isProView = v => v === 'pro' || /^p\d/.test(v);
-function viewLabel(v) {
-  if (v === 'business' || v === 'pro' || v === 'forside') return 'Forside';
-  if (isCat(v)) return BCAT[v].label;
-  if (/^p\d/.test(v)) { const i = Number(v.slice(1)); return `${i === 0 ? 'Aarsleff' : PRO.cards[i - 1].short}`; }
-  const A = v[0] === 'b' ? BARTICLES : ARTICLES;
-  return `${v.slice(1)} · ${A[v.slice(1)].tab}`;
-}
-
-function buildTabs() {
-  const tabs = document.getElementById('tabs');
-  const grp = (label, views) => el('div', { class: 'tab-grp', role: 'presentation' },
-    el('span', { class: 'mono tab-grp-l', text: label }),
-    views.map(v => el('button', { class: 'tab', type: 'button', role: 'tab', id: 'tab-' + v, 'data-view': v, text: viewLabel(v) })));
-  tabs.replaceChildren(
-    grp('Business (alle læsere)', VIEWS.filter(isBView)),
-    grp('Business Pro · byggeri', VIEWS.filter(isProView)),
-    grp('Business Pro · kun DI', VIEWS.filter(isDiView)));
-  tabs.addEventListener('click', e => { const b = e.target.closest('.tab'); if (b) location.hash = '#' + b.dataset.view; });
-  tabs.addEventListener('keydown', e => {
-    const i = VIEWS.indexOf(currentView());
-    let n = i;
-    if (e.key === 'ArrowRight') n = (i + 1) % VIEWS.length;
-    else if (e.key === 'ArrowLeft') n = (i - 1 + VIEWS.length) % VIEWS.length;
-    else if (e.key === 'Home') n = 0;
-    else if (e.key === 'End') n = VIEWS.length - 1;
-    else return;
-    e.preventDefault();
-    location.hash = '#' + VIEWS[n];
-    setTimeout(() => document.getElementById('tab-' + VIEWS[n]).focus(), 0);
-  });
-}
-function currentView() { const h = location.hash.replace('#', ''); return h === 'byggeri' ? 'pro' : VIEWS.includes(h) ? h : 'business'; }
-function show() {
-  const v = currentView();
-  const b = isBView(v);
-  document.querySelectorAll('.tab[data-view]').forEach(t => {
-    const on = t.dataset.view === v;
-    t.setAttribute('aria-selected', on ? 'true' : 'false');
-    t.setAttribute('tabindex', on ? '0' : '-1');
-  });
-  const navB = document.getElementById('nav-business'), navP = document.getElementById('nav-pro');
-  if (b) { navB.setAttribute('aria-current', 'page'); navP.removeAttribute('aria-current'); }
-  else { navP.setAttribute('aria-current', 'page'); navB.removeAttribute('aria-current'); }
-  document.getElementById('sn').replaceChildren(renderSectorNav(b ? (isCat(v) ? v : '') : isProView(v) ? 'pro' : 'di'));
-  const main = document.getElementById('view');
-  main.setAttribute('role', 'tabpanel');
-  main.setAttribute('aria-labelledby', 'tab-' + v);
-  main.className = 'wrap' + (v === 'business' || isCat(v) || v === 'pro' ? ' wide' : '');
-  const A = b ? BARTICLES : ARTICLES;
-  main.replaceChildren(v === 'business' ? renderBusinessFront() : isCat(v) ? renderCategory(v) : v === 'pro' ? renderPro() : /^p\d/.test(v) ? renderProStub(Number(v.slice(1))) : v === 'forside' ? renderFront() : renderArticle(v.slice(1), v[0]));
-  const name = /^p\d/.test(v) ? (v === 'p0' ? PRO.headline : PRO.cards[Number(v.slice(1)) - 1].h) : v === 'business' ? 'Business' : isCat(v) ? 'Business · ' + BCAT[v].label : v === 'pro' ? 'Business Pro · Byggeri' : v === 'forside' ? 'Forside' : A[v.slice(1)].headline;
-  document.title = name + (b || isProView(v) ? ' | Business Pro' : ' | Business Pro × DI');
-  window.scrollTo(0, 0);
-}
-
-const THEME_KEY = 'y-business-theme';
-function applyTheme(mode) {
-  if (mode === 'light') document.documentElement.setAttribute('data-y-theme', 'light');
-  else document.documentElement.removeAttribute('data-y-theme');
-  const btn = document.getElementById('themeBtn');
-  btn.replaceChildren(iconSvg(mode === 'light'
-    ? '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>'
-    : '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'));
-  btn.firstChild.setAttribute('width', '18'); btn.firstChild.setAttribute('height', '18');
-  btn.firstChild.setAttribute('stroke-width', '1.5');
-}
-function initTheme() {
-  // Standard er lys, fordi det følger Y's forside i screenshot. Valget huskes.
-  let mode = 'light';
-  try { if (localStorage.getItem(THEME_KEY) === 'dark') mode = 'dark'; } catch (e) {}
-  applyTheme(mode);
-  document.getElementById('themeBtn').addEventListener('click', () => {
-    mode = mode === 'dark' ? 'light' : 'dark';
-    applyTheme(mode);
-    try { localStorage.setItem(THEME_KEY, mode); } catch (e) {}
-  });
-}
-
-buildTabs();
-initTheme();
-// Mockup-dock: knappen åbner og lukker faneruden (Esc lukker).
-(function () {
-  const btn = document.getElementById('mockBtn'), panel = document.getElementById('mockPanel');
-  const set = open => { btn.setAttribute('aria-expanded', open ? 'true' : 'false'); panel.classList.toggle('open', open); panel.inert = !open; };
-  btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.classList.contains('open')) { set(false); btn.focus(); } });
-})();
-
-document.addEventListener('click', e => {
-  const branches = document.querySelector('.sn-branches[open]');
-  if (branches && !branches.contains(e.target)) branches.open = false;
-});
-document.addEventListener('keydown', e => {
-  const branches = document.querySelector('.sn-branches[open]');
-  if (e.key === 'Escape' && branches) {
-    branches.open = false;
-    branches.querySelector('summary').focus();
-  }
-});
-window.addEventListener('hashchange', show);
-show();
-
-// Rytmetjek af alle artikler (se rhythmWarnings). Resultatet ligger også i window.__rhythm.
-window.__rhythm = {};
-for (const k of Object.keys(ARTICLES)) {
-  const w = rhythmWarnings(parseBody(ARTICLES[k].body));
-  window.__rhythm[k] = w;
-  if (w.length) console.warn(`Artikel ${k}: ${w.join(' | ')}`);
-}
-PRO.cards.forEach((c, i) => { const w = rhythmWarnings(parseBody(c.body || '')); window.__rhythm['p' + (i + 1)] = w; if (w.length) console.warn(`Pro-artikel ${i + 1}: ${w.join(' | ')}`); });
-for (const k of Object.keys(BARTICLES)) {
-  const w = rhythmWarnings(parseBody(BARTICLES[k].body));
-  window.__rhythm['b' + k] = w;
-  if (w.length) console.warn(`Business-artikel ${k}: ${w.join(' | ')}`);
-}
+// Navigation og demoadgang håndteres i ybusiness-platform.js.
 </script>
+<script src="ybusiness-platform.js"></script>
 </body>
 </html>
