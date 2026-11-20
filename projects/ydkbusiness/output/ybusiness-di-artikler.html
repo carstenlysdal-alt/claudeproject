@@ -1384,7 +1384,7 @@ function renderCategory(key) {
     return el('a', { class: 'bc-card' + (lead ? ' lead' : ''), href: '#b' + id },
       el('span', { class: 'bc-ph' }, bPhoto(id, lead ? 1000 : 600)),
       el('span', { class: 'bc-t' },
-        el('span', { class: 'bf-mono', text: `${a.kicker.toUpperCase()} · ${readMinutes(a)} MIN.` }),
+        key === 'international' ? null : el('span', { class: 'bf-mono', text: `${a.kicker.toUpperCase()} · ${readMinutes(a)} MIN.` }),
         el(lead ? 'h2' : 'h3', { text: a.headline }),
         el('p', { text: a.manchet })));
   };

@@ -714,3 +714,12 @@ body:has(dialog[open]) { overflow: hidden; }
   .ysite-business-links { gap: 4px; }
   .ysite-nav { gap: 14px; font-size: 12px; }
 }
+.pro-workspace-grid { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 20px; align-items: start; }
+.pro-workspace-grid > .pro-tools-frame { min-width: 0; }
+.pro-market-monitor { display: grid; gap: 14px; padding: 18px; border: 1px solid var(--divider); border-radius: var(--radius-card); background: var(--surface-elevated); }
+.pro-market-monitor h2 { font-size: 18px; line-height: 1.2; }
+.pro-market-monitor .plan-note { margin: 0; color: var(--text-secondary); font-size: 13px; }
+.pro-market-item { display: grid; gap: 4px; padding-top: 12px; border-top: 1px solid var(--divider); color: var(--text-primary); text-decoration: none; }
+.pro-market-item strong { font-size: 15px; line-height: 1.3; }
+.pro-market-item span { font-size: 13px; color: var(--text-tertiary); }
+@media (max-width: 760px) { .pro-workspace-grid { grid-template-columns: minmax(0, 1fr); } }

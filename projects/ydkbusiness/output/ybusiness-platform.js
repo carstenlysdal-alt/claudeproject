@@ -505,7 +505,14 @@
       class: 'pro-tools-frame', title: 'Business Pro · Dine værktøjer', src: 'business-pro/index.html',
       sandbox: 'allow-scripts allow-same-origin allow-downloads', scrolling: 'no', onload: initWorkspace
     });
-    return el('div', { class: 'platform-page pro-workspace-page' }, el('h1', { class: 'visually-hidden', text: 'Mit Business Pro · Værktøjer' }), access === 'di' ? link('Åbn DI-universet →', '#forside') : null, workspaceFrame);
+    return el('div', { class: 'platform-page pro-workspace-page' }, el('h1', { class: 'visually-hidden', text: 'Mit Business Pro · Værktøjer' }), access === 'di' ? link('Åbn DI-universet →', '#forside') : null,
+      el('div', { class: 'pro-workspace-grid' }, workspaceFrame, access === 'di' ? marketMonitor() : null));
+  }
+  function marketMonitor() {
+    return el('aside', { class: 'pro-market-monitor', 'aria-labelledby': 'pro-market-title' },
+      el('h2', { id: 'pro-market-title', text: 'MarkedsMonitor' }),
+      el('p', { class: 'plan-note', text: 'Nye udviklinger fra DI-indholdet.' }),
+      ['a7', 'a1', 'a2'].map(key => { const a = story(key); return el('a', { class: 'pro-market-item', href: '#' + key }, el('strong', { text: a.fullTitle }), el('span', { text: a.dek })); }));
   }
   function proAccessPage() {
     return el('div', { class: 'platform-page pro-access-page' },
@@ -590,7 +597,7 @@
         el('section', { class: 'bf bc', 'aria-label': 'Politik' },
           el('a', { class: 'bc-card lead', href: '#b2' },
             el('span', { class: 'bc-ph' }, bPhoto(2, 1000)),
-            el('span', { class: 'bc-t' }, mono('REGULERING · 2 MIN.'), el('h2', { text: BARTICLES[2].headline }), el('p', { text: BARTICLES[2].manchet })))),
+            el('span', { class: 'bc-t' }, el('h2',{ text: BARTICLES[2].headline }), el('p', { text: BARTICLES[2].manchet })))),
         promo());
       title = 'Politik';
     } else if (story(r.name)) {
