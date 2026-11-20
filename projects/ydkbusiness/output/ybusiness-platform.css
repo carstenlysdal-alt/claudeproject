@@ -20,7 +20,7 @@
   --divider: #c0bcc0; --anchor-border: #9a9695; --image-placeholder: #d7d6d7;
   --surface-pill-active: #231f20; --text-pill-active: #eeeded; --surface-cta: #231f20;
 }
-:root { --yb-header-height: var(--header-h); --di-on-purple: #f5edf8; }
+:root { --yb-header-height: var(--header-h); }
 body { font-family: var(--font-body); overflow-x: clip; }
 button, input, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -345,15 +345,14 @@ h1, h2, h3, h4 { font-family: var(--font-public-sans); }
 .branch-feature p { font-size: 14px; color: var(--text-tertiary); }
 .di-news-page { padding-top: 24px; }
 .di-partner-banner {
-  --di-on-purple-muted: #e9d9f0;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
   border-radius: var(--radius-card);
   padding: clamp(20px, 3.2vw, 40px);
-  background: var(--di-purple);
-  color: var(--di-on-purple);
+  background: var(--surface-active);
+  color: var(--text-primary);
 }
 .di-partner-banner > div { min-width: 0; }
 .di-partner-banner :is(h1, h2) {
@@ -361,18 +360,22 @@ h1, h2, h3, h4 { font-family: var(--font-public-sans); }
   letter-spacing: var(--tracking-title-large);
   text-wrap: balance;
 }
-.di-partner-banner .eyebrow-label { display: block; margin-top: 12px; color: var(--di-on-purple); }
-.di-partner-banner p { margin-top: 8px; max-width: 62ch; color: var(--di-on-purple-muted); }
-.di-partner-banner .cta-primary { margin-top: 16px; background: var(--di-on-purple); color: var(--di-purple); }
-.di-partner-banner :focus-visible { outline-color: var(--di-on-purple); }
+.di-partner-banner .eyebrow-label { display: block; margin-top: 12px; color: var(--text-muted); }
+.di-partner-banner p { margin-top: 8px; max-width: 62ch; color: var(--text-tertiary); }
+.di-partner-banner .cta-primary { margin-top: 16px; }
+.di-partner-banner :focus-visible { outline-color: var(--text-primary); }
 .di-partner-banner .di-logo { flex-shrink: 0; }
 .di-member-mark {
   display: inline-flex;
   align-items: center;
   border-radius: var(--radius-md);
-  padding: 5px 8px;
-  background: var(--di-purple);
-  color: var(--di-on-purple);
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  font: 500 var(--text-11)/1.5 var(--font-ibm-mono);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
 }
 .article .article-edition .di-member-mark { font: 600 12px/1.5 var(--font-ibm-mono); }
 .di-news-leads, .di-news-cases {
