@@ -1,0 +1,9 @@
+Business Pro × DI-mock: hele siden
+
+1. Pak zip-filen ud.
+2. Åbn index.html i en browser.
+3. Vælg fanen "DI-mockup" øverst til højre. Artikelsiden åbner også direkte i ybusiness-di-artikler.html.
+
+Kræver internet til fotos (Unsplash) og skrifttyper.
+Dashboardet indeholder fanen Intern med priser og pakker og er kun til internt brug.
+Artikelsiden (ybusiness-di-artikler.html) kan deles alene.

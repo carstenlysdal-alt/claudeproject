@@ -241,7 +241,6 @@ ul { padding: 0; list-style: none; }
 .ysite-link { position: relative; display: inline-flex; align-items: center; gap: 7px; min-height: 44px; color: var(--h-ink); }
 .ysite-link.dim { cursor: default; }
 .ysite-link[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 3px; border-radius: 2px; background: currentColor; }
-.ysite-link.pro { color: var(--h-blue); }
 .pro-tag { font-weight: 700; font-size: 9px; line-height: 1; letter-spacing: .1em; color: #fff; background: var(--h-btn); padding: 3px 5px; border-radius: 3px; }
 .pro-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--h-coral); animation: ypulse 2.4s ease-in-out infinite; }
 @keyframes ypulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
@@ -263,13 +262,6 @@ main.wide { max-width: 1120px; padding: 0 24px; }
 :root:not([data-y-theme="light"]) .bf { --b-ink: #EEEDEA; --b-line: #403B3D; --b-mint: #1E3A2B; --b-mint-line: #2F6B49; --b-panel: #2C2829; --b-panel-ink: #EEEDEA; }
 .bf-mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 500; font-size: 11px; line-height: 1.2; letter-spacing: .1em; text-transform: uppercase; }
 .bf h2 { margin: 0; font-weight: 800; letter-spacing: -.025em; text-wrap: pretty; }
-.bf-topics { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; padding: 24px 0; margin: 0 0 40px; border-top: 1px solid var(--b-line); border-bottom: 1px solid var(--b-line); }
-.bf-topics .bf-mono { font-size: 10px; letter-spacing: .12em; margin-right: 4px; }
-.bf-pill { display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 14px; border-radius: 999px; background: var(--b-mint); border: 1px solid var(--b-mint-line); font-size: 13px; line-height: 1; white-space: nowrap; }
-.bf-pill-reuters { font-weight: 700; font-size: 12px; letter-spacing: -.01em; }
-.bf-pill-ritzau { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-style: italic; font-weight: 700; font-size: 15px; letter-spacing: .02em; }
-.bf-pill-ic { width: 16px; height: 16px; border-radius: 50%; background: #6FEE9C; display: inline-grid; place-items: center; color: #1A1719; }
-.bf-pill-ic svg { width: 9px; height: 9px; fill: currentColor; stroke: none; }
 .bf-row1, .bf-row2, .pr-cards { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; }
 .bf-row1 { margin-bottom: 32px; }
 .bf-mint { grid-column: span 4; display: flex; flex-direction: column; min-width: 0; padding: 28px 24px; border-radius: 12px; background: var(--b-mint); border: 1px solid var(--b-mint-line); }
@@ -386,66 +378,6 @@ a.sn-i:hover { color: var(--h-ink); }
 .pr-cards--feature .pr-card h2 { font-size: clamp(26px, 3vw, 36px); }
 .pr-card h2 { margin: 0; font-weight: 800; font-size: 24px; line-height: 1.2; letter-spacing: -.02em; text-wrap: pretty; overflow-wrap: anywhere; }
 .pr-card:hover h2 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
-.pr-di { color: var(--b-ink); }
-.pr-di .di-edition :is(h1, h2) { margin-block: 12px; font-weight: 800; }
-.pr-di-all { display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 5px; }
-.pr-di .di-edition { margin-bottom: 0; }
-.pr-di .di-edition { transition: padding 320ms cubic-bezier(.2,.7,.2,1); }
-.pr-di.is-open .di-edition { padding-block: 20px; }
-.pr-di-sell { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 320ms cubic-bezier(.2,.7,.2,1), opacity 200ms ease-out; }
-.pr-di-sell > p { min-height: 0; margin: 0; overflow: hidden; }
-.pr-di .di-edition .pr-di-toggle { margin-top: 12px; transition: margin-top 320ms cubic-bezier(.2,.7,.2,1), background-color 160ms ease-out; }
-.pr-di:not(.is-open) .di-edition .pr-di-toggle { margin-top: 28px; }
-.pr-di.is-open .pr-di-sell { grid-template-rows: 0fr; opacity: 0; }
-/* Åben tilstand: overskriften står på én linje i en slank topbjælke, og hele DI-universet ligger i den lilla ramme. */
-.pr-di.is-open { background: var(--di-purple); border-radius: 12px; }
-.pr-di.is-open .di-edition { align-items: center; gap: 16px; margin: 0; padding: 14px 24px; border-radius: 12px 12px 0 0; }
-.pr-di.is-open .di-edition > div:first-child { flex: 1 1 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 20px; min-width: 0; }
-.pr-di.is-open .di-edition h2 { order: 1; margin: 0; font-size: 22px; line-height: 1.2; }
-.pr-di.is-open .di-edition .di-excl { order: 2; }
-.pr-di.is-open .pr-di-sell { display: none; }
-.pr-di.is-open .di-edition .pr-di-toggle { order: 3; margin: 0 0 0 auto; }
-.pr-di.is-open .di-edition .di-logo { flex-basis: 44px; width: 44px; height: auto; }
-.pr-di.is-open .di-edition .di-logo img { width: 32px; }
-.pr-di.is-open .di-edition { display: flex; min-height: 0; }
-.pr-di.is-open .di-edition > div:first-child { max-width: none; }
-.pr-di.is-open .di-edition h2 { letter-spacing: -.02em; text-wrap: nowrap; }
-.pr-di.is-open .di-edition .di-excl { min-height: 0; max-width: none; }
-.pr-di.is-open .di-edition .di-logo { position: static; align-self: center; margin: 0; height: auto; }
-@media (max-width: 520px) {
-  .pr-di.is-open .di-edition { padding: 14px 16px; }
-  .pr-di.is-open .di-edition h2 { font-size: 20px; }
-  .pr-di.is-open .di-edition .di-excl { display: none; }
-  .pr-di.is-open .di-edition .pr-di-toggle { margin-left: 0; }
-  .pr-di.is-open > .pr-di-flow > .pr-di-flow-in { padding: 20px 16px; }
-}
-.pr-di.is-open > .pr-di-flow { margin: 0 4px 4px; background: var(--ydk-bg); border-radius: 0 0 8px 8px; }
-.pr-di.is-open > .pr-di-flow > .pr-di-flow-in { padding: 28px; }
-.pr-di.is-open .pr-di-photos { padding-top: 0; border-top: 0; }
-.pr-di-toggle { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; margin-top: 12px; padding: 0 22px; border: 0; border-radius: 8px; background: #fff; color: var(--di-purple); font: 700 15px/1 inherit; font-family: inherit; cursor: pointer; transition: background-color 160ms ease-out; }
-.pr-di-toggle:hover { background: #EDE6F2; }
-.pr-di-toggle:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-.pr-di-toggle svg { width: 18px; height: 18px; flex: none; transition: transform 240ms cubic-bezier(.2,.7,.2,1); }
-.pr-di-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
-.pr-di-flow { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 320ms cubic-bezier(.2,.7,.2,1), visibility 0s linear 320ms; }
-.pr-di-flow.is-open { grid-template-rows: 1fr; visibility: visible; transition-delay: 0s; }
-.pr-di-flow-in { min-height: 0; overflow: hidden; }
-.pr-di-flow.is-open .pr-di-flow-in { padding-top: 40px; }
-.pr-di-flow-in > .pr-di-all { margin-top: 24px; }
-.pr-di .di-head { margin-bottom: 0; }
-.pr-di .di-head .pr-di-toggle { margin-top: 0; }
-.pr-di-flow.pr-di-cases.is-open .pr-di-flow-in { padding-top: 24px; }
-@media (prefers-reduced-motion: reduce) { .pr-di-flow, .pr-di-toggle svg, .pr-di-sell, .pr-di .di-edition { transition: none; } }
-.pr-di-photos { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 32px; margin-bottom: 40px; align-items: start; }
-.pr-di-card { display: flex; flex-direction: column; min-width: 0; color: var(--b-ink); }
-.pr-di-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; background: var(--b-panel); }
-.pr-di-card:nth-child(2) img { aspect-ratio: 4 / 3; }
-.pr-di-card > div { display: flex; flex-direction: column; gap: 18px; padding-top: 24px; }
-.pr-di-card .k { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 600; font-size: 11px; line-height: 1.6; letter-spacing: .08em; color: var(--ydk-indigo-text); text-transform: uppercase; }
-.pr-di-card h3 { margin: 0; font-weight: 800; font-size: clamp(30px, 3.4vw, 42px); line-height: 1.1; letter-spacing: -.02em; text-wrap: pretty; }
-.pr-di-card:nth-child(2) h3 { font-size: clamp(26px, 2.8vw, 34px); }
-.pr-di-card p { margin: 0; font-size: 17px; line-height: 1.6; color: var(--pr-sub); text-wrap: pretty; }
-.pr-di-card:hover h3 { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
 .pr-di .di-card h3 { font-weight: 800; }
 @media (max-width: 860px) { .sn { padding: 14px 16px 0; } .sn-pro { margin-left: 0; } }
 
@@ -470,7 +402,6 @@ a.sn-i:hover { color: var(--h-ink); }
   .pr-hero h1 { font-size: clamp(30px, 7vw, 40px); }
   .pr-hero .pr-dek { font-size: 16px; }
   .pr-cards--feature .pr-card { display: flex; }
-  .pr-di-photos { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* ── Mockup-dock: skjult som standard, så siden ligner den færdige. Knappen åbner fanerne i én glidende bevægelse. ── */
@@ -550,32 +481,8 @@ a.sn-i:hover { color: var(--h-ink); }
 .article-edition { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-bottom: 24px; margin-bottom: 32px; border-bottom: 1px solid var(--ydk-border); }
 .article-edition strong { font-size: 18px; }
 .article-edition span { color: var(--ydk-muted); font-size: 13px; }
-.article--di .article-edition { color: var(--ydk-indigo-text); }
-.article--di .aside-box--brief { background: var(--di-purple); color: #fff; }
-.article--di .aside-box--brief .aside-head { color: #fff; }
-.article--di .aside-box--brief li::before { background: #fff; }
 .voice-note { padding: 20px 24px; border: 1px solid var(--ydk-border); border-radius: 8px; font-size: 15px; line-height: 1.6; background: var(--ydk-bg); margin-top: 28px; }
 .voice-note strong { display: block; margin-bottom: 6px; color: var(--ydk-indigo-text); }
-.di-edition { display: flex; justify-content: space-between; gap: 32px; align-items: center; padding: clamp(24px, 4vw, 40px); margin-bottom: 32px; border-radius: 12px; background: var(--di-purple); color: #fff; }
-.di-edition :is(h1, h2) { font-weight: 800; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.12; letter-spacing: -.02em; margin-block: 12px; }
-.di-edition p { font-size: 17px; line-height: 1.6; max-width: 56ch; }
-.di-edition .di-logo { flex: 0 0 76px; }
-.di-lead-grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 32px; margin-bottom: 40px; align-items: start; }
-.di-lead-grid .top .media { aspect-ratio: 16 / 9; border-radius: 10px; }
-.di-lead-grid .top h2 { font-size: clamp(30px, 3.4vw, 42px); line-height: 1.1; }
-.di-lead-grid .top-text { padding-top: 24px; gap: 18px; }
-.di-lead-grid .dek { font-style: normal; }
-.di-lead-grid .band { display: flex; flex-direction: column; align-items: stretch; gap: 24px; margin: 0; padding: 0 0 24px; border-top: 0; }
-.di-lead-grid .band .media { aspect-ratio: 4 / 3; }
-.di-lead-grid .band h2 { font-size: clamp(26px, 2.8vw, 34px); }
-.di-lead-grid .band-text { gap: 18px; }
-:is(.front, .pr-di) .di-box { border-radius: 12px; padding: 32px; }
-:is(.front, .pr-di) .di-cards { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; }
-:is(.front, .pr-di) .di-card { grid-column: span 2; padding: 24px; gap: 16px; border-radius: 8px; }
-:is(.front, .pr-di) .di-card:nth-child(-n+2) { grid-column: span 3; }
-:is(.front, .pr-di) .di-card h3 { font-size: 23px; line-height: 1.2; }
-.di-card-dek { font-size: 15px; line-height: 1.6; color: var(--di-card-muted); }
-.di-card-read { margin-top: auto; padding-top: 12px; font-size: 13px; font-weight: 700; }
 @media (max-width: 767px) {
  .article-wrap { padding-block: 24px 48px; }
  .article { padding: 28px 16px; margin-inline: -4px; }
@@ -584,36 +491,10 @@ a.sn-i:hover { color: var(--h-ink); }
  .article .article-media { margin-top: 28px; }
  .aside-box, .chart { padding: 22px 18px; }
  .aside-box li { font-size: 16px; }
- .di-edition { align-items: flex-start; gap: 16px; }
- .di-edition .di-logo { flex-basis: 58px; width: 58px; height: 48px; }
- .di-edition .di-logo img { width: 40px; }
- .di-lead-grid { grid-template-columns: minmax(0, 1fr); }
- .di-lead-grid .band { padding: 28px 0; border-top: 1px solid var(--ydk-border); }
- :is(.front, .pr-di) .di-box { padding: 24px 18px; }
- :is(.front, .pr-di) .di-cards { grid-template-columns: minmax(0, 1fr); gap: 18px; }
- :is(.front, .pr-di) .di-card, :is(.front, .pr-di) .di-card:nth-child(-n+2) { grid-column: auto; }
  .chart-row { grid-template-columns: minmax(0, 1fr) auto; }
  .chart-row .track { grid-column: 1; grid-row: 2; }
  .chart-row .v { grid-column: 2; grid-row: 1 / 3; }
 }
-
-/* DI-caseformater: billedfortælling, forsøgsdata og materialestudie. */
-:is(.front, .pr-di) .di-card { padding: 0; gap: 0; overflow: hidden; }
-.di-case-content { display: flex; flex: 1; flex-direction: column; gap: 16px; padding: 24px; }
-.di-case-photo { position: relative; }
-.di-case-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-.di-case-photo figcaption { position: absolute; inset: auto 0 0; padding: 24px 14px 10px; background: linear-gradient(transparent, rgba(0,0,0,.75)); color: #fff; font-size: 10px; line-height: 1.4; }
-.di-case-stat { padding: 28px 24px 0; color: #360259; }
-.di-case-value { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; line-height: 1; }
-.di-case-value strong { font-size: clamp(56px, 6vw, 88px); font-weight: 800; letter-spacing: -.04em; }
-.di-case-value span { font-size: 28px; font-weight: 600; }
-.di-case-stat p { margin-top: 12px; max-width: 34ch; font-size: 13px; line-height: 1.5; }
-:is(.front, .pr-di) .di-card--metric { background: #F4E9E2; }
-:is(.front, .pr-di) .di-card--signal { background: #DDD8F0; }
-.di-card--signal .di-case-stat { padding-bottom: 24px; border-bottom: 1px solid rgba(54,2,89,.16); }
-.di-card--signal .di-case-value strong { font-size: clamp(56px, 6vw, 76px); }
-.di-case-illustration { padding: 24px 24px 0; color: #7433C9; }
-.di-case-illustration svg { width: 100%; height: 130px; }
 
 /* Rubrikhierarki: artikel h1, afsnit/bokse/grafer h2, boksgrupper h3. */
 .article .aside-head h2 { margin: 0; font: inherit; font-weight: 800; line-height: 1.5; letter-spacing: inherit; text-wrap: pretty; }
@@ -621,71 +502,17 @@ a.sn-i:hover { color: var(--h-ink); }
 .article .aside-box h3.grp:first-of-type { margin-top: 0; }
 .article .chart h2 { margin: 0 0 24px; font-size: 20px; font-weight: 800; line-height: 1.35; letter-spacing: -.01em; text-wrap: pretty; }
 
-/* Greb fra brugerens DI-nyhedsgrid: større åbning, klare spalter og redaktionel rytme. */
-.front, .pr-di { font-family: var(--ydk-font); }
-.di-edition { position: relative; padding: clamp(28px, 4.5vw, 56px); min-height: 300px; margin-bottom: 40px; border-radius: 8px; }
-.di-edition > div { min-width: 0; max-width: 660px; }
-.di-edition :is(h1, h2) { font-family: 'Public Sans', var(--ydk-font); font-size: clamp(32px, 4.7vw, 64px); line-height: 1.04; letter-spacing: -.03em; margin-block: 20px; text-wrap: balance; }
-.di-edition p { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.55; color: #E3D6F3; max-width: 46ch; }
-.di-edition .di-excl { color: #E3D6F3; }
-.di-edition .di-logo { align-self: flex-start; margin-top: 8px; }
-.di-lead-grid, .pr-di-photos { gap: 40px; padding-top: 28px; border-top: 2px solid var(--ydk-text); margin-bottom: 56px; }
-.di-lead-grid .band, .pr-di-card:nth-child(2) { border-left: 1px solid var(--ydk-border); padding-left: 40px; }
-.di-lead-grid .top h2, .pr-di-card:first-child h3 { font-family: 'Public Sans', var(--ydk-font); font-size: clamp(30px, 3.5vw, 46px); line-height: 1.07; letter-spacing: -.025em; text-wrap: balance; }
-.di-lead-grid .band h2, .pr-di-card:nth-child(2) h3 { font-family: 'Public Sans', var(--ydk-font); font-size: clamp(26px, 2.7vw, 32px); line-height: 1.12; text-wrap: balance; }
-.di-lead-grid .top .dek, .pr-di-card:first-child p { font-size: 19px; line-height: 1.55; }
-.di-lead-grid .band .dek, .pr-di-card:nth-child(2) p { font-size: 17px; line-height: 1.55; }
-.di-lead-credit { margin-top: 10px; font-family: var(--ydk-mono); font-size: 10.5px; line-height: 1.5; color: var(--ydk-muted); text-align: right; }
-.di-story-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-top: 6px; padding-top: 18px; border-top: 1px solid var(--ydk-border); font-size: 14px; line-height: 1.5; }
-.di-story-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; color: var(--ydk-muted); }
-.di-story-meta strong { font-size: 14px; font-weight: 600; color: var(--ydk-text); }
-.di-story-meta .logo { width: 30px; height: 30px; flex-basis: 30px; font-size: 15px; }
-.di-story-read, .di-card-read { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; }
-.di-case-content { padding: 26px 28px; }
-:is(.front, .pr-di) .di-card h3 { font-family: 'Public Sans', var(--ydk-font); font-size: 24px; line-height: 1.14; letter-spacing: -.015em; text-wrap: balance; }
-:is(.front, .pr-di) .di-card:nth-child(-n+2) h3 { font-size: clamp(26px, 2.4vw, 29px); line-height: 1.12; }
-.di-card-dek { font-size: 16px; line-height: 1.55; }
-.di-card:nth-child(-n+2) .di-card-dek { font-size: 16.5px; }
-.di-case-stat { padding-inline: 28px; }
-.di-case-stat p { font-size: 14px; }
-.di-case-illustration { padding-inline: 28px; }
-.di-card-read { padding-top: 32px; font-size: 14px; }
-.di-card:hover h3, .di-lead-grid a:hover h2, .pr-di-card:hover h3 { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
-@media (prefers-reduced-motion: no-preference) {
- .di-case-photo img { transition: transform 600ms cubic-bezier(.2,.7,.2,1); }
- .di-card:hover .di-case-photo img { transform: scale(1.025); }
- .di-arrow { transition: transform 200ms ease-out; }
- :is(.di-card, .pr-di-card, .di-lead-grid a):hover .di-arrow { transform: translateX(4px); }
-}
-.di-case-photo { overflow: hidden; }
-@media (max-width: 860px) {
- .di-lead-grid, .pr-di-photos { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-bottom: 40px; }
- .di-lead-grid .band, .pr-di-card:nth-child(2) { border-left: 0; padding-left: 0; padding-top: 28px; border-top: 1px solid var(--ydk-border); }
- :is(.front, .pr-di) .di-cards { grid-template-columns: minmax(0, 1fr); }
- :is(.front, .pr-di) .di-card, :is(.front, .pr-di) .di-card:nth-child(-n+2) { grid-column: auto; }
-}
-@media (max-width: 600px) {
- .di-edition { display: block; min-height: 0; padding: 28px 24px; }
- .di-edition .di-logo { position: absolute; top: 24px; right: 24px; margin: 0; width: 58px; height: 48px; }
- .di-edition .di-excl { min-height: 48px; max-width: calc(100% - 74px); }
- .di-edition :is(h1, h2) { font-size: 32px; margin-top: 20px; }
- .di-case-content { padding: 24px; }
- .di-card-read { font-size: 13px; }
- .di-lead-grid .top .dek, .pr-di-card:first-child p { font-size: 17px; }
-}
-
 @media (max-width: 480px) {
  .ysite-in { grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; padding-inline: 12px; }
  .ysite-logo svg { width: 36px; height: 36px; }
  .ysite-nav { justify-content: center; font-size: 12px; gap: 0; }
- .ysite-nav .ysite-link:not(.pro) { display: none; }
  .ysite-r { gap: 6px; }
  .ysite-menu { width: 44px; height: 44px; }
 }
 
 </style>
-<link rel="stylesheet" href="ydk-tokens.css?v=20261120-7">
-<link rel="stylesheet" href="ybusiness-platform.css?v=20261120-7">
+<link rel="stylesheet" href="ydk-tokens.css?v=20261120-8">
+<link rel="stylesheet" href="ybusiness-platform.css?v=20261120-13">
 </head>
 <body>
 <a class="skip-link" href="#view">Spring til indhold</a>
@@ -708,11 +535,17 @@ a.sn-i:hover { color: var(--h-ink); }
 </div>
 <header class="ysite" id="ysite">
   <div class="ysite-in">
-    <div><a class="ysite-logo" href="#business" aria-label="Y, til Business-forsiden"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M 24 0 C 10.746 0 0 10.746 0 24 C 0 37.254 10.746 48 24 48 C 37.254 48 48 37.254 48 24 C 48 10.746 37.254 0 24 0 Z M 35.853 16.83 L 27.189 32.079 C 26.352 33.579 25.374 34.68 24.261 35.385 C 23.148 36.087 21.714 36.441 19.962 36.441 L 16.413 36.441 C 16.26 36.441 16.134 36.318 16.134 36.165 L 16.134 32.919 C 16.134 32.766 16.26 32.643 16.413 32.643 L 19.419 32.643 C 19.728 32.643 20.004 32.607 20.247 32.538 C 21.054 32.274 21.639 31.521 21.639 30.633 C 21.639 30.297 21.555 29.979 21.405 29.7 L 13.692 16.854 C 13.677 16.833 13.665 16.806 13.665 16.779 C 13.665 16.704 13.728 16.641 13.803 16.641 C 13.803 16.641 20.313 16.641 20.316 16.641 C 20.421 16.641 20.514 16.704 20.559 16.791 L 25.305 25.392 L 29.727 16.815 L 29.754 16.761 C 29.805 16.689 29.886 16.641 29.982 16.641 C 29.982 16.641 35.724 16.641 35.727 16.641 C 35.802 16.641 35.865 16.704 35.865 16.779 C 35.865 16.797 35.862 16.815 35.853 16.83 Z" fill="currentColor" fill-rule="nonzero"/></svg></a></div>
+    <div><a class="ysite-logo" href="https://y.dk/" aria-label="Y, til forsiden"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M 24 0 C 10.746 0 0 10.746 0 24 C 0 37.254 10.746 48 24 48 C 37.254 48 48 37.254 48 24 C 48 10.746 37.254 0 24 0 Z M 35.853 16.83 L 27.189 32.079 C 26.352 33.579 25.374 34.68 24.261 35.385 C 23.148 36.087 21.714 36.441 19.962 36.441 L 16.413 36.441 C 16.26 36.441 16.134 36.318 16.134 36.165 L 16.134 32.919 C 16.134 32.766 16.26 32.643 16.413 32.643 L 19.419 32.643 C 19.728 32.643 20.004 32.607 20.247 32.538 C 21.054 32.274 21.639 31.521 21.639 30.633 C 21.639 30.297 21.555 29.979 21.405 29.7 L 13.692 16.854 C 13.677 16.833 13.665 16.806 13.665 16.779 C 13.665 16.704 13.728 16.641 13.803 16.641 C 13.803 16.641 20.313 16.641 20.316 16.641 C 20.421 16.641 20.514 16.704 20.559 16.791 L 25.305 25.392 L 29.727 16.815 L 29.754 16.761 C 29.805 16.689 29.886 16.641 29.982 16.641 C 29.982 16.641 35.724 16.641 35.727 16.641 C 35.802 16.641 35.865 16.704 35.865 16.779 C 35.865 16.797 35.862 16.815 35.853 16.83 Z" fill="currentColor" fill-rule="nonzero"/></svg></a></div>
     <nav class="ysite-nav" aria-label="Hovedmenu">
       <a class="ysite-link global-link" href="#politik" data-global="Politik">POLITIK</a>
       <a class="ysite-link global-link" href="#international" data-global="International">INTERNATIONAL</a>
-      <a class="ysite-link pro" id="nav-business" href="#pro-produkt" aria-label="Business Pro">BUSINESS <span class="pro-tag">PRO</span></a>
+      <div class="ysite-business-links">
+        <a class="ysite-link" id="nav-business" href="#business">BUSINESS</a>
+        <a class="ysite-link ysite-pro-link" id="nav-pro" href="#pro-overblik" aria-label="Business Pro">
+          <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/></svg>
+          PRO
+        </a>
+      </div>
     </nav>
     <div class="ysite-r">
       <a class="ysite-cta" id="platform-cta" href="#pro">Prøv Pro+ | 0 kr. første måned</a>
@@ -724,6 +557,33 @@ a.sn-i:hover { color: var(--h-ink); }
 </header>
 <div class="sn" id="sn"></div>
 <main id="view" class="wrap wide" tabindex="-1"></main>
+<!-- Bureauernes ordmærker fra liveblog-navigationen på y.dk. -->
+<template id="liveblog-logo-reuters">
+<svg aria-hidden="true" focusable="false" width="88" height="24" viewBox="0 0 88 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_2594_12161)">
+<path d="M28.0989 5.86206H33.0323C35.6981 5.86206 37.4814 7.42026 37.4814 9.85326C37.4814 11.3959 36.6673 12.6277 35.4047 13.2271L37.7927 17.8525H34.9186L32.8743 13.8265H30.6934V17.8525H28.0953V5.86206H28.0989ZM30.697 8.00226V11.6851H32.8276C34.0566 11.6851 34.8348 10.9657 34.8348 9.85146C34.8348 8.73726 34.0566 8.00106 32.8276 8.00106H30.697V8.00226ZM38.1639 13.4653C38.1639 10.7239 39.9807 8.94426 42.7333 8.94426C45.4858 8.94426 47.1997 10.5877 47.2344 13.1743C47.2344 13.4323 47.2177 13.7215 47.165 13.9969H40.7075V14.1157C40.7596 15.3655 41.5725 16.1197 42.8021 16.1197C43.7899 16.1197 44.4813 15.6913 44.6896 14.8699H47.0968C46.819 16.5829 45.2799 17.9533 42.9063 17.9533C39.9454 17.9533 38.1639 16.1893 38.1639 13.4653ZM44.7764 12.4195C44.6028 11.3401 43.8575 10.7413 42.75 10.7413C41.6426 10.7413 40.8972 11.3755 40.7596 12.4195H44.7764ZM54.2894 9.04866H56.7313V17.8531H54.5672L54.3433 16.7905C53.7722 17.4751 52.994 17.9551 51.7284 17.9551C49.8948 17.9551 48.1965 17.0473 48.1965 13.9291V9.04746H50.6383V13.6033C50.6383 15.1789 51.1591 15.9505 52.3702 15.9505C53.5812 15.9505 54.2912 15.0775 54.2912 13.4497V9.04746H54.29L54.2912 9.04866H54.2894ZM58.1752 6.58806H60.617V9.05406H62.6434V11.0929H60.617V14.9479C60.617 15.5647 60.8601 15.8209 61.4821 15.8209H62.7452V17.8585H60.7188C59.0217 17.8585 58.174 17.0203 58.174 15.3415V6.58926L58.1752 6.58806ZM63.1475 13.4653C63.1475 10.7239 64.9643 8.94426 67.7187 8.94426C70.473 8.94426 72.1851 10.5877 72.2199 13.1743C72.221 13.45 72.1978 13.7253 72.1504 13.9969H65.6923V14.1157C65.7426 15.3655 66.5573 16.1197 67.7869 16.1197C68.7741 16.1197 69.4661 15.6913 69.6762 14.8699H72.081C71.8032 16.5829 70.2641 17.9533 67.8923 17.9533C64.9314 17.9533 63.1475 16.1893 63.1475 13.4653ZM69.7624 12.4195C69.5888 11.3401 68.8435 10.7413 67.736 10.7413C66.6286 10.7413 65.8833 11.3755 65.7456 12.4195H69.7624ZM78.7241 9.04746V11.2411H77.7549C76.2996 11.2411 75.747 12.1993 75.747 13.5367V17.8531H73.3058V9.04866H75.5214L75.747 10.3663C76.2319 9.57846 76.9228 9.04866 78.3086 9.04866H78.7241V9.04746ZM81.4335 14.9239C81.5203 15.6943 82.1944 16.2253 83.3905 16.2253C84.4112 16.2253 85.0349 15.8995 85.0349 15.2839C85.0349 14.5645 84.4303 14.5135 82.9924 14.3257C80.9139 14.0857 79.3036 13.6231 79.3036 11.8087C79.3036 9.99426 80.8451 8.91366 83.1289 8.93166C85.5168 8.93166 87.1637 9.97746 87.2846 11.7739H84.9469C84.8793 11.0713 84.2022 10.6429 83.2163 10.6429C82.2303 10.6429 81.6412 10.9861 81.6412 11.5507C81.6412 12.2197 82.4033 12.2881 83.685 12.4417C85.7294 12.6469 87.4253 13.1107 87.4253 15.0973C87.4253 16.8433 85.7629 17.9575 83.3737 17.9575C80.9845 17.9575 79.2197 16.8085 79.1144 14.9269H81.4341H81.4329V14.9239H81.4335Z" fill="currentColor"/>
+<path d="M20.7004 3.2208C20.8509 3.37115 20.9702 3.54988 21.0515 3.74666C21.1327 3.94345 21.1743 4.15442 21.1739 4.3674C21.1747 4.58043 21.1332 4.79149 21.0519 4.98833C20.9706 5.18516 20.8511 5.36385 20.7004 5.514C20.3973 5.81756 19.9863 5.98807 19.5579 5.98807C19.1294 5.98807 18.7184 5.81756 18.4153 5.514C18.2648 5.36365 18.1455 5.18492 18.0642 4.98814C17.983 4.79135 17.9414 4.58038 17.9418 4.3674C17.9418 3.9336 18.1088 3.5268 18.4153 3.2208C18.5652 3.06999 18.7433 2.95036 18.9394 2.86881C19.1355 2.78725 19.3458 2.74538 19.5582 2.7456C19.9718 2.7456 20.3867 2.904 20.701 3.2208H20.7004ZM3.21948 20.7744C2.91734 20.4698 2.74776 20.0577 2.74776 19.6281C2.74776 19.1985 2.91734 18.7864 3.21948 18.4818C3.3691 18.3307 3.54717 18.2109 3.74334 18.1293C3.93952 18.0478 4.1499 18.0061 4.36229 18.0066C4.57472 18.0057 4.7852 18.0473 4.98142 18.1289C5.17764 18.2105 5.35567 18.3305 5.50509 18.4818C5.80723 18.7864 5.97682 19.1985 5.97682 19.6281C5.97682 20.0577 5.80723 20.4698 5.50509 20.7744C5.35547 20.9255 5.1774 21.0453 4.98123 21.1269C4.78506 21.2084 4.57467 21.2502 4.36229 21.2496C3.93127 21.2496 3.52419 21.0816 3.21948 20.7744ZM15.5377 3.348L15.5263 3.3432C15.1827 3.1974 14.9139 2.9268 14.772 2.58C14.7 2.40797 14.6629 2.22327 14.6629 2.0367C14.6629 1.85013 14.7 1.66543 14.772 1.4934C14.843 1.3212 14.9471 1.16472 15.0785 1.03293C15.2099 0.901142 15.3659 0.796636 15.5377 0.7254C15.7131 0.6528 15.8957 0.6162 16.0795 0.6162C16.2653 0.616262 16.4492 0.653383 16.6206 0.7254C16.9669 0.870275 17.2419 1.14677 17.3853 1.49435C17.5287 1.84194 17.5288 2.2323 17.3857 2.58C17.0876 3.3036 16.2584 3.6474 15.5377 3.348ZM7.84697 20.5434C8.03015 20.5434 8.21274 20.58 8.38694 20.6508C8.73336 20.7956 9.00844 21.072 9.15195 21.4196C9.29545 21.7672 9.29568 22.1576 9.1526 22.5054C9.08194 22.6778 8.9779 22.8344 8.84648 22.9662C8.71506 23.098 8.55887 23.2025 8.38694 23.2734C8.03793 23.4192 7.6548 23.4192 7.304 23.2734C6.95758 23.1286 6.6825 22.8522 6.53899 22.5046C6.39549 22.157 6.39526 21.7666 6.53834 21.4188C6.64427 21.1587 6.82532 20.9362 7.05827 20.7799C7.29122 20.6236 7.56544 20.5406 7.84577 20.5416L7.84697 20.5434ZM13.1719 1.2162C13.1719 1.8684 12.657 2.4024 12.0153 2.4324H11.9602C11.6387 2.43161 11.3307 2.30318 11.1035 2.07523C10.8763 1.84729 10.7484 1.5384 10.748 1.2162C10.7484 0.894101 10.8762 0.585304 11.1033 0.357377C11.3303 0.129449 11.6383 0.000951668 11.9596 0C12.6271 0 13.1719 0.5484 13.1719 1.2174V1.2162ZM10.7462 22.7838C10.7467 22.4616 10.8745 22.1527 11.1017 21.9248C11.3289 21.6968 11.637 21.5684 11.9584 21.5676C12.2799 21.5684 12.588 21.6968 12.8152 21.9248C13.0424 22.1527 13.1702 22.4616 13.1707 22.7838C13.1702 23.106 13.0424 23.4149 12.8152 23.6428C12.588 23.8708 12.2799 23.9992 11.9584 24C11.637 23.9992 11.3289 23.8708 11.1017 23.6428C10.8745 23.4149 10.7467 23.106 10.7462 22.7838ZM8.23728 2.9736C8.11474 3.02476 7.98331 3.0511 7.85056 3.0511C7.71781 3.0511 7.58638 3.02476 7.46384 2.9736C7.34063 2.92315 7.22872 2.84854 7.13466 2.75417C7.0406 2.65979 6.96629 2.54754 6.91608 2.424C6.86516 2.30093 6.83894 2.16901 6.83891 2.03578C6.83888 1.90255 6.86505 1.77062 6.91592 1.64753C6.96679 1.52444 7.04137 1.41261 7.13538 1.31842C7.22939 1.22423 7.34101 1.14953 7.46384 1.0986C7.58578 1.04755 7.71661 1.02125 7.84876 1.0212C8.24626 1.0212 8.6222 1.2588 8.78444 1.6482C8.8874 1.9002 8.8874 2.1756 8.78444 2.424C8.73452 2.54772 8.66032 2.66012 8.56622 2.75453C8.47213 2.84894 8.36006 2.92344 8.23668 2.9736H8.23728ZM15.682 21.0258C15.805 20.974 15.937 20.9471 16.0705 20.9466C16.203 20.9473 16.3341 20.9735 16.4566 21.024C16.7074 21.1284 16.902 21.3234 17.0044 21.5736C17.107 21.822 17.107 22.101 17.0044 22.3494C16.9544 22.4731 16.8802 22.5855 16.7861 22.6799C16.692 22.7743 16.58 22.8488 16.4566 22.899C16.3338 22.95 16.2022 22.9763 16.0693 22.9763C15.9364 22.9763 15.8047 22.95 15.682 22.899C15.5586 22.8488 15.4465 22.7743 15.3524 22.6799C15.2583 22.5855 15.1841 22.4731 15.1342 22.3494C15.0312 22.0974 15.0312 21.8238 15.1342 21.5736C15.2372 21.3234 15.4311 21.1284 15.682 21.0258ZM4.93219 3.8052C5.24348 4.1172 5.24767 4.6194 4.94776 4.9374L4.9298 4.9554C4.77732 5.10691 4.57131 5.19191 4.3566 5.19191C4.14189 5.19191 3.93588 5.10691 3.7834 4.9554C3.63206 4.80255 3.54713 4.59594 3.54713 4.3806C3.54713 4.16526 3.63206 3.95865 3.7834 3.8058C3.85851 3.73006 3.94782 3.66995 4.04619 3.62894C4.14456 3.58792 4.25005 3.56681 4.3566 3.56681C4.46314 3.56681 4.56864 3.58792 4.66701 3.62894C4.76538 3.66995 4.85469 3.73006 4.9298 3.8058H4.93099L4.93159 3.8052H4.93219ZM18.9787 19.05C19.0534 18.9745 19.1424 18.9146 19.2405 18.8738C19.3385 18.833 19.4436 18.8122 19.5498 18.8124C19.6562 18.8123 19.7615 18.8332 19.8599 18.8739C19.9582 18.9147 20.0475 18.9745 20.1227 19.05C20.2759 19.2024 20.3591 19.4064 20.3591 19.623C20.3599 19.7838 20.313 19.9412 20.2242 20.0752C20.1355 20.2091 20.009 20.3136 19.8608 20.3752C19.7126 20.4369 19.5495 20.4529 19.3922 20.4213C19.2349 20.3897 19.0905 20.3119 18.9775 20.1978C18.9022 20.1223 18.8426 20.0327 18.802 19.934C18.7614 19.8354 18.7407 19.7297 18.741 19.623C18.741 19.4076 18.8248 19.2036 18.9775 19.05H18.9787ZM1.64446 8.8092C1.12844 8.595 0.883592 7.9998 1.09671 7.4838C1.14662 7.36008 1.22082 7.24768 1.31492 7.15327C1.40902 7.05886 1.52108 6.98436 1.64446 6.9342C1.76788 6.88387 1.89974 6.8576 2.03298 6.8568C2.16552 6.85685 2.29674 6.88315 2.4191 6.9342C2.93513 7.1484 3.17997 7.7436 2.96686 8.2596C2.91695 8.38332 2.84274 8.49572 2.74864 8.59013C2.65455 8.68454 2.54248 8.75904 2.4191 8.8092C2.29656 8.86036 2.16513 8.8867 2.03238 8.8867C1.89963 8.8867 1.7682 8.86036 1.64566 8.8092H1.64446ZM22.279 15.1944C22.4023 15.2446 22.5144 15.3191 22.6085 15.4135C22.7026 15.5079 22.7768 15.6203 22.8267 15.744C22.9297 15.996 22.9297 16.2696 22.8267 16.5198C22.724 16.768 22.5271 16.9652 22.2794 17.068C22.0316 17.1709 21.7533 17.1709 21.5055 17.0682C21.3821 17.018 21.2701 16.9435 21.176 16.8491C21.0819 16.7547 21.0077 16.6423 20.9578 16.5186C20.8548 16.2666 20.8548 15.993 20.9578 15.7428C21.1188 15.3534 21.4959 15.117 21.8934 15.117C22.0255 15.1175 22.1569 15.1438 22.279 15.1944ZM0 12.0066C0.000474108 11.6844 0.128307 11.3755 0.35551 11.1476C0.582713 10.9196 0.890774 10.7912 1.21224 10.7904C1.53372 10.7912 1.84178 10.9196 2.06898 11.1476C2.29618 11.3755 2.42402 11.6844 2.42449 12.0066C2.42402 12.3288 2.29618 12.6377 2.06898 12.8656C1.84178 13.0936 1.53372 13.222 1.21224 13.2228C0.890774 13.222 0.582713 13.0936 0.35551 12.8656C0.128307 12.6377 0.000474108 12.3288 0 12.0066ZM21.4953 12.0066C21.4958 11.6844 21.6237 11.3755 21.8509 11.1476C22.0781 10.9196 22.3861 10.7912 22.7076 10.7904C23.0291 10.7912 23.3371 10.9196 23.5643 11.1476C23.7915 11.3755 23.9194 11.6844 23.9198 12.0066C23.9194 12.3288 23.7915 12.6377 23.5643 12.8656C23.3371 13.0936 23.0291 13.222 22.7076 13.2228C22.3861 13.222 22.0781 13.0936 21.8509 12.8656C21.6237 12.6377 21.4958 12.3288 21.4953 12.0066ZM0.717769 16.6698C0.574684 16.322 0.574919 15.9316 0.718423 15.584C0.861926 15.2364 1.137 14.96 1.48343 14.8152C1.83244 14.6694 2.21556 14.6694 2.56577 14.8152C2.73753 14.8864 2.89357 14.9909 3.02496 15.1227C3.15634 15.2545 3.26049 15.411 3.33143 15.5832C3.40346 15.7552 3.44056 15.9399 3.44056 16.1265C3.44056 16.3131 3.40346 16.4978 3.33143 16.6698C3.26049 16.842 3.15634 16.9985 3.02496 17.1303C2.89357 17.2621 2.73753 17.3666 2.56577 17.4378C2.21676 17.5836 1.83363 17.5836 1.48343 17.4378C1.31167 17.3666 1.15563 17.2621 1.02424 17.1303C0.892856 16.9985 0.788708 16.842 0.717769 16.6698ZM20.577 8.4144C20.5057 8.24242 20.469 8.05804 20.4689 7.87181C20.4688 7.68557 20.5054 7.50115 20.5765 7.3291C20.6476 7.15705 20.7519 7.00075 20.8834 6.86916C21.0149 6.73756 21.1709 6.63325 21.3427 6.5622C21.513 6.49011 21.696 6.45298 21.8809 6.453C22.4364 6.453 22.9638 6.7824 23.1895 7.3284C23.3326 7.67617 23.3323 8.0666 23.1888 8.4142C23.0453 8.7618 22.7703 9.03824 22.4238 9.183C22.0748 9.3288 21.6917 9.3288 21.3415 9.183C20.9913 9.0372 20.7213 8.7648 20.5758 8.415L20.577 8.4144ZM15.3988 15.45C15.186 15.6637 15.0666 15.9533 15.0666 16.2552C15.0666 16.5571 15.186 16.8467 15.3988 17.0604C15.8424 17.5056 16.562 17.5056 17.0056 17.0604C17.1115 16.9551 17.1954 16.8297 17.2526 16.6916C17.3097 16.5535 17.3389 16.4053 17.3384 16.2558C17.3388 16.1064 17.3096 15.9583 17.2525 15.8203C17.1953 15.6823 17.1114 15.557 17.0056 15.4518C16.7841 15.2298 16.4943 15.1188 16.204 15.1188C15.9028 15.1185 15.6137 15.2373 15.3994 15.4494L15.3988 15.45ZM5.92773 11.3106C5.44762 11.1828 5.16386 10.6872 5.29197 10.2054C5.32242 10.0908 5.37516 9.98333 5.44718 9.88922C5.5192 9.7951 5.60907 9.71619 5.71162 9.657C5.84703 9.57725 6.00115 9.53501 6.1582 9.5346C6.23543 9.5346 6.31445 9.5436 6.39227 9.5646C6.62395 9.6276 6.8185 9.7764 6.93823 9.9858C7.05796 10.1952 7.08969 10.4388 7.02803 10.6716C6.99767 10.7861 6.94506 10.8934 6.87322 10.9875C6.80138 11.0815 6.71173 11.1605 6.6094 11.2197C6.50706 11.279 6.39406 11.3174 6.27688 11.3328C6.1597 11.3482 6.04064 11.3402 5.92653 11.3094H5.92773V11.3106ZM17.5234 14.4288C17.2917 14.3658 17.0971 14.217 16.9774 14.0076C16.8577 13.7982 16.826 13.5546 16.8876 13.3218C16.9181 13.2072 16.9708 13.0997 17.0428 13.0056C17.1148 12.9115 17.2047 12.8326 17.3073 12.7734C17.4432 12.6939 17.5977 12.6519 17.755 12.6516C17.8198 12.6515 17.8845 12.6583 17.9478 12.672L17.9903 12.6834C18.4704 12.8112 18.7542 13.3092 18.6261 13.7886C18.5956 13.9031 18.5428 14.0104 18.4708 14.1045C18.3987 14.1985 18.3089 14.2773 18.2064 14.3364C17.9981 14.4564 17.755 14.49 17.5234 14.427V14.4288ZM5.46678 13.7448C5.41961 13.5667 5.44179 13.3772 5.52884 13.2149C5.61588 13.0526 5.76127 12.9295 5.93551 12.8706L5.97682 12.8592C6.36054 12.7548 6.75625 12.9858 6.85921 13.3704C6.9095 13.5576 6.88495 13.752 6.78678 13.92C6.69103 14.0859 6.53373 14.2071 6.34917 14.2572C6.16419 14.3076 5.97083 14.2824 5.80142 14.184C5.63614 14.0879 5.51543 13.9303 5.46558 13.7454L5.46678 13.7442V13.7448ZM17.3935 11.0718L17.3623 11.0526C17.2121 10.9542 17.1049 10.8072 17.0588 10.6332C16.9559 10.2468 17.1833 9.8508 17.5683 9.7464C17.9532 9.642 18.3477 9.873 18.4507 10.2576C18.5536 10.6422 18.3262 11.04 17.9412 11.1432C17.755 11.1936 17.5629 11.1666 17.3935 11.0706V11.0718ZM8.11695 16.6116L8.0966 16.632C7.88528 16.8438 7.54106 16.8438 7.32974 16.632C7.11842 16.4202 7.11842 16.0758 7.32974 15.864C7.54106 15.6522 7.88528 15.6522 8.0966 15.864C8.14722 15.9144 8.18736 15.9743 8.21469 16.0403C8.24203 16.1063 8.25601 16.1771 8.25584 16.2486C8.25654 16.3826 8.20697 16.5119 8.11695 16.611V16.6116ZM16.5829 7.3554C16.6338 7.40564 16.6742 7.46552 16.7017 7.53154C16.7293 7.59757 16.7435 7.66843 16.7435 7.74C16.7435 7.81157 16.7293 7.88243 16.7017 7.94846C16.6742 8.01449 16.6338 8.07436 16.5829 8.1246C16.3716 8.3364 16.0274 8.3364 15.8161 8.1246C15.7652 8.07436 15.7248 8.01449 15.6972 7.94846C15.6697 7.88243 15.6555 7.81157 15.6555 7.74C15.6555 7.66843 15.6697 7.59757 15.6972 7.53154C15.7248 7.46552 15.7652 7.40564 15.8161 7.3554C15.9184 7.2522 16.0543 7.1952 16.1998 7.1952C16.3453 7.1952 16.4805 7.2504 16.5835 7.3536V7.3548L16.5829 7.3554ZM11.0293 17.4534C11.1257 17.6196 11.1509 17.8158 11.1018 18.003C11.0527 18.1902 10.933 18.345 10.7659 18.4416C10.5989 18.5382 10.4044 18.5634 10.2182 18.5142C9.83445 18.411 9.60577 18.0138 9.70874 17.6292C9.75902 17.442 9.87755 17.2872 10.0446 17.1906C10.1265 17.1428 10.2171 17.1117 10.3111 17.0991C10.4052 17.0865 10.5007 17.0928 10.5923 17.1174C10.7785 17.1678 10.9336 17.2866 11.0299 17.4546L11.0293 17.4534ZM12.8851 6.5496C12.7887 6.3834 12.763 6.1872 12.8121 6C12.8612 5.8128 12.9809 5.658 13.1479 5.5614C13.2569 5.49862 13.3802 5.46533 13.5059 5.4648C13.5688 5.4648 13.6304 5.4726 13.6939 5.4882C13.7854 5.51247 13.8712 5.5548 13.9463 5.61269C14.0213 5.67059 14.0841 5.7429 14.1309 5.8254C14.2273 5.9916 14.253 6.1878 14.2039 6.375C14.101 6.7596 13.7053 6.9894 13.3215 6.8862C13.23 6.86193 13.1442 6.8196 13.0691 6.76171C12.9941 6.70381 12.9313 6.6315 12.8845 6.549L12.8851 6.5496ZM13.9675 17.0376L14.0058 17.0598C14.1932 17.181 14.3289 17.3677 14.3865 17.5836C14.514 18.0648 14.2297 18.5604 13.7507 18.6888C13.5167 18.7524 13.276 18.7188 13.0677 18.5988C12.8594 18.4788 12.7109 18.2838 12.6481 18.051C12.6168 17.9364 12.6084 17.8168 12.6234 17.699C12.6385 17.5811 12.6767 17.4675 12.7358 17.3645C12.7949 17.2615 12.8737 17.1713 12.9678 17.099C13.0619 17.0268 13.1693 16.9739 13.2838 16.9434C13.3607 16.9235 13.4397 16.9135 13.5191 16.9134C13.6764 16.9137 13.8309 16.9557 13.9669 17.0352L13.9681 17.0364V17.037L13.9675 17.0376ZM10.639 7.0578C10.4086 7.1184 10.1637 7.0854 9.95739 6.96597C9.75113 6.84653 9.60024 6.65033 9.53752 6.42C9.41001 5.9388 9.69377 5.4432 10.1733 5.3148C10.2489 5.29487 10.3268 5.28478 10.405 5.2848C10.8025 5.2848 11.167 5.5506 11.2748 5.9532C11.4023 6.4344 11.1179 6.93 10.639 7.0584V7.0578ZM7.71586 8.871C8.34204 8.871 8.84909 8.3622 8.84909 7.734C8.84909 7.1058 8.34144 6.597 7.71586 6.597C7.09029 6.597 6.58264 7.1058 6.58264 7.734C6.58264 8.3622 7.09029 8.871 7.71586 8.871Z" fill="currentColor"/>
+</g>
+<defs>
+<clipPath id="clip0_2594_12161">
+<rect width="88" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</template>
+<template id="liveblog-logo-ritzau">
+<svg aria-hidden="true" focusable="false" width="78" height="16" viewBox="0 0 78 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.9898 15.8631H22.9415V3.44019H26.0063L25.9898 15.8631Z" fill="currentColor"/>
+<path d="M34.9536 15.8632H32.8763C31.5206 15.8632 30.7094 15.7224 30.4431 15.317C30.1761 14.9124 30.0436 14.1338 30.0455 12.9809L30.0556 5.69574H28.5412L28.5434 3.45542H30.058L30.0609 1.3103H33.0653L33.0619 3.45542H34.9536V5.69574H33.0595L33.0493 12.9602C33.0484 13.3165 33.1668 13.4564 33.3814 13.5783C33.5957 13.7012 34.2296 13.6778 34.9536 13.6778V15.8632Z" fill="currentColor"/>
+<path d="M20.4001 5.72615H19.9365H19.2116C19.1471 5.72564 18.2118 5.72564 18.0085 5.72615C17.0288 5.7282 16.382 6.40438 16.3643 7.4648L16.3509 15.8631H13.3472V3.4419H16.3675L16.3668 3.82819C16.7679 3.50002 17.3765 3.4419 18.2126 3.4419C18.8094 3.4419 19.0092 3.43694 19.754 3.4419C20.2884 3.44583 20.4001 3.4419 20.4001 3.4419V5.72615Z" fill="currentColor"/>
+<path d="M25.78 1.32878C25.78 2.06307 25.1807 2.65824 24.4422 2.65824C23.7038 2.65824 23.105 2.06307 23.105 1.32878C23.105 0.595163 23.7038 0 24.4422 0C25.1807 0 25.78 0.595163 25.78 1.32878Z" fill="currentColor"/>
+<path d="M44.71 13.6901H40.8347L44.7038 5.71007L44.7057 3.45557H37.4813V5.71007H41.3577L37.4813 13.6901V15.8631H44.7074L44.71 13.6901Z" fill="currentColor"/>
+<path d="M51.7179 13.3606V10.3632C51.023 10.5323 50.0369 11.0078 50.0369 11.4588V13.3606C50.0369 13.6236 50.1273 14.0663 50.5891 14.0836C50.6102 14.0841 51.0911 14.0825 51.0998 14.0825C51.4985 14.0825 51.7179 13.7339 51.7179 13.3606ZM54.6669 15.9097H51.986V15.3438C51.7636 15.7651 51.1392 15.9793 50.112 15.9889H49.707C48.0542 15.9889 47.2277 15.3481 47.2277 14.0646V11.6004C47.2277 11.0502 47.4282 10.5709 47.8286 10.1624C48.2298 9.75369 48.9538 9.24211 50.1669 8.62814C50.8689 8.27603 51.7181 7.99384 51.7181 7.78189V6.04614C51.7181 5.68839 51.3991 5.39936 51.1237 5.36107H50.5708C50.1708 5.36056 49.9866 5.85333 49.9626 6.08545C49.9443 6.26082 49.9626 6.94162 49.9626 7.11767H47.194V5.94256C47.194 4.28526 48.3194 3.45679 50.9521 3.45679C50.9915 3.45679 51.4458 3.45679 51.485 3.45764C53.6621 3.48738 54.6672 4.35124 54.6672 6.04785V15.9097H54.6669Z" fill="currentColor"/>
+<path d="M3.26852 15.8631H0L5.86584 3.44019H9.13453L3.26852 15.8631Z" fill="currentColor"/>
+<path d="M72.1349 15.9043H68.8658L74.732 3.48096H78L72.1349 15.9043Z" fill="currentColor"/>
+<path d="M64.6678 15.9203H61.7188V15.418C61.3475 15.7855 60.7676 15.9781 59.9757 15.9977C59.9315 15.9998 59.4714 15.9998 59.4264 15.9998C58.8283 15.9998 58.3111 15.8424 57.8736 15.5287C57.4361 15.2151 57.2179 14.8042 57.2179 14.2965V3.45044H60.0267V13.3708C60.0267 13.7441 60.2883 14.0912 60.6429 14.0912C60.6505 14.0912 61.1453 14.0878 61.1554 14.0871C61.4228 14.0796 61.7186 13.7055 61.7186 13.3918V3.45044H64.6676V15.9203H64.6678Z" fill="currentColor"/>
+</svg>
+</template>
 <noscript><p class="wrap">Den interaktive mockup kræver JavaScript.</p></noscript>
 <div id="route-announcement" class="visually-hidden" role="status" aria-live="polite"></div>
 <div id="platform-toast" class="toast" role="status" hidden></div>
@@ -1169,7 +1029,7 @@ function renderArticle(id, grp) {
   const metaTail = isB ? [] : [el('span', { class: 'sep', 'aria-hidden': 'true', text: '·' }), el('span', { class: 'coral', text: 'Mærket samarbejde' })];
   return el('div', { class: 'article-wrap' },
     el('article', { class: isB ? 'article article--business' : 'article article--di' },
-      el('div', { class: 'article-edition' }, el('strong', { text: isB ? 'Business' : 'Dansk Industri' }), el('span', { text: isB ? 'Nyheder og perspektiv' : 'Medlemsindsigt · Analyse og perspektiv' })),
+      el('div', { class: 'article-edition' }, isB ? el('strong', { text: 'Business' }) : el('strong', { class: 'di-member-mark', text: 'Dansk Industri' }), el('span', { text: isB ? 'Nyheder og perspektiv' : 'Medlemsindsigt · Analyse og perspektiv' })),
       isB ? el('div', { class: 'label-row' }, el('p', { class: 'article-label mono' }, el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', { text: 'Business Pro · Business' })), catsOf(id).map(k => el('a', { class: 'article-label mono cat-link', href: '#' + k, text: BCAT[k].label })))
           : infoRow(a, id),
       el('p', { class: 'eyebrow mono indigo' }, el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', { text: a.kicker })),
@@ -1189,81 +1049,6 @@ function renderArticle(id, grp) {
     el('div', { class: 'article-nav' },
       prev ? el('a', { class: 'ghost', href: p + prev, text: '← ' + A[prev].tab }) : el('a', { class: 'ghost', href: home, text: '← Forside' }),
       next ? el('a', { class: 'ghost', href: p + next, text: A[next].tab + ' →' }) : el('a', { class: 'ghost', href: home, text: 'Forside →' })));
-}
-
-const DI_CASE_PRESENTATION = {
-  '1': { type: 'metric', value: '6 → 3', unit: '%', caption: 'Standardafvigelse i produktkvaliteten i Arlas forsøg', dek: 'Mere ensartet kvalitet giver mulighed for højere produktion eller lavere energiforbrug ved samme produktion.' },
-  '2': { type: 'photo', dek: 'Fire måneders afprøvning gav ingen energibesparelse. En DTU-afhandling viser, hvorfor teknologien ikke leverede som forventet.' },
-  '3': { type: 'signal', value: '14', unit: 'timer', caption: 'Op til 14 timers tidligere varsling af isdannelse i test', dek: 'Ringsted Forsyning investerer nu i en videreudvikling af modellen, der skal opdage problemerne tidligere.' },
-  '4': { type: 'photo', dek: 'Tre prototyper skal finde fejl i tilbud, genbruge erfaringer og gøre store dokumentmængder lettere at arbejde med.' },
-  '5': { type: 'illustration', dek: 'Et dansk projekt har udviklet en AI-understøttet metode til at kortlægge materialer. Næste skridt er data, som hele branchen kan bruge.' }
-};
-function renderDiCase(id) {
-  const a = ARTICLES[id], presentation = DI_CASE_PRESENTATION[id];
-  const card = el('a', { class: 'di-card di-card--' + presentation.type, href: '#a' + id });
-  if (presentation.type === 'photo') {
-    card.append(el('figure', { class: 'di-case-photo' },
-      el('img', { src: IMAGES[id].src, alt: IMAGES[id].alt, loading: 'lazy' }),
-      el('figcaption', { text: IMAGES[id].caption })));
-  } else if (presentation.value) {
-    card.append(el('div', { class: 'di-case-stat' },
-      el('div', { class: 'di-case-value' },
-        el('strong', { text: presentation.value }), el('span', { text: presentation.unit })),
-      el('p', { text: presentation.caption })));
-  } else {
-    card.append(el('div', { class: 'di-case-illustration', 'aria-hidden': 'true' }, svgFrom('<svg viewBox="0 0 360 160" fill="none"><g stroke="currentColor" stroke-width="2"><path d="M30 115 110 70 190 115 110 160Z"/><path d="M110 70V35L190 80V115M30 115V80L110 35M30 80 110 125 190 80M110 125V160"/><path d="m170 50 70-40 90 50-70 40Z"/><path d="M170 50v35l90 50 70-40V60M260 100v35"/><path d="M214 28 303 78M76 53l88 49"/></g></svg>', '')));
-  }
-  card.append(el('div', { class: 'di-case-content' },
-    el('span', { class: 'kick', text: a.kicker }),
-    el('h3', { text: a.headline }),
-    el('p', { class: 'di-card-dek', text: presentation.dek }),
-    el('span', { class: 'di-card-read' }, el('span', { text: `${readMinutes(a)} min. læsning · Læs historien` }), el('span', { class: 'di-arrow', 'aria-hidden': 'true', text: '→' }))));
-  return card;
-}
-
-function diLeadFooter(article, byline = false) {
-  return el('div', { class: 'di-story-footer' },
-    el('div', { class: 'di-story-meta' },
-      byline ? el('span', { class: 'logo', 'aria-hidden': 'true', text: 'y' }) : null,
-      byline ? el('strong', { text: 'Af Business Pro' }) : null,
-      el('span', { text: `${readMinutes(article)} min. læsning` })),
-    el('span', { class: 'di-story-read' }, el('span', { text: 'Læs historien' }), el('span', { class: 'di-arrow', 'aria-hidden': 'true', text: '→' })));
-}
-
-function renderFront() {
-  const h = ARTICLES[FRONT.hero];
-  const hImg = IMAGES[FRONT.hero];
-  const hMedia = mediaFor(FRONT.hero, '');
-  const hero = el('a', { class: 'top', href: '#a' + FRONT.hero, 'aria-label': h.headline },
-    el('figure', { class: 'di-lead-media' }, hMedia, el('figcaption', { class: 'di-lead-credit', text: 'Illustrationsfoto · ' + hImg.credit })),
-    el('div', { class: 'top-text' },
-      el('span', { class: 'mono indigo', text: h.kicker }),
-      el('h2', { text: h.headline }),
-      el('p', { class: 'dek', text: h.manchet }),
-      diLeadFooter(h, true)));
-
-  const bd = ARTICLES[FRONT.band];
-  const band = el('a', { class: 'band', href: '#a' + FRONT.band, 'aria-label': bd.headline },
-    mediaFor(FRONT.band, ''),
-    el('div', { class: 'band-text' },
-      el('span', { class: 'mono indigo', text: bd.kicker }),
-      el('h2', { text: bd.headline }),
-      el('p', { class: 'dek', text: bd.manchet }),
-      diLeadFooter(bd)));
-
-  const box = el('section', { class: 'di-box', 'aria-labelledby': 'diTitle' },
-    el('div', { class: 'di-head' },
-      el('div', { class: 'di-head-l' },
-        el('h2', { id: 'diTitle', class: 'di-pill', text: 'DI · Industri og AI' }),
-        el('span', { class: 'di-excl', text: 'Eksklusivt indhold for DI\u2019s medlemmer' })),
-      el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' }))),
-    el('div', { class: 'di-cards' }, FRONT.box.map(renderDiCase)));
-
-  return el('div', { class: 'front di-front yk-di-route' },
-    el('section', { class: 'di-edition', 'aria-label': 'Dansk Industri medlemsindsigt' },
-      el('div', {}, el('span', { class: 'di-excl', text: 'Dansk Industri · Medlemsindsigt' }), el('h1', { text: 'Industriens næste træk' }), el('p', { text: 'Egne analyser. Danske virksomhedscases. Internationale perspektiver på de beslutninger, der former din forretning.' })),
-      el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' }))),
-    el('div', { class: 'di-lead-grid' }, hero, band), box);
 }
 
 const BARTICLES = {
@@ -1443,20 +1228,10 @@ const bCaption = id => `Foto: ${BPHOTO[id].by} / Unsplash`;
 function artMedia(id, ratioClass) {
   return el('div', { class: `media ${ratioClass}` }, bPhoto(id, 1400));
 }
-const BOLT = '<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>';
 
 function renderBusinessFront() {
   const href = id => '#b' + id;
   const mins = id => `${readMinutes(BARTICLES[id])} min.`;
-
-  // Liveblog-fanerne er uændret fra commercial-mockuppen (Business AI, Reuters, Ritzau).
-  const REUTERS_DOTS = [[8,1.6,1],[8,14.4,1],[1.6,8,1],[14.4,8,1],[3.5,3.5,1],[12.5,3.5,1],[3.5,12.5,1],[12.5,12.5,1],[5.5,2.1,.7],[10.5,2.1,.7],[5.5,13.9,.7],[10.5,13.9,.7],[2.1,5.5,.7],[2.1,10.5,.7],[13.9,5.5,.7],[13.9,10.5,.7]];
-  const lb = (...kids) => el('span', { class: 'bf-pill' }, kids);
-  const topics = el('div', { class: 'bf-topics', role: 'group', 'aria-label': 'Liveblogs' },
-    el('span', { class: 'bf-mono', text: 'LIVEBLOGS' }),
-    lb(el('span', { class: 'bf-pill-ic', 'aria-hidden': 'true' }, iconSvg(BOLT)), el('span', { text: 'Business AI' })),
-    lb(svgFrom(`<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">${REUTERS_DOTS.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}"/>`).join('')}</svg>`, ''), el('span', { class: 'bf-pill-reuters', text: 'Reuters' })),
-    lb(el('span', { class: 'bf-pill-ritzau', text: '/ritzau/' })));
 
   const m = BARTICLES[BFRONT.mint];
   const mint = el('a', { class: 'bf-mint', href: href(BFRONT.mint), 'aria-label': m.headline },
@@ -1512,7 +1287,7 @@ function renderBusinessFront() {
       el('p', { class: 'bf-people-by', text: 'Michael Dyrby · Chefredaktør' })),
     el('div', { class: 'bf-people-links' }, el('span', { text: 'Mød redaktionen →' }), el('span', { text: 'Sådan bruger vi AI →' })));
 
-  return el('div', { class: 'bf' }, topics,
+  return el('div', { class: 'bf' },
     el('div', { class: 'bf-row1' }, hero, mint, list),
     el('div', { class: 'bf-row2' }, wide, tal),
     more,
@@ -1650,95 +1425,8 @@ function renderProStub(n) {
       next !== undefined ? el('a', { class: 'ghost', href: '#p' + next, text: name(next) + ' →' }) : el('a', { class: 'ghost', href: '#pro', text: 'Forside →' })));
 }
 
-// active: '' (Business, alle), en kategori, 'pro' eller 'di'.
-function renderSectorNav(active) {
-  const chevron = svgFrom('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>', '');
-  const branchLink = el('a', { href: '#pro', 'aria-current': active === 'pro' ? 'page' : null }, 'Byggeri');
-  const branches = el('details', { class: 'sn-branches' },
-    el('summary', { class: 'sn-i', title: 'Vælg din branche i Business Pro' }, 'Brancher', chevron),
-    el('div', { class: 'sn-branch-menu' },
-      el('p', { text: 'Business Pro · Vælg din branche' }), branchLink));
-  branchLink.addEventListener('click', () => { branches.open = false; });
-  return el('div', { class: 'sn-in' },
-    el('a', { class: 'sn-l', href: '#business', text: 'BUSINESS' }),
-    Object.keys(BCAT).map(k => el('a', { class: 'sn-i', href: '#' + k, 'aria-current': active === k ? 'page' : null, text: BCAT[k].label })),
-    el('a', { class: 'sn-i', href: '#pro', 'aria-current': active === 'pro' ? 'page' : null }, 'Business Pro', el('span', { class: 'sn-tag pro', text: 'PRØV PRO+' })),
-    branches,
-    el('a', { class: 'sn-i', href: '#forside', title: 'Eksklusivt indhold for DI\u2019s medlemmer', 'aria-current': active === 'di' ? 'page' : null }, 'DI', el('span', { class: 'sn-tag di', text: 'KUN FOR DI-MEDLEMMER' })),
-    el('span', { class: 'sn-pro', title: 'Ikke med i mockuppen' }, 'Mit Business Pro', el('i', { text: 'SE MERE' })));
-}
-
-function renderPro() {
-  const photo = (key, extra) => ({ style: `background-image: linear-gradient(rgba(26,23,25,.12), rgba(26,23,25,.12)), url("${PRO_IMG[key]}")`, ...extra });
-  const hero = el('a', { class: 'pr-hero', href: '#p0', 'aria-label': PRO.headline },
-    el('div', { class: 'pr-photo', style: `background-image: url("${PRO_IMG.hero}")`, role: 'img', 'aria-label': 'Droneoptagelse af en byggeplads med kran og fundamenter.' },
-      el('span', { class: 'pr-credit', text: 'FOTO · ARKIV / UNSPLASH' })),
-    el('div', {},
-      el('div', { class: 'pr-kicker' }, el('b', { text: PRO.kicker }), el('i', { 'aria-hidden': 'true', text: '|' }), el('span', { text: PRO.time })),
-      el('h1', { text: PRO.headline }),
-      el('p', { class: 'pr-dek', text: PRO.dek }),
-      el('div', { class: 'pr-by' },
-        el('span', {}, el('span', { class: 'pr-av', 'aria-hidden': 'true', text: 'BP' }), el('strong', { text: 'Af ' + PRO.by })),
-        el('span', { text: PRO.min + ' min. læsning' }))));
-  const cardElements = PRO.cards.map((c, i) => el('a', { class: 'pr-card', href: '#p' + (i + 1) },
-    el('div', { class: 'pr-ph', 'aria-hidden': 'true', style: `background-image: linear-gradient(rgba(26,23,25,.12), rgba(26,23,25,.12)), url("${PRO_IMG[c.img]}")` }),
-    el('div', { class: 'pr-k', text: c.k.toUpperCase() }), el('h2', { text: c.h }), el('p', { text: c.p })));
-  const cards = el('div', { class: 'pr-cards' }, cardElements.slice(0, 3));
-  const feature = el('div', { class: 'pr-cards pr-cards--feature' }, cardElements.slice(3));
-  const chev = svgFrom('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>', '');
-  const diPhotos = el('div', { class: 'pr-di-photos' }, PRO.diPhotos.map(id => {
-    const a = ARTICLES[id];
-    return el('a', { class: 'pr-di-card', href: '#a' + id },
-      el('figure', { class: 'di-lead-media' }, el('img', { src: IMAGES[id].src, alt: IMAGES[id].alt, loading: 'lazy' }), el('figcaption', { class: 'di-lead-credit', text: IMAGES[id].caption })),
-      el('div', {}, el('span', { class: 'k', text: a.kicker }), el('h3', { text: a.headline }), el('p', { text: a.manchet }), diLeadFooter(a, Number(id) === 7)));
-  }));
-  // Casene er foldet sammen inde i den udfoldede DI-sektion og åbnes på eget klik.
-  const casesPanel = el('div', { class: 'pr-di-flow pr-di-cases', id: 'prDiCases', inert: true },
-    el('div', { class: 'pr-di-flow-in' }, el('div', { class: 'di-cards' }, PRO.diRows.map(renderDiCase))));
-  const casesLabel = el('span', { text: 'Vis casene' });
-  const casesToggle = el('button', { class: 'pr-di-toggle', type: 'button', 'aria-expanded': 'false', 'aria-controls': 'prDiCases' }, casesLabel, chev.cloneNode(true));
-  casesToggle.addEventListener('click', () => {
-    const open = casesToggle.getAttribute('aria-expanded') !== 'true';
-    casesToggle.setAttribute('aria-expanded', String(open));
-    casesLabel.textContent = open ? 'Skjul casene' : 'Vis casene';
-    casesPanel.classList.toggle('is-open', open);
-    casesPanel.toggleAttribute('inert', !open);
-  });
-  const diBox = el('section', { class: 'di-box', 'aria-labelledby': 'prDiCasesTitle' },
-    el('div', { class: 'di-head' },
-      el('div', { class: 'di-head-l' },
-        el('h2', { id: 'prDiCasesTitle', class: 'di-pill', text: 'Virksomhederne i praksis' }),
-        el('span', { class: 'di-excl', text: 'Eksklusivt indhold for DI\u2019s medlemmer' })),
-      casesToggle),
-    casesPanel);
-  // Foldud: Business viser kun salgsafsnittet. Hele DI-flowet bor på DI-siden og åbnes her på brugerens eget klik.
-  const diFlow = el('div', { class: 'pr-di-flow', id: 'prDiFlow', inert: true },
-    el('div', { class: 'pr-di-flow-in' }, diPhotos, diBox,
-      el('a', { class: 'pr-di-all', href: '#forside', text: 'Gå til DI-universet \u2192' })));
-  const diLabel = el('span', { text: 'Se et udpluk af DI-universet' });
-  const diToggle = el('button', { class: 'pr-di-toggle', type: 'button', 'aria-expanded': 'false', 'aria-controls': 'prDiFlow' }, diLabel, chev);
-  diToggle.addEventListener('click', () => {
-    const open = diToggle.getAttribute('aria-expanded') !== 'true';
-    diToggle.setAttribute('aria-expanded', String(open));
-    diLabel.textContent = open ? 'Skjul DI-universet' : 'Se et udpluk af DI-universet';
-    diFlow.classList.toggle('is-open', open);
-    diFlow.toggleAttribute('inert', !open);
-    di.classList.toggle('is-open', open);
-  });
-  const di = el('section', { class: 'pr-di', 'aria-labelledby': 'prDiTitle' },
-    el('div', { class: 'di-edition' },
-      el('div', {},
-        el('span', { class: 'di-excl', text: 'Dansk Industri · Medlemsindsigt' }),
-        el('h2', { id: 'prDiTitle', text: 'Industriens næste træk' }),
-        el('div', { class: 'pr-di-sell' }, el('p', { text: 'Egne analyser. Danske virksomhedscases. Internationale perspektiver på de beslutninger, der former din forretning.' })),
-        diToggle),
-      el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' }))),
-    diFlow);
-  return el('div', { class: 'bf pro-page' }, hero, cards, di, feature);
-}
-
 // Navigation og demoadgang håndteres i ybusiness-platform.js.
 </script>
-<script src="ybusiness-platform.js?v=20261120-7"></script>
+<script src="ybusiness-platform.js?v=20261120-13"></script>
 </body>
 </html>

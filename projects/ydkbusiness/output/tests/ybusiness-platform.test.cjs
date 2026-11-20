@@ -32,15 +32,21 @@ function setup(t, initial = '#business') {
     const item = $$(selector).find(e => e.textContent.includes(text));
     assert(item, `Missing ${selector}: ${text}`); item.click();
   };
+  const nextRoute = () => new Promise(resolve => w.addEventListener('hashchange', resolve, { once: true }));
   const go = async hash => {
     if (w.location.hash === hash) return;
-    await new Promise(resolve => {
-      w.addEventListener('hashchange', resolve, { once: true });
-      w.location.hash = hash;
-    });
+    const navigated = nextRoute();
+    w.location.hash = hash;
+    await navigated;
+  };
+  const selectAccess = async access => {
+    const navigated = access !== 'free' && w.location.hash !== '#pro' ? nextRoute() : null;
+    click(`[data-access="${access}"]`);
+    if (navigated) assert.equal(w.location.hash, '#pro');
+    await navigated;
   };
   const submit = () => $('.demo-form').dispatchEvent(new w.Event('submit', { cancelable: true, bubbles: true }));
-  return { w, d, $, $$, click, press, go, submit };
+  return { w, d, $, $$, click, press, go, selectAccess, submit };
 }
 
 test('Business preserves original content and shows premium status', t => {
@@ -49,7 +55,7 @@ test('Business preserves original content and shows premium status', t => {
   assert($('main').textContent.includes('Agenter brød ud'));
   assert($('main').textContent.includes('Porsche'));
   assert($('.bf-mint .access-label .lock-icon'));
-  assert.deepEqual($$('.ysite-nav a').map(a => a.textContent.trim()), ['POLITIK', 'INTERNATIONAL', 'BUSINESS', 'BUSINESS PRO']);
+  assert.deepEqual($$('.ysite-nav a').map(a => a.textContent.trim()), ['POLITIK', 'INTERNATIONAL', 'BUSINESS', 'PRO']);
   assert($('.bf-more'));
   for (let id = 1; id <= 11; id++) assert($(`main a[href="#b${id}"]`), `Business story ${id} remains discoverable`);
 });
@@ -84,14 +90,18 @@ test('Original header, category links and complete article picker remain availab
   assert($('#mockPanel').hidden);
 });
 
-test('Original DI previews retain both lead stories, all five cases and both disclosures', t => {
+test('DI preview keeps both disclosures and all seven stories', t => {
   const { $, $$, click } = setup(t);
-  assert.equal($$('.preserved-di .pr-di-photos .pr-di-card').length, 2);
-  assert.equal($$('.preserved-di .di-cards .di-card').length, 5);
-  click('.preserved-di .di-edition .pr-di-toggle');
-  assert($('#prDiFlow').classList.contains('is-open'));
-  click('.preserved-di .di-box .pr-di-toggle');
-  assert($('#prDiCases').classList.contains('is-open'));
+  assert($('#di-preview-content').hidden);
+  click('[aria-controls="di-preview-content"]');
+  assert(!$('#di-preview-content').hidden);
+  assert.equal($$('.di-news-leads .story-card').length, 2);
+  assert(!$('.di-case-disclosure').open);
+  click('.di-case-disclosure summary');
+  assert($('.di-case-disclosure').open);
+  assert.equal($$('.di-news-cases .story-card').length, 5);
+  click('[aria-controls="di-preview-content"]');
+  assert($('#di-preview-content').hidden);
 });
 
 test('Original theme control switches between dark and light without changing content', t => {
@@ -106,14 +116,15 @@ test('Original theme control switches between dark and light without changing co
 });
 
 test('Premium click opens paywall; direct URL shows teaser; downgrade removes full text', async t => {
-  const { $, click, go, w } = setup(t);
+  const { $, click, go, selectAccess, w } = setup(t);
   click('a[href="#b6"]');
   assert($('#platform-dialog').open);
   assert.equal(w.location.hash, '#business');
   click('#platform-dialog-close');
   await go('#b6');
   assert($('.article-tease')); assert(!$('.article .body'));
-  click('[data-access="pro"]');
+  await selectAccess('pro');
+  await go('#b6');
   assert($('.article .body')); assert(!$('.paywall-inline'));
   click('[data-access="free"]');
   assert(!$('.article .body')); assert($('.paywall-inline'));
@@ -141,9 +152,9 @@ test('Tool tabs support arrow keys, and non-subscriber preview is inert', t => {
   assert.equal($('#tools-panel').getAttribute('aria-labelledby'), 'tool-tab-media');
 });
 
-test('Tender filter and save interaction work for subscribers', t => {
-  const { $, $$, click, press, w } = setup(t);
-  click('[data-access="pro"]'); click('#tool-tab-tender'); press('#tools-panel button', 'Åbn');
+test('Tender filter and save interaction work for subscribers', async t => {
+  const { $, $$, click, go, selectAccess, press, w } = setup(t);
+  await selectAccess('pro'); await go('#business'); click('#tool-tab-tender'); press('#tools-panel button', 'Åbn');
   assert.equal($$('.dialog-body .tool-list article').length, 3);
   const select = $('.dialog-body select'); select.value = 'jylland'; select.dispatchEvent(new w.Event('change'));
   assert.equal($$('.dialog-body .tool-list article').length, 1);
@@ -152,32 +163,50 @@ test('Tender filter and save interaction work for subscribers', t => {
   assert($('.dialog-body button').disabled);
 });
 
-test('Monitor search shows an empty state when nothing matches', t => {
-  const { $, click, press, w } = setup(t);
-  click('[data-access="pro"]'); click('#tool-tab-media'); press('#tools-panel button', 'Åbn');
+test('Monitor search shows an empty state when nothing matches', async t => {
+  const { $, click, go, selectAccess, press, w } = setup(t);
+  await selectAccess('pro'); await go('#business'); click('#tool-tab-media'); press('#tools-panel button', 'Åbn');
   const input = $('.dialog-body input[type="search"]'); input.value = 'nothing-matches'; input.dispatchEvent(new w.Event('input'));
   assert($('.dialog-body').textContent.includes('Ingen demoresultater'));
 });
 
 test('DI access requires verification separately from ordinary Pro', async t => {
-  const { $, click, go } = setup(t);
-  click('[data-access="pro"]'); click('a.sn-i[href="#forside"]');
+  const { $, click, go, selectAccess } = setup(t);
+  await selectAccess('pro'); click('a.sn-i[href="#forside"]');
   assert($('.dialog-head').textContent.includes('Trin 2'));
   click('#platform-dialog-close'); await go('#forside');
-  assert(!$('.front')); assert($('.paywall-inline'));
-  click('[data-access="di"]');
-  assert($('.front .di-edition'));
+  assert($('#di-preview-content').hidden); assert($('.di-access-row button'));
+  await selectAccess('di'); await go('#forside');
+  assert($('.di-news-page .di-partner-banner'));
+  assert.equal($('.di-news-leads .story-card').getAttribute('href'), '#a7');
+  assert.equal($('.di-news-cases .story-card').getAttribute('href'), '#a1');
   await go('#a1'); assert($('.article .body'));
-  click('[data-access="pro"]'); assert(!$('.article .body'));
+  await selectAccess('pro'); await go('#a1'); assert(!$('.article .body'));
+});
+
+test('DI members open the Business Pro workspace from the DI link', async t => {
+  const { $, click, selectAccess, w } = setup(t);
+  await selectAccess('di');
+  const navigated = new Promise(resolve => w.addEventListener('hashchange', resolve, { once: true }));
+  click('a.sn-i[href="#mit-pro"]:not(.sn-account)');
+  await navigated;
+  assert.equal(w.location.hash, '#mit-pro');
+  assert($('.pro-workspace-page iframe'));
+  assert.equal($('#nav-pro').getAttribute('aria-current'), 'page');
+  assert.equal(w.document.title, 'Til jer i dag · Business Pro × DI | Y');
+  assert($('.pro-workspace-page a[href="#forside"]'), 'DI universe stays reachable from the workspace');
 });
 
 test('DI login and verification return to intended member article', async t => {
   const { $, click, submit, w } = setup(t);
-  click('a[href="#a1"]');
+  click('[aria-controls="di-preview-content"]');
+  click('.di-case-disclosure summary');
+  click('.di-news-cases a[href="#a1"]');
   assert($('.dialog-head').textContent.includes('Trin 1')); submit();
   assert($('.dialog-head').textContent.includes('Trin 2'));
+  const navigated = new Promise(resolve => w.addEventListener('hashchange', resolve, { once: true }));
   $('.demo-form input[type="checkbox"]').checked = true; submit();
-  await new Promise(resolve => w.setTimeout(resolve, 0));
+  await navigated;
   assert.equal(w.YBusinessDemo.getState().access, 'di');
   assert.equal(w.location.hash, '#a1'); assert($('.article .body'));
 });
@@ -212,12 +241,69 @@ test('Market controls change the illustrative dataset', t => {
   assert.equal($('button[data-period="uge"]').getAttribute('aria-pressed'), 'true');
 });
 
+test('Business Pro opens login/paywall for visitors and the workspace after login', async t => {
+  const { $, click, press, go, submit, w } = setup(t);
+  await go('#pro');
+  assert($('.pro-access-page'));
+  assert(!$('.pro-tools-frame'));
+  press('.pro-login-card button', 'Log ind og åbn');
+  assert($('#platform-dialog').open);
+  submit();
+  assert.equal(w.YBusinessDemo.getState().access, 'pro');
+  assert($('.pro-tools-frame'));
+  assert(!$('.pro-access-page'));
+});
+
+test('Selecting Business Pro or DI opens the workspace, and downgrading removes it', async t => {
+  const { $, go, selectAccess, w } = setup(t);
+  for (const access of ['pro', 'di']) {
+    await go('#business');
+    await selectAccess(access);
+    assert.equal(w.location.hash, '#pro');
+    assert($('.pro-tools-frame'));
+    assert(!$('.pro-access-page'));
+  }
+  await selectAccess('free');
+  assert(!$('.pro-tools-frame'));
+  assert($('.pro-access-page'));
+});
+
+test('Mit Business Pro direct URL is gated and product landing remains available separately', async t => {
+  const { $, $$, go } = setup(t, '#mit-pro');
+  assert($('.pro-access-page')); assert(!$('.pro-tools-frame'));
+  await go('#pro-produkt');
+  assert.equal($$('.plan').length, 2);
+  assert($('.pro-landing-page h1'));
+  assert(!$('.pro-access-page'));
+});
+
+test('Workspace handshake validates source and origin and supplies Y theme and existing stories', t => {
+  const { $, click, w } = setup(t, '#pro');
+  click('[data-access="pro"]');
+  const frame = $('.pro-tools-frame'), messages = [];
+  frame.contentWindow.postMessage = (data, origin) => messages.push({ data, origin });
+  const send = (source, origin, type, rest = {}) => w.dispatchEvent(new w.MessageEvent('message', { source, origin, data: { channel: 'y-business-workspace', type, ...rest } }));
+  send(w, 'http://localhost', 'ready'); assert.equal(messages.length, 0);
+  send(frame.contentWindow, 'https://unrelated.example', 'ready'); assert.equal(messages.length, 0);
+  send(frame.contentWindow, 'http://localhost', 'ready');
+  assert.equal(messages[0].data.type, 'init');
+  assert.equal(messages[0].data.access, 'pro');
+  assert.equal(messages[0].data.theme, 'dark');
+  assert.equal(messages[0].data.articles.length, 7);
+  assert.equal(messages[0].data.articles[0].key, 'p0');
+  assert.equal(messages[0].origin, 'http://localhost');
+  click('#themeBtn'); assert.equal(messages.at(-1).data.theme, 'light');
+  send(frame.contentWindow, 'http://localhost', 'height', { height: 1750 }); assert.equal(frame.style.height, '1750px');
+  send(frame.contentWindow, 'http://localhost', 'logout');
+  assert($('.pro-access-page')); assert(!$('.pro-tools-frame'));
+});
+
 test('All routes render once, with unique IDs, in every access state', async t => {
-  const { $, $$, click, go } = setup(t);
-  const routes = ['business', 'pro', 'pro-overblik', 'byggeri', 'mit-pro', 'forside', 'international', 'danmark', 'ai', 'byggeri?f=rapporter', 'byggeri?f=vaerktoejer',
+  const { $, $$, selectAccess, go } = setup(t);
+  const routes = ['business', 'pro', 'pro-produkt', 'pro-overblik', 'byggeri', 'mit-pro', 'forside', 'international', 'danmark', 'ai', 'byggeri?f=rapporter', 'byggeri?f=vaerktoejer',
     ...Array.from({ length: 11 }, (_, i) => 'b' + (i + 1)), ...Array.from({ length: 5 }, (_, i) => 'p' + i), ...Array.from({ length: 7 }, (_, i) => 'a' + (i + 1))];
   for (const access of ['free', 'pro', 'di']) {
-    click(`[data-access="${access}"]`);
+    await selectAccess(access);
     for (const route of routes) {
       await go('#' + route);
       assert.equal($$('main h1').length, 1, `${access}: ${route}`);
