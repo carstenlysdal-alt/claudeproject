@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Y · Forside</title>
+<meta name="robots" content="noindex">
+<style>
+/* =========================================================
+   Y.dk – designtokens udtrukket fra y.dk (nov. 2026)
+   Mørkt tema er standard. Sitet bygger på Tailwind v4 + Next.js.
+   Skrifttyper (Google Fonts): Public Sans, IBM Plex Mono, Alice
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Alice&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  /* ---------- Skrifttyper ---------- */
+  --font-public-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-ibm-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-alice: "Alice", ui-serif, Georgia, serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* ---------- Overflader og tekst (mørkt tema) ---------- */
+  --background-primary: #231f20;   /* body-baggrund */
+  --foreground: #eeeded;
+  --text-primary: #eeeded;
+  --text-secondary: #d7d6d7;
+  --text-tertiary: #c0bcc0;
+  --text-muted: #eeeded80;
+  --text-photo: #989498;
+  --text-post-paragraph: #ccc9c6;  /* brødtekst i artikler */
+  --text-post-muted: #9a9695;
+
+  --surface-active: #322f32;
+  --surface-elevated: #403c40;
+  --surface-pill: #403c40;
+  --surface-pills-bar: #322f32;
+  --surface-menu-footer: #322f32;
+  --surface-thumb: #231f20;
+  --surface-toggle: #403c40;
+  --surface-related: #6e686e;
+  --surface-inverse: #322f32;
+  --surface-action: #403c40;
+  --image-placeholder: #322f32;
+
+  --divider: #403c40;
+  --divider-menu-footer: #4f4a4f;
+  --anchor-border: #6e686e;
+
+  /* CTA / aktive piller (inverteret) */
+  --surface-cta: #eeeded;
+  --text-on-cta: #eeeded;
+  --surface-pill-active: #eeeded;
+  --text-pill-active: #221c1c;
+
+  /* ---------- Accentfarver ---------- */
+  --live-green: #6fee9c;
+  --surface-live-pill: #2e3e33;
+  --border-live-pill: #7add9d;
+  --live-accent: #fc7373;
+  --video-accent: #fd5643;
+  --audio-accent: #4257f5;
+  --guide: #a970ff;
+  --quiz-highlight: #2f3357;
+
+  /* ---------- Status ---------- */
+  --info-bg: hsl(215, 100%, 6%);   --info-border: hsl(223, 43%, 17%);   --info-text: hsl(216, 87%, 65%);
+  --success-bg: hsl(150, 100%, 6%); --success-border: hsl(147, 100%, 12%); --success-text: hsl(150, 86%, 65%);
+  --warning-bg: hsl(64, 100%, 6%);  --warning-border: hsl(60, 100%, 9%);  --warning-text: hsl(46, 87%, 65%);
+  --error-bg: hsl(358, 76%, 10%);   --error-border: hsl(357, 89%, 16%);   --error-text: hsl(358, 100%, 81%);
+
+  /* ---------- Typografiskala (px → rem) ---------- */
+  --text-9: .5625rem;  --text-10: .625rem;  --text-11: .6875rem; --text-13: .8125rem;
+  --text-22: 1.375rem; --text-28: 1.75rem;  --text-32: 2rem;     --text-34: 2.125rem;
+  --text-36: 2.25rem;  --text-40: 2.5rem;   --text-64: 4rem;
+
+  /* ---------- Letter-spacing ---------- */
+  --tracking-title-hero: -1.44px;
+  --tracking-desktop-hero: -2.56px;
+  --tracking-desktop-h1: -1.6px;
+  --tracking-desktop-h3: -.96px;
+  --tracking-title-large: -1.36px;
+  --tracking-title-medium: -1.12px;
+  --tracking-title-list: -.64px;
+  --tracking-title-md: -.56px;
+  --tracking-title-sm: -.44px;
+  --tracking-title-xs: -.36px;
+  --tracking-display: -.8px;
+  --tracking-nav-desktop: -.48px;
+  --tracking-caps: .8px;            /* versaler i mono-labels */
+  --tracking-desktop-label: .96px;
+  --tracking-pill: .36px;
+  --tracking-pill-active: .33px;
+
+  /* ---------- Linjehøjde ---------- */
+  --leading-nav: 1.3;
+  --leading-article: 1.2;
+  --leading-post-hero: 1.1;
+  --leading-caption: 1.4;
+  --leading-related: 1.6;
+
+  /* ---------- Rum, radius, layout ---------- */
+  --spacing: .25rem;                /* Tailwind-basis: 4px */
+  --radius-card: 12px;              /* artikelkort (rounded-xl) */
+  --radius-md: 8px;
+  --radius-toggle-pill: 3.75rem;
+  --radius-full: 9999px;            /* piller */
+  --header-h: 4.5rem;
+  --container-7xl: 80rem;
+
+  /* Breakpoints */
+  --bp-sm: 640px; --bp-md: 768px; --bp-lg: 1024px; --bp-xl: 1280px;
+}
+
+/* =========================================================
+   Basis
+   ========================================================= */
+html { color-scheme: dark; }
+body {
+  margin: 0;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+a { color: inherit; text-decoration: none; }
+
+/* =========================================================
+   Typografi-komponenter
+   ========================================================= */
+.ydk-hero-title {                         /* h2 på forsiden */
+  font: 700 36px/1.2 var(--font-public-sans);
+  letter-spacing: var(--tracking-title-hero);
+  color: var(--text-primary);
+}
+@media (min-width: 768px) {
+  .ydk-hero-title { font-size: 56px; line-height: 1.2; letter-spacing: -2.24px; }
+}
+
+.ydk-card-title {                         /* h3 i kort */
+  font: 600 1rem/var(--leading-nav) var(--font-public-sans);
+  letter-spacing: -.32px;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ydk-label {                              /* mono-label / kategori */
+  font: 500 var(--text-13)/1.5 var(--font-ibm-mono);
+  letter-spacing: .78px;
+  text-transform: uppercase;
+}
+
+.ydk-article-body {
+  color: var(--text-post-paragraph);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   Komponenter
+   ========================================================= */
+.ydk-card {                               /* <article> */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;                              /* gap-4 */
+  min-width: 0;
+  border-radius: var(--radius-card);
+}
+
+.ydk-pill {                               /* filter-pille */
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 2.5rem; padding: 0 1rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-pill);
+  color: var(--text-primary);
+  font-size: .875rem; letter-spacing: var(--tracking-pill);
+  cursor: pointer;
+}
+.ydk-pill[aria-pressed="true"], .ydk-pill--active {
+  background: var(--surface-pill-active);
+  color: var(--text-pill-active);
+  letter-spacing: var(--tracking-pill-active);
+}
+
+.ydk-pill--live {                         /* "Live"-pille */
+  background: var(--surface-live-pill);
+  border: 1px solid var(--border-live-pill);
+  padding: 0 1rem 0 .75rem;
+  gap: .5rem;
+}
+
+.ydk-nav {
+  display: flex; align-items: center; gap: 1.25rem; padding: 0 1.5rem;
+  height: var(--header-h);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-nav-desktop);
+  line-height: var(--leading-nav);
+}
+@media (min-width: 1280px) { .ydk-nav { gap: 2rem; } }
+
+.ydk-divider { border: 0; border-top: 1px solid var(--divider); }
+
+</style>
+<style>
+/* Layout-lag oven på ydk-tokens.css. Farver, skrifter og komponenter kommer fra tokens. */
+* { box-sizing: border-box; }
+body { margin:0; min-width:0; overflow-x:hidden; font-family: var(--font-body); }
+img, svg { display:block; max-width:100%; }
+a:focus-visible { outline:2px solid var(--text-primary); outline-offset:3px; border-radius:4px; }
+h1, h2, h3, p, figure, ol, ul { margin:0; padding:0; }
+ol, ul { list-style:none; }
+.wrap { width:100%; max-width:var(--container-7xl); margin:0 auto; padding:0 16px; }
+@media (min-width:768px) { .wrap { padding:0 24px; } }
+
+/* Header */
+.top { border-bottom:1px solid var(--divider); }
+.top-in { display:flex; align-items:center; gap:20px; height:var(--header-h); }
+.logo { display:inline-flex; color:var(--text-primary); }
+.logo svg { width:40px; height:40px; }
+.nav { margin-left:auto; }
+.nav a { color:var(--text-primary); }
+.nav a:hover { color:var(--text-secondary); text-decoration:underline; text-underline-offset:6px; }
+.nav a.pro { display:inline-flex; align-items:center; gap:6px; }
+.nav a.pro::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--live-green); }
+
+/* Dagens brief */
+.brief { padding:24px 0; border-bottom:1px solid var(--divider); }
+.brief .label { margin-bottom:12px; color:var(--text-muted); }
+.brief ol { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.brief li a { display:flex; flex-direction:column; gap:6px; }
+.brief li .ydk-card-title { font-size:15px; }
+.brief li a:hover .ydk-card-title { text-decoration:underline; text-underline-offset:4px; }
+.brief .kicker { color:var(--text-muted); }
+
+/* Live blog, tal */
+.row2 { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px; padding:24px 0; border-bottom:1px solid var(--divider); }
+.box { background:var(--surface-active); border-radius:var(--radius-card); padding:20px; }
+.box h2 { margin-bottom:12px; color:var(--text-muted); }
+.box a { display:flex; align-items:center; gap:10px; padding:12px 0; border-top:1px solid var(--divider); font-weight:600; }
+.box a:first-of-type { border-top:0; }
+.box a:hover { text-decoration:underline; text-underline-offset:4px; }
+.pill { display:inline-flex; align-items:center; height:28px; padding:0 12px; border-radius:var(--radius-full); background:var(--surface-elevated); color:var(--text-primary); font-size:12px; letter-spacing:var(--tracking-pill); }
+.pill--live { background:var(--surface-live-pill); border:1px solid var(--border-live-pill); color:var(--live-green); }
+.pill--live::before { content:""; width:6px; height:6px; margin-right:6px; border-radius:50%; background:var(--live-green); }
+.tal .num { display:block; font: 700 clamp(40px,5vw,56px)/1.1 var(--font-public-sans); letter-spacing:var(--tracking-title-hero); color:var(--text-primary); }
+.tal p { margin-top:10px; color:var(--text-tertiary); font-size:15px; line-height:1.5; }
+
+/* Hero */
+.hero { display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:32px; align-items:center; padding:36px 0; border-bottom:1px solid var(--divider); }
+.hero .ph img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius-card); }
+.hero .ph figcaption { font-size:11px; color:var(--text-muted); margin-top:8px; }
+.hero .ydk-hero-title { margin:12px 0 16px; }
+.hero .dek { font-size:18px; line-height:1.5; color:var(--text-tertiary); }
+
+/* Sektioner og kort */
+section.sec { padding:36px 0 8px; }
+section.sec > header { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+section.sec h2 { font: 700 22px/1.2 var(--font-public-sans); letter-spacing:var(--tracking-title-md); color:var(--text-primary); }
+section.sec > header p { color:var(--text-muted); font-size:13px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:32px 24px; }
+.card { color:var(--text-primary); }
+.card:hover .ydk-card-title { text-decoration:underline; text-underline-offset:4px; }
+.card .ph img { width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:var(--radius-card); }
+.card .ph figcaption { font-size:11px; color:var(--text-muted); margin-top:8px; }
+.card-body { display:flex; flex-direction:column; gap:8px; }
+.card .kicker { color:var(--text-muted); }
+.card .dek { font-size:15px; line-height:1.5; color:var(--text-tertiary); }
+
+/* Business Pro-band */
+.pro-band { background:var(--surface-active); margin-top:40px; padding:40px 0 48px; }
+.pro-band .wrap > section.sec { padding-top:0; }
+.pro-band .card .dek { color:var(--text-secondary); }
+
+/* Footer */
+footer.site { padding:40px 0 56px; border-top:1px solid var(--divider); font-size:14px; color:var(--text-tertiary); }
+.fcols { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; }
+.fcols h4 { margin-bottom:12px; color:var(--text-muted); }
+.fcols h4.ydk-label { font-size:var(--text-11); }
+.fcols li { padding:4px 0; }
+.fcols a { color:var(--text-tertiary); }
+.fcols a:hover { color:var(--text-primary); }
+.mockline { margin-top:28px; font-size:12px; color:var(--text-muted); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns:1fr; gap:20px; padding:24px 0; }
+  .brief ol { grid-template-columns:1fr; gap:16px; }
+  .row2 { grid-template-columns:1fr; }
+  .nav { display:flex; gap:14px; }
+  .nav a:not(.pro) { display:none; }
+  .top-in { gap:12px; }
+  .logo svg { width:32px; height:32px; }
+  .fcols { grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 380px) { .fcols { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="ybusiness-y-forside.html" aria-label="Y, til forsiden"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M 24 0 C 10.746 0 0 10.746 0 24 C 0 37.254 10.746 48 24 48 C 37.254 48 48 37.254 48 24 C 48 10.746 37.254 0 24 0 Z M 35.853 16.83 L 27.189 32.079 C 26.352 33.579 25.374 34.68 24.261 35.385 C 23.148 36.087 21.714 36.441 19.962 36.441 L 16.413 36.441 C 16.26 36.441 16.134 36.318 16.134 36.165 L 16.134 32.919 C 16.134 32.766 16.26 32.643 16.413 32.643 L 19.419 32.643 C 19.728 32.643 20.004 32.607 20.247 32.538 C 21.054 32.274 21.639 31.521 21.639 30.633 C 21.639 30.297 21.555 29.979 21.405 29.7 L 13.692 16.854 C 13.677 16.833 13.665 16.806 13.665 16.779 C 13.665 16.704 13.728 16.641 13.803 16.641 C 13.803 16.641 20.313 16.641 20.316 16.641 C 20.421 16.641 20.514 16.704 20.559 16.791 L 25.305 25.392 L 29.727 16.815 L 29.754 16.761 C 29.805 16.689 29.886 16.641 29.982 16.641 C 29.982 16.641 35.724 16.641 35.727 16.641 C 35.802 16.641 35.865 16.704 35.865 16.779 C 35.865 16.797 35.862 16.815 35.853 16.83 Z" fill="currentColor" fill-rule="nonzero"/></svg></a>
+    <nav class="nav ydk-nav" aria-label="Hovedmenu">
+      <a href="ybusiness-di-artikler.html#politik">POLITIK</a>
+      <a href="ybusiness-di-artikler.html#international">INTERNATIONAL</a>
+      <a href="ybusiness-di-artikler.html#business">BUSINESS</a>
+      <a class="pro" href="ybusiness-di-artikler.html#pro-overblik">PRO</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="brief" aria-labelledby="brief-h">
+    <p class="ydk-label label" id="brief-h">Dagens brief</p>
+    <ol><li><a href="ybusiness-di-artikler.html#b2"><span class="ydk-label kicker">Regulering</span><span class="ydk-card-title">EU udskyder AI-krav til 2028 – men danske myndigheder har allerede ført 20 tilsyn</span></a></li><li><a href="ybusiness-di-artikler.html#b3"><span class="ydk-label kicker">Bogføring · SMV</span><span class="ydk-card-title">Før skulle du sige ja. Nu bliver du tilmeldt, hvis du tier</span></a></li><li><a href="ybusiness-di-artikler.html#b4"><span class="ydk-label kicker">Detailhandel · AI</span><span class="ydk-card-title">McDonald's AI-prissætning ender i retten: &quot;Du har i praksis ikke noget valg længere&quot;</span></a></li></ol>
+  </section>
+
+  <div class="row2">
+    <section class="box" aria-labelledby="lb-h">
+      <h2 class="ydk-label" id="lb-h">Live blogs</h2>
+      <a href="ybusiness-di-artikler.html#liveblog/reuters"><span class="pill pill--live">Live</span>Reuters · verdensoverblik</a>
+      <a href="ybusiness-di-artikler.html#liveblog/ritzau"><span class="pill pill--live">Live</span>Ritzau · nyheder</a>
+    </section>
+    <section class="box tal" aria-labelledby="tal-h">
+      <h2 class="ydk-label" id="tal-h">Dagens tal</h2>
+      <strong class="num">481 mio.</strong>
+      <p>logfiler gennemgår Anthropic for at finde AI-agenter, der har handlet uden tilladelse.</p>
+    </section>
+  </div>
+
+  <a class="hero" href="ybusiness-di-artikler.html#b1">
+    <figure class="ph"><img src="https://images.unsplash.com/photo-1691435828932-911a7801adfb?auto=format&fit=crop&w=800&q=80" alt="Nærbillede af netværkskabler i et serverskab." loading="lazy" decoding="async"><figcaption>Foto: Albert Stoynov / Unsplash</figcaption></figure>
+    <div>
+      <p class="ydk-label kicker" style="color:var(--text-muted)">Business AI</p>
+      <h1 class="ydk-hero-title">Agenter brød ud af testmiljøer og delte sårbarheder på en hemmelig opslagstavle: &quot;Et advarselsskud – til os selv og til resten af verden&quot;</h1>
+      <p class="dek">OpenAI og Anthropic har dokumenteret AI-agenter, der på egen hånd brød ud af lukkede testmiljøer. Nu undersøger amerikanske myndigheder selskaberne.</p>
+    </div>
+  </a>
+
+  <section class="sec" aria-labelledby="s-feed">
+    <header><h2 id="s-feed">Seneste</h2><p>Business · alle</p></header>
+    <div class="grid"><a class="ydk-card card" href="ybusiness-di-artikler.html#b5"><figure class="ph"><img src="https://images.unsplash.com/photo-1634673970798-a15ae56f6c65?auto=format&fit=crop&w=800&q=80" alt="En grå Porsche parkeret foran en bygning." loading="lazy" decoding="async"><figcaption>Foto: Robin LE MEE / Unsplash</figcaption></figure><div class="card-body"><p class="ydk-label kicker">Bilindustri</p><h3 class="ydk-card-title">Porsche skærer 9.000 stillinger: Skal kunne overleve med 80.000 færre biler</h3><p class="dek">Porsche sænker break-even til under 200.000 biler om året og satser på dyrere modeller, færre varianter og en mindre organisation.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#b6"><figure class="ph"><img src="https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?auto=format&fit=crop&w=800&q=80" alt="Et chip med AI-mærkat på et kredsløbskort." loading="lazy" decoding="async"><figcaption>Foto: Igor Omilaev / Unsplash</figcaption></figure><div class="card-body"><p class="ydk-label kicker">Chips · AI</p><h3 class="ydk-card-title">Nvidia tjener 91 kr. for hver 100 kr. investeret</h3><p class="dek">Børsen-analyse af ti chipgiganter viser, at Nvidia knuser konkurrenterne på indtjeningsevne, mens Intel er endt med negativt afkast.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#b7"><figure class="ph"><img src="https://images.unsplash.com/photo-1709204636986-85b428035c14?auto=format&fit=crop&w=800&q=80" alt="Havvindmøller på havet." loading="lazy" decoding="async"><figcaption>Foto: James Whately / Unsplash</figcaption></figure><div class="card-body"><p class="ydk-label kicker">Energi · Havvind</p><h3 class="ydk-card-title">Ørsted har ingen byggeprojekter om halvandet år: &quot;Vi står et godt sted&quot;</h3><p class="dek">Efter en kapitalindsprøjtning på 60 mia. kr. jagter Rasmus Errboe nu europæiske havvindudbud for at sikre Ørsteds vækst.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#b8"><figure class="ph"><img src="https://images.unsplash.com/photo-1645226880663-81561dcab0ae?auto=format&fit=crop&w=800&q=80" alt="En hånd med en mobil, der viser et aktiediagram." loading="lazy" decoding="async"><figcaption>Foto: Adam Śmigielski / Unsplash</figcaption></figure><div class="card-body"><p class="ydk-label kicker">Finans · USA</p><h3 class="ydk-card-title">Kongrespanel: Handelsplatformen Webull udgør en national sikkerhedsrisiko for USA</h3><p class="dek">Et amerikansk kongrespanel konkluderer, at handelsplatformen Webull ikke er det selskab, den udgiver sig for, og at kundedata kan ende i kinesisk overvågning.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#b9"><figure class="ph"><img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80" alt="En raket under opsendelse." loading="lazy" decoding="async"><figcaption>Foto: SpaceX / Unsplash</figcaption></figure><div class="card-body"><p class="ydk-label kicker">AI · Finansiering</p><h3 class="ydk-card-title">SpaceX vil låne 40 milliarder dollar: Skal købe Nvidia-chips til AI</h3><p class="dek">Rumfartsselskabet SpaceX vil optage et lån af sjælden størrelse for at købe Nvidia-chips til kunstig intelligens.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#b10"><figure class="ph"><img src="https://images.unsplash.com/photo-1708738793054-32b71e3fc822?auto=format&fit=crop&w=800&q=80" alt="To satellitter med solpaneler over Jorden." loading="lazy" decoding="async"><figcaption>Foto: Kevin Stadnyk / Unsplash</figcaption></figure><div class="card-body"><p class="ydk-label kicker">Rum og forsvar</p><h3 class="ydk-card-title">Terma har fordoblet rumomsætningen: Nu kan ordrerne dække 100 satellitter ad gangen</h3><p class="dek">Efter Ruslands invasion af Ukraine er efterspørgslen på Termas rumteknologi eksploderet, og divisionen kan på sigt stå for over 20 procent af koncernens omsætning.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#b11"><figure class="ph"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Datacenter med serverrækker." loading="lazy" decoding="async"><figcaption>Foto: Unsplash / Unsplash</figcaption></figure><div class="card-body"><p class="ydk-label kicker">Energi og infrastruktur</p><h3 class="ydk-card-title">AI-boomet skaber nye byggeopgaver – men nu støder datacentrene mod Danmarks elnet</h3><p class="dek">Datacentre bliver en stadig vigtigere del af den globale AI-industri. Men Danmark har ikke strøm nok til at tilslutte alle de store projekter, der efterspørger kapacitet. Energinet begynder nu igen at fordele plads i transmissionsnettet.</p></div></a></div>
+  </section>
+</main>
+
+<div class="pro-band">
+  <div class="wrap">
+    <section class="sec" aria-labelledby="s-pro">
+      <header><h2 id="s-pro">Business Pro · Cases og analyser</h2><p>Adgang med Business Pro</p></header>
+      <div class="grid"><a class="ydk-card card" href="ybusiness-di-artikler.html#a1"><div class="card-body"><p class="ydk-label kicker">Industri</p><h3 class="ydk-card-title">Arla fik AI til at halvere udsvingene i produktionen – nu kan det også spare store energiregninger</h3><p class="dek">På fabrikken i Videbæk har Arla Foods Ingredients afprøvet maskinlæring i produktionen af specialiserede mælkepulvere. Resultatet var mere ensartet kvalitet og mulighed for at øge produktionen med op til 18 procent. Forsøget viser, hvordan eksisterende produktionsdata kan omsættes til en konkret økonomisk gevinst.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a2"><div class="card-body"><p class="ydk-label kicker">Industri</p><h3 class="ydk-card-title">Viking Malt ville spare energi med AI – men forsøget afslørede et problem, som rammer industrien</h3><p class="dek">En fabrik i Vordingborg fik installeret en AI-model, der skulle optimere maltproduktionen og reducere energiforbruget. Men efter fire måneders afprøvning var der ingen energibesparelse. En DTU-afhandling dokumenterer, hvorfor teknologien ikke leverede som forventet.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a3"><div class="card-body"><p class="ydk-label kicker">Energi</p><h3 class="ydk-card-title">En varmepumpe slugte energi og gik i stå – nu skal AI opdage problemerne 14 timer før</h3><p class="dek">Ringsted Forsyning har fået udviklet en maskinlæringsmodel, der kan forudsige begyndende isdannelse i en stor varmepumpe. I forsøget kunne teknologien opdage problemer op til 14 timer før den normale reaktion. Nu har forsyningen besluttet at investere i en videreudviklet løsning.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a4"><div class="card-body"><p class="ydk-label kicker">Byggeri</p><h3 class="ydk-card-title">Per Aarsleff fandt over 20 muligheder for AI – nu skal teknologien hjælpe med at vinde byggeopgaverne</h3><p class="dek">Entreprenørkoncernen Per Aarsleff har undersøgt, hvordan generativ AI kan ændre arbejdet med tilbud på bygge- og anlægsopgaver. Efter en gennemgang af mere end 20 mulige anvendelser er tre løsninger blevet udviklet som proof of concept. De skal blandt andet finde fejl i tilbud, genbruge tidligere erfaringer og gøre store dokumentmængder lettere at arbejde med.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a5"><div class="card-body"><p class="ydk-label kicker">Byggeri</p><h3 class="ydk-card-title">Gamle bygninger gemmer på millioner i materialer – nu skal AI hjælpe byggebranchen med at finde dem</h3><p class="dek">Når en bygning skal renoveres eller rives ned, kan store værdier ende som byggeaffald. Et dansk udviklingsprojekt med LINK Arkitektur, COWI, Geopartner og en række andre aktører har udviklet en AI-understøttet metode til at kortlægge materialer i eksisterende bygninger. Den næste kamp handler om at gøre data anvendelige på tværs af hele byggebranchen.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a7"><div class="card-body"><p class="ydk-label kicker">Industry Intelligence</p><h3 class="ydk-card-title">Dansk industri har fået AI ind ad døren – men fabrikkerne venter stadig</h3><p class="dek">Danske virksomheder er blandt Europas mest AI-aktive. Men en ny undersøgelse blandt 376 produktionsvirksomheder afslører et problem, der kan blive dyrt for industrien: De fleste eksperimenterer stadig, mens kun få har fået teknologien ind i den daglige produktion. Og selv store virksomheder kæmper med at omsætte forsøg til forretning.</p></div></a></div>
+    </section>
+    <section class="sec" aria-labelledby="s-di">
+      <header><h2 id="s-di">For DI-medlemmer</h2><p>Business Pro × DI</p></header>
+      <div class="grid"><a class="ydk-card card" href="ybusiness-di-artikler.html#a6"><div class="card-body"><p class="ydk-label kicker">International opinion <span class="pill">DI-medlemmer</span></p><h3 class="ydk-card-title">Howard Marks om AI: Hvem kommer til at tjene pengene?</h3><p class="dek">Oaktree-medstifteren stiller 11 spørgsmål til AI-boomet. Hans notat sætter fokus på, hvem der får afkastet, når investeringerne skal tjenes hjem.</p></div></a></div>
+    </section>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="fcols">
+      <div><h4 class="ydk-label">Sektioner</h4><ul><li><a href="ybusiness-di-artikler.html#politik">Politik</a></li><li><a href="ybusiness-di-artikler.html#international">International</a></li><li><a href="ybusiness-di-artikler.html#business">Business</a></li></ul></div>
+      <div><h4 class="ydk-label">Om Y</h4><ul><li>Om mediet Y</li><li>Tips og feedback</li><li>Kontakt</li></ul></div>
+      <div><h4 class="ydk-label">Information &amp; vilkår</h4><ul><li>Vilkår</li><li>Privatlivspolitik</li><li>Cookies</li><li>AI-politik</li></ul></div>
+      <div><h4 class="ydk-label">Data og API</h4><ul><li>Nyheds-API og data</li><li>RSS-feed</li></ul></div>
+    </div>
+    <p class="mockline">Mockup · udkast. Layout og farver følger Y's designtokens. Overskrifter og tekster er fra ybusiness-di-artikler.html. Fotos: Unsplash.</p>
+  </div>
+</footer>
+</body>
+</html>

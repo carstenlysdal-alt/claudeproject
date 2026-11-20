@@ -1,6 +1,5 @@
 /* Business Pro — in y.dk's design tokens (2026-10-13): y.dk's grey paper and ink, Public Sans (heavy, tight headlines), IBM Plex
    Mono labels, Y's blue; follows the device's light/dark setting with y.dk's own dark palette */
-@import url(./fonts.css);
 
 :root{
   --paper:#eeeded;--paper-2:#e4e2e0;--card:#ffffff;--ink:#231f20;--ink-2:#403c40;--muted:#6e686e;--faint:#9a9695;

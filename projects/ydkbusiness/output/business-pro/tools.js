@@ -20,7 +20,8 @@
     const data = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
     if (data && Array.isArray(data.tasks) && Array.isArray(data.saved) && Array.isArray(data.profiles) && Array.isArray(data.companies)) saved = { ...saved, ...data };
   } catch (_) {}
-  let state = { access: 'free', theme: 'dark', tab: 'idag', articles: [] };
+  const DEFAULT_COMPANY_NAME = 'Enemærke & Petersen A/S';
+  let state = { access: 'free', theme: 'dark', tab: 'idag', articles: [], company: DEFAULT_COMPANY_NAME };
   let statusTimer, activeTrigger = null, lastHeight = 0;
   const dialog = document.getElementById('tool-dialog');
   function h(tag, attrs = {}, ...children) {
@@ -268,7 +269,7 @@
     const prefs = saved.preferences || clone(DEFAULTS.preferences);
     return h('section', { class: 'workspace-panel', id: 'p-konto' }, head('Konto og adgang', 'Én konto til Y, Business Pro og dit medlemskab.'),
       h('div', { class: 'app-grid' },
-        card('Dit abonnement i demoen', h('h3', { class: 'workspace-heading', text: 'Business Pro · Aktiv adgang' }), note('Eksempelvirksomhed: Enemærke & Petersen A/S. Alle værktøjer er tilgængelige i denne præsentation.'),
+        card('Dit abonnement i demoen', h('h3', { class: 'workspace-heading', text: 'Business Pro · Aktiv adgang' }), note('Virksomhed i demoen: ' + state.company + '. Alle værktøjer er tilgængelige i denne præsentation.'),
           h('div', { class: 'workspace-card-actions' }, parentLink('Se produkt og pakker →', '#pro-produkt'), button('Log ud af demoen', () => send('logout')))),
         card('Dansk Industri', h('h3', { class: 'workspace-heading', text: state.access === 'di' ? 'DI-medlemskab verificeret i demoen' : 'Medlemskab skal verificeres' }), note('Det særlige DI-univers kræver verificeret medlemsadgang ud over Business Pro.'), parentLink(state.access === 'di' ? 'Åbn DI-universet →' : 'Gå til DI-medlemsadgang →', '#forside')),
         card('Dine præferencer · Demo', h('div', { class: 'workspace-prefs' }, [['brief', 'Morgenbrief'], ['mentions', 'Omtaler af virksomheden'], ['tenders', 'Relevante udbud']].map(([key, text]) => h('label', {}, h('input', { type: 'checkbox', checked: prefs[key], onchange: e => { prefs[key] = e.target.checked; saved.preferences = prefs; save(); announce('Præferencen er gemt i demoen. Ingen beskeder udsendes.'); } }), text))), note('Lokale demopræferencer. Der sendes ingen e-mail eller notifikationer.'))));
@@ -278,7 +279,7 @@
     if (!['pro', 'di'].includes(state.access)) return;
     const nav = h('nav', { class: 'workspace-nav tabs', 'aria-label': 'Business Pro-værktøjer' }, TABS.map(([key, text]) => h('a', { href: '#' + key, 'data-tab': key, 'aria-current': state.tab === key ? 'page' : null, text })));
     root.replaceChildren(
-      h('header', { class: 'workspace-top' }, h('div', {}, mono('Din virksomhed · Byggeri'), h('h1', { text: 'Mit Business Pro' }), note('Enemærke & Petersen A/S · Virksomhedseksempel')),
+      h('header', { class: 'workspace-top' }, h('div', {}, mono('Din virksomhed · Byggeri'), h('h1', { text: 'Mit Business Pro' }), note(state.company + ' · Virksomhedseksempel')),
         h('div', { class: 'workspace-top-actions' }, h('span', { class: 'workspace-access', text: state.access === 'di' ? 'Pro + DI-adgang aktiv' : 'Pro-adgang aktiv' }), parentLink('Redaktionelt overblik →', '#pro-overblik'))),
       nav, h('p', { class: 'workspace-note', text: 'Interaktiv demo · Virksomhedsdata, omtaler, udbud og nye rapportuddrag er illustrative. Ingen liveforbindelser.' }), views[state.tab]());
     if (focus) root.querySelector('.workspace-panel h2')?.focus({ preventScroll: true });
@@ -301,7 +302,8 @@
     const data = e.data;
     if (data.type === 'init') {
       if (!['pro', 'di'].includes(data.access)) return;
-      state = { access: data.access, theme: data.theme === 'light' ? 'light' : 'dark', tab: views[data.tab] ? data.tab : 'idag', articles: Array.isArray(data.articles) ? data.articles : [] };
+      const company = typeof data.company === 'string' && data.company.trim() ? data.company.trim().slice(0, 80) : DEFAULT_COMPANY_NAME;
+      state = { access: data.access, theme: data.theme === 'light' ? 'light' : 'dark', tab: views[data.tab] ? data.tab : 'idag', articles: Array.isArray(data.articles) ? data.articles : [], company };
       document.documentElement.setAttribute('data-theme', state.theme); render();
     } else if (data.type === 'theme') {
       state.theme = data.theme === 'light' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', state.theme); resize();

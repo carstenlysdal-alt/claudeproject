@@ -447,6 +447,42 @@
       intro(sector ? 'Byggeri' : 'Business', sector ? 'Business Pro · Redaktionens vigtigste historier til din branche.' : 'Redaktionens vigtigste historier. På tværs af erhvervslivet.', true),
       content);
   }
+  const DEMO_COMPANY_KEY = 'y-business-demo-company';
+  const DEFAULT_COMPANY = 'Eksempelvirksomhed A/S';
+  function demoCompany() { try { return localStorage.getItem(DEMO_COMPANY_KEY) || DEFAULT_COMPANY; } catch (_) { return DEFAULT_COMPANY; } }
+  function storeCompany(value) { const name = String(value || '').trim(); if (!name) return; try { localStorage.setItem(DEMO_COMPANY_KEY, name); } catch (_) {} }
+  function featureOverview() {
+    const features = [
+      ['Morgenbrief', 'Pro', 'Morgenbrief kl. 06.00 med de historier, der rammer jeres branche og virksomhed.'],
+      ['MedieMonitor', 'Pro', 'Omtaler af jeres virksomhed, brands og nøglepersoner samlet ét sted.'],
+      ['MarkedsMonitor', 'Pro', 'Ledelsesskift, regnskaber og bevægelser hos de virksomheder, I følger.'],
+      ['Business AI', 'Pro', 'Svar med kilder fra egne data og offentlige registre.'],
+      ['UdbudsMatch', 'Pro+', 'Udbud sorteret efter jeres branche og virksomhedsprofil.'],
+      ['Brancherapporter', 'Pro+', 'Beslutningsgrundlag for jeres branche, fire rapporter om året.']
+    ];
+    return el('section', { class: 'content-section pro-features', 'aria-labelledby': 'pro-features-title' },
+      el('h2', { id: 'pro-features-title', class: 'visually-hidden', text: 'Alt i Business Pro' }),
+      moduleHeader('Alt det, Business Pro kan.', 'Samme værktøjer for abonnenter og DI-medlemmer. Pro+ udvider med udbud og brancherapporter.'),
+      el('div', { class: 'pro-feature-grid' }, features.map(([title, tier, text]) => el('article', { class: 'pro-feature' },
+        el('span', { class: 'eyebrow-label', text: tier }),
+        el('h3', { text: title }),
+        el('p', { text: text })))));
+  }
+  function companyCase() {
+    const company = demoCompany();
+    const rows = [
+      ['market', 'Ledelse', 'Ny adm. direktør hos en fulgt virksomhed', 'MarkedsMonitor'],
+      ['tender', 'Udbud', '480 almene boliger i Rødovre · 94 % match', 'UdbudsMatch'],
+      ['media', 'Omtale', `Tre nye omtaler af ${company}`, 'MedieMonitor']
+    ];
+    return el('section', { class: 'company-case', 'aria-labelledby': 'company-case-title' },
+      mono('Jeres case · Demo'),
+      el('h2', { id: 'company-case-title', text: `${company}: sådan ser jeres marked ud i dag` }),
+      el('p', { class: 'plan-note', text: 'Eksempelcase. Erstattes af jeres egne CVR-, regnskabs- og omtaledata, når I er koblet på.' }),
+      el('div', { class: 'company-case-rows' }, rows.map(([kind, label, text, source]) => el('button', {
+        type: 'button', class: 'company-case-row', onclick: () => openTool(kind, kind === 'tender' ? 'byggeri' : null)
+      }, mono(label), el('strong', { text }), el('small', { text: source + ' →' })))));
+  }
   function proLanding() {
     const cockpit = [
       ['Det vigtigste fra jeres marked', 'Jeres konkurrenter gør det, der flytter markedet', '4 nye'],
@@ -474,6 +510,7 @@
         el('div', { class: 'trust-item' }, el('strong', { text: name }), el('small', { text: 'Demoindhold' }))));
     return el('div', { class: 'platform-page pro-landing-page' },
       hero,
+      featureOverview(),
       trust,
       el('section', { class: 'content-section', id: 'priser' }, moduleHeader('Ét abonnement. Jeres branche.', 'Eksempelpriser og pakker fra servicedemoen · Ét CVR, én branche og fem brugere'),
         el('div', { class: 'plans' },
@@ -493,7 +530,7 @@
   }
   function initWorkspace() {
     sendWorkspace('init', {
-      access, theme: document.documentElement.getAttribute('data-y-theme') === 'light' ? 'light' : 'dark', tab: workspaceTab,
+      access, company: demoCompany(), theme: document.documentElement.getAttribute('data-y-theme') === 'light' ? 'light' : 'dark', tab: workspaceTab,
       articles: ['p0', 'p1', 'p2', 'p3', 'p4', 'b6', 'b11'].map(key => {
         const article = story(key);
         return { key: article.key, title: article.fullTitle, dek: article.dek, label: article.label };
@@ -506,7 +543,7 @@
       sandbox: 'allow-scripts allow-same-origin allow-downloads', scrolling: 'no', onload: initWorkspace
     });
     return el('div', { class: 'platform-page pro-workspace-page' }, el('h1', { class: 'visually-hidden', text: 'Mit Business Pro · Værktøjer' }), access === 'di' ? link('Åbn DI-universet →', '#forside') : null,
-      el('div', { class: 'pro-workspace-grid' }, workspaceFrame, access === 'di' ? marketMonitor() : null));
+      companyCase(), el('div', { class: 'pro-workspace-grid' }, workspaceFrame, access === 'di' ? marketMonitor() : null));
   }
   function marketMonitor() {
     return el('aside', { class: 'pro-market-monitor', 'aria-labelledby': 'pro-market-title' },
@@ -661,6 +698,7 @@
     const sectorSelect = el('select', { name: 'sector' }, el('option', { value: 'alle', text: 'Alle brancher · Redaktionelt overblik' }), el('option', { value: 'byggeri', text: 'Byggeri' }));
     const form = el('form', { class: 'demo-form', onsubmit: e => {
       e.preventDefault(); if (!form.reportValidity()) return;
+      storeCompany(companyInput.value);
       setAccess(access === 'di' ? 'di' : 'pro', { announce: false });
       if (onComplete) onComplete(); else { closeDialog(); go('#pro'); }
       toast('Demo: Business ' + plan + ' er aktiveret. Ingen betaling er foretaget.');
