@@ -274,6 +274,16 @@ section.sec > header p { color:var(--text-muted); font-size:13px; }
 .pro-band .wrap > section.sec { padding-top:0; }
 .pro-band .card .dek { color:var(--text-secondary); }
 
+/* DI-delen: Y's tokens til skrift og radius, DI's lilla som gennemgående farve */
+:root { --di-purple:#360259; --di-accent:#b98ae0; --di-on-purple:#f5edf8; --di-on-purple-muted:#e9d9f0; }
+.di-band { background:var(--di-purple); color:var(--di-on-purple); padding:40px 0 48px; }
+.di-band .sec { padding-top:0; }
+.di-band section.sec h2, .di-band .card, .di-band .card .ydk-card-title { color:var(--di-on-purple); }
+.di-band section.sec > header p, .di-band .card .ph figcaption { color:var(--di-on-purple-muted); }
+.di-band .card .dek { color:var(--di-on-purple-muted); }
+.di-band .card .kicker { color:var(--di-accent); }
+.pill--di { background:var(--di-on-purple); color:var(--di-purple); }
+
 /* Footer */
 footer.site { padding:40px 0 56px; border-top:1px solid var(--divider); font-size:14px; color:var(--text-tertiary); }
 .fcols { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; }
@@ -350,9 +360,14 @@ footer.site { padding:40px 0 56px; border-top:1px solid var(--divider); font-siz
       <header><h2 id="s-pro">Business Pro · Cases og analyser</h2><p>Adgang med Business Pro</p></header>
       <div class="grid"><a class="ydk-card card" href="ybusiness-di-artikler.html#a1"><div class="card-body"><p class="ydk-label kicker">Industri</p><h3 class="ydk-card-title">Arla fik AI til at halvere udsvingene i produktionen – nu kan det også spare store energiregninger</h3><p class="dek">På fabrikken i Videbæk har Arla Foods Ingredients afprøvet maskinlæring i produktionen af specialiserede mælkepulvere. Resultatet var mere ensartet kvalitet og mulighed for at øge produktionen med op til 18 procent. Forsøget viser, hvordan eksisterende produktionsdata kan omsættes til en konkret økonomisk gevinst.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a2"><div class="card-body"><p class="ydk-label kicker">Industri</p><h3 class="ydk-card-title">Viking Malt ville spare energi med AI – men forsøget afslørede et problem, som rammer industrien</h3><p class="dek">En fabrik i Vordingborg fik installeret en AI-model, der skulle optimere maltproduktionen og reducere energiforbruget. Men efter fire måneders afprøvning var der ingen energibesparelse. En DTU-afhandling dokumenterer, hvorfor teknologien ikke leverede som forventet.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a3"><div class="card-body"><p class="ydk-label kicker">Energi</p><h3 class="ydk-card-title">En varmepumpe slugte energi og gik i stå – nu skal AI opdage problemerne 14 timer før</h3><p class="dek">Ringsted Forsyning har fået udviklet en maskinlæringsmodel, der kan forudsige begyndende isdannelse i en stor varmepumpe. I forsøget kunne teknologien opdage problemer op til 14 timer før den normale reaktion. Nu har forsyningen besluttet at investere i en videreudviklet løsning.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a4"><div class="card-body"><p class="ydk-label kicker">Byggeri</p><h3 class="ydk-card-title">Per Aarsleff fandt over 20 muligheder for AI – nu skal teknologien hjælpe med at vinde byggeopgaverne</h3><p class="dek">Entreprenørkoncernen Per Aarsleff har undersøgt, hvordan generativ AI kan ændre arbejdet med tilbud på bygge- og anlægsopgaver. Efter en gennemgang af mere end 20 mulige anvendelser er tre løsninger blevet udviklet som proof of concept. De skal blandt andet finde fejl i tilbud, genbruge tidligere erfaringer og gøre store dokumentmængder lettere at arbejde med.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a5"><div class="card-body"><p class="ydk-label kicker">Byggeri</p><h3 class="ydk-card-title">Gamle bygninger gemmer på millioner i materialer – nu skal AI hjælpe byggebranchen med at finde dem</h3><p class="dek">Når en bygning skal renoveres eller rives ned, kan store værdier ende som byggeaffald. Et dansk udviklingsprojekt med LINK Arkitektur, COWI, Geopartner og en række andre aktører har udviklet en AI-understøttet metode til at kortlægge materialer i eksisterende bygninger. Den næste kamp handler om at gøre data anvendelige på tværs af hele byggebranchen.</p></div></a><a class="ydk-card card" href="ybusiness-di-artikler.html#a7"><div class="card-body"><p class="ydk-label kicker">Industry Intelligence</p><h3 class="ydk-card-title">Dansk industri har fået AI ind ad døren – men fabrikkerne venter stadig</h3><p class="dek">Danske virksomheder er blandt Europas mest AI-aktive. Men en ny undersøgelse blandt 376 produktionsvirksomheder afslører et problem, der kan blive dyrt for industrien: De fleste eksperimenterer stadig, mens kun få har fået teknologien ind i den daglige produktion. Og selv store virksomheder kæmper med at omsætte forsøg til forretning.</p></div></a></div>
     </section>
+  </div>
+</div>
+
+<div class="di-band">
+  <div class="wrap">
     <section class="sec" aria-labelledby="s-di">
       <header><h2 id="s-di">For DI-medlemmer</h2><p>Business Pro × DI</p></header>
-      <div class="grid"><a class="ydk-card card" href="ybusiness-di-artikler.html#a6"><div class="card-body"><p class="ydk-label kicker">International opinion <span class="pill">DI-medlemmer</span></p><h3 class="ydk-card-title">Howard Marks om AI: Hvem kommer til at tjene pengene?</h3><p class="dek">Oaktree-medstifteren stiller 11 spørgsmål til AI-boomet. Hans notat sætter fokus på, hvem der får afkastet, når investeringerne skal tjenes hjem.</p></div></a></div>
+      <div class="grid"><a class="ydk-card card" href="ybusiness-di-artikler.html#a6"><div class="card-body"><p class="ydk-label kicker">International opinion <span class="pill pill--di">DI-medlemmer</span></p><h3 class="ydk-card-title">Howard Marks om AI: Hvem kommer til at tjene pengene?</h3><p class="dek">Oaktree-medstifteren stiller 11 spørgsmål til AI-boomet. Hans notat sætter fokus på, hvem der får afkastet, når investeringerne skal tjenes hjem.</p></div></a></div>
     </section>
   </div>
 </div>

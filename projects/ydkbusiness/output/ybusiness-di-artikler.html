@@ -119,8 +119,8 @@ ul { padding: 0; list-style: none; }
 .il-bg { fill: var(--ydk-surface-2); }
 
 /* ── Forside ── */
-/* DI-delen følger Y's designsystem (ydk-tokens.css). Ingen separat DI-palet.
-   DI-delen bruger Y's designtokens (ydk-tokens.css), også på boksen og kortene. Logoet er DI's eget (const DI_LOGO).
+/* DI-delen: Y's tokens (ydk-tokens.css) til skrift, radius og afstand. Lilla DI-palet (--di-*) ligger samlet i ybusiness-platform.css.
+   Lilla og de lyse kort i DI-boksen er DI's partnerflade og skifter ikke med temaet. Logoet er DI's eget (const DI_LOGO).
 
 .front { padding-top: 24px; padding-bottom: 56px; }
 .top { display: block; }
@@ -142,19 +142,19 @@ ul { padding: 0; list-style: none; }
 .band:hover h2 { color: var(--ydk-indigo-text); }
 .band .dek { font-style: normal; font-size: 16px; }
 
-.di-box { background: var(--surface-active); color: var(--text-primary); border-radius: var(--radius-card); padding: 28px; }
+.di-box { background: var(--di-purple); color: var(--di-on-purple); border-radius: var(--radius-card); padding: 28px; }
 .di-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
 .di-head-l { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.di-pill { display: inline-flex; align-items: center; min-height: 28px; padding: 0 12px; background: var(--surface-elevated); color: var(--text-primary); border-radius: var(--radius-full); font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; }
-.di-excl { display: inline-flex; align-items: center; gap: 8px; font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-primary); }
-.di-excl::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
-.di-logo { width: 76px; height: 56px; display: grid; place-items: center; background: var(--surface-cta); border-radius: var(--radius-md); }
+.di-pill { display: inline-flex; align-items: center; min-height: 28px; padding: 0 12px; background: var(--di-on-purple); color: var(--di-purple); border-radius: var(--radius-full); font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; }
+.di-excl { display: inline-flex; align-items: center; gap: 8px; font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--di-on-purple); }
+.di-excl::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--di-on-purple); }
+.di-logo { width: 76px; height: 56px; display: grid; place-items: center; background: var(--di-on-purple); border-radius: var(--radius-md); }
 .di-logo img { width: 52px; height: auto; }
 .di-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.di-card { display: flex; flex-direction: column; gap: 10px; background: var(--surface-elevated); color: var(--text-primary); border-radius: var(--radius-card); padding: 18px 18px 20px; transition: transform 120ms ease, box-shadow 120ms ease; }
-.di-card:hover { box-shadow: 0 0 0 2px var(--divider); }
-.di-card:focus-visible { outline-color: var(--text-primary); }
-.di-card .kick { font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+.di-card { display: flex; flex-direction: column; gap: 10px; background: var(--di-card); color: var(--di-card-text); border-radius: var(--radius-card); padding: 18px 18px 20px; transition: transform 120ms ease, box-shadow 120ms ease; }
+.di-card:hover { box-shadow: 0 0 0 2px var(--di-on-purple); }
+.di-card:focus-visible { outline-color: var(--di-on-purple); }
+.di-card .kick { font-family: var(--ydk-mono); font-weight: 600; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--di-card-muted); }
 .di-card h3 { font-weight: 800; font-size: 19px; line-height: 1.22; letter-spacing: -0.005em; text-wrap: balance; }
 
 
@@ -330,7 +330,7 @@ a.sn-i:hover { color: var(--h-ink); }
 .sn-tag { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 600; font-size: 9px; letter-spacing: .1em; padding: 4px 6px; border-radius: 3px; white-space: nowrap; }
 .sn-tag.pro { color: #2F41D6; background: rgba(66, 87, 245, .12); }
 :root:not([data-y-theme="light"]) .sn-tag.pro { color: #AAB0FF; background: rgba(66, 87, 245, .25); }
-.sn-tag.di { color: var(--text-primary); background: var(--surface-elevated); }
+.sn-tag.di { color: var(--di-on-purple); background: var(--di-purple); }
 .sn-i svg { width: 12px; height: 12px; }
 .sn-branches { position: relative; }
 .sn-branches summary { cursor: pointer; list-style: none; }
@@ -519,7 +519,7 @@ a.sn-i:hover { color: var(--h-ink); }
 
 </style>
 <link rel="stylesheet" href="ydk-tokens.css?v=20261120-8">
-<link rel="stylesheet" href="ybusiness-platform.css?v=20261120-14">
+<link rel="stylesheet" href="ybusiness-platform.css?v=20261120-15">
 </head>
 <body>
 <a class="skip-link" href="#view">Spring til indhold</a>
