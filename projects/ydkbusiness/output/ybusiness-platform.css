@@ -849,10 +849,6 @@ body:has(dialog[open]) { overflow: hidden; }
 .pro-workspace-page > .cta-secondary { justify-self: start; }
 .pro-workspace-page > h1 { margin: 0; }
 
-/* Ingen sidetitler eller labels i indholdet: sektionsnavnet står kun i menuen. Overskriften bliver for skærmlæsere. */
-.section-intro, .bf.bc .bc-head {
-  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
-}
 .bf.bc { padding-top: 24px; }
 
 /* DI-banneret følger sin egen bredde (container), ikke skærmen. Skrift og skala fra Y's tokens */
@@ -889,4 +885,3 @@ body:has(dialog[open]) { overflow: hidden; }
 /* DI-boksen er et kort: al tekst i Y's kortskrift (Public Sans), labels i IBM Plex Mono */
 .di-partner-banner p, .di-access-row p, .petal-di p, .workspace-bar { font-family: var(--font-public-sans); }
 .di-slot .di-partner-banner :is(h1, h2) { max-width: 24ch; }
-.section-intro, .curated-page .section-intro, .bf.bc .bc-head { padding: 0 !important; margin: -1px !important; }

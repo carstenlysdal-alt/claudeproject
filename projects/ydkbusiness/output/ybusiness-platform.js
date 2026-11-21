@@ -129,11 +129,8 @@
       description ? el('p', { text: typeof description === 'string' ? description : a.dek }) : null,
       el('div', { class: 'story-meta' }, a.premium ? badge(a.di ? 'di' : 'pro') : el('span', { text: 'Fri adgang' }), el('span', { text: `· ${a.minutes} min.` })));
   }
-  function intro(title, subtitle, pro = false) {
-    return el('header', { class: 'section-intro' },
-      el('div', {}, el('h1', {}, title, pro ? [' ', el('span', { class: 'pro-word', text: 'PRO' })] : null), el('p', { text: subtitle })),
-      el('div', { class: 'edition-date' }, 'Torsdag 19. november 2026', el('br'), 'Redaktionel demo'));
-  }
+  // Ingen sidetitler i indholdet: sektionsnavnet står i menuen. Siden får sit navn via aria-label på main.
+  function intro() { return null; }
   function moduleHeader(title, subtitle, action = null) {
     return el('div', { class: 'module-header' }, el('div', {}, el('h2', { text: title }), subtitle ? el('p', { text: subtitle }) : null), action);
   }
@@ -738,8 +735,9 @@
       content = el('div', { class: 'platform-page' }, intro('Siden findes ikke i demoen', 'Vælg Business, Business Pro eller din branche for at fortsætte.'), link('Til Business →', '#business', true)); title = 'Siden findes ikke';
     }
     main.replaceChildren(content, footer());
-    main.querySelector('h1')?.setAttribute('id', 'page-heading');
-    main.setAttribute('aria-labelledby', 'page-heading');
+    const heading = main.querySelector('h1');
+    if (heading) { heading.setAttribute('id', 'page-heading'); main.setAttribute('aria-labelledby', 'page-heading'); main.removeAttribute('aria-label'); }
+    else { main.removeAttribute('aria-labelledby'); main.setAttribute('aria-label', title); }
     document.title = title + ' | Y';
     document.getElementById('route-announcement').textContent = title;
     if (scroll) { window.scrollTo(0, 0); main.focus({ preventScroll: true }); }

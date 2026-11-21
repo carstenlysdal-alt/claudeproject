@@ -51,7 +51,8 @@ function setup(t, initial = '#business', base = 'http://localhost/') {
 
 test('Business preserves original content and shows premium status', t => {
   const { $, $$ } = setup(t);
-  assert.equal($$('main h1').length, 1);
+  assert.equal($$('main h1').length, 0, 'ingen sidetitel på Business');
+  assert.equal($('main').getAttribute('aria-label'), 'Business');
   assert($('main').textContent.includes('Agenter brød ud'));
   assert($('main').textContent.includes('Porsche'));
   assert($('.bf-mint .access-label .lock-icon'));
@@ -345,7 +346,8 @@ test('All routes render once, with unique IDs, in every access state', async t =
     await selectAccess(access);
     for (const route of routes) {
       await go('#' + route);
-      assert.equal($$('main h1').length, 1, `${access}: ${route}`);
+      assert($$('main h1').length <= 1, `${access}: ${route}`);
+      assert($('main').getAttribute('aria-label') || $('main h1'), `${access}: ${route} mangler navn`);
       const ids = $$('[id]').map(node => node.id);
       assert.equal(new Set(ids).size, ids.length, `${access}: ${route}`);
       assert(!$('main').textContent.includes('undefined'), `${access}: ${route}`);

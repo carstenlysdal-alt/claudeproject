@@ -1396,9 +1396,6 @@ function renderCategory(key) {
   };
   const [first, ...rest] = c.ids;
   return el('div', { class: 'bf bc' },
-    el('header', { class: 'bc-head' },
-      el('span', { class: 'bf-mono', text: 'BUSINESS' }),
-      el('h1', { text: c.label })),
     card(first, true),
     rest.length ? el('div', { class: 'bc-grid' }, rest.map(id => card(id, false))) : null);
 }
@@ -1433,6 +1430,6 @@ function renderProStub(n) {
 
 // Navigation og demoadgang håndteres i ybusiness-platform.js.
 </script>
-<script src="ybusiness-platform.js?v=20261121-10"></script>
+<script src="ybusiness-platform.js?v=20261121-11"></script>
 </body>
 </html>
