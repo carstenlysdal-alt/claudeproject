@@ -453,7 +453,7 @@ test('Låste historier har ikon og handling, og DI-pitchen nævner ekstra fordel
   const { $, $$, go, selectAccess } = setup(t, '#business');
   assert($$('.premium-lock-overlay').length > 0);
   assert($('.premium-lock-overlay .lock-icon'));
-  assert.equal($('.premium-lock-overlay').textContent.trim(), 'Læs hele historien →');
+  assert.equal($('.premium-lock-overlay').textContent.trim(), 'Lås op med Pro');
   await go('#pro-produkt');
   const text = $('.di-partner-banner').textContent;
   assert(text.includes('Er du DI-medlem?') && text.includes('ekstra fordele') && text.includes('separat abonnement'));

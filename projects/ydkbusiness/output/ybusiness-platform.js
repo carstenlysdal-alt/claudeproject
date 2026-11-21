@@ -94,7 +94,7 @@
     }
     return null;
   }
-  function lockOverlay() { return el('span', { class: 'premium-lock-overlay' }, lock(), el('span', { text: 'Læs hele historien →' })); }
+  function lockOverlay() { return el('span', { class: 'premium-lock-overlay' }, lock(), el('span', { text: 'Lås op med Pro' })); }
   function locked(key) { const a = story(key); return a && (a.di ? access !== 'di' : a.premium && !isPro()); }
   function photo(a, eager = false) {
     const img = el('img', { class: 'story-photo', src: a.img, alt: a.alt, loading: eager ? 'eager' : 'lazy', decoding: 'async' });
