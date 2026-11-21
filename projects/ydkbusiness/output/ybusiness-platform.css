@@ -885,3 +885,7 @@ body:has(dialog[open]) { overflow: hidden; }
 /* DI-boksen er et kort: al tekst i Y's kortskrift (Public Sans), labels i IBM Plex Mono */
 .di-partner-banner p, .di-access-row p, .petal-di p, .workspace-bar { font-family: var(--font-public-sans); }
 .di-slot .di-partner-banner :is(h1, h2) { max-width: 24ch; }
+
+/* Låsen sidder i det blurrede billede (øverst til venstre) og aldrig foran rubrikken */
+.premium-lock-overlay { top: 12px; bottom: auto; }
+.premium-lock-overlay { left: auto; right: 12px; }
