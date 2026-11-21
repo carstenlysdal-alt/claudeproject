@@ -269,11 +269,11 @@
     // .di-slot er en container: banneret tilpasser sig sin egen bredde og kan stå i smalle bokse
     // pitch: salgsvarianten til ikke-medlemmer, som lander fra "Se alle fordelene"
     return el('div', { class: 'di-slot' }, el('header', { class: 'di-partner-banner' },
-      el('div', {}, el(heading, { text: access === 'di'
-          ? 'Du er medlem af Dansk Industri – se dine ekstra fordele med Business Pro.'
-          : pitch
-            ? 'Er du medlem af Dansk Industri? Så kan du få ekstra fordele med Business Pro.'
-            : 'Industriens næste træk' }),
+      el('div', {}, el(heading, { text: pitch
+          ? (access === 'di'
+            ? 'Du er medlem af Dansk Industri – se dine ekstra fordele med Business Pro.'
+            : 'Er du medlem af Dansk Industri? Så kan du få ekstra fordele med Business Pro.')
+          : 'Industriens næste træk' }),
         mono(pitch ? 'Dansk Industri · Medlemsfordel' : 'Dansk Industri · Medlemsindsigt'),
         el('p', { text: pitch
           ? access === 'di'
@@ -323,7 +323,8 @@
   function diFront() {
     return el('div', { class: 'platform-page di-news-page' }, diBanner('h1'), diLeads('h2'),
       el('section', { class: 'content-section', 'aria-labelledby': 'di-cases-title' },
-        el('h2', { class: 'di-cases-title', id: 'di-cases-title', text: 'Virksomhederne i praksis' }), diCases()));
+        el('h2', { class: 'di-cases-title', id: 'di-cases-title', text: 'Virksomhederne i praksis' }), diCases()),
+      reportModule(null));
   }
   function reportModule(sector) {
     const construction = sector === 'byggeri';
@@ -486,7 +487,8 @@
           el('div', { class: 'pro-top-tool-info' },
             el('h3', { text: 'Udbudsmonitor' }),
             el('p', { text: 'Få overblik over relevante udbud og opgaver for jeres branche.' })),
-          btn('Åbn Udbudsmonitor →', () => openTool('tender', sector), true))));
+          btn('Åbn Udbudsmonitor →', () => openTool('tender', sector), true)),
+      el('a', { class: 'cta-primary pro-top-tools-compact', href: '#mit-pro', text: 'Åbn mit værktøj →' })));
   }
   function contextMarketTool(sector) {
     if (!isPro()) return null;
@@ -524,7 +526,11 @@
       el('span', { class: 'curation-note', text: sector ? 'Indholdet er prioriteret til Byggeri' : 'Det vigtigste på tværs af erhvervslivet' }));
     curation.querySelectorAll('a').forEach(a => a.classList.toggle('ydk-pill--active', a.hasAttribute('aria-current')));
     const categories = el('nav', { class: 'curation-bar', 'aria-label': 'Indholdsformater' },
-      [['alle', 'Overblik'], ['finans', 'Finans'], ['analyse', 'Analyse'], ['rapporter', 'Brancherapporter'], ['vaerktoejer', 'Værktøjer']].map(([key, text]) => el('a', { class: 'ydk-pill' + (filter === key ? ' ydk-pill--active' : ''), href: base + (key === 'alle' ? '' : '?f=' + key), 'aria-current': filter === key ? 'page' : null, text })));
+      [['alle', 'Overblik'], ['finans', 'Finans'], ['analyse', 'Analyse'], ['rapporter', 'Brancherapporter'], ['vaerktoejer', 'Værktøjer']].map(([key, text]) => {
+      const isToolLink = key === 'vaerktoejer' && isPro();
+      const href = isToolLink ? '#mit-pro' : base + (key === 'alle' ? '' : '?f=' + key);
+      return el('a', { class: 'ydk-pill' + (filter === key && !isToolLink ? ' ydk-pill--active' : ''), href, 'aria-current': filter === key && !isToolLink ? 'page' : null, text });
+    }));
     const finance = spec ? spec.finance : ['b6', 'b8', 'b9'];
     const analysis = spec ? spec.analysis : ['b3', 'b1', 'b2'];
     const sections = [];
@@ -558,7 +564,14 @@
       if (isPro()) sections.push(contextMoreThanNews());
       sections.push(reportModule(sector));
     }
+    if (filter === 'vaerktoejer') {
+      sections.push(featureOverview());
+      if (isPro()) sections.push(companyCase());
+    }
     if (filter === 'alle' || filter === 'vaerktoejer') sections.push(toolsModule(sector));
+    if (filter === 'vaerktoejer' && isPro()) sections.push(el('section', { class: 'content-section' },
+      moduleHeader('Dit værktøjsunivers', 'Samlet overblik over alle dine arbejdsredskaber'),
+      el('div', { class: 'cta-row' }, link('Åbn Mit Business Pro →', '#mit-pro', true))));
     if (access !== 'di') sections.push(diTeaser(filter !== 'alle'));
     const content = el('div', { class: 'curation-content', 'data-filter': filter }, ...sections);
     return el('div', { class: 'platform-page curated-page' },
@@ -671,13 +684,19 @@
       sandbox: 'allow-scripts allow-same-origin allow-downloads', scrolling: 'no', onload: initWorkspace
     });
     return el('div', { class: 'platform-page pro-workspace-page' }, el('h1', { class: 'visually-hidden', text: 'Mit Business Pro · Værktøjer' }), access === 'di' ? el('nav', { class: 'workspace-bar', 'aria-label': 'DI-medlem' }, el('span', { text: 'Du er logget ind som DI-medlem' }), link('Åbn DI-universet →', '#forside')) : null,
-      companyCase(), el('div', { class: 'pro-workspace-grid' }, workspaceFrame, access === 'di' ? marketMonitor() : null));
+      companyCase(), el('div', { class: 'pro-workspace-grid' }, workspaceFrame, access === 'di' ? diBenefits() : null));
   }
-  function marketMonitor() {
-    return el('aside', { class: 'pro-market-monitor', 'aria-labelledby': 'pro-market-title' },
-      el('h2', { id: 'pro-market-title', text: 'MarkedsMonitor' }),
-      el('p', { class: 'plan-note', text: 'Nye udviklinger fra DI-indholdet.' }),
-      ['a7', 'a1', 'a2'].map(key => { const a = story(key); return el('a', { class: 'pro-market-item', href: '#' + key }, el('strong', { text: a.fullTitle }), el('span', { text: a.dek })); }));
+  function diBenefits() {
+    const items = [
+      ['Virksomhedscases', 'Danske cases med konkret erfaring og læring'],
+      ['Analyser', 'Ekstra dybdegående analyser for DI-medlemmer'],
+      ['Opinion', 'Indsigt og perspektiver fra industriens folk']
+    ];
+    return el('aside', { class: 'pro-di-benefits', 'aria-labelledby': 'pro-di-title' },
+      el('h2', { id: 'pro-di-title', text: 'Eksklusivt til dig' }),
+      el('p', { class: 'plan-note', text: 'Som DI-medlem får du adgang til særligt indhold ud over Business Pro.' }),
+      el('ul', {}, items.map(([title, text]) => el('li', {}, el('strong', { text: title }), el('span', { text })))),
+      link('Åbn DI-universet →', '#forside', true));
   }
   function proAccessPage() {
     return el('div', { class: 'platform-page pro-access-page' },
@@ -762,7 +781,7 @@
     }
     const login = document.getElementById('platform-login'); login.textContent = access === 'free' ? 'Log ind' : 'Min konto';
     const cta = document.getElementById('platform-cta'); cta.textContent = isPro() ? 'Mit Business Pro →' : 'Prøv Pro+ | 0 kr. første måned'; cta.href = isPro() ? '#mit-pro' : '#pro-produkt';
-    cta.hidden = !isBusinessOrPro;
+    cta.hidden = !isBusinessOrPro || r.name === 'mit-pro';
     document.querySelectorAll('#tabs [data-view]').forEach(a => { if (a.dataset.view === r.name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     document.getElementById('nav-pro').setAttribute('href', '#pro-overblik');
     renderBloom(r);
@@ -798,9 +817,6 @@
         wide(7, 8),
         el('aside', { class: 'yf-tal', 'aria-label': 'Dagens tal' }, el('span', { class: 'ydk-label', text: 'Dagens tal' }), el('strong', { text: tal.value }), el('p', { text: tal.text })),
         thumb(8, 3), thumb(9, 3), thumb(10, 3), thumb(11, 3)),
-      el('section', { class: 'yf-panel', 'aria-labelledby': 'yf-pro-h' },
-        el('header', {}, el('h2', { id: 'yf-pro-h', text: 'Business Pro · Cases og analyser' }), el('a', { href: '#pro-produkt', text: 'Se Business Pro →' })),
-        el('div', { class: 'yf-grid' }, [1, 2, 3, 4, 5, 7].map(id => text(id, 4)))),
       access === 'free' ? el('section', { class: 'yf-di', 'aria-label': 'Dansk Industri' },
         el('div', { class: 'di-slot' },
           el('header', { class: 'di-partner-banner' },
