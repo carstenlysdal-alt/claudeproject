@@ -2,6 +2,8 @@
   "name": "ybusiness-dashboard",
   "version": "1.0.0",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node tests/ybusiness-platform.test.cjs && node tests/business-pro-tools.test.cjs"
   }
 }

@@ -40,10 +40,8 @@ function setup(t, initial = '#business', base = 'http://localhost/') {
     await navigated;
   };
   const selectAccess = async access => {
-    const navigated = access !== 'free' && w.location.hash !== '#pro' ? nextRoute() : null;
     click(`[data-access="${access}"]`);
-    if (navigated) assert.equal(w.location.hash, '#pro');
-    await navigated;
+    await new Promise(resolve => w.setTimeout(resolve, 0));
   };
   const submit = () => $('.demo-form').dispatchEvent(new w.Event('submit', { cancelable: true, bubbles: true }));
   return { w, d, $, $$, click, press, go, selectAccess, submit };
@@ -91,8 +89,11 @@ test('Original header, category links and complete article picker remain availab
   assert($('#mockPanel').hidden);
 });
 
-test('DI preview keeps both disclosures and all seven stories', t => {
-  const { $, $$, click } = setup(t);
+test('DI pitch replaces protected preview for free users and opens it for DI members', async t => {
+  const { $, $$, click, selectAccess } = setup(t);
+  assert($('.preserved-di').textContent.includes('Er du medlem af Dansk Industri'));
+  assert.equal($('#di-preview-content'), null);
+  await selectAccess('di');
   assert($('#di-preview-content').hidden);
   click('[aria-controls="di-preview-content"]');
   assert(!$('#di-preview-content').hidden);
@@ -215,7 +216,7 @@ test('DI members open the Business Pro workspace from the DI link', async t => {
   const { $, click, selectAccess, w } = setup(t);
   await selectAccess('di');
   const navigated = new Promise(resolve => w.addEventListener('hashchange', resolve, { once: true }));
-  click('#nav-pro');
+  click('#platform-cta');
   await navigated;
   assert.equal(w.location.hash, '#mit-pro');
   assert($('.pro-workspace-page iframe'));
@@ -225,7 +226,8 @@ test('DI members open the Business Pro workspace from the DI link', async t => {
 });
 
 test('DI login and verification return to intended member article', async t => {
-  const { $, click, submit, w } = setup(t);
+  const { $, click, go, submit, w } = setup(t);
+  await go('#forside');
   click('[aria-controls="di-preview-content"]');
   click('.di-case-disclosure summary');
   click('.di-news-cases a[href="#a1"]');
@@ -270,7 +272,7 @@ test('Market controls change the illustrative dataset', t => {
 
 test('Business Pro opens login/paywall for visitors and the workspace after login', async t => {
   const { $, click, press, go, submit, w } = setup(t);
-  await go('#pro');
+  await go('#mit-pro');
   assert($('.pro-access-page'));
   assert(!$('.pro-tools-frame'));
   press('.pro-login-card button', 'Log ind og åbn');
@@ -281,16 +283,18 @@ test('Business Pro opens login/paywall for visitors and the workspace after logi
   assert(!$('.pro-access-page'));
 });
 
-test('Selecting Business Pro or DI opens the workspace, and downgrading removes it', async t => {
+test('Selecting Business Pro or DI keeps the editorial route and opens the workspace only from Mit Business Pro', async t => {
   const { $, go, selectAccess, w } = setup(t);
   for (const access of ['pro', 'di']) {
     await go('#business');
     await selectAccess(access);
-    assert.equal(w.location.hash, '#pro');
+    assert.equal(w.location.hash, '#business');
+    await go('#mit-pro');
     assert($('.pro-tools-frame'));
     assert(!$('.pro-access-page'));
   }
   await selectAccess('free');
+  await go('#mit-pro');
   assert(!$('.pro-tools-frame'));
   assert($('.pro-access-page'));
 });
@@ -304,9 +308,10 @@ test('Mit Business Pro direct URL is gated and product landing remains available
   assert(!$('.pro-access-page'));
 });
 
-test('Workspace handshake validates source and origin and supplies Y theme and existing stories', t => {
-  const { $, click, w } = setup(t, '#pro');
+test('Workspace handshake validates source and origin and supplies Y theme and existing stories', async t => {
+  const { $, click, go, w } = setup(t, '#mit-pro');
   click('[data-access="pro"]');
+  await go('#mit-pro');
   const frame = $('.pro-tools-frame'), messages = [];
   frame.contentWindow.postMessage = (data, origin) => messages.push({ data, origin });
   const send = (source, origin, type, rest = {}) => w.dispatchEvent(new w.MessageEvent('message', { source, origin, data: { channel: 'y-business-workspace', type, ...rest } }));
@@ -325,9 +330,10 @@ test('Workspace handshake validates source and origin and supplies Y theme and e
   assert($('.pro-access-page')); assert(!$('.pro-tools-frame'));
 });
 
-test('Parent accepts workspace messages when the mock is opened as a local file', t => {
-  const { $, click, w } = setup(t, '#pro', 'file:///Users/demo/output/ybusiness-di-artikler.html');
+test('Parent accepts workspace messages when the mock is opened as a local file', async t => {
+  const { $, click, go, w } = setup(t, '#mit-pro', 'file:///Users/demo/output/ybusiness-di-artikler.html');
   click('[data-access="pro"]');
+  await go('#mit-pro');
   const frame = $('.pro-tools-frame'), messages = [];
   frame.contentWindow.postMessage = (data, origin) => messages.push({ data, origin });
   const send = (source, origin, type, rest = {}) => w.dispatchEvent(new w.MessageEvent('message', { source, origin, data: { channel: 'y-business-workspace', type, ...rest } }));
@@ -377,7 +383,7 @@ test('Pro-menuen er lukket som standard og folder Brancher og DI-medlem ud under
   assert($('#pro-bloom').hidden, 'klik udenfor lukker');
 });
 
-test('Overblik er altid Business, og PRO åbner værktøjet for Pro og DI', async t => {
+test('Overblik er altid Business, og Mit Business Pro åbner værktøjet for Pro og DI', async t => {
   const { $, go, selectAccess } = setup(t);
   assert.equal($('.sn-i[href="#business"]').getAttribute('aria-current'), 'page');
   await go('#b2');
@@ -386,9 +392,11 @@ test('Overblik er altid Business, og PRO åbner værktøjet for Pro og DI', asyn
   assert.equal($('.sn-i[href="#business"]').getAttribute('aria-current'), null);
   assert.equal($('#nav-pro').getAttribute('href'), '#pro-overblik');
   await selectAccess('pro');
-  assert.equal($('#nav-pro').getAttribute('href'), '#mit-pro');
+  assert.equal($('#nav-pro').getAttribute('href'), '#pro-overblik');
+  assert.equal($('#platform-cta').getAttribute('href'), '#mit-pro');
   await selectAccess('di');
-  assert.equal($('#nav-pro').getAttribute('href'), '#mit-pro');
+  assert.equal($('#nav-pro').getAttribute('href'), '#pro-overblik');
+  assert.equal($('#platform-cta').getAttribute('href'), '#mit-pro');
   assert.equal($('#pro-bloom a.bloom-di').getAttribute('href'), '#forside');
 });
 
@@ -458,7 +466,7 @@ test('Låste historier har ikon og handling, og DI-pitchen nævner ekstra fordel
   assert.equal($('.premium-lock-overlay').textContent.trim(), 'Lås op med Pro');
   await go('#pro-produkt');
   const text = $('.di-partner-banner').textContent;
-  assert(text.includes('Er du DI-medlem?') && text.includes('ekstra fordele') && text.includes('separat abonnement'));
+  assert(text.includes('Er du medlem af Dansk Industri') && text.includes('ekstra fordele') && text.includes('separat abonnement'));
   await selectAccess('di');
   await go('#mit-pro');
   assert($('.workspace-bar').textContent.includes('Åbn DI-universet'), 'DI-linje øverst i værktøjet');

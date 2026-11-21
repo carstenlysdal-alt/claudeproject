@@ -1,0 +1,10 @@
+{
+  "name": "claudeproject",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd projects/ydkbusiness/output && node server.js",
+    "start": "cd projects/ydkbusiness/output && node server.js",
+    "test": "node projects/ydkbusiness/output/tests/ybusiness-platform.test.cjs && node projects/ydkbusiness/output/tests/business-pro-tools.test.cjs"
+  }
+}

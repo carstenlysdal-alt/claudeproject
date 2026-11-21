@@ -554,7 +554,7 @@ a.sn-i:hover { color: var(--h-ink); }
       </div>
     </nav>
     <div class="ysite-r">
-      <a class="ysite-cta" id="platform-cta" href="#pro">Prøv Pro+ | 0 kr. første måned</a>
+      <a class="ysite-cta" id="platform-cta" href="#pro-produkt">Prøv Pro+ | 0 kr. første måned</a>
       <button class="header-login" id="platform-login" type="button">Log ind</button>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Skift til lys visning"></button>
       <button class="ysite-menu" id="platform-menu" type="button" aria-label="Åbn menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 9h14M5 15h14"/></svg></button>
@@ -1047,7 +1047,6 @@ function renderArticle(id, grp) {
       el('figure', { class: 'article-media' },
         isB ? artMedia(id, 'ratio-16x9') : mediaFor(id, 'ratio-16x9'),
         isB ? el('p', { class: 'caption', text: bCaption(id) }) : captionFor(id)),
-      articleOutline(blocks, key),
       !isB && Number(id) === 6 ? el('div', { class: 'voice-note' }, el('strong', { text: 'Howard Marks · Det internationale perspektiv' }), el('p', { text: 'Oaktree-medstifterens tanker om AI, kapital og afkast. Artiklen formidler hans offentliggjorte notat.' })) : null,
       body,
       el('footer', { class: 'article-foot' },
@@ -1165,6 +1164,104 @@ Den næste fase af AI-boomet handler derfor ikke kun om at bygge flere servere. 
    Fotos: se BPHOTO. Tegningerne i ART er reserve, hvis et foto ikke kan hentes.
    ════════════════════════════════════════════════════════════════════════════ */
 const BUSINESS_DATE = '7. oktober 2026';
+
+/* ── Generiske politik-historier (global nav → POLITIK). Ingen business-vinkel. ── */
+const GLOBAL_POLITIK_STORIES = [
+  {
+    id: 'g-p1',
+    kicker: 'Folketing',
+    headline: 'Grønlandsaftale vedtaget enstemmigt',
+    manchet: 'Folketing stemmer samlet ja til historisk sikkerheds- og forsvarsaftale med Grønland og USA.',
+    photo: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'Det grønne tag på Christiansborg set fra luften.',
+    date: '21. nov. 2026'
+  },
+  {
+    id: 'g-p2',
+    kicker: 'Værdipolitik',
+    headline: 'Tørklæde-strid deler Christiansborg',
+    manchet: 'Liberal Alliance skifter kurs og støtter tørklædeforbud i folkeskolen. Socialdemokratiet afviser med henvisning til Grundloven.',
+    photo: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'Christiansborg Slot set fra Rådhuspladsen.',
+    date: '20. nov. 2026'
+  },
+  {
+    id: 'g-p3',
+    kicker: 'Venstre',
+    headline: 'Preben Bang Henriksen ekskluderet',
+    manchet: 'Venstres main-gruppe stemmer for at ekskludere den mangeårige parlamentariker efter intern strid om partilinjen.',
+    photo: 'https://images.unsplash.com/photo-1555848962-6e79363ec58f?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'Tomme stolerækker i et konferencelokale.',
+    date: '20. nov. 2026'
+  },
+  {
+    id: 'g-p4',
+    kicker: 'Uddannelse',
+    headline: 'SU-forslag udløser store protester',
+    manchet: 'Tusinder af studerende mødte op foran Christiansborg, da regeringen fremlagde sit udspil om ændringer i SU til hjemmeboende.',
+    photo: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'Menneskemylder ved en offentlig protest.',
+    date: '19. nov. 2026'
+  },
+  {
+    id: 'g-p5',
+    kicker: 'Udlændinge',
+    headline: 'Danmark søger udrejsecenter uden for EU',
+    manchet: 'Regeringen fortsætter arbejdet med at etablere et udrejsecenter i et land uden for EU. Debatten vækker reaktioner både hjemme og internationalt.',
+    photo: 'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'Oversigt over et modtageanlæg.',
+    date: '19. nov. 2026'
+  }
+];
+
+/* ── Generiske internationale historier (global nav → INTERNATIONAL). Ingen business-vinkel. ── */
+const GLOBAL_INTL_STORIES = [
+  {
+    id: 'g-i1',
+    kicker: 'Ukraine · Diplomati',
+    headline: 'Trump ringede til Europas ledere fra Air Force One',
+    manchet: 'Den amerikanske præsident afviste yderligere milliardhjælp til Ukraine og hævdede, at Putin er klar til forhandlinger.',
+    photo: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'Et fly i luften over skyer, set nedefra.',
+    date: '21. nov. 2026'
+  },
+  {
+    id: 'g-i2',
+    kicker: 'EU · Brexit',
+    headline: 'EU og UK genåbner grænsen for unge',
+    manchet: 'Historisk aftale åbner for bevægelsesfrihed for unge borgere ti år efter Brexit-afstemningen.',
+    photo: 'https://images.unsplash.com/photo-1608817576203-3c27ed168bd2?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'EU-flag med gule stjerner på blå bund.',
+    date: '21. nov. 2026'
+  },
+  {
+    id: 'g-i3',
+    kicker: 'Geopolitik',
+    headline: 'Topmøde i Shenzhen: Trump, Xi og Putin – uden Europa',
+    manchet: 'De tre stormagter mødes i Kina. Europas fravær ved bordet vækker bekymring om den globale orden.',
+    photo: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'Havnepromenaden i Shenzhen ved aften.',
+    date: '20. nov. 2026'
+  },
+  {
+    id: 'g-i4',
+    kicker: 'Ukraine · Forsvar',
+    headline: 'Zelenskyj kræver europæisk plads ved fredsbordet',
+    manchet: 'Ukraines præsident afviser en fredsproces, der udelukker Europa. Løkke bakker op.',
+    photo: 'https://images.unsplash.com/photo-1587271339318-2e78e3236294?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'Et diplomatisk møde med flag på bordet.',
+    date: '20. nov. 2026'
+  },
+  {
+    id: 'g-i5',
+    kicker: 'EU · Sikkerhed',
+    headline: 'EU sanktionerer medieaktører med Hamas-bånd',
+    manchet: 'EU indfører målrettede sanktioner mod en gruppe medieorganisationer med dokumenterede forbindelser til Hamas.',
+    photo: 'https://images.unsplash.com/photo-1555848962-6e79363ec58f?auto=format&fit=crop&w=1200&q=80',
+    photoAlt: 'Europaparlamentets bygning i Strasbourg.',
+    date: '19. nov. 2026'
+  }
+];
 
 // Forsiden. Ændr rækkefølgen her.
 // mint = tekstkortet, hero = det store billedkort, list = små historier til højre, wide = det brede billedkort, tal = dagens tal.
@@ -1416,7 +1513,6 @@ function renderProStub(n) {
       el('p', { class: 'dek', text: d.p }),
       el('div', { class: 'meta mono' }, el('span', { text: PRO.time }), el('span', { class: 'sep', 'aria-hidden': 'true', text: '·' }), el('span', { class: 'coral', text: d.body ? 'Eksempelartikel' : 'Pladsholder' }),d.body ? [el('span', { class: 'sep', 'aria-hidden': 'true', text: '·' }), el('span', { text: `ca. ${Math.max(1, Math.round(d.body.split(/\s+/).length / 190))} min læsetid` })] : null),
       el('figure', { class: 'article-media' }, el('div', { class: 'media ratio-16x9' }, el('img', { src: PRO_IMG[d.img], alt: '' })), el('p', { class: 'caption', text: 'Foto: Arkiv / Unsplash' })),
-      d.body ? articleOutline(parseBody(d.body), 'p' + n) : null,
       d.body ? articleBody(d.body, 'p' + n) : el('div', { class: 'body' },
         el('aside', { class: 'aside-box', 'aria-label': 'Pladsholder' },
           el('header', { class: 'aside-head mono indigo' }, iconSvg(ICON_INFO), el('h2', { text: 'Pladsholder' })),

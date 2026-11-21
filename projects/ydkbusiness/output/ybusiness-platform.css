@@ -229,6 +229,11 @@ h1, h2, h3, h4 { font-family: var(--font-public-sans); }
 .pro-promo { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px; padding: 28px 32px; border: 1px solid var(--anchor-border); border-radius: 12px; background: var(--surface-active); }
 .pro-promo h2 { margin: 8px 0; font: 600 28px/1.2 var(--font-public-sans); letter-spacing: -1.12px; }
 .pro-promo p { font-size: 14px; color: var(--text-tertiary); max-width: 64ch; }
+.pro-promo.pro-access-intro { display: flex; flex-direction: column; align-items: flex-start; padding: 40px 44px; gap: 0; }
+.pro-promo.pro-access-intro h2 { font: 700 42px/1.12 var(--font-public-sans); letter-spacing: -1.68px; margin: 16px 0 20px; max-width: 20ch; }
+.pro-promo.pro-access-intro > p { font-size: 16px; line-height: 1.6; color: var(--text-tertiary); max-width: 56ch; margin-bottom: 4px; }
+.pro-promo.pro-access-intro .pro-access-features { display: grid; gap: 12px; margin: 20px 0 28px; font-size: 14px; color: var(--text-secondary); }
+.pro-promo.pro-access-intro .cta-row a { min-height: 44px; padding: 0 22px; font-size: 13px; border-radius: 999px; }
 .market-strip { border-block: 1px solid var(--divider); padding: 16px 0; }
 .market-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; }
 .market-grid dd { margin: 0; }
@@ -345,7 +350,7 @@ h1, h2, h3, h4 { font-family: var(--font-public-sans); }
 .open-pro-rail p { color: var(--text-tertiary); font-size: 13px; line-height: 1.5; }
 .story-card h3 { font-size: 21px; line-height: 1.28; font-weight: 600; letter-spacing: -.6px; }
 .story-card p { font-size: 14px; line-height: 1.5; color: var(--text-tertiary); }
-.story-card:hover :is(h2, h3) { text-decoration: underline; text-underline-offset: 4px; }
+.story-card:hover :is(h2, h3) { text-decoration: none; }
 .story-meta { font: 400 10px/1.5 var(--font-ibm-mono); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .5px; display: flex; gap: 8px; align-items: center; }
 .access-label { font: 500 10px/1.4 var(--font-ibm-mono); display: inline-flex; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: .5px; }
 .branch-feature { display: grid; grid-template-columns: 1.15fr 1fr; overflow: hidden; border-radius: 12px; background: var(--surface-active); border: 1px solid var(--divider); }
@@ -810,7 +815,7 @@ body:has(dialog[open]) { overflow: hidden; }
 .yf-ph img, .yf-ph svg { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-card); background: var(--surface-active); }
 .yf-credit { display: block; margin-top: 8px; font-size: 11px; color: var(--text-muted); }
 .yf-hero h1 { margin-top: 16px; }
-.yf-hero:hover h1 { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 3px; }
+.yf-hero:hover h1 { text-decoration: none; }
 .yf-overlay { position: relative; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: var(--radius-card); background: #322f32; color: #eeeded; aspect-ratio: 474 / 462; }
 .yf-wide { aspect-ratio: auto; min-height: 360px; }
 .yf-overlay > img, .yf-overlay > svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -818,11 +823,11 @@ body:has(dialog[open]) { overflow: hidden; }
 .yf-overlay h3 { font: 400 22px/1.4 var(--font-public-sans); letter-spacing: -.44px; }
 .yf-overlay h3 strong { font-weight: 700; }
 .yf-wide h3 { font: 700 clamp(24px, 3vw, 34px)/1.15 var(--font-public-sans); letter-spacing: var(--tracking-title-md); max-width: 24ch; }
-.yf-overlay:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+.yf-overlay:hover h3 { text-decoration: none; }
 .yf-wide .yf-kick { color: #c7b5ff; }
 .yf-thumb, .yf-text { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .yf-thumb h3, .yf-text h3 { font: 600 20px/1.25 var(--font-public-sans); letter-spacing: -.4px; }
-.yf-thumb:hover h3, .yf-text:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+.yf-thumb:hover h3, .yf-text:hover h3 { text-decoration: none; }
 .yf-kick { color: var(--text-muted); }
 .yf-text p { margin: 0; font: 400 15px/1.5 var(--font-body); color: var(--text-tertiary); }
 .yf-text { padding-top: 16px; border-top: 2px solid var(--text-primary); }
@@ -893,3 +898,49 @@ body:has(dialog[open]) { overflow: hidden; }
 /* Små miniaturer i sidespalten: kun låsen, midt i det blurrede billede. Teksten er stadig til stede for skærmlæsere */
 .curation-side .story-card .premium-lock-overlay { left: 35px; right: auto; top: 56px; padding: 10px; }
 .curation-side .story-card .premium-lock-overlay span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Ensartede hover-understregninger: fjern hover-understregning på overskrifter i kort og forsider */
+.story-card:hover :is(h2, h3),
+.yf-hero:hover h1,
+.yf-overlay:hover h3,
+.yf-thumb:hover h3,
+.yf-text:hover h3,
+.bf-li:hover h2,
+.bf-mint:hover h2,
+.bc-card:hover h2,
+.bc-card:hover h3,
+.pr-card:hover h2,
+.pr-card:hover h3,
+.pr-hero:hover h1 {
+  text-decoration: none !important;
+}
+
+/* Fjern labels på forsiden */
+.bf-kick,
+.yf-kick {
+  display: none !important;
+}
+
+/* Rubrikker følger Y-typografi og har passende max-width */
+.story-card h3 { max-width: 28ch; }
+.story-card h2 { max-width: 26ch; }
+.bf-mint h2 { max-width: 26ch; }
+.bf-li h2 { max-width: 32ch; }
+.bc-t h3 { max-width: 30ch; }
+
+/* ── Generiske politik- og international-sider (global nav) ── */
+.gf-page { padding-top: 24px; }
+.gf-hero { display: flex; flex-direction: column; gap: 12px; }
+.gf-hero .yf-ph img { aspect-ratio: 21 / 9; border-radius: var(--radius-card); }
+/* h2 bruges som hero-rubrik — samme visuelle størrelse som h1-hero */
+.gf-hero-title { font: 700 clamp(28px, 4vw, 48px)/1.1 var(--font-public-sans); letter-spacing: var(--tracking-title-hero); max-width: 24ch; margin: 0; }
+.gf-hero-manchet { font: 400 18px/1.5 var(--font-body); color: var(--text-secondary); max-width: 60ch; margin: 0; }
+.gf-card { display: flex; flex-direction: column; gap: 10px; }
+.gf-card .yf-ph img { aspect-ratio: 16 / 9; border-radius: var(--radius-card); }
+.gf-card .ydk-label { margin-top: 4px; }
+.gf-card h3 { font: 600 20px/1.3 var(--font-public-sans); letter-spacing: -.4px; max-width: 30ch; margin: 0; }
+.gf-card p { font: 400 15px/1.5 var(--font-body); color: var(--text-secondary); margin: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.gf-card:hover h3 { text-decoration: none; }
+/* Kicker vises på disse sider (tilsidesæt den globale display:none for .yf-kick) */
+.gf-page .yf-kick { display: block !important; }
+
