@@ -78,19 +78,45 @@
   function go(hash) {
     if (location.hash === hash) render(); else location.hash = hash;
   }
+  const SHORT_TITLES = {
+    b1: "Agenter brød ud af testmiljø",
+    b2: "EU udskyder store AI-krav",
+    b3: "Tilmeldt ved tavshed",
+    b4: "McDonald's AI-priser i retten",
+    b5: "Porsche skærer 9.000 stillinger",
+    b6: "Nvidia tjener 91 kr. per 100 kr.",
+    b7: "Ørsted mangler byggeprojekter",
+    b8: "Webull udgør sikkerhedsrisiko",
+    b9: "SpaceX låner milliarder til AI",
+    b10: "Terma fordobler rumomsætning",
+    b11: "Datacentre rammer elnettets loft",
+    p0: "Aarsleff satser på generativ AI",
+    p1: "EU dumper renoveringsregning",
+    p2: "AI overser de dyre byggefejl",
+    p3: "Mindre cement i ny beton",
+    p4: "Millioner i materialer fundet",
+    a1: "Arla halverer produktionsudsving med AI",
+    a2: "DTU: Varmepumper sparede ingen energi",
+    a3: "Forsyning varsler isdannelse 14 timer før",
+    a4: "Aarsleff sætter AI på tilbuddene",
+    a5: "Mobil-scan finder værdier i bygninger",
+    a6: "DI: Hurtigere AI-godkendelser nødvendige",
+    a7: "EU-krav presser SMV'er"
+  };
+  window.SHORT_TITLES = SHORT_TITLES;
   function story(key) {
     if (/^b\d+$/.test(key) && BARTICLES[key.slice(1)]) {
       const id = key.slice(1), a = BARTICLES[id], p = BPHOTO[id];
-      return { key, title: a.front || a.headline, fullTitle: a.headline, dek: a.manchet, label: a.kicker, img: PHOTO_DATA[p.photo] || `https://images.unsplash.com/${p.photo}?auto=format&fit=crop&w=1200&q=80`, alt: p.alt, premium: PREMIUM_B.has(id), minutes: readMinutes(a), credit: bCaption(id) };
+      return { key, title: SHORT_TITLES[key] || a.headline, fullTitle: a.headline, dek: a.manchet, label: a.kicker, img: PHOTO_DATA[p.photo] || `https://images.unsplash.com/${p.photo}?auto=format&fit=crop&w=1200&q=80`, alt: p.alt, premium: PREMIUM_B.has(id), minutes: readMinutes(a), credit: bCaption(id) };
     }
     if (/^p[0-4]$/.test(key)) {
       const n = Number(key.slice(1));
       const a = n === 0 ? { h: PRO.headline, p: PRO.dek, k: PRO.kicker, img: 'hero', body: PRO.body } : PRO.cards[n - 1];
-      return { key, title: a.h, fullTitle: a.h, dek: a.p, label: a.k, img: PRO_IMG[a.img], alt: n === 0 ? 'Byggeplads med kran og fundamenter set fra oven.' : 'Illustrationsfoto til historien om ' + a.k.toLowerCase(), premium: true, minutes: Math.max(1, Math.round((a.body || '').split(/\s+/).length / 190)), credit: 'Illustrationsfoto · Arkiv / Unsplash' };
+      return { key, title: SHORT_TITLES[key] || a.h, fullTitle: a.h, dek: a.p, label: a.k, img: PRO_IMG[a.img], alt: n === 0 ? 'Byggeplads med kran og fundamenter set fra oven.' : 'Illustrationsfoto til historien om ' + a.k.toLowerCase(), premium: true, minutes: Math.max(1, Math.round((a.body || '').split(/\s+/).length / 190)), credit: 'Illustrationsfoto · Arkiv / Unsplash' };
     }
     if (/^a[1-7]$/.test(key)) {
       const id = key.slice(1), a = ARTICLES[id];
-      return { key, title: a.headline, fullTitle: a.headline, dek: a.manchet, label: a.kicker, img: IMAGES[id].src, alt: IMAGES[id].alt, premium: true, di: true, minutes: readMinutes(a), credit: IMAGES[id].caption, illustration: IMAGES[id].fallbackSvg };
+      return { key, title: SHORT_TITLES[key] || a.headline, fullTitle: a.headline, dek: a.manchet, label: a.kicker, img: IMAGES[id].src, alt: IMAGES[id].alt, premium: true, di: true, minutes: readMinutes(a), credit: IMAGES[id].caption, illustration: IMAGES[id].fallbackSvg };
     }
     return null;
   }
@@ -302,12 +328,12 @@
   function reportModule(sector) {
     const construction = sector === 'byggeri';
     return el('section', { class: 'content-section', id: 'rapporter' },
-      moduleHeader('Brancherapporter', construction ? 'Perspektiv på byggeriets næste beslutninger' : 'Dybde på tværs af dansk erhvervsliv'),
+      moduleHeader('Brancherapporter', (construction ? 'Perspektiv på byggeriets næste beslutninger' : 'Dybde på tværs af dansk erhvervsliv') + ' · Powered by Supertrends'),
       el('div', { class: 'report-card' },
-        el('div', { class: 'report-cover', 'aria-hidden': 'true' }, el('small', { text: 'Business Pro' }), el('strong', { text: construction ? 'BYG\nGERI' : 'UDSYN' }), el('small', { text: 'Rapport · Demo' })),
-        el('div', {}, mono('Eksempelrapport · Demoindhold'), el('h3', { text: construction ? 'Robotter på byggepladsen. Skal vi med nu?' : 'AI, kapital og konkurrence: Hvad flytter erhvervslivet?' }),
+        el('div', { class: 'report-cover', 'aria-hidden': 'true' }, el('small', { text: 'Business Pro' }), el('strong', { text: construction ? 'BYG\nGERI' : 'UDSYN' }), el('small', { text: 'Powered by Supertrends' })),
+        el('div', {}, mono('Brancherapport · Powered by Supertrends'), el('h3', { text: construction ? 'Robotter på byggepladsen. Skal vi med nu?' : 'AI, kapital og konkurrence: Hvad flytter erhvervslivet?' }),
           el('p', { text: construction ? 'Et interaktivt rapportuddrag med spørgsmål til din næste teknologiinvestering.' : 'Et rapportuddrag med perspektiver på investeringer, teknologi og de næste beslutninger.' }),
-          btn(isPro() ? 'Åbn rapportuddrag →' : 'Se rapporten ' + '· Business Pro', () => isPro() ? openReport(construction) : openPaywall({ title: 'Brancherapporter', sector, report: true }), true))));
+          btn(isPro() ? 'Åbn rapportuddrag →' : 'Se rapporten · Business Pro', () => isPro() ? openReport(construction) : openPaywall({ title: 'Brancherapporter · Powered by Supertrends', sector, report: true }), true))));
   }
   const TOOL_INFO = {
     brief: { tab: 'Morgenbrief', title: 'Dagens vigtigste. Før dit første møde.', text: 'Et redaktionelt overblik over historierne, der har betydning for din virksomhed og din branche.', label: 'Morgenbrief · 06.00' },
@@ -509,10 +535,10 @@
           el('div', { class: 'di-slot' },
             el('header', { class: 'di-partner-banner' },
               el('div', {},
-                mono('Dansk Industri · Medlemsfordel'),
-                el('h2', { text: 'Få mere ud af dit DI-medlemskab' }),
-                el('p', { text: 'Som medlem af Dansk Industri har du særlige muligheder med Business Pro. Se, hvordan du får adgang til mere indsigt, analyser og relevante værktøjer.' }),
-                link('Se dine medlemsmuligheder →', '#forside', true)),
+                mono('Dansk Industri · Dit medlemskab'),
+                el('h2', { text: 'Som DI-medlem får du mere end bare Business Pro' }),
+                el('p', { text: 'Dit medlemskab af Dansk Industri giver dig fuld adgang til Business Pro – plus en særlig sektion med dybdegående analyser, indsigt og opinion forbeholdt medlemmer.' }),
+                link('Gå til særlig indsigt, analyse og opinion →', '#forside', true)),
               el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' }))))));
       }
     }
@@ -553,7 +579,7 @@
       ['MarkedsMonitor', 'Pro', 'Ledelsesskift, regnskaber og bevægelser hos de virksomheder, I følger.'],
       ['Business AI', 'Pro', 'Svar med kilder fra egne data og offentlige registre.'],
       ['UdbudsMatch', 'Pro+', 'Udbud sorteret efter jeres branche og virksomhedsprofil.'],
-      ['Brancherapporter', 'Pro+', 'Beslutningsgrundlag for jeres branche, fire rapporter om året.']
+      ['Brancherapporter', 'Pro+', 'Beslutningsgrundlag for jeres branche, fire rapporter om året. Powered by Supertrends.']
     ];
     return el('section', { class: 'content-section pro-features', 'aria-labelledby': 'pro-features-title' },
       el('h2', { id: 'pro-features-title', class: 'visually-hidden', text: 'Alt i Business Pro' }),
@@ -750,22 +776,23 @@
   // ── Y-forsiden: samme app, header og tema som Business. Skift mellem Y og Business er en rute, ikke en sideindlæsning ──
   function yFront() {
     const B = BARTICLES, A_ = ARTICLES;
+    const frontH = id => SHORT_TITLES['b' + id] || B[id].headline;
     const prefixed = headline => { const m = headline.match(/^(.{4,60}?):\s+(.+)$/); return m ? [el('strong', { text: m[1] + ':' }), ' ' + m[2]] : [headline]; };
     const thumb = (id, span) => el('a', { class: 'yf-c' + span + ' yf-thumb', href: '#b' + id },
-      el('span', { class: 'yf-ph' }, bPhoto(id, 800)), el('span', { class: 'ydk-label yf-kick', text: B[id].kicker }), el('h3', { text: B[id].headline }));
+      el('span', { class: 'yf-ph' }, bPhoto(id, 800)), el('span', { class: 'ydk-label yf-kick', text: B[id].kicker }), el('h3', { text: frontH(id) }));
     const overlay = (id, span) => el('a', { class: 'yf-c' + span + ' yf-overlay', href: '#b' + id },
-      bPhoto(id, 1000), el('span', { class: 'yf-overlay-t' }, el('h3', {}, ...prefixed(B[id].headline))));
+      bPhoto(id, 1000), el('span', { class: 'yf-overlay-t' }, el('h3', {}, ...prefixed(frontH(id)))));
     const wide = (id, span) => el('a', { class: 'yf-c' + span + ' yf-overlay yf-wide', href: '#b' + id },
-      bPhoto(id, 1200), el('span', { class: 'yf-overlay-t' }, el('span', { class: 'ydk-label yf-kick', text: B[id].kicker }), el('h3', { text: B[id].headline })));
+      bPhoto(id, 1200), el('span', { class: 'yf-overlay-t' }, el('span', { class: 'ydk-label yf-kick', text: B[id].kicker }), el('h3', { text: frontH(id) })));
     const text = (id, span) => { const a = A_[id], kat = a.info && a.info.kategori ? a.info.kategori.split(' · ')[0] : 'Business Pro';
-      return el('a', { class: 'yf-c' + span + ' yf-text', href: '#a' + id }, el('span', { class: 'ydk-label yf-kick', text: kat }), el('h3', { text: a.headline }), el('p', { text: a.manchet })); };
+      return el('a', { class: 'yf-c' + span + ' yf-text', href: '#a' + id }, el('span', { class: 'ydk-label yf-kick', text: kat }), el('h3', { text: SHORT_TITLES['a' + id] || a.headline }), el('p', { text: a.manchet })); };
     const tal = BFRONT.tal;
     return el('div', { class: 'yf' },
       liveBlogLinks(),
       el('div', { class: 'yf-grid' },
         el('a', { class: 'yf-c12 yf-hero', href: '#b' + BFRONT.hero },
           el('span', { class: 'yf-ph' }, bPhoto(BFRONT.hero, 1400)), el('span', { class: 'yf-credit', text: bCaption(BFRONT.hero) }),
-          el('h1', { class: 'ydk-hero-title', text: B[BFRONT.hero].headline })),
+          el('h1', { class: 'ydk-hero-title', text: frontH(BFRONT.hero) })),
         overlay(2, 6), overlay(3, 6),
         thumb(4, 4), thumb(5, 4), thumb(6, 4),
         wide(7, 8),
@@ -950,10 +977,10 @@
     const title = construction ? 'Robotter på byggepladsen. Skal vi med nu?' : 'AI, kapital og konkurrence';
     const questions = construction ? ['Hvor er de gentagne opgaver på jeres byggepladser?', 'Hvilke data kræver en afprøvning?', 'Hvordan måler I kvalitet, tid og økonomi?'] : ['Hvilke investeringer ændrer jeres marked?', 'Hvor kan AI understøtte eksisterende arbejdsgange?', 'Hvilke risici bør ledelsen følge?'];
     const download = () => {
-      const blob = new Blob(['Business Pro · Demoindhold\n\n' + title + '\n\nDette er et illustrativt rapportuddrag, ikke en offentliggjort brancherapport.\n\n' + questions.map((q, i) => (i + 1) + '. ' + q).join('\n')], { type: 'text/plain;charset=utf-8' });
+      const blob = new Blob(['Business Pro · Powered by Supertrends\n\n' + title + '\n\nDette er et illustrativt rapportuddrag udarbejdet i samarbejde med Supertrends.\n\n' + questions.map((q, i) => (i + 1) + '. ' + q).join('\n')], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob), a = el('a', { href: url, download: 'business-pro-rapportuddrag-DEMO.txt' }); a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); toast('Rapportuddraget er hentet som tekstfil.');
     };
-    openDialog('Brancherapporter · Demoindhold', el('div', {}, mono('Rapportuddrag · Eksempel'), el('h2', { text: title }), el('p', { text: 'Et eksempel på et redaktionelt beslutningsgrundlag. Brug spørgsmålene til at demonstrere, hvordan en rapport kan omsættes til handling.' }),
+    openDialog('Brancherapporter · Powered by Supertrends', el('div', {}, mono('Rapportuddrag · Powered by Supertrends'), el('h2', { text: title }), el('p', { text: 'Et eksempel på et redaktionelt beslutningsgrundlag udarbejdet i samarbejde med Supertrends. Brug spørgsmålene til at demonstrere, hvordan en rapport kan omsættes til handling.' }),
       el('ol', { class: 'dialog-benefits', style: 'list-style:decimal;padding-left:40px' }, questions.map(text => el('li', { text }))),
       el('div', { class: 'cta-row' }, btn('Hent demo-uddrag som tekstfil ↓', download, true)), disclosure()));
   }
