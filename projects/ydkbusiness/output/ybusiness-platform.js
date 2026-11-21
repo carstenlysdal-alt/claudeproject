@@ -232,13 +232,17 @@
     return el('section', { class: construction ? 'market-strip' : 'market-graphic' },
       moduleHeader(construction ? 'Byggeriet i tal' : 'Markederne kort', 'Illustrative demotal', actions), grid);
   }
-  function diBanner(heading = 'h2', action = null) {
-    return el('header', { class: 'di-partner-banner' },
-      el('div', {}, el(heading, { text: 'Industriens næste træk' }),
-        mono('Dansk Industri · Medlemsindsigt'),
-        el('p', { text: 'Egne analyser. Danske virksomhedscases. Internationale perspektiver på de beslutninger, der former din forretning.' }),
+  function diBanner(heading = 'h2', action = null, pitch = false) {
+    // .di-slot er en container: banneret tilpasser sig sin egen bredde og kan stå i smalle bokse
+    // pitch: salgsvarianten til ikke-medlemmer, som lander fra "Se alle fordelene"
+    return el('div', { class: 'di-slot' }, el('header', { class: 'di-partner-banner' },
+      el('div', {}, el(heading, { text: pitch ? 'Er du medlem af Dansk Industri? Så se her.' : 'Industriens næste træk' }),
+        mono(pitch ? 'Dansk Industri · Medlemsfordel' : 'Dansk Industri · Medlemsindsigt'),
+        el('p', { text: pitch
+          ? 'Dit medlemskab giver adgang til Business Pro og hele DI-universet med samme login: egne analyser, danske virksomhedscases og værktøjer til din branche.'
+          : 'Egne analyser. Danske virksomhedscases. Internationale perspektiver på de beslutninger, der former din forretning.' }),
         action),
-      el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' })));
+      el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' }))));
   }
   function diLeads(headline, preview = false) {
     return el('div', { class: 'di-news-leads' }, [FRONT.hero, FRONT.band].map(id => card('a' + id, { headline, preview })));
@@ -274,8 +278,8 @@
     if (!compact) return diPreview('h2');
     const action = access === 'di'
       ? link('Åbn dit DI-univers →', '#forside', true)
-      : btn('Se, hvad medlemsadgangen giver', openDiInfo, true);
-    return el('section', { 'aria-label': 'Dansk Industri' }, diBanner('h2', action));
+      : btn('Se, hvad du får som medlem', openDiInfo, true);
+    return el('section', { 'aria-label': 'Dansk Industri' }, diBanner('h2', action, access !== 'di'));
   }
   function diFront() {
     return el('div', { class: 'platform-page di-news-page' }, diBanner('h1', link('Åbn Business Pro-værktøjet →', '#mit-pro', true)), diLeads('h2'),
@@ -801,8 +805,8 @@
     openDialog('DI-medlem · Trin 2 af 2', el('div', {}, mono('Login gennemført i demoen'), el('h2', { text: 'Bekræft din medlemsadgang.' }), el('p', { text: 'DI-universet kræver både en Y-konto og et aktivt DI-medlemskab. Her simulerer vi kontrollen med eksempelnummeret nedenfor.' }), form, disclosure()), 'di');
   }
   function openDiInfo() {
-    openDialog('Dansk Industri · Medlemsfordele', el('div', {}, el('h2', { text: 'Mere viden som DI-medlem.' }),
-      el('p', { text: 'DI-afdelingen samler de eksisterende analyser og virksomhedscases fra mockuppen: blandt andre Arla, Ringsted Forsyning og Per Aarsleff.' }),
+    openDialog('Dansk Industri · Medlemsfordele', el('div', {}, el('h2', { text: 'Det får du som DI-medlem.' }),
+      el('p', { text: 'Med dit medlemskab følger Business Pro med. Du får analyser og virksomhedscases som Arla, Ringsted Forsyning og Per Aarsleff, og værktøjer til din branche, med ét login.' }),
       el('ul', { class: 'dialog-benefits' }, ['Danske virksomhedscases med konkrete erfaringer', 'Perspektiver på AI, produktivitet og investeringer', 'Et medlemsunivers med login og verificeret DI-adgang'].map(text => el('li', { text }))),
       el('div', { class: 'cta-row' }, access === 'di' ? btn('Åbn DI-universet →', () => { closeDialog(); go('#forside'); }, true) : btn('Log ind og verificér DI-medlemskab →', () => openLogin({ di: true, target: '#forside' }), true)), disclosure()), 'di');
   }
