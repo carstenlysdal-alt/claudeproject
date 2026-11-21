@@ -101,7 +101,7 @@ function handleFeedback(req, res) {
     try {
       const { text, author, source } = JSON.parse(body);
       if (!text || text.trim().length < 2) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.writeHead(400, { 'Cache-Control': 'no-cache', 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'Bemærkning må ikke være tom.' }));
       }
       const now = new Date();
@@ -119,11 +119,11 @@ function handleFeedback(req, res) {
       const label = src || 'Business Pro dashboard';
       await githubPut(FEEDBACK_PATH, current + entry, file.sha, `feedback: bemærkning fra ${label}`);
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.writeHead(200, { 'Cache-Control': 'no-cache', 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ ok: true }));
     } catch (err) {
       console.error('[feedback]', err.message);
-      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.writeHead(500, { 'Cache-Control': 'no-cache', 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Kunne ikke gemme feedback.' }));
     }
   });
@@ -149,12 +149,12 @@ http.createServer((req, res) => {
       // Manglende filer med filendelse (css, js, billeder) er en rigtig 404. Kun sider falder tilbage til masteren.
       const missingExt = path.extname(pathname);
       if (missingExt && missingExt !== '.html') {
-        res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+        res.writeHead(404, { 'Cache-Control': 'no-cache', 'Content-Type': 'text/plain; charset=utf-8' });
         return res.end('Not found');
       }
       fs.readFile(path.join(DIR, SERVE_FILE), 'utf8', (e, d) => {
         const html = d.replace('{{DEPLOY_TIME}}', DEPLOY_TIME);
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.writeHead(200, { 'Cache-Control': 'no-cache', 'Content-Type': 'text/html; charset=utf-8' });
         res.end(html);
       });
       return;
@@ -162,10 +162,10 @@ http.createServer((req, res) => {
     const ext = path.extname(filePath);
     if (ext === '.html') {
       const html = data.toString('utf8').replace('{{DEPLOY_TIME}}', DEPLOY_TIME);
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.writeHead(200, { 'Cache-Control': 'no-cache', 'Content-Type': 'text/html; charset=utf-8' });
       res.end(html);
     } else {
-      res.writeHead(200, { 'Content-Type': MIME[ext] || 'text/plain' });
+      res.writeHead(200, { 'Cache-Control': 'no-cache', 'Content-Type': MIME[ext] || 'text/plain' });
       res.end(data);
     }
   });
