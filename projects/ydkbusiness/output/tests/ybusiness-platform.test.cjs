@@ -464,9 +464,9 @@ test('Låste historier har ikon og handling, og DI-pitchen nævner ekstra fordel
   assert($$('.premium-lock-overlay').length > 0);
   assert($('.premium-lock-overlay .lock-icon'));
   assert.equal($('.premium-lock-overlay').textContent.trim(), 'Lås op med Pro');
-  await go('#pro-produkt');
   const text = $('.di-partner-banner').textContent;
   assert(text.includes('Er du medlem af Dansk Industri') && text.includes('ekstra fordele') && text.includes('separat abonnement'));
+  await go('#pro-produkt');
   await selectAccess('di');
   await go('#mit-pro');
   assert($('.workspace-bar').textContent.includes('Åbn DI-universet'), 'DI-linje øverst i værktøjet');

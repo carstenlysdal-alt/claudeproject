@@ -436,6 +436,56 @@
       el('section', { class: 'branch-feature' }, photo(story('p0')), el('div', {}, mono('Brancher · Byggeri'), el('h2', { text: 'Tættere på det, der bygger Danmark.' }), el('p', { text: 'Følg de vigtigste byggerihistorier, investeringer og teknologier. Samme Business Pro. Kurateret til din branche.' }), link('Udforsk Byggeri →', '#byggeri', true))),
       reportModule(null), people);
   }
+  function midSectionCommercialTeaser() {
+    if (isPro()) return null;
+    return el('section', { class: 'content-teaser-banner', 'aria-label': 'Business Pro' },
+      mono('Business Pro'),
+      el('h3', { text: 'Mere indsigt. Flere muligheder.' }),
+      el('p', { text: 'Gå bag om erhvervsnyhederne med analyser og Business Pro-værktøjer.' }),
+      link('Se, hvad du får med Business Pro →', '#pro-produkt', true));
+  }
+  function proTopToolsBar(sector) {
+    if (!isPro()) return null;
+    return el('section', { class: 'pro-top-tools-bar', 'aria-label': 'Dine Business Pro-værktøjer' },
+      el('div', { class: 'pro-top-tools-header' },
+        mono('Arbejdsredskaber'),
+        el('h2', { text: 'Dine Business Pro-værktøjer' })),
+      el('div', { class: 'pro-top-tools-grid' },
+        el('div', { class: 'pro-top-tool-card' },
+          el('div', { class: 'pro-top-tool-info' },
+            el('h3', { text: 'Markedsmonitor' }),
+            el('p', { text: 'Følg ledelsesskift, regnskaber og bevægelser hos virksomhederne i dit marked.' })),
+          btn('Åbn Markedsmonitor →', () => openTool('market', sector), true)),
+        el('div', { class: 'pro-top-tool-card' },
+          el('div', { class: 'pro-top-tool-info' },
+            el('h3', { text: 'Udbudsmonitor' }),
+            el('p', { text: 'Få overblik over relevante udbud og opgaver for jeres branche.' })),
+          btn('Åbn Udbudsmonitor →', () => openTool('tender', sector), true))));
+  }
+  function contextMarketTool(sector) {
+    if (!isPro()) return null;
+    return el('aside', { class: 'context-tool-card', 'aria-label': 'Markedsmonitor' },
+      mono('Markedsmonitor · Værktøj'),
+      el('h3', { text: 'Følg udviklingen i markedet' }),
+      el('p', { text: 'Få overblik over aktuelle bevægelser og tendenser med Markedsmonitor.' }),
+      btn('Åbn Markedsmonitor →', () => openTool('market', sector), true));
+  }
+  function contextTenderTool(sector) {
+    if (!isPro()) return null;
+    return el('aside', { class: 'context-tool-card', 'aria-label': 'Udbudsmonitor' },
+      mono('Udbudsmonitor · Værktøj'),
+      el('h3', { text: 'Hold øje med nye muligheder' }),
+      el('p', { text: 'Brug Udbudsmonitor til at orientere dig om relevante udbud.' }),
+      btn('Åbn Udbudsmonitor →', () => openTool('tender', sector), true));
+  }
+  function contextMoreThanNews() {
+    if (!isPro()) return null;
+    return el('aside', { class: 'context-tool-card', 'aria-label': 'Dine værktøjer' },
+      mono('Business Pro · Arbejdsredskab'),
+      el('h3', { text: 'Mere end nyheder' }),
+      el('p', { text: 'Med Business Pro har du også adgang til værktøjer, der hjælper dig med at omsætte indsigt til overblik.' }),
+      link('Udforsk dine værktøjer →', '#mit-pro', true));
+  }
   function curatedFront(r) {
     const sector = r.sector, spec = SECTORS[sector];
     const lead = spec ? spec.lead : 'b11', related = spec ? spec.related : ['b6', 'b7'];
@@ -454,20 +504,39 @@
     const sections = [];
     if (filter === 'alle') {
       sections.push(el('section', { class: 'curation-grid', 'aria-label': sector ? 'Byggeriets vigtigste historier' : 'Business Pro · Redaktionens udvalgte' }, card(lead, { lead: true, description: false }), el('div', { class: 'curation-side' }, related.map(key => card(key, { description: false })))));
-      sections.push(el('div', { class: 'curation-summary' }, el('p', { text: story(lead).dek }), sector ? el('p', { class: 'story-meta', text: `Af ${PRO.by} · ${PRO.time} · ${PRO.min} min. læsning` }) : null));
       if (access === 'di') {
-        sections.push(el('section', { class: 'curation-di-banner', 'aria-label': 'Dansk Industri' },
-          diBanner('h2', link('Se dine ekstra fordele med Business Pro →', '#pro-produkt', true), true)));
+        sections.push(el('section', { class: 'curation-di-member-banner', 'aria-label': 'Dansk Industri · Medlemsfordel' },
+          el('div', { class: 'di-slot' },
+            el('header', { class: 'di-partner-banner' },
+              el('div', {},
+                mono('Dansk Industri · Medlemsfordel'),
+                el('h2', { text: 'Få mere ud af dit DI-medlemskab' }),
+                el('p', { text: 'Som medlem af Dansk Industri har du særlige muligheder med Business Pro. Se, hvordan du får adgang til mere indsigt, analyser og relevante værktøjer.' }),
+                link('Se dine medlemsmuligheder →', '#forside', true)),
+              el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' }))))));
       }
     }
-    if (filter === 'alle' || filter === 'finans') sections.push(markets(!!sector, filter === 'alle'));
-    if (filter === 'alle' || filter === 'finans') sections.push(el('section', { class: 'content-section' }, moduleHeader('Finans', sector ? 'Kapital, investeringer og opgaver i byggeriet' : 'Pengene og de virksomheder, der flytter dem'), el('div', { class: 'card-grid' }, finance.map(key => card(key)))));
-    if (filter === 'alle' || filter === 'analyse') sections.push(el('section', { class: 'content-section' }, moduleHeader('Analyse', sector ? 'Teknologi og metoder under faglig lup' : 'Forstå konsekvenserne bag overskrifterne'), el('div', { class: 'card-grid' }, analysis.map(key => card(key)))));
-    if (filter === 'alle' || filter === 'rapporter') sections.push(reportModule(sector));
+    if (filter === 'alle' || filter === 'finans') {
+      sections.push(markets(!!sector, filter === 'alle'));
+      sections.push(el('section', { class: 'content-section' }, moduleHeader('Finans', sector ? 'Kapital, investeringer og opgaver i byggeriet' : 'Pengene og de virksomheder, der flytter dem'), el('div', { class: 'card-grid' }, finance.map(key => card(key)))));
+      if (isPro()) sections.push(contextMarketTool(sector));
+    }
+    if (!isPro() && (filter === 'alle' || filter === 'finans')) {
+      sections.push(midSectionCommercialTeaser());
+    }
+    if (filter === 'alle' || filter === 'analyse') {
+      sections.push(el('section', { class: 'content-section' }, moduleHeader('Analyse', sector ? 'Teknologi og metoder under faglig lup' : 'Forstå konsekvenserne bag overskrifterne'), el('div', { class: 'card-grid' }, analysis.map(key => card(key)))));
+      if (isPro()) sections.push(contextTenderTool(sector));
+    }
+    if (filter === 'alle' || filter === 'rapporter') {
+      if (isPro()) sections.push(contextMoreThanNews());
+      sections.push(reportModule(sector));
+    }
     if (filter === 'alle' || filter === 'vaerktoejer') sections.push(toolsModule(sector));
     if (access !== 'di') sections.push(diTeaser(filter !== 'alle'));
     const content = el('div', { class: 'curation-content', 'data-filter': filter }, ...sections);
     return el('div', { class: 'platform-page curated-page' },
+      proTopToolsBar(sector),
       categories,
       curation,
       intro(sector ? 'Byggeri' : 'Business', sector ? 'Business Pro · Redaktionens vigtigste historier til din branche.' : 'Redaktionens vigtigste historier. På tværs af erhvervslivet.', true),
@@ -545,7 +614,7 @@
           el('article', { class: 'plan' }, mono('For virksomheden · Udvidet'), el('h3', { text: 'Business Pro+' }), el('p', { class: 'plan-price' }, '12.500 kr. ', el('small', { text: '/ år ekskl. moms' })),
             el('ul', {}, ['Alt fra Business Pro', 'UdbudsMatch', 'Fire brancherapporter om året', 'Gratis prøveperiode i demoen'].map(text => el('li', { text }))), btn('Prøv Pro+ i demoen →', () => openSubscribe('Pro+'), true))),
         el('p', { class: 'plan-note', text: 'Demo-toggle viser samlet Pro-adgang til rapporter og værktøjer. Pro+ udvider med udbud og brancherapporter.' })),
-      toolsModule('byggeri'), diTeaser(true),
+      toolsModule('byggeri'),
       el('section', { class: 'content-section' }, moduleHeader('Spørgsmål om adgang'),
         [['Er Business Pro et andet website?', 'Nej. Business Pro er et lag på Y med samme konto, flere rettigheder og et redaktionelt overblik, som kan kurateres til din branche.'], ['Hvad får DI-medlemmer adgang til?', 'Det særlige DI-univers kræver login og verificeret medlemskab. I denne demo kan du gennemgå et simuleret medlemsflow eller vælge DI-medlem i demo-toggle øverst.'], ['Er der betaling i denne mockup?', 'Nej. Login, abonnement og medlemsverifikation er lokale demonstrationer. Ingen oplysninger sendes til en login- eller betalingsudbyder.']].map(([q, a]) => el('details', { class: 'value-card' }, el('summary', { text: q }), el('p', { class: 'plan-note', text: a })))));
   }
@@ -607,9 +676,11 @@
       el('a', { class: 'text-link', href: a.di ? '#forside' : key[0] === 'p' ? '#byggeri' : '#business', text: '← Tilbage til overblikket' }),
       el('div', { class: 'cta-row' }, mono(a.label), badge(a.di ? 'di' : 'pro')), el('h1', { text: a.fullTitle }), el('p', { text: a.dek }), photo(a, true)),
       el('section', { class: 'paywall-inline' }, mono(a.di ? 'Dansk Industri · Medlemsadgang' : 'Business Pro'),
-        el('h2', { text: a.di ? 'Mere indsigt til DI’s medlemmer.' : 'Få hele historien. Og perspektivet.' }),
-        el('p', { text: a.di ? 'Log ind, og bekræft dit DI-medlemskab for at læse historien og åbne medlemsuniverset.' : 'Denne historie er en del af Business Pro. Få adgang til analyser, rapporter og værktøjer.' }),
-        el('div', { class: 'cta-row' }, btn(a.di ? 'Log ind og verificér medlemskab' : 'Se dine adgangsmuligheder', () => a.di ? openLogin({ di: true, target: '#' + key }) : openPaywall({ title: a.fullTitle, target: '#' + key }), true), !a.di ? link('Se Business Pro →', '#pro-produkt') : null)));
+        el('h2', { text: a.di ? 'Mere indsigt til DI’s medlemmer.' : 'Vil du læse hele analysen?' }),
+        el('p', { text: a.di ? 'Log ind, og bekræft dit DI-medlemskab for at læse historien og åbne medlemsuniverset.' : 'Få adgang til denne og flere erhvervsanalyser med Business Pro.' }),
+        el('div', { class: 'cta-row' },
+          a.di ? btn('Log ind og verificér medlemskab', () => openLogin({ di: true, target: '#' + key }), true) : link('Få adgang med Business Pro →', '#pro-produkt', true),
+          !a.di ? btn('Allerede abonnent? Log ind', () => openLogin({ target: '#' + key }), false) : null)));
   }
   // ── Pro-blomsten: lukket som standard. Folder Brancher og DI-medlem ud under PRO ──
   const bloom = { toggle: null, panel: null, open: false, timer: 0 };
@@ -703,9 +774,15 @@
       el('section', { class: 'yf-panel', 'aria-labelledby': 'yf-pro-h' },
         el('header', {}, el('h2', { id: 'yf-pro-h', text: 'Business Pro · Cases og analyser' }), el('a', { href: '#pro-produkt', text: 'Se Business Pro →' })),
         el('div', { class: 'yf-grid' }, [1, 2, 3, 4, 5, 7].map(id => text(id, 4)))),
-      el('section', { class: 'yf-di', 'aria-label': 'Dansk Industri' },
-        diBanner('h2', link('Åbn DI-universet →', '#forside', true)),
-        el('div', { class: 'yf-grid' }, text(6, 6))));
+      access === 'free' ? el('section', { class: 'yf-di', 'aria-label': 'Dansk Industri' },
+        el('div', { class: 'di-slot' },
+          el('header', { class: 'di-partner-banner' },
+            el('div', {},
+              mono('Dansk Industri · Medlemsfordel'),
+              el('h2', { text: 'Er din virksomhed medlem af Dansk Industri?' }),
+              el('p', { text: 'Så kan du have særlige fordele med Business Pro. Se, hvilke muligheder dit DI-medlemskab giver dig.' }),
+              link('Se dine muligheder med Business Pro →', '#pro-produkt', true)),
+            el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' }))))) : null);
   }
   /* ── Generiske frontsider: global nav ──
      Politik og International under den globale menu — ingen Business Pro-teasere her.
@@ -734,7 +811,8 @@
         globalCard(S[2], 'h3', 6),
         // 3-søjler
         globalCard(S[3], 'h3', 4),
-        globalCard(S[4], 'h3', 4)));
+        globalCard(S[4], 'h3', 4),
+        globalCard(S[5], 'h3', 4)));
   }
   function politikFront()    { return globalFront(GLOBAL_POLITIK_STORIES); }
   function globalIntlFront() { return globalFront(GLOBAL_INTL_STORIES); }

@@ -944,3 +944,107 @@ body:has(dialog[open]) { overflow: hidden; }
 /* Kicker vises på disse sider (tilsidesæt den globale display:none for .yf-kick) */
 .gf-page .yf-kick { display: block !important; }
 
+/* ── Top-værktøjsadgang på Pro-siden for abonnenter ── */
+.pro-top-tools-bar {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pro-top-tools-header h2 {
+  font: 700 22px/1.2 var(--font-public-sans);
+  letter-spacing: -0.5px;
+  margin: 4px 0 0;
+}
+.pro-top-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.pro-top-tool-card {
+  background: var(--surface-active);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+.pro-top-tool-card h3 {
+  font: 600 18px/1.3 var(--font-public-sans);
+  margin: 0 0 6px;
+}
+.pro-top-tool-card p {
+  font: 400 14px/1.5 var(--font-body);
+  color: var(--text-secondary);
+  margin: 0;
+}
+.pro-top-tool-card .cta-primary {
+  align-self: flex-start;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+/* ── Kontekstuelle værktøjsindgange i Pro-flowet ── */
+.context-tool-card {
+  background: var(--surface-card);
+  border-left: 4px solid var(--indigo);
+  border-top: 1px solid var(--divider);
+  border-right: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  padding: 20px 24px;
+  margin: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.context-tool-card h3 {
+  font: 700 20px/1.25 var(--font-public-sans);
+  margin: 0;
+}
+.context-tool-card p {
+  font: 400 15px/1.5 var(--font-body);
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 60ch;
+}
+.context-tool-card .cta-primary,
+.context-tool-card .cta-secondary {
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+/* ── Kommerciel teaser mellem sektioner for ikke-abonnenter ── */
+.content-teaser-banner {
+  background: var(--surface-active);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  padding: 24px 28px;
+  margin: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.content-teaser-banner h3 {
+  font: 700 22px/1.25 var(--font-public-sans);
+  letter-spacing: -0.4px;
+  margin: 0;
+}
+.content-teaser-banner p {
+  font: 400 15px/1.5 var(--font-body);
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 60ch;
+}
+.content-teaser-banner .cta-primary {
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+
