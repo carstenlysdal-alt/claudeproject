@@ -147,3 +147,11 @@ dialog::backdrop { background: #171314bb; }
   .workspace-dialog-head, #tool-dialog-content { padding: 20px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+/* DI-boksen: samme lilla palet som resten af DI-delen (spejler --di-* i ybusiness-platform.css) */
+:root { --di-purple: #360259; --di-accent: #b98ae0; --di-on-purple: #f5edf8; --di-on-purple-muted: #e9d9f0; }
+.pg .app .card.card-di { background: var(--di-purple); border-color: transparent; color: var(--di-on-purple); }
+.pg .app .card.card-di .mono { color: var(--di-on-purple); }
+.pg .app .card.card-di .workspace-heading, .pg .app .card.card-di h3 { color: var(--di-on-purple); }
+.pg .app .card.card-di .note, .pg .app .card.card-di p { color: var(--di-on-purple-muted); }
+.pg .app .card.card-di .workspace-link, .pg .app .card.card-di a { color: var(--di-on-purple); }

@@ -8,8 +8,8 @@ const html = readFileSync(path.join(dir, 'index.html'), 'utf8');
 const source = readFileSync(path.join(dir, 'tools.js'), 'utf8');
 const ARTICLES = ['p0', 'p1', 'p2', 'p3', 'p4', 'b6', 'b11'].map((key, index) => ({ key, title: `Original historie ${index + 1}`, dek: `Den eksisterende manchet ${index + 1}.`, label: 'Byggeri' }));
 
-function setup(t, { access = 'pro', standalone = false } = {}) {
-  const dom = new JSDOM(standalone ? html : '<iframe src="/business-pro/index.html"></iframe>', { url: 'http://localhost/business-pro/index.html', runScripts: 'outside-only', pretendToBeVisual: true });
+function setup(t, { access = 'pro', standalone = false, url = 'http://localhost/business-pro/index.html' } = {}) {
+  const dom = new JSDOM(standalone ? html : '<iframe src="/business-pro/index.html"></iframe>', { url, runScripts: 'outside-only', pretendToBeVisual: true });
   const host = dom.window;
   const w = standalone ? host : host.document.querySelector('iframe').contentWindow;
   if (!standalone) { w.document.open(); w.document.write(html); w.document.close(); }
@@ -44,6 +44,21 @@ test('Workspace starts only after a valid parent handshake with active access', 
   send({ type: 'init', access: 'pro', articles: ARTICLES }, { origin: 'https://other.example' }); assert(!$('.workspace-nav'));
   send({ type: 'init', access: 'pro', articles: ARTICLES }, { sender: w }); assert(!$('.workspace-nav'));
   send({ type: 'init', access: 'pro', articles: ARTICLES }); assert($('.workspace-nav'));
+});
+
+test('Workspace accepts the parent handshake when opened as a local file', t => {
+  for (const origin of ['null', 'file://']) {
+    const { $, send } = setup(t, { access: null, url: 'file:///Users/demo/output/business-pro/index.html' });
+    send({ type: 'init', access: 'pro', articles: ARTICLES }, { origin: 'https://other.example' }); assert(!$('.workspace-nav'), 'foreign origin');
+    send({ type: 'init', access: 'pro', articles: ARTICLES }, { origin }); assert($('.workspace-nav'), `origin ${origin}`);
+  }
+});
+
+test('Workspace shows the company chosen in the parent', t => {
+  const { $, send } = setup(t, { access: null });
+  send({ type: 'init', access: 'di', company: 'Nordlys Byg A/S', articles: ARTICLES });
+  assert($('.workspace-top').textContent.includes('Nordlys Byg A/S'));
+  assert(!$('.workspace-top').textContent.includes('Enemærke'));
 });
 
 test('All nine tool pages render with one page heading and no duplicate IDs', t => {

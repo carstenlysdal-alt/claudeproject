@@ -21,6 +21,8 @@
     if (data && Array.isArray(data.tasks) && Array.isArray(data.saved) && Array.isArray(data.profiles) && Array.isArray(data.companies)) saved = { ...saved, ...data };
   } catch (_) {}
   const DEFAULT_COMPANY_NAME = 'Enemærke & Petersen A/S';
+  // Som lokal fil (file://) er beskedens origin 'null' eller 'file://', mens location.origin kan være 'file://'. Kilden tjekkes stadig.
+  const trustedOrigin = origin => origin === location.origin || (location.protocol === 'file:' && (origin === 'null' || origin === 'file://'));
   let state = { access: 'free', theme: 'dark', tab: 'idag', articles: [], company: DEFAULT_COMPANY_NAME };
   let statusTimer, activeTrigger = null, lastHeight = 0;
   const dialog = document.getElementById('tool-dialog');
@@ -68,6 +70,7 @@
     return h('div', { class: 'panel-top' }, h('div', {}, h('h2', { class: 'panel-h', tabindex: '-1', text: title }), description ? note(description) : null), extra);
   }
   function card(label, ...content) { return h('section', { class: 'card' }, mono(label), content); }
+  function diCard(label, ...content) { return h('section', { class: 'card card-di' }, mono(label), content); }
   function addTask(text) {
     if (saved.tasks.some(task => task.text === text && !task.done)) { announce('Opgaven findes allerede på din liste.'); return; }
     saved.tasks.push({ id: Date.now() + '-' + Math.random().toString(36).slice(2, 6), text, due: '', done: false });
@@ -94,8 +97,8 @@
     announce('Demofilen er hentet som tekstfil.');
   }
   function downloadBrief() {
-    const content = ['Y Business Pro · Morgenbrief · Demoindhold', '20. november 2026', ...['p0', 'p1', 'p2'].map(key => { const a = findArticle(key); return a ? a.title + '\n' + a.dek : ''; })];
-    download('Y-Business-Pro-morgenbrief-DEMO.txt', content.join('\n\n'));
+    const content = ['Business Pro · Morgenbrief · Demoindhold', '20. november 2026', ...['p0', 'p1', 'p2'].map(key => { const a = findArticle(key); return a ? a.title + '\n' + a.dek : ''; })];
+    download('Business-Pro-morgenbrief-DEMO.txt', content.join('\n\n'));
   }
   function briefCard() {
     return h('section', { class: 'brief-paper cockpit-brief with-concl', id: 't-brief' },
@@ -244,12 +247,12 @@
   function showReport(report) {
     showDialog(report.title, h('div', {}, mono('Brancherapport · Eksempeluddrag · Demo'), h('p', { text: report.text }),
       h('ul', { class: 'feedlist' }, report.questions.map(text => h('li', { text }))),
-      h('div', { class: 'workspace-card-actions' }, button('Hent demo-uddrag ↓', () => download('Y-Business-Pro-rapport-DEMO.txt', 'Y Business Pro · Demoindhold\n\n' + report.title + '\n\n' + report.text + '\n\n' + report.questions.join('\n')), true), button('Gem som opgave', () => addTask('Læs rapportuddrag: ' + report.title))), note('Dette er et kort, illustrativt rapportuddrag. Det er ikke en offentliggjort brancherapport.')));
+      h('div', { class: 'workspace-card-actions' }, button('Hent demo-uddrag ↓', () => download('Business-Pro-rapport-DEMO.txt', 'Business Pro · Demoindhold\n\n' + report.title + '\n\n' + report.text + '\n\n' + report.questions.join('\n')), true), button('Gem som opgave', () => addTask('Læs rapportuddrag: ' + report.title))), note('Dette er et kort, illustrativt rapportuddrag. Det er ikke en offentliggjort brancherapport.')));
   }
   function reports() {
     return h('section', { class: 'workspace-panel', id: 'p-rapporter' }, head('Brancherapporter', 'Gå i dybden med de spørgsmål, der former branchens næste beslutninger. Begge uddrag er demoindhold.'),
       h('div', { class: 'workspace-list' }, REPORTS.map(report => card('Byggeri · Rapportuddrag · Demo',
-        h('div', { class: 'workspace-report' }, h('div', { class: 'workspace-report-cover', 'aria-hidden': 'true' }, h('small', { text: 'Y Business Pro' }), h('b', { text: report.code }), h('small', { text: 'Demo' })),
+        h('div', { class: 'workspace-report' }, h('div', { class: 'workspace-report-cover', 'aria-hidden': 'true' }, h('small', { text: 'Business Pro' }), h('b', { text: report.code }), h('small', { text: 'Demo' })),
           h('div', {}, h('h3', { class: 'workspace-heading', text: report.title }), note(report.text), h('div', { class: 'workspace-card-actions' }, button('Åbn rapportuddrag →', () => showReport(report), true))))))));
   }
   function tasks() {
@@ -271,7 +274,7 @@
       h('div', { class: 'app-grid' },
         card('Dit abonnement i demoen', h('h3', { class: 'workspace-heading', text: 'Business Pro · Aktiv adgang' }), note('Virksomhed i demoen: ' + state.company + '. Alle værktøjer er tilgængelige i denne præsentation.'),
           h('div', { class: 'workspace-card-actions' }, parentLink('Se produkt og pakker →', '#pro-produkt'), button('Log ud af demoen', () => send('logout')))),
-        card('Dansk Industri', h('h3', { class: 'workspace-heading', text: state.access === 'di' ? 'DI-medlemskab verificeret i demoen' : 'Medlemskab skal verificeres' }), note('Det særlige DI-univers kræver verificeret medlemsadgang ud over Business Pro.'), parentLink(state.access === 'di' ? 'Åbn DI-universet →' : 'Gå til DI-medlemsadgang →', '#forside')),
+        diCard('Dansk Industri', h('h3', { class: 'workspace-heading', text: state.access === 'di' ? 'DI-medlemskab verificeret i demoen' : 'Medlemskab skal verificeres' }), note('Det særlige DI-univers kræver verificeret medlemsadgang ud over Business Pro.'), parentLink(state.access === 'di' ? 'Åbn DI-universet →' : 'Gå til DI-medlemsadgang →', '#forside')),
         card('Dine præferencer · Demo', h('div', { class: 'workspace-prefs' }, [['brief', 'Morgenbrief'], ['mentions', 'Omtaler af virksomheden'], ['tenders', 'Relevante udbud']].map(([key, text]) => h('label', {}, h('input', { type: 'checkbox', checked: prefs[key], onchange: e => { prefs[key] = e.target.checked; saved.preferences = prefs; save(); announce('Præferencen er gemt i demoen. Ingen beskeder udsendes.'); } }), text))), note('Lokale demopræferencer. Der sendes ingen e-mail eller notifikationer.'))));
   }
   const views = { idag: overview, brief, medier: media, markeds: market, udbud: tenders, ai, rapporter: reports, opgaver: tasks, konto: account };
@@ -298,7 +301,7 @@
     if (tab) { e.preventDefault(); selectTab(tab.dataset.tab); }
   });
   window.addEventListener('message', e => {
-    if (e.source !== parent || parent === window || e.origin !== location.origin || e.data?.channel !== 'y-business-workspace') return;
+    if (e.source !== parent || parent === window || !trustedOrigin(e.origin) || e.data?.channel !== 'y-business-workspace') return;
     const data = e.data;
     if (data.type === 'init') {
       if (!['pro', 'di'].includes(data.access)) return;

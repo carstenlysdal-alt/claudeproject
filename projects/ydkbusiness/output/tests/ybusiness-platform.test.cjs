@@ -9,8 +9,8 @@ const html = readFileSync(path.join(root, 'ybusiness-di-artikler.html'), 'utf8')
 const articles = html.match(/<script>([\s\S]*?)<\/script>/)[1];
 const platform = readFileSync(path.join(root, 'ybusiness-platform.js'), 'utf8');
 
-function setup(t, initial = '#business') {
-  const dom = new JSDOM(html, { url: 'http://localhost/' + initial, runScripts: 'outside-only', pretendToBeVisual: true });
+function setup(t, initial = '#business', base = 'http://localhost/') {
+  const dom = new JSDOM(html, { url: base + initial, runScripts: 'outside-only', pretendToBeVisual: true });
   const w = dom.window, d = w.document, errors = [];
   w.scrollTo = () => {};
   w.HTMLElement.prototype.scrollIntoView = () => {};
@@ -55,7 +55,7 @@ test('Business preserves original content and shows premium status', t => {
   assert($('main').textContent.includes('Agenter brød ud'));
   assert($('main').textContent.includes('Porsche'));
   assert($('.bf-mint .access-label .lock-icon'));
-  assert.deepEqual($$('.ysite-nav a').map(a => a.textContent.trim()), ['POLITIK', 'INTERNATIONAL', 'BUSINESS', 'PRO']);
+  assert.deepEqual($$('.ysite-nav a:not(#pro-bloom a)').map(a => a.textContent.trim()), ['POLITIK', 'INTERNATIONAL', 'BUSINESS', 'PRO']);
   assert($('.bf-more'));
   for (let id = 1; id <= 11; id++) assert($(`main a[href="#b${id}"]`), `Business story ${id} remains discoverable`);
 });
@@ -130,6 +130,32 @@ test('Premium click opens paywall; direct URL shows teaser; downgrade removes fu
   assert(!$('.article .body')); assert($('.paywall-inline'));
 });
 
+test('Alle Business-artikler er bag paywall for ikke-medlemmer og åbne for Pro og DI', async t => {
+  const { $, click, go, selectAccess, w } = setup(t);
+  const ids = Object.keys(w.__testContent.business);
+  assert.equal(ids.length, 11);
+  // Klik på et kort på Business-forsiden åbner paywall, og siden forbliver på forsiden.
+  click('a[href="#b1"]');
+  assert($('#platform-dialog').open);
+  assert.equal(w.location.hash, '#business');
+  click('#platform-dialog-close');
+  // Direkte links (fx fra Y-forsiden) viser teaser og ingen fuld tekst.
+  for (const id of ids) {
+    await go('#b' + id);
+    assert($('.article-tease'), `b${id} skal vise teaser`);
+    assert(!$('.article .body'), `b${id} må ikke vise fuld tekst for ikke-medlemmer`);
+  }
+  // Pro og DI læser alle artikler.
+  for (const access of ['pro', 'di']) {
+    await selectAccess(access);
+    for (const id of ids) {
+      await go('#b' + id);
+      assert($('.article .body'), `b${id} skal være åben for ${access}`);
+      assert(!$('.paywall-inline'), `b${id} må ikke vise paywall for ${access}`);
+    }
+  }
+});
+
 test('Industry changes lead and related stories, and format filter preserves industry', async t => {
   const { $, go, w } = setup(t, '#pro-overblik');
   const broad = $('.curation-lead h2').textContent;
@@ -172,7 +198,7 @@ test('Monitor search shows an empty state when nothing matches', async t => {
 
 test('DI access requires verification separately from ordinary Pro', async t => {
   const { $, click, go, selectAccess } = setup(t);
-  await selectAccess('pro'); click('a.sn-i[href="#forside"]');
+  await selectAccess('pro'); click('#pro-bloom a[href="#forside"]');
   assert($('.dialog-head').textContent.includes('Trin 2'));
   click('#platform-dialog-close'); await go('#forside');
   assert($('#di-preview-content').hidden); assert($('.di-access-row button'));
@@ -188,7 +214,7 @@ test('DI members open the Business Pro workspace from the DI link', async t => {
   const { $, click, selectAccess, w } = setup(t);
   await selectAccess('di');
   const navigated = new Promise(resolve => w.addEventListener('hashchange', resolve, { once: true }));
-  click('a.sn-i[href="#mit-pro"]:not(.sn-account)');
+  click('#pro-bloom a[href="#mit-pro"]');
   await navigated;
   assert.equal(w.location.hash, '#mit-pro');
   assert($('.pro-workspace-page iframe'));
@@ -214,7 +240,7 @@ test('DI login and verification return to intended member article', async t => {
 test('Subscription flow resumes premium article without a payment request', async t => {
   const { $, click, press, submit, w } = setup(t);
   click('a[href="#b6"]'); press('.dialog-body button', 'Prøv Business Pro'); submit();
-  await new Promise(resolve => w.setTimeout(resolve, 0));
+  await new Promise(resolve => w.setTimeout(resolve, 40));
   assert.equal(w.location.hash, '#b6'); assert($('.article .body'));
   assert.equal(w.YBusinessDemo.getState().access, 'pro');
 });
@@ -298,9 +324,22 @@ test('Workspace handshake validates source and origin and supplies Y theme and e
   assert($('.pro-access-page')); assert(!$('.pro-tools-frame'));
 });
 
+test('Parent accepts workspace messages when the mock is opened as a local file', t => {
+  const { $, click, w } = setup(t, '#pro', 'file:///Users/demo/output/ybusiness-di-artikler.html');
+  click('[data-access="pro"]');
+  const frame = $('.pro-tools-frame'), messages = [];
+  frame.contentWindow.postMessage = (data, origin) => messages.push({ data, origin });
+  const send = (source, origin, type, rest = {}) => w.dispatchEvent(new w.MessageEvent('message', { source, origin, data: { channel: 'y-business-workspace', type, ...rest } }));
+  send(frame.contentWindow, 'https://unrelated.example', 'ready'); assert.equal(messages.length, 0);
+  send(w, 'null', 'ready'); assert.equal(messages.length, 0, 'source must still be the workspace frame');
+  send(frame.contentWindow, 'null', 'ready'); assert.equal(messages.at(-1).data.type, 'init');
+  send(frame.contentWindow, 'file://', 'ready'); assert.equal(messages.length, 2);
+  assert.equal(messages[0].origin, '*', 'file:// pages post with a wildcard target');
+});
+
 test('All routes render once, with unique IDs, in every access state', async t => {
   const { $, $$, selectAccess, go } = setup(t);
-  const routes = ['business', 'pro', 'pro-produkt', 'pro-overblik', 'byggeri', 'mit-pro', 'forside', 'international', 'danmark', 'ai', 'byggeri?f=rapporter', 'byggeri?f=vaerktoejer',
+  const routes = ['y', 'business', 'pro', 'pro-produkt', 'pro-overblik', 'byggeri', 'mit-pro', 'forside', 'international', 'danmark', 'ai', 'byggeri?f=rapporter', 'byggeri?f=vaerktoejer',
     ...Array.from({ length: 11 }, (_, i) => 'b' + (i + 1)), ...Array.from({ length: 5 }, (_, i) => 'p' + i), ...Array.from({ length: 7 }, (_, i) => 'a' + (i + 1))];
   for (const access of ['free', 'pro', 'di']) {
     await selectAccess(access);
@@ -312,4 +351,82 @@ test('All routes render once, with unique IDs, in every access state', async t =
       assert(!$('main').textContent.includes('undefined'), `${access}: ${route}`);
     }
   }
+});
+
+test('Pro-menuen er lukket som standard og folder Brancher og DI-medlem ud under PRO', async t => {
+  const { $, $$, click, w } = setup(t);
+  const wait = ms => new Promise(resolve => w.setTimeout(resolve, ms));
+  assert($('#pro-bloom').hidden, 'lukket som standard');
+  assert.equal($('#pro-bloom-toggle').getAttribute('aria-expanded'), 'false');
+  assert.deepEqual($$('.sn-in .sn-i').map(a => a.textContent), ['Overblik', 'International', 'Danmark', 'AI'], 'Business-linjen har hverken Brancher eller DI-medlem');
+  click('#pro-bloom-toggle');
+  assert.equal($('#pro-bloom-toggle').getAttribute('aria-expanded'), 'true');
+  assert(!$('#pro-bloom').hidden);
+  const links = $$('#pro-bloom a').map(a => a.textContent);
+  assert(links.includes('Byggeri') && links.includes('Alle brancher →') && links.includes('Log ind som DI-medlem →'), links.join(' | '));
+  w.document.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+  await wait(220);
+  assert($('#pro-bloom').hidden);
+  assert.equal($('#pro-bloom-toggle').getAttribute('aria-expanded'), 'false');
+  click('#pro-bloom-toggle');
+  assert(!$('#pro-bloom').hidden);
+  w.document.body.click();
+  await wait(220);
+  assert($('#pro-bloom').hidden, 'klik udenfor lukker');
+});
+
+test('Overblik er altid Business, og PRO åbner værktøjet for Pro og DI', async t => {
+  const { $, go, selectAccess } = setup(t);
+  assert.equal($('.sn-i[href="#business"]').getAttribute('aria-current'), 'page');
+  await go('#b2');
+  assert.equal($('.sn-i[href="#business"]').getAttribute('aria-current'), 'page', 'også på en Business-artikel');
+  await go('#ai');
+  assert.equal($('.sn-i[href="#business"]').getAttribute('aria-current'), null);
+  assert.equal($('#nav-pro').getAttribute('href'), '#pro-overblik');
+  await selectAccess('pro');
+  assert.equal($('#nav-pro').getAttribute('href'), '#mit-pro');
+  await selectAccess('di');
+  assert.equal($('#nav-pro').getAttribute('href'), '#mit-pro');
+  assert.equal($('#pro-bloom a.bloom-di').getAttribute('href'), '#mit-pro');
+});
+
+test('DI-forsiden viser Business Pro-værktøjet til DI-medlemmer', async t => {
+  const { $, go, selectAccess } = setup(t);
+  await selectAccess('di');
+  await go('#forside');
+  assert($('.di-partner-banner a[href="#mit-pro"]'), 'banneret linker til Pro-værktøjet');
+});
+
+test('Intet linker ud af mockuppen, og alt hedder Business Pro', async t => {
+  const { $, $$, go, selectAccess } = setup(t);
+  const routes = ['y', 'business', 'pro', 'pro-produkt', 'pro-overblik', 'forside', 'politik', 'international', 'liveblog/reuters', 'liveblog/ritzau', 'b2', 'a1', 'p1'];
+  for (const access of ['free', 'pro', 'di']) {
+    await selectAccess(access);
+    for (const route of routes) {
+      await go('#' + route);
+      for (const a of $$('a[href]')) {
+        const href = a.getAttribute('href');
+        assert(!href.startsWith('http') && !href.startsWith('//'), `${access} ${route}: ekstern href ${href}`);
+        assert.notEqual(a.getAttribute('target'), '_blank', `${access} ${route}: ${href}`);
+      }
+    }
+  }
+  assert(!$('.platform-footer').textContent.toLowerCase().includes('y business'));
+  assert($('.platform-footer strong').textContent.includes('Business Pro'));
+});
+
+test('Y-forsiden og Business deler samme header, og skiftet er en rute uden sideindlæsning', async t => {
+  const { $, $$, go, w } = setup(t, '#y');
+  const header = $('#ysite'), theme = w.document.documentElement.getAttribute('data-y-theme');
+  assert.equal($('.ysite-logo').getAttribute('href'), '#y');
+  assert($('main h1').closest('.yf'));
+  assert($('#sn').hidden, 'ingen Business-linje på Y-forsiden');
+  assert.equal($$('.ysite-nav a:not(#pro-bloom a)').length, 4);
+  await go('#business');
+  assert.equal($('#ysite'), header, 'samme header-element');
+  assert(!$('#sn').hidden);
+  assert.equal(w.document.documentElement.getAttribute('data-y-theme'), theme, 'samme tema');
+  await go('#y');
+  assert.equal($('#ysite'), header);
+  assert.equal($('.yf-hero').getAttribute('href'), '#b1');
 });

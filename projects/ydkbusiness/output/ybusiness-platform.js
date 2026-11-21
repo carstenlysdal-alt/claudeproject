@@ -2,11 +2,11 @@
    Adgangstilstande er kun en lokal præsentationssimulation, ikke en sikkerhedsgrænse. */
 (() => {
   'use strict';
-  const SERVICE_URL = 'https://ybuisness-commercial-production.up.railway.app/';
   const ACCESS_KEY = 'y-business-demo-access-v2';
   const ACCESS = { free: 'Ikke-abonnent', pro: 'Business Pro', di: 'DI-medlem' };
   const SECTORS = { byggeri: { label: 'Byggeri', lead: 'p0', related: ['p1', 'p4'], finance: ['p1', 'b7', 'b11'], analysis: ['p2', 'p3', 'p4'] } };
-  const PREMIUM_B = new Set(['3', '6', '11']);
+  // Alle Business-artikler er bag paywall for ikke-medlemmer. Pro- og DI-adgang åbner dem.
+  const PREMIUM_B = new Set(Object.keys(BARTICLES));
   const LIVE_BLOGS = {
     'liveblog/reuters': { name: 'Reuters', description: 'Internationalt nyhedsoverblik med fokus på verden, virksomheder og markeder.', stories: ['b5', 'b4', 'b8'] },
     'liveblog/ritzau': { name: 'Ritzau', description: 'Et nyhedsoverblik med historier fra Danmark og resten af verden.', stories: ['b7', 'b10', 'b3'] }
@@ -15,6 +15,8 @@
   let workspaceFrame = null, workspaceTab = 'idag';
   try { const saved = localStorage.getItem(ACCESS_KEY); if (Object.hasOwn(ACCESS, saved)) access = saved; } catch (_) {}
   const isPro = () => access !== 'free';
+  // Som lokal fil (file://) er beskedens origin 'null' eller 'file://', mens location.origin kan være 'file://'. Kilden tjekkes stadig.
+  const trustedOrigin = origin => origin === location.origin || (location.protocol === 'file:' && (origin === 'null' || origin === 'file://'));
   const mono = text => el('span', { class: 'eyebrow-label', text });
   const btn = (text, action, primary = false) => el('button', { type: 'button', class: primary ? 'cta-primary' : 'cta-secondary', text, onclick: action });
   const link = (text, href, primary = false) => el('a', { class: primary ? 'cta-primary' : 'cta-secondary', href, text });
@@ -70,7 +72,7 @@
   }
   function route() {
     const [raw, query] = location.hash.slice(1).split('?');
-    const name = raw || 'business';
+    const name = raw || 'y';
     return { name, filter: new URLSearchParams(query).get('f') || 'alle', sector: name === 'byggeri' ? 'byggeri' : null };
   }
   function go(hash) {
@@ -276,7 +278,7 @@
     return el('section', { 'aria-label': 'Dansk Industri' }, diBanner('h2', action));
   }
   function diFront() {
-    return el('div', { class: 'platform-page di-news-page' }, diBanner('h1'), diLeads('h2'),
+    return el('div', { class: 'platform-page di-news-page' }, diBanner('h1', link('Åbn Business Pro-værktøjet →', '#mit-pro', true)), diLeads('h2'),
       el('section', { class: 'content-section', 'aria-labelledby': 'di-cases-title' },
         el('h2', { class: 'di-cases-title', id: 'di-cases-title', text: 'Virksomhederne i praksis' }), diCases()));
   }
@@ -285,7 +287,7 @@
     return el('section', { class: 'content-section', id: 'rapporter' },
       moduleHeader('Brancherapporter', construction ? 'Perspektiv på byggeriets næste beslutninger' : 'Dybde på tværs af dansk erhvervsliv'),
       el('div', { class: 'report-card' },
-        el('div', { class: 'report-cover', 'aria-hidden': 'true' }, el('small', { text: 'Y Business Pro' }), el('strong', { text: construction ? 'BYG\nGERI' : 'UDSYN' }), el('small', { text: 'Rapport · Demo' })),
+        el('div', { class: 'report-cover', 'aria-hidden': 'true' }, el('small', { text: 'Business Pro' }), el('strong', { text: construction ? 'BYG\nGERI' : 'UDSYN' }), el('small', { text: 'Rapport · Demo' })),
         el('div', {}, mono('Eksempelrapport · Demoindhold'), el('h3', { text: construction ? 'Robotter på byggepladsen. Skal vi med nu?' : 'AI, kapital og konkurrence: Hvad flytter erhvervslivet?' }),
           el('p', { text: construction ? 'Et interaktivt rapportuddrag med spørgsmål til din næste teknologiinvestering.' : 'Et rapportuddrag med perspektiver på investeringer, teknologi og de næste beslutninger.' }),
           btn(isPro() ? 'Åbn rapportuddrag →' : 'Se rapporten ' + '· Business Pro', () => isPro() ? openReport(construction) : openPaywall({ title: 'Brancherapporter', sector, report: true }), true))));
@@ -370,7 +372,7 @@
         el('h1', { text: blog.name }),
         el('p', { text: blog.description }),
         el('div', { class: 'liveblog-context' }, mono('Demoindlæg'),
-          el('a', { class: 'text-link', href: 'https://y.dk/' + path, text: 'Se livebloggen på Y.dk ↗' }))),
+          el('a', { class: 'text-link', href: '#business', text: 'Tilbage til Business →' }))),
       el('ol', { class: 'liveblog-timeline', 'aria-label': 'Indlæg, nyeste først' },
         blog.stories.map((key, index) => liveBlogPost(key, times[index]))));
   }
@@ -512,14 +514,13 @@
       hero,
       featureOverview(),
       trust,
-      el('section', { class: 'content-section', id: 'priser' }, moduleHeader('Ét abonnement. Jeres branche.', 'Eksempelpriser og pakker fra servicedemoen · Ét CVR, én branche og fem brugere'),
+      el('section', { class: 'content-section', id: 'priser' }, moduleHeader('Ét abonnement. Jeres branche.', 'Eksempelpriser og pakker · Ét CVR, én branche og fem brugere'),
         el('div', { class: 'plans' },
           el('article', { class: 'plan' }, mono('For virksomheden'), el('h3', { text: 'Business Pro' }), el('p', { class: 'plan-price' }, '5.000 kr. ', el('small', { text: '/ år ekskl. moms' })),
             el('ul', {}, ['Branchenyheder og morgenbrief', 'MedieMonitor og MarkedsMonitor', 'Business AI med kilder', 'Én branche og fem brugere'].map(text => el('li', { text }))), btn('Vælg Pro i demoen →', () => openSubscribe('Pro'), true)),
           el('article', { class: 'plan' }, mono('For virksomheden · Udvidet'), el('h3', { text: 'Business Pro+' }), el('p', { class: 'plan-price' }, '12.500 kr. ', el('small', { text: '/ år ekskl. moms' })),
-            el('ul', {}, ['Alt fra Business Pro', 'UdbudsMatch', 'Fire brancherapporter om året', 'Gratis prøveperiode i servicedemoen'].map(text => el('li', { text }))), btn('Prøv Pro+ i demoen →', () => openSubscribe('Pro+'), true))),
-        el('p', { class: 'plan-note', text: 'Demo-toggle viser samlet Pro-adgang til rapporter og værktøjer. Servicedemoen skelner mellem Pro og Pro+.' }),
-        el('a', { class: 'text-link', href: SERVICE_URL + '#pro', target: '_blank', rel: 'noopener', text: 'Se den fulde servicedemo og pakkelogik ↗' })),
+            el('ul', {}, ['Alt fra Business Pro', 'UdbudsMatch', 'Fire brancherapporter om året', 'Gratis prøveperiode i demoen'].map(text => el('li', { text }))), btn('Prøv Pro+ i demoen →', () => openSubscribe('Pro+'), true))),
+        el('p', { class: 'plan-note', text: 'Demo-toggle viser samlet Pro-adgang til rapporter og værktøjer. Pro+ udvider med udbud og brancherapporter.' })),
       toolsModule('byggeri'), diTeaser(true),
       el('section', { class: 'content-section' }, moduleHeader('Spørgsmål om adgang'),
         [['Er Business Pro et andet website?', 'Nej. Business Pro er et lag på Y med samme konto, flere rettigheder og et redaktionelt overblik, som kan kurateres til din branche.'], ['Hvad får DI-medlemmer adgang til?', 'Det særlige DI-univers kræver login og verificeret medlemskab. I denne demo kan du gennemgå et simuleret medlemsflow eller vælge DI-medlem i demo-toggle øverst.'], ['Er der betaling i denne mockup?', 'Nej. Login, abonnement og medlemsverifikation er lokale demonstrationer. Ingen oplysninger sendes til en login- eller betalingsudbyder.']].map(([q, a]) => el('details', { class: 'value-card' }, el('summary', { text: q }), el('p', { class: 'plan-note', text: a })))));
@@ -578,6 +579,45 @@
         el('p', { text: a.di ? 'Log ind, og bekræft dit DI-medlemskab for at læse historien og åbne medlemsuniverset.' : 'Denne historie er en del af Business Pro. Få adgang til analyser, rapporter og værktøjer.' }),
         el('div', { class: 'cta-row' }, btn(a.di ? 'Log ind og verificér medlemskab' : 'Se dine adgangsmuligheder', () => a.di ? openLogin({ di: true, target: '#' + key }) : openPaywall({ title: a.fullTitle, target: '#' + key }), true), !a.di ? link('Se Business Pro →', '#pro') : null)));
   }
+  // ── Pro-blomsten: lukket som standard. Folder Brancher og DI-medlem ud under PRO ──
+  const bloom = { toggle: null, panel: null, open: false, timer: 0 };
+  function placeBloom() {
+    const header = document.getElementById('ysite'), pro = document.getElementById('nav-pro');
+    if (!header || !pro || !bloom.panel) return;
+    const h = header.getBoundingClientRect(), a = pro.getBoundingClientRect();
+    const width = Math.min(560, window.innerWidth - 32), center = a.left + a.width / 2 - h.left;
+    const left = Math.max(16, Math.min(center - width / 2, h.width - width - 16));
+    bloom.panel.style.width = width + 'px';
+    bloom.panel.style.left = left + 'px';
+    bloom.panel.style.setProperty('--bloom-origin', Math.round(center - left) + 'px 0');
+  }
+  function setBloom(open) {
+    if (!bloom.panel || open === bloom.open) return;
+    clearTimeout(bloom.timer); bloom.open = open;
+    bloom.toggle.setAttribute('aria-expanded', String(open));
+    if (open) { bloom.panel.hidden = false; placeBloom(); void bloom.panel.offsetWidth; bloom.panel.dataset.state = 'open'; }
+    else { bloom.panel.dataset.state = 'closing'; bloom.timer = setTimeout(() => { bloom.panel.hidden = true; bloom.panel.dataset.state = ''; }, 160); }
+  }
+  function renderBloom(r) {
+    if (!bloom.toggle) {
+      const wrap = document.querySelector('.ysite-business-links');
+      if (!wrap) return;
+      bloom.toggle = el('button', { type: 'button', class: 'pro-bloom-toggle', id: 'pro-bloom-toggle', 'aria-expanded': 'false', 'aria-controls': 'pro-bloom', 'aria-haspopup': 'true',
+        'aria-label': 'Pro-menu: Brancher og DI-medlem', onclick: () => setBloom(!bloom.open) }, chevron());
+      bloom.panel = el('div', { class: 'pro-bloom', id: 'pro-bloom', role: 'group', 'aria-label': 'Business Pro' });
+      bloom.panel.hidden = true;
+      wrap.append(bloom.toggle, bloom.panel);
+    }
+    const member = access === 'di';
+    bloom.panel.replaceChildren(
+      el('section', { class: 'petal petal-branches', style: '--i:0' }, mono('Brancher'),
+        el('p', { text: 'Business Pro · Vælg din branche' }),
+        el('ul', {}, ...Object.entries(SECTORS).map(([key, value]) => el('li', {}, el('a', { href: '#' + key, 'aria-current': r.sector === key ? 'page' : null, text: value.label }))),
+          el('li', {}, el('a', { href: '#pro-overblik', text: 'Alle brancher →' })))),
+      el('section', { class: 'petal petal-di', style: '--i:1' }, mono('DI-medlem'),
+        el('p', {}, lock(member), member ? ' Medlemskab verificeret.' : ' Kræver login og verificeret medlemskab.'),
+        el('ul', {}, el('li', {}, el('a', { class: 'bloom-di', href: member ? '#mit-pro' : '#forside', text: member ? 'Åbn Business Pro-værktøjet →' : 'Log ind som DI-medlem →' })))));
+  }
   function headerState(r) {
     document.querySelectorAll('[data-access]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.access === access)));
     const businessPage = r.name === 'business' || r.name === 'danmark' || r.name === 'ai' || /^b\d+$/.test(r.name);
@@ -593,32 +633,61 @@
     const login = document.getElementById('platform-login'); login.textContent = access === 'free' ? 'Log ind' : 'Min konto';
     const cta = document.getElementById('platform-cta'); cta.textContent = isPro() ? 'Mit Business Pro →' : 'Prøv Pro+ | 0 kr. første måned'; cta.href = isPro() ? '#pro' : '#pro-produkt';
     document.querySelectorAll('#tabs [data-view]').forEach(a => { if (a.dataset.view === r.name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    document.getElementById('nav-pro').setAttribute('href', isPro() ? '#mit-pro' : '#pro-overblik');
+    renderBloom(r);
     const subnav = document.getElementById('sn');
-    subnav.hidden = Object.hasOwn(LIVE_BLOGS, r.name);
+    subnav.hidden = Object.hasOwn(LIVE_BLOGS, r.name) || r.name === 'y';
     if (subnav.hidden) return;
-    const branchDetails = el('details', { class: 'sn-branches' },
-      el('summary', { class: 'sn-i' }, 'Brancher', chevron()),
-      el('div', { class: 'sn-branch-menu' }, el('p', { text: 'Business Pro · Vælg din branche' }),
-        Object.entries(SECTORS).map(([key, value]) => el('a', { href: '#' + key, 'aria-current': r.sector === key ? 'page' : null, text: value.label })),
-        el('a', { href: '#pro-overblik', text: 'Alle brancher →' })));
     subnav.replaceChildren(el('nav', { class: 'sn-in', 'aria-label': 'Business-navigation' },
-      el('a', { class: 'sn-i', href: '#business', 'aria-current': r.name === 'business' ? 'page' : null, text: 'Overblik' }),
-      el('div', { class: 'sn-categories', role: 'group', 'aria-label': 'Business-kategorier' }, Object.entries(BCAT).map(([key, category]) => el('a', { class: 'sn-i', href: '#' + key, 'aria-current': r.name === key ? 'page' : null, text: category.label }))),
-      branchDetails,
-      el('a', { class: 'sn-i', href: access === 'di' ? '#mit-pro' : '#forside', 'aria-current': (access === 'di' ? ['pro', 'mit-pro'].includes(r.name) : r.name === 'forside') ? 'page' : null }, 'DI-medlem', lock(access === 'di')),
-      el('a', { class: 'sn-i sn-account', href: '#mit-pro', text: 'Mit Business Pro →' })));
+      el('a', { class: 'sn-i', href: '#business', 'aria-current': r.name === 'business' || /^b\d+$/.test(r.name) ? 'page' : null, text: 'Overblik' }),
+      el('div', { class: 'sn-categories', role: 'group', 'aria-label': 'Business-kategorier' }, Object.entries(BCAT).map(([key, category]) => el('a', { class: 'sn-i', href: '#' + key, 'aria-current': r.name === key ? 'page' : null, text: category.label }))),));
+  }
+  // ── Y-forsiden: samme app, header og tema som Business. Skift mellem Y og Business er en rute, ikke en sideindlæsning ──
+  function yFront() {
+    const B = BARTICLES, A_ = ARTICLES;
+    const prefixed = headline => { const m = headline.match(/^(.{4,60}?):\s+(.+)$/); return m ? [el('strong', { text: m[1] + ':' }), ' ' + m[2]] : [headline]; };
+    const thumb = (id, span) => el('a', { class: 'yf-c' + span + ' yf-thumb', href: '#b' + id },
+      el('span', { class: 'yf-ph' }, bPhoto(id, 800)), el('span', { class: 'ydk-label yf-kick', text: B[id].kicker }), el('h3', { text: B[id].headline }));
+    const overlay = (id, span) => el('a', { class: 'yf-c' + span + ' yf-overlay', href: '#b' + id },
+      bPhoto(id, 1000), el('span', { class: 'yf-overlay-t' }, el('h3', {}, ...prefixed(B[id].headline))));
+    const wide = (id, span) => el('a', { class: 'yf-c' + span + ' yf-overlay yf-wide', href: '#b' + id },
+      bPhoto(id, 1200), el('span', { class: 'yf-overlay-t' }, el('span', { class: 'ydk-label yf-kick', text: B[id].kicker }), el('h3', { text: B[id].headline })));
+    const text = (id, span) => { const a = A_[id], kat = a.info && a.info.kategori ? a.info.kategori.split(' · ')[0] : 'Business Pro';
+      return el('a', { class: 'yf-c' + span + ' yf-text', href: '#a' + id }, el('span', { class: 'ydk-label yf-kick', text: kat }), el('h3', { text: a.headline }), el('p', { text: a.manchet })); };
+    const tal = BFRONT.tal;
+    return el('div', { class: 'yf' },
+      el('section', { class: 'yf-brief', 'aria-label': 'Dagens brief' },
+        el('span', { class: 'yf-play', 'aria-hidden': 'true' }, iconSvg('<path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/>')),
+        el('span', { class: 'yf-brief-t' }, el('strong', { text: 'Dagens brief' }), el('span', { text: 'Dagens vigtigste i overblik' }))),
+      liveBlogLinks(),
+      el('div', { class: 'yf-grid' },
+        el('a', { class: 'yf-c12 yf-hero', href: '#b' + BFRONT.hero },
+          el('span', { class: 'yf-ph' }, bPhoto(BFRONT.hero, 1400)), el('span', { class: 'yf-credit', text: bCaption(BFRONT.hero) }),
+          el('h1', { class: 'ydk-hero-title', text: B[BFRONT.hero].headline })),
+        overlay(2, 6), overlay(3, 6),
+        thumb(4, 4), thumb(5, 4), thumb(6, 4),
+        wide(7, 8),
+        el('aside', { class: 'yf-tal', 'aria-label': 'Dagens tal' }, el('span', { class: 'ydk-label', text: 'Dagens tal' }), el('strong', { text: tal.value }), el('p', { text: tal.text })),
+        thumb(8, 3), thumb(9, 3), thumb(10, 3), thumb(11, 3)),
+      el('section', { class: 'yf-panel', 'aria-labelledby': 'yf-pro-h' },
+        el('header', {}, el('h2', { id: 'yf-pro-h', text: 'Business Pro · Cases og analyser' }), el('a', { href: '#pro-produkt', text: 'Se Business Pro →' })),
+        el('div', { class: 'yf-grid' }, [1, 2, 3, 4, 5, 7].map(id => text(id, 4)))),
+      el('section', { class: 'yf-di', 'aria-label': 'Dansk Industri' },
+        diBanner('h2', link('Åbn DI-universet →', '#forside', true)),
+        el('div', { class: 'yf-grid' }, text(6, 6))));
   }
   function footer() {
-    return el('footer', { class: 'platform-footer' }, el('strong', { text: 'y business' }),
-      el('span', { text: 'Interaktiv mockup · Eksisterende eksempelartikler og markeret demoindhold · 19. november 2026' }),
-      el('a', { href: SERVICE_URL, target: '_blank', rel: 'noopener', text: 'Business Pro-servicedemo ↗' }));
+    return el('footer', { class: 'platform-footer' }, el('strong', { text: 'Business Pro' }),
+      el('span', { text: 'Interaktiv mockup · Eksisterende eksempelartikler og markeret demoindhold · 21. november 2026' }),
+      el('a', { href: '#pro-produkt', text: 'Produkt og pakker →' }));
   }
   function render({ scroll = false } = {}) {
     workspaceFrame = null;
     const r = route(); headerState(r);
     const main = document.getElementById('view');
     let content, title = 'Business';
-    if (r.name === 'business') content = businessFront();
+    if (r.name === 'y') { content = yFront(); title = 'Forside'; }
+    else if (r.name === 'business') content = businessFront();
     else if (Object.hasOwn(LIVE_BLOGS, r.name)) { content = liveBlogPage(r.name); title = 'Live: ' + LIVE_BLOGS[r.name].name; }
     else if (r.name === 'pro' || r.name === 'mit-pro') { content = isPro() ? workspacePage() : proAccessPage(); title = !isPro() ? 'Business Pro · Login og adgang' : access === 'di' ? 'Til jer i dag · Business Pro × DI' : 'Mit Business Pro · Værktøjer'; }
     else if (r.name === 'pro-produkt') { content = proLanding(); title = 'Business Pro · Produkt og abonnement'; }
@@ -668,9 +737,10 @@
     if (announce) toast('Demo: ' + ACCESS[value] + (value === 'free' ? ' · Premiumindhold er låst' : ' · Din adgang er aktiv'));
   }
   const dialog = document.getElementById('platform-dialog'), dialogBody = document.getElementById('platform-dialog-body');
-  function openDialog(title, content) {
+  function openDialog(title, content, tone = '') {
     if (!dialog.open) dialogTrigger = document.activeElement;
     document.getElementById('platform-dialog-label').textContent = title;
+    dialog.dataset.tone = tone;
     dialogBody.replaceChildren(content);
     if (!dialog.open) dialog.showModal();
     dialog.querySelector('.dialog-close').focus();
@@ -717,7 +787,7 @@
       if (onComplete) onComplete(); else { closeDialog(); if (target) go(target); }
       toast('Du er logget ind som Business Pro i demoen.');
     } }, el('label', {}, 'E-mail · brug gerne demoadressen', email), el('button', { class: 'cta-primary', type: 'submit', text: di ? 'Log ind og fortsæt til DI-verifikation →' : 'Log ind i demoen →' }));
-    openDialog(di ? 'DI-medlem · Trin 1 af 2' : 'Y · Login', el('div', {}, el('h2', { text: 'Én konto til hele Y.' }), el('p', { text: di ? 'Først logger du ind. Derefter bekræfter du medlemskabet til det særlige DI-univers.' : 'Fortsæt som eksisterende Business Pro-abonnent i demoen.' }), form, disclosure()));
+    openDialog(di ? 'DI-medlem · Trin 1 af 2' : 'Y · Login', el('div', {}, el('h2', { text: 'Én konto til hele Y.' }), el('p', { text: di ? 'Først logger du ind. Derefter bekræfter du medlemskabet til det særlige DI-univers.' : 'Fortsæt som eksisterende Business Pro-abonnent i demoen.' }), form, disclosure()), di ? 'di' : '');
   }
   function openVerification(target) {
     const cvr = el('input', { name: 'cvr', inputmode: 'numeric', pattern: '[0-9]{8}', maxlength: '8', value: '12345678', required: true, title: 'Indtast otte cifre', autocomplete: 'off' });
@@ -728,20 +798,20 @@
     } }, el('label', {}, 'Virksomhedens CVR-nummer · eksempel', cvr),
       el('label', { style: 'display:flex;align-items:start;gap:12px' }, consent, 'Simulér, at virksomheden har et aktivt DI-medlemskab.'),
       el('button', { class: 'cta-primary', type: 'submit', text: 'Verificér medlemskab og åbn DI-universet →' }));
-    openDialog('DI-medlem · Trin 2 af 2', el('div', {}, mono('Login gennemført i demoen'), el('h2', { text: 'Bekræft din medlemsadgang.' }), el('p', { text: 'DI-universet kræver både en Y-konto og et aktivt DI-medlemskab. Her simulerer vi kontrollen med eksempelnummeret nedenfor.' }), form, disclosure()));
+    openDialog('DI-medlem · Trin 2 af 2', el('div', {}, mono('Login gennemført i demoen'), el('h2', { text: 'Bekræft din medlemsadgang.' }), el('p', { text: 'DI-universet kræver både en Y-konto og et aktivt DI-medlemskab. Her simulerer vi kontrollen med eksempelnummeret nedenfor.' }), form, disclosure()), 'di');
   }
   function openDiInfo() {
     openDialog('Dansk Industri · Medlemsfordele', el('div', {}, el('h2', { text: 'Mere viden som DI-medlem.' }),
       el('p', { text: 'DI-afdelingen samler de eksisterende analyser og virksomhedscases fra mockuppen: blandt andre Arla, Ringsted Forsyning og Per Aarsleff.' }),
       el('ul', { class: 'dialog-benefits' }, ['Danske virksomhedscases med konkrete erfaringer', 'Perspektiver på AI, produktivitet og investeringer', 'Et medlemsunivers med login og verificeret DI-adgang'].map(text => el('li', { text }))),
-      el('div', { class: 'cta-row' }, access === 'di' ? btn('Åbn DI-universet →', () => { closeDialog(); go('#forside'); }, true) : btn('Log ind og verificér DI-medlemskab →', () => openLogin({ di: true, target: '#forside' }), true)), disclosure()));
+      el('div', { class: 'cta-row' }, access === 'di' ? btn('Åbn DI-universet →', () => { closeDialog(); go('#forside'); }, true) : btn('Log ind og verificér DI-medlemskab →', () => openLogin({ di: true, target: '#forside' }), true)), disclosure()), 'di');
   }
   function openReport(construction) {
     const title = construction ? 'Robotter på byggepladsen. Skal vi med nu?' : 'AI, kapital og konkurrence';
     const questions = construction ? ['Hvor er de gentagne opgaver på jeres byggepladser?', 'Hvilke data kræver en afprøvning?', 'Hvordan måler I kvalitet, tid og økonomi?'] : ['Hvilke investeringer ændrer jeres marked?', 'Hvor kan AI understøtte eksisterende arbejdsgange?', 'Hvilke risici bør ledelsen følge?'];
     const download = () => {
-      const blob = new Blob(['Y Business Pro · Demoindhold\n\n' + title + '\n\nDette er et illustrativt rapportuddrag, ikke en offentliggjort brancherapport.\n\n' + questions.map((q, i) => (i + 1) + '. ' + q).join('\n')], { type: 'text/plain;charset=utf-8' });
-      const url = URL.createObjectURL(blob), a = el('a', { href: url, download: 'y-business-pro-rapportuddrag-DEMO.txt' }); a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); toast('Rapportuddraget er hentet som tekstfil.');
+      const blob = new Blob(['Business Pro · Demoindhold\n\n' + title + '\n\nDette er et illustrativt rapportuddrag, ikke en offentliggjort brancherapport.\n\n' + questions.map((q, i) => (i + 1) + '. ' + q).join('\n')], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob), a = el('a', { href: url, download: 'business-pro-rapportuddrag-DEMO.txt' }); a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); toast('Rapportuddraget er hentet som tekstfil.');
     };
     openDialog('Brancherapporter · Demoindhold', el('div', {}, mono('Rapportuddrag · Eksempel'), el('h2', { text: title }), el('p', { text: 'Et eksempel på et redaktionelt beslutningsgrundlag. Brug spørgsmålene til at demonstrere, hvordan en rapport kan omsættes til handling.' }),
       el('ol', { class: 'dialog-benefits', style: 'list-style:decimal;padding-left:40px' }, questions.map(text => el('li', { text }))),
@@ -823,16 +893,16 @@
       } else if (target === '#forside' && access !== 'di') { e.preventDefault(); openLogin({ di: true, target }); }
       else if (target === '#mit-pro' && !isPro()) { e.preventDefault(); go('#pro'); }
     }
-    const branches = document.querySelector('.sn-branches[open]');
-    if (branches && !branches.contains(e.target)) branches.open = false;
+    if (bloom.open && !bloom.panel.contains(e.target) && !bloom.toggle.contains(e.target)) setBloom(false);
+    else if (bloom.open && e.target.closest?.('#pro-bloom a')) setBloom(false);
   });
   document.addEventListener('keydown', e => {
-    const branches = document.querySelector('.sn-branches[open]');
-    if (e.key === 'Escape' && branches) { branches.open = false; branches.querySelector('summary').focus(); }
+    if (e.key === 'Escape' && bloom.open) { setBloom(false); bloom.toggle.focus(); }
   });
-  window.addEventListener('hashchange', () => { if (dialog.open) closeDialog(); render({ scroll: true }); });
+  window.addEventListener('resize', () => { if (bloom.open) placeBloom(); });
+  window.addEventListener('hashchange', () => { setBloom(false); if (dialog.open) closeDialog(); render({ scroll: true }); });
   window.addEventListener('message', e => {
-    if (!isPro() || !workspaceFrame || e.source !== workspaceFrame.contentWindow || e.origin !== location.origin || e.data?.channel !== 'y-business-workspace') return;
+    if (!isPro() || !workspaceFrame || e.source !== workspaceFrame.contentWindow || !trustedOrigin(e.origin) || e.data?.channel !== 'y-business-workspace') return;
     const data = e.data;
     if (data.type === 'ready') initWorkspace();
     else if (data.type === 'height' && Number.isFinite(data.height)) workspaceFrame.style.height = Math.max(600, Math.min(14000, data.height)) + 'px';
