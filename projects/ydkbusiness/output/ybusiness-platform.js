@@ -243,7 +243,7 @@
     // .di-slot er en container: banneret tilpasser sig sin egen bredde og kan stå i smalle bokse
     // pitch: salgsvarianten til ikke-medlemmer, som lander fra "Se alle fordelene"
     return el('div', { class: 'di-slot' }, el('header', { class: 'di-partner-banner' },
-      el('div', {}, el(heading, { text: pitch ? 'Er du DI-medlem? Så får du mere ud af Business Pro.' : 'Industriens næste træk' }),
+      el('div', {}, el(heading, { text: pitch ? 'Er du DI-medlem? Så kan du få endnu mere ud af Business Pro.' : 'Industriens næste træk' }),
         mono(pitch ? 'Dansk Industri · Medlemsfordel' : 'Dansk Industri · Medlemsindsigt'),
         el('p', { text: pitch
           ? 'Tegner du Business Pro som DI-medlem, får du ekstra fordele: analyser, rapporter og indsigter ud over dem, der er tiltænkt andre abonnenter. Business Pro er et separat abonnement.'
