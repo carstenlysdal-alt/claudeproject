@@ -239,7 +239,7 @@
       el('div', {}, el(heading, { text: pitch ? 'Er du medlem af Dansk Industri? Så se her.' : 'Industriens næste træk' }),
         mono(pitch ? 'Dansk Industri · Medlemsfordel' : 'Dansk Industri · Medlemsindsigt'),
         el('p', { text: pitch
-          ? 'Dit medlemskab giver adgang til Business Pro og hele DI-universet med samme login: egne analyser, danske virksomhedscases og værktøjer til din branche.'
+          ? 'Som DI-medlem får du ekstra indhold: egne analyser, rapporter og indsigter, du ikke finder andre steder. Business Pro er et separat abonnement.'
           : 'Egne analyser. Danske virksomhedscases. Internationale perspektiver på de beslutninger, der former din forretning.' }),
         action),
       el('span', { class: 'di-logo' }, el('img', { src: DI_LOGO, alt: 'Dansk Industri' }))));
@@ -806,7 +806,7 @@
   }
   function openDiInfo() {
     openDialog('Dansk Industri · Medlemsfordele', el('div', {}, el('h2', { text: 'Det får du som DI-medlem.' }),
-      el('p', { text: 'Med dit medlemskab følger Business Pro med. Du får analyser og virksomhedscases som Arla, Ringsted Forsyning og Per Aarsleff, og værktøjer til din branche, med ét login.' }),
+      el('p', { text: 'Medlemskabet giver ekstra indhold: analyser, rapporter og indsigter, blandt andet virksomhedscases som Arla, Ringsted Forsyning og Per Aarsleff. Business Pro er et separat abonnement.' }),
       el('ul', { class: 'dialog-benefits' }, ['Danske virksomhedscases med konkrete erfaringer', 'Perspektiver på AI, produktivitet og investeringer', 'Et medlemsunivers med login og verificeret DI-adgang'].map(text => el('li', { text }))),
       el('div', { class: 'cta-row' }, access === 'di' ? btn('Åbn DI-universet →', () => { closeDialog(); go('#forside'); }, true) : btn('Log ind og verificér DI-medlemskab →', () => openLogin({ di: true, target: '#forside' }), true)), disclosure()), 'di');
   }
