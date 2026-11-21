@@ -675,9 +675,6 @@
       return el('a', { class: 'yf-c' + span + ' yf-text', href: '#a' + id }, el('span', { class: 'ydk-label yf-kick', text: kat }), el('h3', { text: a.headline }), el('p', { text: a.manchet })); };
     const tal = BFRONT.tal;
     return el('div', { class: 'yf' },
-      el('section', { class: 'yf-brief', 'aria-label': 'Dagens brief' },
-        el('span', { class: 'yf-play', 'aria-hidden': 'true' }, iconSvg('<path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/>')),
-        el('span', { class: 'yf-brief-t' }, el('strong', { text: 'Dagens brief' }), el('span', { text: 'Dagens vigtigste i overblik' }))),
       liveBlogLinks(),
       el('div', { class: 'yf-grid' },
         el('a', { class: 'yf-c12 yf-hero', href: '#b' + BFRONT.hero },
