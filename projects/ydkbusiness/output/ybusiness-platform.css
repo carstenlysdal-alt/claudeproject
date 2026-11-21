@@ -359,7 +359,7 @@ h1, h2, h3, h4 { font-family: var(--font-public-sans); }
 .branch-feature h2 { font-size: 32px; font-weight: 600; line-height: 1.2; letter-spacing: -1.28px; }
 .branch-feature p { font-size: 14px; color: var(--text-tertiary); }
 /* Kompakt DI-teaser — mindre banner, ikke fuld bredde */
-.preserved-di, .yf-di, .curation-di-member-banner { max-width: 880px; margin-inline: auto; }
+.preserved-di, .yf-di, .curation-di-member-banner { max-width: 880px; margin-inline: auto; margin-block: 32px; }
 .preserved-di .di-partner-banner, .yf-di .di-partner-banner, .curation-di-member-banner .di-partner-banner {
   min-height: auto; padding: 24px; gap: 16px; flex-direction: row; align-items: center;
 }
@@ -856,7 +856,7 @@ body:has(dialog[open]) { overflow: hidden; }
 .yf-panel header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .yf-panel h2 { font: 700 22px/1.2 var(--font-public-sans); letter-spacing: var(--tracking-title-md); }
 .yf-panel header a { font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
-.yf-di { margin-top: 32px; }
+.yf-di { margin-block: 32px; }
 .yf-di .yf-text { border-top-color: var(--di-accent); }
 @media (max-width: 1023px) { .yf-c3 { grid-column: span 6; } .yf-tal, .yf-wide.yf-c8 { grid-column: span 12; } }
 @media (max-width: 767px) {
