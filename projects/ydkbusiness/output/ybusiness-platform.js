@@ -282,7 +282,7 @@
     return el('section', { 'aria-label': 'Dansk Industri' }, diBanner('h2', action, access !== 'di'));
   }
   function diFront() {
-    return el('div', { class: 'platform-page di-news-page' }, diBanner('h1', link('Åbn Business Pro-værktøjet →', '#mit-pro', true)), diLeads('h2'),
+    return el('div', { class: 'platform-page di-news-page' }, diBanner('h1'), diLeads('h2'),
       el('section', { class: 'content-section', 'aria-labelledby': 'di-cases-title' },
         el('h2', { class: 'di-cases-title', id: 'di-cases-title', text: 'Virksomhederne i praksis' }), diCases()));
   }
@@ -468,7 +468,7 @@
     ];
     return el('section', { class: 'content-section pro-features', 'aria-labelledby': 'pro-features-title' },
       el('h2', { id: 'pro-features-title', class: 'visually-hidden', text: 'Alt i Business Pro' }),
-      moduleHeader('Alt det, Business Pro kan.', 'Samme værktøjer for abonnenter og DI-medlemmer. Pro+ udvider med udbud og brancherapporter.'),
+      moduleHeader('Alt det, Business Pro kan.', 'Alle værktøjer i ét abonnement. Pro+ udvider med udbud og brancherapporter.'),
       el('div', { class: 'pro-feature-grid' }, features.map(([title, tier, text]) => el('article', { class: 'pro-feature' },
         el('span', { class: 'eyebrow-label', text: tier }),
         el('h3', { text: title }),
@@ -620,7 +620,7 @@
           el('li', {}, el('a', { href: '#pro-overblik', text: 'Alle brancher →' })))),
       el('section', { class: 'petal petal-di', style: '--i:1' }, mono('DI-medlem'),
         el('p', {}, lock(member), member ? ' Medlemskab verificeret.' : ' Kræver login og verificeret medlemskab.'),
-        el('ul', {}, el('li', {}, el('a', { class: 'bloom-di', href: member ? '#mit-pro' : '#forside', text: member ? 'Åbn Business Pro-værktøjet →' : 'Log ind som DI-medlem →' })))));
+        el('ul', {}, el('li', {}, el('a', { class: 'bloom-di', href: '#forside', text: member ? 'Åbn DI-universet →' : 'Log ind som DI-medlem →' })))));
   }
   function headerState(r) {
     document.querySelectorAll('[data-access]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.access === access)));

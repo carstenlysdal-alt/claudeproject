@@ -214,7 +214,7 @@ test('DI members open the Business Pro workspace from the DI link', async t => {
   const { $, click, selectAccess, w } = setup(t);
   await selectAccess('di');
   const navigated = new Promise(resolve => w.addEventListener('hashchange', resolve, { once: true }));
-  click('#pro-bloom a[href="#mit-pro"]');
+  click('#nav-pro');
   await navigated;
   assert.equal(w.location.hash, '#mit-pro');
   assert($('.pro-workspace-page iframe'));
@@ -387,14 +387,19 @@ test('Overblik er altid Business, og PRO åbner værktøjet for Pro og DI', asyn
   assert.equal($('#nav-pro').getAttribute('href'), '#mit-pro');
   await selectAccess('di');
   assert.equal($('#nav-pro').getAttribute('href'), '#mit-pro');
-  assert.equal($('#pro-bloom a.bloom-di').getAttribute('href'), '#mit-pro');
+  assert.equal($('#pro-bloom a.bloom-di').getAttribute('href'), '#forside');
 });
 
-test('DI-forsiden viser Business Pro-værktøjet til DI-medlemmer', async t => {
+test('Ingen tekst påstår, at DI-medlemskab inkluderer Business Pro', async t => {
   const { $, go, selectAccess } = setup(t);
-  await selectAccess('di');
-  await go('#forside');
-  assert($('.di-partner-banner a[href="#mit-pro"]'), 'banneret linker til Pro-værktøjet');
+  for (const access of ['free', 'pro', 'di']) {
+    await selectAccess(access);
+    for (const route of ['pro-produkt', 'forside', 'business']) {
+      await go('#' + route);
+      const text = $('main').textContent + $('#pro-bloom').textContent;
+      assert(!/DI-medlem[^.]{0,60}(følger|inkluder)/i.test(text) && !/Business Pro[^.]{0,40}(følger|inkluder)[^.]{0,30}(DI|medlem)/i.test(text), `${access} ${route}`);
+    }
+  }
 });
 
 test('Intet linker ud af mockuppen, og alt hedder Business Pro', async t => {
