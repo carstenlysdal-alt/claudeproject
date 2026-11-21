@@ -889,3 +889,4 @@ body:has(dialog[open]) { overflow: hidden; }
 /* DI-boksen er et kort: al tekst i Y's kortskrift (Public Sans), labels i IBM Plex Mono */
 .di-partner-banner p, .di-access-row p, .petal-di p, .workspace-bar { font-family: var(--font-public-sans); }
 .di-slot .di-partner-banner :is(h1, h2) { max-width: 24ch; }
+.section-intro, .curated-page .section-intro, .bf.bc .bc-head { padding: 0 !important; margin: -1px !important; }
