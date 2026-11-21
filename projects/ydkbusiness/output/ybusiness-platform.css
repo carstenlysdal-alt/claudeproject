@@ -889,3 +889,7 @@ body:has(dialog[open]) { overflow: hidden; }
 /* Låsen sidder i det blurrede billede (øverst til venstre) og aldrig foran rubrikken */
 .premium-lock-overlay { top: 12px; bottom: auto; }
 .premium-lock-overlay { left: auto; right: 12px; }
+
+/* Små miniaturer i sidespalten: kun låsen, midt i det blurrede billede. Teksten er stadig til stede for skærmlæsere */
+.curation-side .story-card .premium-lock-overlay { left: 35px; right: auto; top: 56px; padding: 10px; }
+.curation-side .story-card .premium-lock-overlay span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
