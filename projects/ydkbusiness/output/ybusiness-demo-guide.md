@@ -1,4 +1,4 @@
-# Y Business, Business Pro og DI · interaktiv demo
+# Business Pro, Business Pro og DI · interaktiv demo
 
 Opdateret 19. november 2026. Videreudvikling af `ybusiness-di-artikler.html` med de vedlagte Y-designtokens. Eksisterende historier, billeder og DI-artikler er bevaret.
 

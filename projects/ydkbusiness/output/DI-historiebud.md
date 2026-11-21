@@ -1,4 +1,4 @@
-# Y Business × DI — historiebud og positionering
+# Business Pro × DI — historiebud og positionering
 
 Internt udkast til Carsten. Punkt 6 er en intern grænsetest og vises ikke til DI.
 
@@ -66,7 +66,7 @@ Første version afgrænses som til Dansk Erhverv: tre til fem bidragydere efter 
 
 - DI-ledelsens egne prioriteter efteråret 2026, og hvem der er afsender af aftalen. Det kommer fra din analyse.
 - DI Business' rækkevidde og læsertal, og hvad kurateringslaget dækker og ikke dækker.
-- Om DI ser Y som en konkurrent til DI Business. Navnene kolliderer også: "DI Business" og "Y Business". Brug "Y × DI" udadtil.
+- Om DI ser Y som en konkurrent til DI Business. Navnene kolliderer også: "DI Business" og "Business Pro". Brug "Y × DI" udadtil.
 - Medlemstal. Vores dokumenter skriver "10.000+", DI skriver selv "over 20.000" medlemsvirksomheder. Ret det, før DI ser tallet.
 - Om 21 pct. i 2024 og 37,6 pct. i 2026 er målt ens. Tjek mod selve Siemens-rapporten, før punkt 1 går videre.
 - Retten til at genbruge DI's analyser, medlemsverifikation (medlemsnummer, mail eller link fra DI) og GDPR for medlemsdata.

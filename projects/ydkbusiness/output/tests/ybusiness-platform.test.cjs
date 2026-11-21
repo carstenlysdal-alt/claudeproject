@@ -435,3 +435,30 @@ test('Y-forsiden og Business deler samme header, og skiftet er en rute uden side
   assert.equal($('#ysite'), header);
   assert.equal($('.yf-hero').getAttribute('href'), '#b1');
 });
+
+test('Markederne er blurret og låst for ikke-abonnenter og åbne for Pro', async t => {
+  const { $, click, go, selectAccess } = setup(t, '#business');
+  assert($('.market-graphic.is-gated .market-locked'), 'låst for ikke-abonnent');
+  assert($('.market-locked > .market-grid').hasAttribute('inert'));
+  click('.market-lock-cta');
+  assert($('#platform-dialog').open, 'knappen åbner paywall');
+  click('#platform-dialog-close');
+  await selectAccess('pro');
+  await go('#business');
+  assert(!$('.market-locked'), 'åbne for Pro');
+  assert($('.market-graphic .market-grid'));
+});
+
+test('Låste historier har ikon og handling, og DI-pitchen nævner ekstra fordele uden at love Pro', async t => {
+  const { $, $$, go, selectAccess } = setup(t, '#business');
+  assert($$('.premium-lock-overlay').length > 0);
+  assert($('.premium-lock-overlay .lock-icon'));
+  assert.equal($('.premium-lock-overlay').textContent.trim(), 'Læs hele historien →');
+  await go('#pro-produkt');
+  const text = $('.di-partner-banner').textContent;
+  assert(text.includes('Er du DI-medlem?') && text.includes('ekstra fordele') && text.includes('separat abonnement'));
+  await selectAccess('di');
+  await go('#mit-pro');
+  assert($('.workspace-bar').textContent.includes('Åbn DI-universet'), 'DI-linje øverst i værktøjet');
+  assert($('.workspace-bar a[href="#forside"]'));
+});

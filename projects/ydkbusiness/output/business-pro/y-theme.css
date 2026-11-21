@@ -155,3 +155,6 @@ dialog::backdrop { background: #171314bb; }
 .pg .app .card.card-di .workspace-heading, .pg .app .card.card-di h3 { color: var(--di-on-purple); }
 .pg .app .card.card-di .note, .pg .app .card.card-di p { color: var(--di-on-purple-muted); }
 .pg .app .card.card-di .workspace-link, .pg .app .card.card-di a { color: var(--di-on-purple); }
+
+/* Fast faneliste: følger siden under headeren, når siden scrolles */
+.workspace-nav { position: relative; z-index: 5; background: var(--paper); will-change: transform; }

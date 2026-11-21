@@ -23,6 +23,12 @@ const MIME = {
   '.js':   'application/javascript',
   '.json': 'application/json',
   '.png':  'image/png',
+  '.jpg':  'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.svg':  'image/svg+xml',
+  '.woff2': 'font/woff2',
+  '.txt':  'text/plain; charset=utf-8',
   '.ico':  'image/x-icon',
   '.xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 };
@@ -124,15 +130,28 @@ function handleFeedback(req, res) {
 }
 
 http.createServer((req, res) => {
-  if (req.method === 'POST' && req.url === '/api/feedback') {
+  // Kun stien bruges til at finde filen. Query-strengen (fx ?v=20261121-6 til cache) må ikke indgå i filnavnet.
+  let pathname;
+  try { pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname); }
+  catch (_) { res.writeHead(400); return res.end('Bad request'); }
+
+  if (req.method === 'POST' && pathname === '/api/feedback') {
     return handleFeedback(req, res);
   }
 
-  let filePath = req.url === '/' ? `/${SERVE_FILE}` : req.url;
-  filePath = path.join(DIR, filePath);
+  const filePath = path.join(DIR, pathname === '/' ? `/${SERVE_FILE}` : pathname);
+  if (filePath !== DIR && !filePath.startsWith(DIR + path.sep)) {
+    res.writeHead(403); return res.end('Forbidden');
+  }
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
+      // Manglende filer med filendelse (css, js, billeder) er en rigtig 404. Kun sider falder tilbage til masteren.
+      const missingExt = path.extname(pathname);
+      if (missingExt && missingExt !== '.html') {
+        res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+        return res.end('Not found');
+      }
       fs.readFile(path.join(DIR, SERVE_FILE), 'utf8', (e, d) => {
         const html = d.replace('{{DEPLOY_TIME}}', DEPLOY_TIME);
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });

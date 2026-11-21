@@ -300,6 +300,7 @@
     const tab = e.target.closest('[data-tab]');
     if (tab) { e.preventDefault(); selectTab(tab.dataset.tab); }
   });
+  const d_nav = () => document.querySelector('.workspace-nav');
   window.addEventListener('message', e => {
     if (e.source !== parent || parent === window || !trustedOrigin(e.origin) || e.data?.channel !== 'y-business-workspace') return;
     const data = e.data;
@@ -308,6 +309,13 @@
       const company = typeof data.company === 'string' && data.company.trim() ? data.company.trim().slice(0, 80) : DEFAULT_COMPANY_NAME;
       state = { access: data.access, theme: data.theme === 'light' ? 'light' : 'dark', tab: views[data.tab] ? data.tab : 'idag', articles: Array.isArray(data.articles) ? data.articles : [], company };
       document.documentElement.setAttribute('data-theme', state.theme); render();
+    } else if (data.type === 'stick') {
+      const bar = d_nav();
+      if (bar && Number.isFinite(data.offset)) {
+        const current = Number(bar.dataset.stick || 0), natural = bar.getBoundingClientRect().top - current;
+        const y = Math.max(0, Math.min(Math.round(data.offset - natural), 14000));
+        bar.dataset.stick = String(y); bar.style.transform = y ? `translateY(${y}px)` : '';
+      }
     } else if (data.type === 'theme') {
       state.theme = data.theme === 'light' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', state.theme); resize();
     }
